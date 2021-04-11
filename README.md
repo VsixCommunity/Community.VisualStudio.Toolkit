@@ -2,12 +2,12 @@
 
 A community driven effort for a better Visual Studio experience developing extensions.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/dx0m0lyf8wlti0eq?svg=true)](https://ci.appveyor.com/project/madskristensen/community-visualstudio-toolkit)
+[![Build status](https://ci.appveyor.com/api/projects/status/0p4wvtwuj55qixhr?svg=true)](https://ci.appveyor.com/project/madskristensen/community-visualstudio-toolkit-1dwx1)
 [![NuGet](https://img.shields.io/nuget/v/Community.VisualStudio.Toolkit)](https://nuget.org/packages/Community.VisualStudio.Toolkit/)
 
 The NuGet package [Community.VisualStudio.Toolkit](https://www.nuget.org/packages/Community.VisualStudio.Toolkit/) acts as a companion to the regular Visual Studio SDK packages with helper methods, classes and extension methods that makes writing extensions a lot easier. 
 
-See the [API Documentation](https://madskristensen.github.io/Community.VisualStudio.Toolkit/v1/api/)
+See the [API Documentation](https://vsixcommunity.github.io/Community.VisualStudio.Toolkit/v1/api/)
 
 ## Purpose
 This package attempts to solve multiple issues with the current extensibility model.
