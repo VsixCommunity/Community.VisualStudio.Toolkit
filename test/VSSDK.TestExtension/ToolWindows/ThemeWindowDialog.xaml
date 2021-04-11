@@ -1,0 +1,36 @@
+﻿<platform:DialogWindow 
+    x:Class="TestExtension.ThemeWindowDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:platform="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+    xmlns:toolkit="clr-namespace:Community.VisualStudio.Toolkit;assembly=Community.VisualStudio.Toolkit"
+    xmlns:local="clr-namespace:TestExtension"
+    mc:Ignorable="d" 
+    Width="400"
+    Height="600"
+    d:DesignHeight="450" d:DesignWidth="800"
+    d:DataContext="{d:DesignInstance Type={x:Type local:ThemeWindowDialogViewModel}, IsDesignTimeCreatable=False}"
+    toolkit:Themes.UseVsTheme="{Binding UseVsTheme}"
+    >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <CheckBox 
+            Grid.Row="0" 
+            Margin="10"
+            Content="Use VSTheme"
+            IsChecked="{Binding UseVsTheme}"
+            />
+        
+        <Separator Grid.Row="1" />
+
+        <local:ThemeWindowDemo Grid.Row="2"/>
+    </Grid>
+</platform:DialogWindow>

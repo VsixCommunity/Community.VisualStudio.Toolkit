@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+    <ItemGroup>
+      <Content Include="$(MSBuildThisFileDirectory)..\lib\*\*.dll" CopyToOutputDirectory="PreserveNewest" Visible="false">
+        <Link>Community.VisualStudio.Toolkit.dll</Link>
+        <IncludeInVSIX>true</IncludeInVSIX>
+      </Content>
+
+      <Compile Include="$(MSBuildThisFileDirectory)*.cs" />
+    </ItemGroup>
+
+</Project>

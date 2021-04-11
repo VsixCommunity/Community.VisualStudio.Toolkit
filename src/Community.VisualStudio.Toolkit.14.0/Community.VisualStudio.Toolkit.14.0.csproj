@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\Common.props" />
+  
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+    <Version>14.0</Version>
+    <DefineConstants>VS14</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Madskristensen.VisualStudio.SDK" Version="14.0.83" IncludeAssets="All" PrivateAssets="None" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>

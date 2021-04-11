@@ -1,0 +1,78 @@
+﻿<UserControl 
+    x:Class="TestExtension.ThemeWindowDemo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:platform="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:toolkit="clr-namespace:Community.VisualStudio.Toolkit;assembly=Community.VisualStudio.Toolkit"
+    mc:Ignorable="d" 
+    d:DesignHeight="450" 
+    d:DesignWidth="800"
+    >
+
+    <UserControl.Resources>
+        <!-- Uncomment the line below to override the padding used in TextBox and ComboBox controls. -->
+        <!--<Thickness x:Key="{x:Static toolkit:ToolkitResourceKeys.InputPaddingKey}">1,1,1,1</Thickness>-->
+    </UserControl.Resources>
+    
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10" Orientation="Vertical">
+            <StackPanel.Resources>
+                <Thickness x:Key="Margin">0,10,0,0</Thickness>
+            </StackPanel.Resources>
+
+            <TextBlock>TextBlock</TextBlock>
+
+            <Label Margin="{StaticResource Margin}">Label</Label>
+
+            <TextBlock Margin="{StaticResource Margin}">
+                <Hyperlink>Hyperlink</Hyperlink>
+            </TextBlock>
+
+            <Button Margin="{StaticResource Margin}" Content="Button" />
+
+            <TextBox Margin="{StaticResource Margin}" Text="TextBox" />
+
+            <platform:WatermarkedTextBox Margin="{StaticResource Margin}" Watermark="WatermarkedTextBox"/>
+
+            <ComboBox Margin="{StaticResource Margin}" MaxDropDownHeight="80">
+                <system:String>First</system:String>
+                <system:String>Second</system:String>
+                <system:String>Third</system:String>
+                <system:String>Fourth</system:String>
+                <system:String>Fifth</system:String>
+                <system:String>Sixth</system:String>
+            </ComboBox>
+
+            <CheckBox Margin="{StaticResource Margin}" Content="CheckBox"/>
+
+            <RadioButton Margin="{StaticResource Margin}" Content="RadioButton 1" HorizontalAlignment="Left" />
+            <RadioButton Margin="{StaticResource Margin}" Content="RadioButton 2" HorizontalAlignment="Left" />
+
+            <ListBox Margin="{StaticResource Margin}" Height="80">
+                <system:String>First</system:String>
+                <system:String>Second</system:String>
+                <system:String>Third</system:String>
+                <system:String>Fourth</system:String>
+                <system:String>Fifth</system:String>
+                <system:String>Sixth</system:String>
+            </ListBox>
+
+            <Border 
+                Margin="{StaticResource Margin}" 
+                Padding="{DynamicResource {x:Static toolkit:ToolkitResourceKeys.InputPaddingKey}}"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource {x:Static platform:CommonControlsColors.ButtonBorderDisabledBrushKey}}"
+                Background="{DynamicResource {x:Static platform:CommonControlsColors.ButtonDisabledBrushKey}}"
+                >
+                <TextBlock 
+                    Text="InputPaddingKey Example"
+                    TextAlignment="Center"
+                    Foreground="{DynamicResource {x:Static platform:CommonControlsColors.ButtonDisabledTextBrushKey}}"
+                    />
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

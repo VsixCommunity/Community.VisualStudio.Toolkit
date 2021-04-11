@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>5ec463ac-24cb-443e-9ff9-91b7ecb1f822</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Community.VisualStudio.Toolkit.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ExceptionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ImageMonikerExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsSolutionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ProjectExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ProjectItemExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TaskExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TextBufferExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProjectTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Themes\ToolkitResourceKeys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Themes\Themes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Notifications\MessageBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Commanding.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Events.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolkitPackage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindows\BaseToolWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindows\IToolWindowProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindows\WindowGuids.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Debugger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Editor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Notifications\Notifications.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Shell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Solution.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Windows.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Notifications\Statusbar.cs" />
+  </ItemGroup>
+</Project>

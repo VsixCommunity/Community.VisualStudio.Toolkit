@@ -1,0 +1,48 @@
+﻿<UserControl 
+    x:Class="TestExtension.ThemeWindowControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:toolkit="clr-namespace:Community.VisualStudio.Toolkit;assembly=Community.VisualStudio.Toolkit"
+    xmlns:local="clr-namespace:TestExtension"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance Type={x:Type local:ThemeWindowControlViewModel}, IsDesignTimeCreatable=False}"
+    toolkit:Themes.UseVsTheme="{Binding UseVsTheme}"
+    >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <CheckBox 
+                Grid.Column="0"
+                Content="Use VSTheme" 
+                IsChecked="{Binding UseVsTheme}" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                />
+
+            <Button 
+                Grid.Column="1"
+                Content="Open Dialog" 
+                Command="{Binding OpenDialogCommand}" 
+                VerticalAlignment="Center"
+                />
+        </Grid>
+
+        <Separator Grid.Row="1" />
+
+        <local:ThemeWindowDemo Grid.Row="2"/>
+    </Grid>
+</UserControl>

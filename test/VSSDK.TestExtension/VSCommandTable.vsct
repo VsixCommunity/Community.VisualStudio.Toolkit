@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+  <Include href="KnownImageIds.vsct"/>
+  <Include href="VSGlobals.vsct"/>
+
+  <Commands package="guidPackage">
+    <!--This section defines the elements the user can interact with, like a menu command or a button
+        or combo box in a toolbar. -->
+    <Buttons>
+      <Button guid="guidTestExtensionPackageCmdSet" id="RunnerWindowCommandId" priority="0x0105" type="Button">
+        <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
+        <Icon guid="ImageCatalogGuid" id="StatusInformation" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Runner Window</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidTestExtensionPackageCmdSet" id="ThemeWindowCommandId" priority="0x0106" type="Button">
+        <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
+        <Icon guid="ImageCatalogGuid" id="ColorPalette" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Theme Window</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidTestExtensionPackageCmdSet" id="MultiInstanceWindowCommandId" priority="0x0107" type="Button">
+        <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
+        <Icon guid="ImageCatalogGuid" id="MultiView" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Multi-Instance Window</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidPackage" value="{05271709-8845-42fb-9d10-621cc8cffc5d}" />
+
+    <GuidSymbol name="guidTestExtensionPackageCmdSet" value="{cb765f49-fc35-4c14-93af-bb48ca4f2ce3}">
+      <IDSymbol name="RunnerWindowCommandId" value="0x0100" />
+      <IDSymbol name="ThemeWindowCommandId" value="0x0101" />
+      <IDSymbol name="MultiInstanceWindowCommandId" value="0x0102" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
