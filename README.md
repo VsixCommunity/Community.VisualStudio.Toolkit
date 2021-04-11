@@ -7,7 +7,7 @@ A community driven effort for a better Visual Studio experience developing exten
 
 The NuGet package [Community.VisualStudio.Toolkit](https://www.nuget.org/packages/Community.VisualStudio.Toolkit/) acts as a companion to the regular Visual Studio SDK packages with helper methods, classes and extension methods that makes writing extensions a lot easier. 
 
-See the [API Documentation](https://vsixcommunity.github.io/Community.VisualStudio.Toolkit/v1/api/).
+See the [API Documentation](https://vsixcommunity.github.io/Community.VisualStudio.Toolkit/v1/api/)
 
 ## Purpose
 This package attempts to solve multiple issues with the current extensibility model.
