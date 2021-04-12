@@ -62,7 +62,9 @@ namespace Community.VisualStudio.Toolkit
             var commandService = (IMenuCommandService)await package.GetServiceAsync(typeof(IMenuCommandService));
             Assumes.Present(commandService);
 
-            commandService?.AddCommand(instance.Command);
+            await package.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
+
+            commandService?.AddCommand(instance.Command);  // Requires main/UI thread
 
             await instance.InitializeCompletedAsync();
             return instance;
