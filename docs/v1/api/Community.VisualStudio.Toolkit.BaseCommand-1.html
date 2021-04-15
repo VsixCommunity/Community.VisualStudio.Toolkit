@@ -110,7 +110,7 @@
   <h5 id="Community_VisualStudio_Toolkit_BaseCommand_1_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract class BaseCommand&lt;T&gt;
-    where T : BaseCommand&lt;T&gt;, new()</code></pre>
+    where T : class, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -129,65 +129,23 @@
     </tbody>
   </table>
   <h5 id="Community_VisualStudio_Toolkit_BaseCommand_1_examples"><strong>Examples</strong></h5>
-  <pre><code>public class TestCommand : BaseCommand&lt;TestCommand>
+  <pre><code>[Command(&quot;489ba882-f600-4c8b-89db-eb366a4ee3b3&quot;, 0x0100)]
+public class TestCommand : BaseCommand&lt;TestCommand>
 {
-    public TestCommand() : base(new Guid(&quot;489ba882-f600-4c8b-89db-eb366a4ee3b3&quot;), 0x000)
-    { }
-
     protected override Task ExecuteAsync(OleMenuCmdEventArgs e)
     {
         return base.ExecuteAsync(e);
     }
 }</code></pre>
 
-  <h3 id="constructors">Constructors
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1__ctor_System_Guid_System_Int32_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.%23ctor(System.Guid%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/CommandBase.cs/#L35">View Source</a>
-  </span>
-  <a id="Community_VisualStudio_Toolkit_BaseCommand_1__ctor_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.#ctor*"></a>
-  <h4 id="Community_VisualStudio_Toolkit_BaseCommand_1__ctor_System_Guid_System_Int32_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.#ctor(System.Guid,System.Int32)">BaseCommand(Guid, Int32)</h4>
-  <div class="markdown level1 summary"><p>Creates a new instance of the implementation.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected BaseCommand(Guid commandGuid, int commandId)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Guid</span></td>
-        <td><span class="parametername">commandGuid</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">commandId</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_Command.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.Command%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_Command.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.Command%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/CommandBase.cs/#L41">View Source</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/BaseCommand.cs/#L32">View Source</a>
   </span>
   <a id="Community_VisualStudio_Toolkit_BaseCommand_1_Command_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.Command*"></a>
   <h4 id="Community_VisualStudio_Toolkit_BaseCommand_1_Command" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.Command">Command</h4>
@@ -215,10 +173,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_Package.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.Package%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_Package.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.Package%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/CommandBase.cs/#L44">View Source</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/BaseCommand.cs/#L37">View Source</a>
   </span>
   <a id="Community_VisualStudio_Toolkit_BaseCommand_1_Package_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.Package*"></a>
   <h4 id="Community_VisualStudio_Toolkit_BaseCommand_1_Package" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.Package">Package</h4>
@@ -248,10 +206,10 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_BeforeQueryStatus_System_EventArgs_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.BeforeQueryStatus(System.EventArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_BeforeQueryStatus_System_EventArgs_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.BeforeQueryStatus(System.EventArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/CommandBase.cs/#L104">View Source</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/BaseCommand.cs/#L107">View Source</a>
   </span>
   <a id="Community_VisualStudio_Toolkit_BaseCommand_1_BeforeQueryStatus_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.BeforeQueryStatus*"></a>
   <h4 id="Community_VisualStudio_Toolkit_BaseCommand_1_BeforeQueryStatus_System_EventArgs_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.BeforeQueryStatus(System.EventArgs)">BeforeQueryStatus(EventArgs)</h4>
@@ -281,10 +239,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_Execute_System_Object_System_EventArgs_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.Execute(System.Object%2CSystem.EventArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_Execute_System_Object_System_EventArgs_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.Execute(System.Object%2CSystem.EventArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/CommandBase.cs/#L81">View Source</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/BaseCommand.cs/#L84">View Source</a>
   </span>
   <a id="Community_VisualStudio_Toolkit_BaseCommand_1_Execute_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.Execute*"></a>
   <h4 id="Community_VisualStudio_Toolkit_BaseCommand_1_Execute_System_Object_System_EventArgs_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.Execute(System.Object,System.EventArgs)">Execute(Object, EventArgs)</h4>
@@ -322,10 +280,10 @@
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_ExecuteAsync_Microsoft_VisualStudio_Shell_OleMenuCmdEventArgs_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.ExecuteAsync(Microsoft.VisualStudio.Shell.OleMenuCmdEventArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_ExecuteAsync_Microsoft_VisualStudio_Shell_OleMenuCmdEventArgs_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.ExecuteAsync(Microsoft.VisualStudio.Shell.OleMenuCmdEventArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/CommandBase.cs/#L98">View Source</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/BaseCommand.cs/#L101">View Source</a>
   </span>
   <a id="Community_VisualStudio_Toolkit_BaseCommand_1_ExecuteAsync_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.ExecuteAsync*"></a>
   <h4 id="Community_VisualStudio_Toolkit_BaseCommand_1_ExecuteAsync_Microsoft_VisualStudio_Shell_OleMenuCmdEventArgs_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.ExecuteAsync(Microsoft.VisualStudio.Shell.OleMenuCmdEventArgs)">ExecuteAsync(OleMenuCmdEventArgs)</h4>
@@ -373,14 +331,14 @@
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_InitializeAsync_Microsoft_VisualStudio_Shell_AsyncPackage_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.InitializeAsync(Microsoft.VisualStudio.Shell.AsyncPackage)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_InitializeAsync_Microsoft_VisualStudio_Shell_AsyncPackage_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.InitializeAsync(Microsoft.VisualStudio.Shell.AsyncPackage)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/CommandBase.cs/#L49">View Source</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/BaseCommand.cs/#L42">View Source</a>
   </span>
   <a id="Community_VisualStudio_Toolkit_BaseCommand_1_InitializeAsync_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.InitializeAsync*"></a>
   <h4 id="Community_VisualStudio_Toolkit_BaseCommand_1_InitializeAsync_Microsoft_VisualStudio_Shell_AsyncPackage_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.InitializeAsync(Microsoft.VisualStudio.Shell.AsyncPackage)">InitializeAsync(AsyncPackage)</h4>
-  <div class="markdown level1 summary"><p>Initializes the command. This method must be called from the <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.InitializeAsync(System.Threading.CancellationToken,System.IProgress{Microsoft.VisualStudio.Shell.ServiceProgressData})</span> method for the command to work.</p>
+  <div class="markdown level1 summary"><p>Initializes the command. This method must be called from the <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.InitializeAsync(System.Threading.CancellationToken, System.IProgress&lt;Microsoft.VisualStudio.Shell.ServiceProgressData&gt;)</span> method for the command to work.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -421,10 +379,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_InitializeCompletedAsync.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.InitializeCompletedAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1_InitializeCompletedAsync.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601.InitializeCompletedAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/CommandBase.cs/#L72">View Source</a>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/BaseCommand.cs/#L75">View Source</a>
   </span>
   <a id="Community_VisualStudio_Toolkit_BaseCommand_1_InitializeCompletedAsync_" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.InitializeCompletedAsync*"></a>
   <h4 id="Community_VisualStudio_Toolkit_BaseCommand_1_InitializeCompletedAsync" data-uid="Community.VisualStudio.Toolkit.BaseCommand`1.InitializeCompletedAsync">InitializeCompletedAsync()</h4>
@@ -462,10 +420,10 @@ manipulate the <a class="xref" href="Community.VisualStudio.Toolkit.BaseCommand-
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseCommand_1.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseCommand%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/madskristensen/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/CommandBase.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/Commands/BaseCommand.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

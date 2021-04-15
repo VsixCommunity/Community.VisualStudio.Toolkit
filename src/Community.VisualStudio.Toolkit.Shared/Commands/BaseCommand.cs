@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Design;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft;
 using Microsoft.VisualStudio.Shell;
@@ -12,11 +13,9 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     /// <example>
     /// <code>
+    /// [Command("489ba882-f600-4c8b-89db-eb366a4ee3b3", 0x0100)]
     /// public class TestCommand : BaseCommand&lt;TestCommand&gt;
     /// {
-    ///     public TestCommand() : base(new Guid("489ba882-f600-4c8b-89db-eb366a4ee3b3"), 0x000)
-    ///     { }
-    /// 
     ///     protected override Task ExecuteAsync(OleMenuCmdEventArgs e)
     ///     {
     ///         return base.ExecuteAsync(e);
@@ -25,18 +24,8 @@ namespace Community.VisualStudio.Toolkit
     /// </code>
     /// </example>
     /// <typeparam name="T">The implementation type itself.</typeparam>
-    public abstract class BaseCommand<T> where T : BaseCommand<T>, new()
+    public abstract class BaseCommand<T> where T : class, new()
     {
-        private CommandID _commandId { get; }
-
-        /// <summary>
-        /// Creates a new instance of the implementation.
-        /// </summary>
-        protected BaseCommand(Guid commandGuid, int commandId)
-        {
-            _commandId = new CommandID(commandGuid, commandId);
-        }
-
         /// <summary>
         /// The command object associated with the command ID (guid/id).
         /// </summary>
@@ -52,9 +41,17 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public static async Task<T> InitializeAsync(AsyncPackage package)
         {
-            var instance = new T();
+            var instance = (BaseCommand<T>)(object)new T();
 
-            instance.Command = new OleMenuCommand(instance.Execute, instance._commandId);
+            var attr = (CommandAttribute)instance.GetType().GetCustomAttributes(typeof(CommandAttribute), true).FirstOrDefault();
+
+            if (attr is null)
+            {
+                throw new InvalidOperationException($"No [Command(guid, id)] attribute was added to {typeof(T).Name}");
+            }
+
+            var cmd = new CommandID(attr.Guid, attr.Id);
+            instance.Command = new OleMenuCommand(instance.Execute, cmd);
             instance.Package = package;
 
             instance.Command.BeforeQueryStatus += (s, e) => { instance.BeforeQueryStatus(e); };
@@ -67,7 +64,7 @@ namespace Community.VisualStudio.Toolkit
             commandService?.AddCommand(instance.Command);  // Requires main/UI thread
 
             await instance.InitializeCompletedAsync();
-            return instance;
+            return instance as T;
         }
 
         /// <summary>Allows the implementor to manipulate the command before its execution.</summary>

@@ -1,0 +1,457 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BaseToolWindow&lt;T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BaseToolWindow&lt;T&gt;
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1">
+  
+  
+  <h1 id="Community_VisualStudio_Toolkit_BaseToolWindow_1" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1" class="text-break">Class BaseToolWindow&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>A base class that makes it easier to use tool windows. </p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">BaseToolWindow&lt;T&gt;</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Community.VisualStudio.Toolkit.html">Community.VisualStudio.Toolkit</a></h6>
+  <h6><strong>Assembly</strong>: Community.VisualStudio.Toolkit.dll</h6>
+  <h5 id="Community_VisualStudio_Toolkit_BaseToolWindow_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class BaseToolWindow&lt;T&gt; : IToolWindowProvider where T : BaseToolWindow&lt;T&gt;, new()</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The implementation type itself.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Community_VisualStudio_Toolkit_BaseToolWindow_1_examples"><strong>Examples</strong></h5>
+  <pre><code>public class TestToolWindow : BaseToolWindow&lt;TestToolWindow>
+{
+    public override string GetTitle(int toolWindowId) => &quot;Test Window&quot;;
+
+    public override Type PaneType => typeof(Pane);
+
+    public override async Task&lt;FrameworkElement> CreateAsync(int toolWindowId, CancellationToken cancellationToken)
+    {
+        await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+        var dte = await VS.GetDTEAsync();
+        return new TestWindowControl(dte);
+    }
+
+    [Guid(&quot;d0050678-2e4f-4a93-adcb-af1370da941d&quot;)]
+    public class Pane : ToolWindowPane
+    {
+        public Pane()
+        {
+            BitmapImageMoniker = KnownMonikers.Test;
+        }
+    }
+}</code></pre>
+
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseToolWindow_1_Package.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseToolWindow%601.Package%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolWindows/BaseToolWindow.cs/#L100">View Source</a>
+  </span>
+  <a id="Community_VisualStudio_Toolkit_BaseToolWindow_1_Package_" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.Package*"></a>
+  <h4 id="Community_VisualStudio_Toolkit_BaseToolWindow_1_Package" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.Package">Package</h4>
+  <div class="markdown level1 summary"><p>The package class that initialized this class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ToolkitPackage Package { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Community.VisualStudio.Toolkit.ToolkitPackage.html">ToolkitPackage</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseToolWindow_1_PaneType.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseToolWindow%601.PaneType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolWindows/BaseToolWindow.cs/#L111">View Source</a>
+  </span>
+  <a id="Community_VisualStudio_Toolkit_BaseToolWindow_1_PaneType_" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.PaneType*"></a>
+  <h4 id="Community_VisualStudio_Toolkit_BaseToolWindow_1_PaneType" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.PaneType">PaneType</h4>
+  <div class="markdown level1 summary"><p>Gets the type of <span class="xref">Microsoft.VisualStudio.Shell.ToolWindowPane</span> that will be created for this tool window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Type PaneType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseToolWindow_1_CreateAsync_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseToolWindow%601.CreateAsync(System.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolWindows/BaseToolWindow.cs/#L120">View Source</a>
+  </span>
+  <a id="Community_VisualStudio_Toolkit_BaseToolWindow_1_CreateAsync_" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.CreateAsync*"></a>
+  <h4 id="Community_VisualStudio_Toolkit_BaseToolWindow_1_CreateAsync_System_Int32_System_Threading_CancellationToken_" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.CreateAsync(System.Int32,System.Threading.CancellationToken)">CreateAsync(Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Creates the UI element that will be shown in the tool window. 
+Use this method to create the user control or any other UI element that you want to show in the tool window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Task&lt;FrameworkElement&gt; CreateAsync(int toolWindowId, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">toolWindowId</span></td>
+        <td><p>The ID of the tool window instance being created for a multi-instance tool window.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token to use when performing asynchronous operations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Windows.FrameworkElement</span>&gt;</td>
+        <td><p>The UI element to show in the tool window.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseToolWindow_1_GetTitle_System_Int32_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseToolWindow%601.GetTitle(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolWindows/BaseToolWindow.cs/#L106">View Source</a>
+  </span>
+  <a id="Community_VisualStudio_Toolkit_BaseToolWindow_1_GetTitle_" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.GetTitle*"></a>
+  <h4 id="Community_VisualStudio_Toolkit_BaseToolWindow_1_GetTitle_System_Int32_" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.GetTitle(System.Int32)">GetTitle(Int32)</h4>
+  <div class="markdown level1 summary"><p>Gets the title to show in the tool window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract string GetTitle(int toolWindowId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">toolWindowId</span></td>
+        <td><p>The ID of the tool window for a multi-instance tool window.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseToolWindow_1_Initialize_Community_VisualStudio_Toolkit_ToolkitPackage_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseToolWindow%601.Initialize(Community.VisualStudio.Toolkit.ToolkitPackage)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolWindows/BaseToolWindow.cs/#L47">View Source</a>
+  </span>
+  <a id="Community_VisualStudio_Toolkit_BaseToolWindow_1_Initialize_" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.Initialize*"></a>
+  <h4 id="Community_VisualStudio_Toolkit_BaseToolWindow_1_Initialize_Community_VisualStudio_Toolkit_ToolkitPackage_" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.Initialize(Community.VisualStudio.Toolkit.ToolkitPackage)">Initialize(ToolkitPackage)</h4>
+  <div class="markdown level1 summary"><p>Initializes the tool window. This method must be called from the <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.InitializeAsync(System.Threading.CancellationToken, System.IProgress&lt;Microsoft.VisualStudio.Shell.ServiceProgressData&gt;)</span> method for the tool window to work.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Initialize(ToolkitPackage package)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Community.VisualStudio.Toolkit.ToolkitPackage.html">ToolkitPackage</a></td>
+        <td><span class="parametername">package</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseToolWindow_1_ShowAsync_System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseToolWindow%601.ShowAsync(System.Int32%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolWindows/BaseToolWindow.cs/#L65">View Source</a>
+  </span>
+  <a id="Community_VisualStudio_Toolkit_BaseToolWindow_1_ShowAsync_" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.ShowAsync*"></a>
+  <h4 id="Community_VisualStudio_Toolkit_BaseToolWindow_1_ShowAsync_System_Int32_System_Boolean_" data-uid="Community.VisualStudio.Toolkit.BaseToolWindow`1.ShowAsync(System.Int32,System.Boolean)">ShowAsync(Int32, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Shows the tool window. The tool window will be created if it does not already exist.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ToolWindowPane&gt; ShowAsync(int id = 0, bool create = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The ID of the instance of the tool window for multi-instance tool windows.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">create</span></td>
+        <td><p>Whether to create the tool window if it does not already exist.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">Microsoft.VisualStudio.Shell.ToolWindowPane</span>&gt;</td>
+        <td><p>A task that returns the <span class="xref">Microsoft.VisualStudio.Shell.ToolWindowPane</span> if the tool window already exists or was created, or a task that returns null if the tool window does not exist and was not created.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_BaseToolWindow_1.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.BaseToolWindow%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolWindows/BaseToolWindow.cs/#L39" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

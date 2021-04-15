@@ -16,23 +16,6 @@ references:
   fullName.vb: Community.VisualStudio.Toolkit.BaseCommand(Of T)
   nameWithType: BaseCommand<T>
   nameWithType.vb: BaseCommand(Of T)
-- uid: Community.VisualStudio.Toolkit.BaseCommand`1.#ctor(System.Guid,System.Int32)
-  name: BaseCommand(Guid, Int32)
-  href: api/Community.VisualStudio.Toolkit.BaseCommand-1.html#Community_VisualStudio_Toolkit_BaseCommand_1__ctor_System_Guid_System_Int32_
-  commentId: M:Community.VisualStudio.Toolkit.BaseCommand`1.#ctor(System.Guid,System.Int32)
-  fullName: Community.VisualStudio.Toolkit.BaseCommand<T>.BaseCommand(System.Guid, System.Int32)
-  fullName.vb: Community.VisualStudio.Toolkit.BaseCommand(Of T).BaseCommand(System.Guid, System.Int32)
-  nameWithType: BaseCommand<T>.BaseCommand(Guid, Int32)
-  nameWithType.vb: BaseCommand(Of T).BaseCommand(Guid, Int32)
-- uid: Community.VisualStudio.Toolkit.BaseCommand`1.#ctor*
-  name: BaseCommand
-  href: api/Community.VisualStudio.Toolkit.BaseCommand-1.html#Community_VisualStudio_Toolkit_BaseCommand_1__ctor_
-  commentId: Overload:Community.VisualStudio.Toolkit.BaseCommand`1.#ctor
-  isSpec: "True"
-  fullName: Community.VisualStudio.Toolkit.BaseCommand<T>.BaseCommand
-  fullName.vb: Community.VisualStudio.Toolkit.BaseCommand(Of T).BaseCommand
-  nameWithType: BaseCommand<T>.BaseCommand
-  nameWithType.vb: BaseCommand(Of T).BaseCommand
 - uid: Community.VisualStudio.Toolkit.BaseCommand`1.BeforeQueryStatus(System.EventArgs)
   name: BeforeQueryStatus(EventArgs)
   href: api/Community.VisualStudio.Toolkit.BaseCommand-1.html#Community_VisualStudio_Toolkit_BaseCommand_1_BeforeQueryStatus_System_EventArgs_
@@ -433,6 +416,162 @@ references:
   fullName.vb: Community.VisualStudio.Toolkit.BaseOptionPage(Of T).SaveSettingsToStorage
   nameWithType: BaseOptionPage<T>.SaveSettingsToStorage
   nameWithType.vb: BaseOptionPage(Of T).SaveSettingsToStorage
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1
+  name: BaseToolWindow<T>
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html
+  commentId: T:Community.VisualStudio.Toolkit.BaseToolWindow`1
+  name.vb: BaseToolWindow(Of T)
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T)
+  nameWithType: BaseToolWindow<T>
+  nameWithType.vb: BaseToolWindow(Of T)
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.CreateAsync(System.Int32,System.Threading.CancellationToken)
+  name: CreateAsync(Int32, CancellationToken)
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_CreateAsync_System_Int32_System_Threading_CancellationToken_
+  commentId: M:Community.VisualStudio.Toolkit.BaseToolWindow`1.CreateAsync(System.Int32,System.Threading.CancellationToken)
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.CreateAsync(System.Int32, System.Threading.CancellationToken)
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).CreateAsync(System.Int32, System.Threading.CancellationToken)
+  nameWithType: BaseToolWindow<T>.CreateAsync(Int32, CancellationToken)
+  nameWithType.vb: BaseToolWindow(Of T).CreateAsync(Int32, CancellationToken)
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.CreateAsync*
+  name: CreateAsync
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_CreateAsync_
+  commentId: Overload:Community.VisualStudio.Toolkit.BaseToolWindow`1.CreateAsync
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.CreateAsync
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).CreateAsync
+  nameWithType: BaseToolWindow<T>.CreateAsync
+  nameWithType.vb: BaseToolWindow(Of T).CreateAsync
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.GetTitle(System.Int32)
+  name: GetTitle(Int32)
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_GetTitle_System_Int32_
+  commentId: M:Community.VisualStudio.Toolkit.BaseToolWindow`1.GetTitle(System.Int32)
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.GetTitle(System.Int32)
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).GetTitle(System.Int32)
+  nameWithType: BaseToolWindow<T>.GetTitle(Int32)
+  nameWithType.vb: BaseToolWindow(Of T).GetTitle(Int32)
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.GetTitle*
+  name: GetTitle
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_GetTitle_
+  commentId: Overload:Community.VisualStudio.Toolkit.BaseToolWindow`1.GetTitle
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.GetTitle
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).GetTitle
+  nameWithType: BaseToolWindow<T>.GetTitle
+  nameWithType.vb: BaseToolWindow(Of T).GetTitle
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.Initialize(Community.VisualStudio.Toolkit.ToolkitPackage)
+  name: Initialize(ToolkitPackage)
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_Initialize_Community_VisualStudio_Toolkit_ToolkitPackage_
+  commentId: M:Community.VisualStudio.Toolkit.BaseToolWindow`1.Initialize(Community.VisualStudio.Toolkit.ToolkitPackage)
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.Initialize(Community.VisualStudio.Toolkit.ToolkitPackage)
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).Initialize(Community.VisualStudio.Toolkit.ToolkitPackage)
+  nameWithType: BaseToolWindow<T>.Initialize(ToolkitPackage)
+  nameWithType.vb: BaseToolWindow(Of T).Initialize(ToolkitPackage)
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.Initialize*
+  name: Initialize
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_Initialize_
+  commentId: Overload:Community.VisualStudio.Toolkit.BaseToolWindow`1.Initialize
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.Initialize
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).Initialize
+  nameWithType: BaseToolWindow<T>.Initialize
+  nameWithType.vb: BaseToolWindow(Of T).Initialize
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.Package
+  name: Package
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_Package
+  commentId: P:Community.VisualStudio.Toolkit.BaseToolWindow`1.Package
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.Package
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).Package
+  nameWithType: BaseToolWindow<T>.Package
+  nameWithType.vb: BaseToolWindow(Of T).Package
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.Package*
+  name: Package
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_Package_
+  commentId: Overload:Community.VisualStudio.Toolkit.BaseToolWindow`1.Package
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.Package
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).Package
+  nameWithType: BaseToolWindow<T>.Package
+  nameWithType.vb: BaseToolWindow(Of T).Package
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.PaneType
+  name: PaneType
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_PaneType
+  commentId: P:Community.VisualStudio.Toolkit.BaseToolWindow`1.PaneType
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.PaneType
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).PaneType
+  nameWithType: BaseToolWindow<T>.PaneType
+  nameWithType.vb: BaseToolWindow(Of T).PaneType
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.PaneType*
+  name: PaneType
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_PaneType_
+  commentId: Overload:Community.VisualStudio.Toolkit.BaseToolWindow`1.PaneType
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.PaneType
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).PaneType
+  nameWithType: BaseToolWindow<T>.PaneType
+  nameWithType.vb: BaseToolWindow(Of T).PaneType
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.ShowAsync(System.Int32,System.Boolean)
+  name: ShowAsync(Int32, Boolean)
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_ShowAsync_System_Int32_System_Boolean_
+  commentId: M:Community.VisualStudio.Toolkit.BaseToolWindow`1.ShowAsync(System.Int32,System.Boolean)
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.ShowAsync(System.Int32, System.Boolean)
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).ShowAsync(System.Int32, System.Boolean)
+  nameWithType: BaseToolWindow<T>.ShowAsync(Int32, Boolean)
+  nameWithType.vb: BaseToolWindow(Of T).ShowAsync(Int32, Boolean)
+- uid: Community.VisualStudio.Toolkit.BaseToolWindow`1.ShowAsync*
+  name: ShowAsync
+  href: api/Community.VisualStudio.Toolkit.BaseToolWindow-1.html#Community_VisualStudio_Toolkit_BaseToolWindow_1_ShowAsync_
+  commentId: Overload:Community.VisualStudio.Toolkit.BaseToolWindow`1.ShowAsync
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.BaseToolWindow<T>.ShowAsync
+  fullName.vb: Community.VisualStudio.Toolkit.BaseToolWindow(Of T).ShowAsync
+  nameWithType: BaseToolWindow<T>.ShowAsync
+  nameWithType.vb: BaseToolWindow(Of T).ShowAsync
+- uid: Community.VisualStudio.Toolkit.CommandAttribute
+  name: CommandAttribute
+  href: api/Community.VisualStudio.Toolkit.CommandAttribute.html
+  commentId: T:Community.VisualStudio.Toolkit.CommandAttribute
+  fullName: Community.VisualStudio.Toolkit.CommandAttribute
+  nameWithType: CommandAttribute
+- uid: Community.VisualStudio.Toolkit.CommandAttribute.#ctor(System.String,System.Int32)
+  name: CommandAttribute(String, Int32)
+  href: api/Community.VisualStudio.Toolkit.CommandAttribute.html#Community_VisualStudio_Toolkit_CommandAttribute__ctor_System_String_System_Int32_
+  commentId: M:Community.VisualStudio.Toolkit.CommandAttribute.#ctor(System.String,System.Int32)
+  fullName: Community.VisualStudio.Toolkit.CommandAttribute.CommandAttribute(System.String, System.Int32)
+  nameWithType: CommandAttribute.CommandAttribute(String, Int32)
+- uid: Community.VisualStudio.Toolkit.CommandAttribute.#ctor*
+  name: CommandAttribute
+  href: api/Community.VisualStudio.Toolkit.CommandAttribute.html#Community_VisualStudio_Toolkit_CommandAttribute__ctor_
+  commentId: Overload:Community.VisualStudio.Toolkit.CommandAttribute.#ctor
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.CommandAttribute.CommandAttribute
+  nameWithType: CommandAttribute.CommandAttribute
+- uid: Community.VisualStudio.Toolkit.CommandAttribute.Guid
+  name: Guid
+  href: api/Community.VisualStudio.Toolkit.CommandAttribute.html#Community_VisualStudio_Toolkit_CommandAttribute_Guid
+  commentId: P:Community.VisualStudio.Toolkit.CommandAttribute.Guid
+  fullName: Community.VisualStudio.Toolkit.CommandAttribute.Guid
+  nameWithType: CommandAttribute.Guid
+- uid: Community.VisualStudio.Toolkit.CommandAttribute.Guid*
+  name: Guid
+  href: api/Community.VisualStudio.Toolkit.CommandAttribute.html#Community_VisualStudio_Toolkit_CommandAttribute_Guid_
+  commentId: Overload:Community.VisualStudio.Toolkit.CommandAttribute.Guid
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.CommandAttribute.Guid
+  nameWithType: CommandAttribute.Guid
+- uid: Community.VisualStudio.Toolkit.CommandAttribute.Id
+  name: Id
+  href: api/Community.VisualStudio.Toolkit.CommandAttribute.html#Community_VisualStudio_Toolkit_CommandAttribute_Id
+  commentId: P:Community.VisualStudio.Toolkit.CommandAttribute.Id
+  fullName: Community.VisualStudio.Toolkit.CommandAttribute.Id
+  nameWithType: CommandAttribute.Id
+- uid: Community.VisualStudio.Toolkit.CommandAttribute.Id*
+  name: Id
+  href: api/Community.VisualStudio.Toolkit.CommandAttribute.html#Community_VisualStudio_Toolkit_CommandAttribute_Id_
+  commentId: Overload:Community.VisualStudio.Toolkit.CommandAttribute.Id
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.CommandAttribute.Id
+  nameWithType: CommandAttribute.Id
 - uid: Community.VisualStudio.Toolkit.Commanding
   name: Commanding
   href: api/Community.VisualStudio.Toolkit.Commanding.html
@@ -1463,6 +1602,64 @@ references:
   commentId: F:Community.VisualStudio.Toolkit.Themes.UseVsThemeProperty
   fullName: Community.VisualStudio.Toolkit.Themes.UseVsThemeProperty
   nameWithType: Themes.UseVsThemeProperty
+- uid: Community.VisualStudio.Toolkit.ToolkitPackage
+  name: ToolkitPackage
+  href: api/Community.VisualStudio.Toolkit.ToolkitPackage.html
+  commentId: T:Community.VisualStudio.Toolkit.ToolkitPackage
+  fullName: Community.VisualStudio.Toolkit.ToolkitPackage
+  nameWithType: ToolkitPackage
+- uid: Community.VisualStudio.Toolkit.ToolkitPackage.GetAsyncToolWindowFactory(System.Guid)
+  name: GetAsyncToolWindowFactory(Guid)
+  href: api/Community.VisualStudio.Toolkit.ToolkitPackage.html#Community_VisualStudio_Toolkit_ToolkitPackage_GetAsyncToolWindowFactory_System_Guid_
+  commentId: M:Community.VisualStudio.Toolkit.ToolkitPackage.GetAsyncToolWindowFactory(System.Guid)
+  fullName: Community.VisualStudio.Toolkit.ToolkitPackage.GetAsyncToolWindowFactory(System.Guid)
+  nameWithType: ToolkitPackage.GetAsyncToolWindowFactory(Guid)
+- uid: Community.VisualStudio.Toolkit.ToolkitPackage.GetAsyncToolWindowFactory*
+  name: GetAsyncToolWindowFactory
+  href: api/Community.VisualStudio.Toolkit.ToolkitPackage.html#Community_VisualStudio_Toolkit_ToolkitPackage_GetAsyncToolWindowFactory_
+  commentId: Overload:Community.VisualStudio.Toolkit.ToolkitPackage.GetAsyncToolWindowFactory
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.ToolkitPackage.GetAsyncToolWindowFactory
+  nameWithType: ToolkitPackage.GetAsyncToolWindowFactory
+- uid: Community.VisualStudio.Toolkit.ToolkitPackage.GetToolWindowTitle(System.Type,System.Int32)
+  name: GetToolWindowTitle(Type, Int32)
+  href: api/Community.VisualStudio.Toolkit.ToolkitPackage.html#Community_VisualStudio_Toolkit_ToolkitPackage_GetToolWindowTitle_System_Type_System_Int32_
+  commentId: M:Community.VisualStudio.Toolkit.ToolkitPackage.GetToolWindowTitle(System.Type,System.Int32)
+  fullName: Community.VisualStudio.Toolkit.ToolkitPackage.GetToolWindowTitle(System.Type, System.Int32)
+  nameWithType: ToolkitPackage.GetToolWindowTitle(Type, Int32)
+- uid: Community.VisualStudio.Toolkit.ToolkitPackage.GetToolWindowTitle*
+  name: GetToolWindowTitle
+  href: api/Community.VisualStudio.Toolkit.ToolkitPackage.html#Community_VisualStudio_Toolkit_ToolkitPackage_GetToolWindowTitle_
+  commentId: Overload:Community.VisualStudio.Toolkit.ToolkitPackage.GetToolWindowTitle
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.ToolkitPackage.GetToolWindowTitle
+  nameWithType: ToolkitPackage.GetToolWindowTitle
+- uid: Community.VisualStudio.Toolkit.ToolkitPackage.InitializeToolWindowAsync(System.Type,System.Int32,System.Threading.CancellationToken)
+  name: InitializeToolWindowAsync(Type, Int32, CancellationToken)
+  href: api/Community.VisualStudio.Toolkit.ToolkitPackage.html#Community_VisualStudio_Toolkit_ToolkitPackage_InitializeToolWindowAsync_System_Type_System_Int32_System_Threading_CancellationToken_
+  commentId: M:Community.VisualStudio.Toolkit.ToolkitPackage.InitializeToolWindowAsync(System.Type,System.Int32,System.Threading.CancellationToken)
+  fullName: Community.VisualStudio.Toolkit.ToolkitPackage.InitializeToolWindowAsync(System.Type, System.Int32, System.Threading.CancellationToken)
+  nameWithType: ToolkitPackage.InitializeToolWindowAsync(Type, Int32, CancellationToken)
+- uid: Community.VisualStudio.Toolkit.ToolkitPackage.InitializeToolWindowAsync*
+  name: InitializeToolWindowAsync
+  href: api/Community.VisualStudio.Toolkit.ToolkitPackage.html#Community_VisualStudio_Toolkit_ToolkitPackage_InitializeToolWindowAsync_
+  commentId: Overload:Community.VisualStudio.Toolkit.ToolkitPackage.InitializeToolWindowAsync
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.ToolkitPackage.InitializeToolWindowAsync
+  nameWithType: ToolkitPackage.InitializeToolWindowAsync
+- uid: Community.VisualStudio.Toolkit.ToolkitPackage.InstantiateToolWindow(System.Type,System.Object)
+  name: InstantiateToolWindow(Type, Object)
+  href: api/Community.VisualStudio.Toolkit.ToolkitPackage.html#Community_VisualStudio_Toolkit_ToolkitPackage_InstantiateToolWindow_System_Type_System_Object_
+  commentId: M:Community.VisualStudio.Toolkit.ToolkitPackage.InstantiateToolWindow(System.Type,System.Object)
+  fullName: Community.VisualStudio.Toolkit.ToolkitPackage.InstantiateToolWindow(System.Type, System.Object)
+  nameWithType: ToolkitPackage.InstantiateToolWindow(Type, Object)
+- uid: Community.VisualStudio.Toolkit.ToolkitPackage.InstantiateToolWindow*
+  name: InstantiateToolWindow
+  href: api/Community.VisualStudio.Toolkit.ToolkitPackage.html#Community_VisualStudio_Toolkit_ToolkitPackage_InstantiateToolWindow_
+  commentId: Overload:Community.VisualStudio.Toolkit.ToolkitPackage.InstantiateToolWindow
+  isSpec: "True"
+  fullName: Community.VisualStudio.Toolkit.ToolkitPackage.InstantiateToolWindow
+  nameWithType: ToolkitPackage.InstantiateToolWindow
 - uid: Community.VisualStudio.Toolkit.ToolkitResourceKeys
   name: ToolkitResourceKeys
   href: api/Community.VisualStudio.Toolkit.ToolkitResourceKeys.html
@@ -1621,6 +1818,138 @@ references:
   isSpec: "True"
   fullName: Community.VisualStudio.Toolkit.VS.Windows
   nameWithType: VS.Windows
+- uid: Community.VisualStudio.Toolkit.WindowGuids
+  name: WindowGuids
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html
+  commentId: T:Community.VisualStudio.Toolkit.WindowGuids
+  fullName: Community.VisualStudio.Toolkit.WindowGuids
+  nameWithType: WindowGuids
+- uid: Community.VisualStudio.Toolkit.WindowGuids.BrowserDoc
+  name: BrowserDoc
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_BrowserDoc
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.BrowserDoc
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.BrowserDoc
+  nameWithType: WindowGuids.BrowserDoc
+- uid: Community.VisualStudio.Toolkit.WindowGuids.ClassView
+  name: ClassView
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_ClassView
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.ClassView
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.ClassView
+  nameWithType: WindowGuids.ClassView
+- uid: Community.VisualStudio.Toolkit.WindowGuids.CommandWindow
+  name: CommandWindow
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_CommandWindow
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.CommandWindow
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.CommandWindow
+  nameWithType: WindowGuids.CommandWindow
+- uid: Community.VisualStudio.Toolkit.WindowGuids.ContextWindow
+  name: ContextWindow
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_ContextWindow
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.ContextWindow
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.ContextWindow
+  nameWithType: WindowGuids.ContextWindow
+- uid: Community.VisualStudio.Toolkit.WindowGuids.DocOutline
+  name: DocOutline
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_DocOutline
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.DocOutline
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.DocOutline
+  nameWithType: WindowGuids.DocOutline
+- uid: Community.VisualStudio.Toolkit.WindowGuids.DocumentWell
+  name: DocumentWell
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_DocumentWell
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.DocumentWell
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.DocumentWell
+  nameWithType: WindowGuids.DocumentWell
+- uid: Community.VisualStudio.Toolkit.WindowGuids.FindAdvanced
+  name: FindAdvanced
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_FindAdvanced
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.FindAdvanced
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.FindAdvanced
+  nameWithType: WindowGuids.FindAdvanced
+- uid: Community.VisualStudio.Toolkit.WindowGuids.FindReplace
+  name: FindReplace
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_FindReplace
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.FindReplace
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.FindReplace
+  nameWithType: WindowGuids.FindReplace
+- uid: Community.VisualStudio.Toolkit.WindowGuids.FindResults1
+  name: FindResults1
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_FindResults1
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.FindResults1
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.FindResults1
+  nameWithType: WindowGuids.FindResults1
+- uid: Community.VisualStudio.Toolkit.WindowGuids.FindResults2
+  name: FindResults2
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_FindResults2
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.FindResults2
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.FindResults2
+  nameWithType: WindowGuids.FindResults2
+- uid: Community.VisualStudio.Toolkit.WindowGuids.MacroExplorer
+  name: MacroExplorer
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_MacroExplorer
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.MacroExplorer
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.MacroExplorer
+  nameWithType: WindowGuids.MacroExplorer
+- uid: Community.VisualStudio.Toolkit.WindowGuids.ObjectBrowser
+  name: ObjectBrowser
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_ObjectBrowser
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.ObjectBrowser
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.ObjectBrowser
+  nameWithType: WindowGuids.ObjectBrowser
+- uid: Community.VisualStudio.Toolkit.WindowGuids.ObjectSearchResultsWindow
+  name: ObjectSearchResultsWindow
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_ObjectSearchResultsWindow
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.ObjectSearchResultsWindow
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.ObjectSearchResultsWindow
+  nameWithType: WindowGuids.ObjectSearchResultsWindow
+- uid: Community.VisualStudio.Toolkit.WindowGuids.ObjectSearchWindow
+  name: ObjectSearchWindow
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_ObjectSearchWindow
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.ObjectSearchWindow
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.ObjectSearchWindow
+  nameWithType: WindowGuids.ObjectSearchWindow
+- uid: Community.VisualStudio.Toolkit.WindowGuids.Outputwindow
+  name: Outputwindow
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_Outputwindow
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.Outputwindow
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.Outputwindow
+  nameWithType: WindowGuids.Outputwindow
+- uid: Community.VisualStudio.Toolkit.WindowGuids.PropertyBrowser
+  name: PropertyBrowser
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_PropertyBrowser
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.PropertyBrowser
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.PropertyBrowser
+  nameWithType: WindowGuids.PropertyBrowser
+- uid: Community.VisualStudio.Toolkit.WindowGuids.ResourceView
+  name: ResourceView
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_ResourceView
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.ResourceView
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.ResourceView
+  nameWithType: WindowGuids.ResourceView
+- uid: Community.VisualStudio.Toolkit.WindowGuids.ServerExplorer
+  name: ServerExplorer
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_ServerExplorer
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.ServerExplorer
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.ServerExplorer
+  nameWithType: WindowGuids.ServerExplorer
+- uid: Community.VisualStudio.Toolkit.WindowGuids.SolutionExplorer
+  name: SolutionExplorer
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_SolutionExplorer
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.SolutionExplorer
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.SolutionExplorer
+  nameWithType: WindowGuids.SolutionExplorer
+- uid: Community.VisualStudio.Toolkit.WindowGuids.TaskList
+  name: TaskList
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_TaskList
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.TaskList
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.TaskList
+  nameWithType: WindowGuids.TaskList
+- uid: Community.VisualStudio.Toolkit.WindowGuids.Toolbox
+  name: Toolbox
+  href: api/Community.VisualStudio.Toolkit.WindowGuids.html#Community_VisualStudio_Toolkit_WindowGuids_Toolbox
+  commentId: F:Community.VisualStudio.Toolkit.WindowGuids.Toolbox
+  fullName: Community.VisualStudio.Toolkit.WindowGuids.Toolbox
+  nameWithType: WindowGuids.Toolbox
 - uid: Community.VisualStudio.Toolkit.Windows
   name: Windows
   href: api/Community.VisualStudio.Toolkit.Windows.html

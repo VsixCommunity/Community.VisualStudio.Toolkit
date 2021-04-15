@@ -30,7 +30,6 @@ namespace VSSDK.TestExtension
             MultiInstanceWindow.Initialize(this);
 
             // Commands
-            await TestCommand.InitializeAsync(this);
             await RunnerWindowCommand.InitializeAsync(this);
             await ThemeWindowCommand.InitializeAsync(this);
             await MultiInstanceWindowCommand.InitializeAsync(this);

@@ -4,11 +4,9 @@ using Task = System.Threading.Tasks.Task;
 
 namespace TestExtension
 {
+    [Command(PackageGuids.guidTestExtensionPackageCmdSetString, PackageIds.MultiInstanceWindowCommandId)]
     internal sealed class MultiInstanceWindowCommand : BaseCommand<MultiInstanceWindowCommand>
     {
-        public MultiInstanceWindowCommand() 
-            : base(PackageGuids.guidTestExtensionPackageCmdSet, PackageIds.MultiInstanceWindowCommandId) { }
-
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
             // Create the window with the first free ID.

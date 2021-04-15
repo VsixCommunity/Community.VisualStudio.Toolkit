@@ -1,0 +1,690 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ToolkitPackage
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ToolkitPackage
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Community.VisualStudio.Toolkit.ToolkitPackage">
+  
+  
+  <h1 id="Community_VisualStudio_Toolkit_ToolkitPackage" data-uid="Community.VisualStudio.Toolkit.ToolkitPackage" class="text-break">Class ToolkitPackage
+  </h1>
+  <div class="markdown level0 summary"><p>An <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage</span> that provides additional functionality.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Microsoft.VisualStudio.Shell.Package</span></div>
+    <div class="level2"><span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage</span></div>
+    <div class="level3"><span class="xref">ToolkitPackage</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsPackage</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.OLE.Interop.IServiceProvider</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.OLE.Interop.IOleCommandTarget</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsPersistSolutionOpts</span></div>
+    <div><span class="xref">System.ComponentModel.Design.IServiceContainer</span></div>
+    <div><span class="xref">System.IServiceProvider</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsUserSettings</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsUserSettingsMigration</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsUserSettingsQuery</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsToolWindowFactory</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsToolboxItemProvider</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsToolboxItemProvider2</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IAsyncServiceProvider</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IAsyncLoadablePackageInitialize</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.IAsyncServiceProvider2</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.IAsyncServiceProvider</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.IAsyncServiceContainer</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsAsyncToolWindowFactory</span></div>
+    <div><span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsAsyncToolWindowFactoryProvider</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.InitializeAsync(System.Threading.CancellationToken, System.IProgress&lt;Microsoft.VisualStudio.Shell.ServiceProgressData&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.GetServiceAsync(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.GetServiceAsync(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.AddService(System.Type, Microsoft.VisualStudio.Shell.AsyncServiceCreatorCallback)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.AddService(System.Type, Microsoft.VisualStudio.Shell.AsyncServiceCreatorCallback, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.AddService(System.Type, Microsoft.VisualStudio.Shell.AsyncServiceCreatorWithProgressCallback, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.AddService(System.Type, Microsoft.VisualStudio.Shell.AsyncServiceCreatorWithProgressCallback)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.RemoveService(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.RemoveService(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.FindToolWindowAsync(System.Type, System.Int32, System.Boolean, System.Threading.CancellationToken)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.FindWindowPaneAsync(System.Type, System.Int32, System.Boolean, System.Threading.CancellationToken)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.ShowToolWindowAsync(System.Type, System.Int32, System.Boolean, System.Threading.CancellationToken)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.GetService(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.Initialize()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.Dispose(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.DisposalToken</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.JoinableTaskFactory</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.JoinableTaskCollection</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.AddOptionKey(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsUserSettings.ExportSettings(System.String, Microsoft.VisualStudio.Shell.Interop.IVsSettingsWriter)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsUserSettingsMigration.MigrateSettings(Microsoft.VisualStudio.Shell.Interop.IVsSettingsReader, Microsoft.VisualStudio.Shell.Interop.IVsSettingsWriter, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsUserSettings.ImportSettings(System.String, Microsoft.VisualStudio.Shell.Interop.IVsSettingsReader, System.UInt32, System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsUserSettingsQuery.NeedExport(System.String, System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.GetAutomationObject(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.GetDialogPage(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.IsLocalService(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.QueryClose(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.GetProviderLocale()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.CreateInstance(System.Guid, System.Guid, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.GetOutputPane(System.Guid, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.OnLoadOptions(System.String, System.IO.Stream)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.OnSaveOptions(System.String, System.IO.Stream)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.ParseToolboxResource(System.IO.TextReader, System.Resources.ResourceManager)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.ParseToolboxResource(System.IO.TextReader, System.Guid)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.RegisterEditorFactory(Microsoft.VisualStudio.Shell.Interop.IVsEditorFactory)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.RegisterProjectFactory(Microsoft.VisualStudio.Shell.Interop.IVsProjectFactory)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.ShowOptionPage(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.OLE.Interop.IOleCommandTarget.Exec(System.Guid, System.UInt32, System.UInt32, System.IntPtr, System.IntPtr)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.OLE.Interop.IOleCommandTarget.QueryStatus(System.Guid, System.UInt32, Microsoft.VisualStudio.OLE.Interop.OLECMD[], System.IntPtr)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.OLE.Interop.IServiceProvider.QueryService(System.Guid, System.Guid, System.IntPtr)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.System.ComponentModel.Design.IServiceContainer.AddService(System.Type, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.System.ComponentModel.Design.IServiceContainer.AddService(System.Type, System.Object, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.System.ComponentModel.Design.IServiceContainer.AddService(System.Type, System.ComponentModel.Design.ServiceCreatorCallback)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.System.ComponentModel.Design.IServiceContainer.AddService(System.Type, System.ComponentModel.Design.ServiceCreatorCallback, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.System.ComponentModel.Design.IServiceContainer.RemoveService(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.System.ComponentModel.Design.IServiceContainer.RemoveService(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.System.IServiceProvider.GetService(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsPackage.Close()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.CreateTool(System.Guid)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsToolWindowFactory.CreateToolWindow(System.Guid, System.UInt32)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.CreateToolWindow(System.Guid, System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.CreateToolWindow(System.Type, System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.CreateToolWindow(System.Type, System.Int32, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.InstantiateToolWindow(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.CreateToolWindow(System.Type, System.Int32, System.UInt32)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.CreateToolWindow(System.Type, System.Int32, System.UInt32, System.Object, System.Guid)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.FindToolWindow(System.Type, System.Int32, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.FindWindowPane(System.Type, System.Int32, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsPackage.GetAutomationObject(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsPackage.GetPropertyPage(System.Guid, Microsoft.VisualStudio.Shell.Interop.VSPROPSHEETPAGE[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsPackage.QueryClose(System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsPackage.ResetDefaults(System.UInt32)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsPackage.SetSite(Microsoft.VisualStudio.OLE.Interop.IServiceProvider)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsPersistSolutionOpts.LoadUserOptions(Microsoft.VisualStudio.Shell.Interop.IVsSolutionPersistence, System.UInt32)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsPersistSolutionOpts.ReadUserOptions(Microsoft.VisualStudio.OLE.Interop.IStream, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsPersistSolutionOpts.SaveUserOptions(Microsoft.VisualStudio.Shell.Interop.IVsSolutionPersistence)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Microsoft.VisualStudio.Shell.Interop.IVsPersistSolutionOpts.WriteUserOptions(Microsoft.VisualStudio.OLE.Interop.IStream, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.GetToolboxItemData(System.String, System.Windows.Forms.DataFormats.Format)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.GetToolboxItemDataAsync(System.String, System.Windows.Forms.DataFormats.Format)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.GetGlobalService(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.IsExperimentalInstance(System.IServiceProvider)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.ApplicationRegistryRoot</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.UserDataPath</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.UserLocalDataPath</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.UserRegistryRoot</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.Zombied</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.ToolboxInitialized</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Package.ToolboxUpgraded</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Community.VisualStudio.Toolkit.html">Community.VisualStudio.Toolkit</a></h6>
+  <h6><strong>Assembly</strong>: Community.VisualStudio.Toolkit.dll</h6>
+  <h5 id="Community_VisualStudio_Toolkit_ToolkitPackage_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class ToolkitPackage : AsyncPackage, IVsPackage, IServiceProvider, IOleCommandTarget, IVsPersistSolutionOpts, IServiceContainer, IServiceProvider, IVsUserSettings, IVsUserSettingsMigration, IVsUserSettingsQuery, IVsToolWindowFactory, IVsToolboxItemProvider, IVsToolboxItemProvider2, IAsyncServiceProvider, IAsyncLoadablePackageInitialize, IAsyncServiceProvider2, IAsyncServiceProvider, IAsyncServiceContainer, IVsAsyncToolWindowFactory, IVsAsyncToolWindowFactoryProvider</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_ToolkitPackage_GetAsyncToolWindowFactory_System_Guid_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.ToolkitPackage.GetAsyncToolWindowFactory(System.Guid)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolkitPackage.cs/#L36">View Source</a>
+  </span>
+  <a id="Community_VisualStudio_Toolkit_ToolkitPackage_GetAsyncToolWindowFactory_" data-uid="Community.VisualStudio.Toolkit.ToolkitPackage.GetAsyncToolWindowFactory*"></a>
+  <h4 id="Community_VisualStudio_Toolkit_ToolkitPackage_GetAsyncToolWindowFactory_System_Guid_" data-uid="Community.VisualStudio.Toolkit.ToolkitPackage.GetAsyncToolWindowFactory(System.Guid)">GetAsyncToolWindowFactory(Guid)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IVsAsyncToolWindowFactory GetAsyncToolWindowFactory(Guid toolWindowType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Guid</span></td>
+        <td><span class="parametername">toolWindowType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsAsyncToolWindowFactory</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.GetAsyncToolWindowFactory(System.Guid)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_ToolkitPackage_GetToolWindowTitle_System_Type_System_Int32_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.ToolkitPackage.GetToolWindowTitle(System.Type%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolkitPackage.cs/#L49">View Source</a>
+  </span>
+  <a id="Community_VisualStudio_Toolkit_ToolkitPackage_GetToolWindowTitle_" data-uid="Community.VisualStudio.Toolkit.ToolkitPackage.GetToolWindowTitle*"></a>
+  <h4 id="Community_VisualStudio_Toolkit_ToolkitPackage_GetToolWindowTitle_System_Type_System_Int32_" data-uid="Community.VisualStudio.Toolkit.ToolkitPackage.GetToolWindowTitle(System.Type,System.Int32)">GetToolWindowTitle(Type, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override string GetToolWindowTitle(Type toolWindowType, int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">toolWindowType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.GetToolWindowTitle(System.Type, System.Int32)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_ToolkitPackage_InitializeToolWindowAsync_System_Type_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.ToolkitPackage.InitializeToolWindowAsync(System.Type%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolkitPackage.cs/#L55">View Source</a>
+  </span>
+  <a id="Community_VisualStudio_Toolkit_ToolkitPackage_InitializeToolWindowAsync_" data-uid="Community.VisualStudio.Toolkit.ToolkitPackage.InitializeToolWindowAsync*"></a>
+  <h4 id="Community_VisualStudio_Toolkit_ToolkitPackage_InitializeToolWindowAsync_System_Type_System_Int32_System_Threading_CancellationToken_" data-uid="Community.VisualStudio.Toolkit.ToolkitPackage.InitializeToolWindowAsync(System.Type,System.Int32,System.Threading.CancellationToken)">InitializeToolWindowAsync(Type, Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;object&gt; InitializeToolWindowAsync(Type toolWindowType, int id, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">toolWindowType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">Microsoft.VisualStudio.Shell.AsyncPackage.InitializeToolWindowAsync(System.Type, System.Int32, System.Threading.CancellationToken)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_ToolkitPackage_InstantiateToolWindow_System_Type_System_Object_.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.ToolkitPackage.InstantiateToolWindow(System.Type%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolkitPackage.cs/#L70">View Source</a>
+  </span>
+  <a id="Community_VisualStudio_Toolkit_ToolkitPackage_InstantiateToolWindow_" data-uid="Community.VisualStudio.Toolkit.ToolkitPackage.InstantiateToolWindow*"></a>
+  <h4 id="Community_VisualStudio_Toolkit_ToolkitPackage_InstantiateToolWindow_System_Type_System_Object_" data-uid="Community.VisualStudio.Toolkit.ToolkitPackage.InstantiateToolWindow(System.Type,System.Object)">InstantiateToolWindow(Type, Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override WindowPane InstantiateToolWindow(Type toolWindowType, object context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">toolWindowType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.VisualStudio.Shell.WindowPane</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">Microsoft.VisualStudio.Shell.Package.InstantiateToolWindow(System.Type, System.Object)</span></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsPackage</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.OLE.Interop.IServiceProvider</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.OLE.Interop.IOleCommandTarget</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsPersistSolutionOpts</span>
+  </div>
+  <div>
+      <span class="xref">System.ComponentModel.Design.IServiceContainer</span>
+  </div>
+  <div>
+      <span class="xref">System.IServiceProvider</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsUserSettings</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsUserSettingsMigration</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsUserSettingsQuery</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsToolWindowFactory</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsToolboxItemProvider</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsToolboxItemProvider2</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IAsyncServiceProvider</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IAsyncLoadablePackageInitialize</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.IAsyncServiceProvider2</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.IAsyncServiceProvider</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.IAsyncServiceContainer</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsAsyncToolWindowFactory</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.VisualStudio.Shell.Interop.IVsAsyncToolWindowFactoryProvider</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/new/master/apiSpec/new?filename=Community_VisualStudio_Toolkit_ToolkitPackage.md&amp;value=---%0Auid%3A%20Community.VisualStudio.Toolkit.ToolkitPackage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/VsixCommunity/Community.VisualStudio.Toolkit/blob/master/src/Community.VisualStudio.Toolkit.Shared/ToolkitPackage.cs/#L15" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
