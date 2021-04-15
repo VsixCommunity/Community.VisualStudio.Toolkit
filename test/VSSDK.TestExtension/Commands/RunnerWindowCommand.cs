@@ -4,7 +4,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace TestExtension
 {
-    [Command(PackageGuids.guidTestExtensionPackageCmdSetString, PackageIds.RunnerWindowCommandId)]
+    [Command(PackageGuids.CommandSetString, PackageIds.RunnerWindow)]
     internal sealed class RunnerWindowCommand : BaseCommand<RunnerWindowCommand>
     {
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)

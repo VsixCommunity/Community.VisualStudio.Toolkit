@@ -10,7 +10,7 @@
     <!--This section defines the elements the user can interact with, like a menu command or a button
         or combo box in a toolbar. -->
     <Buttons>
-      <Button guid="guidTestExtensionPackageCmdSet" id="RunnerWindowCommandId" priority="0x0105" type="Button">
+      <Button guid="CommandSet" id="RunnerWindow" priority="0x0105" type="Button">
         <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
         <Icon guid="ImageCatalogGuid" id="StatusInformation" />
         <CommandFlag>IconIsMoniker</CommandFlag>
@@ -19,7 +19,7 @@
         </Strings>
       </Button>
 
-      <Button guid="guidTestExtensionPackageCmdSet" id="ThemeWindowCommandId" priority="0x0106" type="Button">
+      <Button guid="CommandSet" id="ThemeWindow" priority="0x0106" type="Button">
         <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
         <Icon guid="ImageCatalogGuid" id="ColorPalette" />
         <CommandFlag>IconIsMoniker</CommandFlag>
@@ -28,7 +28,7 @@
         </Strings>
       </Button>
 
-      <Button guid="guidTestExtensionPackageCmdSet" id="MultiInstanceWindowCommandId" priority="0x0107" type="Button">
+      <Button guid="CommandSet" id="MultiInstanceWindow" priority="0x0107" type="Button">
         <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
         <Icon guid="ImageCatalogGuid" id="MultiView" />
         <CommandFlag>IconIsMoniker</CommandFlag>
@@ -42,10 +42,10 @@
   <Symbols>
     <GuidSymbol name="guidPackage" value="{05271709-8845-42fb-9d10-621cc8cffc5d}" />
 
-    <GuidSymbol name="guidTestExtensionPackageCmdSet" value="{cb765f49-fc35-4c14-93af-bb48ca4f2ce3}">
-      <IDSymbol name="RunnerWindowCommandId" value="0x0100" />
-      <IDSymbol name="ThemeWindowCommandId" value="0x0101" />
-      <IDSymbol name="MultiInstanceWindowCommandId" value="0x0102" />
+    <GuidSymbol name="CommandSet" value="{cb765f49-fc35-4c14-93af-bb48ca4f2ce3}">
+      <IDSymbol name="RunnerWindow" value="0x0100" />
+      <IDSymbol name="ThemeWindow" value="0x0101" />
+      <IDSymbol name="MultiInstanceWindow" value="0x0102" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

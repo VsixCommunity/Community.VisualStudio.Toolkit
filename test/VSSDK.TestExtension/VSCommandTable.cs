@@ -15,16 +15,16 @@ namespace TestExtension
         public const string guidPackageString = "05271709-8845-42fb-9d10-621cc8cffc5d";
         public static Guid guidPackage = new Guid(guidPackageString);
 
-        public const string guidTestExtensionPackageCmdSetString = "cb765f49-fc35-4c14-93af-bb48ca4f2ce3";
-        public static Guid guidTestExtensionPackageCmdSet = new Guid(guidTestExtensionPackageCmdSetString);
+        public const string CommandSetString = "cb765f49-fc35-4c14-93af-bb48ca4f2ce3";
+        public static Guid CommandSet = new Guid(CommandSetString);
     }
     /// <summary>
     /// Helper class that encapsulates all CommandIDs uses across VS Package.
     /// </summary>
     internal sealed partial class PackageIds
     {
-        public const int RunnerWindowCommandId = 0x0100;
-        public const int ThemeWindowCommandId = 0x0101;
-        public const int MultiInstanceWindowCommandId = 0x0102;
+        public const int RunnerWindow = 0x0100;
+        public const int ThemeWindow = 0x0101;
+        public const int MultiInstanceWindow = 0x0102;
     }
 }
