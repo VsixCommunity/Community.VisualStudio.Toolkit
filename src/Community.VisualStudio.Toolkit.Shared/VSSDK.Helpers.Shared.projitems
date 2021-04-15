@@ -35,7 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Shell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Solution.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Windows.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\BaseCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\Statusbar.cs" />
   </ItemGroup>
 </Project>
