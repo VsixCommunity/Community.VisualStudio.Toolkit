@@ -9,13 +9,13 @@ namespace Community.VisualStudio.Toolkit
     public class CommandAttribute : Attribute
     {
         /// <summary>
-        /// Creates a new Command attribute instance and uses the package GUID.
+        /// Registers the command for handling the command ID and assumes the package GUID is used as command GUID.
         /// </summary>
         public CommandAttribute(int commandId)
          : this("00000000-0000-0000-0000-000000000000", commandId) { }
 
         /// <summary>
-        /// Creates a new Command attribute instance.
+        /// Registers the command for handling the command with the specified GUID and ID.
         /// </summary>
         public CommandAttribute(string commandGuid, int commandId)
         {
