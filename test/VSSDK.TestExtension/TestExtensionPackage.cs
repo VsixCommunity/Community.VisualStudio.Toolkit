@@ -22,12 +22,12 @@ namespace VSSDK.TestExtension
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-
             // Tool windows
             RunnerWindow.Initialize(this);
             ThemeWindow.Initialize(this);
             MultiInstanceWindow.Initialize(this);
+
+            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
             // Commands
             await RunnerWindowCommand.InitializeAsync(this);
