@@ -15,7 +15,7 @@
         <Icon guid="ImageCatalogGuid" id="StatusInformation" />
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <ButtonText>Runner Window</ButtonText>
+          <ButtonText>R&amp;unner Window</ButtonText>
         </Strings>
       </Button>
 
@@ -24,7 +24,7 @@
         <Icon guid="ImageCatalogGuid" id="ColorPalette" />
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <ButtonText>Theme Window</ButtonText>
+          <ButtonText>&amp;Theme Window</ButtonText>
         </Strings>
       </Button>
 
@@ -33,7 +33,7 @@
         <Icon guid="ImageCatalogGuid" id="MultiView" />
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <ButtonText>Multi-Instance Window</ButtonText>
+          <ButtonText>Multi-&amp;Instance Window</ButtonText>
         </Strings>
       </Button>
     </Buttons>
