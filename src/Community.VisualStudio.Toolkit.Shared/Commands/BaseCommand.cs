@@ -50,7 +50,10 @@ namespace Community.VisualStudio.Toolkit
                 throw new InvalidOperationException($"No [Command(guid, id)] attribute was added to {typeof(T).Name}");
             }
 
-            var cmd = new CommandID(attr.Guid, attr.Id);
+            // Use package guid if no command set guid has been specified
+            Guid cmdGuid = attr.Guid == Guid.Empty ? package.GetType().GUID : attr.Guid;
+            var cmd = new CommandID(cmdGuid, attr.Id);
+
             instance.Command = new OleMenuCommand(instance.Execute, cmd);
             instance.Package = package;
 

@@ -12,11 +12,8 @@ namespace TestExtension
     /// </summary>
     internal sealed partial class PackageGuids
     {
-        public const string guidPackageString = "05271709-8845-42fb-9d10-621cc8cffc5d";
-        public static Guid guidPackage = new Guid(guidPackageString);
-
-        public const string CommandSetString = "cb765f49-fc35-4c14-93af-bb48ca4f2ce3";
-        public static Guid CommandSet = new Guid(CommandSetString);
+        public const string PackageString = "05271709-8845-42fb-9d10-621cc8cffc5d";
+        public static Guid Package = new Guid(PackageString);
     }
     /// <summary>
     /// Helper class that encapsulates all CommandIDs uses across VS Package.

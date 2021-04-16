@@ -4,7 +4,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace TestExtension
 {
-    [Command(PackageGuids.CommandSetString, PackageIds.ThemeWindow)]
+    [Command(PackageIds.ThemeWindow)]
     internal sealed class ThemeWindowCommand : BaseCommand<ThemeWindowCommand>
     {
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)

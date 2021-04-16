@@ -4,7 +4,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace TestExtension
 {
-    [Command(PackageGuids.CommandSetString, PackageIds.MultiInstanceWindow)]
+    [Command(PackageIds.MultiInstanceWindow)]
     internal sealed class MultiInstanceWindowCommand : BaseCommand<MultiInstanceWindowCommand>
     {
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)

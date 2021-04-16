@@ -4,12 +4,10 @@ using Task = System.Threading.Tasks.Task;
 
 namespace TestExtension
 {
-    [Command(PackageGuids.CommandSetString, PackageIds.RunnerWindow)]
+    [Command(PackageIds.RunnerWindow)]
     internal sealed class RunnerWindowCommand : BaseCommand<RunnerWindowCommand>
     {
-        protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
-        {
+        protected override async Task ExecuteAsync(OleMenuCmdEventArgs e) =>
             await RunnerWindow.ShowAsync();
-        }
     }
 }

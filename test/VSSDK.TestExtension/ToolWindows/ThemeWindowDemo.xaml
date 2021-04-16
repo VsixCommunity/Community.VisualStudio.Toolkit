@@ -23,17 +23,17 @@
                 <Thickness x:Key="Margin">0,10,0,0</Thickness>
             </StackPanel.Resources>
 
-            <TextBlock>TextBlock</TextBlock>
+            <TextBlock>Some great text in a textblock</TextBlock>
 
-            <Label Margin="{StaticResource Margin}">Label</Label>
+            <Label Margin="{StaticResource Margin}">An important label</Label>
 
             <TextBlock Margin="{StaticResource Margin}">
-                <Hyperlink>Hyperlink</Hyperlink>
+                <Hyperlink>Interesting link</Hyperlink>
             </TextBlock>
 
-            <Button Margin="{StaticResource Margin}" Content="Button" />
+            <Button Margin="{StaticResource Margin}" Content="Click here" />
 
-            <TextBox Margin="{StaticResource Margin}" Text="TextBox" />
+            <TextBox Margin="{StaticResource Margin}" Text="Enter full name" />
 
             <platform:WatermarkedTextBox Margin="{StaticResource Margin}" Watermark="WatermarkedTextBox"/>
 
@@ -46,10 +46,10 @@
                 <system:String>Sixth</system:String>
             </ComboBox>
 
-            <CheckBox Margin="{StaticResource Margin}" Content="CheckBox"/>
+            <CheckBox Margin="{StaticResource Margin}" Content="Sign up for newsletter"/>
 
-            <RadioButton Margin="{StaticResource Margin}" Content="RadioButton 1" HorizontalAlignment="Left" />
-            <RadioButton Margin="{StaticResource Margin}" Content="RadioButton 2" HorizontalAlignment="Left" />
+            <RadioButton Margin="{StaticResource Margin}" Content="Yellow" HorizontalAlignment="Left" />
+            <RadioButton Margin="{StaticResource Margin}" Content="Purple" HorizontalAlignment="Left" />
 
             <ListBox Margin="{StaticResource Margin}" Height="80">
                 <system:String>First</system:String>
