@@ -1,5 +1,8 @@
 image: Visual Studio 2019
 
+nuget:
+  project_feed: true
+
 install:
    # .NET Core SDK binaries
   - ps: $urlCurrent = "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/release/5.0.2xx/dotnet-sdk-latest-win-x64.zip"
