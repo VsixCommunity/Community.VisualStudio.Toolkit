@@ -22,6 +22,9 @@ artifacts:
   - path: src\**\*.nupkg
     name: NuGet package
 
+  - path: src\**\*.snupkg
+    name: Symbol package
+
 deploy:
   - provider: NuGet
     artifact: /NuGet/
