@@ -26,5 +26,6 @@ namespace TestExtension
         public const int ThemeWindow = 0x0101;
         public const int MultiInstanceWindow = 0x0102;
         public const int BuildActiveProjectAsync = 0x0103;
+        public const int BuildSolutionAsync = 0x0104;
     }
 }

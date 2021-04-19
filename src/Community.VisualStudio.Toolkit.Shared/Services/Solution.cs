@@ -138,5 +138,17 @@ namespace Community.VisualStudio.Toolkit
             IVsSolution solution = await GetSolutionAsync();
             return solution.GetFilePath();
         }
+
+        /// <summary>
+        /// Builds the solution asynchronously
+        /// </summary>
+        /// <returns>Returns 'true' if successfull</returns>
+        public async Task<bool> BuildAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            var dte = await VS.GetDTEAsync();
+            return await dte.Solution.BuildAsync();
+        }
     }
 }
