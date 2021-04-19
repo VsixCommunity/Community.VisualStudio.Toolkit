@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Community.VisualStudio.Toolkit;
 using EnvDTE80;
 using Microsoft.VisualStudio;
@@ -150,6 +151,32 @@ namespace EnvDTE
             dte.Solution.SolutionBuild.BuildProject(configuration, project.UniqueName, waitForBuildToFinish);
 
             return dte.Solution.SolutionBuild.BuildState;
+        }
+
+        /// <summary>
+        /// Builds the specified project asynchronously
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns>Returns 'true' if the project builds successfully</returns>
+        public async static Task<bool> BuildAsync(this Project project)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            var buildTaskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+            DTE? dte = project.DTE;
+            dte.Events.BuildEvents.OnBuildDone += BuildEvents_OnBuildDone;
+            var configuration = dte.Solution.SolutionBuild.ActiveConfiguration.Name;
+
+            dte.Solution.SolutionBuild.BuildProject(configuration, project.UniqueName, false);
+            return await buildTaskCompletionSource.Task;
+
+            void BuildEvents_OnBuildDone(vsBuildScope scope, vsBuildAction action)
+            {
+                dte.Events.BuildEvents.OnBuildDone -= BuildEvents_OnBuildDone;
+
+                // Returns 'true' if the number of failed projects == 0
+                buildTaskCompletionSource.TrySetResult(dte.Solution.SolutionBuild.LastBuildInfo == 0);
+            }
         }
     }
 }

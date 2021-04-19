@@ -45,6 +45,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\BuildActiveProjectAsyncCommand.cs" />
     <Compile Include="Commands\MultiInstanceWindowCommand.cs" />
     <Compile Include="Commands\RunnerWindowCommand.cs" />
     <Compile Include="Commands\ThemeWindowCommand.cs" />

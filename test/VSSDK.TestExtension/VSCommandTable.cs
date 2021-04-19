@@ -20,8 +20,11 @@ namespace TestExtension
     /// </summary>
     internal sealed partial class PackageIds
     {
+        public const int TestExtensionMainMenu = 0x1000;
+        public const int TestExtensionMainMenuGroup1 = 0x1100;
         public const int RunnerWindow = 0x0100;
         public const int ThemeWindow = 0x0101;
         public const int MultiInstanceWindow = 0x0102;
+        public const int BuildActiveProjectAsync = 0x0103;
     }
 }
