@@ -18,8 +18,6 @@ namespace EnvDTE
 
             DTE? dte = solution.DTE;
             dte.Events.BuildEvents.OnBuildDone += BuildEvents_OnBuildDone;
-            var configuration = dte.Solution.SolutionBuild.ActiveConfiguration.Name;
-
             dte.Solution.SolutionBuild.Build(false);
             return await buildTaskCompletionSource.Task;
 
