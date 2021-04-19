@@ -5,6 +5,7 @@ using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using TestExtension;
+using TestExtension.Commands;
 using Task = System.Threading.Tasks.Task;
 
 namespace VSSDK.TestExtension
@@ -33,6 +34,7 @@ namespace VSSDK.TestExtension
             await RunnerWindowCommand.InitializeAsync(this);
             await ThemeWindowCommand.InitializeAsync(this);
             await MultiInstanceWindowCommand.InitializeAsync(this);
+            await BuildActiveProjectAsyncCommand.InitializeAsync(this);
         }
     }
 }
