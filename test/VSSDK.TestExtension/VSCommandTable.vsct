@@ -54,12 +54,21 @@
         </Strings>
       </Button>
 
-      <Button guid="TestExtension" id="BuildActiveProjectAsync" priority="0x0108" type="Button">
+      <Button guid="TestExtension" id="BuildActiveProjectAsync" priority="0x0100" type="Button">
         <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1"/>
         <Icon guid="ImageCatalogGuid" id="BuildSelection" />
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
           <ButtonText>Build Active Project Async</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="TestExtension" id="BuildSolutionAsync" priority="0x0101" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1"/>
+        <Icon guid="ImageCatalogGuid" id="BuildSolution" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Build Solution Async</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -74,6 +83,7 @@
       <IDSymbol name="ThemeWindow" value="0x0101" />
       <IDSymbol name="MultiInstanceWindow" value="0x0102" />
       <IDSymbol name="BuildActiveProjectAsync" value="0x0103" />
+      <IDSymbol name="BuildSolutionAsync" value="0x0104" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

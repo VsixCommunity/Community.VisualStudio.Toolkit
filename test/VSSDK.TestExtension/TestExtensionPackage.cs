@@ -35,6 +35,7 @@ namespace VSSDK.TestExtension
             await ThemeWindowCommand.InitializeAsync(this);
             await MultiInstanceWindowCommand.InitializeAsync(this);
             await BuildActiveProjectAsyncCommand.InitializeAsync(this);
+            await BuildSolutionAsyncCommand.InitializeAsync(this);
         }
     }
 }
