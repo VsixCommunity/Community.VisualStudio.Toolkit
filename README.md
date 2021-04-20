@@ -11,6 +11,52 @@ The NuGet package [Community.VisualStudio.Toolkit](https://www.nuget.org/package
 * [CI NuGet feed](https://ci.appveyor.com/nuget/community-visualstudio-toolkit) for nightly builds
 * [API Documentation](https://vsixcommunity.github.io/Community.VisualStudio.Toolkit/v1/api/)
 
+## Examples
+Here are some examples of typical scenarios used in extensions.
+
+### Commands
+You can now write commands much simpler than you're used to. Here's what a command that opens a tool window would look like:
+
+```c#
+[Command(PackageIds.RunnerWindow)]
+internal sealed class RunnerWindowCommand : BaseCommand<RunnerWindowCommand>
+{
+    protected override async Task ExecuteAsync(OleMenuCmdEventArgs e) =>
+        await RunnerWindow.ShowAsync();
+}
+```
+
+### Writing to the statusbar
+
+``` C#
+await VS.Notifiations.SetStatusbarTextAsync("My statusbar text");
+```
+
+### Showing a message box
+
+``` C#
+VS.Notifiations.ShowMessage("Title", "Message");
+```
+
+### Log error to output window
+Synchronous version:
+
+``` C#
+catch (Exception ex)
+{
+    ex.Log();
+}
+```
+
+Async version:
+
+``` C#
+catch (Exception ex)
+{
+    await ex.LogAsync();
+}
+```
+
 ## Purpose
 This package attempts to solve multiple issues with the current extensibility model.
 
@@ -20,9 +66,6 @@ Base classes, helper methods, and extension methods encapsulate the complexity s
 ### It's difficult to find what services and components to use
 Now the most commmon services are all easy to get to from the main `VS` object. For instance, to write to the Statusbar, you can now write the following:
 
-``` C#
-await VS.Notifiations.SetStatusbarTextAsync("My statusbar text");
-```
 
 ### Best practices change with each version of VS. I can't keep up
 The underlying implementation of the project uses the best practices for each version of VS it supports. This ensures that your extension is much more likely to handle threading correctly, and avoid hangs and crashes.
