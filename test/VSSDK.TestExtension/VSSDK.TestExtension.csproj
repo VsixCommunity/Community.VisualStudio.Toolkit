@@ -93,6 +93,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Community.VisualStudio.VSCT">
+      <Version>16.0.29.6</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" ExcludeAssets="Runtime">
       <Version>16.4.29519.181</Version>
     </PackageReference>
@@ -135,11 +140,6 @@
       <Project>{38dc82ea-91d6-4360-b76c-995708ee43a3}</Project>
       <Name>Community.VisualStudio.Toolkit.16.0</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="VSGlobals.vsct">
-      <DependentUpon>VSCommandTable.vsct</DependentUpon>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />

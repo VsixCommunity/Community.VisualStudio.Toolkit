@@ -12,7 +12,7 @@
 
     <Menus>
       <Menu guid="TestExtension" id="TestExtensionMainMenu" type="Menu">
-        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_MACROS" />
+        <Parent guid="VSMainMenu" id="Extensions.DefaultGroup" />
         <Strings>
           <ButtonText>VSSDK Test Extension</ButtonText>
         </Strings>
@@ -21,7 +21,6 @@
     
     <Groups>
       <Group guid="TestExtension" id="TestExtensionMainMenuGroup1" priority="0x1100">
-        <!--<Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>-->
         <Parent guid="TestExtension" id="TestExtensionMainMenu" />
       </Group>
     </Groups>
