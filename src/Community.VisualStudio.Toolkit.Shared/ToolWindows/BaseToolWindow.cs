@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -53,6 +55,16 @@ namespace Community.VisualStudio.Toolkit
 
             _package = package;
             _implementation = new T() { Package = package };
+
+            // Verify that the package has a ProvideToolWindow attribute for this tool window.
+            var toolWindowAttributes = (ProvideToolWindowAttribute[])package.GetType().GetCustomAttributes(typeof(ProvideToolWindowAttribute), true);
+            ProvideToolWindowAttribute? foundToolWindowAttr = toolWindowAttributes.FirstOrDefault(a => a.ToolType == _implementation.PaneType);
+            if (foundToolWindowAttr == null)
+            {
+                Debug.Fail($"The tool window '{typeof(T).Name}' requires a ProvideToolWindow attribute on the package.");  // For testing debug build of the toolkit (not for users of the release-built nuget package).
+                throw new InvalidOperationException($"The tool window '{typeof(T).Name}' requires a ProvideToolWindow attribute on the package.");
+            }
+
             package.AddToolWindow(_implementation);
         }
 
