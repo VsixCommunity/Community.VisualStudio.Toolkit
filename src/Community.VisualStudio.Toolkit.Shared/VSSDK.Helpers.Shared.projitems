@@ -12,6 +12,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ExceptionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ImageMonikerExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsHierarchyExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsShareAssetsProjectExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsSolutionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ProjectExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ProjectItemExtensions.cs" />
