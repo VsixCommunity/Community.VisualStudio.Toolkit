@@ -28,7 +28,7 @@ namespace Microsoft.VisualStudio.Shell.Interop
 
             foreach (IVsHierarchy hier in GetAllProjectHierarchys(solution, flags))
             {
-                Project? project = ToProject(hier);
+                Project? project = hier.ToProject();
 
                 if (project != null)
                 {
@@ -73,23 +73,6 @@ namespace Microsoft.VisualStudio.Shell.Interop
                     yield return hierarchy[0];
                 }
             }
-        }
-
-        /// <summary>
-        /// Converts an IVsHierarchy to a Project.
-        /// </summary>
-        public static Project? ToProject(this IVsHierarchy hierarchy)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            if (hierarchy == null)
-            {
-                throw new ArgumentNullException(nameof(hierarchy));
-            }
-
-            hierarchy.GetProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ExtObject, out var obj);
-
-            return obj as Project;
         }
 
         /// <summary>
