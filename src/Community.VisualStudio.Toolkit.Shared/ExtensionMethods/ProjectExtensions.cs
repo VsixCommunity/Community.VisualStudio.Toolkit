@@ -204,7 +204,7 @@ namespace EnvDTE
         /// </summary>
         /// <param name="project"></param>
         /// <returns></returns>
-        public static async Task<Guid?> GetProjectIdAsync(this Project project)
+        public static async Task<Guid?> GetProjectGuidAsync(this Project project)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
