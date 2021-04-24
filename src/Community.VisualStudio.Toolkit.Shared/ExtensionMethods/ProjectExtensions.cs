@@ -227,5 +227,18 @@ namespace EnvDTE
             var hierarchy = await project.ToHierarchyAsync();
             return hierarchy?.IsSdkStyleProject() ?? false;
         }
+
+        /// <summary>
+        /// Returns whether the project is a 'Shared' project.
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns></returns>
+        public static async Task<bool> IsSharedProjectAsync(this Project project)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            var hierarchy = await project.ToHierarchyAsync();
+            return hierarchy?.IsSharedAssetsProject() ?? false;
+        }
     }
 }
