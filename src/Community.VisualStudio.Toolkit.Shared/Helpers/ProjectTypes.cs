@@ -51,7 +51,7 @@
         public const string DISTRIBUTED_SYSTEM = "{F135691A-BF7E-435D-8960-F99683D2D49C}";
 
         /// <summary>The project type of .NET Core projects.</summary>
-        public const string DOTNET_Core = "{9A19103F-16F7-4668-BE54-9A1E7A4F7556}";
+        public const string DOTNET_CORE = "{9A19103F-16F7-4668-BE54-9A1E7A4F7556}";
 
         /// <summary>The project type of Dynamics 2012 AX</summary>
         public const string DYNAMICS_2012_AX = "{BF6F8E12-879D-49E7-ADF0-5503146B24B8}";

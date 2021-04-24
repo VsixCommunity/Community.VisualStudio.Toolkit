@@ -56,14 +56,14 @@ namespace EnvDTE
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            if (project == null || project.IsKind(ProjectTypes.ASPNET_Core, ProjectTypes.DOTNET_Core, ProjectTypes.SSDT))
+            if (project == null || project.IsKind(ProjectTypes.ASPNET_CORE, ProjectTypes.DOTNET_CORE, ProjectTypes.SSDT))
             {
                 return;
             }
 
             DTE2? dte = await VS.GetDTEAsync();
 
-            if (project.IsKind(ProjectTypes.WEBSITE_PROJECT))
+            if (project.IsKind(ProjectTypes.WEBSITE))
             {
                 Command command = dte.Commands.Item("SolutionExplorer.Refresh");
 
