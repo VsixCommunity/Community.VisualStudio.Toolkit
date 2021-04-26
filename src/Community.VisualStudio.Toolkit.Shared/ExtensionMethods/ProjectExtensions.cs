@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Community.VisualStudio.Toolkit;
 using EnvDTE80;
+using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -56,14 +57,14 @@ namespace EnvDTE
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            if (project == null || project.IsKind(ProjectTypes.ASPNET_Core, ProjectTypes.DOTNET_Core, ProjectTypes.SSDT))
+            if (project == null || project.IsKind(ProjectTypes.ASPNET_CORE, ProjectTypes.DOTNET_CORE, ProjectTypes.SSDT))
             {
                 return;
             }
 
             DTE2? dte = await VS.GetDTEAsync();
 
-            if (project.IsKind(ProjectTypes.WEBSITE_PROJECT))
+            if (project.IsKind(ProjectTypes.WEBSITE))
             {
                 Command command = dte.Commands.Item("SolutionExplorer.Refresh");
 
@@ -177,6 +178,67 @@ namespace EnvDTE
                 // Returns 'true' if the number of failed projects == 0
                 buildTaskCompletionSource.TrySetResult(dte.Solution.SolutionBuild.LastBuildInfo == 0);
             }
+        }
+
+        /// <summary>
+        /// Returns the <see cref="IVsHierarchy"/> for the project.
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns></returns>
+        public static async Task<IVsHierarchy?> ToHierarchyAsync(this Project project)
+        {
+            if (project == null)
+                throw new ArgumentNullException(nameof(project));
+
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            var vsSolution = await VS.Solution.GetSolutionAsync();
+            if (vsSolution.GetProjectOfUniqueName(project.UniqueName, out var hierarchy) == VSConstants.S_OK)
+                return hierarchy;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Returns the unique project id as identified in the solution.
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns></returns>
+        public static async Task<Guid?> GetProjectGuidAsync(this Project project)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            var hierarchy = await project.ToHierarchyAsync();
+            if (hierarchy != null && hierarchy.GetGuidProperty((uint)VSConstants.VSITEMID.Root, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out var projectId) == 0)
+                return projectId;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Returns whether the project is an 'SDK' style project.
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns></returns>
+        public static async Task<bool> IsSdkStyleProjectAsync(this Project project)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            var hierarchy = await project.ToHierarchyAsync();
+            return hierarchy?.IsSdkStyleProject() ?? false;
+        }
+
+        /// <summary>
+        /// Returns whether the project is a 'Shared' project.
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns></returns>
+        public static async Task<bool> IsSharedProjectAsync(this Project project)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            var hierarchy = await project.ToHierarchyAsync();
+            return hierarchy?.IsSharedAssetsProject() ?? false;
         }
     }
 }
