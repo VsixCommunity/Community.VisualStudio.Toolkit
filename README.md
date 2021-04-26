@@ -11,6 +11,13 @@ The NuGet package [Community.VisualStudio.Toolkit](https://www.nuget.org/package
 * [CI NuGet feed](https://ci.appveyor.com/nuget/community-visualstudio-toolkit) for nightly builds
 * [API Documentation](https://vsixcommunity.github.io/Community.VisualStudio.Toolkit/v1/api/)
 
+## Supported versions
+
+* Visual Studio 2015
+* Visual Studio 2017
+* Visual Studio 2019
+* Visual Studio 2022 (preview)
+
 ## Examples
 Here are some examples of typical scenarios used in extensions.
 
