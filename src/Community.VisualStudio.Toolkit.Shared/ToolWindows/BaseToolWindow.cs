@@ -81,7 +81,7 @@ namespace Community.VisualStudio.Toolkit
                 throw new InvalidOperationException($"The tool window '{typeof(T).Name}' has not been initialized.");
             }
 
-#if VS16
+#if VS16 || VS17
             return await _package.ShowToolWindowAsync(_implementation.PaneType, id, create, _package.DisposalToken);
 #else
             ToolWindowPane window = _package.FindToolWindow(_implementation.PaneType, id, create);

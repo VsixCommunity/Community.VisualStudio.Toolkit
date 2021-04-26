@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell.Interop;
-#if VS16
+#if VS16 || VS17
 using Microsoft.VisualStudio.TaskStatusCenter;
 #endif
 
@@ -12,7 +12,7 @@ namespace Community.VisualStudio.Toolkit
         internal Notifications()
         { }
 
-#if VS16
+#if VS16 || VS17
 
         /// <summary>The Task Status Center is used to run background tasks and is located in the left-most side of the Status bar.</summary>
         /// <remarks>This is only available for Visual Studio 2019 (16.0).</remarks>

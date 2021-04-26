@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31101.43
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31225.48
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.16.0", "src\Community.VisualStudio.Toolkit.16.0\Community.VisualStudio.Toolkit.16.0.csproj", "{38DC82EA-91D6-4360-B76C-995708EE43A3}"
 EndProject
@@ -21,6 +21,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSSDK.TestExtension", "test\VSSDK.TestExtension\VSSDK.TestExtension.csproj", "{7F36F7DF-119E-4175-B1FA-C723EE10BD9B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.14.0", "src\Community.VisualStudio.Toolkit.14.0\Community.VisualStudio.Toolkit.14.0.csproj", "{86209D58-39B0-4D96-AA71-FF0D009E627A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.17.0", "src\Community.VisualStudio.Toolkit.17.0\Community.VisualStudio.Toolkit.17.0.csproj", "{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -47,6 +49,10 @@ Global
 		{86209D58-39B0-4D96-AA71-FF0D009E627A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86209D58-39B0-4D96-AA71-FF0D009E627A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86209D58-39B0-4D96-AA71-FF0D009E627A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

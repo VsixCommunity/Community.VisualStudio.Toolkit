@@ -31,7 +31,7 @@ namespace Community.VisualStudio.Toolkit
             return _toolWindowProviders?.FirstOrDefault(x => toolWindowType == x.PaneType);
         }
 
-#if VS16
+#if VS16 || VS17
         /// <inheritdoc/>
         public override IVsAsyncToolWindowFactory? GetAsyncToolWindowFactory(Guid toolWindowType)
         {
