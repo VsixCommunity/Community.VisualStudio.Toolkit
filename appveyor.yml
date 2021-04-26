@@ -19,6 +19,8 @@ build_script:
   - ps: dotnet build src/Community.VisualStudio.Toolkit.16.0/Community.VisualStudio.Toolkit.16.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=16.0.75.$($env:appveyor_build_number)
   - ps: dotnet build src/Community.VisualStudio.Toolkit.17.0/Community.VisualStudio.Toolkit.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=17.0.75.$($env:appveyor_build_number)-pre
 
+test: off
+
 artifacts:
   - path: src\**\*.nupkg
     name: NuGet package
