@@ -2,4 +2,4 @@
 // Without it, Visual Studio is unable to find the assembly and the extension will fail to load.
 using Microsoft.VisualStudio.Shell;
 
-[assembly: ProvideCodeBase(CodeBase = @"$PackageFolder$\Community.VisualStudio.Toolkit.dll")]
+[assembly: ProvideCodeBase(AssemblyName = "Community.VisualStudio.Toolkit")]
