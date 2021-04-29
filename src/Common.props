@@ -35,6 +35,7 @@
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Icon.png" Link="Icon.png" Pack="true" PackagePath="" Visible="false" />
     <None Include="../Community.VisualStudio.Toolkit.props" Pack="true" PackagePath="build" Visible="false" />
+    <None Include="../Community.VisualStudio.Toolkit.targets" Pack="true" PackagePath="build" Visible="false" />
     <None Include="../AssemblyInfo.cs" Pack="true" PackagePath="build" Visible="false" />
   </ItemGroup>
 
