@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.VisualStudio.Shell
 {
@@ -12,19 +15,13 @@ namespace Microsoft.VisualStudio.Shell
         /// This is similar to the <c>task.FileAndForget(string)</c> method introduced in 16.0, but this doesn't record
         /// telemetry on faults and it doesn't take a string parameter. This also works in all version of Visual Studio.
         /// </remarks>
-        public static void FireAndForget(this System.Threading.Tasks.Task task)
+        public static void ForgetAndLog(this System.Threading.Tasks.Task task)
         {
-            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+            task.ContinueWith(delegate (System.Threading.Tasks.Task antecedent)
             {
-                try
-                {
-                    await task.ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    await ex.LogAsync();
-                }
-            });
+                antecedent.Exception!.Log();
+
+            }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.Default).Forget();
         }
     }
 }

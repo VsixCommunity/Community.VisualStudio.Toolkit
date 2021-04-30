@@ -59,15 +59,15 @@ namespace Community.VisualStudio.Toolkit
 
             instance.Command.BeforeQueryStatus += (s, e) => { instance.BeforeQueryStatus(e); };
 
+            await package.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
+            
             var commandService = (IMenuCommandService)await package.GetServiceAsync(typeof(IMenuCommandService));
             Assumes.Present(commandService);
 
-            await package.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
-
-            commandService?.AddCommand(instance.Command);  // Requires main/UI thread
+            commandService.AddCommand(instance.Command);  // Requires main/UI thread
 
             await instance.InitializeCompletedAsync();
-            return instance as T;
+            return (T)(object)instance;
         }
 
         /// <summary>Allows the implementor to manipulate the command before its execution.</summary>

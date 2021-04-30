@@ -20,7 +20,7 @@ namespace TestExtension
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            ShowMessageAsync().FireAndForget();
+            ShowMessageAsync().ForgetAndLog();
         }
 
         private async Task ShowMessageAsync()

@@ -36,14 +36,7 @@ namespace System
         /// </example>
         public static void Log(this Exception exception)
         {
-            try
-            {
-                LogAsync(exception).FireAndForget();
-            }
-            catch (Exception ex)
-            {
-                Diagnostics.Debug.WriteLine(ex);
-            }
+            LogAsync(exception).Forget();
         }
 
         /// <summary>
@@ -59,7 +52,7 @@ namespace System
         /// {
         ///     // Do work;
         /// }
-        /// catch (Exception ex)
+        /// catch (Exception ex)`
         /// {
         ///     await ex.LogAsync();
         /// }
@@ -70,10 +63,10 @@ namespace System
             try
             {
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
                 if (await EnsurePaneAsync())
                 {
-                    _pane?.OutputStringThreadSafe(exception + Environment.NewLine);
+                    //TODO: use OutputWindowTextWriter to write more efficiently. #ifdef it for 14.0
+                    _pane?.OutputString(exception + Environment.NewLine);
                 }
             }
             catch (Exception ex)

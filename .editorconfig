@@ -102,10 +102,5 @@ csharp_new_line_before_finally                        = true
 csharp_new_line_before_members_in_object_initializers = true
 csharp_new_line_before_members_in_anonymous_types     = true
 
-# VSTHRD111: Use ConfigureAwait(bool)
-dotnet_diagnostic.VSTHRD003.severity=silent
-dotnet_diagnostic.VSTHRD104.severity=silent
-dotnet_diagnostic.VSTHRD111.severity = none
-
 # IDE 
 dotnet_diagnostic.IDE0058.severity = none
