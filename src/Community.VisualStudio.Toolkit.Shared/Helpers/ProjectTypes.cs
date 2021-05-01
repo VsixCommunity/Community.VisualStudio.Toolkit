@@ -56,6 +56,9 @@
         /// <summary>The project type of Dynamics 2012 AX</summary>
         public const string DYNAMICS_2012_AX = "{BF6F8E12-879D-49E7-ADF0-5503146B24B8}";
 
+        /// <summary>The project type of Extensibility</summary>
+        public const string EXTENSIBILITY = "{82B43B9B-A64C-4715-B499-D71E9CA2BD60}";
+
         /// <summary>The project type of F#</summary>
         public const string F_SHARP = "{F2A71F9B-5D33-465A-A702-920D77279786}";
 
@@ -167,7 +170,7 @@
         /// <summary>The project type of Windows C++</summary>
         public const string WINDOWS_C_PLUS_PLUS = "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}";
 
-        /// <summary>The project type of </summary>
+        /// <summary>The project type of WCF</summary>
         public const string WCF = "{3D9AD99F-2412-4246-B90B-4EAA41C64699}";
 
         /// <summary>The project type of Windows Phone 8</summary>
@@ -179,7 +182,7 @@
         /// <summary>The project type of Windows Phone 8 VB.net</summary>
         public const string WINDOWS_PHONE_8_VB = "{DB03555F-0C8B-43BE-9FF9-57896B3C5E56}";
 
-        /// <summary>The project type of WCF</summary>
+        /// <summary>The project type of WPF</summary>
         public const string WPF = "{60DC8134-EBA5-43B8-BCC9-BB4BC16C2548}";
 
         /// <summary>The project type of Windows Store Metro</summary>
