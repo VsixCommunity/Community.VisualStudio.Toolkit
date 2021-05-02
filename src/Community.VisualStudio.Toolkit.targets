@@ -2,6 +2,18 @@
 <Project>
 
   <Target Name="ExtensibilityEssentialsCheck" BeforeTargets="PrepareForBuild">
+    <ItemGroup>
+      <!-- 
+      We only want to check if the Extensibility Essentials extension is installed for VSIX projects,
+      because that is the only type of projects that the extension will add the build property for.
+      This requires two steps because we cannot filter an item group as it's created from a property.
+      First, turn the `ProjectTypeGuids` property into a set of items, then create another set by 
+      filtering out any types that are not the VSIX project type. 
+      -->
+      <ExtensibilityEssentialsProjectTypes Include="$(ProjectTypeGuids)"/>
+      <ExtensibilityEssentialsVsixProjectTypes Include="@(ExtensibilityEssentialsProjectTypes)" Condition="'%(Identity)' == '{82b43b9b-a64c-4715-b499-d71e9ca2bd60}'"/>
+    </ItemGroup>
+
     <PropertyGroup>
       <!-- 
       Determine whether a `HelpLink` property is supported on Warning and Error tasks. 
@@ -25,14 +37,15 @@
     
       <!-- Default level. -->
       <ExtensibilityEssentialsLevel Condition="'$(ExtensibilityEssentialsLevel)' == ''">Info</ExtensibilityEssentialsLevel>
-      
-      <!-- 
-      Visibility Calculation. Only show the message, warning or error when building 
-      inside Visual Studio so that we don't break command line builds (because the 
-      extension won't be able to provide the `ExtensibilityEssentialsInstalled` property).
+
+      <!--
+      Visibility Calculation. Only show the message, warning or error for VSIX projects, and only
+      when building them inside Visual Studio so that we don't break command line builds (because
+      the extension won't be able to provide the `ExtensibilityEssentialsInstalled` property).
       Also omit the message for CI builds, just in case Visual Studio is being used for CI. 
       -->
-      <IsExtensibilityEssentialsMissing Condition="'$(CI)' == '' and '$(BuildingInsideVisualStudio)' == 'true' and '$(ExtensibilityEssentialsInstalled)' != 'true'">true</IsExtensibilityEssentialsMissing>
+      <IsVsixProject Condition="'@(ExtensibilityEssentialsVsixProjectTypes->Count())' &gt; 0">true</IsVsixProject>
+      <IsExtensibilityEssentialsMissing Condition="'$(IsVsixProject)' == 'true' and '$(CI)' == '' and '$(BuildingInsideVisualStudio)' == 'true' and '$(ExtensibilityEssentialsInstalled)' != 'true'">true</IsExtensibilityEssentialsMissing>
     </PropertyGroup>
 
     <!-- 
