@@ -42,10 +42,7 @@ namespace EnvDTE
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            if (solution == null)
-                throw new ArgumentNullException(nameof(solution));
-
-            solution.SaveAs(solution.FileName);
+            await solution.SaveAsAsync(solution.FileName);
         }
 
         /// <summary>
