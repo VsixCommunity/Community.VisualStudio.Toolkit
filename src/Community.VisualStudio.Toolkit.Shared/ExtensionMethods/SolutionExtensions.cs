@@ -33,7 +33,7 @@ namespace EnvDTE
         }
 
         /// <summary>
-        /// Saves the solution
+        /// Saves the solution.
         /// Although this method is asynchronous, the saving of the solution is still synchronous and is performed on the main UI thread.
         /// </summary>
         /// <param name="solution"></param>
@@ -49,7 +49,7 @@ namespace EnvDTE
         }
 
         /// <summary>
-        /// Saves the solution with the specified name
+        /// Saves the solution with the specified name.
         /// Although this method is asynchronous, the saving of the solution is still synchronous and is performed on the main UI thread.
         /// </summary>
         /// <param name="solution"></param>
