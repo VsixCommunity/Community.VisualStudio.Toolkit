@@ -12,10 +12,10 @@ namespace Microsoft.VisualStudio.Shell
         /// Starts a Task and lets it run in the background, while silently handles any exceptions.
         /// </summary>
         /// <remarks>
-        /// This is similar to the <c>task.FileAndForget(string)</c> method introduced in 16.0, but this doesn't record
-        /// telemetry on faults and it doesn't take a string parameter. This also works in all version of Visual Studio.
+        /// This is similar to the <c>task.Forget()</c> method, but it logs any unhandled exception
+        /// thrown from the task to the Output Window.
         /// </remarks>
-        public static void ForgetAndLog(this System.Threading.Tasks.Task task)
+        public static void ForgetAndLogOnFailure(this System.Threading.Tasks.Task task)
         {
             task.ContinueWith(delegate (System.Threading.Tasks.Task antecedent)
             {
