@@ -22,6 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TextBufferExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ContentTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProjectTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Options\OverrideCollectionNameAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Options\OverrideDataTypeAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Options\SettingDataType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Themes\ToolkitResourceKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Themes\Themes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\MessageBox.cs" />
