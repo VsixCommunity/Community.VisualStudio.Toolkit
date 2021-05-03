@@ -15,8 +15,25 @@ using Task = System.Threading.Tasks.Task;
 namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
-    /// A base class for specifying options
+    /// A base class for easily specifying options that are stored in the <c>UserSettings</c> registry using 
+    /// the <c>collectionPath</c> of <see cref="CollectionName"/>. All properties with getters and setters with
+    /// types that are <see cref="Type.IsSerializable"/> and <c>public</c> will be loaded and saved using the
+    /// name of the property as the key. See <c>Remarks</c>.
     /// </summary>
+    /// <remarks>
+    /// By default, the <see cref="CollectionName"/> is used as the <c>collectionPath</c> for all settings 
+    /// in this class, and unless overridden is set to <c>typeof(</c><typeparamref name="T"/><c>).FullName</c>.
+    /// This can also be overridden for an individual property in <typeparamref name="T"/> by adding the
+    /// <see cref="OverrideCollectionNameAttribute"/> to the property.
+    /// <para/>
+    /// Also by default, the property values are stored as <see cref="string"/> types, using the <see cref="BinaryFormatter"/>
+    /// to serialize the property value and storing this as a <c>Base64</c> encoded string. This mechanism can also
+    /// be overridden via <see cref="SerializeValue"/> and <see cref="DeserializeValue"/>. In lieu of the serialization
+    /// mechanism, since the <see cref="SettingsStore"/> provides the means of storing the values using a set of native 
+    /// types (see <see cref="SettingDataType"/>), you can opt-in to using these by applying the 
+    /// <see cref="OverrideDataTypeAttribute"/> to the property. The property's <see cref="Type"/> must be convertible 
+    /// to the specified <see cref="SettingDataType"/>.
+    /// </remarks>
     public abstract class BaseOptionModel<T> where T : BaseOptionModel<T>, new()
     {
         private static readonly AsyncLazy<T> _liveModel = new(CreateAsync, ThreadHelper.JoinableTaskFactory);
@@ -63,7 +80,9 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// The name of the options collection as stored in the registry.
+        /// The name of the options collection as stored in the registry. By default this is <c>typeof(</c><typeparamref name="T"/><c>).FullName</c>
+        /// unless overridden. This can also be overridden for an individual property in <typeparamref name="T"/> by adding the 
+        /// <see cref="OverrideCollectionNameAttribute"/> to the property.
         /// </summary>
         protected virtual string CollectionName { get; } = typeof(T).FullName;
 
@@ -76,29 +95,80 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Hydrates the properties from the registry asyncronously.
+        /// Hydrates the properties from the registry asynchronously.
         /// </summary>
         public virtual async Task LoadAsync()
         {
             ShellSettingsManager manager = await _settingsManager.GetValueAsync();
-            SettingsStore settingsStore = manager.GetReadOnlySettingsStore(SettingsScope.UserSettings);
+            var scope = SettingsScope.UserSettings;
+            SettingsStore settingsStore = manager.GetReadOnlySettingsStore(scope);
+            HashSet<string> testedCollections = new HashSet<string>();
 
-            if (!settingsStore.CollectionExists(CollectionName))
+            bool DoesCollectionExist(string collectionName)
             {
-                return;
+                if (testedCollections.Contains(collectionName))
+                    return true;
+                if (settingsStore.CollectionExists(collectionName))
+                {
+                    testedCollections.Add(collectionName);
+                    return true;
+                }
+                return false;
             }
 
             foreach (PropertyInfo property in GetOptionProperties())
             {
+                object? value = null;
+                string collectionName = this.CollectionName;
+                SettingDataType dataType = SettingDataType.Serialized;
+                string? serializedValue = null;
                 try
                 {
-                    var serializedProp = settingsStore.GetString(CollectionName, property.Name);
-                    var value = DeserializeValue(serializedProp, property.PropertyType);
+                    OverrideCollectionNameAttribute? collectionNameAttribute = property.GetCustomAttribute<OverrideCollectionNameAttribute>();
+                    collectionName = collectionNameAttribute?.CollectionName ?? collectionName;
+                    if (!DoesCollectionExist(collectionName))
+                        continue;
+
+                    if (!settingsStore.PropertyExists(collectionName, property.Name))
+                        continue;
+
+                    OverrideDataTypeAttribute? overrideDataTypeAttribute = property.GetCustomAttribute<OverrideDataTypeAttribute>();
+                    dataType = overrideDataTypeAttribute?.SettingDataType ?? dataType;
+                    
+                    switch (dataType)
+                    {
+                        case SettingDataType.Serialized:
+                            serializedValue = settingsStore.GetString(collectionName, property.Name, default);
+                            value = DeserializeValue(serializedValue, property.PropertyType);
+                            break;
+                        case SettingDataType.Bool:
+                            value = settingsStore.GetBoolean(collectionName, property.Name, false);
+                            break;
+                        case SettingDataType.Int32:
+                            value = settingsStore.GetInt32(collectionName, property.Name, default(int));
+                            break;
+                        case SettingDataType.UInt32:
+                            value = settingsStore.GetUInt32(collectionName, property.Name, default(int));
+                            break;
+                        case SettingDataType.Int64:
+                            value = settingsStore.GetInt64(collectionName, property.Name, default(long));
+                            break;
+                        case SettingDataType.UInt64:
+                            value = settingsStore.GetUInt64(collectionName, property.Name, default(long));
+                            break;
+                        case SettingDataType.String:
+                            value = settingsStore.GetString(collectionName, property.Name, default);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(dataType), dataType, "The specified datatype is not supported.");
+                    }
                     property.SetValue(this, value);
                 }
                 catch (Exception ex)
                 {
-                    await ex.LogAsync();
+                    await ex.LogAsync("BaseOptionModel<{0}>.{1} Scope:{2} CollectionName:{3} PropertyName:{4} dataType:{5} PropertyType:{6} Value:{7} SerializedValue:{8}", 
+                        typeof(T).FullName, nameof(LoadAsync), scope, collectionName, property.Name, dataType, property.PropertyType, value ?? "[NULL]",
+                        serializedValue ?? "[NULL]");
                 }
             }
         }
@@ -112,22 +182,74 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Saves the properties to the registry asyncronously.
+        /// Saves the properties to the registry asynchronously.
         /// </summary>
         public virtual async Task SaveAsync()
         {
             ShellSettingsManager manager = await _settingsManager.GetValueAsync();
-            WritableSettingsStore settingsStore = manager.GetWritableSettingsStore(SettingsScope.UserSettings);
-
-            if (!settingsStore.CollectionExists(CollectionName))
-            {
-                settingsStore.CreateCollection(CollectionName);
-            }
-
+            SettingsScope scope = SettingsScope.UserSettings;
+            WritableSettingsStore settingsStore = manager.GetWritableSettingsStore(scope);
+            HashSet<string> testedCollections = new HashSet<string>();
+            
             foreach (PropertyInfo property in GetOptionProperties())
             {
-                var output = SerializeValue(property.GetValue(this));
-                settingsStore.SetString(CollectionName, property.Name, output);
+                OverrideCollectionNameAttribute? collectionNameAttribute = property.GetCustomAttribute<OverrideCollectionNameAttribute>();
+                string collectionName = collectionNameAttribute?.CollectionName ?? this.CollectionName;
+
+                OverrideDataTypeAttribute? overrideDataTypeAttribute = property.GetCustomAttribute<OverrideDataTypeAttribute>();
+                SettingDataType dataType = overrideDataTypeAttribute?.SettingDataType ?? SettingDataType.Serialized;
+                object? value = null;
+
+                try
+                {
+                    value = property.GetValue(this);
+
+                    if (testedCollections.Add(collectionName))
+                    {
+                        if (!settingsStore.CollectionExists(collectionName))
+                            settingsStore.CreateCollection(collectionName);
+                    }
+
+                    switch (dataType)
+                    {
+                        case SettingDataType.Serialized:
+                            var serializedValue = SerializeValue(property.GetValue(this));
+                            settingsStore.SetString(collectionName, property.Name, serializedValue);
+                            break;
+                        case SettingDataType.Bool:
+                            var boolValue = Convert.ToBoolean(property.GetValue(this));
+                            settingsStore.SetBoolean(collectionName, property.Name, boolValue);
+                            break;
+                        case SettingDataType.Int32:
+                            var intValue = Convert.ToInt32(property.GetValue(this));
+                            settingsStore.SetInt32(collectionName, property.Name, intValue);
+                            break;
+                        case SettingDataType.UInt32:
+                            var uintValue = Convert.ToUInt32(property.GetValue(this));
+                            settingsStore.SetUInt32(collectionName, property.Name, uintValue);
+                            break;
+                        case SettingDataType.Int64:
+                            var int64Value = Convert.ToInt64(property.GetValue(this));
+                            settingsStore.SetInt64(collectionName, property.Name, int64Value);
+                            break;
+                        case SettingDataType.UInt64:
+                            var uint64Value = Convert.ToUInt64(property.GetValue(this));
+                            settingsStore.SetUInt64(collectionName, property.Name, uint64Value);
+                            break;
+                        case SettingDataType.String:
+                            var stringValue = Convert.ToString(property.GetValue(this));
+                            settingsStore.SetString(collectionName, property.Name, stringValue);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(dataType), dataType, "The specified datatype is not supported.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await ex.LogAsync("BaseOptionModel<{0}>.{1} Scope:{2} CollectionName:{3} PropertyName:{4} dataType:{5} PropertyType:{6} Value:{7} ValueType:{8}",
+                        typeof(T).FullName, nameof(SaveAsync), scope, collectionName, property.Name, dataType, property.PropertyType, value ?? "[NULL]",
+                        value?.GetType().FullName ?? "[NULL]");
+                }
             }
 
             T liveModel = await GetLiveInstanceAsync();
@@ -180,11 +302,13 @@ namespace Community.VisualStudio.Toolkit
 #endif
         }
 
-        private IEnumerable<PropertyInfo> GetOptionProperties()
+        /// <summary>   Returns an enumerable of <see cref="PropertyInfo"/> for the properties of <typeparamref name="T"/>
+        /// that will be loaded and saved. </summary>
+        protected IEnumerable<PropertyInfo> GetOptionProperties()
         {
             return GetType()
                 .GetProperties()
-                .Where(p => p.PropertyType.IsSerializable && p.PropertyType.IsPublic);
+                .Where(p => p.PropertyType.IsSerializable && p.PropertyType.IsPublic && p.CanRead && p.CanWrite);
         }
 
         /// <summary>
