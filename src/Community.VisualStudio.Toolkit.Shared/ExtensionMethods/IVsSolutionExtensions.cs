@@ -10,6 +10,30 @@ namespace Microsoft.VisualStudio.Shell.Interop
     public static class IVsSolutionExtensions
     {
         /// <summary>
+        /// Checks if a solution is open.
+        /// </summary>
+        /// <returns><c>true</c> if a solution file is open.</returns>
+        public static bool IsOpen(this IVsSolution solution)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            solution.GetProperty((int)__VSPROPID.VSPROPID_IsSolutionOpen, out var value);
+            return value is bool isOpen && isOpen;
+        }
+
+        /// <summary>
+        /// Checks if a solution is opening.
+        /// </summary>
+        /// <returns><c>true</c> if a solution file is opening.</returns>
+        public static bool IsOpening(this IVsSolution solution)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            solution.GetProperty((int)__VSPROPID.VSPROPID_IsSolutionOpening, out var value);
+            return value is bool isOpening && isOpening;
+        }
+
+        /// <summary>
         /// Retrieves an array of all projects in the solution.
         /// </summary>
         public static IEnumerable<Project> GetAllProjects(this IVsSolution solution)
@@ -28,7 +52,7 @@ namespace Microsoft.VisualStudio.Shell.Interop
 
             foreach (IVsHierarchy hier in GetAllProjectHierarchys(solution, flags))
             {
-                Project? project = hier.ToProject();
+                var project = hier.ToProject();
 
                 if (project != null)
                 {

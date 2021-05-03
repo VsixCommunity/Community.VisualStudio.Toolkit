@@ -59,7 +59,7 @@ namespace EnvDTE
                     return;
                 }
 
-                if (string.IsNullOrEmpty(itemType) || item.ContainingProject.IsKind(ProjectTypes.WEBSITE, ProjectTypes.UNIVERSAL_APP))
+                if (string.IsNullOrEmpty(itemType) || item.ContainingProject.IsKind(ProjectTypes.WEBSITE) || item.ContainingProject.IsKind(ProjectTypes.UNIVERSAL_APP))
                 {
                     return;
                 }

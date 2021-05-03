@@ -147,7 +147,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var dte = await VS.GetDTEAsync();
+            DTE2 dte = await VS.GetDTEAsync();
             return await dte.Solution.BuildAsync();
         }
     }

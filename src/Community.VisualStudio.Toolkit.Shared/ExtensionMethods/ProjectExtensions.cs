@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Community.VisualStudio.Toolkit;
 using EnvDTE80;
+using Microsoft;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
@@ -57,7 +58,7 @@ namespace EnvDTE
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            if (project == null || project.IsKind(ProjectTypes.ASPNET_CORE, ProjectTypes.DOTNET_CORE, ProjectTypes.SSDT))
+            if (project == null || project.IsKind(ProjectTypes.ASPNET_CORE) || project.IsKind(ProjectTypes.DOTNET_CORE) || project.IsKind(ProjectTypes.SSDT))
             {
                 return;
             }
@@ -98,20 +99,19 @@ namespace EnvDTE
 
         /// <summary>Check what kind the project is.</summary>
         /// <param name="project">The project to check.</param>
-        /// <param name="kindGuids">Use the <see cref="ProjectTypes"/> list of strings</param>
-        public static bool IsKind(this Project project, params string[] kindGuids)
+        /// <param name="kindGuid">Use the <see cref="ProjectTypes"/> list of strings.</param>
+        public static bool IsKind(this Project project, string kindGuid)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            foreach (var guid in kindGuids)
-            {
-                if (project.Kind.Equals(guid, StringComparison.OrdinalIgnoreCase))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+#if VS14 || VS15
+            var solutionService = (IVsSolution)ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution));
+            Assumes.Present(solutionService);
+#else
+            IVsSolution solutionService = ServiceProvider.GlobalProvider.GetService<SVsSolution, IVsSolution>();
+#endif
+            solutionService.GetProjectOfUniqueName(project.UniqueName, out IVsHierarchy? hierarchy);
+            return hierarchy.IsProjectOfType(kindGuid);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace EnvDTE
         /// </summary>
         /// <param name="project"></param>
         /// <returns>Returns 'true' if the project builds successfully</returns>
-        public async static Task<bool> BuildAsync(this Project project)
+        public static async Task<bool> BuildAsync(this Project project)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             var buildTaskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -188,13 +188,17 @@ namespace EnvDTE
         public static async Task<IVsHierarchy?> ToHierarchyAsync(this Project project)
         {
             if (project == null)
+            {
                 throw new ArgumentNullException(nameof(project));
+            }
 
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var vsSolution = await VS.Solution.GetSolutionAsync();
-            if (vsSolution.GetProjectOfUniqueName(project.UniqueName, out var hierarchy) == VSConstants.S_OK)
+            IVsSolution? vsSolution = await VS.Solution.GetSolutionAsync();
+            if (vsSolution.GetProjectOfUniqueName(project.UniqueName, out IVsHierarchy? hierarchy) == VSConstants.S_OK)
+            {
                 return hierarchy;
+            }
 
             return null;
         }
@@ -208,9 +212,11 @@ namespace EnvDTE
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var hierarchy = await project.ToHierarchyAsync();
-            if (hierarchy != null && hierarchy.GetGuidProperty((uint)VSConstants.VSITEMID.Root, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out var projectId) == 0)
+            IVsHierarchy? hierarchy = await project.ToHierarchyAsync();
+            if (hierarchy != null && hierarchy.GetGuidProperty((uint)VSConstants.VSITEMID.Root, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out Guid projectId) == 0)
+            {
                 return projectId;
+            }
 
             return null;
         }
@@ -224,7 +230,7 @@ namespace EnvDTE
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var hierarchy = await project.ToHierarchyAsync();
+            IVsHierarchy? hierarchy = await project.ToHierarchyAsync();
             return hierarchy?.IsSdkStyleProject() ?? false;
         }
 
@@ -237,8 +243,19 @@ namespace EnvDTE
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var hierarchy = await project.ToHierarchyAsync();
+            IVsHierarchy? hierarchy = await project.ToHierarchyAsync();
             return hierarchy?.IsSharedAssetsProject() ?? false;
+        }
+
+        /// <summary>
+        /// Tries to set a build property on the project.
+        /// </summary>
+        public static async Task<bool> TrySetBuildPropertyAsync(this Project project, string name, string value, _PersistStorageType storageType = _PersistStorageType.PST_USER_FILE)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            IVsHierarchy? hierarchy = await project.ToHierarchyAsync();
+            return hierarchy != null && hierarchy.TrySetBuildProperty(name, value, storageType);
         }
     }
 }
