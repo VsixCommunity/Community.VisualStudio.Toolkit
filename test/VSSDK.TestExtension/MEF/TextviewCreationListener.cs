@@ -10,7 +10,7 @@ namespace TestExtension.MEF
     [Export(typeof(IWpfTextViewCreationListener))]
     [ContentType("text")]
     [TextViewRole(PredefinedTextViewRoles.PrimaryDocument)]
-    internal class TextviewCreationListener : IWpfTextViewCreationListener, IDisposable
+    internal class TextViewCreationListener : IWpfTextViewCreationListener, IDisposable
     {
         private readonly ToolkitThreadHelper _threadHelper = new ToolkitThreadHelper(ThreadHelper.JoinableTaskContext);
 
