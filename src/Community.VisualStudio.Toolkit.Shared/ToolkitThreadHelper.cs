@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Threading;
 
 namespace Community.VisualStudio.Toolkit.Shared
@@ -55,17 +56,11 @@ namespace Community.VisualStudio.Toolkit.Shared
     ///         // Note: RunAsync not awaited
     ///         _threadHelper.JoinableTaskFactory.RunAsync(async () =>
     ///         {
-    ///             try
-    ///             {
-    ///                 await _threadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(_threadHelper.DisposalToken);
+    ///             await _threadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(_threadHelper.DisposalToken);
     ///                 
-    ///                 await MyMethodAsync(_threadHelper.DisposalToken);
-    ///             }
-    ///             catch (Exception ex)
-    ///             {
-    ///                 await ex.LogAsync();
-    ///             }
-    ///         });
+    ///             await MyMethodAsync(_threadHelper.DisposalToken);
+    ///                 
+    ///         }).ForgetAndLogOnFailure();
     ///     }
     /// }
     /// </code>
@@ -78,14 +73,37 @@ namespace Community.VisualStudio.Toolkit.Shared
         private bool _disposed = false;
 
         /// <summary>
-        /// Creates the ToolkitThreadHelper.
+        /// Creates the ToolkitThreadHelper with Visual Studio's singleton instance of the <see cref="JoinableTaskContext"/>.
+        /// This is suitable for use within a Visual Studio extension or unit tests which use the Visual Studio SDK Test Framework.
+        /// For all other scenarios, call <see cref="CreateWithContext"/>.
+        /// </summary>
+        /// <returns>A new ToolkitThreadHelper instance.</returns>
+        public static ToolkitThreadHelper Create()
+        {
+            return new ToolkitThreadHelper(ThreadHelper.JoinableTaskContext);
+        }
+
+        /// <summary>
+        /// Creates the ToolkitThreadHelper with the supplied <see cref="JoinableTaskContext"/>.
         /// </summary>
         /// <param name="joinableTaskContext">
         /// The application's one-and-only <see cref="JoinableTaskContext"/>.
-        /// For VS extensions, pass ThreadHelper.JoinableTaskContext, which is Visual Studio's singleton instance.
-        /// For unit tests, create a JoinableTaskContext instance (only one instance for the process) to supply here.
+        /// For Visual Studio extensions, prefer to call <see cref="Create"/> or pass ThreadHelper.JoinableTaskContext,
+        /// which is Visual Studio's singleton instance.
+        /// For other scenarios, including unit tests which don't use the Visual Studio SDK Test Framework, create a
+        /// JoinableTaskContext instance (only one instance for the process) to supply here.
         /// </param>
-        public ToolkitThreadHelper(JoinableTaskContext joinableTaskContext)
+        /// <returns>A new ToolkitThreadHelper instance.</returns>
+        public static ToolkitThreadHelper CreateWithContext(JoinableTaskContext joinableTaskContext)
+        {
+            return new ToolkitThreadHelper(joinableTaskContext);
+        }
+
+        /// <summary>
+        /// Private constructor; call <see cref="Create"/> or <see cref="CreateWithContext"/>.
+        /// </summary>
+        /// <param name="joinableTaskContext">The application's one-and-only <see cref="JoinableTaskContext"/>.</param>
+        private ToolkitThreadHelper(JoinableTaskContext joinableTaskContext)
         {
             _context = joinableTaskContext;
             _collection = joinableTaskContext.CreateCollection();

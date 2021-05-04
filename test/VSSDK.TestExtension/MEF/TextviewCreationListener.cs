@@ -10,9 +10,9 @@ namespace TestExtension.MEF
     [Export(typeof(IWpfTextViewCreationListener))]
     [ContentType("text")]
     [TextViewRole(PredefinedTextViewRoles.PrimaryDocument)]
-    internal class TextviewCreationListener : IWpfTextViewCreationListener, IDisposable
+    internal class TextViewCreationListener : IWpfTextViewCreationListener, IDisposable
     {
-        private readonly ToolkitThreadHelper _threadHelper = new ToolkitThreadHelper(ThreadHelper.JoinableTaskContext);
+        private readonly ToolkitThreadHelper _threadHelper = ToolkitThreadHelper.Create();
 
         public void Dispose()
         {
@@ -33,18 +33,12 @@ namespace TestExtension.MEF
             // Note: RunAsync is not awaited/joined
             _threadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-                try
-                {
-                    await _threadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(_threadHelper.DisposalToken);
+                await _threadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(_threadHelper.DisposalToken);
 
-                    // Do work, e.g.
-                    // await MyMethodAsync(_threadHelper.DisposalToken);
-                }
-                catch (Exception ex)
-                {
-                    await ex.LogAsync();
-                }
-            });
+                // Do work, e.g.
+                // await MyMethodAsync(_threadHelper.DisposalToken);
+
+            }).ForgetAndLogOnFailure();
         }
     }
 }
