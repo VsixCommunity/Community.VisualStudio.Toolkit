@@ -127,5 +127,21 @@ namespace Microsoft.VisualStudio.Shell.Interop
 
             return false;
         }
+
+        /// <summary>
+        /// Tries to get the specified build property from the project.
+        /// </summary>
+        public static bool TryGetBuildProperty(this IVsHierarchy hierarchy, string name, out string? value, _PersistStorageType storageType = _PersistStorageType.PST_USER_FILE)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            value = null;
+
+            if (hierarchy is IVsBuildPropertyStorage storage)
+            {
+                return storage.GetPropertyValue(name, "", (uint)storageType, out value) == VSConstants.S_OK;
+            }
+
+            return false;
+        }
     }
 }

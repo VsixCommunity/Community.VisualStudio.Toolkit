@@ -157,8 +157,7 @@ namespace EnvDTE
         /// <summary>
         /// Builds the specified project asynchronously
         /// </summary>
-        /// <param name="project"></param>
-        /// <returns>Returns 'true' if the project builds successfully</returns>
+        /// <returns>Returns <c>true</c> if the project builds successfully.</returns>
         public static async Task<bool> BuildAsync(this Project project)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -183,8 +182,6 @@ namespace EnvDTE
         /// <summary>
         /// Returns the <see cref="IVsHierarchy"/> for the project.
         /// </summary>
-        /// <param name="project"></param>
-        /// <returns></returns>
         public static async Task<IVsHierarchy?> ToHierarchyAsync(this Project project)
         {
             if (project == null)
@@ -206,16 +203,14 @@ namespace EnvDTE
         /// <summary>
         /// Returns the unique project id as identified in the solution.
         /// </summary>
-        /// <param name="project"></param>
-        /// <returns></returns>
         public static async Task<Guid?> GetProjectGuidAsync(this Project project)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IVsHierarchy? hierarchy = await project.ToHierarchyAsync();
-            if (hierarchy != null && hierarchy.GetGuidProperty((uint)VSConstants.VSITEMID.Root, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out Guid projectId) == 0)
+            if (hierarchy != null && hierarchy.GetGuidProperty((uint)VSConstants.VSITEMID.Root, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out Guid id) == VSConstants.S_OK)
             {
-                return projectId;
+                return id;
             }
 
             return null;
@@ -224,8 +219,6 @@ namespace EnvDTE
         /// <summary>
         /// Returns whether the project is an 'SDK' style project.
         /// </summary>
-        /// <param name="project"></param>
-        /// <returns></returns>
         public static async Task<bool> IsSdkStyleProjectAsync(this Project project)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -237,8 +230,6 @@ namespace EnvDTE
         /// <summary>
         /// Returns whether the project is a 'Shared' project.
         /// </summary>
-        /// <param name="project"></param>
-        /// <returns></returns>
         public static async Task<bool> IsSharedProjectAsync(this Project project)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -256,6 +247,24 @@ namespace EnvDTE
 
             IVsHierarchy? hierarchy = await project.ToHierarchyAsync();
             return hierarchy != null && hierarchy.TrySetBuildProperty(name, value, storageType);
+        }
+
+        /// <summary>
+        /// Tries to get the specified build property from the project.
+        /// </summary>
+        /// <returns>The <c>string</c> representation of the value or <c>null</c> if the property doesn't exist.</returns>
+        public static async Task<string?> GetBuildPropertyAsync(this Project project, string name, _PersistStorageType storageType = _PersistStorageType.PST_USER_FILE)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            IVsHierarchy? hierarchy = await project.ToHierarchyAsync();
+
+            if (hierarchy != null && hierarchy.TryGetBuildProperty(name, out var value, storageType))
+            {
+                return value;
+            }
+
+            return null;
         }
     }
 }
