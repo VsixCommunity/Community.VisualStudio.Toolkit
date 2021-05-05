@@ -105,7 +105,7 @@ namespace System
         /// {
         ///     // Do work;
         /// }
-        /// catch (Exception ex)`
+        /// catch (Exception ex)
         /// {
         ///     await ex.LogAsync();
         /// }
