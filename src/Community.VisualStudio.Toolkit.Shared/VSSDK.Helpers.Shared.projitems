@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsSolutionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ProjectExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ProjectItemExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\DteExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\SolutionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TaskExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TextBufferExtensions.cs" />
