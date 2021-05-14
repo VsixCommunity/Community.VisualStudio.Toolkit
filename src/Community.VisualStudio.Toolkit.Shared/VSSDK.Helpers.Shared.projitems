@@ -21,6 +21,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TaskExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TextBufferExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ContentTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\OutputWindowPane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\OutputWindowTextWriterVS14.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProjectTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolkitThreadHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\OverrideCollectionNameAttribute.cs" />
