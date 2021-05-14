@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Community.VisualStudio.Toolkit.Shared.Helpers;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 
@@ -27,6 +29,23 @@ namespace Community.VisualStudio.Toolkit
 
         /// <summary>Manages and controls functions specific to the Output tool window that has multiple panes.</summary>
         public Task<IVsOutputWindow> GetOutputWindowAsync() => VS.GetServiceAsync<SVsOutputWindow, IVsOutputWindow>();
+
+        /// <summary>
+        /// Creates a new Output window pane with the given name.
+        /// The pane can be created now or lazily upon the first write to it.
+        /// </summary>
+        /// <param name="name">The name (title) of the new pane.</param>
+        /// <param name="lazyCreate">Whether to lazily create the pane upon first write.</param>
+        /// <returns>A new OutputWindowPane.</returns>
+        public Task<OutputWindowPane> CreateOutputWindowPaneAsync(string name, bool lazyCreate = true) => OutputWindowPane.CreateAsync(name, lazyCreate);
+
+        /// <summary>
+        /// Gets an existing Output window pane.
+        /// Throws if a pane with the specified guid does not exist.
+        /// </summary>
+        /// <param name="guid">The pane's unique identifier.</param>
+        /// <returns>A new OutputWindowPane.</returns>
+        public Task<OutputWindowPane> GetOutputWindowPaneAsync(Guid guid) => OutputWindowPane.GetAsync(guid);
 
         /// <summary>Manages lists of task items supplied by task providers.</summary>
         public Task<IVsTaskList> GetTaskListAsync() => VS.GetServiceAsync<SVsTaskList, IVsTaskList>();
