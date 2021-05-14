@@ -124,7 +124,7 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
                     if (_pane == null)
                         throw new InvalidOperationException("IVsOutputWindowPane should exist");
 
-                    string name = string.Empty;
+                    var name = string.Empty;
                     _pane.GetName(ref name);
                     return name;
                 });

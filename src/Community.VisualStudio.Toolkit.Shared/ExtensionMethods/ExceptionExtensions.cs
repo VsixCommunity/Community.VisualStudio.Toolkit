@@ -137,7 +137,8 @@ namespace System
         /// </example>
         public static Task LogAsync(this Exception exception, string format, params object?[] args)
         {
-            string message = format;
+            var message = format;
+
             try
             {
                 message = string.Format(format, args);
@@ -171,9 +172,13 @@ namespace System
         public static async Task LogAsync(this Exception exception, string message)
         {
             if (string.IsNullOrEmpty(message))
+            {
                 message = exception?.ToString() ?? string.Empty;
+            }
             else
+            {
                 message += Environment.NewLine + exception;
+            }
 
             try
             {

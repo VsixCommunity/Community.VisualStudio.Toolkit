@@ -100,14 +100,17 @@ namespace Community.VisualStudio.Toolkit
         public virtual async Task LoadAsync()
         {
             ShellSettingsManager manager = await _settingsManager.GetValueAsync();
-            var scope = SettingsScope.UserSettings;
+            SettingsScope scope = SettingsScope.UserSettings;
             SettingsStore settingsStore = manager.GetReadOnlySettingsStore(scope);
-            HashSet<string> testedCollections = new HashSet<string>();
+            var testedCollections = new HashSet<string>();
 
             bool DoesCollectionExist(string collectionName)
             {
                 if (testedCollections.Contains(collectionName))
+                {
                     return true;
+                }
+
                 if (settingsStore.CollectionExists(collectionName))
                 {
                     testedCollections.Add(collectionName);
@@ -119,7 +122,7 @@ namespace Community.VisualStudio.Toolkit
             foreach (PropertyInfo property in GetOptionProperties())
             {
                 object? value = null;
-                string collectionName = this.CollectionName;
+                var collectionName = CollectionName;
                 SettingDataType dataType = SettingDataType.Serialized;
                 string? serializedValue = null;
                 try
@@ -127,14 +130,18 @@ namespace Community.VisualStudio.Toolkit
                     OverrideCollectionNameAttribute? collectionNameAttribute = property.GetCustomAttribute<OverrideCollectionNameAttribute>();
                     collectionName = collectionNameAttribute?.CollectionName ?? collectionName;
                     if (!DoesCollectionExist(collectionName))
+                    {
                         continue;
+                    }
 
                     if (!settingsStore.PropertyExists(collectionName, property.Name))
+                    {
                         continue;
+                    }
 
                     OverrideDataTypeAttribute? overrideDataTypeAttribute = property.GetCustomAttribute<OverrideDataTypeAttribute>();
                     dataType = overrideDataTypeAttribute?.SettingDataType ?? dataType;
-                    
+
                     switch (dataType)
                     {
                         case SettingDataType.Serialized:
@@ -145,13 +152,13 @@ namespace Community.VisualStudio.Toolkit
                             value = settingsStore.GetBoolean(collectionName, property.Name, false);
                             break;
                         case SettingDataType.Int32:
-                            value = settingsStore.GetInt32(collectionName, property.Name, default(int));
+                            value = settingsStore.GetInt32(collectionName, property.Name, default);
                             break;
                         case SettingDataType.UInt32:
                             value = settingsStore.GetUInt32(collectionName, property.Name, default(int));
                             break;
                         case SettingDataType.Int64:
-                            value = settingsStore.GetInt64(collectionName, property.Name, default(long));
+                            value = settingsStore.GetInt64(collectionName, property.Name, default);
                             break;
                         case SettingDataType.UInt64:
                             value = settingsStore.GetUInt64(collectionName, property.Name, default(long));
@@ -166,7 +173,7 @@ namespace Community.VisualStudio.Toolkit
                 }
                 catch (Exception ex)
                 {
-                    await ex.LogAsync("BaseOptionModel<{0}>.{1} Scope:{2} CollectionName:{3} PropertyName:{4} dataType:{5} PropertyType:{6} Value:{7} SerializedValue:{8}", 
+                    await ex.LogAsync("BaseOptionModel<{0}>.{1} Scope:{2} CollectionName:{3} PropertyName:{4} dataType:{5} PropertyType:{6} Value:{7} SerializedValue:{8}",
                         typeof(T).FullName, nameof(LoadAsync), scope, collectionName, property.Name, dataType, property.PropertyType, value ?? "[NULL]",
                         serializedValue ?? "[NULL]");
                 }
@@ -189,12 +196,12 @@ namespace Community.VisualStudio.Toolkit
             ShellSettingsManager manager = await _settingsManager.GetValueAsync();
             SettingsScope scope = SettingsScope.UserSettings;
             WritableSettingsStore settingsStore = manager.GetWritableSettingsStore(scope);
-            HashSet<string> testedCollections = new HashSet<string>();
-            
+            var testedCollections = new HashSet<string>();
+
             foreach (PropertyInfo property in GetOptionProperties())
             {
                 OverrideCollectionNameAttribute? collectionNameAttribute = property.GetCustomAttribute<OverrideCollectionNameAttribute>();
-                string collectionName = collectionNameAttribute?.CollectionName ?? this.CollectionName;
+                var collectionName = collectionNameAttribute?.CollectionName ?? CollectionName;
 
                 OverrideDataTypeAttribute? overrideDataTypeAttribute = property.GetCustomAttribute<OverrideDataTypeAttribute>();
                 SettingDataType dataType = overrideDataTypeAttribute?.SettingDataType ?? SettingDataType.Serialized;
@@ -207,7 +214,9 @@ namespace Community.VisualStudio.Toolkit
                     if (testedCollections.Add(collectionName))
                     {
                         if (!settingsStore.CollectionExists(collectionName))
+                        {
                             settingsStore.CreateCollection(collectionName);
+                        }
                     }
 
                     switch (dataType)
