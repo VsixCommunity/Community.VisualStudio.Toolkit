@@ -12,6 +12,19 @@ namespace Community.VisualStudio.Toolkit
         internal Windows()
         { }
 
+        /// <summary>
+        /// Output window panes provided by Visual Studio.
+        /// </summary>
+        public enum VSOutputWindowPane
+        {
+            /// <summary>The General pane.</summary>
+            General,
+            /// <summary>The Build pane.</summary>
+            Build,
+            /// <summary>The Debug pane.</summary>
+            Debug
+        }
+
         /// <summary>Manipulates the Call Browser for debugging.</summary>
         public Task<IVsCallBrowser> GetCallBrowserAsync() => VS.GetServiceAsync<SVsCodeWindow, IVsCallBrowser>();
 
@@ -38,6 +51,15 @@ namespace Community.VisualStudio.Toolkit
         /// <param name="lazyCreate">Whether to lazily create the pane upon first write.</param>
         /// <returns>A new OutputWindowPane.</returns>
         public Task<OutputWindowPane> CreateOutputWindowPaneAsync(string name, bool lazyCreate = true) => OutputWindowPane.CreateAsync(name, lazyCreate);
+
+        /// <summary>
+        /// Gets an existing Visual Studio Output window pane (General, Build, Debug).
+        /// If the General pane does not already exist then it will be created, but that is not
+        /// the case for Build or Debug.
+        /// </summary>
+        /// <param name="pane">The Visual Studio pane to get.</param>
+        /// <returns>A new OutputWindowPane.</returns>
+        public Task<OutputWindowPane> GetOutputWindowPaneAsync(VSOutputWindowPane pane) => OutputWindowPane.GetAsync(pane);
 
         /// <summary>
         /// Gets an existing Output window pane.

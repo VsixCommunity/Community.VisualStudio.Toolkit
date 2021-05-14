@@ -69,6 +69,24 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
         }
 
         /// <summary>
+        /// Gets an existing Visual Studio Output window pane (General, Build, Debug).
+        /// If the General pane does not already exist then it will be created, but that is not
+        /// the case for Build or Debug.
+        /// </summary>
+        /// <param name="pane">The Visual Studio pane to get.</param>
+        /// <returns>A new OutputWindowPane.</returns>
+        public static Task<OutputWindowPane> GetAsync(Windows.VSOutputWindowPane pane)
+        {
+            return pane switch
+            {
+                Windows.VSOutputWindowPane.General => GetAsync(VSConstants.OutputWindowPaneGuid.GeneralPane_guid),
+                Windows.VSOutputWindowPane.Build => GetAsync(VSConstants.OutputWindowPaneGuid.BuildOutputPane_guid),
+                Windows.VSOutputWindowPane.Debug => GetAsync(VSConstants.OutputWindowPaneGuid.DebugPane_guid),
+                _ => throw new InvalidOperationException("Unexpected VisualStudioPane"),
+            };
+        }
+
+        /// <summary>
         /// Gets an existing Output window pane.
         /// Throws if a pane with the specified guid does not exist.
         /// </summary>
@@ -249,16 +267,25 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
             {
                 if (_pane == null)
                 {
-                    IVsOutputWindow output = await VS.Windows.GetOutputWindowAsync();
+                    // Special case for Visual Studio's General pane
+                    if (Guid == VSConstants.OutputWindowPaneGuid.GeneralPane_guid)
+                    {
+                        _pane = await VS.GetServiceAsync<SVsGeneralOutputWindowPane, IVsOutputWindowPane>();
+                        return;
+                    }
+
+                    IVsOutputWindow outputWindow = await VS.Windows.GetOutputWindowAsync();
                     Guid paneGuid = Guid;
 
                     // Only create the pane if we were constructed with a non-empty `_newPaneName`.
                     if (!string.IsNullOrEmpty(_newPaneName))
                     {
-                        ErrorHandler.ThrowOnFailure(output.CreatePane(ref paneGuid, _newPaneName, 1, 1));
+                        const int visible = 1;
+                        const int clearWithSolution = 1;
+                        ErrorHandler.ThrowOnFailure(outputWindow.CreatePane(ref paneGuid, _newPaneName, visible, clearWithSolution));
                     }
 
-                    ErrorHandler.ThrowOnFailure(output.GetPane(ref paneGuid, out _pane));
+                    ErrorHandler.ThrowOnFailure(outputWindow.GetPane(ref paneGuid, out _pane));
                 }
             }
             catch (Exception ex)
