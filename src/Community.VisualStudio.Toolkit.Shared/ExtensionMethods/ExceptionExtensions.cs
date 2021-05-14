@@ -1,8 +1,5 @@
-﻿using System.Threading.Tasks;
-using Community.VisualStudio.Toolkit;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
+﻿using Community.VisualStudio.Toolkit;
+using Community.VisualStudio.Toolkit.Shared.Helpers;
 using Microsoft.VisualStudio.Threading;
 using Task = System.Threading.Tasks.Task;
 
@@ -12,8 +9,8 @@ namespace System
     public static class ExceptionExtensions
     {
         private const string _paneTitle = "Extensions";
-
-        private static IVsOutputWindowPane? _pane;
+        private static Guid _extensionsPaneGuid = new("1780E60C-EE25-482B-AC77-CBA91891C420");
+        private static OutputWindowPane? _pane;
 
         /// <summary>
         /// Log the error to the Output Window
@@ -180,11 +177,11 @@ namespace System
 
             try
             {
-                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                if (await EnsurePaneAsync())
+                await EnsurePaneAsync();
+
+                if (_pane != null)
                 {
-                    //TODO: use OutputWindowTextWriter to write more efficiently. #ifdef it for 14.0
-                    _pane?.OutputString(message + Environment.NewLine);
+                    await _pane.WriteLineAsync(message);
                 }
                 else
                 {
@@ -198,30 +195,32 @@ namespace System
             }
         }
 
-        private static async Task<bool> EnsurePaneAsync()
+        private static async Task EnsurePaneAsync()
         {
             if (_pane == null)
             {
+                // Try and get the Extensions pane and if it doesn't exist then create it.
                 try
+                {
+                    _pane = await VS.Windows.GetOutputWindowPaneAsync(_extensionsPaneGuid);
+                }
+                finally
                 {
                     if (_pane == null)
                     {
-                        await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-                        IVsOutputWindow output = await VS.Windows.GetOutputWindowAsync();
-                        var guid = new Guid();
-
-                        ErrorHandler.ThrowOnFailure(output.CreatePane(ref guid, _paneTitle, 1, 1));
-                        ErrorHandler.ThrowOnFailure(output.GetPane(ref guid, out _pane));
+                        try
+                        {
+                            _pane = await VS.Windows.CreateOutputWindowPaneAsync(_paneTitle);
+                        }
+                        catch (Exception ex)
+                        {
+                            Diagnostics.Debug.WriteLine(ex);
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Diagnostics.Debug.WriteLine(ex);
                 }
             }
 
-            return _pane != null;
+            Diagnostics.Debug.Assert(_pane != null);
         }
     }
 }
