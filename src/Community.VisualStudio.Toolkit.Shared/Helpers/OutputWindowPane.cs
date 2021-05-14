@@ -263,34 +263,27 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            try
+            if (_pane == null)
             {
-                if (_pane == null)
+                // Special case for Visual Studio's General pane
+                if (Guid == VSConstants.OutputWindowPaneGuid.GeneralPane_guid)
                 {
-                    // Special case for Visual Studio's General pane
-                    if (Guid == VSConstants.OutputWindowPaneGuid.GeneralPane_guid)
-                    {
-                        _pane = await VS.GetServiceAsync<SVsGeneralOutputWindowPane, IVsOutputWindowPane>();
-                        return;
-                    }
-
-                    IVsOutputWindow outputWindow = await VS.Windows.GetOutputWindowAsync();
-                    Guid paneGuid = Guid;
-
-                    // Only create the pane if we were constructed with a non-empty `_newPaneName`.
-                    if (!string.IsNullOrEmpty(_newPaneName))
-                    {
-                        const int visible = 1;
-                        const int clearWithSolution = 1;
-                        ErrorHandler.ThrowOnFailure(outputWindow.CreatePane(ref paneGuid, _newPaneName, visible, clearWithSolution));
-                    }
-
-                    ErrorHandler.ThrowOnFailure(outputWindow.GetPane(ref paneGuid, out _pane));
+                    _pane = await VS.GetServiceAsync<SVsGeneralOutputWindowPane, IVsOutputWindowPane>();
+                    return;
                 }
-            }
-            catch (Exception ex)
-            {
-                ex.Log();
+
+                IVsOutputWindow outputWindow = await VS.Windows.GetOutputWindowAsync();
+                Guid paneGuid = Guid;
+
+                // Only create the pane if we were constructed with a non-empty `_newPaneName`.
+                if (!string.IsNullOrEmpty(_newPaneName))
+                {
+                    const int visible = 1;
+                    const int clearWithSolution = 1;
+                    ErrorHandler.ThrowOnFailure(outputWindow.CreatePane(ref paneGuid, _newPaneName, visible, clearWithSolution));
+                }
+
+                ErrorHandler.ThrowOnFailure(outputWindow.GetPane(ref paneGuid, out _pane));
             }
         }
 
