@@ -43,8 +43,29 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
     /// </example>
     public class OutputWindowPane
     {
-        private readonly string _newPaneName;
         private IVsOutputWindowPane? _pane;
+
+        private OutputWindowPane(string newPaneName, Guid paneGuid)
+        {
+            Name = newPaneName;
+            Guid = paneGuid;
+        }
+
+        /// <summary>
+        /// Uniquely identifies the Output window pane.
+        /// After creating a pane, you can cache this Guid and later obtain the same pane from <see cref="GetAsync(Guid)"/>.
+        /// </summary>
+        public Guid Guid { get; }
+
+        /// <summary>
+        /// The name (title) of the Output window pane.
+        /// </summary>
+        public string Name { get; }
+
+        /// <summary>
+        /// The underlying OutputWindow Pane object.
+        /// </summary>
+        public IVsOutputWindowPane? Pane => _pane;
 
         /// <summary>
         /// Creates a new Output window pane with the given name (title).
@@ -100,50 +121,6 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
             await pane.EnsurePaneAsync();
 
             return pane;
-        }
-
-        /// <summary>
-        /// Uniquely identifies the Output window pane.
-        /// After creating a pane, you can cache this Guid and later obtain the same pane from <see cref="GetAsync(Guid)"/>.
-        /// </summary>
-        public Guid Guid { get; }
-
-        /// <summary>
-        /// The name (title) of the Output window pane.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return ThreadHelper.JoinableTaskFactory.Run(async () =>
-                {
-                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-                    await EnsurePaneAsync();
-
-                    if (_pane == null)
-                        throw new InvalidOperationException("IVsOutputWindowPane should exist");
-
-                    var name = string.Empty;
-                    _pane.GetName(ref name);
-                    return name;
-                });
-            }
-
-            set
-            {
-                ThreadHelper.JoinableTaskFactory.Run(async () =>
-                {
-                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-                    await EnsurePaneAsync();
-
-                    if (_pane == null)
-                        throw new InvalidOperationException("IVsOutputWindowPane should exist");
-
-                    _pane.SetName(value);
-                });
-            }
         }
 
         /// <summary>
@@ -276,21 +253,15 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
                 Guid paneGuid = Guid;
 
                 // Only create the pane if we were constructed with a non-empty `_newPaneName`.
-                if (!string.IsNullOrEmpty(_newPaneName))
+                if (!string.IsNullOrEmpty(Name))
                 {
                     const int visible = 1;
                     const int clearWithSolution = 1;
-                    ErrorHandler.ThrowOnFailure(outputWindow.CreatePane(ref paneGuid, _newPaneName, visible, clearWithSolution));
+                    ErrorHandler.ThrowOnFailure(outputWindow.CreatePane(ref paneGuid, Name, visible, clearWithSolution));
                 }
 
                 ErrorHandler.ThrowOnFailure(outputWindow.GetPane(ref paneGuid, out _pane));
             }
-        }
-
-        private OutputWindowPane(string newPaneName, Guid paneGuid)
-        {
-            _newPaneName = newPaneName;
-            Guid = paneGuid;
         }
     }
 }
