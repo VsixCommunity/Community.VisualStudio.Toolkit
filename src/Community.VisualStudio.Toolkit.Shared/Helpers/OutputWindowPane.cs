@@ -30,7 +30,7 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
     /// // Elsewhere:
     /// {
     ///     OutputWindowPane pane = await VS.Windows.GetOutputWindowPaneAsync(myPaneGuid);
-    ///     pane.Name = "My Pane - Updated";
+    ///     Debug.Assert(pane.Name == "My Pane");
     ///     using (TextWriter writer = await pane.CreateOutputPaneTextWriterAsync())
     ///     {
     ///         char[] buffer = GetSomeChars();
@@ -44,10 +44,11 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
     public class OutputWindowPane
     {
         private IVsOutputWindowPane? _pane;
+        private string _paneName;
 
         private OutputWindowPane(string newPaneName, Guid paneGuid)
         {
-            Name = newPaneName;
+            _paneName = newPaneName;
             Guid = paneGuid;
         }
 
@@ -60,7 +61,32 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
         /// <summary>
         /// The name (title) of the Output window pane.
         /// </summary>
-        public string Name { get; }
+        public string Name
+        {
+            get
+            {
+                // We may already have the pane's name either from CreateOutputWindowPaneAsync, or a previous call to this getter.
+                if (!string.IsNullOrEmpty(_paneName))
+                    return _paneName;
+
+                // Query the pane's name and then cache it for future use.
+                _paneName = ThreadHelper.JoinableTaskFactory.Run(async () =>
+                {
+                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                    await EnsurePaneAsync();
+
+                    if (_pane == null)
+                        throw new InvalidOperationException("IVsOutputWindowPane should exist");
+
+                    var name = string.Empty;
+                    _pane.GetName(ref name);
+                    return name;
+                });
+
+                return _paneName;
+            }
+        }
 
         /// <summary>
         /// The underlying OutputWindow Pane object.
@@ -92,11 +118,11 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
         /// <summary>
         /// Gets an existing Visual Studio Output window pane (General, Build, Debug).
         /// If the General pane does not already exist then it will be created, but that is not
-        /// the case for Build or Debug.
+        /// the case for Build or Debug, in which case the method returns null.
         /// </summary>
         /// <param name="pane">The Visual Studio pane to get.</param>
-        /// <returns>A new OutputWindowPane.</returns>
-        public static Task<OutputWindowPane> GetAsync(Windows.VSOutputWindowPane pane)
+        /// <returns>A new OutputWindowPane or null.</returns>
+        public static Task<OutputWindowPane?> GetAsync(Windows.VSOutputWindowPane pane)
         {
             return pane switch
             {
@@ -109,18 +135,24 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
 
         /// <summary>
         /// Gets an existing Output window pane.
-        /// Throws if a pane with the specified guid does not exist.
+        /// Returns null if a pane with the specified guid does not exist.
         /// </summary>
         /// <param name="guid">The pane's unique identifier.</param>
-        /// <returns>A new OutputWindowPane.</returns>
-        public static async Task<OutputWindowPane> GetAsync(Guid guid)
+        /// <returns>A new OutputWindowPane or null.</returns>
+        public static async Task<OutputWindowPane?> GetAsync(Guid guid)
         {
-            // Empty string for `_name` signals to EnsurePaneAsync that we want to get an existing pane.
+            // Empty string for `newPaneName` signals to EnsurePaneAsync that we want to get an existing pane.
             var pane = new OutputWindowPane(string.Empty, guid);
 
-            await pane.EnsurePaneAsync();
-
-            return pane;
+            try
+            {
+                await pane.EnsurePaneAsync();
+                return pane;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -252,12 +284,12 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
                 IVsOutputWindow outputWindow = await VS.Windows.GetOutputWindowAsync();
                 Guid paneGuid = Guid;
 
-                // Only create the pane if we were constructed with a non-empty `_newPaneName`.
-                if (!string.IsNullOrEmpty(Name))
+                // Only create the pane if we were constructed with a non-empty `_paneName`.
+                if (!string.IsNullOrEmpty(_paneName))
                 {
                     const int visible = 1;
                     const int clearWithSolution = 1;
-                    ErrorHandler.ThrowOnFailure(outputWindow.CreatePane(ref paneGuid, Name, visible, clearWithSolution));
+                    ErrorHandler.ThrowOnFailure(outputWindow.CreatePane(ref paneGuid, _paneName, visible, clearWithSolution));
                 }
 
                 ErrorHandler.ThrowOnFailure(outputWindow.GetPane(ref paneGuid, out _pane));
