@@ -54,20 +54,20 @@ namespace Community.VisualStudio.Toolkit
 
         /// <summary>
         /// Gets an existing Visual Studio Output window pane (General, Build, Debug).
-        /// If the General pane does not already exist then it will be created, but that is not
-        /// the case for Build or Debug.
+        /// If the General pane does not already exist then it will be created, but that is not the case
+        /// for Build or Debug, in which case the method returns null if the pane doesn't already exist.
         /// </summary>
         /// <param name="pane">The Visual Studio pane to get.</param>
-        /// <returns>A new OutputWindowPane.</returns>
-        public Task<OutputWindowPane> GetOutputWindowPaneAsync(VSOutputWindowPane pane) => OutputWindowPane.GetAsync(pane);
+        /// <returns>A new OutputWindowPane or null.</returns>
+        public Task<OutputWindowPane?> GetOutputWindowPaneAsync(VSOutputWindowPane pane) => OutputWindowPane.GetAsync(pane);
 
         /// <summary>
         /// Gets an existing Output window pane.
-        /// Throws if a pane with the specified guid does not exist.
+        /// Returns null if a pane with the specified guid does not exist.
         /// </summary>
         /// <param name="guid">The pane's unique identifier.</param>
-        /// <returns>A new OutputWindowPane.</returns>
-        public Task<OutputWindowPane> GetOutputWindowPaneAsync(Guid guid) => OutputWindowPane.GetAsync(guid);
+        /// <returns>A new OutputWindowPane or null.</returns>
+        public Task<OutputWindowPane?> GetOutputWindowPaneAsync(Guid guid) => OutputWindowPane.GetAsync(guid);
 
         /// <summary>Manages lists of task items supplied by task providers.</summary>
         public Task<IVsTaskList> GetTaskListAsync() => VS.GetServiceAsync<SVsTaskList, IVsTaskList>();

@@ -205,22 +205,17 @@ namespace System
             if (_pane == null)
             {
                 // Try and get the Extensions pane and if it doesn't exist then create it.
-                try
+                _pane = await VS.Windows.GetOutputWindowPaneAsync(_extensionsPaneGuid);
+
+                if (_pane == null)
                 {
-                    _pane = await VS.Windows.GetOutputWindowPaneAsync(_extensionsPaneGuid);
-                }
-                finally
-                {
-                    if (_pane == null)
+                    try
                     {
-                        try
-                        {
-                            _pane = await VS.Windows.CreateOutputWindowPaneAsync(_paneTitle);
-                        }
-                        catch (Exception ex)
-                        {
-                            Diagnostics.Debug.WriteLine(ex);
-                        }
+                        _pane = await VS.Windows.CreateOutputWindowPaneAsync(_paneTitle);
+                    }
+                    catch (Exception ex)
+                    {
+                        Diagnostics.Debug.WriteLine(ex);
                     }
                 }
             }
