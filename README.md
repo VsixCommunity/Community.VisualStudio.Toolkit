@@ -90,6 +90,5 @@ This is a living project where the whole community can contribute helpers on top
 ### Breaking changes in the API between VS version are painful
 This project works around those changes in the implementation of its public contracts and interfaces. This means that what was a breaking change to the VS SDK, becomes an implementation detail of this project and no user will be affected.
 
-
 ## Templates
 For both project- and item templates that utilizes this NuGet packages, download the [Extensibility Template Pack](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityItemTemplates).
