@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Editor\WpfTextViewCreationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ExceptionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ImageMonikerExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsHierarchyExtensions.cs" />
@@ -43,7 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Debugger.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Editor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Editor\Editor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\Notifications.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Shell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Solution.cs" />

@@ -1,44 +1,29 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using Community.VisualStudio.Toolkit;
 using Community.VisualStudio.Toolkit.Shared;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Utilities;
+using Task = System.Threading.Tasks.Task;
 
 namespace TestExtension.MEF
 {
     [Export(typeof(IWpfTextViewCreationListener))]
     [ContentType("text")]
     [TextViewRole(PredefinedTextViewRoles.PrimaryDocument)]
-    internal class TextViewCreationListener : IWpfTextViewCreationListener, IDisposable
+    internal class TextViewCreationListener : WpfTextViewCreationListener
     {
-        private readonly ToolkitThreadHelper _threadHelper = ToolkitThreadHelper.Create();
-
-        public void Dispose()
+        protected override Task CreatedAsync(IWpfTextView textView, ITextDocument document)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            // Do your async work here
+            return Task.CompletedTask;
         }
 
-        protected virtual void Dispose(bool disposing)
+        protected override void FileActionOccurred(TextDocumentFileActionEventArgs e)
         {
-            if (disposing)
-            {
-                _threadHelper.Dispose();
-            }
-        }
-
-        public void TextViewCreated(IWpfTextView textView)
-        {
-            // Note: RunAsync is not awaited/joined
-            _threadHelper.JoinableTaskFactory.RunAsync(async () =>
-            {
-                await _threadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(_threadHelper.DisposalToken);
-
-                // Do work, e.g.
-                // await MyMethodAsync(_threadHelper.DisposalToken);
-
-            }).ForgetAndLogOnFailure();
+            base.FileActionOccurred(e);
         }
     }
 }
