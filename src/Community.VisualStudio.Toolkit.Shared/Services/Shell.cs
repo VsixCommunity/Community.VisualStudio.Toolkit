@@ -61,5 +61,18 @@ namespace Community.VisualStudio.Toolkit
                 }
             }
         }
+
+        /// <summary>
+        /// Opens a file in the Preview Tab (provisional tab) if supported by the editor factory.
+        /// </summary>
+        public void OpenInPreviewTab(string file)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            using (new NewDocumentStateScope(__VSNEWDOCUMENTSTATE2.NDS_TryProvisional, VSConstants.NewDocumentStateReason.Navigation))
+            {
+                VsShellUtilities.OpenDocument(ServiceProvider.GlobalProvider, file);
+            }
+        }
     }
 }
