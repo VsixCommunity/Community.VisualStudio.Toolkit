@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows;
+using Community.VisualStudio.Toolkit.Shared.ExtensionMethods;
 using Community.VisualStudio.Toolkit.Shared.Helpers;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
@@ -74,5 +76,9 @@ namespace Community.VisualStudio.Toolkit
 
         /// <summary>Used to manage the Toolbox.</summary>
         public Task<IVsToolbox2> GetToolboxAsync() => VS.GetServiceAsync<SVsToolbox, IVsToolbox2>();
+
+        /// <summary>Shows a window as a dialog.</summary>
+        public async Task<bool?> ShowDialogAsync(Window window, WindowStartupLocation windowStartupLocation = WindowStartupLocation.CenterOwner)
+            => await window.ShowDialogAsync(windowStartupLocation);
     }
 }
