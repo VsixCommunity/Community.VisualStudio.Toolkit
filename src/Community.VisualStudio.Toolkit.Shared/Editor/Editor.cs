@@ -28,7 +28,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IComponentModel2 compService = await VS.GetServiceAsync<SComponentModel, IComponentModel2>();
+            IComponentModel2 compService = await VS.GetRequiredServiceAsync<SComponentModel, IComponentModel2>();
             IVsEditorAdaptersFactoryService? editorAdapter = compService.GetService<IVsEditorAdaptersFactoryService>();
             IVsTextView viewAdapter = await GetCurrentNativeTextViewAsync();
 
@@ -38,7 +38,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Gets the native text view from the currently active document.</summary>
         public async Task<IVsTextView> GetCurrentNativeTextViewAsync()
         {
-            IVsTextManager textManager = await VS.GetServiceAsync<SVsTextManager, IVsTextManager>();
+            IVsTextManager textManager = await VS.GetRequiredServiceAsync<SVsTextManager, IVsTextManager>();
             ErrorHandler.ThrowOnFailure(textManager.GetActiveView(1, null, out IVsTextView activeView));
 
             return activeView;

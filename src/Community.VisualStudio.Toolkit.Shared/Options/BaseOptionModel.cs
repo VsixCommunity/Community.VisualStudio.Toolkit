@@ -305,7 +305,7 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             return new ShellSettingsManager(ServiceProvider.GlobalProvider);
 #else
-            IVsSettingsManager? svc = await VS.GetServiceAsync<SVsSettingsManager, IVsSettingsManager>();
+            IVsSettingsManager? svc = await VS.GetRequiredServiceAsync<SVsSettingsManager, IVsSettingsManager>();
 
             return new ShellSettingsManager(svc);
 #endif

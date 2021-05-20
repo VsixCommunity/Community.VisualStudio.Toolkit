@@ -37,7 +37,7 @@ namespace Community.VisualStudio.Toolkit
         public static Windows Windows => new();
 
         /// <summary>Get the EnvDTE which provide a broad API for a large part of Visual Studio.</summary>
-        public static Task<DTE2> GetDTEAsync() => GetServiceAsync<DTE, DTE2>();
+        public static Task<DTE2> GetDTEAsync() => GetRequiredServiceAsync<DTE, DTE2>();
 
         /// <summary>
         /// Gets a global service asynchronously.
