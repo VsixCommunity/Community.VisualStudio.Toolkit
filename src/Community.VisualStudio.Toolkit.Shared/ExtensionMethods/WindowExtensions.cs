@@ -18,14 +18,13 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
             if (window == null)
                 throw new ArgumentNullException(nameof(window));
 
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             var vsUiShellService = await VS.GetServiceAsync<SVsUIShell, IVsUIShell>();
             Assumes.Present(vsUiShellService);
 
-            if (vsUiShellService.GetDialogOwnerHwnd(out var hwnd) != VSConstants.S_OK)
-                throw new Exception("Unable to get the dialog owner handler.");
-
-            if (vsUiShellService.EnableModeless(0) != VSConstants.S_OK)
-                throw new Exception("Unable to set the UI Shell Service to 'Modeless'.");
+            ErrorHandler.ThrowOnFailure(vsUiShellService.GetDialogOwnerHwnd(out var hwnd));
+            ErrorHandler.ThrowOnFailure(vsUiShellService.EnableModeless(0));
 
             window.WindowStartupLocation = windowStartupLocation;
 
