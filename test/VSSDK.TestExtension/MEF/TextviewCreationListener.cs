@@ -1,7 +1,5 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using Community.VisualStudio.Toolkit;
-using Community.VisualStudio.Toolkit.Shared;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
@@ -23,7 +21,22 @@ namespace TestExtension.MEF
 
         protected override void FileActionOccurred(TextDocumentFileActionEventArgs e)
         {
-            base.FileActionOccurred(e);
+            VS.Notifications.SetStatusbarTextAsync($"File Action: {e.FileActionType}").FireAndForget();
+        }
+
+        protected override void DirtyStateChanged()
+        {
+            VS.Notifications.SetStatusbarTextAsync($"Dirty state changed").FireAndForget();
+        }
+
+        protected override void EncodingChanged(EncodingChangedEventArgs e)
+        {
+            VS.Notifications.SetStatusbarTextAsync($"Encoding chaged from {e.OldEncoding} to: {e.OldEncoding}").FireAndForget();
+        }
+
+        protected override void Closed(IWpfTextView textView)
+        {
+            VS.Notifications.SetStatusbarTextAsync("Document closed").FireAndForget();
         }
     }
 }
