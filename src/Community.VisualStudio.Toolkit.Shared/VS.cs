@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft;
@@ -47,13 +48,25 @@ namespace Community.VisualStudio.Toolkit
         public static async Task<TInterface> GetServiceAsync<TService, TInterface>() where TService : class where TInterface : class
         {
 #if VS14
-            var service = (TInterface)await AsyncServiceProvider.GlobalProvider.GetServiceAsync(typeof(TService));
+            return (TInterface)await AsyncServiceProvider.GlobalProvider.GetServiceAsync(typeof(TService));
 #elif VS15
-            TInterface? service = await ServiceProvider.GetGlobalServiceAsync<TService, TInterface>();
+            return await ServiceProvider.GetGlobalServiceAsync<TService, TInterface>();
 #else
-            TInterface? service = await ServiceProvider.GetGlobalServiceAsync<TService, TInterface>(swallowExceptions: false);
+            return await ServiceProvider.GetGlobalServiceAsync<TService, TInterface>(swallowExceptions: false);
 #endif
+        }
+
+        /// <summary>
+        /// Gets a global service asynchronously.
+        /// </summary>
+        /// <typeparam name="TService">The type identity of the service.</typeparam>
+        /// <typeparam name="TInterface">The interface to cast the service to.</typeparam>
+        /// <returns>A task who's result is the service, if found; otherwise throws an exception.</returns>
+        public static async Task<TInterface> GetRequiredServiceAsync<TService, TInterface>() where TService : class where TInterface : class
+        {
+            var service = await GetServiceAsync<TService, TInterface>();
             Assumes.Present(service);
+
             return service;
         }
     }
