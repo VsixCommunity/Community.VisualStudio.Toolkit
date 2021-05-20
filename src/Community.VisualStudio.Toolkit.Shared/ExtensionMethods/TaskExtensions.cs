@@ -19,11 +19,14 @@ namespace Microsoft.VisualStudio.Shell
         /// This is similar to the <c>task.Forget()</c> method, but it logs any unhandled exception
         /// thrown from the task to the Output Window.
         /// </remarks>
-        public static void ForgetAndLogOnFailure(this System.Threading.Tasks.Task task)
+        public static void FireAndForget(this System.Threading.Tasks.Task task, bool logOnFailure = true)
         {
             task.ContinueWith(delegate (System.Threading.Tasks.Task antecedent)
             {
-                antecedent.Exception!.Log();
+                if (logOnFailure)
+                {
+                    antecedent.Exception!.Log();
+                }
 
             }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.Default).Forget();
         }
@@ -32,11 +35,11 @@ namespace Microsoft.VisualStudio.Shell
         /// Logs error information to the Output Window if the given <see cref="JoinableTask" /> faults.
         /// </summary>
         /// <remarks>
-        /// This is the JoinableTask equivalent of <see cref="ForgetAndLogOnFailure(System.Threading.Tasks.Task)"/>
+        /// This is the JoinableTask equivalent of <see cref="FireAndForget(System.Threading.Tasks.Task, bool)"/>
         /// </remarks>
-        public static void ForgetAndLogOnFailure(this JoinableTask joinableTask)
+        public static void FireAndForget(this JoinableTask joinableTask, bool logOnFailure = true)
         {
-            ForgetAndLogOnFailure(joinableTask.Task);
+            FireAndForget(joinableTask.Task, logOnFailure);
         }
     }
 }
