@@ -1,9 +1,9 @@
-﻿namespace EnvDTE
+namespace EnvDTE
 {
     /// <summary>
     /// A list of known project types guids.
     /// </summary>
-    public static class ProjectTypes
+    public static partial class ProjectTypes
     {
         /// <summary>The project type of Asp.net Core</summary>
         public const string ASPNET_CORE = "{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}";

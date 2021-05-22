@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Tool
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.17.0", "src\Community.VisualStudio.Toolkit.17.0\Community.VisualStudio.Toolkit.17.0.csproj", "{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternalSourceGenerators", "src\InternalSourceGenerators\InternalSourceGenerators.csproj", "{DD8E9BA7-FEAD-4B80-B8F3-B97131E82A16}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{5ec463ac-24cb-443e-9ff9-91b7ecb1f822}*SharedItemsImports = 13
@@ -54,6 +56,10 @@ Global
 		{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD8E9BA7-FEAD-4B80-B8F3-B97131E82A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD8E9BA7-FEAD-4B80-B8F3-B97131E82A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD8E9BA7-FEAD-4B80-B8F3-B97131E82A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD8E9BA7-FEAD-4B80-B8F3-B97131E82A16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
