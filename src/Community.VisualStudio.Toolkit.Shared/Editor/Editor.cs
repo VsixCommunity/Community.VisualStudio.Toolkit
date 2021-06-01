@@ -20,7 +20,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             EnvDTE80.DTE2 dte = await VS.GetDTEAsync();
-            return dte.ActiveDocument.Object("TextDocument") as TextDocument;
+            return dte.ActiveDocument?.Object("TextDocument") as TextDocument;
         }
 
         /// <summary>Gets the WPF text view from the currently active document.</summary>
@@ -32,7 +32,7 @@ namespace Community.VisualStudio.Toolkit
             IVsEditorAdaptersFactoryService? editorAdapter = compService.GetService<IVsEditorAdaptersFactoryService>();
             IVsTextView viewAdapter = await GetCurrentNativeTextViewAsync();
 
-            return editorAdapter.GetWpfTextView(viewAdapter);
+            return editorAdapter?.GetWpfTextView(viewAdapter);
         }
 
         /// <summary>Gets the native text view from the currently active document.</summary>

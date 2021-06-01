@@ -79,9 +79,10 @@ namespace Community.VisualStudio.Toolkit
             try
             {
                 IVsStatusbar statusBar = await GetStatusbarAsync();
+                object icon = (short)animation;
 
                 statusBar.FreezeOutput(0);
-                statusBar.Animation(1, animation);
+                statusBar.Animation(1, ref icon);
                 statusBar.FreezeOutput(1);
             }
             catch (Exception ex)
@@ -94,13 +95,14 @@ namespace Community.VisualStudio.Toolkit
         public async Task EndStatusbarAnimationAsync(StatusAnimation animation)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
+            
             try
             {
                 IVsStatusbar statusBar = await GetStatusbarAsync();
+                object icon = (short)animation;
 
                 statusBar.FreezeOutput(0);
-                statusBar.Animation(0, animation);
+                statusBar.Animation(0, ref icon);
                 statusBar.FreezeOutput(1);
             }
             catch (Exception ex)
