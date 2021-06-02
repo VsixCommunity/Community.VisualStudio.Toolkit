@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Shell;
 using TestExtension;
 using TestExtension.Commands;
@@ -17,6 +18,7 @@ namespace VSSDK.TestExtension
     [ProvideToolWindow(typeof(RunnerWindow.Pane), Style = VsDockStyle.Float, Window = WindowGuids.SolutionExplorer)]
     [ProvideToolWindowVisibility(typeof(RunnerWindow.Pane), VSConstants.UICONTEXT.NoSolution_string)]
     [ProvideToolWindow(typeof(ThemeWindow.Pane))]
+    [ProvideFileIcon(".abc", "KnownMonikers.Reference")]
     [ProvideToolWindow(typeof(MultiInstanceWindow.Pane))]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class TestExtensionPackage : ToolkitPackage
