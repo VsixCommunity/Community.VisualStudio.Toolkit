@@ -28,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\OutputWindowTextWriterVS14.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProjectTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProvideFileIconAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Notifications\Infobar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolkitThreadHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\OverrideCollectionNameAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\OverrideDataTypeAttribute.cs" />

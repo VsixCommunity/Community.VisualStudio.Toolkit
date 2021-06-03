@@ -23,8 +23,6 @@
                 <Thickness x:Key="Margin">0,10,0,0</Thickness>
             </StackPanel.Resources>
 
-            <TextBlock>Some great text in a textblock</TextBlock>
-
             <Label Margin="{StaticResource Margin}">An important label</Label>
 
             <TextBlock Margin="{StaticResource Margin}">
