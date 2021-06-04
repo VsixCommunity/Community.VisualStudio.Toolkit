@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -46,10 +45,11 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Displays the InfoBar in the tool window or document previously specified.
         /// </summary>
-        public async Task ShowInfoBarUIAsync()
+        /// <returns><c>true</c> if the InfoBar was shown; otherwise <c>false</c>.</returns>
+        public async Task<bool> TryShowInfoBarUIAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsInfoBarUIFactory infoBarUIFactory = await VS.GetServiceAsync<SVsInfoBarUIFactory, IVsInfoBarUIFactory>();
+            var infoBarUIFactory = (IVsInfoBarUIFactory)await VS.Notifications.GetInfoBarUIFactoryAsync();
 
             _uiElement = infoBarUIFactory.CreateInfoBar(_model);
             _uiElement.Advise(this, out _);
@@ -61,6 +61,8 @@ namespace Community.VisualStudio.Toolkit
                 host.AddInfoBar(_uiElement);
                 IsVisible = true;
             }
+
+            return IsVisible;
         }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace Community.VisualStudio.Toolkit
             // Tool Window
             if (Guid.TryParse(_windowIdentifier, out Guid guid))
             {
-                IVsUIShell? uiShell = await VS.GetServiceAsync<SVsUIShell, IVsUIShell>();
+                IVsUIShell? uiShell = await VS.Shell.GetUIShellAsync();
                 Assumes.Present(uiShell);
                 uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref guid, out frame);
             }
