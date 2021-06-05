@@ -277,7 +277,7 @@ namespace Community.VisualStudio.Toolkit.Shared.Helpers
                 // Special case for Visual Studio's General pane
                 if (Guid == VSConstants.OutputWindowPaneGuid.GeneralPane_guid)
                 {
-                    _pane = await VS.GetServiceAsync<SVsGeneralOutputWindowPane, IVsOutputWindowPane>();
+                    _pane = await VS.GetRequiredServiceAsync<SVsGeneralOutputWindowPane, IVsOutputWindowPane>();
                     return;
                 }
 
