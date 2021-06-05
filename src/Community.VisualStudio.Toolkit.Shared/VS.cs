@@ -48,6 +48,7 @@ namespace Community.VisualStudio.Toolkit
         public static async Task<TInterface?> GetServiceAsync<TService, TInterface>() where TService : class where TInterface : class
         {
 #if VS14
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             return (TInterface)await AsyncServiceProvider.GlobalProvider.GetServiceAsync(typeof(TService));
 #elif VS15
             return await ServiceProvider.GetGlobalServiceAsync<TService, TInterface>();
