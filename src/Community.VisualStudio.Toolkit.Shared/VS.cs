@@ -61,7 +61,8 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         /// <typeparam name="TService">The type identity of the service.</typeparam>
         /// <typeparam name="TInterface">The interface to cast the service to.</typeparam>
-        /// <returns>A task who's result is the service, if found; otherwise throws an exception.</returns>
+        /// <returns>A task who's result is the service, if found.</returns>
+        /// <exception cref="Exception">Throws an exception when the service is not available.</exception>
         public static async Task<TInterface> GetRequiredServiceAsync<TService, TInterface>() where TService : class where TInterface : class
         {
             var service = await GetServiceAsync<TService, TInterface>();
