@@ -45,7 +45,7 @@ namespace Community.VisualStudio.Toolkit
         /// <typeparam name="TService">The type identity of the service.</typeparam>
         /// <typeparam name="TInterface">The interface to cast the service to.</typeparam>
         /// <returns>A task who's result is the service, if found; otherwise <see langword="">null</see>.</returns>
-        public static async Task<TInterface> GetServiceAsync<TService, TInterface>() where TService : class where TInterface : class
+        public static async Task<TInterface?> GetServiceAsync<TService, TInterface>() where TService : class where TInterface : class
         {
 #if VS14
             return (TInterface)await AsyncServiceProvider.GlobalProvider.GetServiceAsync(typeof(TService));
