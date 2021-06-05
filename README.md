@@ -85,7 +85,7 @@ The most common APIs of the old complex COM nature are wrapped to expose a moder
 All the base classes and helper methods are async by default. There are cases where they are not, but that is because it wouldn't be beneficial for them to be. 
 
 ### Only Microsoft can update the API and that doesn't scale
-This is a living project where the whole community can contribute helpers on top of the official VS SDK. There is no need to wait for Microsoft to make an update, since this projet gives the ability to continue the work in a separate work stream.
+This is a living project where the whole community can contribute helpers on top of the official VS SDK. There is no need to wait for Microsoft to make an update, since this project gives the ability to continue the work in a separate work stream.
 
 ### Breaking changes in the API between VS version are painful
 This project works around those changes in the implementation of its public contracts and interfaces. This means that what was a breaking change to the VS SDK, becomes an implementation detail of this project and no user will be affected.
