@@ -77,7 +77,7 @@ namespace EnvDTE
                 return;
             }
 
-            IVsSolution? solutionService = await VS.GetServiceAsync<SVsSolution, IVsSolution>();
+            IVsSolution? solutionService = await VS.GetRequiredServiceAsync<SVsSolution, IVsSolution>();
             solutionService.GetProjectOfUniqueName(project.UniqueName, out IVsHierarchy? hierarchy);
 
             if (hierarchy == null)
