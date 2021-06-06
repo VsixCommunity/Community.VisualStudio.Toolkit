@@ -21,12 +21,12 @@ namespace Community.VisualStudio.Toolkit
         public Task<IVsTaskStatusCenterService> GetTaskStatusCenterAsync() => VS.GetRequiredServiceAsync<SVsTaskStatusCenterService, IVsTaskStatusCenterService>();
 #endif
 
-        /// <summary>The Infobar is often referred to as the 'yellow' or 'gold' bar.</summary>
-        /// <returns>Cast return object to <see cref="IVsInfoBarUIFactory"/></returns>
+        /// <summary>The <see cref="InfoBar"/> is often referred to as the 'yellow' or 'gold' bar.</summary>
+        /// <returns>Cast return object to <see cref="IVsInfoBarUIFactory"/>.</returns>
         public Task<object> GetInfoBarUIFactoryAsync() => VS.GetRequiredServiceAsync<SVsInfoBarUIFactory, object>();
 
         /// <summary>Used for background tasks that needs to block the UI if they take longer than the specified seconds.</summary>
-        /// <returns>Cast return object to <see cref="IVsThreadedWaitDialogFactory"/></returns>
+        /// <returns>Cast return object to <see cref="IVsThreadedWaitDialogFactory"/>.</returns>
         public Task<object> GetThreadedWaitDialogAsync() => VS.GetRequiredServiceAsync<SVsThreadedWaitDialogFactory, object>();
 
         /// <summary>Used to write log messaged to the ActivityLog.xml file.</summary>
