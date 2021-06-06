@@ -44,7 +44,7 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         /// <typeparam name="TService">The type identity of the service.</typeparam>
         /// <typeparam name="TInterface">The interface to cast the service to.</typeparam>
-        /// <returns>A task who's result is the service, if found; otherwise <see langword="null" />.</returns>
+        /// <returns>A task whose result is the service, if found; otherwise <see langword="null" />.</returns>
         public static async Task<TInterface?> GetServiceAsync<TService, TInterface>() where TService : class where TInterface : class
         {
 #if VS14
@@ -62,7 +62,7 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         /// <typeparam name="TService">The type identity of the service.</typeparam>
         /// <typeparam name="TInterface">The interface to cast the service to.</typeparam>
-        /// <returns>A task who's result is the service, if found.</returns>
+        /// <returns>A task whose result is the service, if found.</returns>
         /// <exception cref="Exception">Throws an exception when the service is not available.</exception>
         public static async Task<TInterface> GetRequiredServiceAsync<TService, TInterface>() where TService : class where TInterface : class
         {
