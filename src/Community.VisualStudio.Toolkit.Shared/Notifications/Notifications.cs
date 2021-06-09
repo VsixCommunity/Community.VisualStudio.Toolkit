@@ -16,7 +16,7 @@ namespace Community.VisualStudio.Toolkit
 
 #if VS16 || VS17
 
-        /// <summary>The Task Status Center is used to run background tasks and is located in the left-most side of the Status bar.</summary>
+        /// <summary>The Task Status Center is used to run background tasks and is located in the left-most side of the status bar.</summary>
         /// <remarks>This is only available for Visual Studio 2019 (16.0).</remarks>
         public Task<IVsTaskStatusCenterService> GetTaskStatusCenterAsync() => VS.GetServiceAsync<SVsTaskStatusCenterService, IVsTaskStatusCenterService>();
 #endif

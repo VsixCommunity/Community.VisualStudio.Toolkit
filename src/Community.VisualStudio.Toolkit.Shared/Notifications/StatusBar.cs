@@ -12,16 +12,16 @@ namespace Community.VisualStudio.Toolkit
     public partial class Notifications
     {
         /// <summary>Provides access to the environment's status bar.</summary>
-        public Task<IVsStatusbar> GetStatusbarAsync() => VS.GetServiceAsync<SVsStatusbar, IVsStatusbar>();
+        public Task<IVsStatusbar> GetStatusBarAsync() => VS.GetServiceAsync<SVsStatusbar, IVsStatusbar>();
 
         /// <summary>Gets the current text from the status bar.</summary>
-        public async Task<string?> GetStatusbarTextAsync()
+        public async Task<string?> GetStatusBarTextAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             
             try
             {
-                IVsStatusbar statusBar = await GetStatusbarAsync();
+                IVsStatusbar statusBar = await GetStatusBarAsync();
 
                 statusBar.GetText(out var pszText);
                 return pszText;
@@ -34,13 +34,13 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>Sets the text in the status bar.</summary>
-        public async Task SetStatusbarTextAsync(string text)
+        public async Task SetStatusBarTextAsync(string text)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             try
             {
-                IVsStatusbar statusBar = await GetStatusbarAsync();
+                IVsStatusbar statusBar = await GetStatusBarAsync();
 
                 statusBar.FreezeOutput(0);
                 statusBar.SetText(text);
@@ -53,13 +53,13 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>Clears all text from the status bar.</summary>
-        public async Task ClearStatusbarAsync()
+        public async Task ClearStatusBarAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             try
             {
-                IVsStatusbar statusBar = await GetStatusbarAsync();
+                IVsStatusbar statusBar = await GetStatusBarAsync();
 
                 statusBar.FreezeOutput(0);
                 statusBar.Clear();
@@ -72,13 +72,13 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>Starts the animation on the status bar.</summary>
-        public async Task StartStatusbarAnimationAsync(StatusAnimation animation)
+        public async Task StartStatusBarAnimationAsync(StatusAnimation animation)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             try
             {
-                IVsStatusbar statusBar = await GetStatusbarAsync();
+                IVsStatusbar statusBar = await GetStatusBarAsync();
                 object icon = (short)animation;
 
                 statusBar.FreezeOutput(0);
@@ -92,13 +92,13 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>Ends the animation on the status bar.</summary>
-        public async Task EndStatusbarAnimationAsync(StatusAnimation animation)
+        public async Task EndStatusBarAnimationAsync(StatusAnimation animation)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             
             try
             {
-                IVsStatusbar statusBar = await GetStatusbarAsync();
+                IVsStatusbar statusBar = await GetStatusBarAsync();
                 object icon = (short)animation;
 
                 statusBar.FreezeOutput(0);
