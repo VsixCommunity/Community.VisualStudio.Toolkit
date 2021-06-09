@@ -16,7 +16,7 @@ The NuGet package [Community.VisualStudio.Toolkit](https://www.nuget.org/package
 * Visual Studio 2015
 * Visual Studio 2017
 * Visual Studio 2019
-* Visual Studio 2022 (preview)
+* Visual Studio 2022
 
 ## Examples
 Here are some examples of typical scenarios used in extensions.
