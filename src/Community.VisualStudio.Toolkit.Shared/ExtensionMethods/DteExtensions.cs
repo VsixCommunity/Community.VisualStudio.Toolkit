@@ -1,8 +1,9 @@
 ﻿using System;
 using Community.VisualStudio.Toolkit;
+using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 
-namespace EnvDTE
+namespace EnvDTE80
 {
     /// <summary>Extension methods for the DTE.</summary>
     public static class DteExtensions
@@ -11,7 +12,7 @@ namespace EnvDTE
         /// Executes a command safely without throwing exceptions.
         /// </summary>
         /// <returns>Returns 'true' if successful</returns>
-        public static bool TryExecuteCommand(this _DTE dte, string commandName, string commandArgs = "")
+        public static bool TryExecuteCommand(this DTE2 dte, string commandName, string commandArgs = "")
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -38,10 +39,10 @@ namespace EnvDTE
         /// </summary>
         /// <param name="dte">The DTE instance.</param>
         /// <param name="name">The name to appear as the undo item.</param>
-        public static IDisposable CreateUndoContext(this _DTE dte, string name)
+        public static IDisposable CreateUndoContext(this DTE2 dte, string name)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            
+
             dte.UndoContext.Open(name);
 
             return new Disposable(dte.UndoContext.Close);

@@ -33,9 +33,6 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Allows a VSPackage to retrieve or save font and color data to the registry.</summary>
         public Task<IVsFontAndColorStorage> GetFontAndColorStorageAsync() => VS.GetRequiredServiceAsync<SVsFontAndColorStorage, IVsFontAndColorStorage>();
 
-        /// <summary>Manages a Tools Options dialog box. The environment implements this interface.</summary>
-        public Task<IVsToolsOptions> GetToolsOptionsAsync() => VS.GetRequiredServiceAsync<SVsToolsOptions, IVsToolsOptions>();
-
         /// <summary>Controls the most recently used (MRU) items collection.</summary>
         /// <returns>Cast return object to <see cref="IVsMRUItemsStore"/></returns>
         public Task<object> GetMRUItemsStoreAsync() => VS.GetRequiredServiceAsync<SVsMRUItemsStore, object>();

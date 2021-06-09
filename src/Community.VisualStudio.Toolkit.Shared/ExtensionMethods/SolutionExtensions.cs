@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Community.VisualStudio.Toolkit;
+using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
@@ -18,18 +20,23 @@ namespace EnvDTE
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             var buildTaskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
-            DTE? dte = solution.DTE;
-            dte.Events.BuildEvents.OnBuildDone += BuildEvents_OnBuildDone;
-            dte.Solution.SolutionBuild.Build(false);
-            return await buildTaskCompletionSource.Task;
+            DTE2? dte = await VS.GetDTEAsync();
 
-            void BuildEvents_OnBuildDone(vsBuildScope scope, vsBuildAction action)
+            if (VS.Events.BuildEvents != null)
             {
-                dte.Events.BuildEvents.OnBuildDone -= BuildEvents_OnBuildDone;
+                VS.Events.BuildEvents.OnBuildDone += BuildEvents_OnBuildDone;
+                dte.Solution.SolutionBuild.Build(false);
 
-                // Returns 'true' if the number of failed projects == 0
-                buildTaskCompletionSource.TrySetResult(dte.Solution.SolutionBuild.LastBuildInfo == 0);
+                void BuildEvents_OnBuildDone(vsBuildScope scope, vsBuildAction action)
+                {
+                    VS.Events.BuildEvents!.OnBuildDone -= BuildEvents_OnBuildDone;
+
+                    // Returns 'true' if the number of failed projects == 0
+                    buildTaskCompletionSource.TrySetResult(dte.Solution.SolutionBuild.LastBuildInfo == 0);
+                }
             }
+
+            return await buildTaskCompletionSource.Task;
         }
 
         /// <summary>

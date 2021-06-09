@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
 using System.Threading.Tasks;
 using EnvDTE;
 using EnvDTE80;
@@ -26,6 +26,9 @@ namespace Community.VisualStudio.Toolkit
 
         /// <summary>A collection of services related to notifying the users.</summary>
         public static Notifications Notifications => new();
+
+        /// <summary>A collection of services related to settings.</summary>
+        public static Settings Settings => new();
 
         /// <summary>A collection of services related to the shell.</summary>
         public static Shell Shell => new();
@@ -66,10 +69,10 @@ namespace Community.VisualStudio.Toolkit
         /// <exception cref="Exception">Throws an exception when the service is not available.</exception>
         public static async Task<TInterface> GetRequiredServiceAsync<TService, TInterface>() where TService : class where TInterface : class
         {
-            var service = await GetServiceAsync<TService, TInterface>();
+            TInterface? service = await GetServiceAsync<TService, TInterface>();
             Assumes.Present(service);
 
-            return service;
+            return service!;
         }
     }
 }
