@@ -301,14 +301,8 @@ namespace Community.VisualStudio.Toolkit
 
         private static async Task<ShellSettingsManager> GetSettingsManagerAsync()
         {
-#if VS14
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             return new ShellSettingsManager(ServiceProvider.GlobalProvider);
-#else
-            IVsSettingsManager? svc = await VS.GetServiceAsync<SVsSettingsManager, IVsSettingsManager>();
-
-            return new ShellSettingsManager(svc);
-#endif
         }
 
         /// <summary>   Returns an enumerable of <see cref="PropertyInfo"/> for the properties of <typeparamref name="T"/>

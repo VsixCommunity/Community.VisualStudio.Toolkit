@@ -41,7 +41,7 @@ namespace Microsoft.VisualStudio.Imaging.Interop
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsImageService2 imageService = await VS.GetServiceAsync<SVsImageService, IVsImageService2>();
+            IVsImageService2 imageService = await VS.GetRequiredServiceAsync<SVsImageService, IVsImageService2>();
             Color backColor = VSColorTheme.GetThemedColor(EnvironmentColors.ToolWindowBackgroundColorKey);
 
             var imageAttributes = new ImageAttributes
