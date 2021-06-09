@@ -33,10 +33,10 @@ internal sealed class RunnerWindowCommand : BaseCommand<RunnerWindowCommand>
 }
 ```
 
-### Writing to the statusbar
+### Writing to the Status Bar
 
 ``` C#
-await VS.Notifications.SetStatusbarTextAsync("My statusbar text");
+await VS.Notifications.SetStatusbarTextAsync("My status bar text");
 ```
 
 ### Showing a message box
