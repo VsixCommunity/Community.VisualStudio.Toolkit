@@ -77,7 +77,7 @@ namespace EnvDTE
                 return;
             }
 
-            IVsSolution? solutionService = await VS.GetServiceAsync<SVsSolution, IVsSolution>();
+            IVsSolution? solutionService = await VS.GetRequiredServiceAsync<SVsSolution, IVsSolution>();
             solutionService.GetProjectOfUniqueName(project.UniqueName, out IVsHierarchy? hierarchy);
 
             if (hierarchy == null)
@@ -163,7 +163,7 @@ namespace EnvDTE
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             var buildTaskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
-            DTE? dte = project.DTE;
+            DTE2? dte = await VS.GetDTEAsync();
             dte.Events.BuildEvents.OnBuildDone += BuildEvents_OnBuildDone;
             var configuration = dte.Solution.SolutionBuild.ActiveConfiguration.Name;
 

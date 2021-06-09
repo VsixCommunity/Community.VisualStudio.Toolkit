@@ -12,7 +12,7 @@ namespace Community.VisualStudio.Toolkit
     public partial class Notifications
     {
         /// <summary>Provides access to the environment's status bar.</summary>
-        public Task<IVsStatusbar> GetStatusBarAsync() => VS.GetServiceAsync<SVsStatusbar, IVsStatusbar>();
+        public Task<IVsStatusbar> GetStatusbarAsync() => VS.GetRequiredServiceAsync<SVsStatusbar, IVsStatusbar>();
 
         /// <summary>Gets the current text from the status bar.</summary>
         public async Task<string?> GetStatusBarTextAsync()

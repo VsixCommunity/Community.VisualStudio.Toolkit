@@ -21,12 +21,12 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Provides top-level manipulation or maintenance of the solution.
         /// </summary>
-        public Task<IVsSolution> GetSolutionAsync() => VS.GetServiceAsync<SVsSolution, IVsSolution>();
+        public Task<IVsSolution> GetSolutionAsync() => VS.GetRequiredServiceAsync<SVsSolution, IVsSolution>();
 
         /// <summary>
         /// Opens a Solution or Project using the standard open dialog boxes.
         /// </summary>
-        public Task<IVsOpenProjectOrSolutionDlg> GetOpenProjectOrSolutionDlgAsync() => VS.GetServiceAsync<SVsOpenProjectOrSolutionDlg, IVsOpenProjectOrSolutionDlg>();
+        public Task<IVsOpenProjectOrSolutionDlg> GetOpenProjectOrSolutionDlgAsync() => VS.GetRequiredServiceAsync<SVsOpenProjectOrSolutionDlg, IVsOpenProjectOrSolutionDlg>();
 
         /// <summary>
         /// Gets a list of the selected items.
@@ -35,7 +35,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            DTE2 dte = await VS.GetServiceAsync<SDTE, DTE2>();
+            DTE2 dte = await VS.GetRequiredServiceAsync<SDTE, DTE2>();
             List<SelectedItem> list = new();
 
             foreach (SelectedItem item in dte.SelectedItems)
@@ -53,7 +53,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsMonitorSelection? monitorSelection = await VS.GetServiceAsync<SVsShellMonitorSelection, IVsMonitorSelection>();
+            IVsMonitorSelection? monitorSelection = await VS.GetRequiredServiceAsync<SVsShellMonitorSelection, IVsMonitorSelection>();
             IntPtr hierarchyPointer = IntPtr.Zero;
             IntPtr selectionContainerPointer = IntPtr.Zero;
             object? selectedObject = null;
@@ -90,7 +90,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            DTE2? dte = await VS.GetServiceAsync<SDTE, DTE2>();
+            DTE2? dte = await VS.GetRequiredServiceAsync<SDTE, DTE2>();
 
             try
             {
