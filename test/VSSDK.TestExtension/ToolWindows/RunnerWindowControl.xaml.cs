@@ -25,9 +25,9 @@ namespace TestExtension
 
         private async Task ShowMessageAsync()
         {
-            await VS.Notifications.SetStatusbarTextAsync("Test");
-            var text = await VS.Notifications.GetStatusbarTextAsync();
-            await VS.Notifications.SetStatusbarTextAsync(text + " OK");
+            await VS.Notifications.SetStatusBarTextAsync("Test");
+            var text = await VS.Notifications.GetStatusBarTextAsync();
+            await VS.Notifications.SetStatusBarTextAsync(text + " OK");
 
             var ex = new Exception(nameof(TestExtension));
             await ex.LogAsync();
