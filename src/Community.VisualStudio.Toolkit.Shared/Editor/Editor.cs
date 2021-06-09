@@ -20,7 +20,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             EnvDTE80.DTE2 dte = await VS.GetDTEAsync();
-            return dte.ActiveDocument.Object("TextDocument") as TextDocument;
+            return dte.ActiveDocument?.Object("TextDocument") as TextDocument;
         }
 
         /// <summary>Gets the WPF text view from the currently active document.</summary>
@@ -28,17 +28,17 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IComponentModel2 compService = await VS.GetServiceAsync<SComponentModel, IComponentModel2>();
+            IComponentModel2 compService = await VS.GetRequiredServiceAsync<SComponentModel, IComponentModel2>();
             IVsEditorAdaptersFactoryService? editorAdapter = compService.GetService<IVsEditorAdaptersFactoryService>();
             IVsTextView viewAdapter = await GetCurrentNativeTextViewAsync();
 
-            return editorAdapter.GetWpfTextView(viewAdapter);
+            return editorAdapter?.GetWpfTextView(viewAdapter);
         }
 
         /// <summary>Gets the native text view from the currently active document.</summary>
         public async Task<IVsTextView> GetCurrentNativeTextViewAsync()
         {
-            IVsTextManager textManager = await VS.GetServiceAsync<SVsTextManager, IVsTextManager>();
+            IVsTextManager textManager = await VS.GetRequiredServiceAsync<SVsTextManager, IVsTextManager>();
             ErrorHandler.ThrowOnFailure(textManager.GetActiveView(1, null, out IVsTextView activeView));
 
             return activeView;

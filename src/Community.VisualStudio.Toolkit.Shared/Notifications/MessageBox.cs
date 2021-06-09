@@ -17,14 +17,14 @@ namespace Community.VisualStudio.Toolkit
         /// VS.Notifications.ShowMessage("Title", "The message");
         /// </code>
         /// </example>
-        public MessageBoxResult ShowMessage(string title,
-                                            string message,
+        public MessageBoxResult ShowMessage(string line1,
+                                            string line2 = "",
                                             OLEMSGICON icon = OLEMSGICON.OLEMSGICON_INFO,
                                             OLEMSGBUTTON buttons = OLEMSGBUTTON.OLEMSGBUTTON_OKCANCEL,
                                             OLEMSGDEFBUTTON defaultButton = OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var result = VsShellUtilities.ShowMessageBox(ServiceProvider.GlobalProvider, message, title, icon, buttons, defaultButton);
+            var result = VsShellUtilities.ShowMessageBox(ServiceProvider.GlobalProvider, line2, line1, icon, buttons, defaultButton);
 
             return (MessageBoxResult)result;
         }

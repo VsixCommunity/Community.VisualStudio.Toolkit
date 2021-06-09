@@ -1,7 +1,6 @@
 ﻿using System;
-using Microsoft.VisualStudio;
+using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 
 namespace EnvDTE
 {
@@ -14,20 +13,7 @@ namespace EnvDTE
         public static void OpenInPreviewTab(this ProjectItem item)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            OpenInPreviewTab(item.FileNames[1]);
-        }
-
-        /// <summary>
-        /// Opens a file in the Preview Tab (provisional tab) if supported by the editor factory.
-        /// </summary>
-        public static void OpenInPreviewTab(string file)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            using (new NewDocumentStateScope(__VSNEWDOCUMENTSTATE2.NDS_TryProvisional, VSConstants.NewDocumentStateReason.Navigation))
-            {
-                VsShellUtilities.OpenDocument(ServiceProvider.GlobalProvider, file);
-            }
+            VS.Shell.OpenInPreviewTab(item.FileNames[1]);
         }
 
         /// <summary>

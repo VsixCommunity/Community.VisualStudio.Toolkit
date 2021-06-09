@@ -60,7 +60,7 @@ namespace Community.VisualStudio.Toolkit.Shared
     ///                 
     ///             await MyMethodAsync(_threadHelper.DisposalToken);
     ///                 
-    ///         }).ForgetAndLogOnFailure();
+    ///         }).FireAndForget();
     ///     }
     /// }
     /// </code>

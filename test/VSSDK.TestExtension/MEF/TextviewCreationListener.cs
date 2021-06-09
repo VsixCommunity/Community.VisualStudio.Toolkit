@@ -1,44 +1,42 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using Community.VisualStudio.Toolkit.Shared;
+﻿using System.ComponentModel.Composition;
+using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Utilities;
+using Task = System.Threading.Tasks.Task;
 
 namespace TestExtension.MEF
 {
     [Export(typeof(IWpfTextViewCreationListener))]
     [ContentType("text")]
     [TextViewRole(PredefinedTextViewRoles.PrimaryDocument)]
-    internal class TextViewCreationListener : IWpfTextViewCreationListener, IDisposable
+    internal class TextViewCreationListener : WpfTextViewCreationListener
     {
-        private readonly ToolkitThreadHelper _threadHelper = ToolkitThreadHelper.Create();
-
-        public void Dispose()
+        protected override Task CreatedAsync(IWpfTextView textView, ITextDocument document)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            // Do your async work here
+            return Task.CompletedTask;
         }
 
-        protected virtual void Dispose(bool disposing)
+        protected override void FileActionOccurred(TextDocumentFileActionEventArgs e)
         {
-            if (disposing)
-            {
-                _threadHelper.Dispose();
-            }
+            VS.Notifications.SetStatusbarTextAsync($"File Action: {e.FileActionType}").FireAndForget();
         }
 
-        public void TextViewCreated(IWpfTextView textView)
+        protected override void DirtyStateChanged()
         {
-            // Note: RunAsync is not awaited/joined
-            _threadHelper.JoinableTaskFactory.RunAsync(async () =>
-            {
-                await _threadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(_threadHelper.DisposalToken);
+            VS.Notifications.SetStatusbarTextAsync($"Dirty state changed").FireAndForget();
+        }
 
-                // Do work, e.g.
-                // await MyMethodAsync(_threadHelper.DisposalToken);
+        protected override void EncodingChanged(EncodingChangedEventArgs e)
+        {
+            VS.Notifications.SetStatusbarTextAsync($"Encoding chaged from {e.OldEncoding} to: {e.OldEncoding}").FireAndForget();
+        }
 
-            }).ForgetAndLogOnFailure();
+        protected override void Closed(IWpfTextView textView)
+        {
+            VS.Notifications.SetStatusbarTextAsync("Document closed").FireAndForget();
         }
     }
 }

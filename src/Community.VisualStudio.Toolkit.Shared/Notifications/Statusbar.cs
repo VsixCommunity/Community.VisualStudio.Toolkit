@@ -12,7 +12,7 @@ namespace Community.VisualStudio.Toolkit
     public partial class Notifications
     {
         /// <summary>Provides access to the environment's status bar.</summary>
-        public Task<IVsStatusbar> GetStatusbarAsync() => VS.GetServiceAsync<SVsStatusbar, IVsStatusbar>();
+        public Task<IVsStatusbar> GetStatusbarAsync() => VS.GetRequiredServiceAsync<SVsStatusbar, IVsStatusbar>();
 
         /// <summary>Gets the current text from the status bar.</summary>
         public async Task<string?> GetStatusbarTextAsync()
@@ -79,9 +79,10 @@ namespace Community.VisualStudio.Toolkit
             try
             {
                 IVsStatusbar statusBar = await GetStatusbarAsync();
+                object icon = (short)animation;
 
                 statusBar.FreezeOutput(0);
-                statusBar.Animation(1, animation);
+                statusBar.Animation(1, ref icon);
                 statusBar.FreezeOutput(1);
             }
             catch (Exception ex)
@@ -94,13 +95,14 @@ namespace Community.VisualStudio.Toolkit
         public async Task EndStatusbarAnimationAsync(StatusAnimation animation)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
+            
             try
             {
                 IVsStatusbar statusBar = await GetStatusbarAsync();
+                object icon = (short)animation;
 
                 statusBar.FreezeOutput(0);
-                statusBar.Animation(0, animation);
+                statusBar.Animation(0, ref icon);
                 statusBar.FreezeOutput(1);
             }
             catch (Exception ex)
