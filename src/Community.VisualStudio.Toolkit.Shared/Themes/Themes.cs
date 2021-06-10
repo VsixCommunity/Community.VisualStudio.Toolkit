@@ -49,8 +49,8 @@ namespace Community.VisualStudio.Toolkit
                 {
                     if ((bool)e.NewValue)
                     {
-                        OverrideProperty(element, Control.BackgroundProperty, _originalBackgroundProperty, EnvironmentColors.StartPageTabBackgroundBrushKey);
-                        OverrideProperty(element, Control.ForegroundProperty, _originalForegroundProperty, EnvironmentColors.StartPageTextBodyBrushKey);
+                        OverrideProperty(element, Control.BackgroundProperty, _originalBackgroundProperty, ThemedDialogColors.WindowPanelBrushKey);
+                        OverrideProperty(element, Control.ForegroundProperty, _originalForegroundProperty, ThemedDialogColors.WindowPanelTextBrushKey);
                         ThemedDialogStyleLoader.SetUseDefaultThemedDialogStyles(element, true);
                         ImageThemingUtilities.SetThemeScrollBars(element, true);
 
