@@ -25,6 +25,8 @@
 
             <Label Margin="{StaticResource Margin}">An important label</Label>
 
+            <TextBlock Margin="{StaticResource Margin}">A text block</TextBlock>
+            
             <TextBlock Margin="{StaticResource Margin}">
                 <Hyperlink>Interesting link</Hyperlink>
             </TextBlock>
