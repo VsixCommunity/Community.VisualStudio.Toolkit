@@ -20,8 +20,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ProjectItemExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\DteExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\SolutionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ITextViewExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TaskExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TextBufferExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ITextBufferExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\WindowExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ContentTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Disposable.cs" />

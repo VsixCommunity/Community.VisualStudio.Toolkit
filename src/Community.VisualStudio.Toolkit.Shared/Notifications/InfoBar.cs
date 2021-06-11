@@ -11,11 +11,11 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Creates a new InfoBar in any tool- or document window.
         /// </summary>
-        /// <param name="windowGuid">The GUID of the tool window or filename of document. For instance, <c>ToolWindowGuids80.SolutionExplorer</c></param>
+        /// <param name="windowGuidOrFileName">The GUID of the tool window or filename of document. For instance, <c>ToolWindowGuids80.SolutionExplorer</c></param>
         /// <param name="model">A model representing the text, icon, and actions of the InfoBar.</param>
-        public InfoBar CreateInfoBar(string windowGuid, InfoBarModel model)
+        public InfoBar CreateInfoBar(string windowGuidOrFileName, InfoBarModel model)
         {
-            return new InfoBar(windowGuid, model);
+            return new InfoBar(windowGuidOrFileName, model);
         }
     }
 

@@ -8,7 +8,7 @@ namespace Microsoft.VisualStudio.Text
     /// <summary>
     /// Extension methods for the ITextBuffer interface.
     /// </summary>
-    public static class TextBufferExtensions
+    public static class ITextBufferExtensions
     {
         /// <summary>
         /// Gets the file name on disk associated with the buffer.

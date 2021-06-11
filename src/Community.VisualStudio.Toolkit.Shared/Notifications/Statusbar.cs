@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Threading;
 using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
@@ -18,7 +20,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<string?> GetStatusbarTextAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            
+
             try
             {
                 IVsStatusbar statusBar = await GetStatusbarAsync();
@@ -49,6 +51,46 @@ namespace Community.VisualStudio.Toolkit
             catch (Exception ex)
             {
                 await ex.LogAsync();
+            }
+        }
+
+        /// <summary>
+        /// Shows the progress indicator in the status bar. 
+        /// Set <paramref name="currentStep"/> and <paramref name="numberOfSteps"/> 
+        /// to the same value to stop the progress.
+        /// </summary>
+        /// <param name="text">The text to display in the status bar.</param>
+        /// <param name="currentStep">The current step number starting at 1.</param>
+        /// <param name="numberOfSteps">The total number of steps to completion.</param>
+        public async Task ShowStatusBarProgressAsync(string text, int currentStep, int numberOfSteps)
+        {
+            if (currentStep == 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(currentStep), "currentStep must have a value of 1 or higher.");
+            }
+
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsStatusbar? statusBar = await GetStatusbarAsync();
+
+            statusBar.FreezeOutput(0);
+            uint cookie = 0;
+
+            // Start by resetting the status bar.
+            if (currentStep == 1)
+            {
+                statusBar.Progress(ref cookie, 1, "", 0, 0);
+            }
+
+            // Then report progress.
+            if (currentStep < numberOfSteps)
+            {
+                statusBar.Progress(ref cookie, 1, text, (uint)currentStep, (uint)numberOfSteps);
+            }
+
+            // And clear the status bar when done.
+            else
+            {
+                statusBar.Progress(ref cookie, 1, "", 0, 0);
             }
         }
 
@@ -95,7 +137,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task EndStatusbarAnimationAsync(StatusAnimation animation)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            
+
             try
             {
                 IVsStatusbar statusBar = await GetStatusbarAsync();
