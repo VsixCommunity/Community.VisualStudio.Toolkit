@@ -33,10 +33,10 @@ internal sealed class RunnerWindowCommand : BaseCommand<RunnerWindowCommand>
 }
 ```
 
-### Writing to the statusbar
+### Writing to the Status Bar
 
 ``` C#
-await VS.Notifications.SetStatusbarTextAsync("My statusbar text");
+await VS.Notifications.SetStatusbarTextAsync("My status bar text");
 ```
 
 ### Showing a message box
@@ -71,7 +71,7 @@ This package attempts to solve multiple issues with the current extensibility mo
 Base classes, helper methods, and extension methods encapsulate the complexity so you don't have to. 
 
 ### It's difficult to find what services and components to use
-Now the most commmon services are all easy to get to from the main `VS` object. For instance, to write to the Statusbar, you can now write the following:
+Now the most commmon services are all easy to get to from the main `VS` object. For instance, to write to the status bar, you can now write the following:
 
 
 ### Best practices change with each version of VS. I can't keep up
