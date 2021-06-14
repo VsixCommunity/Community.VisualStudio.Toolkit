@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Threading;
 using Task = System.Threading.Tasks.Task;
 
-namespace Community.VisualStudio.Toolkit.Shared.Helpers
+namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
     /// A pane in the Output window.
