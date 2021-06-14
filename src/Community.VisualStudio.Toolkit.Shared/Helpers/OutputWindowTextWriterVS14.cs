@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
-namespace Community.VisualStudio.Toolkit.Shared.Helpers
+namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
     /// A <see cref="System.IO.TextWriter"/> that writes to an Output window pane.

@@ -1,5 +1,4 @@
 ﻿using Community.VisualStudio.Toolkit;
-using Community.VisualStudio.Toolkit.Shared.Helpers;
 using Microsoft.VisualStudio.Threading;
 using Task = System.Threading.Tasks.Task;
 

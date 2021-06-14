@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Windows;
 using Community.VisualStudio.Toolkit.Shared.ExtensionMethods;
-using Community.VisualStudio.Toolkit.Shared.Helpers;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 
