@@ -22,7 +22,7 @@ namespace TestExtension
         }
 
         [Guid("13dccc25-9d1d-417d-8525-40c4c14ff0a2")]
-        public class Pane : ToolWindowPane
+        internal class Pane : ToolWindowPane
         {
             public Pane()
             {

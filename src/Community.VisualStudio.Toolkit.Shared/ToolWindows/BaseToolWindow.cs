@@ -27,7 +27,7 @@ namespace Community.VisualStudio.Toolkit
     ///     }
     ///     
     ///     [Guid("d0050678-2e4f-4a93-adcb-af1370da941d")]
-    ///     public class Pane : ToolWindowPane
+    ///     internal class Pane : ToolWindowPane
     ///     {
     ///         public Pane()
     ///         {
