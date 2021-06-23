@@ -10,7 +10,7 @@ namespace Community.VisualStudio.Toolkit
         { }
 
         /// <summary>Provides access to the current debugger so that the package can listen for debugger events.</summary>
-        public Task<IVsDebugger> GetDebuggerAsync() => VS.GetRequiredServiceAsync<SVsShell, IVsDebugger>();
+        public Task<IVsDebugger> GetDebuggerAsync() => VS.GetRequiredServiceAsync<IVsDebugger, IVsDebugger>();
 
         /// <summary>Used to launch the debugger.</summary>
         public Task<IVsDebugLaunch> GetDebugLaunchAsync() => VS.GetRequiredServiceAsync<SVsDebugLaunch, IVsDebugLaunch>();

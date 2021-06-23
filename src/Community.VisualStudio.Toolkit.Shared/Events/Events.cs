@@ -32,8 +32,10 @@ namespace Community.VisualStudio.Toolkit
         public CommandEvents? CommandEvents => _commandEvents ??= _events?.CommandEvents;
 
 
-        private DebuggerEvents? _debuggerEvents;
-        public DebuggerEvents? DebuggerEvents => _debuggerEvents ??= _events?.DebuggerEvents;
+        /// <summary>
+        /// Events related to the selection in Visusal Studio.
+        /// </summary>
+        public DebuggerEvents DebuggerEvents => new();
 
 
         private DebuggerExpressionEvaluationEvents? _debuggerExpressionEvaluationEvents;
