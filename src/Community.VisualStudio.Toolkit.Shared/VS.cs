@@ -13,7 +13,7 @@ namespace Community.VisualStudio.Toolkit
     public static class VS
     {
         /// <summary>A collection of services related to the command system.</summary>
-        public static Commanding Commanding => new();
+        public static Commands Commands => new();
 
         /// <summary>A collection of services related to the debugger.</summary>
         public static Debugger Debugger => new();

@@ -15,7 +15,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             var svc = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolutionBuildManager)) as IVsSolutionBuildManager;
-            Assumes.Present(svc);
+            Assumes.Present(svc);            
             svc!.AdviseUpdateSolutionEvents(this, out _);
         }
 

@@ -42,7 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Themes\ToolkitResourceKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Themes\Themes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\MessageBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\Commanding.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Commands.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\Events.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolkitPackage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolWindows\BaseToolWindow.cs" />
