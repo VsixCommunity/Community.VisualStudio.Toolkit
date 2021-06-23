@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Editor\WpfTextViewCreationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\BuildEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\SelectionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\SolutionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\DocumentEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ExceptionExtensions.cs" />
@@ -24,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\DteExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\SolutionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ITextViewExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\CommandExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TaskExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ITextBufferExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\WindowExtensions.cs" />

@@ -15,7 +15,7 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             var dte = (DTE2)ServiceProvider.GlobalProvider.GetService(typeof(DTE));
             Assumes.Present(dte);
-            _events = (Events2)dte.Events;
+            _events = (Events2)dte.Events;    
         }
 
         /// <summary>
@@ -76,9 +76,10 @@ namespace Community.VisualStudio.Toolkit
         private PublishEvents? _publishEvents;
         public PublishEvents? PublishEvents => _publishEvents ??= _events?.PublishEvents;
 
-
-        private SelectionEvents? _selectionEvents;
-        public SelectionEvents? SelectionEvents => _selectionEvents ??= _events?.SelectionEvents;
+        /// <summary>
+        /// Events related to the selection in Visusal Studio
+        /// </summary>
+        public SelectionEvents? SelectionEvents => new();
 
         /// <summary>
         /// Events related to the editor documents.

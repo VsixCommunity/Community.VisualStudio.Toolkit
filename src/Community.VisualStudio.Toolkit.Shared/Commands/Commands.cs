@@ -22,32 +22,55 @@ namespace Community.VisualStudio.Toolkit
         public Task<IVsRegisterPriorityCommandTarget> GetPriorityCommandTargetAsync() => VS.GetRequiredServiceAsync<SVsRegisterPriorityCommandTarget, IVsRegisterPriorityCommandTarget>();
 
         /// <summary>
+        /// Finds a command by cannonical name.
+        /// </summary>
+        public async Task<CommandID?> FindCommandAsync(string name)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsCommandWindow cw = await VS.Windows.GetCommandWindowAsync();
+
+            var hr = cw.PrepareCommand(name, out Guid commandGroup, out var commandId, out _, new PREPARECOMMANDRESULT[0]);
+
+            if (hr == VSConstants.S_OK)
+            {
+                return new CommandID(commandGroup, (int)commandId);
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Executes a command by name
         /// </summary>
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
         public async Task<bool> ExecuteAsync(string name, string argument = "")
         {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsCommandWindow cw = await VS.Windows.GetCommandWindowAsync();
+            CommandID? cmd = await FindCommandAsync(name);
 
-            return cw.ExecuteCommand($"{name} {argument}") == VSConstants.S_OK;
+            if (cmd != null)
+            {
+                return await ExecuteAsync(cmd.Guid, cmd.ID, argument);
+            }
+
+            return false;
         }
 
         /// <summary>
         /// Executes a command by guid and ID
         /// </summary>
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
-        public async Task<bool> ExecuteAsync(Guid menuGroup, uint commandId, string argument = "")
+        public Task<bool> ExecuteAsync(Guid menuGroup, int commandId, string argument = "")
         {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IOleCommandTarget cs = await VS.GetRequiredServiceAsync<SUIHostCommandDispatcher, IOleCommandTarget>();
-            
-            IntPtr inArgPtr = Marshal.AllocCoTaskMem(200);
-            Marshal.GetNativeVariantForObject(argument, inArgPtr);
+            return ExecuteAsync(new CommandID(menuGroup, commandId), argument);
+        }
 
-            var result = cs.Exec(menuGroup, commandId, (uint)OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT, inArgPtr, IntPtr.Zero);
-
-            return result == VSConstants.S_OK;
+        /// <summary>
+        /// Executes a command by guid and ID
+        /// </summary>
+        /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
+        public Task<bool> ExecuteAsync(CommandID cmd, string argument = "")
+        {
+            return cmd.ExecuteAsync(argument);
         }
 
         /// <summary>
@@ -56,7 +79,7 @@ namespace Community.VisualStudio.Toolkit
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
         public Task<bool> ExecuteAsync(VSConstants.VSStd97CmdID command, string argument = "")
         {
-            return ExecuteAsync(typeof(VSConstants.VSStd97CmdID).GUID, (uint)command, argument);
+            return ExecuteAsync(typeof(VSConstants.VSStd97CmdID).GUID, (int)command, argument);
         }
 
         /// <summary>
@@ -65,7 +88,7 @@ namespace Community.VisualStudio.Toolkit
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
         public Task<bool> ExecuteAsync(VSConstants.VSStd2KCmdID command, string argument = "")
         {
-            return ExecuteAsync(typeof(VSConstants.VSStd2KCmdID).GUID, (uint)command, argument);
+            return ExecuteAsync(typeof(VSConstants.VSStd2KCmdID).GUID, (int)command, argument);
         }
     }
 }

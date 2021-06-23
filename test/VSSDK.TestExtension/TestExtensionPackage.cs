@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Shell;
 using TestExtension;
 using TestExtension.Commands;
@@ -38,6 +37,7 @@ namespace VSSDK.TestExtension
             await MultiInstanceWindowCommand.InitializeAsync(this);
             await BuildActiveProjectAsyncCommand.InitializeAsync(this);
             await BuildSolutionAsyncCommand.InitializeAsync(this);
+
         }
     }
 }
