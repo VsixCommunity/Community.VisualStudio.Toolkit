@@ -51,7 +51,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Executes a command by guid and ID
+        /// Executes a command from the <see cref="VSConstants.VSStd97CmdID"/> collection of built in commands.
         /// </summary>
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
         public Task<bool> ExecuteAsync(VSConstants.VSStd97CmdID command, string argument = "")
@@ -60,7 +60,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Executes a command by guid and ID
+        /// Executes a command from the <see cref="VSConstants.VSStd2KCmdID"/> collection of built in commands.
         /// </summary>
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
         public Task<bool> ExecuteAsync(VSConstants.VSStd2KCmdID command, string argument = "")
