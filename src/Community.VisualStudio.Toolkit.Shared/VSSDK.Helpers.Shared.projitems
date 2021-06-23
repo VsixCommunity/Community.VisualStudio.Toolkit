@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Editor\WpfTextViewCreationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\BuildEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\ShellEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\DebuggerEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\SelectionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\SolutionEvents.cs" />

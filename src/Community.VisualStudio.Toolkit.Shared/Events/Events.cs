@@ -50,6 +50,11 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public DocumentEvents DocumentEvents => new();
 
+        /// <summary>
+        /// Events related to the Visual Studio Shell.
+        /// </summary>
+        public ShellEvents ShellEvents => new();
+
 
         private DTEEvents? _dteEvents;
         public DTEEvents? DTEEvents => _dteEvents ??= _events?.DTEEvents;
