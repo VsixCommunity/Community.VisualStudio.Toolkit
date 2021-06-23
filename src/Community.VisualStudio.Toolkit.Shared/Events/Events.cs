@@ -18,11 +18,12 @@ namespace Community.VisualStudio.Toolkit
             _events = (Events2)dte.Events;
         }
 
-        private BuildEvents? _buildEvents;
+        /// <summary>
+        /// Events related to the editor documents.
+        /// </summary>
+        public BuildEvents BuildEvents => new();
+
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public BuildEvents? BuildEvents => _buildEvents ??= _events?.BuildEvents;
-
-
         private CodeModelEvents? _codeModelEvents;
         public CodeModelEvents? CodeModelEvents => _codeModelEvents ??= _events?.CodeModelEvents;
 
@@ -42,9 +43,10 @@ namespace Community.VisualStudio.Toolkit
         private DebuggerProcessEvents? _debuggerProcessEvents;
         public DebuggerProcessEvents? DebuggerProcessEvents => _debuggerProcessEvents ??= _events?.DebuggerProcessEvents;
 
-
-        private DocumentEvents? _documentEvents;
-        public DocumentEvents? DocumentEvents => _documentEvents ??= _events?.DocumentEvents;
+        /// <summary>
+        /// Events related to the editor documents.
+        /// </summary>
+        public DocumentEvents DocumentEvents => new();
 
 
         private DTEEvents? _dteEvents;
@@ -78,9 +80,10 @@ namespace Community.VisualStudio.Toolkit
         private SelectionEvents? _selectionEvents;
         public SelectionEvents? SelectionEvents => _selectionEvents ??= _events?.SelectionEvents;
 
-
-        private SolutionEvents? _solutionEvents;
-        public SolutionEvents? SolutionEvents => _solutionEvents ??= _events?.SolutionEvents;
+        /// <summary>
+        /// Events related to the editor documents.
+        /// </summary>
+        public SolutionEvents SolutionEvents => new();
 
 
         private ProjectItemsEvents? _solutionItemEvents;

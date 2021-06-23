@@ -11,6 +11,9 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Editor\WpfTextViewCreationListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\BuildEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\SolutionEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\DocumentEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ExceptionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ImageMonikerExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsHierarchyExtensions.cs" />
@@ -40,7 +43,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Themes\Themes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\MessageBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Commanding.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Events.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\Events.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolkitPackage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolWindows\BaseToolWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolWindows\IToolWindowProvider.cs" />

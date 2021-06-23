@@ -24,12 +24,12 @@ namespace EnvDTE
 
             if (VS.Events.BuildEvents != null)
             {
-                VS.Events.BuildEvents.OnBuildDone += BuildEvents_OnBuildDone;
+                VS.Events.BuildEvents.SolutionBuildDone += BuildEvents_OnBuildDone;
                 dte.Solution.SolutionBuild.Build(false);
 
-                void BuildEvents_OnBuildDone(vsBuildScope scope, vsBuildAction action)
+                void BuildEvents_OnBuildDone(object sender, bool e)
                 {
-                    VS.Events.BuildEvents!.OnBuildDone -= BuildEvents_OnBuildDone;
+                    VS.Events.BuildEvents.SolutionBuildDone -= BuildEvents_OnBuildDone;
 
                     // Returns 'true' if the number of failed projects == 0
                     buildTaskCompletionSource.TrySetResult(dte.Solution.SolutionBuild.LastBuildInfo == 0);
