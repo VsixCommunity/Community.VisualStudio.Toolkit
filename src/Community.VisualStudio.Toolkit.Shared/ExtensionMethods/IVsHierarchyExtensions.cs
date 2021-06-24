@@ -10,6 +10,27 @@ namespace Microsoft.VisualStudio.Shell.Interop
     public static class IVsHierarchyExtensions
     {
         /// <summary>
+        /// Tries to get a property from a hierarchy item.
+        /// </summary>
+        /// <remarks>
+        /// Inspired by https://github.com/dotnet/roslyn/blob/main/src/VisualStudio/Core/Def/Implementation/ProjectSystem/Extensions/IVsHierarchyExtensions.cs
+        /// </remarks>
+        public static bool TryGetItemProperty<T>(this IVsHierarchy hierarchy, uint itemId, int propertyId, out T? value)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            if (ErrorHandler.Failed(hierarchy.GetProperty(itemId, propertyId, out var property)) || !(property is T))
+            {
+                value = default;
+                return false;
+            }
+
+            value = (T)property;
+
+            return true;
+        }
+
+        /// <summary>
         /// Converts an IVsHierarchy to a Project.
         /// </summary>
         public static Project? ToProject(this IVsHierarchy hierarchy)
