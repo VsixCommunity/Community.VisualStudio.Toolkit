@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Community.VisualStudio.Toolkit;
 using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
+using Microsoft.VisualStudio.ComponentModelHost;
 
 namespace Microsoft.VisualStudio.Shell.Interop
 {
@@ -31,6 +34,23 @@ namespace Microsoft.VisualStudio.Shell.Interop
         }
 
         /// <summary>
+        /// Converts a <see cref="IVsHierarchy"/> to a <see cref="IVsHierarchyItem"/>.
+        /// </summary>
+        /// <returns>Returns <see langword="null"/> if unable to get the hierarchy item.</returns>
+        public static async Task<IVsHierarchyItem?> ToHierarcyItemAsync(this IVsHierarchy hierarchy, uint itemId)
+        {
+            if (hierarchy == null) return null;
+                
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IComponentModel components = await VS.GetRequiredServiceAsync<SComponentModel, IComponentModel>();
+
+            IVsHierarchyItemManager? manager = components.GetService<IVsHierarchyItemManager>();
+
+            manager.TryGetHierarchyItem(hierarchy, itemId, out IVsHierarchyItem? item);
+            return item;
+        }
+
+        /// <summary>
         /// Converts an IVsHierarchy to a Project.
         /// </summary>
         public static Project? ToProject(this IVsHierarchy hierarchy)
@@ -45,6 +65,23 @@ namespace Microsoft.VisualStudio.Shell.Interop
             hierarchy.GetProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ExtObject, out var obj);
 
             return obj as Project;
+        }
+
+        /// <summary>
+        /// Converts an IVsHierarchy to a ProjectItem.
+        /// </summary>
+        public static ProjectItem? ToProjectItem(this IVsHierarchy hierarchy, uint itemId)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            if (hierarchy == null)
+            {
+                throw new ArgumentNullException(nameof(hierarchy));
+            }
+
+            hierarchy.GetProperty(itemId, (int)__VSHPROPID.VSHPROPID_ExtObject, out var obj);
+
+            return obj as ProjectItem;
         }
 
         /// <summary>
