@@ -20,17 +20,7 @@ namespace Microsoft.VisualStudio.Shell.Interop
         /// </remarks>
         public static bool TryGetItemProperty<T>(this IVsHierarchy hierarchy, uint itemId, int propertyId, out T? value)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            if (ErrorHandler.Failed(hierarchy.GetProperty(itemId, propertyId, out var property)) || !(property is T))
-            {
-                value = default;
-                return false;
-            }
-
-            value = (T)property;
-
-            return true;
+            return HierarchyUtilities.TryGetHierarchyProperty<T>(hierarchy, itemId, propertyId, out value);
         }
 
         /// <summary>

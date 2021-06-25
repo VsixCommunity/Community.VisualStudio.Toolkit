@@ -1,4 +1,4 @@
-﻿namespace EnvDTE
+﻿namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
     /// A list of known project types guids.

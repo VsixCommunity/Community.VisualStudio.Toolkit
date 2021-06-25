@@ -37,8 +37,8 @@ namespace Community.VisualStudio.Toolkit
             {
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-                IVsHierarchyItem? from = await pHierOld.ToHierarcyItemAsync(itemidOld);
-                IVsHierarchyItem? to = await pHierNew.ToHierarcyItemAsync(itemidNew);
+                ItemNode? from = await ItemNode.CreateAsync(pHierOld, itemidOld);
+                ItemNode? to = await ItemNode.CreateAsync(pHierNew, itemidNew);
 
                 SelectionChanged?.Invoke(this, new SelectionChangedEventArgs(from, to));
             }).FireAndForget();
@@ -66,7 +66,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Creates a new instance of the EventArgs.
         /// </summary>
-        public SelectionChangedEventArgs(IVsHierarchyItem? from, IVsHierarchyItem? to)
+        public SelectionChangedEventArgs(ItemNode? from, ItemNode? to)
         {
             From = from;
             To = to;
@@ -75,11 +75,11 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// What the selection was before the change.
         /// </summary>
-        public IVsHierarchyItem? From { get; }
+        public ItemNode? From { get; }
 
         /// <summary>
         /// What the selection is currently after the change.
         /// </summary>
-        public IVsHierarchyItem? To { get; }
+        public ItemNode? To { get; }
     }
 }

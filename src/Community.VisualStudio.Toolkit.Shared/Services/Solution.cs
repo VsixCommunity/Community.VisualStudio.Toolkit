@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using EnvDTE;
@@ -81,6 +82,134 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return selectedObject as ProjectItem;
+        }
+
+        /// <summary>
+        /// Gets the currently selected hierarchy items.
+        /// </summary>
+        public async Task<IEnumerable<IVsHierarchyItem>> GetSelectedHierarchiesAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            IVsMonitorSelection? svc = await VS.GetRequiredServiceAsync<SVsShellMonitorSelection, IVsMonitorSelection>();
+            IntPtr hierPtr = IntPtr.Zero;
+            IntPtr containerPtr = IntPtr.Zero;
+
+            List<IVsHierarchyItem> results = new();
+
+            try
+            {
+                svc.GetCurrentSelection(out hierPtr, out var itemId, out IVsMultiItemSelect multiSelect, out containerPtr);
+
+                if (itemId == VSConstants.VSITEMID_SELECTION)
+                {
+                    multiSelect.GetSelectionInfo(out var itemCount, out var fSingleHierarchy);
+
+                    var items = new VSITEMSELECTION[itemCount];
+                    multiSelect.GetSelectedItems(0, itemCount, items);
+
+                    foreach (VSITEMSELECTION item in items)
+                    {
+                        IVsHierarchyItem? hierItem = await item.pHier.ToHierarcyItemAsync(item.itemid);
+                        if (hierItem != null && !results.Contains(hierItem))
+                        {
+                            results.Add(hierItem);
+                        }
+                    }
+                }
+                else
+                {
+                    if (hierPtr != IntPtr.Zero)
+                    {
+                        var hierarchy = (IVsHierarchy)Marshal.GetUniqueObjectForIUnknown(hierPtr);
+                        IVsHierarchyItem? hierItem = await hierarchy.ToHierarcyItemAsync(itemId);
+
+                        if (hierItem != null)
+                        {
+                            results.Add(hierItem);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await ex.LogAsync();
+            }
+            finally
+            {
+                if (hierPtr != IntPtr.Zero)
+                {
+                    Marshal.Release(hierPtr);
+                }
+
+                if (containerPtr != IntPtr.Zero)
+                {
+                    Marshal.Release(containerPtr);
+                }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Gets the currently selected nodes.
+        /// </summary>
+        public async Task<IEnumerable<ItemNode>> GetSelectedNodesAsync()
+        {
+            IEnumerable<IVsHierarchyItem>? hierarchies = await GetSelectedHierarchiesAsync();
+            List<ItemNode> nodes = new();
+
+            foreach (IVsHierarchyItem hierarchy in hierarchies)
+            {
+                ItemNode? node = await ItemNode.CreateAsync(hierarchy.HierarchyIdentity.Hierarchy, hierarchy.HierarchyIdentity.ItemID);
+
+                if (node != null)
+                {
+                    nodes.Add(node);
+                }
+            }
+
+            return nodes;
+        }
+
+        /// <summary>
+        /// Gets the currently selected node.
+        /// </summary>
+        public async Task<ItemNode?> GetActiveProjectNodeAsync()
+        {
+            IEnumerable<IVsHierarchyItem>? hierarchies = await GetSelectedHierarchiesAsync();
+            IVsHierarchyItem? hierarchy = hierarchies.FirstOrDefault();
+
+            if (hierarchy != null)
+            {
+                return await ItemNode.CreateAsync(hierarchy.HierarchyIdentity.NestedHierarchy, VSConstants.VSITEMID_ROOT);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gets all projects in the solution
+        /// </summary>
+        public async Task<IEnumerable<ItemNode>> GetAllProjectNodesAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsSolution solution = await GetSolutionAsync();
+            IEnumerable<IVsHierarchy>? hierarchies = solution.GetAllProjectHierarchys();
+
+            List<ItemNode> list = new();
+
+            foreach (IVsHierarchy? hierarchy in hierarchies)
+            {
+                ItemNode? proj = await ItemNode.CreateAsync(hierarchy, VSConstants.VSITEMID_ROOT);
+
+                if (proj?.Type == NodeType.Project)
+                {
+                    list.Add(proj);
+                }
+            }
+
+            return list;
         }
 
         /// <summary> 

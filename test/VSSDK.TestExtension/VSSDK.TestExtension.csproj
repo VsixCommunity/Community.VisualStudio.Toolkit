@@ -103,15 +103,12 @@
     <PackageReference Include="Microsoft.VisualStudio.SDK.Analyzers">
       <Version>16.10.1</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" ExcludeAssets="Runtime">
-      <Version>16.4.29519.181</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
-      <Version>16.10.56</Version>
+      <Version>17.0.17-alpha</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.9.1050">
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.0.2140-preview2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -146,9 +143,9 @@
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Community.VisualStudio.Toolkit.16.0\Community.VisualStudio.Toolkit.16.0.csproj" ExcludeAssets="Runtime">
-      <Project>{38dc82ea-91d6-4360-b76c-995708ee43a3}</Project>
-      <Name>Community.VisualStudio.Toolkit.16.0</Name>
+    <ProjectReference Include="..\..\src\Community.VisualStudio.Toolkit.17.0\Community.VisualStudio.Toolkit.17.0.csproj">
+      <Project>{d000c76d-4d0f-48f9-b5ab-5696c92cc7bd}</Project>
+      <Name>Community.VisualStudio.Toolkit.17.0</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
