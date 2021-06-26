@@ -32,7 +32,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         ///  Fires when the solution build was cancelled
         /// </summary>
-        public event EventHandler? SolutionBuilCancelled;
+        public event EventHandler? SolutionBuildCancelled;
 
         /// <summary>
         /// Fires when a project starts building.
@@ -77,7 +77,7 @@ namespace Community.VisualStudio.Toolkit
         int IVsUpdateSolutionEvents2.UpdateSolution_Cancel() => VSConstants.S_OK;
         int IVsUpdateSolutionEvents.UpdateSolution_Cancel()
         {
-            SolutionBuilCancelled?.Invoke(this, EventArgs.Empty);
+            SolutionBuildCancelled?.Invoke(this, EventArgs.Empty);
             return VSConstants.S_OK;
         }
 
