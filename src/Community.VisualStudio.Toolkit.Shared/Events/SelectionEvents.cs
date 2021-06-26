@@ -37,8 +37,8 @@ namespace Community.VisualStudio.Toolkit
             {
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-                ItemNode? from = await ItemNode.CreateAsync(pHierOld, itemidOld);
-                ItemNode? to = await ItemNode.CreateAsync(pHierNew, itemidNew);
+                SolutionItem? from = await SolutionItem.CreateAsync(pHierOld, itemidOld);
+                SolutionItem? to = await SolutionItem.CreateAsync(pHierNew, itemidNew);
 
                 SelectionChanged?.Invoke(this, new SelectionChangedEventArgs(from, to));
             }).FireAndForget();
@@ -66,7 +66,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Creates a new instance of the EventArgs.
         /// </summary>
-        public SelectionChangedEventArgs(ItemNode? from, ItemNode? to)
+        public SelectionChangedEventArgs(SolutionItem? from, SolutionItem? to)
         {
             From = from;
             To = to;
@@ -75,11 +75,11 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// What the selection was before the change.
         /// </summary>
-        public ItemNode? From { get; }
+        public SolutionItem? From { get; }
 
         /// <summary>
         /// What the selection is currently after the change.
         /// </summary>
-        public ItemNode? To { get; }
+        public SolutionItem? To { get; }
     }
 }

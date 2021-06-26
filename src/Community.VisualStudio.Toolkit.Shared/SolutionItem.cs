@@ -1,25 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.Internal.VisualStudio.PlatformUI;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
-    /// A node reprensenting a file, folder, project or other item in Solution Explorer.
+    /// An item reprensenting a file, folder, project or other item in Solution Explorer.
     /// </summary>
     [DebuggerDisplay("{Name} ({Type})")]
-    public class ItemNode
+    public class SolutionItem
     {
-        private ItemNode? _parent;
-        private IEnumerable<ItemNode?>? _children;
-        private IVsHierarchy _hierarchy;
-        private uint _itemId;
+        private SolutionItem? _parent;
+        private IEnumerable<SolutionItem?>? _children;
+        private readonly IVsHierarchy _hierarchy;
+        private readonly uint _itemId;
 
-        private ItemNode(IVsHierarchyItem item)
+        private SolutionItem(IVsHierarchyItem item)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -87,12 +91,12 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// The parent node. Is <see langword="null"/> when there is no parent.
         /// </summary>
-        public ItemNode? Parent => _parent ??= Create(Item.Parent);
+        public SolutionItem? Parent => _parent ??= Create(Item.Parent);
 
         /// <summary>
         /// A list of child nodes.
         /// </summary>
-        public IEnumerable<ItemNode?> Children => _children ??= Item.Children.Select(t => Create(t));
+        public IEnumerable<SolutionItem?> Children => _children ??= Item.Children.Select(t => Create(t));
 
         /// <summary>
         /// Checks what kind the project is.
@@ -111,6 +115,104 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// Adds a file as a child to the item. 
+        /// </summary>
+        /// <param name="files">A list of absolute file paths.</param>
+        public async Task AddFilesAsync(params string[] files)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            var ip = (IVsProject)_hierarchy;
+
+            if (ip == null)
+                return;
+            
+                var result = new VSADDRESULT[files.Count()];
+
+            if (Type == NodeType.Project || Type == NodeType.PhysicalFolder)
+            {
+                ip.AddItem(_itemId,
+                           VSADDITEMOPERATION.VSADDITEMOP_LINKTOFILE,
+                           string.Empty,
+                           (uint)files.Count(),
+                           files,
+                           IntPtr.Zero,
+                           result);
+            }
+            else if (Type == NodeType.SolutionFolder)
+            {
+                //TODO: Implement
+            }
+            else if (Type == NodeType.PhysicalFile)
+            {
+                // TODO: Implement support for nesting files by setting <DependentUpon>
+            }
+        }
+
+        /// <summary>
+        ///  Adds a solution folder
+        /// </summary>
+        public async Task<SolutionItem?> AddFolderAsync(string folderName)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            if (Type == NodeType.Solution)
+            {
+                var solutionFolderGuid = new Guid(ProjectTypes.SOLUTION_FOLDER_OTHER);
+                Guid iidProject = typeof(IVsHierarchy).GUID;
+                IVsSolution sol = await VS.Solution.GetSolutionAsync();
+
+                var hr = sol.CreateProject(
+                    ref solutionFolderGuid,
+                    null,
+                    null,
+                    folderName,
+                    0,
+                    ref iidProject,
+                    out IntPtr ptr);
+
+                if (hr == VSConstants.S_OK && ptr != IntPtr.Zero)
+                {
+                    var hier = (IVsHierarchy)Marshal.GetObjectForIUnknown(ptr);
+
+                    if (hier != null)
+                    {
+                        return await CreateAsync(hier, (uint)VSConstants.VSITEMID.Root);
+                    }
+                }
+            }
+            else if (Type == NodeType.SolutionFolder)
+            {
+                // TODO: Implement
+            }
+            else if (Type == NodeType.PhysicalFolder)
+            {
+                // TODO: Impelement support for adding a folder to a folder.
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Opens the item in the editor window.
+        /// </summary>
+        /// <returns><see langword="true"/> if the item was succesfully opened; otherwise <see langword="false"/>.</returns>
+        public async Task<bool> TryOpenAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            var hr = VSConstants.S_FALSE;
+            var ip = (IVsProject)_hierarchy;
+
+            if (ip != null)
+            {
+                hr = ip.OpenItem(_itemId, Guid.Empty, IntPtr.Zero, out _);
+            }
+
+            return hr == VSConstants.S_OK;
+        }
+
+        /// <summary>
         /// Converts the node a <see cref="EnvDTE.Project"/>.
         /// </summary>
         public EnvDTE.Project? ToProject()
@@ -124,7 +226,7 @@ namespace Community.VisualStudio.Toolkit
         public EnvDTE.ProjectItem? ToProjectItem()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            
+
             if (_hierarchy.TryGetItemProperty(_itemId, (int)__VSHPROPID.VSHPROPID_ExtObject, out object? obj))
             {
                 return obj as EnvDTE.ProjectItem;
@@ -136,7 +238,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Creates a new instance based on a hierarchy.
         /// </summary>
-        public static async Task<ItemNode?> CreateAsync(IVsHierarchy hierarchy, uint itemId)
+        public static async Task<SolutionItem?> CreateAsync(IVsHierarchy hierarchy, uint itemId)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsHierarchyItem? item = await hierarchy.ToHierarcyItemAsync(itemId);
@@ -147,14 +249,14 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Creates a new instance based on a hierarchy item.
         /// </summary>
-        public static ItemNode? Create(IVsHierarchyItem? item)
+        public static SolutionItem? Create(IVsHierarchyItem? item)
         {
             if (item == null)
             {
                 return null;
             }
 
-            return new ItemNode(item);
+            return new SolutionItem(item);
         }
 
         private NodeType GetNodeType(IVsHierarchyItemIdentity identity)

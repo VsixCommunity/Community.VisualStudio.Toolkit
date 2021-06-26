@@ -39,7 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProvideFileIconAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\InfoBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\Settings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ItemNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SolutionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolkitThreadHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\OverrideCollectionNameAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\OverrideDataTypeAttribute.cs" />
