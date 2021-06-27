@@ -194,6 +194,26 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// Find the nearest parent matching the specified type.
+        /// </summary>
+        public SolutionItem? FindParent(NodeType type)
+        {
+            SolutionItem? parent = Parent;
+
+            while (parent != null)
+            {
+                if (parent.Type == type)
+                {
+                    return parent;
+                }    
+
+                parent = parent.Parent;
+            }
+            
+            return null;
+        }
+
+        /// <summary>
         /// Opens the item in the editor window.
         /// </summary>
         /// <returns><see langword="true"/> if the item was succesfully opened; otherwise <see langword="false"/>.</returns>
