@@ -37,8 +37,8 @@ namespace Community.VisualStudio.Toolkit
             {
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-                SolutionItem? from = await SolutionItem.CreateAsync(pHierOld, itemidOld);
-                SolutionItem? to = await SolutionItem.CreateAsync(pHierNew, itemidNew);
+                SolutionItem? from = await SolutionItem.FromHierarchyAsync(pHierOld, itemidOld);
+                SolutionItem? to = await SolutionItem.FromHierarchyAsync(pHierNew, itemidNew);
 
                 SelectionChanged?.Invoke(this, new SelectionChangedEventArgs(from, to));
             }).FireAndForget();

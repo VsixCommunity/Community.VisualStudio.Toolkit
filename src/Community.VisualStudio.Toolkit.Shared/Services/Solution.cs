@@ -30,61 +30,6 @@ namespace Community.VisualStudio.Toolkit
         public Task<IVsOpenProjectOrSolutionDlg> GetOpenProjectOrSolutionDlgAsync() => VS.GetRequiredServiceAsync<SVsOpenProjectOrSolutionDlg, IVsOpenProjectOrSolutionDlg>();
 
         /// <summary>
-        /// Gets a list of the selected items.
-        /// </summary>
-        public async Task<IEnumerable<SelectedItem>> GetSelectedItemsAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            DTE2 dte = await VS.GetRequiredServiceAsync<SDTE, DTE2>();
-            List<SelectedItem> list = new();
-
-            foreach (SelectedItem item in dte.SelectedItems)
-            {
-                list.Add(item);
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Returns the active <see cref="ProjectItem"/>.
-        /// </summary>
-        public async Task<ProjectItem?> GetActiveProjectItemAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            IVsMonitorSelection? monitorSelection = await VS.GetRequiredServiceAsync<SVsShellMonitorSelection, IVsMonitorSelection>();
-            IntPtr hierarchyPointer = IntPtr.Zero;
-            IntPtr selectionContainerPointer = IntPtr.Zero;
-            object? selectedObject = null;
-
-            try
-            {
-                monitorSelection.GetCurrentSelection(out hierarchyPointer,
-                                                 out var itemId,
-                                                 out IVsMultiItemSelect multiItemSelect,
-                                                 out selectionContainerPointer);
-
-                if (Marshal.GetTypedObjectForIUnknown(hierarchyPointer, typeof(IVsHierarchy)) is IVsHierarchy selectedHierarchy)
-                {
-                    ErrorHandler.ThrowOnFailure(selectedHierarchy.GetProperty(itemId, (int)__VSHPROPID.VSHPROPID_ExtObject, out selectedObject));
-                }
-            }
-            catch (Exception ex)
-            {
-                await ex.LogAsync();
-            }
-            finally
-            {
-                Marshal.Release(hierarchyPointer);
-                Marshal.Release(selectionContainerPointer);
-            }
-
-            return selectedObject as ProjectItem;
-        }
-
-        /// <summary>
         /// Gets the currently selected hierarchy items.
         /// </summary>
         public async Task<IEnumerable<IVsHierarchyItem>> GetSelectedHierarchiesAsync()
@@ -117,17 +62,22 @@ namespace Community.VisualStudio.Toolkit
                         }
                     }
                 }
-                else
+                else if (hierPtr != IntPtr.Zero)
                 {
-                    if (hierPtr != IntPtr.Zero)
-                    {
-                        var hierarchy = (IVsHierarchy)Marshal.GetUniqueObjectForIUnknown(hierPtr);
-                        IVsHierarchyItem? hierItem = await hierarchy.ToHierarcyItemAsync(itemId);
+                    var hierarchy = (IVsHierarchy)Marshal.GetUniqueObjectForIUnknown(hierPtr);
+                    IVsHierarchyItem? hierItem = await hierarchy.ToHierarcyItemAsync(itemId);
 
-                        if (hierItem != null)
-                        {
-                            results.Add(hierItem);
-                        }
+                    if (hierItem != null)
+                    {
+                        results.Add(hierItem);
+                    }
+                }
+                else if (await GetSolutionAsync() is IVsHierarchy solution)
+                {
+                    IVsHierarchyItem? sol = await solution.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
+                    if (sol != null)
+                    {
+                        results.Add(sol);
                     }
                 }
             }
@@ -161,7 +111,7 @@ namespace Community.VisualStudio.Toolkit
 
             foreach (IVsHierarchyItem hierarchy in hierarchies)
             {
-                SolutionItem? node = await SolutionItem.CreateAsync(hierarchy.HierarchyIdentity.Hierarchy, hierarchy.HierarchyIdentity.ItemID);
+                SolutionItem? node = await SolutionItem.FromHierarchyAsync(hierarchy.HierarchyIdentity.Hierarchy, hierarchy.HierarchyIdentity.ItemID);
 
                 if (node != null)
                 {
@@ -182,16 +132,26 @@ namespace Community.VisualStudio.Toolkit
 
             if (hierarchy != null)
             {
-                return await SolutionItem.CreateAsync(hierarchy.HierarchyIdentity.NestedHierarchy, VSConstants.VSITEMID_ROOT);
+                return await SolutionItem.FromHierarchyAsync(hierarchy.HierarchyIdentity.NestedHierarchy, VSConstants.VSITEMID_ROOT);
             }
 
             return null;
         }
 
         /// <summary>
+        /// Get all projects in the solution.
+        /// </summary>
+        public async Task<IEnumerable<IVsHierarchy>> GetAllProjectHierarchiesAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsSolution? sol = await GetSolutionAsync();
+            return sol.GetAllProjectHierarchys();
+        }
+
+        /// <summary>
         /// Gets all projects in the solution
         /// </summary>
-        public async Task<IEnumerable<SolutionItem>> GetAllProjectNodesAsync()
+        public async Task<IEnumerable<SolutionItem>> GetAllProjectNodesAsync(bool includeSolutionFolders = false)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsSolution solution = await GetSolutionAsync();
@@ -201,39 +161,19 @@ namespace Community.VisualStudio.Toolkit
 
             foreach (IVsHierarchy? hierarchy in hierarchies)
             {
-                SolutionItem? proj = await SolutionItem.CreateAsync(hierarchy, VSConstants.VSITEMID_ROOT);
+                SolutionItem? proj = await SolutionItem.FromHierarchyAsync(hierarchy, VSConstants.VSITEMID_ROOT);
 
                 if (proj?.Type == NodeType.Project)
+                {
+                    list.Add(proj);
+                }
+                else if (includeSolutionFolders && proj?.Type == NodeType.SolutionFolder)
                 {
                     list.Add(proj);
                 }
             }
 
             return list;
-        }
-
-        /// <summary> 
-        /// Gets the active project.
-        /// </summary>
-        public async Task<Project?> GetActiveProjectAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            DTE2? dte = await VS.GetRequiredServiceAsync<SDTE, DTE2>();
-
-            try
-            {
-                if (dte.ActiveSolutionProjects is Array projects && projects.Length > 0)
-                {
-                    return projects.GetValue(0) as Project;
-                }
-            }
-            catch (Exception ex)
-            {
-                await ex.LogAsync();
-            }
-
-            return null;
         }
 
         /// <summary>

@@ -30,17 +30,12 @@ namespace Community.VisualStudio.Toolkit
             _hierarchy = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedHierarchy : item.HierarchyIdentity.Hierarchy;
             _itemId = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedItemID : item.HierarchyIdentity.ItemID;
 
-            _hierarchy.GetCanonicalName(_itemId, out var fileName);
-
-            FileName = fileName;
             Item = item;
             Name = item.Text;
             Type = GetNodeType(item.HierarchyIdentity);
-            IsExpandable = HierarchyUtilities.IsExpandable(item.HierarchyIdentity);
             IsFaulted = HierarchyUtilities.IsFaultedProject(item.HierarchyIdentity);
             IsHidden = HierarchyUtilities.IsHiddenItem(_hierarchy, _itemId);
-            IsRoot = item.HierarchyIdentity.IsRoot;
-            IsNested = item.HierarchyIdentity.IsNestedItem;
+            FileName = GetFileName();
         }
 
         /// <summary>
@@ -56,17 +51,12 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// The absolute file path on disk.
         /// </summary>
-        public string FileName { get; set; }
+        public string? FileName { get; set; }
 
         /// <summary>
         /// The type of node.
         /// </summary>
         public NodeType Type { get; }
-
-        /// <summary>
-        /// A value indicating if the node can be expanded.
-        /// </summary>
-        public bool IsExpandable { get; }
 
         /// <summary>
         /// A value indicating if the node is in a faulted state.
@@ -79,24 +69,14 @@ namespace Community.VisualStudio.Toolkit
         public bool IsHidden { get; }
 
         /// <summary>
-        /// A value indicating if the node is a root node.
-        /// </summary>
-        public bool IsRoot { get; }
-
-        /// <summary>
-        /// A value indicating if the node is nested
-        /// </summary>
-        public bool IsNested { get; }
-
-        /// <summary>
         /// The parent node. Is <see langword="null"/> when there is no parent.
         /// </summary>
-        public SolutionItem? Parent => _parent ??= Create(Item.Parent);
+        public SolutionItem? Parent => _parent ??= FromHierarchyItem(Item.Parent);
 
         /// <summary>
         /// A list of child nodes.
         /// </summary>
-        public IEnumerable<SolutionItem?> Children => _children ??= Item.Children.Select(t => Create(t));
+        public IEnumerable<SolutionItem?> Children => _children ??= Item.Children.Select(t => FromHierarchyItem(t));
 
         /// <summary>
         /// Checks what kind the project is.
@@ -122,15 +102,11 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var ip = (IVsProject)_hierarchy;
-
-            if (ip == null)
-                return;
-            
-                var result = new VSADDRESULT[files.Count()];
-
             if (Type == NodeType.Project || Type == NodeType.PhysicalFolder)
             {
+                var result = new VSADDRESULT[files.Count()];
+                var ip = (IVsProject)_hierarchy;
+
                 ip.AddItem(_itemId,
                            VSADDITEMOPERATION.VSADDITEMOP_LINKTOFILE,
                            string.Empty,
@@ -177,7 +153,7 @@ namespace Community.VisualStudio.Toolkit
 
                     if (hier != null)
                     {
-                        return await CreateAsync(hier, (uint)VSConstants.VSITEMID.Root);
+                        return await FromHierarchyAsync(hier, (uint)VSConstants.VSITEMID.Root);
                     }
                 }
             }
@@ -187,7 +163,7 @@ namespace Community.VisualStudio.Toolkit
             }
             else if (Type == NodeType.PhysicalFolder)
             {
-                // TODO: Impelement support for adding a folder to a folder.
+                // TODO: Implement
             }
 
             return null;
@@ -205,11 +181,11 @@ namespace Community.VisualStudio.Toolkit
                 if (parent.Type == type)
                 {
                     return parent;
-                }    
+                }
 
                 parent = parent.Parent;
             }
-            
+
             return null;
         }
 
@@ -258,18 +234,18 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Creates a new instance based on a hierarchy.
         /// </summary>
-        public static async Task<SolutionItem?> CreateAsync(IVsHierarchy hierarchy, uint itemId)
+        public static async Task<SolutionItem?> FromHierarchyAsync(IVsHierarchy hierarchy, uint itemId)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsHierarchyItem? item = await hierarchy.ToHierarcyItemAsync(itemId);
 
-            return Create(item);
+            return FromHierarchyItem(item);
         }
 
         /// <summary>
         /// Creates a new instance based on a hierarchy item.
         /// </summary>
-        public static SolutionItem? Create(IVsHierarchyItem? item)
+        public static SolutionItem? FromHierarchyItem(IVsHierarchyItem? item)
         {
             if (item == null)
             {
@@ -277,6 +253,31 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return new SolutionItem(item);
+        }
+
+        /// <summary>
+        /// Finds the item in the solution matching the specified file path.
+        /// </summary>
+        /// <param name="filePath">The absolute file path of a file that exist in the solution.</param>
+        /// <returns><see langword="null"/> if the file wasn't found in the solution.</returns>
+        public static async Task<SolutionItem?> FromFileAsync(string filePath)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IEnumerable<IVsHierarchy>? projects = await VS.Solution.GetAllProjectHierarchiesAsync();
+
+            foreach (IVsHierarchy? hierarchy in projects)
+            {
+                var proj = (IVsProject)hierarchy;
+                var priority = new VSDOCUMENTPRIORITY[1];
+                proj.IsDocumentInProject(filePath, out var isFound, priority, out var itemId);
+
+                if (isFound == 1)
+                {
+                    return await FromHierarchyAsync(hierarchy, itemId);
+                }
+            }
+
+            return null;
         }
 
         private NodeType GetNodeType(IVsHierarchyItemIdentity identity)
@@ -311,6 +312,30 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return NodeType.Unknown;
+        }
+
+        private string? GetFileName()
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            if (Type == NodeType.SolutionFolder)
+            {
+                return null;
+            }
+
+            _hierarchy.GetCanonicalName(_itemId, out var fileName);
+
+            if (_hierarchy is IVsProject project && project.GetMkDocument(_itemId, out fileName) == VSConstants.S_OK)
+            {
+                return fileName;
+            }
+
+            if (_hierarchy is IVsSolution solution && solution.GetFilePath() is string slnFile)
+            {
+                return slnFile;
+            }
+
+            return fileName;
         }
     }
 
