@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -42,7 +43,6 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Gets the version of Visual Studio.
         /// </summary>
-        /// <returns></returns>
         public async Task<Version?> GetVsVersionAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -69,6 +69,29 @@ namespace Community.VisualStudio.Toolkit
             acl.GetOption(key, out _, out var value);
 
             return value;
+        }
+
+        /// <summary>
+        /// Restarts the IDE. 
+        /// </summary>
+        /// <param name="forceElevated">Forces the IDE to start back up elevated. 
+        /// If <see langword="false"/>, it restarts in the same mode it is currently running in.
+        /// </param>
+        public async Task RestartAsync(bool forceElevated = false)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            var shell = (IVsShell4)await GetShellAsync();
+
+            if (forceElevated)
+            {
+                shell.Restart((uint)__VSRESTARTTYPE.RESTART_Elevated);
+            }
+            else
+            {
+                ((IVsShell3)shell).IsRunningElevated(out var elevated);
+                __VSRESTARTTYPE type = elevated ? __VSRESTARTTYPE.RESTART_Elevated : __VSRESTARTTYPE.RESTART_Normal;
+                shell.Restart((uint)type);
+            }
         }
     }
 }

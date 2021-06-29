@@ -5,6 +5,7 @@ using Community.VisualStudio.Toolkit.Shared.ExtensionMethods;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace Community.VisualStudio.Toolkit
@@ -83,11 +84,29 @@ namespace Community.VisualStudio.Toolkit
             => await window.ShowDialogAsync(windowStartupLocation);
 
         /// <summary>
+        /// Gets the current active window frame object.
+        /// </summary>
+        public async Task<WindowFrame?> GetActiveWindowAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            IVsMonitorSelection? svc = await VS.GetRequiredServiceAsync<SVsShellMonitorSelection, IVsMonitorSelection>();
+            svc.GetCurrentElementValue((uint)VSConstants.VSSELELEMID.SEID_WindowFrame, out var selection);
+
+            if (selection is IVsWindowFrame frame)
+            {
+                return new WindowFrame(frame);  
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Finds tool windows matching the specified guid.
         /// </summary>
         /// <param name="toolWindowGuid">Find known tool window guids in the <see cref="WindowGuids"/> class.</param>
         /// <returns>An instance of an <see cref="IVsWindowFrame"/> or <see langword="null"/>.</returns>
-        public async Task<IVsWindowFrame?> FindOrShowToolWindowAsync(Guid toolWindowGuid)
+        public async Task<WindowFrame?> FindOrShowToolWindowAsync(Guid toolWindowGuid)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -96,7 +115,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (hr == VSConstants.S_OK)
             {
-                return frame;
+                return new WindowFrame(frame);
             }
             
             return await ShowToolWindowAsync(toolWindowGuid);
@@ -107,17 +126,17 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         /// <param name="toolWindowGuid">Find known tool window guids in the <see cref="WindowGuids"/> class.</param>
         /// <returns>An instance of an <see cref="IVsWindowFrame"/> or <see langword="null"/>.</returns>
-        public async Task<IVsWindowFrame?> ShowToolWindowAsync(Guid toolWindowGuid)
+        public async Task<WindowFrame?> ShowToolWindowAsync(Guid toolWindowGuid)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IVsUIShell? uiShell = await VS.Shell.GetUIShellAsync();
             var hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref toolWindowGuid, out IVsWindowFrame? frame);
-            
+
             if (hr == VSConstants.S_OK)
             {
                 frame.Show();
-                return frame;
+                return new WindowFrame(frame);
             }
 
             return null;

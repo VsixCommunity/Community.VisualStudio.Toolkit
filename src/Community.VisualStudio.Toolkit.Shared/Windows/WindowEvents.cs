@@ -29,12 +29,12 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Fires when a window frame is created
         /// </summary>
-        public event EventHandler<IVsWindowFrame>? Created;
+        public event EventHandler<WindowFrame>? Created;
 
         /// <summary>
         /// Fires when a window frame is destroyed.
         /// </summary>
-        public event EventHandler<IVsWindowFrame>? Destroyed;
+        public event EventHandler<WindowFrame>? Destroyed;
 
         /// <summary>
         /// Fires when a changes happens to a frame's visibility.
@@ -53,12 +53,12 @@ namespace Community.VisualStudio.Toolkit
 
         void IVsWindowFrameEvents.OnFrameCreated(IVsWindowFrame frame)
         {
-            Created?.Invoke(this, frame);
+            Created?.Invoke(this, new WindowFrame(frame));
         }
 
         void IVsWindowFrameEvents.OnFrameDestroyed(IVsWindowFrame frame)
         {
-            Destroyed?.Invoke(this, frame);
+            Destroyed?.Invoke(this, new WindowFrame(frame));
         }
 
         void IVsWindowFrameEvents.OnFrameIsVisibleChanged(IVsWindowFrame frame, bool newIsVisible)
@@ -97,12 +97,12 @@ namespace Community.VisualStudio.Toolkit
     {
         internal FrameOnScreenEventArgs(IVsWindowFrame frame, bool isOnScreen)
         {
-            Frame = frame;
+            Frame = new WindowFrame(frame);
             IsOnScreen = isOnScreen;
         }
 
         /// <summary>The Window frame object.</summary>
-        public IVsWindowFrame Frame { get; }
+        public WindowFrame Frame { get; }
         /// <summary>A value indicating if the frame is on screen.</summary>
         public bool IsOnScreen { get; }
     }
@@ -112,13 +112,13 @@ namespace Community.VisualStudio.Toolkit
     {
         internal ActiveFrameChangeEventArgs(IVsWindowFrame oldFrame, IVsWindowFrame newFrame)
         {
-            OldFrame = oldFrame;
-            NewFrame = newFrame;
+            OldFrame = new WindowFrame(oldFrame);
+            NewFrame = new WindowFrame(newFrame);
         }
         /// <summary>The frame that lost its active state.</summary>
-        public IVsWindowFrame OldFrame { get; }
+        public WindowFrame OldFrame { get; }
 
         /// <summary>The frame became active.</summary>
-        public IVsWindowFrame NewFrame { get; }
+        public WindowFrame NewFrame { get; }
     }
 }

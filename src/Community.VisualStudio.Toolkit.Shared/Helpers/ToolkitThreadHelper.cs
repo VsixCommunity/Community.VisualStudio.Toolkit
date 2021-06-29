@@ -3,7 +3,7 @@ using System.Threading;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Threading;
 
-namespace Community.VisualStudio.Toolkit.Shared
+namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
     /// Provides a JoinableTaskFactory that is safe to use in MEF components or when an AsyncPackage.JoinableTaskFactory

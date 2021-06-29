@@ -22,8 +22,7 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
 
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsUIShell? vsUiShellService = await VS.Shell.GetUIShellAsync();
-            Assumes.Present(vsUiShellService);
+            IVsUIShell vsUiShellService = await VS.Shell.GetUIShellAsync();
 
             ErrorHandler.ThrowOnFailure(vsUiShellService.GetDialogOwnerHwnd(out IntPtr hwnd));
             ErrorHandler.ThrowOnFailure(vsUiShellService.EnableModeless(0));
