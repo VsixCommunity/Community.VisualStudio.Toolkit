@@ -219,23 +219,22 @@ namespace Community.VisualStudio.Toolkit
             VSSOLNBUILDUPDATEFLAGS buildFlags = action switch
             {
                 BuildAction.Build => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_BUILD,
-                BuildAction.Rebuild => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_BUILD | VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_CLEAN,
+                BuildAction.Rebuild => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_BUILD | VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_FORCE_UPDATE,
                 BuildAction.Clean => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_CLEAN,
                 _ => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_BUILD,
             };
 
-            var query = (uint)VSSOLNBUILDQUERYRESULTS.VSSBQR_CONTDEPLOYONERROR_QUERY_NO;
             int hr;
 
             if (project?.Type == NodeType.Project)
             {
                 // Build Project
-                hr = svc.StartSimpleUpdateProjectConfiguration(project.Hierarchy, null, null, (uint)buildFlags, query, 0);
+                hr = svc.StartSimpleUpdateProjectConfiguration(project._hierarchy, null, null, (uint)buildFlags, 0, 0);
             }
             else
             {
                 // Build solution
-                hr = svc.StartSimpleUpdateSolutionConfiguration((uint)buildFlags, query, 0);
+                hr = svc.StartSimpleUpdateSolutionConfiguration((uint)buildFlags, 0, 0);
             }
 
             return hr == VSConstants.S_OK;
