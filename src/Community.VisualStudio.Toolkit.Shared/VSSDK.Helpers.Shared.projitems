@@ -48,6 +48,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ToolkitPackage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolWindows\BaseToolWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolWindows\IToolWindowProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindows\WindowEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolWindows\WindowGuids.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VS.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionModel.cs" />

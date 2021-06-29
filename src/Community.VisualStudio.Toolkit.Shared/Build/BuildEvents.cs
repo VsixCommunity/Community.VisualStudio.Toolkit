@@ -6,6 +6,14 @@ using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Community.VisualStudio.Toolkit
 {
+    public partial class Events
+    {
+        /// <summary>
+        /// Events related to the editor documents.
+        /// </summary>
+        public BuildEvents BuildEvents => new();
+    }
+
     /// <summary>
     /// Events related to the editor documents.
     /// </summary>

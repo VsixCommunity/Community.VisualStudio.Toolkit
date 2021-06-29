@@ -9,11 +9,6 @@
         /// <summary>
         /// Events related to the editor documents.
         /// </summary>
-        public BuildEvents BuildEvents => new();
-
-        /// <summary>
-        /// Events related to the editor documents.
-        /// </summary>
         public DocumentEvents DocumentEvents => new();
 
         /// <summary>

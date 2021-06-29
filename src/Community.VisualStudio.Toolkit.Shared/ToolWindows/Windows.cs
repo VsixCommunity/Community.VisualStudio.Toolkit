@@ -113,7 +113,7 @@ namespace Community.VisualStudio.Toolkit
 
             IVsUIShell? uiShell = await VS.Shell.GetUIShellAsync();
             var hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref toolWindowGuid, out IVsWindowFrame? frame);
-
+            
             if (hr == VSConstants.S_OK)
             {
                 frame.Show();
