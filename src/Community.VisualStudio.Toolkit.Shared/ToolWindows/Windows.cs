@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Community.VisualStudio.Toolkit.Shared.ExtensionMethods;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 
@@ -88,6 +89,8 @@ namespace Community.VisualStudio.Toolkit
         /// <returns>An instance of an <see cref="IVsWindowFrame"/> or <see langword="null"/>.</returns>
         public async Task<IVsWindowFrame?> FindOrShowToolWindowAsync(Guid toolWindowGuid)
         {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             IVsUIShell? uiShell = await VS.Shell.GetUIShellAsync();
             var hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fFindFirst, ref toolWindowGuid, out IVsWindowFrame? frame);
 
@@ -106,6 +109,8 @@ namespace Community.VisualStudio.Toolkit
         /// <returns>An instance of an <see cref="IVsWindowFrame"/> or <see langword="null"/>.</returns>
         public async Task<IVsWindowFrame?> ShowToolWindowAsync(Guid toolWindowGuid)
         {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             IVsUIShell? uiShell = await VS.Shell.GetUIShellAsync();
             var hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref toolWindowGuid, out IVsWindowFrame? frame);
 

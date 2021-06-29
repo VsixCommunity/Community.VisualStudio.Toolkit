@@ -12,14 +12,18 @@ namespace TestExtension.Commands
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var activeProject = await VS.Solution.GetActiveProjectNodeAsync();
+            SolutionItem activeProject = await VS.Solution.GetActiveProjectNodeAsync();
             if (activeProject != null)
             {
                 var buildResult = await VS.Build.BuildProjectAsync(activeProject);
                 if (buildResult)
+                {
                     await VS.MessageBox.ShowAsync("Build Result", $"The '{activeProject.Name}' project was built successfully!");
+                }
                 else
+                {
                     await VS.MessageBox.ShowErrorAsync("Build Result", $"The '{activeProject.Name}' project did not build successfully :(");
+                }
             }
         }
     }

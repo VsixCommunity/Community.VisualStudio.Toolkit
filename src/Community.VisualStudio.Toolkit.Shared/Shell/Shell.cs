@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -42,45 +40,16 @@ namespace Community.VisualStudio.Toolkit
         public Task<IComponentModel2> GetComponentModelAsync() => VS.GetRequiredServiceAsync<SComponentModel, IComponentModel2>();
 
         /// <summary>
-        /// Opens the file via the project instead of as a misc file.
-        /// </summary>
-        public async Task OpenDocumentViaProjectAsync(string fileName)
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            IVsUIShellOpenDocument openDoc = await VS.GetRequiredServiceAsync<SVsUIShellOpenDocument, IVsUIShellOpenDocument>();
-
-            System.Guid viewGuid = VSConstants.LOGVIEWID_TextView;
-            if (ErrorHandler.Succeeded(openDoc.OpenDocumentViaProject(fileName, ref viewGuid, out _, out _, out _, out IVsWindowFrame frame)))
-            {
-                if (frame != null)
-                {
-                    frame.Show();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Opens a file in the Preview Tab (provisional tab) if supported by the editor factory.
-        /// </summary>
-        public void OpenInPreviewTab(string file)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            using (new NewDocumentStateScope(__VSNEWDOCUMENTSTATE2.NDS_TryProvisional, VSConstants.NewDocumentStateReason.Navigation))
-            {
-                VsShellUtilities.OpenDocument(ServiceProvider.GlobalProvider, file);
-            }
-        }
-
-        /// <summary>
         /// Gets the version of Visual Studio.
         /// </summary>
         /// <returns></returns>
         public async Task<Version?> GetVsVersionAsync()
         {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsShell? shell = await GetShellAsync();
+
             shell.GetProperty((int)__VSSPROPID5.VSSPROPID_ReleaseVersion, out var value);
+            
             if (value is string raw)
             {
                 return Version.Parse(raw.Split(' ')[0]);
@@ -94,6 +63,8 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public async Task<string> TryGetCommandLineArgumentAsync(string key)
         {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             IVsAppCommandLine? acl = await GetAppCommandLineAsync();
             acl.GetOption(key, out _, out var value);
 
