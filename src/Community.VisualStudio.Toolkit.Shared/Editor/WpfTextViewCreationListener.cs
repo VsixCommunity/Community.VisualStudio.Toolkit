@@ -110,6 +110,7 @@ namespace Community.VisualStudio.Toolkit
         /// <param name="document">The document associated with the <c>IWpfTextView</c>.</param>
         protected virtual void Created(IWpfTextView textView, ITextDocument? document)
         {
+            // TODO: Should this just call FireAndForget on CreatedAsync()?
             JoinableTaskFactory.RunAsync(async delegate
             {
                 try
