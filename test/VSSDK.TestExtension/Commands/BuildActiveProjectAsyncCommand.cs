@@ -17,9 +17,9 @@ namespace TestExtension.Commands
             {
                 var buildResult = await VS.Build.BuildProjectAsync(activeProject);
                 if (buildResult)
-                    VS.Notifications.ShowMessage("Build Result", $"The '{activeProject.Name}' project was built successfully!");
+                    await VS.MessageBox.ShowAsync("Build Result", $"The '{activeProject.Name}' project was built successfully!");
                 else
-                    VS.Notifications.ShowError("Build Result", $"The '{activeProject.Name}' project did not build successfully :(");
+                    await VS.MessageBox.ShowErrorAsync("Build Result", $"The '{activeProject.Name}' project did not build successfully :(");
             }
         }
     }

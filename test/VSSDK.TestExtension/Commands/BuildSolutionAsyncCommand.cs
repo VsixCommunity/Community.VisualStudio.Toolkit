@@ -13,9 +13,9 @@ namespace TestExtension.Commands
 
             var buildResult = await VS.Build.BuildSolutionAsync();
             if (buildResult)
-                VS.Notifications.ShowMessage("Build Result", $"The solution was built successfully!");
+                await VS.MessageBox.ShowAsync("Build Result", $"The solution was built successfully!");
             else
-                VS.Notifications.ShowError("Build Result", $"The solution did not build successfully :(");
+                await VS.MessageBox.ShowErrorAsync("Build Result", $"The solution did not build successfully :(");
         }
     }
 }

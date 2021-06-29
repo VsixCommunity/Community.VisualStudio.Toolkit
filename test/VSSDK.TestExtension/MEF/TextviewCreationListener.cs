@@ -21,22 +21,22 @@ namespace TestExtension.MEF
 
         protected override void FileActionOccurred(TextDocumentFileActionEventArgs e)
         {
-            VS.Notifications.SetStatusBarTextAsync($"File Action: {e.FileActionType}").FireAndForget();
+            VS.StatusBar.ShowMessageAsync($"File Action: {e.FileActionType}").FireAndForget();
         }
 
         protected override void DirtyStateChanged()
         {
-            VS.Notifications.SetStatusBarTextAsync($"Dirty state changed").FireAndForget();
+            VS.StatusBar.ShowMessageAsync($"Dirty state changed").FireAndForget();
         }
 
         protected override void EncodingChanged(EncodingChangedEventArgs e)
         {
-            VS.Notifications.SetStatusBarTextAsync($"Encoding chaged from {e.OldEncoding} to: {e.OldEncoding}").FireAndForget();
+            VS.StatusBar.ShowMessageAsync($"Encoding chaged from {e.OldEncoding} to: {e.OldEncoding}").FireAndForget();
         }
 
         protected override void Closed(IWpfTextView textView)
         {
-            VS.Notifications.SetStatusBarTextAsync("Document closed").FireAndForget();
+            VS.StatusBar.ShowMessageAsync("Document closed").FireAndForget();
         }
     }
 }

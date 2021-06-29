@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 using System.Threading;
 using Community.VisualStudio.Toolkit.Shared;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Threading;
@@ -110,18 +111,7 @@ namespace Community.VisualStudio.Toolkit
         /// <param name="document">The document associated with the <c>IWpfTextView</c>.</param>
         protected virtual void Created(IWpfTextView textView, ITextDocument? document)
         {
-            // TODO: Should this just call FireAndForget on CreatedAsync()?
-            JoinableTaskFactory.RunAsync(async delegate
-            {
-                try
-                {
-                    await CreatedAsync(textView, document);
-                }
-                catch (Exception ex)
-                {
-                    await ex.LogAsync();
-                }
-            });
+            CreatedAsync(textView, document).FireAndForget();
         }
 
         /// <summary>
