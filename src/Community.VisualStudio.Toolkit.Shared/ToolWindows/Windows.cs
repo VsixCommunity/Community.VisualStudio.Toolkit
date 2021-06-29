@@ -95,7 +95,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 return frame;
             }
-
+            
             return await ShowToolWindowAsync(toolWindowGuid);
         }
 

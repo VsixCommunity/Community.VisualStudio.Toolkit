@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
@@ -70,6 +71,33 @@ namespace Community.VisualStudio.Toolkit
             {
                 VsShellUtilities.OpenDocument(ServiceProvider.GlobalProvider, file);
             }
+        }
+
+        /// <summary>
+        /// Gets the version of Visual Studio.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Version?> GetVsVersionAsync()
+        {
+            IVsShell? shell = await GetShellAsync();
+            shell.GetProperty((int)__VSSPROPID5.VSSPROPID_ReleaseVersion, out var value);
+            if (value is string raw)
+            {
+                return Version.Parse(raw.Split(' ')[0]);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Get the value passed in to the specified command line argument key.
+        /// </summary>
+        public async Task<string> TryGetCommandLineArgumentAsync(string key)
+        {
+            IVsAppCommandLine? acl = await GetAppCommandLineAsync();
+            acl.GetOption(key, out _, out var value);
+
+            return value;
         }
     }
 }
