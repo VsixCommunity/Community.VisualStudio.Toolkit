@@ -28,6 +28,16 @@ namespace Community.VisualStudio.Toolkit
         public event Action? ShellAvailable;
 
         /// <summary>
+        /// When Visual Studio starts to shutdown
+        /// </summary>
+        public event Action? ShutdownStarted;
+
+        /// <summary>
+        /// When Visual Studio starts to shutdown
+        /// </summary>
+        public event EventHandler<bool>? MainWindowVisibilityChanged;
+
+        /// <summary>
         /// When Visual Studio enters into an interactive state.
         /// </summary>
         public event Action? EnvironmentColorChanged;
@@ -41,7 +51,22 @@ namespace Community.VisualStudio.Toolkit
                     ShellAvailable?.Invoke();
                 }
             }
-
+            else if (propid == (int)__VSSPROPID6.VSSPROPID_ShutdownStarted)
+            {
+                if (!(bool)var)
+                {
+                    ShutdownStarted?.Invoke();
+                }
+            }
+            else if (propid == (int)__VSSPROPID2.VSSPROPID_MainWindowVisibility)
+            {
+                // TODO: Test to see if 'var' is a bool. It may be an int
+                if (var is bool isVisible)
+                {
+                    MainWindowVisibilityChanged?.Invoke(this, isVisible);
+                }
+            }
+            
             return VSConstants.S_OK;
         }
 

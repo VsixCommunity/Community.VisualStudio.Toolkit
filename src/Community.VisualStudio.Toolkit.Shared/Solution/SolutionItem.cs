@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -8,7 +9,6 @@ using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -20,28 +20,32 @@ namespace Community.VisualStudio.Toolkit
     {
         private SolutionItem? _parent;
         private IEnumerable<SolutionItem?>? _children;
-        private readonly IVsHierarchy _hierarchy;
-        private readonly uint _itemId;
+        private readonly IVsHierarchyItem _item;
 
         private SolutionItem(IVsHierarchyItem item)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
+            _item = item;
 
-            _hierarchy = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedHierarchy : item.HierarchyIdentity.Hierarchy;
-            _itemId = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedItemID : item.HierarchyIdentity.ItemID;
+            Hierarchy = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedHierarchy : item.HierarchyIdentity.Hierarchy;
+            ItemID = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedItemID : item.HierarchyIdentity.ItemID;
 
-            Item = item;
             Name = item.Text;
             Type = GetNodeType(item.HierarchyIdentity);
             IsFaulted = HierarchyUtilities.IsFaultedProject(item.HierarchyIdentity);
-            IsHidden = HierarchyUtilities.IsHiddenItem(_hierarchy, _itemId);
+            IsHidden = HierarchyUtilities.IsHiddenItem(Hierarchy, ItemID);
             FileName = GetFileName();
         }
 
         /// <summary>
-        /// The underlying hierarchy item.
+        /// The underlying hierarcy.
         /// </summary>
-        public IVsHierarchyItem Item { get; }
+        public IVsHierarchy Hierarchy { get; }
+
+        /// <summary>
+        /// The item ID of the hierarchy node.
+        /// </summary>
+        public uint ItemID { get; }
 
         /// <summary>
         /// The display name of the node
@@ -71,12 +75,12 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// The parent node. Is <see langword="null"/> when there is no parent.
         /// </summary>
-        public SolutionItem? Parent => _parent ??= FromHierarchyItem(Item.Parent);
+        public SolutionItem? Parent => _parent ??= FromHierarchyItem(_item.Parent);
 
         /// <summary>
         /// A list of child nodes.
         /// </summary>
-        public IEnumerable<SolutionItem?> Children => _children ??= Item.Children.Select(t => FromHierarchyItem(t));
+        public IEnumerable<SolutionItem?> Children => _children ??= _item.Children.Select(t => FromHierarchyItem(t));
 
         /// <summary>
         /// Checks what kind the project is.
@@ -88,7 +92,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (Type == NodeType.Project || Type == NodeType.VirtualProject)
             {
-                return _hierarchy.IsProjectOfType(typeGuid);
+                return Hierarchy.IsProjectOfType(typeGuid);
             }
 
             return false;
@@ -98,75 +102,120 @@ namespace Community.VisualStudio.Toolkit
         /// Adds a file as a child to the item. 
         /// </summary>
         /// <param name="files">A list of absolute file paths.</param>
-        public async Task AddFilesAsync(params string[] files)
+        public async Task<IEnumerable<SolutionItem>?> AddItemsAsync(params string[] files)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            List<SolutionItem>? items = new();
 
-            if (Type == NodeType.Project || Type == NodeType.PhysicalFolder)
-            {
-                var result = new VSADDRESULT[files.Count()];
-                var ip = (IVsProject)_hierarchy;
-
-                ip.AddItem(_itemId,
-                           VSADDITEMOPERATION.VSADDITEMOP_LINKTOFILE,
-                           string.Empty,
-                           (uint)files.Count(),
-                           files,
-                           IntPtr.Zero,
-                           result);
-            }
-            else if (Type == NodeType.SolutionFolder)
-            {
-                //TODO: Implement
-            }
-            else if (Type == NodeType.PhysicalFile)
-            {
-                // TODO: Implement support for nesting files by setting <DependentUpon>
-            }
-        }
-
-        /// <summary>
-        ///  Adds a solution folder
-        /// </summary>
-        public async Task<SolutionItem?> AddFolderAsync(string folderName)
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
+            // Add solution folder
             if (Type == NodeType.Solution)
             {
-                var solutionFolderGuid = new Guid(ProjectTypes.SOLUTION_FOLDER_OTHER);
+                var guid = new Guid(ProjectTypes.SOLUTION_FOLDER_OTHER);
                 Guid iidProject = typeof(IVsHierarchy).GUID;
-                IVsSolution sol = await VS.Solution.GetSolutionAsync();
+                IVsSolution sol = await VS.Solution.GetSolutionServiceAsync();
 
-                var hr = sol.CreateProject(
-                    ref solutionFolderGuid,
-                    null,
-                    null,
-                    folderName,
-                    0,
-                    ref iidProject,
-                    out IntPtr ptr);
-
-                if (hr == VSConstants.S_OK && ptr != IntPtr.Zero)
+                foreach (var file in files)
                 {
-                    var hier = (IVsHierarchy)Marshal.GetObjectForIUnknown(ptr);
+                    var solFldName = Path.GetDirectoryName(file);
+                    var hr = sol.CreateProject(ref guid, null, null, solFldName, 0, ref iidProject, out IntPtr ptr);
 
-                    if (hier != null)
+                    if (hr == VSConstants.S_OK && ptr != IntPtr.Zero)
                     {
-                        return await FromHierarchyAsync(hier, (uint)VSConstants.VSITEMID.Root);
+                        if (Marshal.GetObjectForIUnknown(ptr) is IVsHierarchy hier)
+                        {
+                            if (await FromHierarchyAsync(hier, (uint)VSConstants.VSITEMID.Root) is SolutionItem item)
+                            {
+                                items.Add(item);
+                            }
+                        }
+
+                        Marshal.Release(ptr);
+                    }
+                }
+            }
+            // Add file
+            else if (Type == NodeType.Project || Type == NodeType.PhysicalFolder || Type == NodeType.PhysicalFile)
+            {
+                var result = new VSADDRESULT[files.Count()];
+                var ip = (IVsProject4)Hierarchy;
+                
+                ip.AddItem(ItemID, VSADDITEMOPERATION.VSADDITEMOP_LINKTOFILE, string.Empty, (uint)files.Count(), files, IntPtr.Zero, result);
+
+                foreach (var file in files)
+                {
+                    SolutionItem? item = await FromFileAsync(file);
+
+                    if (item != null)
+                    {
+                        items.Add(item);
+
+                        if (Type == NodeType.PhysicalFile)
+                        {
+                            item.TrySetAttribute("DependentUpon", Name);
+                        }
                     }
                 }
             }
             else if (Type == NodeType.SolutionFolder)
             {
-                // TODO: Implement
-            }
-            else if (Type == NodeType.PhysicalFolder)
-            {
-                // TODO: Implement
+                // TODO: Find a way to do this without using the DTE.
+                EnvDTE.Project? project = HierarchyUtilities.GetProject(_item);
+
+                foreach (var file in files)
+                {
+                    (project?.Object as EnvDTE80.SolutionFolder)?.AddFromFile(file);
+                }
             }
 
-            return null;
+            return items;
+        }
+
+        /// <summary>
+        /// Tries to set an attribute in the project file for the item.
+        /// </summary>
+        public bool TrySetAttribute(string name, string value)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            if (Hierarchy is IVsBuildPropertyStorage storage)
+            {
+                if (Type == NodeType.Project || Type == NodeType.VirtualProject || Type == NodeType.MiscProject)
+                {
+                    storage.SetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, value);
+                    return true;
+                }
+                else if (Type == NodeType.PhysicalFile || Type == NodeType.PhysicalFolder)
+                {
+                    storage.SetItemAttribute(ItemID, name, value);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Tries to retrieve an attribute value from the project file for the item.
+        /// </summary>
+        public bool TryGetAttribute(string name, out string? value)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            value = null;
+
+            if (Hierarchy is IVsBuildPropertyStorage storage)
+            {
+                if (Type == NodeType.Project || Type == NodeType.VirtualProject || Type == NodeType.MiscProject)
+                {
+                    storage.GetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, out value);
+                    return true;
+                }
+                else if (Type == NodeType.PhysicalFile || Type == NodeType.PhysicalFolder)
+                {
+                    storage.GetItemAttribute(ItemID, name, out value);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -198,37 +247,46 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             var hr = VSConstants.S_FALSE;
-            var ip = (IVsProject)_hierarchy;
+            var ip = (IVsProject)Hierarchy;
 
             if (ip != null)
             {
-                hr = ip.OpenItem(_itemId, Guid.Empty, IntPtr.Zero, out _);
+                hr = ip.OpenItem(ItemID, Guid.Empty, IntPtr.Zero, out _);
             }
 
             return hr == VSConstants.S_OK;
         }
 
         /// <summary>
-        /// Converts the node a <see cref="EnvDTE.Project"/>.
+        /// Tries to remove the solution item from the solution.
         /// </summary>
-        public EnvDTE.Project? ToProject()
+        public async Task<bool> TryRemoveAsync()
         {
-            return HierarchyUtilities.GetProject(Item);
-        }
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            SolutionItem? parent = FindParent(NodeType.Project) ?? FindParent(NodeType.SolutionFolder) ?? FindParent(NodeType.Solution);
 
-        /// <summary>
-        /// Converts the node a <see cref="EnvDTE.ProjectItem"/>.
-        /// </summary>
-        public EnvDTE.ProjectItem? ToProjectItem()
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            if (_hierarchy.TryGetItemProperty(_itemId, (int)__VSHPROPID.VSHPROPID_ExtObject, out object? obj))
+            if (parent == null)
             {
-                return obj as EnvDTE.ProjectItem;
+                return false;
             }
 
-            return null;
+            if (Type == NodeType.PhysicalFile)
+            {
+                if (parent.Hierarchy is IVsProject2 project)
+                {
+                    project.RemoveItem(0, ItemID, out var result);
+                    return result == 1;
+                }
+            }
+            else
+            {
+                // TODO: Figure out how to remove projects and solution folders without the DTE
+                EnvDTE80.DTE2? dte = await VS.GetRequiredServiceAsync<EnvDTE.DTE, EnvDTE80.DTE2>();
+                EnvDTE.Project? project = HierarchyUtilities.GetProject(_item);
+                dte.Solution?.Remove(project);
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -267,9 +325,8 @@ namespace Community.VisualStudio.Toolkit
 
             foreach (IVsHierarchy? hierarchy in projects)
             {
-                var proj = (IVsProject)hierarchy;
-                var priority = new VSDOCUMENTPRIORITY[1];
-                proj.IsDocumentInProject(filePath, out var isFound, priority, out var itemId);
+                var proj = (IVsProject5)hierarchy;
+                proj.IsDocumentInProject2(filePath, out var isFound, out _, out var itemId);
 
                 if (isFound == 1)
                 {
@@ -278,6 +335,28 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Finds the item in the solution matching the specified file path.
+        /// </summary>
+        /// <param name="filePaths">The absolute file paths of files that exist in the solution.</param>
+        public static async Task<IEnumerable<SolutionItem>?> FromFilesAsync(params string[] filePaths)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            List<SolutionItem> items = new();
+
+            foreach (var filePath in filePaths)
+            {
+                SolutionItem? item = await FromFileAsync(filePath);
+
+                if (item != null)
+                {
+                    items.Add(item);
+                }
+            }
+
+            return items;
         }
 
         private NodeType GetNodeType(IVsHierarchyItemIdentity identity)
@@ -323,14 +402,14 @@ namespace Community.VisualStudio.Toolkit
                 return null;
             }
 
-            _hierarchy.GetCanonicalName(_itemId, out var fileName);
+            Hierarchy.GetCanonicalName(ItemID, out var fileName);
 
-            if (_hierarchy is IVsProject project && project.GetMkDocument(_itemId, out fileName) == VSConstants.S_OK)
+            if (Hierarchy is IVsProject project && project.GetMkDocument(ItemID, out fileName) == VSConstants.S_OK)
             {
                 return fileName;
             }
 
-            if (_hierarchy is IVsSolution solution && solution.GetFilePath() is string slnFile)
+            if (Hierarchy is IVsSolution solution && solution.GetSolutionInfo(out _, out var slnFile, out _) == VSConstants.S_OK)
             {
                 return slnFile;
             }

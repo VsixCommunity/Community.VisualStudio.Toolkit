@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EnvDTE;
-using EnvDTE80;
 using Microsoft;
+using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 
 namespace Community.VisualStudio.Toolkit
@@ -39,9 +38,6 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>A collection of services related to windows.</summary>
         public static Windows Windows => new();
 
-        /// <summary>Get the EnvDTE which provide a broad API for a large part of Visual Studio.</summary>
-        public static Task<DTE2> GetDTEAsync() => GetRequiredServiceAsync<DTE, DTE2>();
-
         /// <summary>
         /// Gets a global service asynchronously.
         /// </summary>
@@ -73,6 +69,15 @@ namespace Community.VisualStudio.Toolkit
             Assumes.Present(service);
 
             return service!;
+        }
+
+        /// <summary>
+        /// Gets a service from the MEF component catalog
+        /// </summary>
+        public static async Task<TInterface> GetMefServiceAsync<TInterface>() where TInterface : class
+        {
+            IComponentModel2 compService = await GetRequiredServiceAsync<SComponentModel, IComponentModel2>();
+            return compService.GetService<TInterface>();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace TestExtension.Commands
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var buildResult = await VS.Solution.BuildAsync();
+            var buildResult = await VS.Solution.BuildAsync(BuildAction.Build);
             if (buildResult)
                 VS.Notifications.ShowMessage("Build Result", $"The solution was built successfully!");
             else

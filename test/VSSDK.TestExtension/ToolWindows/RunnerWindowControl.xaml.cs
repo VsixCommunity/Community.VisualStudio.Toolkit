@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Community.VisualStudio.Toolkit;
@@ -25,15 +27,38 @@ namespace TestExtension
 
         private async Task ShowMessageAsync()
         {
-            await VS.Notifications.SetStatusBarTextAsync("Test");
-            var text = await VS.Notifications.GetStatusBarTextAsync();
-            await VS.Notifications.SetStatusBarTextAsync(text + " OK");
+            var items = await VS.Solution.GetSelectedNodesAsync();
+            var item = items.FirstOrDefault();
 
-            var ex = new Exception(nameof(TestExtension));
-            await ex.LogAsync();
+            await VS.Solution.BuildAsync(BuildAction.Build, item);
 
-            VSConstants.MessageBoxResult button = VS.Notifications.ShowMessage("message", "title");
-            Debug.WriteLine(button);
+            //var removed = await item.TryRemoveAsync();
+            //Debug.Write(removed);
+
+            //var dir = item.FileName + ".txt";
+
+            //if (!Directory.Exists(dir))
+            //{
+            //    Directory.CreateDirectory(dir);
+            //}
+            //string file = item.FileName + ".txt";
+            //if (!System.IO.File.Exists(file))
+            //{
+            //    System.IO.File.WriteAllText(file, "ost");
+            //}
+
+
+            //await item.AddItemsAsync(file);
+
+            //await VS.Notifications.SetStatusBarTextAsync("Test");
+            //var text = await VS.Notifications.GetStatusBarTextAsync();
+            //await VS.Notifications.SetStatusBarTextAsync(text + " OK");
+
+            //var ex = new Exception(nameof(TestExtension));
+            //await ex.LogAsync();
+
+            //VSConstants.MessageBoxResult button = VS.Notifications.ShowMessage("message", "title");
+            //Debug.WriteLine(button);
         }
     }
 }

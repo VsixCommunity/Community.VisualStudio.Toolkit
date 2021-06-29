@@ -22,24 +22,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsHierarchyExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsShareAssetsProjectExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsSolutionExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ProjectExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ProjectItemExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\DteExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\SolutionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ITextViewExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\CommandExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TaskExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ITextBufferExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\WindowExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ContentTypes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Disposable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\OutputWindowPane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\OutputWindowTextWriterVS14.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProjectTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProvideFileIconAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\InfoBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\Settings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SolutionItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Solution\SolutionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolkitThreadHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\OverrideCollectionNameAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\OverrideDataTypeAttribute.cs" />
@@ -60,9 +55,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Editor\Editor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\Notifications.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Shell.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Solution.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Solution\Solution.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Windows.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\BaseCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\StatusBar.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Solution\" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Community.VisualStudio.Toolkit;
+using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Shell;
@@ -23,7 +24,7 @@ namespace TestExtension
             await Task.Delay(2000);
 
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-            DTE2 dte = await VS.GetDTEAsync();
+            DTE2 dte = await VS.GetServiceAsync<DTE, DTE2>();
             return new RunnerWindowControl(dte);
         }
 

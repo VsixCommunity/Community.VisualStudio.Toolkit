@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Text.Operations;
 using Microsoft.VisualStudio.TextManager.Interop;
+using Task = System.Threading.Tasks.Task;
 
 namespace Microsoft.VisualStudio.Text
 {
@@ -10,6 +14,15 @@ namespace Microsoft.VisualStudio.Text
     /// </summary>
     public static class ITextBufferExtensions
     {
+        /// <summary>
+        /// Opens an undo context with the specified name. Remember to call <c>Complete()</c> and <c>Dispose()</c> to commit the transaction.
+        /// </summary>
+        public static async Task<ITextUndoTransaction> OpenUndoContextAsync(this ITextBuffer buffer, string name)
+        {
+            ITextUndoHistoryRegistry? registry = await VS.GetMefServiceAsync<ITextUndoHistoryRegistry>();
+            return registry.GetHistory(buffer).CreateTransaction(name);
+        }
+
         /// <summary>
         /// Gets the file name on disk associated with the buffer.
         /// </summary>

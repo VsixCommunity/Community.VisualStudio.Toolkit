@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using EnvDTE;
-using EnvDTE80;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -22,7 +20,12 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Provides top-level manipulation or maintenance of the solution.
         /// </summary>
-        public Task<IVsSolution> GetSolutionAsync() => VS.GetRequiredServiceAsync<SVsSolution, IVsSolution>();
+        public Task<IVsSolution> GetSolutionServiceAsync() => VS.GetRequiredServiceAsync<SVsSolution, IVsSolution>();
+
+        /// <summary>
+        /// A service for handling solution builds.
+        /// </summary>
+        public Task<IVsSolutionBuildManager> GetSolutionBuildManagerAsync() => VS.GetRequiredServiceAsync<SVsSolutionBuildManager, IVsSolutionBuildManager>();
 
         /// <summary>
         /// Opens a Solution or Project using the standard open dialog boxes.
@@ -72,7 +75,7 @@ namespace Community.VisualStudio.Toolkit
                         results.Add(hierItem);
                     }
                 }
-                else if (await GetSolutionAsync() is IVsHierarchy solution)
+                else if (await GetSolutionServiceAsync() is IVsHierarchy solution)
                 {
                     IVsHierarchyItem? sol = await solution.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
                     if (sol != null)
@@ -123,6 +126,17 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// Get the current solution.
+        /// </summary>
+        public async Task<SolutionItem?> GetCurrentSolutionAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            var solution = (IVsHierarchy)await GetSolutionServiceAsync();
+            IVsHierarchyItem? hierItem = await solution.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
+            return SolutionItem.FromHierarchyItem(hierItem);
+        }
+
+        /// <summary>
         /// Gets the currently selected node.
         /// </summary>
         public async Task<SolutionItem?> GetActiveProjectNodeAsync()
@@ -144,7 +158,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<IEnumerable<IVsHierarchy>> GetAllProjectHierarchiesAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsSolution? sol = await GetSolutionAsync();
+            IVsSolution? sol = await GetSolutionServiceAsync();
             return sol.GetAllProjectHierarchys();
         }
 
@@ -154,7 +168,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<IEnumerable<SolutionItem>> GetAllProjectNodesAsync(bool includeSolutionFolders = false)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsSolution solution = await GetSolutionAsync();
+            IVsSolution solution = await GetSolutionServiceAsync();
             IEnumerable<IVsHierarchy>? hierarchies = solution.GetAllProjectHierarchys();
 
             List<SolutionItem> list = new();
@@ -177,47 +191,67 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Gets all projects int he solution
-        /// </summary>
-        public async Task<IEnumerable<Project>> GetAllProjectsInSolutionAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsSolution solution = await GetSolutionAsync();
-            return solution.GetAllProjects();
-        }
-
-        /// <summary>
-        /// Gets the directory of the currently loaded solution.
-        /// </summary>
-        public async Task<string?> GetSolutionDirectoryAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            IVsSolution solution = await GetSolutionAsync();
-            return solution.GetDirectory();
-        }
-
-        /// <summary>
-        /// Gets the file path of the currently loaded solution file (.sln).
-        /// </summary>
-        public async Task<string?> GetSolutionFilePathAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            IVsSolution solution = await GetSolutionAsync();
-            return solution.GetFilePath();
-        }
-
-        /// <summary>
-        /// Builds the solution asynchronously
+        /// Cancels the solution build asynchronously
         /// </summary>
         /// <returns>Returns 'true' if successfull</returns>
-        public async Task<bool> BuildAsync()
+        public async Task<bool> CancelBuildAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsSolutionBuildManager svc = await GetSolutionBuildManagerAsync();
+            svc.CanCancelUpdateSolutionConfiguration(out var canCancel);
 
-            DTE2 dte = await VS.GetDTEAsync();
-            return await dte.Solution.BuildAsync();
+            if (canCancel == 0)
+            {
+                return false;
+            }
+
+            return svc.CancelUpdateSolutionConfiguration() == VSConstants.S_OK;
         }
+
+        /// <summary>
+        /// Builds the solution or project if one is specified.
+        /// </summary>
+        public async Task<bool> BuildAsync(BuildAction action, SolutionItem? project = null)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsSolutionBuildManager svc = await GetSolutionBuildManagerAsync();
+
+            VSSOLNBUILDUPDATEFLAGS buildFlags = action switch
+            {
+                BuildAction.Build => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_BUILD,
+                BuildAction.Rebuild => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_BUILD | VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_CLEAN,
+                BuildAction.Clean => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_CLEAN,
+                _ => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_BUILD,
+            };
+
+            var query = (uint)VSSOLNBUILDQUERYRESULTS.VSSBQR_CONTDEPLOYONERROR_QUERY_NO;
+            int hr;
+
+            if (project?.Type == NodeType.Project)
+            {
+                // Build Project
+                hr = svc.StartSimpleUpdateProjectConfiguration(project.Hierarchy, null, null, (uint)buildFlags, query, 0);
+            }
+            else
+            {
+                // Build solution
+                hr = svc.StartSimpleUpdateSolutionConfiguration((uint)buildFlags, query, 0);
+            }
+
+            return hr == VSConstants.S_OK;
+        }
+    }
+
+    /// <summary>
+    /// The types of build actions for a solution- or project build.
+    /// </summary>
+    public enum BuildAction
+    {
+        /// <summary>Builds the solution/project.</summary>
+        Build,
+        /// <summary>Rebuilds the solution/project.</summary>
+        Rebuild,
+        /// <summary>Cleans the solution/project.</summary>
+        Clean
     }
 }

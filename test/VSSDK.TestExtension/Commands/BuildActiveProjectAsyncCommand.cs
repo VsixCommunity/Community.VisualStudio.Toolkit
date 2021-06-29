@@ -15,7 +15,7 @@ namespace TestExtension.Commands
             var activeProject = await VS.Solution.GetActiveProjectNodeAsync();
             if (activeProject != null)
             {
-                var buildResult = await activeProject.ToProject().BuildAsync();
+                var buildResult = await VS.Solution.BuildAsync(BuildAction.Build, activeProject);
                 if (buildResult)
                     VS.Notifications.ShowMessage("Build Result", $"The '{activeProject.Name}' project was built successfully!");
                 else

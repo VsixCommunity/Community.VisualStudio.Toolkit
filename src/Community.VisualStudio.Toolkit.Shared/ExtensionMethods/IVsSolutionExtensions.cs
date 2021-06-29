@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using EnvDTE;
 
 namespace Microsoft.VisualStudio.Shell.Interop
 {
@@ -31,34 +30,6 @@ namespace Microsoft.VisualStudio.Shell.Interop
 
             solution.GetProperty((int)__VSPROPID.VSPROPID_IsSolutionOpening, out var value);
             return value is bool isOpening && isOpening;
-        }
-
-        /// <summary>
-        /// Retrieves an array of all projects in the solution.
-        /// </summary>
-        public static IEnumerable<Project> GetAllProjects(this IVsSolution solution)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            return GetAllProjects(solution, __VSENUMPROJFLAGS.EPF_LOADEDINSOLUTION);
-        }
-
-        /// <summary>
-        /// Retrieves an array of all projects in the solution.
-        /// </summary>
-        public static IEnumerable<Project> GetAllProjects(this IVsSolution solution, __VSENUMPROJFLAGS flags)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            foreach (IVsHierarchy hier in GetAllProjectHierarchys(solution, flags))
-            {
-                var project = hier.ToProject();
-
-                if (project != null)
-                {
-                    yield return project;
-                }
-            }
         }
 
         /// <summary>
@@ -97,26 +68,6 @@ namespace Microsoft.VisualStudio.Shell.Interop
                     yield return hierarchy[0];
                 }
             }
-        }
-
-        /// <summary>
-        /// Gets the directory of the currently loaded solution.
-        /// </summary>
-        public static string? GetDirectory(this IVsSolution solution)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            ErrorHandler.ThrowOnFailure(solution.GetSolutionInfo(out var dir, out _, out _));
-            return dir;
-        }
-
-        /// <summary>
-        /// Gets the file path of the .sln file.
-        /// </summary>
-        public static string? GetFilePath(this IVsSolution solution)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            ErrorHandler.ThrowOnFailure(solution.GetSolutionInfo(out _, out var file, out _));
-            return file;
         }
     }
 }

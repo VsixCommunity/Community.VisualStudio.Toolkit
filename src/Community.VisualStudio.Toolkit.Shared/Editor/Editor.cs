@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
-using EnvDTE;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text.Editor;
@@ -15,21 +13,12 @@ namespace Community.VisualStudio.Toolkit
         internal Editor()
         { }
 
-        /// <summary>Gets an instance of <see cref="TextDocument"/> from the currently active document.</summary>
-        public async Task<TextDocument?> GetActiveTextDocumentAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            EnvDTE80.DTE2 dte = await VS.GetDTEAsync();
-            return dte.ActiveDocument?.Object("TextDocument") as TextDocument;
-        }
-
         /// <summary>Gets the WPF text view from the currently active document.</summary>
         public async Task<IWpfTextView?> GetCurrentWpfTextViewAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IComponentModel2 compService = await VS.GetRequiredServiceAsync<SComponentModel, IComponentModel2>();
-            IVsEditorAdaptersFactoryService? editorAdapter = compService.GetService<IVsEditorAdaptersFactoryService>();
+            IVsEditorAdaptersFactoryService? editorAdapter = await VS.GetMefServiceAsync<IVsEditorAdaptersFactoryService>();
             IVsTextView viewAdapter = await GetCurrentNativeTextViewAsync();
 
             return editorAdapter?.GetWpfTextView(viewAdapter);
