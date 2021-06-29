@@ -54,14 +54,22 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public event EventHandler<IVsHierarchy>? ProjectCleanDone;
 
-        int IVsUpdateSolutionEvents.UpdateSolution_Begin(ref int pfCancelUpdate) => VSConstants.S_OK;
+        int IVsUpdateSolutionEvents.UpdateSolution_Begin(ref int pfCancelUpdate)
+        {
+            SolutionBuildStarted?.Invoke(this, EventArgs.Empty);
+            return VSConstants.S_OK;
+        }
         int IVsUpdateSolutionEvents2.UpdateSolution_Begin(ref int pfCancelUpdate)
         {
             SolutionBuildStarted?.Invoke(this, EventArgs.Empty);
             return VSConstants.S_OK;
         }
 
-        int IVsUpdateSolutionEvents.UpdateSolution_Done(int fSucceeded, int fModified, int fCancelCommand) => VSConstants.S_OK;
+        int IVsUpdateSolutionEvents.UpdateSolution_Done(int fSucceeded, int fModified, int fCancelCommand)
+        {
+            SolutionBuildDone?.Invoke(this, fSucceeded == 0);
+            return VSConstants.S_OK;
+        }
         int IVsUpdateSolutionEvents2.UpdateSolution_Done(int fSucceeded, int fModified, int fCancelCommand)
         {
             SolutionBuildDone?.Invoke(this, fSucceeded == 0);
@@ -69,12 +77,13 @@ namespace Community.VisualStudio.Toolkit
         }
 
         int IVsUpdateSolutionEvents.UpdateSolution_StartUpdate(ref int pfCancelUpdate) => VSConstants.S_OK;
-        int IVsUpdateSolutionEvents2.UpdateSolution_StartUpdate(ref int pfCancelUpdate)
+        int IVsUpdateSolutionEvents2.UpdateSolution_StartUpdate(ref int pfCancelUpdate) => VSConstants.S_OK;
+
+        int IVsUpdateSolutionEvents2.UpdateSolution_Cancel()
         {
+            SolutionBuildCancelled?.Invoke(this, EventArgs.Empty);
             return VSConstants.S_OK;
         }
-
-        int IVsUpdateSolutionEvents2.UpdateSolution_Cancel() => VSConstants.S_OK;
         int IVsUpdateSolutionEvents.UpdateSolution_Cancel()
         {
             SolutionBuildCancelled?.Invoke(this, EventArgs.Empty);
@@ -82,10 +91,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         int IVsUpdateSolutionEvents.OnActiveProjectCfgChange(IVsHierarchy pIVsHierarchy) => VSConstants.S_OK;
-        int IVsUpdateSolutionEvents2.OnActiveProjectCfgChange(IVsHierarchy pIVsHierarchy)
-        {
-            return VSConstants.S_OK;
-        }
+        int IVsUpdateSolutionEvents2.OnActiveProjectCfgChange(IVsHierarchy pIVsHierarchy) => VSConstants.S_OK;
 
         int IVsUpdateSolutionEvents2.UpdateProjectCfg_Begin(IVsHierarchy pHierProj, IVsCfg pCfgProj, IVsCfg pCfgSln, uint dwAction, ref int pfCancel)
         {
