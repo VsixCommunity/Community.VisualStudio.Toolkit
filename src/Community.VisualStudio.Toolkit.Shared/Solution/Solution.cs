@@ -22,10 +22,6 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public Task<IVsSolution> GetSolutionServiceAsync() => VS.GetRequiredServiceAsync<SVsSolution, IVsSolution>();
 
-        /// <summary>
-        /// A service for handling solution builds.
-        /// </summary>
-        public Task<IVsSolutionBuildManager> GetSolutionBuildManagerAsync() => VS.GetRequiredServiceAsync<SVsSolutionBuildManager, IVsSolutionBuildManager>();
 
         /// <summary>
         /// Opens a Solution or Project using the standard open dialog boxes.
@@ -189,68 +185,5 @@ namespace Community.VisualStudio.Toolkit
 
             return list;
         }
-
-        /// <summary>
-        /// Cancels the solution build asynchronously
-        /// </summary>
-        /// <returns>Returns 'true' if successfull</returns>
-        public async Task<bool> CancelBuildAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsSolutionBuildManager svc = await GetSolutionBuildManagerAsync();
-            svc.CanCancelUpdateSolutionConfiguration(out var canCancel);
-
-            if (canCancel == 0)
-            {
-                return false;
-            }
-
-            return svc.CancelUpdateSolutionConfiguration() == VSConstants.S_OK;
-        }
-
-        /// <summary>
-        /// Builds the solution or project if one is specified.
-        /// </summary>
-        public async Task<bool> BuildAsync(BuildAction action, SolutionItem? project = null)
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsSolutionBuildManager svc = await GetSolutionBuildManagerAsync();
-
-            VSSOLNBUILDUPDATEFLAGS buildFlags = action switch
-            {
-                BuildAction.Build => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_BUILD,
-                BuildAction.Rebuild => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_BUILD | VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_FORCE_UPDATE,
-                BuildAction.Clean => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_CLEAN,
-                _ => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_BUILD,
-            };
-
-            int hr;
-
-            if (project?.Type == NodeType.Project)
-            {
-                // Build Project
-                hr = svc.StartSimpleUpdateProjectConfiguration(project._hierarchy, null, null, (uint)buildFlags, 0, 0);
-            }
-            else
-            {
-                // Build solution
-                hr = svc.StartSimpleUpdateSolutionConfiguration((uint)buildFlags, 0, 0);
-            }
-
-            return hr == VSConstants.S_OK;
-        }
-    }
-
-    /// <summary>
-    /// The types of build actions for a solution- or project build.
-    /// </summary>
-    public enum BuildAction
-    {
-        /// <summary>Builds the solution/project.</summary>
-        Build,
-        /// <summary>Rebuilds the solution/project.</summary>
-        Rebuild,
-        /// <summary>Cleans the solution/project.</summary>
-        Clean
     }
 }

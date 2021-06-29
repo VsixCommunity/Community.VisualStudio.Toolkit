@@ -11,6 +11,9 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public static class VS
     {
+        /// <summary>Handles building of solutions and projects.</summary>
+        public static Build Build => new();
+
         /// <summary>A collection of services related to the command system.</summary>
         public static Commands Commands => new();
 

@@ -4,6 +4,14 @@ using e = Microsoft.VisualStudio.Shell.Events.SolutionEvents;
 
 namespace Community.VisualStudio.Toolkit
 {
+    public partial class Events
+    {
+        /// <summary>
+        /// Events related to the editor documents.
+        /// </summary>
+        public SolutionEvents SolutionEvents => new();
+    }
+
     /// <summary>
     /// Events related to the editor documents.
     /// </summary>
