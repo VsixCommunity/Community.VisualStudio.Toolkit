@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Threading;
@@ -11,13 +10,13 @@ namespace Community.VisualStudio.Toolkit
     /// <summary>
     /// An API wrapper that makes it easy to work with the status bar.
     /// </summary>
-    public partial class Notifications
+    public class StatusBar
     {
         /// <summary>Provides access to the environment's status bar.</summary>
         public Task<IVsStatusbar> GetStatusBarAsync() => VS.GetRequiredServiceAsync<SVsStatusbar, IVsStatusbar>();
 
         /// <summary>Gets the current text from the status bar.</summary>
-        public async Task<string?> GetStatusBarTextAsync()
+        public async Task<string?> GetMessageAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -36,7 +35,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>Sets the text in the status bar.</summary>
-        public async Task SetStatusBarTextAsync(string text)
+        public async Task ShowMessageAsync(string text)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -62,7 +61,7 @@ namespace Community.VisualStudio.Toolkit
         /// <param name="text">The text to display in the status bar.</param>
         /// <param name="currentStep">The current step number starting at 1.</param>
         /// <param name="numberOfSteps">The total number of steps to completion.</param>
-        public async Task ShowStatusBarProgressAsync(string text, int currentStep, int numberOfSteps)
+        public async Task ShowProgressAsync(string text, int currentStep, int numberOfSteps)
         {
             if (currentStep == 0)
             {
@@ -95,7 +94,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>Clears all text from the status bar.</summary>
-        public async Task ClearStatusBarAsync()
+        public async Task ClearAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -114,7 +113,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>Starts the animation on the status bar.</summary>
-        public async Task StartStatusBarAnimationAsync(StatusAnimation animation)
+        public async Task StartAnimationAsync(StatusAnimation animation)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -134,7 +133,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>Ends the animation on the status bar.</summary>
-        public async Task EndStatusBarAnimationAsync(StatusAnimation animation)
+        public async Task EndAnimationAsync(StatusAnimation animation)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 

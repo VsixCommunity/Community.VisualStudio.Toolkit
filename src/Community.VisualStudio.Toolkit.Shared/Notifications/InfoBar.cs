@@ -6,8 +6,15 @@ using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Community.VisualStudio.Toolkit
 {
-    public partial class Notifications
+    /// <summary>
+    /// Creates InfoBar controls for use on documents and tool windows.
+    /// </summary>
+    public class InfoBarFactory
     {
+        /// <summary>The <see cref="InfoBar"/> is often referred to as the 'yellow' or 'gold' bar.</summary>
+        /// <returns>Cast return object to <see cref="IVsInfoBarUIFactory"/>.</returns>
+        public Task<object> GetInfoBarUIFactoryAsync() => VS.GetRequiredServiceAsync<SVsInfoBarUIFactory, object>();
+
         /// <summary>
         /// Creates a new InfoBar in any tool- or document window.
         /// </summary>
@@ -49,7 +56,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<bool> TryShowInfoBarUIAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var infoBarUIFactory = (IVsInfoBarUIFactory)await VS.Notifications.GetInfoBarUIFactoryAsync();
+            var infoBarUIFactory = (IVsInfoBarUIFactory)await VS.GetRequiredServiceAsync<SVsInfoBarUIFactory, object>();
 
             _uiElement = infoBarUIFactory.CreateInfoBar(_model);
             _uiElement.Advise(this, out _);

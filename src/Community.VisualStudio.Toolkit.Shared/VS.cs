@@ -26,6 +26,12 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>A collection of events.</summary>
         public static Events Events => new();
 
+        /// <summary>Creates InfoBar controls for use on documents and tool windows.</summary>
+        public static InfoBarFactory InfoBar => new();
+
+        /// <summary>Shows message boxes.</summary>
+        public static MessageBox MessageBox => new();
+
         /// <summary>A collection of services related to notifying the users.</summary>
         public static Notifications Notifications => new();
 
@@ -37,6 +43,9 @@ namespace Community.VisualStudio.Toolkit
 
         /// <summary>A collection of services related to solutions.</summary>
         public static Solution Solution => new();
+
+        /// <summary>An API wrapper that makes it easy to work with the status bar.</summary>
+        public static StatusBar StatusBar => new();
 
         /// <summary>A collection of services related to windows.</summary>
         public static Windows Windows => new();

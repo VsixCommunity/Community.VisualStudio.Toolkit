@@ -29,7 +29,7 @@ namespace TestExtension
         {
             var items = await VS.Solution.GetSelectedNodesAsync();
             var item = items.FirstOrDefault();
-
+            
             await VS.Build.BuildProjectAsync(item);
 
             //var removed = await item.TryRemoveAsync();
