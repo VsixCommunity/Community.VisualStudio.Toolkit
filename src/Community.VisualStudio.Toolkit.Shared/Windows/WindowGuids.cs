@@ -7,16 +7,26 @@
     {
         // TODO: Get guids for the new git windows
 
-        /// <summary>
-        /// The main document window where files are opened into.
-        /// </summary>
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+        public const string MainWindow = "{9DDABE98-1D02-11D3-89A1-00C04F688DDE}";
+
         public const string DocumentWell = "DocumentWell";
+
+        public const string CallStack = "{0504FF91-9D61-11D0-A794-00A0C9110051}";
+
+        public const string Locals = "{4A18F9D0-B838-11D0-93EB-00A0C90F2734}";
+
+        public const string Watch = "{90243340-BD7A-11D0-93EF-00A0C90F2734}";
+
+        public const string Properties = "{EEFA5220-E298-11D0-8F78-00A0C9110057}";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
         /// <summary>
         /// This tool window provides a list of components that can be added to a project,
         /// typically through the Windows Forms designer.
         /// </summary>
         public const string Toolbox = "{B1E99781-AB81-11D0-B683-00AA00A3EE26}";
+
 
         /// <summary>
         /// This tool window provides a list of properties associated with the currently 
