@@ -85,7 +85,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Gets the native text view from the currently active document.</summary>
         public async Task<IVsTextView?> GetNativeTextViewAsync(string file)
         {
-            WindowFrame? frame = await FindFrameAsync(file);
+            WindowFrame? frame = await VS.Windows.FindWindowAsync(file);
             return frame != null ? VsShellUtilities.GetTextView(frame) : null;
         }
 
@@ -97,18 +97,6 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             return VsShellUtilities.IsDocumentOpen(ServiceProvider.GlobalProvider, fileName, Guid.Empty, out _, out _, out _);
-        }
-
-        /// <summary>
-        /// Find the open window frame hosting the specified file.
-        /// </summary>
-        /// <returns><see langword="null"/> if the file isn't open.</returns>
-        public async Task<WindowFrame?> FindFrameAsync(string file)
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            VsShellUtilities.IsDocumentOpen(ServiceProvider.GlobalProvider, file, Guid.Empty, out _, out _, out IVsWindowFrame? frame);
-
-            return ToWindowFrame(frame);
         }
 
         /// <summary>

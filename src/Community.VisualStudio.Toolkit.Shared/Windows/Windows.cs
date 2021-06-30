@@ -5,7 +5,6 @@ using Community.VisualStudio.Toolkit.Shared.ExtensionMethods;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace Community.VisualStudio.Toolkit
@@ -95,7 +94,24 @@ namespace Community.VisualStudio.Toolkit
 
             if (selection is IVsWindowFrame frame)
             {
-                return new WindowFrame(frame);  
+                return new WindowFrame(frame);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Find the open window frame hosting the specified file.
+        /// </summary>
+        /// <returns><see langword="null"/> if the file isn't open.</returns>
+        public async Task<WindowFrame?> FindWindowAsync(string file)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            VsShellUtilities.IsDocumentOpen(ServiceProvider.GlobalProvider, file, Guid.Empty, out _, out _, out IVsWindowFrame? frame);
+
+            if (frame != null)
+            {
+                return new WindowFrame(frame);
             }
 
             return null;
@@ -106,7 +122,7 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         /// <param name="toolWindowGuid">Find known tool window guids in the <see cref="WindowGuids"/> class.</param>
         /// <returns>An instance of an <see cref="IVsWindowFrame"/> or <see langword="null"/>.</returns>
-        public async Task<WindowFrame?> FindToolWindowAsync(Guid toolWindowGuid)
+        public async Task<WindowFrame?> FindWindowAsync(Guid toolWindowGuid)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -128,7 +144,7 @@ namespace Community.VisualStudio.Toolkit
         /// <returns>An instance of an <see cref="IVsWindowFrame"/> or <see langword="null"/>.</returns>
         public async Task<WindowFrame?> FindOrShowToolWindowAsync(Guid toolWindowGuid)
         {
-            return await FindToolWindowAsync(toolWindowGuid) ?? await ShowToolWindowAsync(toolWindowGuid);
+            return await FindWindowAsync(toolWindowGuid) ?? await ShowToolWindowAsync(toolWindowGuid);
         }
 
         /// <summary>
