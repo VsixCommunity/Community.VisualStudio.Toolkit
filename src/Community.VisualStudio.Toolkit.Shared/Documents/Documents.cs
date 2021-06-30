@@ -27,22 +27,24 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Gets the text document from an open file.
         /// </summary>
-        public async Task<ITextDocument?> GetOpenDocumentAsync(string file)
+        /// <returns><see langword="null"/> if a document matching the specified file isn't open.</returns>
+        public async Task<ITextDocument?> GetDocumentAsync(string file)
         {
-            WindowFrame? frame = await FindFrameAsync(file);
+            IVsTextView? nativeView = await GetNativeTextViewAsync(file);
 
-            if (frame != null)
+            if (nativeView != null)
             {
                 IVsEditorAdaptersFactoryService? editorAdapter = await VS.GetMefServiceAsync<IVsEditorAdaptersFactoryService>();
-                IVsTextView? viewAdapter = VsShellUtilities.GetTextView(frame);
-                IWpfTextView? view = editorAdapter?.GetWpfTextView(viewAdapter);
+                IWpfTextView? view = editorAdapter?.GetWpfTextView(nativeView);
                 return view?.TextBuffer?.GetTextDocument();
             }
 
             return null;
         }
 
-        /// <summary>Gets the WPF text view from the currently active document.</summary>
+        /// <summary>
+        /// Gets the WPF text view from the currently active document.
+        /// </summary>
         public async Task<IWpfTextView?> GetCurrentTextViewAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -53,6 +55,24 @@ namespace Community.VisualStudio.Toolkit
             return editorAdapter?.GetWpfTextView(viewAdapter);
         }
 
+        /// <summary>
+        /// Gets the open WPF text view matching the specified file.
+        /// </summary>
+        public async Task<IWpfTextView?> GetTextViewAsync(string file)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            IVsEditorAdaptersFactoryService? editorAdapter = await VS.GetMefServiceAsync<IVsEditorAdaptersFactoryService>();
+            IVsTextView? viewAdapter = await GetNativeTextViewAsync(file);
+
+            if (viewAdapter != null)
+            {
+                return editorAdapter?.GetWpfTextView(viewAdapter);
+            }
+
+            return null;
+        }
+
         /// <summary>Gets the native text view from the currently active document.</summary>
         public async Task<IVsTextView> GetCurrentNativeTextViewAsync()
         {
@@ -60,6 +80,13 @@ namespace Community.VisualStudio.Toolkit
             ErrorHandler.ThrowOnFailure(textManager.GetActiveView(1, null, out IVsTextView activeView));
 
             return activeView;
+        }
+
+        /// <summary>Gets the native text view from the currently active document.</summary>
+        public async Task<IVsTextView?> GetNativeTextViewAsync(string file)
+        {
+            WindowFrame? frame = await FindFrameAsync(file);
+            return frame != null ? VsShellUtilities.GetTextView(frame) : null;
         }
 
         /// <summary>

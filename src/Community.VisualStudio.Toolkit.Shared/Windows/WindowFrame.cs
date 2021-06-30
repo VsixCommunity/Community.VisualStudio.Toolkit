@@ -63,7 +63,20 @@ namespace Community.VisualStudio.Toolkit
                 return guid;
             }
         }
-        
+
+        /// <summary>
+        /// The editor guid associated with this frame.
+        /// </summary>
+        public Guid Editor
+        {
+            get
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _frame.GetGuidProperty((int)__VSFPROPID.VSFPROPID_guidEditorType, out Guid guid);
+                return guid;
+            }
+        }
+
         /// <summary>
         /// Event raised when the show state of the window frame changes.
         /// </summary>
@@ -162,7 +175,7 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             Guid guid = Guid.Empty;
-            return ((IVsWindowFrame)this).SetFramePos(VSSETFRAMEPOS.SFP_fMove, ref guid,rec.Left, rec.Top, rec.Width, rec.Height) == VSConstants.S_OK;
+            return ((IVsWindowFrame)this).SetFramePos(VSSETFRAMEPOS.SFP_fMove, ref guid, rec.Left, rec.Top, rec.Width, rec.Height) == VSConstants.S_OK;
         }
 
         /// <summary>
@@ -178,7 +191,7 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
 
             var pdwSFP = new VSSETFRAMEPOS[1];
-            ErrorHandler.ThrowOnFailure(((IVsWindowFrame)this).GetFramePos(pdwSFP, out _,out var left, out var top, out var width, out var height));
+            ErrorHandler.ThrowOnFailure(((IVsWindowFrame)this).GetFramePos(pdwSFP, out _, out var left, out var top, out var width, out var height));
             position = new Rectangle(left, top, width, height);
 
             return pdwSFP[0] switch
