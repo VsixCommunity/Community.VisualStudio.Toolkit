@@ -20,8 +20,8 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>A collection of services related to the debugger.</summary>
         public static Debugger Debugger => new();
 
-        /// <summary>A collection of services related to the editor.</summary>
-        public static Editor Editor => new();
+        /// <summary>Contains helper methods for dealing with documents.</summary>
+        public static Documents Documents => new(); 
 
         /// <summary>A collection of events.</summary>
         public static Events Events => new();

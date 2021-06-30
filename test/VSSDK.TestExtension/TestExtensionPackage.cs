@@ -28,7 +28,7 @@ namespace VSSDK.TestExtension
             RunnerWindow.Initialize(this);
             ThemeWindow.Initialize(this);
             MultiInstanceWindow.Initialize(this);
-            
+
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
             // Commands

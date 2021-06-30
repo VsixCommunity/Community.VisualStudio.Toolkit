@@ -11,13 +11,14 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Build\Build.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandAttribute.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Editor\WpfTextViewCreationListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Documents\Documents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MEF\WpfTextViewCreationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Build\BuildEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\ShellEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Debugger\DebuggerEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\SelectionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\SolutionEvents.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Events\DocumentEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Documents\DocumentEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ExceptionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ImageMonikerExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsHierarchyExtensions.cs" />
@@ -55,7 +56,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Debugger\Debugger.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Editor\Editor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\Notifications.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Shell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\Solution.cs" />

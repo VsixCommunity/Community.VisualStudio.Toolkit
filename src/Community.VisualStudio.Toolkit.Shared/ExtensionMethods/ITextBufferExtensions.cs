@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text.Operations;
 using Microsoft.VisualStudio.TextManager.Interop;
-using Task = System.Threading.Tasks.Task;
 
 namespace Microsoft.VisualStudio.Text
 {
@@ -21,6 +20,19 @@ namespace Microsoft.VisualStudio.Text
         {
             ITextUndoHistoryRegistry? registry = await VS.GetMefServiceAsync<ITextUndoHistoryRegistry>();
             return registry.GetHistory(buffer).CreateTransaction(name);
+        }
+
+        /// <summary>
+        /// Gets the text document.
+        /// </summary>
+        public static ITextDocument? GetTextDocument(this ITextBuffer buffer)
+        {
+            if (buffer.Properties.TryGetProperty<ITextDocument>(typeof(ITextDocument), out ITextDocument? document))
+            {
+                return document;
+            }
+
+            return null;
         }
 
         /// <summary>

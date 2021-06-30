@@ -86,7 +86,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Gets the current active window frame object.
         /// </summary>
-        public async Task<WindowFrame?> GetActiveWindowAsync()
+        public async Task<WindowFrame?> GetCurrentWindowAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -106,7 +106,7 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         /// <param name="toolWindowGuid">Find known tool window guids in the <see cref="WindowGuids"/> class.</param>
         /// <returns>An instance of an <see cref="IVsWindowFrame"/> or <see langword="null"/>.</returns>
-        public async Task<WindowFrame?> FindOrShowToolWindowAsync(Guid toolWindowGuid)
+        public async Task<WindowFrame?> FindToolWindowAsync(Guid toolWindowGuid)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -117,8 +117,18 @@ namespace Community.VisualStudio.Toolkit
             {
                 return new WindowFrame(frame);
             }
-            
-            return await ShowToolWindowAsync(toolWindowGuid);
+
+            return null;
+        }
+
+        /// <summary>
+        /// Finds tool windows matching the specified guid.
+        /// </summary>
+        /// <param name="toolWindowGuid">Find known tool window guids in the <see cref="WindowGuids"/> class.</param>
+        /// <returns>An instance of an <see cref="IVsWindowFrame"/> or <see langword="null"/>.</returns>
+        public async Task<WindowFrame?> FindOrShowToolWindowAsync(Guid toolWindowGuid)
+        {
+            return await FindToolWindowAsync(toolWindowGuid) ?? await ShowToolWindowAsync(toolWindowGuid);
         }
 
         /// <summary>

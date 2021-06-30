@@ -5,8 +5,6 @@
     /// </summary>
     public class WindowGuids
     {
-        // TODO: Get guids for the new git windows
-
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string MainWindow = "{9DDABE98-1D02-11D3-89A1-00C04F688DDE}";
 
@@ -20,6 +18,12 @@
 
         public const string Properties = "{EEFA5220-E298-11D0-8F78-00A0C9110057}";
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+
+        /// <summary>The Git Changes window introduced in Visual Studio 2019.</summary>
+        public const string GitChanges = "{1C64B9C2-E352-428E-A56D-0ACE190B99A6}";
+
+        /// <summary>The Git Repository window introduced in Visual Studio 2019.</summary>
+        public const string GitRepository = "{1C4FEEAA-4718-4AA9-859D-94CE25D182BA}";
 
         /// <summary>
         /// This tool window provides a list of components that can be added to a project,

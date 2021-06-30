@@ -5,6 +5,14 @@ using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Community.VisualStudio.Toolkit
 {
+    public partial class Events
+    {
+        /// <summary>
+        /// Events related to the editor documents.
+        /// </summary>
+        public DocumentEvents DocumentEvents => new();
+    }
+
     /// <summary>
     /// Events related to the editor documents.
     /// </summary>
