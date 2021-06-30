@@ -28,7 +28,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             _item = item;
-
+            
             _hierarchy = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedHierarchy : item.HierarchyIdentity.Hierarchy;
             _itemId = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedItemID : item.HierarchyIdentity.ItemID;
 
@@ -76,9 +76,9 @@ namespace Community.VisualStudio.Toolkit
         /// Checks what kind the project is.
         /// </summary>
         /// <param name="typeGuid">Use the <see cref="ProjectTypes"/> collection for known guids.</param>
-        public bool IsKind(string typeGuid)
+        public async Task<bool> IsKindAsync(string typeGuid)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             if (Type == NodeType.Project || Type == NodeType.VirtualProject)
             {
@@ -102,7 +102,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 var guid = new Guid(ProjectTypes.SOLUTION_FOLDER_OTHER);
                 Guid iidProject = typeof(IVsHierarchy).GUID;
-                IVsSolution sol = await VS.Services.GetSolutionServiceAsync();
+                IVsSolution sol = await VS.Services.GetSolutionAsync();
 
                 foreach (var file in files)
                 {
@@ -141,7 +141,7 @@ namespace Community.VisualStudio.Toolkit
 
                         if (Type == NodeType.PhysicalFile)
                         {
-                            item.TrySetAttribute("DependentUpon", Name);
+                            await item.TrySetAttributeAsync("DependentUpon", Name);
                         }
                     }
                 }
@@ -163,9 +163,10 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Tries to set an attribute in the project file for the item.
         /// </summary>
-        public bool TrySetAttribute(string name, string value)
+        public async Task<bool> TrySetAttributeAsync(string name, string value)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             if (_hierarchy is IVsBuildPropertyStorage storage)
             {
                 if (Type == NodeType.Project || Type == NodeType.VirtualProject || Type == NodeType.MiscProject)
@@ -186,26 +187,26 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Tries to retrieve an attribute value from the project file for the item.
         /// </summary>
-        public bool TryGetAttribute(string name, out string? value)
+        /// <returns><see langword="null"/> if the attribute doesn't exist.</returns>
+        public async Task<string?> GetAttributeAsync(string name)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            value = null;
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             if (_hierarchy is IVsBuildPropertyStorage storage)
             {
                 if (Type == NodeType.Project || Type == NodeType.VirtualProject || Type == NodeType.MiscProject)
                 {
-                    storage.GetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, out value);
-                    return true;
+                    storage.GetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, out var value);
+                    return value;
                 }
                 else if (Type == NodeType.PhysicalFile || Type == NodeType.PhysicalFolder)
                 {
-                    storage.GetItemAttribute(_itemId, name, out value);
-                    return true;
+                    storage.GetItemAttribute(_itemId, name, out var value);
+                    return value;
                 }
             }
 
-            return false;
+            return null;
         }
 
         /// <summary>

@@ -59,7 +59,7 @@ namespace Community.VisualStudio.Toolkit
                         results.Add(hierItem);
                     }
                 }
-                else if (await VS.Services.GetSolutionServiceAsync() is IVsHierarchy solution)
+                else if (await VS.Services.GetSolutionAsync() is IVsHierarchy solution)
                 {
                     IVsHierarchyItem? sol = await solution.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
                     if (sol != null)

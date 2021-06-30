@@ -25,7 +25,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Provides top-level manipulation or maintenance of the solution.
         /// </summary>
-        public Task<IVsSolution> GetSolutionServiceAsync() => VS.GetRequiredServiceAsync<SVsSolution, IVsSolution>();
+        public Task<IVsSolution> GetSolutionAsync() => VS.GetRequiredServiceAsync<SVsSolution, IVsSolution>();
 
         /// <summary>
         /// Opens a Solution or Project using the standard open dialog boxes.

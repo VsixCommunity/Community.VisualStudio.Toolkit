@@ -21,15 +21,15 @@ namespace Community.VisualStudio.Toolkit
         public async Task<SolutionItem?> GetCurrentSolutionAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var solution = (IVsHierarchy)await VS.Services.GetSolutionServiceAsync();
+            var solution = (IVsHierarchy)await VS.Services.GetSolutionAsync();
             IVsHierarchyItem? hierItem = await solution.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
             return SolutionItem.FromHierarchyItem(hierItem);
         }
 
         /// <summary>
-        /// Gets the currently selected node.
+        /// Gets the active solution item.
         /// </summary>
-        public async Task<SolutionItem?> GetActiveProjectItemAsync()
+        public async Task<SolutionItem?> GetActiveSolutionItemAsync()
         {
             IEnumerable<IVsHierarchyItem>? hierarchies = await VS.Selection.GetSelectedHierarchiesAsync();
             IVsHierarchyItem? hierarchy = hierarchies.FirstOrDefault();
@@ -43,22 +43,37 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// Gets the active project.
+        /// </summary>
+        public async Task<SolutionItem?> GetActiveProjectAsync()
+        {
+            SolutionItem? item = await GetActiveSolutionItemAsync();
+
+            if (item?.Type == NodeType.Project)
+            {
+                return item;
+            }
+
+            return item?.FindParent(NodeType.Project);
+        }
+
+        /// <summary>
         /// Get all projects in the solution.
         /// </summary>
         public async Task<IEnumerable<IVsHierarchy>> GetAllProjectHierarchiesAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsSolution? sol = await VS.Services.GetSolutionServiceAsync();
+            IVsSolution? sol = await VS.Services.GetSolutionAsync();
             return sol.GetAllProjectHierarchys();
         }
 
         /// <summary>
         /// Gets all projects in the solution
         /// </summary>
-        public async Task<IEnumerable<SolutionItem>> GetAllProjectItemsAsync(bool includeSolutionFolders = false)
+        public async Task<IEnumerable<SolutionItem>> GetAllProjectsAsync(bool includeSolutionFolders = false)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsSolution solution = await VS.Services.GetSolutionServiceAsync();
+            IVsSolution solution = await VS.Services.GetSolutionAsync();
             IEnumerable<IVsHierarchy>? hierarchies = solution.GetAllProjectHierarchys();
 
             List<SolutionItem> list = new();
@@ -78,6 +93,26 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return list;
+        }
+
+        /// <summary>
+        /// Checks if a solution is open.
+        /// </summary>
+        public async Task<bool> IsOpenAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsSolution solution = await VS.Services.GetSolutionAsync();
+            return solution?.IsOpen() == true;
+        }
+
+        /// <summary>
+        /// Checks if a solution is openign.
+        /// </summary>
+        public async Task<bool> IsOpeningAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsSolution solution = await VS.Services.GetSolutionAsync();
+            return solution?.IsOpening() == true;
         }
     }
 }
