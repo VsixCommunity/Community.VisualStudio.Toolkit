@@ -18,6 +18,20 @@ The NuGet package [Community.VisualStudio.Toolkit](https://www.nuget.org/package
 * Visual Studio 2019
 * Visual Studio 2022
 
+## Try the nightly builds
+
+Create a file called **nuget.config** in your solution folder, and paste in the following content:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="nuget.org" value="https://www.nuget.org/api/v2/" />
+    <add key="Toolkit CI" value="https://ci.appveyor.com/nuget/community-visualstudio-toolkit" />
+  </packageSources>
+</configuration>
+```
+
 ## Examples
 Here are some examples of typical scenarios used in extensions.
 
