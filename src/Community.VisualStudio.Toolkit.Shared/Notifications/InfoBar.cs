@@ -98,7 +98,7 @@ namespace Community.VisualStudio.Toolkit
             // Tool Window
             if (Guid.TryParse(_windowIdentifier, out Guid guid))
             {
-                IVsUIShell? uiShell = await VS.Shell.GetUIShellAsync();
+                IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
                 Assumes.Present(uiShell);
                 uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref guid, out frame);
             }

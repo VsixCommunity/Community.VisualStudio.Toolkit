@@ -14,18 +14,13 @@ namespace Community.VisualStudio.Toolkit
         { }
 
         /// <summary>
-        /// A service for handling solution builds.
-        /// </summary>
-        public Task<IVsSolutionBuildManager> GetSolutionBuildManagerAsync() => VS.GetRequiredServiceAsync<SVsSolutionBuildManager, IVsSolutionBuildManager>();
-
-        /// <summary>
         /// Cancels the solution build asynchronously
         /// </summary>
         /// <returns>Returns 'true' if successfull</returns>
         public async Task<bool> CancelBuildAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsSolutionBuildManager svc = await GetSolutionBuildManagerAsync();
+            IVsSolutionBuildManager svc = await VS.Services.GetSolutionBuildManagerAsync();
             svc.CanCancelUpdateSolutionConfiguration(out var canCancel);
 
             if (canCancel == 0)
@@ -42,7 +37,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<bool> BuildSolutionAsync(BuildAction action = BuildAction.Build)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsSolutionBuildManager svc = await GetSolutionBuildManagerAsync();
+            IVsSolutionBuildManager svc = await VS.Services.GetSolutionBuildManagerAsync();
             var buildFlags = (uint)GetBuildFlags(action);
 
             return svc.StartSimpleUpdateSolutionConfiguration(buildFlags, 0, 0) == VSConstants.S_OK;
@@ -59,7 +54,7 @@ namespace Community.VisualStudio.Toolkit
             }
 
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsSolutionBuildManager svc = await GetSolutionBuildManagerAsync();
+            IVsSolutionBuildManager svc = await VS.Services.GetSolutionBuildManagerAsync();
             var buildFlags = (uint)GetBuildFlags(action);
 
             project.GetItemInfo(out IVsHierarchy hierarchy, out _, out _);

@@ -29,7 +29,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             _frame = frame ?? throw new ArgumentNullException("frame");
-
+            
             ErrorHandler.ThrowOnFailure(_frame.SetProperty((int)__VSFPROPID.VSFPROPID_ViewHelper, this));
         }
 

@@ -89,7 +89,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsMonitorSelection? svc = await VS.Selection.GetMonitorSelectionAsync();
+            IVsMonitorSelection? svc = await VS.Services.GetMonitorSelectionAsync();
             svc.GetCurrentElementValue((uint)VSConstants.VSSELELEMID.SEID_WindowFrame, out var selection);
 
             if (selection is IVsWindowFrame frame)
@@ -126,7 +126,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsUIShell? uiShell = await VS.Shell.GetUIShellAsync();
+            IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
             var hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fFindFirst, ref toolWindowGuid, out IVsWindowFrame? frame);
 
             if (hr == VSConstants.S_OK)
@@ -156,7 +156,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsUIShell? uiShell = await VS.Shell.GetUIShellAsync();
+            IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
             var hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref toolWindowGuid, out IVsWindowFrame? frame);
 
             if (hr == VSConstants.S_OK)

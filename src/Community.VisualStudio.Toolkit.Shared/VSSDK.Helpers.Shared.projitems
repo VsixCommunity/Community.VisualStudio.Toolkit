@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shell\ShellEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Debugger\DebuggerEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Selection\SelectionEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\SolutionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Documents\DocumentEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ExceptionExtensions.cs" />
@@ -55,7 +56,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)VS.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Debugger\Debugger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\Notifications.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Shell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\Solution.cs" />
@@ -66,6 +66,5 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Debugger\" />
     <Folder Include="$(MSBuildThisFileDirectory)Shell\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Solution\" />
   </ItemGroup>
 </Project>

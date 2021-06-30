@@ -13,12 +13,6 @@ namespace Community.VisualStudio.Toolkit
         internal Commands()
         { }
 
-        /// <summary>Provides methods to manage the global designer verbs and menu commands available in design mode, and to show some types of shortcut menus.</summary>
-        public Task<IMenuCommandService> GetCommandServiceAsync() => VS.GetRequiredServiceAsync<IMenuCommandService, IMenuCommandService>();
-
-        /// <summary>Used to register and unregister a command target as a high priority command handler.</summary>
-        public Task<IVsRegisterPriorityCommandTarget> GetPriorityCommandTargetAsync() => VS.GetRequiredServiceAsync<SVsRegisterPriorityCommandTarget, IVsRegisterPriorityCommandTarget>();
-
         /// <summary>
         /// Finds a command by cannonical name.
         /// </summary>

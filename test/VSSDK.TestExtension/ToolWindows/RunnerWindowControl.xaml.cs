@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
+using System.Linq;
 using Task = System.Threading.Tasks.Task;
 
 namespace TestExtension

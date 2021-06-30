@@ -22,7 +22,7 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
 
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsUIShell vsUiShellService = await VS.Shell.GetUIShellAsync();
+            IVsUIShell vsUiShellService = await VS.Services.GetUIShellAsync();
 
             ErrorHandler.ThrowOnFailure(vsUiShellService.GetDialogOwnerHwnd(out IntPtr hwnd));
             ErrorHandler.ThrowOnFailure(vsUiShellService.EnableModeless(0));

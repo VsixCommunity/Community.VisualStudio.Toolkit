@@ -19,7 +19,7 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class ShellEvents : IVsShellPropertyEvents, IVsBroadcastMessageEvents
     {
-        private const uint _wM_SYSCOLORCHANGE = 0x0015;
+        private const uint _wm_syscolorchange = 0x0015;
 
         internal ShellEvents()
         {
@@ -80,7 +80,7 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsBroadcastMessageEvents.OnBroadcastMessage(uint msg, IntPtr wParam, IntPtr lParam)
         {
-            if (msg == _wM_SYSCOLORCHANGE)
+            if (msg == _wm_syscolorchange)
             {
                 EnvironmentColorChanged?.Invoke();  
             }

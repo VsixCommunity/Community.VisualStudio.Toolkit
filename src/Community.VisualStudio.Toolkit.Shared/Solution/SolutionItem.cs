@@ -102,7 +102,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 var guid = new Guid(ProjectTypes.SOLUTION_FOLDER_OTHER);
                 Guid iidProject = typeof(IVsHierarchy).GUID;
-                IVsSolution sol = await VS.Solution.GetSolutionServiceAsync();
+                IVsSolution sol = await VS.Services.GetSolutionServiceAsync();
 
                 foreach (var file in files)
                 {
@@ -231,20 +231,15 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Opens the item in the editor window.
         /// </summary>
-        /// <returns><see langword="true"/> if the item was succesfully opened; otherwise <see langword="false"/>.</returns>
-        public async Task<bool> TryOpenAsync()
+        /// <returns><see langword="null"/> if the item was not succesfully opened.</returns>
+        public async Task<WindowFrame?> OpenAsync()
         {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            var hr = VSConstants.S_FALSE;
-            var ip = (IVsProject)_hierarchy;
-
-            if (ip != null)
+            if (!string.IsNullOrEmpty(FileName))
             {
-                hr = ip.OpenItem(_itemId, Guid.Empty, IntPtr.Zero, out _);
+                await VS.Documents.OpenViaProjectAsync(FileName!);
             }
 
-            return hr == VSConstants.S_OK;
+            return null;
         }
 
         /// <summary>

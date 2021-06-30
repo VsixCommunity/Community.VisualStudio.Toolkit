@@ -38,6 +38,9 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Services related to the selection of windows and nodes.</summary>
         public static Selection Selection => new();
 
+        /// <summary>A collection of services commonly used by extensions.</summary>
+        public static Services Services => new();   
+
         /// <summary>A collection of services related to settings.</summary>
         public static Settings Settings => new();
 
