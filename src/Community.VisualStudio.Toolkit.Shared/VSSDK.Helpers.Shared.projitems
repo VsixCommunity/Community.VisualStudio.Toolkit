@@ -14,9 +14,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Documents\Documents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\WpfTextViewCreationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Build\BuildEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Selection\Selection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\ShellEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Debugger\DebuggerEvents.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Events\SelectionEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Selection\SelectionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\SolutionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Documents\DocumentEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ExceptionExtensions.cs" />
@@ -45,7 +46,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Themes\Themes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\MessageBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Commands.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Events\Events.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolkitPackage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\BaseToolWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\IToolWindowProvider.cs" />

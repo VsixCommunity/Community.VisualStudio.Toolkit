@@ -35,7 +35,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsMonitorSelection? svc = await VS.GetRequiredServiceAsync<SVsShellMonitorSelection, IVsMonitorSelection>();
+            IVsMonitorSelection? svc = await VS.Selection.GetMonitorSelectionAsync();
             IntPtr hierPtr = IntPtr.Zero;
             IntPtr containerPtr = IntPtr.Zero;
 

@@ -90,7 +90,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsMonitorSelection? svc = await VS.GetRequiredServiceAsync<SVsShellMonitorSelection, IVsMonitorSelection>();
+            IVsMonitorSelection? svc = await VS.Selection.GetMonitorSelectionAsync();
             svc.GetCurrentElementValue((uint)VSConstants.VSSELELEMID.SEID_WindowFrame, out var selection);
 
             if (selection is IVsWindowFrame frame)
