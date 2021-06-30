@@ -17,9 +17,6 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>A collection of services related to the command system.</summary>
         public static Commands Commands => new();
 
-        /// <summary>A collection of services related to the debugger.</summary>
-        public static Debugger Debugger => new();
-
         /// <summary>Contains helper methods for dealing with documents.</summary>
         public static Documents Documents => new(); 
 
