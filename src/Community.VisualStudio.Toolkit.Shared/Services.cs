@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel.Design;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
@@ -63,6 +59,15 @@ namespace Community.VisualStudio.Toolkit
 
         /// <summary>Used to retrieved services defined in the MEF catalog, such as the editor specific services like <see cref="IVsEditorAdaptersFactoryService"/>.</summary>
         public Task<IComponentModel2> GetComponentModelAsync() => VS.GetRequiredServiceAsync<SComponentModel, IComponentModel2>();
+        #endregion
+
+        #region Notifications
+        /// <summary>Provides access to the environment's status bar.</summary>
+        public Task<IVsStatusbar> GetStatusBarAsync() => VS.GetRequiredServiceAsync<SVsStatusbar, IVsStatusbar>();
+
+        /// <summary>The <see cref="InfoBar"/> is often referred to as the 'yellow' or 'gold' bar.</summary>
+        /// <returns>Cast return object to <see cref="IVsInfoBarUIFactory"/>.</returns>
+        public Task<object> GetInfoBarUIFactoryAsync() => VS.GetRequiredServiceAsync<SVsInfoBarUIFactory, object>();
         #endregion
 
         #region Debugger

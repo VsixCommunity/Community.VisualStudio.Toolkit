@@ -12,8 +12,6 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class StatusBar
     {
-        /// <summary>Provides access to the environment's status bar.</summary>
-        public Task<IVsStatusbar> GetStatusBarAsync() => VS.GetRequiredServiceAsync<SVsStatusbar, IVsStatusbar>();
 
         /// <summary>Gets the current text from the status bar.</summary>
         public async Task<string?> GetMessageAsync()
@@ -22,7 +20,7 @@ namespace Community.VisualStudio.Toolkit
 
             try
             {
-                IVsStatusbar statusBar = await GetStatusBarAsync();
+                IVsStatusbar statusBar = await VS.Services.GetStatusBarAsync();
 
                 statusBar.GetText(out var pszText);
                 return pszText;
@@ -41,7 +39,7 @@ namespace Community.VisualStudio.Toolkit
 
             try
             {
-                IVsStatusbar statusBar = await GetStatusBarAsync();
+                IVsStatusbar statusBar = await VS.Services.GetStatusBarAsync();
 
                 statusBar.FreezeOutput(0);
                 statusBar.SetText(text);
@@ -69,7 +67,7 @@ namespace Community.VisualStudio.Toolkit
             }
 
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsStatusbar? statusBar = await GetStatusBarAsync();
+            IVsStatusbar? statusBar = await VS.Services.GetStatusBarAsync();
 
             statusBar.FreezeOutput(0);
             uint cookie = 0;
@@ -100,7 +98,7 @@ namespace Community.VisualStudio.Toolkit
 
             try
             {
-                IVsStatusbar statusBar = await GetStatusBarAsync();
+                IVsStatusbar statusBar = await VS.Services.GetStatusBarAsync();
 
                 statusBar.FreezeOutput(0);
                 statusBar.Clear();
@@ -119,7 +117,7 @@ namespace Community.VisualStudio.Toolkit
 
             try
             {
-                IVsStatusbar statusBar = await GetStatusBarAsync();
+                IVsStatusbar statusBar = await VS.Services.GetStatusBarAsync();
                 object icon = (short)animation;
 
                 statusBar.FreezeOutput(0);
@@ -139,7 +137,7 @@ namespace Community.VisualStudio.Toolkit
 
             try
             {
-                IVsStatusbar statusBar = await GetStatusBarAsync();
+                IVsStatusbar statusBar = await VS.Services.GetStatusBarAsync();
                 object icon = (short)animation;
 
                 statusBar.FreezeOutput(0);

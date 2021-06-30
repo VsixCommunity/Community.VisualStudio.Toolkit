@@ -11,10 +11,6 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class InfoBarFactory
     {
-        /// <summary>The <see cref="InfoBar"/> is often referred to as the 'yellow' or 'gold' bar.</summary>
-        /// <returns>Cast return object to <see cref="IVsInfoBarUIFactory"/>.</returns>
-        public Task<object> GetInfoBarUIFactoryAsync() => VS.GetRequiredServiceAsync<SVsInfoBarUIFactory, object>();
-
         /// <summary>
         /// Creates a new InfoBar in any tool- or document window.
         /// </summary>

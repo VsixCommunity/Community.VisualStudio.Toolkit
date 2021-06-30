@@ -50,13 +50,13 @@ internal sealed class RunnerWindowCommand : BaseCommand<RunnerWindowCommand>
 ### Writing to the Status Bar
 
 ``` C#
-await VS.Notifications.SetStatusbarTextAsync("My status bar text");
+await VS.StatusBar.ShowMessageAsync("My status bar text");
 ```
 
 ### Showing a message box
 
 ``` C#
-VS.Notifications.ShowMessage("Title", "Message");
+await VS.MessageBox.ShowAsync("Title", "Message");
 ```
 
 ### Log error to output window
