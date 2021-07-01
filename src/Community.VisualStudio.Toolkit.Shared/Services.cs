@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Shell.Interop;
 #if VS16 || VS17
 using Microsoft.VisualStudio.TaskStatusCenter;
+using Microsoft.VisualStudio.TextManager.Interop;
 #endif
 
 namespace Community.VisualStudio.Toolkit
@@ -107,6 +108,29 @@ namespace Community.VisualStudio.Toolkit
         /// A service for handling solution builds.
         /// </summary>
         public Task<IVsSolutionBuildManager> GetSolutionBuildManagerAsync() => VS.GetRequiredServiceAsync<SVsSolutionBuildManager, IVsSolutionBuildManager>();
+        #endregion
+
+        #region Windows
+        /// <summary>Manipulates the Call Browser for debugging.</summary>
+        public Task<IVsCallBrowser> GetCallBrowserAsync() => VS.GetRequiredServiceAsync<SVsCallBrowser, IVsCallBrowser>();
+
+        /// <summary>Allows navigation to an object in Class View.</summary>
+        public Task<IVsClassView> GetClassViewAsync() => VS.GetRequiredServiceAsync<SVsClassView, IVsClassView>();
+
+        /// <summary>Enables the package to use the Command Window.</summary>
+        public Task<IVsCommandWindow> GetCommandWindowAsync() => VS.GetRequiredServiceAsync<SVsCommandWindow, IVsCommandWindow>();
+
+        /// <summary>Implemented by the environment. Used by VsPackages that want to manipulate Object Browser.</summary>
+        public Task<IVsObjBrowser> GetObjectBrowserAsync() => VS.GetRequiredServiceAsync<SVsObjBrowser, IVsObjBrowser>();
+
+        /// <summary>Manages and controls functions specific to the Output tool window that has multiple panes.</summary>
+        public Task<IVsOutputWindow> GetOutputWindowAsync() => VS.GetRequiredServiceAsync<SVsOutputWindow, IVsOutputWindow>();
+
+        /// <summary>Manages lists of task items supplied by task providers.</summary>
+        public Task<IVsTaskList> GetTaskListAsync() => VS.GetRequiredServiceAsync<SVsTaskList, IVsTaskList>();
+
+        /// <summary>Used to manage the Toolbox.</summary>
+        public Task<IVsToolbox2> GetToolboxAsync() => VS.GetRequiredServiceAsync<SVsToolbox, IVsToolbox2>();
         #endregion
     }
 }

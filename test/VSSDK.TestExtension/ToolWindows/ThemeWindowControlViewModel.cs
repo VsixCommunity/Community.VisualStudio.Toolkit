@@ -14,7 +14,9 @@ namespace TestExtension
             set { SetProperty(ref _useVsTheme, value); }
         }
 
+#pragma warning disable VSTHRD012 // Provide JoinableTaskFactory where allowed
         public ICommand OpenDialogCommand => new DelegateCommand(() => OpenDialog());
+#pragma warning restore VSTHRD012 // Provide JoinableTaskFactory where allowed
 
         private void OpenDialog()
         {

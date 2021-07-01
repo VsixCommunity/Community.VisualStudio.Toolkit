@@ -19,7 +19,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<CommandID?> FindCommandAsync(string name)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsCommandWindow cw = await VS.Windows.GetCommandWindowAsync();
+            IVsCommandWindow cw = await VS.Services.GetCommandWindowAsync();
 
             var hr = cw.PrepareCommand(name, out Guid commandGroup, out var commandId, out _, new PREPARECOMMANDRESULT[0]);
 

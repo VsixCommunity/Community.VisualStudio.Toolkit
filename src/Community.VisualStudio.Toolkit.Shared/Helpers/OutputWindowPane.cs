@@ -281,7 +281,7 @@ namespace Community.VisualStudio.Toolkit
                     return;
                 }
 
-                IVsOutputWindow outputWindow = await VS.Windows.GetOutputWindowAsync();
+                IVsOutputWindow outputWindow = await VS.Services.GetOutputWindowAsync();
                 Guid paneGuid = Guid;
 
                 // Only create the pane if we were constructed with a non-empty `_paneName`.

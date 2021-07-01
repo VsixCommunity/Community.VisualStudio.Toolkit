@@ -76,7 +76,11 @@ namespace Community.VisualStudio.Toolkit
             if (ErrorHandler.Succeeded(openDoc.OpenDocumentViaProject(file, ref viewGuid, out _, out _, out _, out IVsWindowFrame frame)))
             {
                 IVsTextView? nativeView = VsShellUtilities.GetTextView(frame);
-                return await nativeView.ToDocumentViewAsync();
+
+                if (nativeView != null)
+                {
+                    return await nativeView.ToDocumentViewAsync();
+                }
             }
 
             return null;
@@ -109,7 +113,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Gets the native text view from the currently active document.</summary>
         private async Task<IVsTextView?> GetNativeTextViewAsync(string file)
         {
-            WindowFrame? frame = await VS.Windows.FindWindowAsync(file);
+            WindowFrame? frame = await VS.Windows.FindDocumentWindowAsync(file);
             return frame != null ? VsShellUtilities.GetTextView(frame) : null;
         }
     }
