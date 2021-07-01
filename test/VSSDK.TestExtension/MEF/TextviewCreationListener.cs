@@ -13,7 +13,7 @@ namespace TestExtension.MEF
     [TextViewRole(PredefinedTextViewRoles.PrimaryDocument)]
     internal class TextViewCreationListener : WpfTextViewCreationListener
     {
-        protected override Task CreatedAsync(IWpfTextView textView, ITextDocument document)
+        protected override Task CreatedAsync(DocumentView docView)
         {
             // Do your async work here
             return Task.CompletedTask;

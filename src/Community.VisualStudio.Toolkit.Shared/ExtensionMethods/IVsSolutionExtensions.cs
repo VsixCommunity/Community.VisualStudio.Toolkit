@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Community.VisualStudio.Toolkit;
 
 namespace Microsoft.VisualStudio.Shell.Interop
 {
@@ -68,6 +70,22 @@ namespace Microsoft.VisualStudio.Shell.Interop
                     yield return hierarchy[0];
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the <see cref="SolutionItem"/> representing the solution.
+        /// </summary>
+        public static async Task<SolutionItem?> ToSolutionItemAsync(this IVsSolution solution)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            
+            if (solution is IVsHierarchy hier)
+            {
+                IVsHierarchyItem? item = await hier.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
+                return SolutionItem.FromHierarchyItem(item);
+            }
+
+            return null;
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.Threading;
-using Community.VisualStudio.Toolkit.Shared;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
+using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Threading;
 using Task = System.Threading.Tasks.Task;
 
@@ -45,6 +45,8 @@ namespace Community.VisualStudio.Toolkit
         /// <inheritdoc />
         public void TextViewCreated(IWpfTextView textView)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             TextView = textView;
             textView.Closed += OnViewClosed;
 
@@ -52,7 +54,9 @@ namespace Community.VisualStudio.Toolkit
             {
                 Document = document;
 
-                Created(textView, document);
+                var docView = textView.ToDocumentView();
+
+                Created(docView);
 
                 document.FileActionOccurred += OnFileActionOccurred;
                 document.DirtyStateChanged += OnDirtyStateChanged;
@@ -60,12 +64,14 @@ namespace Community.VisualStudio.Toolkit
             }
             else
             {
-                Created(textView, null);
+                var docView = textView.ToDocumentView();
+                Created(docView);
             }
         }
 
         private void OnEncodingChanged(object sender, EncodingChangedEventArgs e)
         {
+
             EncodingChanged(e);
         }
 
@@ -107,19 +113,15 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Called when a text view having matching roles is created over a text data model having a matching content type.
         /// </summary>
-        /// <param name="textView">The newly created text view.</param>
-        /// <param name="document">The document associated with the <c>IWpfTextView</c>.</param>
-        protected virtual void Created(IWpfTextView textView, ITextDocument? document)
+        protected virtual void Created(DocumentView docView)
         {
-            CreatedAsync(textView, document).FireAndForget();
+            CreatedAsync(docView).FireAndForget();
         }
 
         /// <summary>
         /// Called when a text view having matching roles is created over a text data model having a matching content type.
         /// </summary>
-        /// <param name="textView">The newly created text view.</param>
-        /// <param name="document">The document associated with the <c>IWpfTextView</c>.</param>
-        protected virtual Task CreatedAsync(IWpfTextView textView, ITextDocument? document)
+        protected virtual Task CreatedAsync(DocumentView docView)
         {
             return Task.CompletedTask;
         }

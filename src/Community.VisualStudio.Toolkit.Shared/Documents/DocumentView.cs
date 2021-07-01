@@ -8,22 +8,22 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class DocumentView
     {
-        internal DocumentView(WindowFrame frame, IWpfTextView view)
+        internal DocumentView(WindowFrame? frame, IWpfTextView? view)
         {
             WindowFrame = frame;
-            View = view;
-            Document = TextBuffer.GetTextDocument();
+            TextView = view;
+            Document = TextBuffer?.GetTextDocument();
         }
 
         /// <summary>
         /// The window frame hosting the document.
         /// </summary>
-        public WindowFrame WindowFrame { get; }
+        public WindowFrame? WindowFrame { get; }
 
         /// <summary>
         /// The text view loaded int he window frame.
         /// </summary>
-        public IWpfTextView View { get; }
+        public IWpfTextView? TextView { get; }
 
         /// <summary>
         /// The text document loaded in the view.
@@ -33,6 +33,6 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// The text buffer loaded in the view.
         /// </summary>
-        public ITextBuffer TextBuffer => View.TextBuffer;
+        public ITextBuffer? TextBuffer => TextView?.TextBuffer;
     }
 }

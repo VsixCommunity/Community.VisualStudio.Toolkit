@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Community.VisualStudio.Toolkit;
+using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -18,16 +19,26 @@ namespace Microsoft.VisualStudio.TextManager.Interop
         /// <returns><see langword="null"/> if the textView is null or the conversion failed.</returns>
         public static async Task<DocumentView?> ToDocumentViewAsync(this IVsTextView textView)
         {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            return textView.ToDocumentView();
+        }
+
+        /// <summary>
+        /// Converts an <see cref="IVsTextView"/> to a <see cref="DocumentView"/>.
+        /// </summary>
+        /// <returns><see langword="null"/> if the textView is null or the conversion failed.</returns>
+        internal static DocumentView ToDocumentView(this IVsTextView textView)
+        {
             if (textView == null || textView is not IVsTextViewEx nativeView)
             {
-                return null;
+                return new DocumentView(null, null);
             }
 
             ErrorHandler.ThrowOnFailure(nativeView.GetWindowFrame(out var frameValue));
 
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            ThreadHelper.ThrowIfNotOnUIThread();
 
-            IWpfTextView? view = await ToIWpfTextViewAsync(textView);
+            IWpfTextView? view = ToIWpfTextView(textView);
 
             if (frameValue is IVsWindowFrame frame && view != null)
             {
@@ -35,20 +46,84 @@ namespace Microsoft.VisualStudio.TextManager.Interop
                 return new DocumentView(windowFrame, view);
             }
 
-            return null;
+            return new DocumentView(null, view);
+        }
+
+        /// <summary>
+        /// Converts an <see cref="IWpfTextView"/> to a <see cref="DocumentView"/>.
+        /// </summary>
+        /// <returns><see langword="null"/> if the textView is null or the conversion failed.</returns>
+        public static async Task<DocumentView?> ToDocumentViewAsync(this IWpfTextView textView)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            return textView.ToDocumentView();
+        }
+
+        /// <summary>
+        /// Converts an <see cref="IWpfTextView"/> to a <see cref="DocumentView"/>.
+        /// </summary>
+        /// <returns><see langword="null"/> if the textView is null or the conversion failed.</returns>
+        internal static DocumentView ToDocumentView(this IWpfTextView textView)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            var nativeView = textView.ToIVsTextView();
+
+            if (nativeView != null)
+            {
+                return nativeView.ToDocumentView();
+            }
+
+            return new DocumentView(null, textView);
         }
 
         /// <summary>
         /// Converts the <see cref="IVsTextView"/> to an <see cref="IWpfTextView"/>/
         /// </summary>
         /// <returns></returns>
-        public static async Task<IWpfTextView?> ToIWpfTextViewAsync(IVsTextView nativeView)
+        public static async Task<IWpfTextView?> ToIWpfTextViewAsync(this IVsTextView nativeView)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            return nativeView.ToIWpfTextView();
+        }
 
-            IVsEditorAdaptersFactoryService? editorAdapter = await VS.GetMefServiceAsync<IVsEditorAdaptersFactoryService>();
+        /// <summary>
+        /// Converts the <see cref="IVsTextView"/> to an <see cref="IWpfTextView"/>/
+        /// </summary>
+        /// <returns></returns>
+        internal static IWpfTextView? ToIWpfTextView(this IVsTextView nativeView)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
 
+            var compService = ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel)) as IComponentModel2;
+            Assumes.Present(compService);
+
+            IVsEditorAdaptersFactoryService? editorAdapter = compService?.GetService<IVsEditorAdaptersFactoryService>();
             return editorAdapter?.GetWpfTextView(nativeView);
+        }
+
+        /// <summary>
+        /// Converts the <see cref="IVsTextView"/> to an <see cref="IWpfTextView"/>/
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<IVsTextView?> ToIVsTextViewAsync(this IWpfTextView view)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            return view.ToIVsTextView();
+        }
+
+        /// <summary>
+        /// Converts the <see cref="IVsTextView"/> to an <see cref="IWpfTextView"/>/
+        /// </summary>
+        /// <returns></returns>
+        internal static IVsTextView? ToIVsTextView(this IWpfTextView view)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            var compService = ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel)) as IComponentModel2;
+            Assumes.Present(compService);
+
+            IVsEditorAdaptersFactoryService? editorAdapter = compService?.GetService<IVsEditorAdaptersFactoryService>();
+            return editorAdapter?.GetViewAdapter(view);
         }
     }
 }

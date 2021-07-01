@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
-using System;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Community.VisualStudio.Toolkit
@@ -17,7 +18,7 @@ namespace Community.VisualStudio.Toolkit
         { }
 
         /// <summary>
-        /// Gets the currently selected nodes.
+        /// Gets the currently selected itemss.
         /// </summary>
         public async Task<IEnumerable<SolutionItem>> GetSelectedItemsAsync()
         {
@@ -35,6 +36,15 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return nodes;
+        }
+
+        /// <summary>
+        /// Gets the currently selected item.
+        /// </summary>
+        public async Task<SolutionItem?> GetSelectedItemAsync()
+        {
+            IEnumerable<SolutionItem>? items = await GetSelectedItemsAsync();
+            return items?.FirstOrDefault();
         }
 
         /// <summary>
