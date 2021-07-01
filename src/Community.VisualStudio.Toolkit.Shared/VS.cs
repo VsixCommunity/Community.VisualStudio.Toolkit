@@ -29,9 +29,6 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Shows message boxes.</summary>
         public static MessageBox MessageBox => new();
 
-        /// <summary>A collection of services related to notifying the users.</summary>
-        public static Notifications Notifications => new();
-
         /// <summary>Services related to the selection of windows and nodes.</summary>
         public static Selection Selection => new();
 

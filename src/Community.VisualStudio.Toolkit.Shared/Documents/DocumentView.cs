@@ -12,22 +12,27 @@ namespace Community.VisualStudio.Toolkit
         {
             WindowFrame = frame;
             View = view;
-            Document = view.TextBuffer.GetTextDocument();
+            Document = TextBuffer.GetTextDocument();
         }
 
         /// <summary>
         /// The window frame hosting the document.
         /// </summary>
-        public WindowFrame? WindowFrame { get; }
+        public WindowFrame WindowFrame { get; }
 
         /// <summary>
         /// The text view loaded int he window frame.
         /// </summary>
-        public IWpfTextView? View { get; }
+        public IWpfTextView View { get; }
 
         /// <summary>
         /// The text document loaded in the view.
         /// </summary>
         public ITextDocument? Document { get; }
+
+        /// <summary>
+        /// The text buffer loaded in the view.
+        /// </summary>
+        public ITextBuffer TextBuffer => View.TextBuffer;
     }
 }

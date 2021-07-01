@@ -29,51 +29,51 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Fires when a window frame is created
         /// </summary>
-        public event EventHandler<WindowFrame>? Created;
+        public event Action<WindowFrame>? Created;
 
         /// <summary>
         /// Fires when a window frame is destroyed.
         /// </summary>
-        public event EventHandler<WindowFrame>? Destroyed;
+        public event Action<WindowFrame>? Destroyed;
 
         /// <summary>
         /// Fires when a changes happens to a frame's visibility.
         /// </summary>
-        public event EventHandler<FrameVisibilityEventArgs>? FrameIsVisibleChanged;
+        public event Action<FrameVisibilityEventArgs>? FrameIsVisibleChanged;
 
         /// <summary>
         /// Fires when a changes happens to a frames location on the screen.
         /// </summary>
-        public event EventHandler<FrameOnScreenEventArgs>? FrameIsOnScreenChanged;
+        public event Action<FrameOnScreenEventArgs>? FrameIsOnScreenChanged;
 
         /// <summary>
         /// Fires when the active frame changes.
         /// </summary>
-        public event EventHandler<ActiveFrameChangeEventArgs>? ActiveFrameChanged;
+        public event Action<ActiveFrameChangeEventArgs>? ActiveFrameChanged;
 
         void IVsWindowFrameEvents.OnFrameCreated(IVsWindowFrame frame)
         {
-            Created?.Invoke(this, new WindowFrame(frame));
+            Created?.Invoke(new WindowFrame(frame));
         }
 
         void IVsWindowFrameEvents.OnFrameDestroyed(IVsWindowFrame frame)
         {
-            Destroyed?.Invoke(this, new WindowFrame(frame));
+            Destroyed?.Invoke(new WindowFrame(frame));
         }
 
         void IVsWindowFrameEvents.OnFrameIsVisibleChanged(IVsWindowFrame frame, bool newIsVisible)
         {
-            FrameIsVisibleChanged?.Invoke(this, new FrameVisibilityEventArgs(frame, newIsVisible));
+            FrameIsVisibleChanged?.Invoke(new FrameVisibilityEventArgs(frame, newIsVisible));
         }
 
         void IVsWindowFrameEvents.OnFrameIsOnScreenChanged(IVsWindowFrame frame, bool newIsOnScreen)
         {
-            FrameIsOnScreenChanged?.Invoke(this, new FrameOnScreenEventArgs(frame, newIsOnScreen));
+            FrameIsOnScreenChanged?.Invoke(new FrameOnScreenEventArgs(frame, newIsOnScreen));
         }
 
         void IVsWindowFrameEvents.OnActiveFrameChanged(IVsWindowFrame oldFrame, IVsWindowFrame newFrame)
         {
-            ActiveFrameChanged?.Invoke(this, new ActiveFrameChangeEventArgs(oldFrame, newFrame));
+            ActiveFrameChanged?.Invoke(new ActiveFrameChangeEventArgs(oldFrame, newFrame));
         }
     }
 

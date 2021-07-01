@@ -43,7 +43,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// When Visual Studio starts to shutdown
         /// </summary>
-        public event EventHandler<bool>? MainWindowVisibilityChanged;
+        public event Action<bool>? MainWindowVisibilityChanged;
 
         /// <summary>
         /// When Visual Studio enters into an interactive state.
@@ -71,7 +71,7 @@ namespace Community.VisualStudio.Toolkit
                 // TODO: Test to see if 'var' is a bool. It may be an int
                 if (var is bool isVisible)
                 {
-                    MainWindowVisibilityChanged?.Invoke(this, isVisible);
+                    MainWindowVisibilityChanged?.Invoke(isVisible);
                 }
             }
             

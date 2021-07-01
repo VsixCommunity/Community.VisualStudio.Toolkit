@@ -21,7 +21,7 @@ namespace Microsoft.VisualStudio.Text
 
             if (!string.IsNullOrEmpty(fileName))
             {
-                return VS.InfoBar.CreateInfoBar(fileName!, model);
+                return await VS.InfoBar.CreateAsync(fileName!, model);
             }
 
             return null;

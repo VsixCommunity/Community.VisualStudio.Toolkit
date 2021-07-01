@@ -107,6 +107,14 @@ namespace Community.VisualStudio.Toolkit
         public event EventHandler? OnStatusChange;
 
         /// <summary>
+        /// Creates an <see cref="InfoBar"/> in the window.
+        /// </summary>
+        public Task<InfoBar?> CreateInfoBarAsync(InfoBarModel model)
+        {
+            return VS.InfoBar.CreateAsync(this, model);
+        }
+
+        /// <summary>
         /// Renders this window visible, brings the window to the top, and activates the window.
         /// </summary>
         public async Task<bool> ShowAsync()

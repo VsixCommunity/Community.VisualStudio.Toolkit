@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -16,9 +15,54 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         /// <param name="windowGuidOrFileName">The GUID of the tool window or filename of document. For instance, <c>ToolWindowGuids80.SolutionExplorer</c></param>
         /// <param name="model">A model representing the text, icon, and actions of the InfoBar.</param>
-        public InfoBar CreateInfoBar(string windowGuidOrFileName, InfoBarModel model)
+        public async Task<InfoBar?> CreateAsync(string windowGuidOrFileName, InfoBarModel model)
         {
-            return new InfoBar(windowGuidOrFileName, model);
+            IVsWindowFrame? frame = await GetFrameFromIdentifierAsync(windowGuidOrFileName);
+
+            if (frame != null)
+            {
+                return await CreateAsync(frame, model);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Creates a new InfoBar in any tool- or document window.
+        /// </summary>
+        public async Task<InfoBar?> CreateAsync(IVsWindowFrame frame, InfoBarModel model)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            frame.GetProperty((int)__VSFPROPID7.VSFPROPID_InfoBarHost, out var value);
+
+            if (value is IVsInfoBarHost host)
+            {
+                return new InfoBar(host, model);
+            }
+
+            return null;
+        }
+
+        private async Task<IVsWindowFrame?> GetFrameFromIdentifierAsync(string identifier)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsWindowFrame? frame;
+
+            // Tool Window
+            if (Guid.TryParse(identifier, out Guid guid))
+            {
+                IVsUIShell uiShell = await VS.Services.GetUIShellAsync();
+                uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref guid, out frame);
+            }
+
+            // Document window
+            else if (VsShellUtilities.IsDocumentOpen(ServiceProvider.GlobalProvider, identifier, Guid.Empty, out _, out _, out frame))
+            {
+                // Do nothing, the 'frame' is assigned
+            }
+
+            return null;
         }
     }
 
@@ -27,16 +71,16 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class InfoBar : IVsInfoBarUIEvents
     {
-        private readonly string _windowIdentifier;
+        private readonly IVsInfoBarHost _host;
         private readonly InfoBarModel _model;
         private IVsInfoBarUIElement? _uiElement;
 
         /// <summary>
         /// Creates a new instance of the InfoBar in a specific window frame or document window.
         /// </summary>
-        internal InfoBar(string windowIdentifier, InfoBarModel model)
+        internal InfoBar(IVsInfoBarHost host, InfoBarModel model)
         {
-            _windowIdentifier = windowIdentifier;
+            _host = host;
             _model = model;
         }
 
@@ -57,11 +101,9 @@ namespace Community.VisualStudio.Toolkit
             _uiElement = infoBarUIFactory.CreateInfoBar(_model);
             _uiElement.Advise(this, out _);
 
-            IVsInfoBarHost? host = await GetInfoBarHostAsync();
-
-            if (host != null)
+            if (_host != null)
             {
-                host.AddInfoBar(_uiElement);
+                _host.AddInfoBar(_uiElement);
                 IsVisible = true;
             }
 
@@ -85,34 +127,6 @@ namespace Community.VisualStudio.Toolkit
         /// An event triggered when an action item in the InfoBar is clicked.
         /// </summary>
         public event EventHandler<InfoBarActionItemEventArgs>? ActionItemClicked;
-
-        private async Task<IVsInfoBarHost?> GetInfoBarHostAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsWindowFrame? frame;
-
-            // Tool Window
-            if (Guid.TryParse(_windowIdentifier, out Guid guid))
-            {
-                IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
-                Assumes.Present(uiShell);
-                uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref guid, out frame);
-            }
-
-            // Document window
-            else if (VsShellUtilities.IsDocumentOpen(ServiceProvider.GlobalProvider, _windowIdentifier, Guid.Empty, out _, out _, out frame))
-            {
-                // Do nothing, the 'frame' is assigned
-            }
-
-            if (frame != null)
-            {
-                frame.GetProperty((int)__VSFPROPID7.VSFPROPID_InfoBarHost, out var host);
-                return host as IVsInfoBarHost;
-            }
-
-            return null;
-        }
 
         void IVsInfoBarUIEvents.OnClosed(IVsInfoBarUIElement infoBarUIElement)
         {

@@ -17,9 +17,30 @@ namespace Community.VisualStudio.Toolkit
         { }
 
         /// <summary>
+        /// Gets the currently selected nodes.
+        /// </summary>
+        public async Task<IEnumerable<SolutionItem>> GetSelectedItemsAsync()
+        {
+            IEnumerable<IVsHierarchyItem>? hierarchies = await GetSelectedHierarchiesAsync();
+            List<SolutionItem> nodes = new();
+
+            foreach (IVsHierarchyItem hierarchy in hierarchies)
+            {
+                SolutionItem? node = await SolutionItem.FromHierarchyAsync(hierarchy.HierarchyIdentity.Hierarchy, hierarchy.HierarchyIdentity.ItemID);
+
+                if (node != null)
+                {
+                    nodes.Add(node);
+                }
+            }
+
+            return nodes;
+        }
+
+        /// <summary>
         /// Gets the currently selected hierarchy items.
         /// </summary>
-        public async Task<IEnumerable<IVsHierarchyItem>> GetSelectedHierarchiesAsync()
+        internal async Task<IEnumerable<IVsHierarchyItem>> GetSelectedHierarchiesAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -86,27 +107,6 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return results;
-        }
-
-        /// <summary>
-        /// Gets the currently selected nodes.
-        /// </summary>
-        public async Task<IEnumerable<SolutionItem>> GetSelectedItemsAsync()
-        {
-            IEnumerable<IVsHierarchyItem>? hierarchies = await GetSelectedHierarchiesAsync();
-            List<SolutionItem> nodes = new();
-
-            foreach (IVsHierarchyItem hierarchy in hierarchies)
-            {
-                SolutionItem? node = await SolutionItem.FromHierarchyAsync(hierarchy.HierarchyIdentity.Hierarchy, hierarchy.HierarchyIdentity.ItemID);
-
-                if (node != null)
-                {
-                    nodes.Add(node);
-                }
-            }
-
-            return nodes;
         }
     }
 }

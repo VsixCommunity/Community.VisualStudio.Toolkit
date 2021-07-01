@@ -23,7 +23,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             var svc = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolutionBuildManager)) as IVsSolutionBuildManager;
-            Assumes.Present(svc);            
+            Assumes.Present(svc);
             svc!.AdviseUpdateSolutionEvents(this, out _);
         }
 
@@ -35,32 +35,32 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         ///  Fires when the solution is done building.
         /// </summary>
-        public event EventHandler<bool>? SolutionBuildDone;
+        public event Action<bool>? SolutionBuildDone;
 
         /// <summary>
         ///  Fires when the solution build was cancelled
         /// </summary>
-        public event EventHandler? SolutionBuildCancelled;
+        public event Action? SolutionBuildCancelled;
 
         /// <summary>
         /// Fires when a project starts building.
         /// </summary>
-        public event EventHandler<IVsHierarchy>? ProjectBuildStarted;
+        public event Action<SolutionItem?>? ProjectBuildStarted;
 
         /// <summary>
         /// Fires when a project is done building.
         /// </summary>
-        public event EventHandler<IVsHierarchy>? ProjectBuildDone;
+        public event Action<SolutionItem?>? ProjectBuildDone;
 
         /// <summary>
         /// Fires when a project starts cleaning.
         /// </summary>
-        public event EventHandler<IVsHierarchy>? ProjectCleanStarted;
+        public event Action<SolutionItem?>? ProjectCleanStarted;
 
         /// <summary>
         /// Fires when a project is done cleaning.
         /// </summary>
-        public event EventHandler<IVsHierarchy>? ProjectCleanDone;
+        public event Action<SolutionItem?>? ProjectCleanDone;
 
         int IVsUpdateSolutionEvents.UpdateSolution_Begin(ref int pfCancelUpdate)
         {
@@ -75,12 +75,12 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsUpdateSolutionEvents.UpdateSolution_Done(int fSucceeded, int fModified, int fCancelCommand)
         {
-            SolutionBuildDone?.Invoke(this, fSucceeded == 0);
+            SolutionBuildDone?.Invoke(fSucceeded == 0);
             return VSConstants.S_OK;
         }
         int IVsUpdateSolutionEvents2.UpdateSolution_Done(int fSucceeded, int fModified, int fCancelCommand)
         {
-            SolutionBuildDone?.Invoke(this, fSucceeded == 0);
+            SolutionBuildDone?.Invoke(fSucceeded == 0);
             return VSConstants.S_OK;
         }
 
@@ -89,12 +89,12 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsUpdateSolutionEvents2.UpdateSolution_Cancel()
         {
-            SolutionBuildCancelled?.Invoke(this, EventArgs.Empty);
+            SolutionBuildCancelled?.Invoke();
             return VSConstants.S_OK;
         }
         int IVsUpdateSolutionEvents.UpdateSolution_Cancel()
         {
-            SolutionBuildCancelled?.Invoke(this, EventArgs.Empty);
+            SolutionBuildCancelled?.Invoke();
             return VSConstants.S_OK;
         }
 
@@ -109,16 +109,21 @@ namespace Community.VisualStudio.Toolkit
             // if build project or solution,   dwAction == 0x010000
             // if rebuild project or solution, dwAction == 0x410000
 
-            // Clean
-            if (dwAction == 0x100000)
+            ThreadHelper.JoinableTaskFactory.RunAsync(async delegate
             {
-                ProjectCleanStarted?.Invoke(this, pHierProj);
-            }
-            // Build and rebuild
-            else
-            {
-                ProjectBuildStarted?.Invoke(this, pHierProj);
-            }
+                SolutionItem? project = await SolutionItem.FromHierarchyAsync(pHierProj, VSConstants.VSITEMID_ROOT);
+
+                // Clean
+                if (dwAction == 0x100000)
+                {
+                    ProjectCleanStarted?.Invoke(project);
+                }
+                // Build and rebuild
+                else
+                {
+                    ProjectBuildStarted?.Invoke(project);
+                }
+            }).FireAndForget();
 
             return VSConstants.S_OK;
         }
@@ -127,16 +132,21 @@ namespace Community.VisualStudio.Toolkit
         {
             // This method is called when a specific project finishes building.
 
-            // Clean
-            if (dwAction == 0x100000)
+            ThreadHelper.JoinableTaskFactory.RunAsync(async delegate
             {
-                ProjectCleanDone?.Invoke(this, pHierProj);
-            }
-            // Build and rebuild
-            else
-            {
-                ProjectBuildDone?.Invoke(this, pHierProj);
-            }
+                SolutionItem? project = await SolutionItem.FromHierarchyAsync(pHierProj, VSConstants.VSITEMID_ROOT);
+
+                // Clean
+                if (dwAction == 0x100000)
+                {
+                    ProjectCleanDone?.Invoke(project);
+                }
+                // Build and rebuild
+                else
+                {
+                    ProjectBuildDone?.Invoke(project);
+                }
+            }).FireAndForget();
 
             return VSConstants.S_OK;
         }

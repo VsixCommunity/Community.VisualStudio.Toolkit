@@ -30,38 +30,38 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Fires when entering break mode.
         /// </summary>
-        public event EventHandler? EnterBreakMode;
+        public event Action? EnterBreakMode;
 
         /// <summary>
         /// Fired when the debugger enters run mode.
         /// </summary>
-        public event EventHandler? EnterRunMode;
+        public event Action? EnterRunMode;
 
         /// <summary>
         /// Fired when leaving run mode or debug mode, and when the debugger establishes design mode after debugging.
         /// </summary>
-        public event EventHandler? EnterDesignMode;
+        public event Action? EnterDesignMode;
 
         /// <summary>
         /// Fires when entering Edit &amp; Continue mode.
         /// </summary>
-        public event EventHandler? EnterEditAndContinueMode;
+        public event Action? EnterEditAndContinueMode;
 
         int IVsDebuggerEvents.OnModeChange(DBGMODE dbgmodeNew)
         {
             switch (dbgmodeNew)
             {
                 case DBGMODE.DBGMODE_Design:
-                    EnterDesignMode?.Invoke(this, EventArgs.Empty);
+                    EnterDesignMode?.Invoke();
                     break;
                 case DBGMODE.DBGMODE_Break:
-                    EnterBreakMode?.Invoke(this, EventArgs.Empty);
+                    EnterBreakMode?.Invoke();
                     break;
                 case DBGMODE.DBGMODE_Run:
-                    EnterRunMode?.Invoke(this, EventArgs.Empty);
+                    EnterRunMode?.Invoke();
                     break;
                 case DBGMODE.DBGMODE_Enc:
-                    EnterEditAndContinueMode?.Invoke(this, EventArgs.Empty);
+                    EnterEditAndContinueMode?.Invoke();
                     break;
             }
 

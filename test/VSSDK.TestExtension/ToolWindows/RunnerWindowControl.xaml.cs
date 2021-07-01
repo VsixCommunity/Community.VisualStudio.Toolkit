@@ -4,8 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Shell;
-using System.Linq;
 using Task = System.Threading.Tasks.Task;
 
 namespace TestExtension
@@ -26,9 +26,18 @@ namespace TestExtension
 
         private async Task ShowMessageAsync()
         {
-            var docView = await VS.Documents.GetActiveDocumentViewAsync();
-            Debug.Write(docView.Document.FilePath);
+            var model = new InfoBarModel(
+    new[] {
+        new InfoBarTextSpan("The text in the Info Bar. "),
+        new InfoBarHyperlink("Click me")
+    },
+    KnownMonikers.PlayStepGroup,
 
+    true);
+            var win = await VS.Windows.GetCurrentWindowAsync();
+            var ib=await win.CreateInfoBarAsync(model);
+            await ib.TryShowInfoBarUIAsync();
+            return;
             await VS.StatusBar.ShowMessageAsync("Test");
             var text = await VS.StatusBar.GetMessageAsync();
             await VS.StatusBar.ShowMessageAsync(text + " OK");
