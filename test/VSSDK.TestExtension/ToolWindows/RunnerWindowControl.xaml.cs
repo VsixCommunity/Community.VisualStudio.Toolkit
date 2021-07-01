@@ -26,6 +26,9 @@ namespace TestExtension
 
         private async Task ShowMessageAsync()
         {
+            var docView = await VS.Documents.GetActiveDocumentViewAsync();
+            Debug.Write(docView.Document.FilePath);
+
             await VS.StatusBar.ShowMessageAsync("Test");
             var text = await VS.StatusBar.GetMessageAsync();
             await VS.StatusBar.ShowMessageAsync(text + " OK");
