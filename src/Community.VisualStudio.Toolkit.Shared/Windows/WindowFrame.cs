@@ -4,13 +4,12 @@
 // Created: 2008.07.02, by Istvan Novak (DeepDiver)
 // ================================================================================================
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
-using Microsoft;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -29,7 +28,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             _frame = frame ?? throw new ArgumentNullException("frame");
-            
+
             ErrorHandler.ThrowOnFailure(_frame.SetProperty((int)__VSFPROPID.VSFPROPID_ViewHelper, this));
         }
 
@@ -217,30 +216,19 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Obtains all tool window frames.
+        /// Gets the document view from the window frame.
         /// </summary>
-        /// <value>All available tool window frames.</value>
-        public static IEnumerable<WindowFrame> ToolWindowFrames
+        /// <returns><see langword="null"/> if the window isn't a document window.</returns>
+        public async Task<DocumentView?> GetDocumentViewAsync()
         {
-            get
-            {
-                ThreadHelper.ThrowIfNotOnUIThread();
-                var uiShell = ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell;
-                Assumes.Present(uiShell);
+            IVsTextView? nativeView = VsShellUtilities.GetTextView(_frame);
 
-                ErrorHandler.ThrowOnFailure(uiShell!.GetToolWindowEnum(out IEnumWindowFrames windowEnumerator));
-                var frame = new IVsWindowFrame[1];
-                var hr = VSConstants.S_OK;
-                while (hr == VSConstants.S_OK)
-                {
-                    hr = windowEnumerator.Next(1, frame, out var fetched);
-                    ErrorHandler.ThrowOnFailure(hr);
-                    if (fetched == 1)
-                    {
-                        yield return new WindowFrame(frame[0]);
-                    }
-                }
+            if (nativeView != null)
+            {
+                return await nativeView.ToDocumentViewAsync();
             }
+
+            return null;
         }
 
         #region IVsWindowFrame members

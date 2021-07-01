@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using Community.VisualStudio.Toolkit.Shared.ExtensionMethods;
@@ -166,6 +167,34 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Obtains all window frames visible in the IDE.
+        /// </summary>
+        /// <value>All available window frames.</value>
+        public async Task<IEnumerable<WindowFrame>> GetAllWindowsAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsUIShell uiShell = await VS.Services.GetUIShellAsync();
+
+            ErrorHandler.ThrowOnFailure(uiShell.GetToolWindowEnum(out IEnumWindowFrames windowEnumerator));
+            var frame = new IVsWindowFrame[1];
+            var hr = VSConstants.S_OK;
+            List<WindowFrame> list = new();
+
+            while (hr == VSConstants.S_OK)
+            {
+                hr = windowEnumerator.Next(1, frame, out var fetched);
+                ErrorHandler.ThrowOnFailure(hr);
+
+                if (fetched == 1)
+                {
+                    list.Add(new WindowFrame(frame[0]));
+                }
+            }
+
+            return list;
         }
     }
 }
