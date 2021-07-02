@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
+using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
