@@ -28,7 +28,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             _item = item;
-            
+
             _hierarchy = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedHierarchy : item.HierarchyIdentity.Hierarchy;
             _itemId = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedItemID : item.HierarchyIdentity.ItemID;
 
@@ -161,6 +161,41 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// Tries to remove the solution item from the solution.
+        /// </summary>
+        public async Task<bool> TryRemoveAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            SolutionItem? parent = FindParent(NodeType.Project) ?? FindParent(NodeType.SolutionFolder) ?? FindParent(NodeType.Solution);
+
+            if (parent == null)
+            {
+                return false;
+            }
+
+            if (Type == NodeType.PhysicalFile)
+            {
+                if (parent._hierarchy is IVsProject2 project)
+                {
+                    project.RemoveItem(0, _itemId, out var result);
+                    return result == 1;
+                }
+            }
+            else
+            {
+                SolutionItem? solution = FindParent(NodeType.Solution);
+
+                if (solution?._hierarchy is IVsSolution ivsSolution)
+                {
+                    var hr = ivsSolution.CloseSolutionElement(0, _hierarchy, 0);
+                    return hr == 1;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Tries to set an attribute in the project file for the item.
         /// </summary>
         public async Task<bool> TrySetAttributeAsync(string name, string value)
@@ -241,38 +276,6 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// Tries to remove the solution item from the solution.
-        /// </summary>
-        public async Task<bool> TryRemoveAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            SolutionItem? parent = FindParent(NodeType.Project) ?? FindParent(NodeType.SolutionFolder) ?? FindParent(NodeType.Solution);
-
-            if (parent == null)
-            {
-                return false;
-            }
-
-            if (Type == NodeType.PhysicalFile)
-            {
-                if (parent._hierarchy is IVsProject2 project)
-                {
-                    project.RemoveItem(0, _itemId, out var result);
-                    return result == 1;
-                }
-            }
-            else
-            {
-                // TODO: Figure out how to remove projects and solution folders without the DTE
-                EnvDTE80.DTE2? dte = await VS.GetRequiredServiceAsync<EnvDTE.DTE, EnvDTE80.DTE2>();
-                EnvDTE.Project? project = HierarchyUtilities.GetProject(_item);
-                dte.Solution?.Remove(project);
-            }
-
-            return false;
         }
 
         /// <summary>

@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 

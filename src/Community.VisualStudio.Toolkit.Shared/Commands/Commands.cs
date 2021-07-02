@@ -52,35 +52,27 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
         public Task<bool> ExecuteAsync(Guid menuGroup, int commandId, string argument = "")
-        {
-            return ExecuteAsync(new CommandID(menuGroup, commandId), argument);
-        }
-
-        /// <summary>
-        /// Executes a command by guid and ID
-        /// </summary>
-        /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
-        public Task<bool> ExecuteAsync(CommandID cmd, string argument = "")
-        {
-            return cmd.ExecuteAsync(argument);
-        }
+           => ExecuteAsync(new CommandID(menuGroup, commandId), argument);
 
         /// <summary>
         /// Executes a command from the <see cref="VSConstants.VSStd97CmdID"/> collection of built in commands.
         /// </summary>
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
         public Task<bool> ExecuteAsync(VSConstants.VSStd97CmdID command, string argument = "")
-        {
-            return ExecuteAsync(typeof(VSConstants.VSStd97CmdID).GUID, (int)command, argument);
-        }
+          => ExecuteAsync(typeof(VSConstants.VSStd97CmdID).GUID, (int)command, argument);
 
         /// <summary>
         /// Executes a command from the <see cref="VSConstants.VSStd2KCmdID"/> collection of built in commands.
         /// </summary>
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
         public Task<bool> ExecuteAsync(VSConstants.VSStd2KCmdID command, string argument = "")
-        {
-            return ExecuteAsync(typeof(VSConstants.VSStd2KCmdID).GUID, (int)command, argument);
-        }
+          => ExecuteAsync(typeof(VSConstants.VSStd2KCmdID).GUID, (int)command, argument);
+
+        /// <summary>
+        /// Executes a command by guid and ID
+        /// </summary>
+        /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
+        public Task<bool> ExecuteAsync(CommandID cmd, string argument = "")
+          => cmd.ExecuteAsync(argument);
     }
 }
