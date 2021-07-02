@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Threading;
+using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -18,7 +20,7 @@ namespace Community.VisualStudio.Toolkit
         { }
 
         /// <summary>
-        /// Gets the currently selected itemss.
+        /// Gets the currently selected items.
         /// </summary>
         public async Task<IEnumerable<SolutionItem>> GetSelectedItemsAsync()
         {
@@ -39,12 +41,39 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Gets the currently selected item.
+        /// Gets the currently selected item. If more than one item is selected, it returns the first one.
         /// </summary>
+        /// <remarks><see langword="null"/> if no items are selected.</remarks>
         public async Task<SolutionItem?> GetSelectedItemAsync()
         {
             IEnumerable<SolutionItem>? items = await GetSelectedItemsAsync();
             return items?.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Sets the current UI Context.
+        /// </summary>
+        /// <param name="uiContextGuid">The guid to uniquely identify the UI context.</param>
+        /// <param name="isActive">Determines if the UI Context is active or not.</param>
+        public Task SetUIContextAsync(string uiContextGuid, bool isActive) 
+            => SetUIContextAsync(new Guid(uiContextGuid), isActive);
+
+        /// <summary>
+        /// Sets the current UI Context.
+        /// </summary>
+        /// <param name="uiContextGuid">The guid to uniquely identify the UI context.</param>
+        /// <param name="isActive">Determines if the UI Context is active or not.</param>
+        public async Task SetUIContextAsync(Guid uiContextGuid, bool isActive)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            IVsMonitorSelection? svc = await VS.Services.GetMonitorSelectionAsync();
+
+            var cookieResult = svc.GetCmdUIContextCookie(uiContextGuid, out var cookie);
+            ErrorHandler.ThrowOnFailure(cookieResult);
+
+            var setContextResult = svc.SetCmdUIContext(cookie, isActive ? 1 : 0);
+            ErrorHandler.ThrowOnFailure(setContextResult);
         }
 
         /// <summary>

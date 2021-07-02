@@ -25,6 +25,7 @@
         /// <summary>The Git Repository window introduced in Visual Studio 2019.</summary>
         public const string GitRepository = "{1C4FEEAA-4718-4AA9-859D-94CE25D182BA}";
 
+        /// <summary>The Error List window.</summary>
         public const string ErrorList = "{D78612C7-9962-4B83-95D9-268046DAD23A}";
 
         /// <summary>

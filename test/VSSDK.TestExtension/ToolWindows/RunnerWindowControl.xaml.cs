@@ -25,7 +25,6 @@ namespace TestExtension
 
         private async Task ShowMessageAsync()
         {
-            var windows = await VS.Windows.GetAllWindowsAsync();
             await VS.StatusBar.ShowMessageAsync("Test");
             var text = await VS.StatusBar.GetMessageAsync();
             await VS.StatusBar.ShowMessageAsync(text + " OK");
