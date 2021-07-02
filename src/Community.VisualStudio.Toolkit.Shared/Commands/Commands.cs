@@ -133,6 +133,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 if (_func() == CommandProgression.Stop)
                 {
+                    // This will stop the chain of command handlers from progressing.
                     return VSConstants.S_OK;
                 }
             }

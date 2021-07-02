@@ -132,5 +132,14 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Used to manage the Toolbox.</summary>
         public Task<IVsToolbox2> GetToolboxAsync() => VS.GetRequiredServiceAsync<SVsToolbox, IVsToolbox2>();
         #endregion
+
+        #region Settings
+        /// <summary>Provides access to the settings manager.</summary>
+        /// /// <returns>Cast return object to <see cref="IVsSettingsManager"/></returns>
+        public Task<object> GetSettingsManagerAsync() => VS.GetRequiredServiceAsync<SVsSettingsManager, object>();
+
+        /// <summary>Manages a Tools Options dialog box. The environment implements this interface.</summary>
+        public Task<IVsToolsOptions> GetToolsOptionsAsync() => VS.GetRequiredServiceAsync<SVsToolsOptions, IVsToolsOptions>();
+        #endregion
     }
 }

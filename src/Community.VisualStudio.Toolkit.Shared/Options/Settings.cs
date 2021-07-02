@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
-using Microsoft.VisualStudio.Shell.Interop;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -9,11 +11,30 @@ namespace Community.VisualStudio.Toolkit
         internal Settings()
         { }
 
-        /// <summary>Provides access to the settings manager.</summary>
-        /// /// <returns>Cast return object to <see cref="IVsSettingsManager"/></returns>
-        public Task<object> GetSettingsManagerAsync() => VS.GetRequiredServiceAsync<SVsSettingsManager, object>();
+        /// <summary>
+        /// Opens the Tools -> Options dialog to the specified page.
+        /// </summary>
+        public Task OpenAsync<T>() where T : DialogPage 
+            => OpenAsync(typeof(T));
 
-        /// <summary>Manages a Tools Options dialog box. The environment implements this interface.</summary>
-        public Task<IVsToolsOptions> GetToolsOptionsAsync() => VS.GetRequiredServiceAsync<SVsToolsOptions, IVsToolsOptions>();
+        /// <summary>
+        /// Opens the Tools -> Options dialog to the specified page.
+        /// </summary>
+        public Task OpenAsync(Type dialogPageType) 
+            => OpenAsync(dialogPageType.GUID);
+
+        /// <summary>
+        /// Opens the Tools -> Options dialog to the specified page.
+        /// </summary>
+        public Task OpenAsync(Guid dialogPageGuid) 
+            => VS.Commands.ExecuteAsync(VSConstants.VSStd97CmdID.ToolsOptions, dialogPageGuid.ToString());
+
+        /// <summary>
+        /// Opens the Tools -> Options dialog to the specified page.
+        /// </summary>
+        public Task OpenAsync(string dialogPageGuid)
+        {
+            return VS.Commands.ExecuteAsync(VSConstants.VSStd97CmdID.ToolsOptions, dialogPageGuid);
+        }
     }
 }
