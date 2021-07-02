@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -59,6 +60,34 @@ namespace Community.VisualStudio.Toolkit
 
             project.GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
             return svc.StartSimpleUpdateProjectConfiguration(hierarchy, null, null, buildFlags, 0, 0) == VSConstants.S_OK;
+        }
+
+        /// <summary>
+        /// Checks if the project build is up to date.
+        /// </summary>
+        public async Task<bool> ProjectIsUpToDateAsync(SolutionItem project)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            IVsSolutionBuildManager svc = await VS.Services.GetSolutionBuildManagerAsync();
+            var projectConfig = new IVsProjectCfg2[1];
+
+            project.GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
+
+            if (ErrorHandler.Succeeded(svc.FindActiveProjectCfg(IntPtr.Zero, IntPtr.Zero, hierarchy, projectConfig)))
+            {
+                var supported = new int[1];
+                var ready = new int[1];
+
+                if (ErrorHandler.Succeeded(projectConfig[0].get_BuildableProjectCfg(out IVsBuildableProjectCfg buildableProjectConfig)) &&
+                    ErrorHandler.Succeeded(buildableProjectConfig.QueryStartUpToDateCheck(0, supported, ready)) &&
+                    supported[0] == 1)
+                {
+                    return ErrorHandler.Succeeded(buildableProjectConfig.StartUpToDateCheck(null, (uint)VsUpToDateCheckFlags.VSUTDCF_DTEEONLY));
+                }
+            }
+
+            return false;
         }
 
         private static VSSOLNBUILDUPDATEFLAGS GetBuildFlags(BuildAction action)
