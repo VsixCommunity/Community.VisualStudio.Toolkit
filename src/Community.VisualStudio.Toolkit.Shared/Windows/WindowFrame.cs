@@ -4,6 +4,7 @@
 // Created: 2008.07.02, by Istvan Novak (DeepDiver)
 // ================================================================================================
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio;
@@ -16,6 +17,7 @@ namespace Community.VisualStudio.Toolkit
     /// <summary>
     /// This class encapsulates an IVsWindowFrame instance and build functionality around.
     /// </summary>
+    [DebuggerDisplay("{Caption}")]
     public class WindowFrame : IVsWindowFrame, IVsWindowFrameNotify3
     {
         private readonly IVsWindowFrame _frame;

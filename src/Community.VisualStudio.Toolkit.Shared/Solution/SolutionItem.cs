@@ -127,9 +127,9 @@ namespace Community.VisualStudio.Toolkit
             else if (Type == NodeType.Project || Type == NodeType.PhysicalFolder || Type == NodeType.PhysicalFile)
             {
                 var result = new VSADDRESULT[files.Count()];
-                var ip = (IVsProject4)_hierarchy;
+                var ip = (IVsProject)_hierarchy;
 
-                ip.AddItem(_itemId, VSADDITEMOPERATION.VSADDITEMOP_LINKTOFILE, string.Empty, (uint)files.Count(), files, IntPtr.Zero, result);
+                ErrorHandler.ThrowOnFailure(ip.AddItem(_itemId, VSADDITEMOPERATION.VSADDITEMOP_LINKTOFILE, string.Empty, (uint)files.Count(), files, IntPtr.Zero, result));
 
                 foreach (var file in files)
                 {
@@ -314,8 +314,8 @@ namespace Community.VisualStudio.Toolkit
 
             foreach (IVsHierarchy? hierarchy in projects)
             {
-                var proj = (IVsProject5)hierarchy;
-                proj.IsDocumentInProject2(filePath, out var isFound, out _, out var itemId);
+                var proj = (IVsProject)hierarchy;
+                proj.IsDocumentInProject(filePath, out var isFound, new VSDOCUMENTPRIORITY[1], out var itemId);
 
                 if (isFound == 1)
                 {

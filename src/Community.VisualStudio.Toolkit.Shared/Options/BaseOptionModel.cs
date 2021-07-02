@@ -268,7 +268,7 @@ namespace Community.VisualStudio.Toolkit
                 await liveModel.LoadAsync();
             }
 
-            Saved?.Invoke(this, liveModel);
+            Saved?.Invoke(liveModel);
         }
 
         /// <summary>
@@ -317,6 +317,6 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// The Saved event is fired after the options have been persisted.
         /// </summary>
-        public static event EventHandler<T>? Saved;
+        public static event Action<T>? Saved;
     }
 }
