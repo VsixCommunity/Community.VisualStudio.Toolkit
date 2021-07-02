@@ -25,7 +25,9 @@ namespace Community.VisualStudio.Toolkit
             /// <summary>The Build pane.</summary>
             Build,
             /// <summary>The Debug pane.</summary>
-            Debug
+            Debug,
+            /// <summary>The sorted build output pane inside the output window.</summary>
+            SortedBuild
         }
 
         /// <summary>

@@ -128,6 +128,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 Windows.VSOutputWindowPane.General => GetAsync(VSConstants.OutputWindowPaneGuid.GeneralPane_guid),
                 Windows.VSOutputWindowPane.Build => GetAsync(VSConstants.OutputWindowPaneGuid.BuildOutputPane_guid),
+                Windows.VSOutputWindowPane.SortedBuild => GetAsync(VSConstants.OutputWindowPaneGuid.SortedBuildOutputPane_guid),
                 Windows.VSOutputWindowPane.Debug => GetAsync(VSConstants.OutputWindowPaneGuid.DebugPane_guid),
                 _ => throw new InvalidOperationException("Unexpected VisualStudioPane"),
             };
