@@ -146,15 +146,30 @@ namespace Community.VisualStudio.Toolkit
                     }
                 }
             }
+            // Add file to solution folder
             else if (Type == NodeType.SolutionFolder)
             {
-                // TODO: Find a way to do this without using the DTE.
-                EnvDTE.Project? project = HierarchyUtilities.GetProject(_item);
+                IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
+                uiShell.GetDialogOwnerHwnd(out IntPtr hwndDlgOwner);
 
-                foreach (var file in files)
-                {
-                    (project?.Object as EnvDTE80.SolutionFolder)?.AddFromFile(file);
-                }
+                Guid rguidEditorType = Guid.Empty, rguidLogicalView = Guid.Empty;
+                var result = new VSADDRESULT[1];
+                var project3 = (IVsProject3)_hierarchy;
+
+                project3.AddItemWithSpecific(itemidLoc: (uint)VSConstants.VSITEMID.Root,
+                    dwAddItemOperation: VSADDITEMOPERATION.VSADDITEMOP_OPENFILE,
+                    pszItemName: "test",
+                    cFilesToOpen: (uint)files.Count(), //The name of the parameter is misleading, it's the number of files to process, 
+                                     //and whether to open in editor or not is determined by other flag
+                    rgpszFilesToOpen: files,
+                    hwndDlgOwner: hwndDlgOwner,
+                    grfEditorFlags: 0u, //We do not want to open in the editor
+                    rguidEditorType: ref rguidEditorType,
+                    pszPhysicalView: null,
+                    rguidLogicalView: ref rguidLogicalView,
+                    pResult: result);
+
+                items.AddRange(await FromFilesAsync(files));
             }
 
             return items;

@@ -11,11 +11,11 @@ namespace TestExtension
 {
     public partial class RunnerWindowControl : UserControl
     {
-        public RunnerWindowControl(EnvDTE80.DTE2 dte)
+        public RunnerWindowControl(Version vsVersion)
         {
             InitializeComponent();
 
-            lblHeadline.Content = $"Visual Studio v{dte.Version}";
+            lblHeadline.Content = $"Visual Studio v{vsVersion}";
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
