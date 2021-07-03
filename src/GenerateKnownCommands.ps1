@@ -8,6 +8,8 @@
 # exposes the DTE object via the `$dte` variable, so use the Package Manager 
 # Console to run this script.
 #
+# PM> .\src\GenerateKnownCommands.ps1
+#
 # -----------------------------------------------------------------------------
 
 $ErrorActionPreference = "Stop"
@@ -18,44 +20,89 @@ if (-not (Get-Variable dte -ErrorAction SilentlyContinue)) {
     return
 }
 
-$commands = @{}
+$MINIMUM_VERSION = 14
+$MAXIMUM_VERSION = 17
 
-# Find all enums that define command IDs. These
-# enums are nested under the VSConstants type.
-$enums = [Microsoft.VisualStudio.VSConstants].GetMembers() | `
-    Where-Object { $_.MemberType -eq "NestedType" } | `
-    Where-Object { $_.IsEnum } | `
-    Where-Object { $_.Name.EndsWith("CmdID") }
+$COMMAND_SETS = @(
+    @{Name = "VSStd97CmdID"; Guid = "StandardCommandSet97_guid"; Introduced = $MINIMUM_VERSION }
+    @{Name = "VSStd2KCmdID"; Guid = "StandardCommandSet2K_guid"; Introduced = $MINIMUM_VERSION }
+    @{Name = "VSStd2010CmdID"; Guid = "StandardCommandSet2010_guid"; Introduced = $MINIMUM_VERSION }
+    @{Name = "VSStd11CmdID"; Guid = "StandardCommandSet11_guid"; Introduced = $MINIMUM_VERSION }
+    @{Name = "VSStd12CmdID"; Guid = "StandardCommandSet12_guid"; Introduced = $MINIMUM_VERSION }
+    @{Name = "VSStd14CmdID"; Guid = "StandardCommandSet14_guid"; Introduced = $MINIMUM_VERSION }
+    @{Name = "VSStd15CmdID"; Guid = "StandardCommandSet15_guid"; Introduced = 15 }
+    @{Name = "VSStd16CmdID"; Guid = "StandardCommandSet16_guid"; Introduced = 16 }
+)
 
-# Initialize the details about each enum value. We'll fill
-# in the command name by finding the command in Visual Studio.
-foreach ($enum in $enums) {
-    foreach ($value in [Enum]::GetValues($enum)) {
-        $key = "$($enum.GUID.ToString())|$([int]$value)"
+function Write-Commands {
+    param (
+        [System.IO.StreamWriter] $Writer,
+        [array] $Commands,
+        [int] $Version
+    )
 
-        $commands[$key] = @{
-            CommandSet     = "new Guid(`"$($enum.GUID.ToString())`")"
-            CommandSetName = $enum.Name
-            ID             = [int]$value
-            Name           = ""
+    $closeIfDef = $false
+    $first = $true
+
+    foreach ($command in ($Commands | Sort-Object { $_.Name })) {
+        if ($command.MinimumVersion -eq $Version) {
+            if ($first) {
+                # For versions greater than the minimum, 
+                # we need to wrap the properties in a `#if`.
+                if ($Version -gt $MINIMUM_VERSION) {
+                    # A command is availabe in its minimum version and all higher versions.
+                    $writer.WriteLine("#if $((@($Version..$MAXIMUM_VERSION) | ForEach-Object { "VS$_" }) -join " || ")")
+                    $closeIfDef = $true
+                }
+            } else {
+                $writer.WriteLine()
+            }
+
+            $writer.WriteLine("        /// <summary>$($command.Name)</summary>")
+            $writer.WriteLine("        public static CommandID $($command.Name.Replace(".", "_")) { get; } = new CommandID($($command.CommandSet), $($command.ID));")
+            $first = $false
         }
+    }
+
+    if ($closeIfDef) {
+        $writer.WriteLine("#endif")
+        $writer.WriteLine()
     }
 }
 
-# Now step through each command and find the corresponding 
-# enum member details, and store the name of the command.
-foreach ($command in $dte.Commands) {
-    # Skip commands without a name, because we need to use
-    # the name as the property name in the generated code.
-    if ($command.Name) {
-        # The command's Guid property is a string,
-        # so parse and re-format it so that we
-        # use the same format that we used above.
-        $key = "$([Guid]::Parse($command.Guid).ToString())|$($command.ID)"
-        $entry = $commands[$key]
+# Record the name of each command.
+$names = @{}
+$dte.Commands | Where-Object { $_.Name } | ForEach-Object {
+    # The command's Guid property is a string. Parse and 
+    # re-format it so that we can guarantee the format will
+    # be the same when we get the GUID from the enum type below.
+    $names["$([Guid]::Parse($_.Guid).ToString())|$($_.ID)"] = $_.Name
+}
 
-        if ($entry) {
-            $entry.Name = $command.Name
+# Get the command details from the enums. Note that a command name 
+# could be used for multiple command IDs, so we'll track which command
+# names we've seen and only use the first one for any duplicates.
+$commands = @()
+$usedCommands = New-Object -TypeName "System.Collections.Generic.HashSet[string]"
+
+foreach ($set in $COMMAND_SETS) {
+    $enum = [Microsoft.VisualStudio.VSConstants].GetMember($set.Name)[0]
+    $guid = $enum.GUID.ToString()
+
+    foreach ($value in [Enum]::GetValues($enum)) {
+        $name = $names["$guid|$([int]$value)"]
+
+        if ($name -and $usedCommands.Add($name)) {
+            $commands += @{
+                CommandSet     = "VSConstants.CMDSETID.$($set.Guid)"
+                # Some enum members were added in later versions. For example, an enum member in a command set
+                # that is available from v15 may only be defined in the v16 assembly, which means we can't use
+                # the enum values when defining the commands. Use the raw value instead, but include the enum 
+                # member name in a command so that you can see what it is meant to be using.
+                ID             = "$([int]$value) /* $($enum.Name).$($value.ToString()) */"
+                Name           = $name
+                MinimumVersion = $set.Introduced
+            }
         }
     }
 }
@@ -66,8 +113,8 @@ $writer = New-Object -TypeName "System.IO.StreamWriter" -ArgumentList $fileName
 try {
     $writer.WriteLine("// <auto-generated/>")
     $writer.WriteLine()
-    $writer.WriteLine("using System;")
     $writer.WriteLine("using System.ComponentModel.Design;")
+    $writer.WriteLine("using Microsoft.VisualStudio;")
     $writer.WriteLine()
     $writer.WriteLine("namespace Community.VisualStudio.Toolkit")
     $writer.WriteLine("{")
@@ -75,34 +122,8 @@ try {
     $writer.WriteLine("    public static class KnownCommands")
     $writer.WriteLine("    {")
 
-    # Define all of the GUIDs once so that we don't have to define them for each command.
-    # We don't use the actual GUID constants that are defined in `VSConstants` because
-    # not all command sets are available in all versions of Visual Studio.
-    $guids = @{}
-
-    foreach ($entry in ($commands.Values.GetEnumerator() | Sort-Object { $_.CommandSetName })) {
-        if ($entry.Name) {
-            if (-not $guids.ContainsKey($entry.CommandSet)) {
-                $guidName = "_commandSet$($entry.CommandSetName)"
-                $guids[$entry.CommandSet] = $guidName
-                $writer.WriteLine("        private static readonly Guid $guidName = $($entry.CommandSet);")
-            }
-        }
-    }
-
-    $usedCommands = @{}
-
-    foreach ($entry in ($commands.Values.GetEnumerator() | Sort-Object { $_.Name }, { $_.ID })) {
-        if ($entry.Name) {
-            # Some command names might be duplicated. 
-            # Skip this command if we've seen it before.
-            if (-not $usedCommands.ContainsKey($entry.Name)) {
-                $usedCommands[$entry.Name] = 0
-                $writer.WriteLine()
-                $writer.WriteLine("        /// <summary>$($entry.Name)</summary>")
-                $writer.WriteLine("        public static CommandID $($entry.Name.Replace(".", "_")) { get; } = new CommandID($($guids[$entry.CommandSet]), $($entry.ID));")
-            }
-        }
+    foreach ($version in @($MINIMUM_VERSION..$MAXIMUM_VERSION)) {
+        Write-Commands -Writer $writer -Commands $commands -Version $version
     }
 
     $writer.WriteLine("    }")
