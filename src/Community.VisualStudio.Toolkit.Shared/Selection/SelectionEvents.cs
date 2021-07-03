@@ -46,16 +46,13 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            ThreadHelper.JoinableTaskFactory.RunAsync(async delegate
+            if (SelectionChanged != null)
             {
-                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var from = SolutionItem.FromHierarchy(pHierOld, itemidOld);
+                var to = SolutionItem.FromHierarchy(pHierNew, itemidNew);
 
-                SolutionItem? from = await SolutionItem.FromHierarchyAsync(pHierOld, itemidOld);
-                SolutionItem? to = await SolutionItem.FromHierarchyAsync(pHierNew, itemidNew);
-
-                SelectionChanged?.Invoke(this, new SelectionChangedEventArgs(from, to));
-            }).FireAndForget();
-
+                SelectionChanged.Invoke(this, new SelectionChangedEventArgs(from, to));
+            }
             return VSConstants.S_OK;
         }
 

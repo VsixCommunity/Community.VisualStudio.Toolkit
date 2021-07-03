@@ -103,15 +103,15 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsUpdateSolutionEvents2.UpdateProjectCfg_Begin(IVsHierarchy pHierProj, IVsCfg pCfgProj, IVsCfg pCfgSln, uint dwAction, ref int pfCancel)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             // This method is called when a specific project begins building.
 
             // if clean project or solution,   dwAction == 0x100000
             // if build project or solution,   dwAction == 0x010000
             // if rebuild project or solution, dwAction == 0x410000
-
-            ThreadHelper.JoinableTaskFactory.RunAsync(async delegate
+            if (ProjectCleanStarted != null || ProjectBuildStarted != null)
             {
-                SolutionItem? project = await SolutionItem.FromHierarchyAsync(pHierProj, VSConstants.VSITEMID_ROOT);
+                var project = SolutionItem.FromHierarchy(pHierProj, VSConstants.VSITEMID_ROOT);
 
                 // Clean
                 if (dwAction == 0x100000)
@@ -123,18 +123,18 @@ namespace Community.VisualStudio.Toolkit
                 {
                     ProjectBuildStarted?.Invoke(project);
                 }
-            }).FireAndForget();
+            }
 
             return VSConstants.S_OK;
         }
 
         int IVsUpdateSolutionEvents2.UpdateProjectCfg_Done(IVsHierarchy pHierProj, IVsCfg pCfgProj, IVsCfg pCfgSln, uint dwAction, int fSuccess, int fCancel)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             // This method is called when a specific project finishes building.
-
-            ThreadHelper.JoinableTaskFactory.RunAsync(async delegate
+            if (ProjectBuildDone != null || ProjectCleanDone != null)
             {
-                SolutionItem? project = await SolutionItem.FromHierarchyAsync(pHierProj, VSConstants.VSITEMID_ROOT);
+                var project = SolutionItem.FromHierarchy(pHierProj, VSConstants.VSITEMID_ROOT);
 
                 // Clean
                 if (dwAction == 0x100000)
@@ -146,7 +146,7 @@ namespace Community.VisualStudio.Toolkit
                 {
                     ProjectBuildDone?.Invoke(project);
                 }
-            }).FireAndForget();
+            }
 
             return VSConstants.S_OK;
         }

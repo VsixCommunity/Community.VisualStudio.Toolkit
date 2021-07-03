@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -23,6 +24,18 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             var solution = (IVsHierarchy)await VS.Services.GetSolutionAsync();
             IVsHierarchyItem? hierItem = await solution.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
+            return SolutionItem.FromHierarchyItem(hierItem);
+        }
+
+        /// <summary>
+        /// Get the current solution.
+        /// </summary>
+        public SolutionItem? GetCurrentSolution()
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            var solution = (IVsHierarchy)ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution));
+            Assumes.Present(solution);
+            IVsHierarchyItem? hierItem = solution.ToHierarcyItem(VSConstants.VSITEMID_ROOT);
             return SolutionItem.FromHierarchyItem(hierItem);
         }
 

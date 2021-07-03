@@ -305,6 +305,17 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// Creates a new instance based on a hierarchy.
+        /// </summary>
+        public static SolutionItem? FromHierarchy(IVsHierarchy hierarchy, uint itemId)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            IVsHierarchyItem? item = hierarchy.ToHierarcyItem(itemId);
+
+            return FromHierarchyItem(item);
+        }
+
+        /// <summary>
         /// Creates a new instance based on a hierarchy item.
         /// </summary>
         public static SolutionItem? FromHierarchyItem(IVsHierarchyItem? item)

@@ -12,43 +12,43 @@ namespace Community.VisualStudio.Toolkit
     public static class VS
     {
         /// <summary>Handles building of solutions and projects.</summary>
-        public static Build Build => new();
+        public static Build Build { get; } = new();
 
         /// <summary>A collection of services related to the command system.</summary>
-        public static Commands Commands => new();
+        public static Commands Commands { get; } = new();
 
         /// <summary>Contains helper methods for dealing with documents.</summary>
-        public static Documents Documents => new(); 
+        public static Documents Documents { get; } = new();
 
         /// <summary>A collection of events.</summary>
-        public static Events Events => new();
+        public static Events Events { get; } = new();
 
         /// <summary>Creates InfoBar controls for use on documents and tool windows.</summary>
-        public static InfoBarFactory InfoBar => new();
+        public static InfoBarFactory InfoBar { get; } = new();
 
         /// <summary>Shows message boxes.</summary>
-        public static MessageBox MessageBox => new();
+        public static MessageBox MessageBox { get; } = new();
 
         /// <summary>Services related to the selection of windows and nodes.</summary>
-        public static Selection Selection => new();
+        public static Selection Selection { get; } = new();
 
         /// <summary>A collection of services commonly used by extensions.</summary>
-        public static Services Services => new();   
+        public static Services Services { get; } = new();
 
         /// <summary>A collection of services related to settings.</summary>
-        public static Settings Settings => new();
+        public static Settings Settings { get; } = new();
 
         /// <summary>A collection of services related to the shell.</summary>
-        public static Shell Shell => new();
+        public static Shell Shell { get; } = new();
 
         /// <summary>A collection of services related to solutions.</summary>
-        public static Solution Solution => new();
+        public static Solution Solution { get; } = new();
 
         /// <summary>An API wrapper that makes it easy to work with the status bar.</summary>
-        public static StatusBar StatusBar => new();
+        public static StatusBar StatusBar { get; } = new();
 
         /// <summary>A collection of services related to windows.</summary>
-        public static Windows Windows => new();
+        public static Windows Windows { get; } = new();
 
         /// <summary>
         /// Gets a global service asynchronously.
@@ -89,6 +89,17 @@ namespace Community.VisualStudio.Toolkit
         public static async Task<TInterface> GetMefServiceAsync<TInterface>() where TInterface : class
         {
             IComponentModel2 compService = await GetRequiredServiceAsync<SComponentModel, IComponentModel2>();
+            return compService.GetService<TInterface>();
+        }
+
+        /// <summary>
+        /// Gets a service from the MEF component catalog
+        /// </summary>
+        public static TInterface GetMefService<TInterface>() where TInterface : class
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            var compService = (IComponentModel2)ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel));
+            Assumes.Present(compService);
             return compService.GetService<TInterface>();
         }
     }

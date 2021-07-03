@@ -39,6 +39,23 @@ namespace Microsoft.VisualStudio.Shell.Interop
         }
 
         /// <summary>
+        /// Converts a <see cref="IVsHierarchy"/> to a <see cref="IVsHierarchyItem"/>.
+        /// </summary>
+        /// <returns>Returns <see langword="null"/> if unable to get the hierarchy item.</returns>
+        public static IVsHierarchyItem? ToHierarcyItem(this IVsHierarchy hierarchy, uint itemId)
+        {
+            if (hierarchy == null)
+            {
+                return null;
+            }
+
+            IVsHierarchyItemManager manager = VS.GetMefService<IVsHierarchyItemManager>();
+
+            manager.TryGetHierarchyItem(hierarchy, itemId, out IVsHierarchyItem? item);
+            return item;
+        }
+
+        /// <summary>
         /// Returns whether the specified <see cref="IVsHierarchy"/> is an 'SDK' style project.
         /// </summary>
         /// <param name="hierarchy"></param>

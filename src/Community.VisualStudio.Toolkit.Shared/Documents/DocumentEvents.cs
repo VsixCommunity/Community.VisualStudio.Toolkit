@@ -43,24 +43,33 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsRunningDocTableEvents.OnAfterFirstDocumentLock(uint docCookie, uint dwRDTLockType, uint dwReadLocksRemaining, uint dwEditLocksRemaining)
         {
-            var file = _rdt.GetDocumentInfo(docCookie).Moniker;
-            Opened!.Invoke(this, file);
+            if (Opened != null)
+            {
+                var file = _rdt.GetDocumentInfo(docCookie).Moniker;
+                Opened.Invoke(this, file);
+            }
 
             return VSConstants.S_OK;
         }
 
         int IVsRunningDocTableEvents.OnBeforeLastDocumentUnlock(uint docCookie, uint dwRDTLockType, uint dwReadLocksRemaining, uint dwEditLocksRemaining)
         {
-            var file = _rdt.GetDocumentInfo(docCookie).Moniker;
-            Closed!.Invoke(this, file);
+            if (Closed != null)
+            {
+                var file = _rdt.GetDocumentInfo(docCookie).Moniker;
+                Closed!.Invoke(this, file);
+            }
 
             return VSConstants.S_OK;
         }
 
         int IVsRunningDocTableEvents.OnAfterSave(uint docCookie)
         {
-            var file = _rdt.GetDocumentInfo(docCookie).Moniker;
-            Saved?.Invoke(this, file);
+            if (Saved != null)
+            {
+                var file = _rdt.GetDocumentInfo(docCookie).Moniker;
+                Saved?.Invoke(this, file);
+            }
 
             return VSConstants.S_OK;
         }
