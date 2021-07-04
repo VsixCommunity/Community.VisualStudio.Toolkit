@@ -8,2692 +8,2692 @@ namespace Community.VisualStudio.Toolkit
     /// <summary>Defines the command IDs for known commands.</summary>
     public static class KnownCommands
     {
-        /// <summary>Build.BatchBuild</summary>
-        public static CommandID Build_BatchBuild { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 891 /* VSStd97CmdID.BatchBuildDlg */);
+        /// <summary>Build.BatchBuild<br/><c>VSConstants.VSStd97CmdID.BatchBuildDlg</c></summary>
+        public static CommandID Build_BatchBuild => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 891);
 
-        /// <summary>Build.BuildOnlyProject</summary>
-        public static CommandID Build_BuildOnlyProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1603 /* VSStd2KCmdID.BuildOnlyProject */);
+        /// <summary>Build.BuildOnlyProject<br/><c>VSConstants.VSStd2KCmdID.BuildOnlyProject</c></summary>
+        public static CommandID Build_BuildOnlyProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1603);
 
-        /// <summary>Build.BuildSelection</summary>
-        public static CommandID Build_BuildSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 886 /* VSStd97CmdID.BuildSel */);
+        /// <summary>Build.BuildSelection<br/><c>VSConstants.VSStd97CmdID.BuildSel</c></summary>
+        public static CommandID Build_BuildSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 886);
 
-        /// <summary>Build.BuildSolution</summary>
-        public static CommandID Build_BuildSolution { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 882 /* VSStd97CmdID.BuildSln */);
+        /// <summary>Build.BuildSolution<br/><c>VSConstants.VSStd97CmdID.BuildSln</c></summary>
+        public static CommandID Build_BuildSolution => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 882);
 
-        /// <summary>Build.Cancel</summary>
-        public static CommandID Build_Cancel { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 890 /* VSStd97CmdID.CancelBuild */);
+        /// <summary>Build.Cancel<br/><c>VSConstants.VSStd97CmdID.CancelBuild</c></summary>
+        public static CommandID Build_Cancel => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 890);
 
-        /// <summary>Build.CleanOnlyProject</summary>
-        public static CommandID Build_CleanOnlyProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1605 /* VSStd2KCmdID.CleanOnlyProject */);
+        /// <summary>Build.CleanOnlyProject<br/><c>VSConstants.VSStd2KCmdID.CleanOnlyProject</c></summary>
+        public static CommandID Build_CleanOnlyProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1605);
 
-        /// <summary>Build.CleanSelection</summary>
-        public static CommandID Build_CleanSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 889 /* VSStd97CmdID.CleanSel */);
+        /// <summary>Build.CleanSelection<br/><c>VSConstants.VSStd97CmdID.CleanSel</c></summary>
+        public static CommandID Build_CleanSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 889);
 
-        /// <summary>Build.CleanSolution</summary>
-        public static CommandID Build_CleanSolution { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 885 /* VSStd97CmdID.CleanSln */);
+        /// <summary>Build.CleanSolution<br/><c>VSConstants.VSStd97CmdID.CleanSln</c></summary>
+        public static CommandID Build_CleanSolution => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 885);
 
-        /// <summary>Build.ConfigurationManager</summary>
-        public static CommandID Build_ConfigurationManager { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 771 /* VSStd97CmdID.SlnCfgMgr */);
+        /// <summary>Build.ConfigurationManager<br/><c>VSConstants.VSStd97CmdID.SlnCfgMgr</c></summary>
+        public static CommandID Build_ConfigurationManager => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 771);
 
-        /// <summary>Build.DeploySelection</summary>
-        public static CommandID Build_DeploySelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 888 /* VSStd97CmdID.DeploySel */);
+        /// <summary>Build.DeploySelection<br/><c>VSConstants.VSStd97CmdID.DeploySel</c></summary>
+        public static CommandID Build_DeploySelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 888);
 
-        /// <summary>Build.DeploySolution</summary>
-        public static CommandID Build_DeploySolution { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 884 /* VSStd97CmdID.DeploySln */);
+        /// <summary>Build.DeploySolution<br/><c>VSConstants.VSStd97CmdID.DeploySln</c></summary>
+        public static CommandID Build_DeploySolution => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 884);
 
-        /// <summary>Build.ProjectPickerBuild</summary>
-        public static CommandID Build_ProjectPickerBuild { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1019 /* VSStd97CmdID.BuildProjPicker */);
+        /// <summary>Build.ProjectPickerBuild<br/><c>VSConstants.VSStd97CmdID.BuildProjPicker</c></summary>
+        public static CommandID Build_ProjectPickerBuild => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1019);
 
-        /// <summary>Build.ProjectPickerRebuild</summary>
-        public static CommandID Build_ProjectPickerRebuild { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1020 /* VSStd97CmdID.RebuildProjPicker */);
+        /// <summary>Build.ProjectPickerRebuild<br/><c>VSConstants.VSStd97CmdID.RebuildProjPicker</c></summary>
+        public static CommandID Build_ProjectPickerRebuild => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1020);
 
-        /// <summary>Build.PublishSelection</summary>
-        public static CommandID Build_PublishSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2005 /* VSStd2KCmdID.ECMD_PUBLISHSELECTION */);
+        /// <summary>Build.PublishSelection<br/><c>VSConstants.VSStd2KCmdID.ECMD_PUBLISHSELECTION</c></summary>
+        public static CommandID Build_PublishSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2005);
 
-        /// <summary>Build.RebuildOnlyProject</summary>
-        public static CommandID Build_RebuildOnlyProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1604 /* VSStd2KCmdID.RebuildOnlyProject */);
+        /// <summary>Build.RebuildOnlyProject<br/><c>VSConstants.VSStd2KCmdID.RebuildOnlyProject</c></summary>
+        public static CommandID Build_RebuildOnlyProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1604);
 
-        /// <summary>Build.RebuildSelection</summary>
-        public static CommandID Build_RebuildSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 887 /* VSStd97CmdID.RebuildSel */);
+        /// <summary>Build.RebuildSelection<br/><c>VSConstants.VSStd97CmdID.RebuildSel</c></summary>
+        public static CommandID Build_RebuildSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 887);
 
-        /// <summary>Build.RebuildSolution</summary>
-        public static CommandID Build_RebuildSolution { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 883 /* VSStd97CmdID.RebuildSln */);
+        /// <summary>Build.RebuildSolution<br/><c>VSConstants.VSStd97CmdID.RebuildSln</c></summary>
+        public static CommandID Build_RebuildSolution => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 883);
 
-        /// <summary>Build.RunCodeAnalysisonProject</summary>
-        public static CommandID Build_RunCodeAnalysisonProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1646 /* VSStd2KCmdID.StaticAnalysisOnlyProject */);
+        /// <summary>Build.RunCodeAnalysisonProject<br/><c>VSConstants.VSStd2KCmdID.StaticAnalysisOnlyProject</c></summary>
+        public static CommandID Build_RunCodeAnalysisonProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1646);
 
-        /// <summary>Build.RunCodeAnalysisonSelection</summary>
-        public static CommandID Build_RunCodeAnalysisonSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1647 /* VSStd2KCmdID.ECMD_RUNFXCOPSEL */);
+        /// <summary>Build.RunCodeAnalysisonSelection<br/><c>VSConstants.VSStd2KCmdID.ECMD_RUNFXCOPSEL</c></summary>
+        public static CommandID Build_RunCodeAnalysisonSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1647);
 
-        /// <summary>Build.SolutionConfigurations</summary>
-        public static CommandID Build_SolutionConfigurations { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 684 /* VSStd97CmdID.SolutionCfg */);
+        /// <summary>Build.SolutionConfigurations<br/><c>VSConstants.VSStd97CmdID.SolutionCfg</c></summary>
+        public static CommandID Build_SolutionConfigurations => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 684);
 
-        /// <summary>Build.SolutionPlatforms</summary>
-        public static CommandID Build_SolutionPlatforms { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1990 /* VSStd2KCmdID.SolutionPlatform */);
+        /// <summary>Build.SolutionPlatforms<br/><c>VSConstants.VSStd2KCmdID.SolutionPlatform</c></summary>
+        public static CommandID Build_SolutionPlatforms => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1990);
 
-        /// <summary>ClassViewContextMenus.ClassViewFolder.MoveToTop</summary>
-        public static CommandID ClassViewContextMenus_ClassViewFolder_MoveToTop { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1037 /* VSStd97CmdID.MoveToTop */);
+        /// <summary>ClassViewContextMenus.ClassViewFolder.MoveToTop<br/><c>VSConstants.VSStd97CmdID.MoveToTop</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewFolder_MoveToTop => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1037);
 
-        /// <summary>ClassViewContextMenus.ClassViewMember.CallBrowser.CallBrowserShowCallersGraph</summary>
-        public static CommandID ClassViewContextMenus_ClassViewMember_CallBrowser_CallBrowserShowCallersGraph { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2010 /* VSStd2KCmdID.CallBrowserShowCallsTo */);
+        /// <summary>ClassViewContextMenus.ClassViewMember.CallBrowser.CallBrowserShowCallersGraph<br/><c>VSConstants.VSStd2KCmdID.CallBrowserShowCallsTo</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewMember_CallBrowser_CallBrowserShowCallersGraph => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2010);
 
-        /// <summary>ClassViewContextMenus.ClassViewMember.CallBrowser.CallBrowserShowCallersGraphInNewWindow</summary>
-        public static CommandID ClassViewContextMenus_ClassViewMember_CallBrowser_CallBrowserShowCallersGraphInNewWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2012 /* VSStd2KCmdID.CallBrowserShowNewCallsTo */);
+        /// <summary>ClassViewContextMenus.ClassViewMember.CallBrowser.CallBrowserShowCallersGraphInNewWindow<br/><c>VSConstants.VSStd2KCmdID.CallBrowserShowNewCallsTo</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewMember_CallBrowser_CallBrowserShowCallersGraphInNewWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2012);
 
-        /// <summary>ClassViewContextMenus.ClassViewMember.CallBrowser.CallBrowserShowCallGraph</summary>
-        public static CommandID ClassViewContextMenus_ClassViewMember_CallBrowser_CallBrowserShowCallGraph { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2011 /* VSStd2KCmdID.CallBrowserShowCallsFrom */);
+        /// <summary>ClassViewContextMenus.ClassViewMember.CallBrowser.CallBrowserShowCallGraph<br/><c>VSConstants.VSStd2KCmdID.CallBrowserShowCallsFrom</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewMember_CallBrowser_CallBrowserShowCallGraph => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2011);
 
-        /// <summary>ClassViewContextMenus.ClassViewMember.CallBrowser.CallBrowserShowCallGraphInNewWindow</summary>
-        public static CommandID ClassViewContextMenus_ClassViewMember_CallBrowser_CallBrowserShowCallGraphInNewWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2013 /* VSStd2KCmdID.CallBrowserShowNewCallsFrom */);
+        /// <summary>ClassViewContextMenus.ClassViewMember.CallBrowser.CallBrowserShowCallGraphInNewWindow<br/><c>VSConstants.VSStd2KCmdID.CallBrowserShowNewCallsFrom</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewMember_CallBrowser_CallBrowserShowCallGraphInNewWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2013);
 
-        /// <summary>ClassViewContextMenus.ClassViewMultiselectProjectreferencesItems.Properties</summary>
-        public static CommandID ClassViewContextMenus_ClassViewMultiselectProjectreferencesItems_Properties { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 397 /* VSStd97CmdID.PropSheetOrProperties */);
+        /// <summary>ClassViewContextMenus.ClassViewMultiselectProjectreferencesItems.Properties<br/><c>VSConstants.VSStd97CmdID.PropSheetOrProperties</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewMultiselectProjectreferencesItems_Properties => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 397);
 
-        /// <summary>ClassViewContextMenus.ClassViewProject.Build</summary>
-        public static CommandID ClassViewContextMenus_ClassViewProject_Build { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 892 /* VSStd97CmdID.BuildCtx */);
+        /// <summary>ClassViewContextMenus.ClassViewProject.Build<br/><c>VSConstants.VSStd97CmdID.BuildCtx</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewProject_Build => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 892);
 
-        /// <summary>ClassViewContextMenus.ClassViewProject.Clean</summary>
-        public static CommandID ClassViewContextMenus_ClassViewProject_Clean { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 895 /* VSStd97CmdID.CleanCtx */);
+        /// <summary>ClassViewContextMenus.ClassViewProject.Clean<br/><c>VSConstants.VSStd97CmdID.CleanCtx</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewProject_Clean => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 895);
 
-        /// <summary>ClassViewContextMenus.ClassViewProject.Debug.StartNewInstance</summary>
-        public static CommandID ClassViewContextMenus_ClassViewProject_Debug_StartNewInstance { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 356 /* VSStd2KCmdID.PROJSTARTDEBUG */);
+        /// <summary>ClassViewContextMenus.ClassViewProject.Debug.StartNewInstance<br/><c>VSConstants.VSStd2KCmdID.PROJSTARTDEBUG</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewProject_Debug_StartNewInstance => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 356);
 
-        /// <summary>ClassViewContextMenus.ClassViewProject.Debug.StepIntoNewInstance</summary>
-        public static CommandID ClassViewContextMenus_ClassViewProject_Debug_StepIntoNewInstance { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 357 /* VSStd2KCmdID.PROJSTEPINTO */);
+        /// <summary>ClassViewContextMenus.ClassViewProject.Debug.StepIntoNewInstance<br/><c>VSConstants.VSStd2KCmdID.PROJSTEPINTO</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewProject_Debug_StepIntoNewInstance => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 357);
 
-        /// <summary>ClassViewContextMenus.ClassViewProject.Deploy</summary>
-        public static CommandID ClassViewContextMenus_ClassViewProject_Deploy { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 894 /* VSStd97CmdID.DeployCtx */);
+        /// <summary>ClassViewContextMenus.ClassViewProject.Deploy<br/><c>VSConstants.VSStd97CmdID.DeployCtx</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewProject_Deploy => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 894);
 
-        /// <summary>ClassViewContextMenus.ClassViewProject.Publish</summary>
-        public static CommandID ClassViewContextMenus_ClassViewProject_Publish { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2006 /* VSStd2KCmdID.ECMD_PUBLISHSLNCTX */);
+        /// <summary>ClassViewContextMenus.ClassViewProject.Publish<br/><c>VSConstants.VSStd2KCmdID.ECMD_PUBLISHSLNCTX</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewProject_Publish => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2006);
 
-        /// <summary>ClassViewContextMenus.ClassViewProject.Rebuild</summary>
-        public static CommandID ClassViewContextMenus_ClassViewProject_Rebuild { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 893 /* VSStd97CmdID.RebuildCtx */);
+        /// <summary>ClassViewContextMenus.ClassViewProject.Rebuild<br/><c>VSConstants.VSStd97CmdID.RebuildCtx</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewProject_Rebuild => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 893);
 
-        /// <summary>ClassViewContextMenus.ClassViewProject.View.ViewClassDiagram</summary>
-        public static CommandID ClassViewContextMenus_ClassViewProject_View_ViewClassDiagram { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1931 /* VSStd2KCmdID.ViewInClassDiagram */);
+        /// <summary>ClassViewContextMenus.ClassViewProject.View.ViewClassDiagram<br/><c>VSConstants.VSStd2KCmdID.ViewInClassDiagram</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewProject_View_ViewClassDiagram => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1931);
 
-        /// <summary>ClassViewContextMenus.ClassViewProjectReference.ViewinObjectBrowser</summary>
-        public static CommandID ClassViewContextMenus_ClassViewProjectReference_ViewinObjectBrowser { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1119 /* VSStd2KCmdID.VIEWREFINOBJECTBROWSER */);
+        /// <summary>ClassViewContextMenus.ClassViewProjectReference.ViewinObjectBrowser<br/><c>VSConstants.VSStd2KCmdID.VIEWREFINOBJECTBROWSER</c></summary>
+        public static CommandID ClassViewContextMenus_ClassViewProjectReference_ViewinObjectBrowser => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1119);
 
-        /// <summary>ClassViewSearch</summary>
-        public static CommandID ClassViewSearch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1658 /* VSStd2KCmdID.CVSearch */);
+        /// <summary>ClassViewSearch<br/><c>VSConstants.VSStd2KCmdID.CVSearch</c></summary>
+        public static CommandID ClassViewSearch => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1658);
 
-        /// <summary>ClearAllFilters</summary>
-        public static CommandID ClearAllFilters { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 50 /* VSStd14CmdID.ErrorListClearFilters */);
+        /// <summary>ClearAllFilters<br/><c>VSConstants.VSStd14CmdID.ErrorListClearFilters</c></summary>
+        public static CommandID ClearAllFilters => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 50);
 
-        /// <summary>CreateUserTask</summary>
-        public static CommandID CreateUserTask { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2202 /* VSStd2KCmdID.CreateUserTask */);
+        /// <summary>CreateUserTask<br/><c>VSConstants.VSStd2KCmdID.CreateUserTask</c></summary>
+        public static CommandID CreateUserTask => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2202);
 
-        /// <summary>Debug.AddWatch</summary>
-        public static CommandID Debug_AddWatch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 252 /* VSStd97CmdID.AddWatch */);
+        /// <summary>Debug.AddWatch<br/><c>VSConstants.VSStd97CmdID.AddWatch</c></summary>
+        public static CommandID Debug_AddWatch => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 252);
 
-        /// <summary>Debug.AttachtoProcess</summary>
-        public static CommandID Debug_AttachtoProcess { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 213 /* VSStd97CmdID.DebugProcesses */);
+        /// <summary>Debug.AttachtoProcess<br/><c>VSConstants.VSStd97CmdID.DebugProcesses</c></summary>
+        public static CommandID Debug_AttachtoProcess => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 213);
 
-        /// <summary>Debug.Autos</summary>
-        public static CommandID Debug_Autos { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 747 /* VSStd97CmdID.DebugReserved1 */);
+        /// <summary>Debug.Autos<br/><c>VSConstants.VSStd97CmdID.DebugReserved1</c></summary>
+        public static CommandID Debug_Autos => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 747);
 
-        /// <summary>Debug.BreakAll</summary>
-        public static CommandID Debug_BreakAll { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 180 /* VSStd97CmdID.Pause */);
+        /// <summary>Debug.BreakAll<br/><c>VSConstants.VSStd97CmdID.Pause</c></summary>
+        public static CommandID Debug_BreakAll => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 180);
 
-        /// <summary>Debug.CallStack</summary>
-        public static CommandID Debug_CallStack { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 243 /* VSStd97CmdID.CallStack */);
+        /// <summary>Debug.CallStack<br/><c>VSConstants.VSStd97CmdID.CallStack</c></summary>
+        public static CommandID Debug_CallStack => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 243);
 
-        /// <summary>Debug.DeleteAllBreakpoints</summary>
-        public static CommandID Debug_DeleteAllBreakpoints { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 256 /* VSStd97CmdID.ClearBreakpoints */);
+        /// <summary>Debug.DeleteAllBreakpoints<br/><c>VSConstants.VSStd97CmdID.ClearBreakpoints</c></summary>
+        public static CommandID Debug_DeleteAllBreakpoints => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 256);
 
-        /// <summary>Debug.DetachAll</summary>
-        public static CommandID Debug_DetachAll { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 262 /* VSStd97CmdID.DetachDebugger */);
+        /// <summary>Debug.DetachAll<br/><c>VSConstants.VSStd97CmdID.DetachDebugger</c></summary>
+        public static CommandID Debug_DetachAll => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 262);
 
-        /// <summary>Debug.EnableBreakpoint</summary>
-        public static CommandID Debug_EnableBreakpoint { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 376 /* VSStd97CmdID.EnableBreakpoint */);
+        /// <summary>Debug.EnableBreakpoint<br/><c>VSConstants.VSStd97CmdID.EnableBreakpoint</c></summary>
+        public static CommandID Debug_EnableBreakpoint => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 376);
 
-        /// <summary>Debug.EvaluateStatement</summary>
-        public static CommandID Debug_EvaluateStatement { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 432 /* VSStd97CmdID.EvaluateStatement */);
+        /// <summary>Debug.EvaluateStatement<br/><c>VSConstants.VSStd97CmdID.EvaluateStatement</c></summary>
+        public static CommandID Debug_EvaluateStatement => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 432);
 
-        /// <summary>Debug.ExceptionSettings</summary>
-        public static CommandID Debug_ExceptionSettings { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 339 /* VSStd97CmdID.Exceptions */);
+        /// <summary>Debug.ExceptionSettings<br/><c>VSConstants.VSStd97CmdID.Exceptions</c></summary>
+        public static CommandID Debug_ExceptionSettings => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 339);
 
-        /// <summary>Debug.HexadecimalDisplay</summary>
-        public static CommandID Debug_HexadecimalDisplay { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 314 /* VSStd97CmdID.DisplayRadix */);
+        /// <summary>Debug.HexadecimalDisplay<br/><c>VSConstants.VSStd97CmdID.DisplayRadix</c></summary>
+        public static CommandID Debug_HexadecimalDisplay => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 314);
 
-        /// <summary>Debug.Immediate</summary>
-        public static CommandID Debug_Immediate { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 240 /* VSStd97CmdID.ImmediateWindow */);
+        /// <summary>Debug.Immediate<br/><c>VSConstants.VSStd97CmdID.ImmediateWindow</c></summary>
+        public static CommandID Debug_Immediate => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 240);
 
-        /// <summary>Debug.Locals</summary>
-        public static CommandID Debug_Locals { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 242 /* VSStd97CmdID.LocalsWindow */);
+        /// <summary>Debug.Locals<br/><c>VSConstants.VSStd97CmdID.LocalsWindow</c></summary>
+        public static CommandID Debug_Locals => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 242);
 
-        /// <summary>Debug.Print</summary>
-        public static CommandID Debug_Print { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 430 /* VSStd97CmdID.EvaluateExpression */);
+        /// <summary>Debug.Print<br/><c>VSConstants.VSStd97CmdID.EvaluateExpression</c></summary>
+        public static CommandID Debug_Print => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 430);
 
-        /// <summary>Debug.QuickWatch</summary>
-        public static CommandID Debug_QuickWatch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 254 /* VSStd97CmdID.QuickWatch */);
+        /// <summary>Debug.QuickWatch<br/><c>VSConstants.VSStd97CmdID.QuickWatch</c></summary>
+        public static CommandID Debug_QuickWatch => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 254);
 
-        /// <summary>Debug.Restart</summary>
-        public static CommandID Debug_Restart { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 296 /* VSStd97CmdID.Restart */);
+        /// <summary>Debug.Restart<br/><c>VSConstants.VSStd97CmdID.Restart</c></summary>
+        public static CommandID Debug_Restart => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 296);
 
-        /// <summary>Debug.RunToCursor</summary>
-        public static CommandID Debug_RunToCursor { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 251 /* VSStd97CmdID.RunToCursor */);
+        /// <summary>Debug.RunToCursor<br/><c>VSConstants.VSStd97CmdID.RunToCursor</c></summary>
+        public static CommandID Debug_RunToCursor => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 251);
 
-        /// <summary>Debug.SetNextStatement</summary>
-        public static CommandID Debug_SetNextStatement { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 258 /* VSStd97CmdID.SetNextStatement */);
+        /// <summary>Debug.SetNextStatement<br/><c>VSConstants.VSStd97CmdID.SetNextStatement</c></summary>
+        public static CommandID Debug_SetNextStatement => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 258);
 
-        /// <summary>Debug.ShowNextStatement</summary>
-        public static CommandID Debug_ShowNextStatement { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 259 /* VSStd97CmdID.ShowNextStatement */);
+        /// <summary>Debug.ShowNextStatement<br/><c>VSConstants.VSStd97CmdID.ShowNextStatement</c></summary>
+        public static CommandID Debug_ShowNextStatement => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 259);
 
-        /// <summary>Debug.Start</summary>
-        public static CommandID Debug_Start { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 295 /* VSStd97CmdID.Start */);
+        /// <summary>Debug.Start<br/><c>VSConstants.VSStd97CmdID.Start</c></summary>
+        public static CommandID Debug_Start => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 295);
 
-        /// <summary>Debug.StartupProjectProperties</summary>
-        public static CommandID Debug_StartupProjectProperties { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 21 /* VSStd11CmdID.StartupProjectProperties */);
+        /// <summary>Debug.StartupProjectProperties<br/><c>VSConstants.VSStd11CmdID.StartupProjectProperties</c></summary>
+        public static CommandID Debug_StartupProjectProperties => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 21);
 
-        /// <summary>Debug.StartWithoutDebugging</summary>
-        public static CommandID Debug_StartWithoutDebugging { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 368 /* VSStd97CmdID.StartNoDebug */);
+        /// <summary>Debug.StartWithoutDebugging<br/><c>VSConstants.VSStd97CmdID.StartNoDebug</c></summary>
+        public static CommandID Debug_StartWithoutDebugging => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 368);
 
-        /// <summary>Debug.StepInto</summary>
-        public static CommandID Debug_StepInto { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 248 /* VSStd97CmdID.StepInto */);
+        /// <summary>Debug.StepInto<br/><c>VSConstants.VSStd97CmdID.StepInto</c></summary>
+        public static CommandID Debug_StepInto => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 248);
 
-        /// <summary>Debug.StepOut</summary>
-        public static CommandID Debug_StepOut { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 250 /* VSStd97CmdID.StepOut */);
+        /// <summary>Debug.StepOut<br/><c>VSConstants.VSStd97CmdID.StepOut</c></summary>
+        public static CommandID Debug_StepOut => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 250);
 
-        /// <summary>Debug.StepOver</summary>
-        public static CommandID Debug_StepOver { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 249 /* VSStd97CmdID.StepOver */);
+        /// <summary>Debug.StepOver<br/><c>VSConstants.VSStd97CmdID.StepOver</c></summary>
+        public static CommandID Debug_StepOver => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 249);
 
-        /// <summary>Debug.StopDebugging</summary>
-        public static CommandID Debug_StopDebugging { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 179 /* VSStd97CmdID.Stop */);
+        /// <summary>Debug.StopDebugging<br/><c>VSConstants.VSStd97CmdID.Stop</c></summary>
+        public static CommandID Debug_StopDebugging => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 179);
 
-        /// <summary>Debug.Threads</summary>
-        public static CommandID Debug_Threads { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 214 /* VSStd97CmdID.ViewThreadsWindow */);
+        /// <summary>Debug.Threads<br/><c>VSConstants.VSStd97CmdID.ViewThreadsWindow</c></summary>
+        public static CommandID Debug_Threads => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 214);
 
-        /// <summary>Debug.ToggleBreakpoint</summary>
-        public static CommandID Debug_ToggleBreakpoint { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 255 /* VSStd97CmdID.ToggleBreakpoint */);
+        /// <summary>Debug.ToggleBreakpoint<br/><c>VSConstants.VSStd97CmdID.ToggleBreakpoint</c></summary>
+        public static CommandID Debug_ToggleBreakpoint => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 255);
 
-        /// <summary>DebuggerContextMenus.AutosWindow.CollapseParent</summary>
-        public static CommandID DebuggerContextMenus_AutosWindow_CollapseParent { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 275 /* VSStd97CmdID.CollapseWatch */);
+        /// <summary>DebuggerContextMenus.AutosWindow.CollapseParent<br/><c>VSConstants.VSStd97CmdID.CollapseWatch</c></summary>
+        public static CommandID DebuggerContextMenus_AutosWindow_CollapseParent => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 275);
 
-        /// <summary>DebuggerContextMenus.AutosWindow.DeleteWatch</summary>
-        public static CommandID DebuggerContextMenus_AutosWindow_DeleteWatch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 274 /* VSStd97CmdID.DeleteWatch */);
+        /// <summary>DebuggerContextMenus.AutosWindow.DeleteWatch<br/><c>VSConstants.VSStd97CmdID.DeleteWatch</c></summary>
+        public static CommandID DebuggerContextMenus_AutosWindow_DeleteWatch => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 274);
 
-        /// <summary>DebuggerContextMenus.AutosWindow.Elasticcolumn</summary>
-        public static CommandID DebuggerContextMenus_AutosWindow_Elasticcolumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 345 /* VSStd97CmdID.ElasticColumn */);
+        /// <summary>DebuggerContextMenus.AutosWindow.Elasticcolumn<br/><c>VSConstants.VSStd97CmdID.ElasticColumn</c></summary>
+        public static CommandID DebuggerContextMenus_AutosWindow_Elasticcolumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 345);
 
-        /// <summary>DebuggerContextMenus.GPUThreadsWindowShortcutMenu.Freeze</summary>
-        public static CommandID DebuggerContextMenus_GPUThreadsWindowShortcutMenu_Freeze { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 311 /* VSStd97CmdID.ThreadSuspend */);
+        /// <summary>DebuggerContextMenus.GPUThreadsWindowShortcutMenu.Freeze<br/><c>VSConstants.VSStd97CmdID.ThreadSuspend</c></summary>
+        public static CommandID DebuggerContextMenus_GPUThreadsWindowShortcutMenu_Freeze => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 311);
 
-        /// <summary>DebuggerContextMenus.GPUThreadsWindowShortcutMenu.SwitchToThread</summary>
-        public static CommandID DebuggerContextMenus_GPUThreadsWindowShortcutMenu_SwitchToThread { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 313 /* VSStd97CmdID.ThreadSetFocus */);
+        /// <summary>DebuggerContextMenus.GPUThreadsWindowShortcutMenu.SwitchToThread<br/><c>VSConstants.VSStd97CmdID.ThreadSetFocus</c></summary>
+        public static CommandID DebuggerContextMenus_GPUThreadsWindowShortcutMenu_SwitchToThread => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 313);
 
-        /// <summary>DebuggerContextMenus.GPUThreadsWindowShortcutMenu.Thaw</summary>
-        public static CommandID DebuggerContextMenus_GPUThreadsWindowShortcutMenu_Thaw { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 312 /* VSStd97CmdID.ThreadResume */);
+        /// <summary>DebuggerContextMenus.GPUThreadsWindowShortcutMenu.Thaw<br/><c>VSConstants.VSStd97CmdID.ThreadResume</c></summary>
+        public static CommandID DebuggerContextMenus_GPUThreadsWindowShortcutMenu_Thaw => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 312);
 
-        /// <summary>Edit.AddResource</summary>
-        public static CommandID Edit_AddResource { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1220 /* VSStd2KCmdID.RESOURCENEW */);
+        /// <summary>Edit.AddResource<br/><c>VSConstants.VSStd2KCmdID.RESOURCENEW</c></summary>
+        public static CommandID Edit_AddResource => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1220);
 
-        /// <summary>Edit.AddTagHandler</summary>
-        public static CommandID Edit_AddTagHandler { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 242 /* VSStd2KCmdID.ADDHANDLER */);
+        /// <summary>Edit.AddTagHandler<br/><c>VSConstants.VSStd2KCmdID.ADDHANDLER</c></summary>
+        public static CommandID Edit_AddTagHandler => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 242);
 
-        /// <summary>Edit.BreakLine</summary>
-        public static CommandID Edit_BreakLine { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 3 /* VSStd2KCmdID.RETURN */);
+        /// <summary>Edit.BreakLine<br/><c>VSConstants.VSStd2KCmdID.RETURN</c></summary>
+        public static CommandID Edit_BreakLine => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 3);
 
-        /// <summary>Edit.Capitalize</summary>
-        public static CommandID Edit_Capitalize { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 50 /* VSStd2KCmdID.SELTITLECASE */);
+        /// <summary>Edit.Capitalize<br/><c>VSConstants.VSStd2KCmdID.SELTITLECASE</c></summary>
+        public static CommandID Edit_Capitalize => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 50);
 
-        /// <summary>Edit.CharLeft</summary>
-        public static CommandID Edit_CharLeft { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 7 /* VSStd2KCmdID.LEFT */);
+        /// <summary>Edit.CharLeft<br/><c>VSConstants.VSStd2KCmdID.LEFT</c></summary>
+        public static CommandID Edit_CharLeft => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 7);
 
-        /// <summary>Edit.CharLeftExtend</summary>
-        public static CommandID Edit_CharLeftExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 8 /* VSStd2KCmdID.LEFT_EXT */);
+        /// <summary>Edit.CharLeftExtend<br/><c>VSConstants.VSStd2KCmdID.LEFT_EXT</c></summary>
+        public static CommandID Edit_CharLeftExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 8);
 
-        /// <summary>Edit.CharLeftExtendColumn</summary>
-        public static CommandID Edit_CharLeftExtendColumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 117 /* VSStd2KCmdID.LEFT_EXT_COL */);
+        /// <summary>Edit.CharLeftExtendColumn<br/><c>VSConstants.VSStd2KCmdID.LEFT_EXT_COL</c></summary>
+        public static CommandID Edit_CharLeftExtendColumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 117);
 
-        /// <summary>Edit.CharRight</summary>
-        public static CommandID Edit_CharRight { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 9 /* VSStd2KCmdID.RIGHT */);
+        /// <summary>Edit.CharRight<br/><c>VSConstants.VSStd2KCmdID.RIGHT</c></summary>
+        public static CommandID Edit_CharRight => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 9);
 
-        /// <summary>Edit.CharRightExtend</summary>
-        public static CommandID Edit_CharRightExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 10 /* VSStd2KCmdID.RIGHT_EXT */);
+        /// <summary>Edit.CharRightExtend<br/><c>VSConstants.VSStd2KCmdID.RIGHT_EXT</c></summary>
+        public static CommandID Edit_CharRightExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 10);
 
-        /// <summary>Edit.CharRightExtendColumn</summary>
-        public static CommandID Edit_CharRightExtendColumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 118 /* VSStd2KCmdID.RIGHT_EXT_COL */);
+        /// <summary>Edit.CharRightExtendColumn<br/><c>VSConstants.VSStd2KCmdID.RIGHT_EXT_COL</c></summary>
+        public static CommandID Edit_CharRightExtendColumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 118);
 
-        /// <summary>Edit.CharTranspose</summary>
-        public static CommandID Edit_CharTranspose { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 87 /* VSStd2KCmdID.TRANSPOSECHAR */);
+        /// <summary>Edit.CharTranspose<br/><c>VSConstants.VSStd2KCmdID.TRANSPOSECHAR</c></summary>
+        public static CommandID Edit_CharTranspose => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 87);
 
-        /// <summary>Edit.CheckMnemonics</summary>
-        public static CommandID Edit_CheckMnemonics { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1254 /* VSStd2KCmdID.CHECKMENUMNEMONICS */);
+        /// <summary>Edit.CheckMnemonics<br/><c>VSConstants.VSStd2KCmdID.CHECKMENUMNEMONICS</c></summary>
+        public static CommandID Edit_CheckMnemonics => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1254);
 
-        /// <summary>Edit.ClearAll</summary>
-        public static CommandID Edit_ClearAll { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 318 /* VSStd97CmdID.ClearPane */);
+        /// <summary>Edit.ClearAll<br/><c>VSConstants.VSStd97CmdID.ClearPane</c></summary>
+        public static CommandID Edit_ClearAll => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 318);
 
-        /// <summary>Edit.ClearAllBookmarksInDocument</summary>
-        public static CommandID Edit_ClearAllBookmarksInDocument { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 157 /* VSStd2KCmdID.ECMD_DELETEALLBOOKMARKSINDOC */);
+        /// <summary>Edit.ClearAllBookmarksInDocument<br/><c>VSConstants.VSStd2KCmdID.ECMD_DELETEALLBOOKMARKSINDOC</c></summary>
+        public static CommandID Edit_ClearAllBookmarksInDocument => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 157);
 
-        /// <summary>Edit.ClearBookmarks</summary>
-        public static CommandID Edit_ClearBookmarks { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 75 /* VSStd2KCmdID.DELETEALLTEMPBOOKMARKS */);
+        /// <summary>Edit.ClearBookmarks<br/><c>VSConstants.VSStd2KCmdID.DELETEALLTEMPBOOKMARKS</c></summary>
+        public static CommandID Edit_ClearBookmarks => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 75);
 
-        /// <summary>Edit.ClearFindResults1</summary>
-        public static CommandID Edit_ClearFindResults1 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1619 /* VSStd2KCmdID.ClearPaneFR1 */);
+        /// <summary>Edit.ClearFindResults1<br/><c>VSConstants.VSStd2KCmdID.ClearPaneFR1</c></summary>
+        public static CommandID Edit_ClearFindResults1 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1619);
 
-        /// <summary>Edit.ClearFindResults2</summary>
-        public static CommandID Edit_ClearFindResults2 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1623 /* VSStd2KCmdID.ClearPaneFR2 */);
+        /// <summary>Edit.ClearFindResults2<br/><c>VSConstants.VSStd2KCmdID.ClearPaneFR2</c></summary>
+        public static CommandID Edit_ClearFindResults2 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1623);
 
-        /// <summary>Edit.ClearOutputWindow</summary>
-        public static CommandID Edit_ClearOutputWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1615 /* VSStd2KCmdID.ClearPaneOW */);
+        /// <summary>Edit.ClearOutputWindow<br/><c>VSConstants.VSStd2KCmdID.ClearPaneOW</c></summary>
+        public static CommandID Edit_ClearOutputWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1615);
 
-        /// <summary>Edit.CollapseAllOutlining</summary>
-        public static CommandID Edit_CollapseAllOutlining { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2501 /* VSStd2010CmdID.OUTLN_COLLAPSE_ALL */);
+        /// <summary>Edit.CollapseAllOutlining<br/><c>VSConstants.VSStd2010CmdID.OUTLN_COLLAPSE_ALL</c></summary>
+        public static CommandID Edit_CollapseAllOutlining => new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2501);
 
-        /// <summary>Edit.CollapseCurrentRegion</summary>
-        public static CommandID Edit_CollapseCurrentRegion { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2503 /* VSStd2010CmdID.OUTLN_COLLAPSE_CURRENT */);
+        /// <summary>Edit.CollapseCurrentRegion<br/><c>VSConstants.VSStd2010CmdID.OUTLN_COLLAPSE_CURRENT</c></summary>
+        public static CommandID Edit_CollapseCurrentRegion => new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2503);
 
-        /// <summary>Edit.CollapseTag</summary>
-        public static CommandID Edit_CollapseTag { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 325 /* VSStd2KCmdID.COLLAPSETAG */);
+        /// <summary>Edit.CollapseTag<br/><c>VSConstants.VSStd2KCmdID.COLLAPSETAG</c></summary>
+        public static CommandID Edit_CollapseTag => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 325);
 
-        /// <summary>Edit.CollapsetoDefinitions</summary>
-        public static CommandID Edit_CollapsetoDefinitions { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 133 /* VSStd2KCmdID.OUTLN_COLLAPSE_TO_DEF */);
+        /// <summary>Edit.CollapsetoDefinitions<br/><c>VSConstants.VSStd2KCmdID.OUTLN_COLLAPSE_TO_DEF</c></summary>
+        public static CommandID Edit_CollapsetoDefinitions => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 133);
 
-        /// <summary>Edit.CommentSelection</summary>
-        public static CommandID Edit_CommentSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 136 /* VSStd2KCmdID.COMMENT_BLOCK */);
+        /// <summary>Edit.CommentSelection<br/><c>VSConstants.VSStd2KCmdID.COMMENT_BLOCK</c></summary>
+        public static CommandID Edit_CommentSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 136);
 
-        /// <summary>Edit.CompleteWord</summary>
-        public static CommandID Edit_CompleteWord { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 107 /* VSStd2KCmdID.COMPLETEWORD */);
+        /// <summary>Edit.CompleteWord<br/><c>VSConstants.VSStd2KCmdID.COMPLETEWORD</c></summary>
+        public static CommandID Edit_CompleteWord => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 107);
 
-        /// <summary>Edit.ContractSelection</summary>
-        public static CommandID Edit_ContractSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 941 /* VSStd2KCmdID.COLLAPSESELECTION */);
+        /// <summary>Edit.ContractSelection<br/><c>VSConstants.VSStd2KCmdID.COLLAPSESELECTION</c></summary>
+        public static CommandID Edit_ContractSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 941);
 
-        /// <summary>Edit.ConvertSpacesToTabs</summary>
-        public static CommandID Edit_ConvertSpacesToTabs { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 159 /* VSStd2KCmdID.ECMD_CONVERTSPACESTOTABS */);
+        /// <summary>Edit.ConvertSpacesToTabs<br/><c>VSConstants.VSStd2KCmdID.ECMD_CONVERTSPACESTOTABS</c></summary>
+        public static CommandID Edit_ConvertSpacesToTabs => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 159);
 
-        /// <summary>Edit.ConvertTabsToSpaces</summary>
-        public static CommandID Edit_ConvertTabsToSpaces { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 158 /* VSStd2KCmdID.ECMD_CONVERTTABSTOSPACES */);
+        /// <summary>Edit.ConvertTabsToSpaces<br/><c>VSConstants.VSStd2KCmdID.ECMD_CONVERTTABSTOSPACES</c></summary>
+        public static CommandID Edit_ConvertTabsToSpaces => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 158);
 
-        /// <summary>Edit.Copy</summary>
-        public static CommandID Edit_Copy { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 15 /* VSStd97CmdID.Copy */);
+        /// <summary>Edit.Copy<br/><c>VSConstants.VSStd97CmdID.Copy</c></summary>
+        public static CommandID Edit_Copy => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 15);
 
-        /// <summary>Edit.CopyParameterTip</summary>
-        public static CommandID Edit_CopyParameterTip { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 148 /* VSStd2KCmdID.ECMD_COPYTIP */);
+        /// <summary>Edit.CopyParameterTip<br/><c>VSConstants.VSStd2KCmdID.ECMD_COPYTIP</c></summary>
+        public static CommandID Edit_CopyParameterTip => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 148);
 
-        /// <summary>Edit.Cut</summary>
-        public static CommandID Edit_Cut { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 16 /* VSStd97CmdID.Cut */);
+        /// <summary>Edit.Cut<br/><c>VSConstants.VSStd97CmdID.Cut</c></summary>
+        public static CommandID Edit_Cut => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 16);
 
-        /// <summary>Edit.CycleClipboardRing</summary>
-        public static CommandID Edit_CycleClipboardRing { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 655 /* VSStd97CmdID.PasteNextTBXCBItem */);
+        /// <summary>Edit.CycleClipboardRing<br/><c>VSConstants.VSStd97CmdID.PasteNextTBXCBItem</c></summary>
+        public static CommandID Edit_CycleClipboardRing => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 655);
 
-        /// <summary>Edit.DecreaseFilterLevel</summary>
-        public static CommandID Edit_DecreaseFilterLevel { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 146 /* VSStd2KCmdID.ECMD_DECREASEFILTER */);
+        /// <summary>Edit.DecreaseFilterLevel<br/><c>VSConstants.VSStd2KCmdID.ECMD_DECREASEFILTER</c></summary>
+        public static CommandID Edit_DecreaseFilterLevel => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 146);
 
-        /// <summary>Edit.DecreaseLineIndent</summary>
-        public static CommandID Edit_DecreaseLineIndent { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 70 /* VSStd2KCmdID.UNINDENT */);
+        /// <summary>Edit.DecreaseLineIndent<br/><c>VSConstants.VSStd2KCmdID.UNINDENT</c></summary>
+        public static CommandID Edit_DecreaseLineIndent => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 70);
 
-        /// <summary>Edit.Delete</summary>
-        public static CommandID Edit_Delete { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 17 /* VSStd97CmdID.Delete */);
+        /// <summary>Edit.Delete<br/><c>VSConstants.VSStd97CmdID.Delete</c></summary>
+        public static CommandID Edit_Delete => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 17);
 
-        /// <summary>Edit.DeleteBackwards</summary>
-        public static CommandID Edit_DeleteBackwards { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2 /* VSStd2KCmdID.BACKSPACE */);
+        /// <summary>Edit.DeleteBackwards<br/><c>VSConstants.VSStd2KCmdID.BACKSPACE</c></summary>
+        public static CommandID Edit_DeleteBackwards => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2);
 
-        /// <summary>Edit.DeleteBlankLines</summary>
-        public static CommandID Edit_DeleteBlankLines { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 63 /* VSStd2KCmdID.DELETEBLANKLINES */);
+        /// <summary>Edit.DeleteBlankLines<br/><c>VSConstants.VSStd2KCmdID.DELETEBLANKLINES</c></summary>
+        public static CommandID Edit_DeleteBlankLines => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 63);
 
-        /// <summary>Edit.DeleteHorizontalWhiteSpace</summary>
-        public static CommandID Edit_DeleteHorizontalWhiteSpace { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 64 /* VSStd2KCmdID.DELETEWHITESPACE */);
+        /// <summary>Edit.DeleteHorizontalWhiteSpace<br/><c>VSConstants.VSStd2KCmdID.DELETEWHITESPACE</c></summary>
+        public static CommandID Edit_DeleteHorizontalWhiteSpace => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 64);
 
-        /// <summary>Edit.DeleteToBOL</summary>
-        public static CommandID Edit_DeleteToBOL { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 66 /* VSStd2KCmdID.DELETETOBOL */);
+        /// <summary>Edit.DeleteToBOL<br/><c>VSConstants.VSStd2KCmdID.DELETETOBOL</c></summary>
+        public static CommandID Edit_DeleteToBOL => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 66);
 
-        /// <summary>Edit.DeleteToEOL</summary>
-        public static CommandID Edit_DeleteToEOL { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 65 /* VSStd2KCmdID.DELETETOEOL */);
+        /// <summary>Edit.DeleteToEOL<br/><c>VSConstants.VSStd2KCmdID.DELETETOEOL</c></summary>
+        public static CommandID Edit_DeleteToEOL => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 65);
 
-        /// <summary>Edit.DeleteVersionInfoBlock</summary>
-        public static CommandID Edit_DeleteVersionInfoBlock { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1242 /* VSStd2KCmdID.DELETEINFOBLOCK */);
+        /// <summary>Edit.DeleteVersionInfoBlock<br/><c>VSConstants.VSStd2KCmdID.DELETEINFOBLOCK</c></summary>
+        public static CommandID Edit_DeleteVersionInfoBlock => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1242);
 
-        /// <summary>Edit.DocumentEnd</summary>
-        public static CommandID Edit_DocumentEnd { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 17 /* VSStd2KCmdID.END */);
+        /// <summary>Edit.DocumentEnd<br/><c>VSConstants.VSStd2KCmdID.END</c></summary>
+        public static CommandID Edit_DocumentEnd => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 17);
 
-        /// <summary>Edit.DocumentEndExtend</summary>
-        public static CommandID Edit_DocumentEndExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 18 /* VSStd2KCmdID.END_EXT */);
+        /// <summary>Edit.DocumentEndExtend<br/><c>VSConstants.VSStd2KCmdID.END_EXT</c></summary>
+        public static CommandID Edit_DocumentEndExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 18);
 
-        /// <summary>Edit.DocumentStart</summary>
-        public static CommandID Edit_DocumentStart { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 15 /* VSStd2KCmdID.HOME */);
+        /// <summary>Edit.DocumentStart<br/><c>VSConstants.VSStd2KCmdID.HOME</c></summary>
+        public static CommandID Edit_DocumentStart => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 15);
 
-        /// <summary>Edit.DocumentStartExtend</summary>
-        public static CommandID Edit_DocumentStartExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 16 /* VSStd2KCmdID.HOME_EXT */);
+        /// <summary>Edit.DocumentStartExtend<br/><c>VSConstants.VSStd2KCmdID.HOME_EXT</c></summary>
+        public static CommandID Edit_DocumentStartExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 16);
 
-        /// <summary>Edit.DoubleClick</summary>
-        public static CommandID Edit_DoubleClick { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 134 /* VSStd2KCmdID.DOUBLECLICK */);
+        /// <summary>Edit.DoubleClick<br/><c>VSConstants.VSStd2KCmdID.DOUBLECLICK</c></summary>
+        public static CommandID Edit_DoubleClick => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 134);
 
-        /// <summary>Edit.EditIDs</summary>
-        public static CommandID Edit_EditIDs { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1025 /* VSStd97CmdID.EditMenuIDs */);
+        /// <summary>Edit.EditIDs<br/><c>VSConstants.VSStd97CmdID.EditMenuIDs</c></summary>
+        public static CommandID Edit_EditIDs => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1025);
 
-        /// <summary>Edit.EditNames</summary>
-        public static CommandID Edit_EditNames { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 211 /* VSStd97CmdID.EditMenuNames */);
+        /// <summary>Edit.EditNames<br/><c>VSConstants.VSStd97CmdID.EditMenuNames</c></summary>
+        public static CommandID Edit_EditNames => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 211);
 
-        /// <summary>Edit.EditTagHandler</summary>
-        public static CommandID Edit_EditTagHandler { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 241 /* VSStd2KCmdID.EDITHANDLER */);
+        /// <summary>Edit.EditTagHandler<br/><c>VSConstants.VSStd2KCmdID.EDITHANDLER</c></summary>
+        public static CommandID Edit_EditTagHandler => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 241);
 
-        /// <summary>Edit.ExpandAllOutlining</summary>
-        public static CommandID Edit_ExpandAllOutlining { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2500 /* VSStd2010CmdID.OUTLN_EXPAND_ALL */);
+        /// <summary>Edit.ExpandAllOutlining<br/><c>VSConstants.VSStd2010CmdID.OUTLN_EXPAND_ALL</c></summary>
+        public static CommandID Edit_ExpandAllOutlining => new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2500);
 
-        /// <summary>Edit.ExpandCurrentRegion</summary>
-        public static CommandID Edit_ExpandCurrentRegion { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2502 /* VSStd2010CmdID.OUTLN_EXPAND_CURRENT */);
+        /// <summary>Edit.ExpandCurrentRegion<br/><c>VSConstants.VSStd2010CmdID.OUTLN_EXPAND_CURRENT</c></summary>
+        public static CommandID Edit_ExpandCurrentRegion => new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2502);
 
-        /// <summary>Edit.ExpandSelection</summary>
-        public static CommandID Edit_ExpandSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 940 /* VSStd2KCmdID.EXPANDSELECTION */);
+        /// <summary>Edit.ExpandSelection<br/><c>VSConstants.VSStd2KCmdID.EXPANDSELECTION</c></summary>
+        public static CommandID Edit_ExpandSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 940);
 
-        /// <summary>Edit.Find</summary>
-        public static CommandID Edit_Find { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 97 /* VSStd97CmdID.Find */);
+        /// <summary>Edit.Find<br/><c>VSConstants.VSStd97CmdID.Find</c></summary>
+        public static CommandID Edit_Find => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 97);
 
-        /// <summary>Edit.FindAllReferences</summary>
-        public static CommandID Edit_FindAllReferences { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1915 /* VSStd97CmdID.FindReferences */);
+        /// <summary>Edit.FindAllReferences<br/><c>VSConstants.VSStd97CmdID.FindReferences</c></summary>
+        public static CommandID Edit_FindAllReferences => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1915);
 
-        /// <summary>Edit.FindinFiles</summary>
-        public static CommandID Edit_FindinFiles { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 277 /* VSStd97CmdID.FindInFiles */);
+        /// <summary>Edit.FindinFiles<br/><c>VSConstants.VSStd97CmdID.FindInFiles</c></summary>
+        public static CommandID Edit_FindinFiles => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 277);
 
-        /// <summary>Edit.FindNext</summary>
-        public static CommandID Edit_FindNext { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 370 /* VSStd97CmdID.FindNext */);
+        /// <summary>Edit.FindNext<br/><c>VSConstants.VSStd97CmdID.FindNext</c></summary>
+        public static CommandID Edit_FindNext => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 370);
 
-        /// <summary>Edit.FindNextSelected</summary>
-        public static CommandID Edit_FindNextSelected { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 372 /* VSStd97CmdID.FindSelectedNext */);
+        /// <summary>Edit.FindNextSelected<br/><c>VSConstants.VSStd97CmdID.FindSelectedNext</c></summary>
+        public static CommandID Edit_FindNextSelected => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 372);
 
-        /// <summary>Edit.FindPrevious</summary>
-        public static CommandID Edit_FindPrevious { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 371 /* VSStd97CmdID.FindPrev */);
+        /// <summary>Edit.FindPrevious<br/><c>VSConstants.VSStd97CmdID.FindPrev</c></summary>
+        public static CommandID Edit_FindPrevious => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 371);
 
-        /// <summary>Edit.FindPreviousSelected</summary>
-        public static CommandID Edit_FindPreviousSelected { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 373 /* VSStd97CmdID.FindSelectedPrev */);
+        /// <summary>Edit.FindPreviousSelected<br/><c>VSConstants.VSStd97CmdID.FindSelectedPrev</c></summary>
+        public static CommandID Edit_FindPreviousSelected => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 373);
 
-        /// <summary>Edit.FindSymbol</summary>
-        public static CommandID Edit_FindSymbol { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 977 /* VSStd97CmdID.ObjectSearch */);
+        /// <summary>Edit.FindSymbol<br/><c>VSConstants.VSStd97CmdID.ObjectSearch</c></summary>
+        public static CommandID Edit_FindSymbol => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 977);
 
-        /// <summary>Edit.FormatDocument</summary>
-        public static CommandID Edit_FormatDocument { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 143 /* VSStd2KCmdID.FORMATDOCUMENT */);
+        /// <summary>Edit.FormatDocument<br/><c>VSConstants.VSStd2KCmdID.FORMATDOCUMENT</c></summary>
+        public static CommandID Edit_FormatDocument => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 143);
 
-        /// <summary>Edit.FormatSelection</summary>
-        public static CommandID Edit_FormatSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 112 /* VSStd2KCmdID.FORMATSELECTION */);
+        /// <summary>Edit.FormatSelection<br/><c>VSConstants.VSStd2KCmdID.FORMATSELECTION</c></summary>
+        public static CommandID Edit_FormatSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 112);
 
-        /// <summary>Edit.GoTo</summary>
-        public static CommandID Edit_GoTo { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 231 /* VSStd97CmdID.Goto */);
+        /// <summary>Edit.GoTo<br/><c>VSConstants.VSStd97CmdID.Goto</c></summary>
+        public static CommandID Edit_GoTo => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 231);
 
-        /// <summary>Edit.GotoBrace</summary>
-        public static CommandID Edit_GotoBrace { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 53 /* VSStd2KCmdID.GOTOBRACE */);
+        /// <summary>Edit.GotoBrace<br/><c>VSConstants.VSStd2KCmdID.GOTOBRACE</c></summary>
+        public static CommandID Edit_GotoBrace => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 53);
 
-        /// <summary>Edit.GotoBraceExtend</summary>
-        public static CommandID Edit_GotoBraceExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 54 /* VSStd2KCmdID.GOTOBRACE_EXT */);
+        /// <summary>Edit.GotoBraceExtend<br/><c>VSConstants.VSStd2KCmdID.GOTOBRACE_EXT</c></summary>
+        public static CommandID Edit_GotoBraceExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 54);
 
-        /// <summary>Edit.GoToDeclaration</summary>
-        public static CommandID Edit_GoToDeclaration { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 936 /* VSStd97CmdID.GotoDecl */);
+        /// <summary>Edit.GoToDeclaration<br/><c>VSConstants.VSStd97CmdID.GotoDecl</c></summary>
+        public static CommandID Edit_GoToDeclaration => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 936);
 
-        /// <summary>Edit.GoToDefinition</summary>
-        public static CommandID Edit_GoToDefinition { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 935 /* VSStd97CmdID.GotoDefn */);
+        /// <summary>Edit.GoToDefinition<br/><c>VSConstants.VSStd97CmdID.GotoDefn</c></summary>
+        public static CommandID Edit_GoToDefinition => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 935);
 
-        /// <summary>Edit.GoToFindCombo</summary>
-        public static CommandID Edit_GoToFindCombo { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 337 /* VSStd97CmdID.SearchCombo */);
+        /// <summary>Edit.GoToFindCombo<br/><c>VSConstants.VSStd97CmdID.SearchCombo</c></summary>
+        public static CommandID Edit_GoToFindCombo => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 337);
 
-        /// <summary>Edit.GoToFindResults1Location</summary>
-        public static CommandID Edit_GoToFindResults1Location { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1620 /* VSStd2KCmdID.GotoErrorTagFR1 */);
+        /// <summary>Edit.GoToFindResults1Location<br/><c>VSConstants.VSStd2KCmdID.GotoErrorTagFR1</c></summary>
+        public static CommandID Edit_GoToFindResults1Location => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1620);
 
-        /// <summary>Edit.GoToFindResults1NextLocation</summary>
-        public static CommandID Edit_GoToFindResults1NextLocation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1621 /* VSStd2KCmdID.GotoNextErrorTagFR1 */);
+        /// <summary>Edit.GoToFindResults1NextLocation<br/><c>VSConstants.VSStd2KCmdID.GotoNextErrorTagFR1</c></summary>
+        public static CommandID Edit_GoToFindResults1NextLocation => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1621);
 
-        /// <summary>Edit.GoToFindResults1PrevLocation</summary>
-        public static CommandID Edit_GoToFindResults1PrevLocation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1622 /* VSStd2KCmdID.GotoPrevErrorTagFR1 */);
+        /// <summary>Edit.GoToFindResults1PrevLocation<br/><c>VSConstants.VSStd2KCmdID.GotoPrevErrorTagFR1</c></summary>
+        public static CommandID Edit_GoToFindResults1PrevLocation => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1622);
 
-        /// <summary>Edit.GoToFindResults2Location</summary>
-        public static CommandID Edit_GoToFindResults2Location { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1624 /* VSStd2KCmdID.GotoErrorTagFR2 */);
+        /// <summary>Edit.GoToFindResults2Location<br/><c>VSConstants.VSStd2KCmdID.GotoErrorTagFR2</c></summary>
+        public static CommandID Edit_GoToFindResults2Location => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1624);
 
-        /// <summary>Edit.GoToFindResults2NextLocation</summary>
-        public static CommandID Edit_GoToFindResults2NextLocation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1625 /* VSStd2KCmdID.GotoNextErrorTagFR2 */);
+        /// <summary>Edit.GoToFindResults2NextLocation<br/><c>VSConstants.VSStd2KCmdID.GotoNextErrorTagFR2</c></summary>
+        public static CommandID Edit_GoToFindResults2NextLocation => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1625);
 
-        /// <summary>Edit.GoToFindResults2PrevLocation</summary>
-        public static CommandID Edit_GoToFindResults2PrevLocation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1626 /* VSStd2KCmdID.GotoPrevErrorTagFR2 */);
+        /// <summary>Edit.GoToFindResults2PrevLocation<br/><c>VSConstants.VSStd2KCmdID.GotoPrevErrorTagFR2</c></summary>
+        public static CommandID Edit_GoToFindResults2PrevLocation => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1626);
 
-        /// <summary>Edit.GoToNextLocation</summary>
-        public static CommandID Edit_GoToNextLocation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 279 /* VSStd97CmdID.NextLocation */);
+        /// <summary>Edit.GoToNextLocation<br/><c>VSConstants.VSStd97CmdID.NextLocation</c></summary>
+        public static CommandID Edit_GoToNextLocation => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 279);
 
-        /// <summary>Edit.GoToOutputWindowLocation</summary>
-        public static CommandID Edit_GoToOutputWindowLocation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1616 /* VSStd2KCmdID.GotoErrorTagOW */);
+        /// <summary>Edit.GoToOutputWindowLocation<br/><c>VSConstants.VSStd2KCmdID.GotoErrorTagOW</c></summary>
+        public static CommandID Edit_GoToOutputWindowLocation => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1616);
 
-        /// <summary>Edit.GoToOutputWindowNextLocation</summary>
-        public static CommandID Edit_GoToOutputWindowNextLocation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1617 /* VSStd2KCmdID.GotoNextErrorTagOW */);
+        /// <summary>Edit.GoToOutputWindowNextLocation<br/><c>VSConstants.VSStd2KCmdID.GotoNextErrorTagOW</c></summary>
+        public static CommandID Edit_GoToOutputWindowNextLocation => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1617);
 
-        /// <summary>Edit.GoToOutputWindowPrevLocation</summary>
-        public static CommandID Edit_GoToOutputWindowPrevLocation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1618 /* VSStd2KCmdID.GotoPrevErrorTagOW */);
+        /// <summary>Edit.GoToOutputWindowPrevLocation<br/><c>VSConstants.VSStd2KCmdID.GotoPrevErrorTagOW</c></summary>
+        public static CommandID Edit_GoToOutputWindowPrevLocation => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1618);
 
-        /// <summary>Edit.GoToPrevLocation</summary>
-        public static CommandID Edit_GoToPrevLocation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 280 /* VSStd97CmdID.PreviousLocation */);
+        /// <summary>Edit.GoToPrevLocation<br/><c>VSConstants.VSStd97CmdID.PreviousLocation</c></summary>
+        public static CommandID Edit_GoToPrevLocation => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 280);
 
-        /// <summary>Edit.GoToReference</summary>
-        public static CommandID Edit_GoToReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1107 /* VSStd97CmdID.GotoRef */);
+        /// <summary>Edit.GoToReference<br/><c>VSConstants.VSStd97CmdID.GotoRef</c></summary>
+        public static CommandID Edit_GoToReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1107);
 
-        /// <summary>Edit.GoToTypeDefinition</summary>
-        public static CommandID Edit_GoToTypeDefinition { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 458 /* VSStd2KCmdID.GOTOTYPEDEF */);
+        /// <summary>Edit.GoToTypeDefinition<br/><c>VSConstants.VSStd2KCmdID.GOTOTYPEDEF</c></summary>
+        public static CommandID Edit_GoToTypeDefinition => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 458);
 
-        /// <summary>Edit.HideAdvancedCompletionMembers</summary>
-        public static CommandID Edit_HideAdvancedCompletionMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 142 /* VSStd2KCmdID.COMPLETION_HIDE_ADVANCED */);
+        /// <summary>Edit.HideAdvancedCompletionMembers<br/><c>VSConstants.VSStd2KCmdID.COMPLETION_HIDE_ADVANCED</c></summary>
+        public static CommandID Edit_HideAdvancedCompletionMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 142);
 
-        /// <summary>Edit.HideSelection</summary>
-        public static CommandID Edit_HideSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 128 /* VSStd2KCmdID.OUTLN_HIDE_SELECTION */);
+        /// <summary>Edit.HideSelection<br/><c>VSConstants.VSStd2KCmdID.OUTLN_HIDE_SELECTION</c></summary>
+        public static CommandID Edit_HideSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 128);
 
-        /// <summary>Edit.HideSnippetHighlighting</summary>
-        public static CommandID Edit_HideSnippetHighlighting { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 460 /* VSStd2KCmdID.HIDESNIPPETHIGHLIGHTING */);
+        /// <summary>Edit.HideSnippetHighlighting<br/><c>VSConstants.VSStd2KCmdID.HIDESNIPPETHIGHLIGHTING</c></summary>
+        public static CommandID Edit_HideSnippetHighlighting => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 460);
 
-        /// <summary>Edit.IncreaseFilterLevel</summary>
-        public static CommandID Edit_IncreaseFilterLevel { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 145 /* VSStd2KCmdID.FINAL */);
+        /// <summary>Edit.IncreaseFilterLevel<br/><c>VSConstants.VSStd2KCmdID.FINAL</c></summary>
+        public static CommandID Edit_IncreaseFilterLevel => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 145);
 
-        /// <summary>Edit.IncreaseLineIndent</summary>
-        public static CommandID Edit_IncreaseLineIndent { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 69 /* VSStd2KCmdID.INDENT */);
+        /// <summary>Edit.IncreaseLineIndent<br/><c>VSConstants.VSStd2KCmdID.INDENT</c></summary>
+        public static CommandID Edit_IncreaseLineIndent => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 69);
 
-        /// <summary>Edit.IncrementalSearch</summary>
-        public static CommandID Edit_IncrementalSearch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 122 /* VSStd2KCmdID.ISEARCH */);
+        /// <summary>Edit.IncrementalSearch<br/><c>VSConstants.VSStd2KCmdID.ISEARCH</c></summary>
+        public static CommandID Edit_IncrementalSearch => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 122);
 
-        /// <summary>Edit.InsertComment</summary>
-        public static CommandID Edit_InsertComment { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 456 /* VSStd2KCmdID.ECMD_INSERTCOMMENT */);
+        /// <summary>Edit.InsertComment<br/><c>VSConstants.VSStd2KCmdID.ECMD_INSERTCOMMENT</c></summary>
+        public static CommandID Edit_InsertComment => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 456);
 
-        /// <summary>Edit.InsertFileAsText</summary>
-        public static CommandID Edit_InsertFileAsText { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 114 /* VSStd2KCmdID.INSERTFILE */);
+        /// <summary>Edit.InsertFileAsText<br/><c>VSConstants.VSStd2KCmdID.INSERTFILE</c></summary>
+        public static CommandID Edit_InsertFileAsText => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 114);
 
-        /// <summary>Edit.InsertNew</summary>
-        public static CommandID Edit_InsertNew { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 209 /* VSStd97CmdID.InsertNewMenu */);
+        /// <summary>Edit.InsertNew<br/><c>VSConstants.VSStd97CmdID.InsertNewMenu</c></summary>
+        public static CommandID Edit_InsertNew => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 209);
 
-        /// <summary>Edit.InsertSeparator</summary>
-        public static CommandID Edit_InsertSeparator { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 210 /* VSStd97CmdID.InsertSeparator */);
+        /// <summary>Edit.InsertSeparator<br/><c>VSConstants.VSStd97CmdID.InsertSeparator</c></summary>
+        public static CommandID Edit_InsertSeparator => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 210);
 
-        /// <summary>Edit.InsertSnippet</summary>
-        public static CommandID Edit_InsertSnippet { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 323 /* VSStd2KCmdID.INSERTSNIPPET */);
+        /// <summary>Edit.InsertSnippet<br/><c>VSConstants.VSStd2KCmdID.INSERTSNIPPET</c></summary>
+        public static CommandID Edit_InsertSnippet => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 323);
 
-        /// <summary>Edit.InsertTab</summary>
-        public static CommandID Edit_InsertTab { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 4 /* VSStd2KCmdID.TAB */);
+        /// <summary>Edit.InsertTab<br/><c>VSConstants.VSStd2KCmdID.TAB</c></summary>
+        public static CommandID Edit_InsertTab => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 4);
 
-        /// <summary>Edit.InvokeSnippetFromShortcut</summary>
-        public static CommandID Edit_InvokeSnippetFromShortcut { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 154 /* VSStd2KCmdID.ECMD_INVOKESNIPPETFROMSHORTCUT */);
+        /// <summary>Edit.InvokeSnippetFromShortcut<br/><c>VSConstants.VSStd2KCmdID.ECMD_INVOKESNIPPETFROMSHORTCUT</c></summary>
+        public static CommandID Edit_InvokeSnippetFromShortcut => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 154);
 
-        /// <summary>Edit.LineCut</summary>
-        public static CommandID Edit_LineCut { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 61 /* VSStd2KCmdID.CUTLINE */);
+        /// <summary>Edit.LineCut<br/><c>VSConstants.VSStd2KCmdID.CUTLINE</c></summary>
+        public static CommandID Edit_LineCut => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 61);
 
-        /// <summary>Edit.LineDelete</summary>
-        public static CommandID Edit_LineDelete { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 62 /* VSStd2KCmdID.DELETELINE */);
+        /// <summary>Edit.LineDelete<br/><c>VSConstants.VSStd2KCmdID.DELETELINE</c></summary>
+        public static CommandID Edit_LineDelete => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 62);
 
-        /// <summary>Edit.LineDown</summary>
-        public static CommandID Edit_LineDown { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 13 /* VSStd2KCmdID.DOWN */);
+        /// <summary>Edit.LineDown<br/><c>VSConstants.VSStd2KCmdID.DOWN</c></summary>
+        public static CommandID Edit_LineDown => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 13);
 
-        /// <summary>Edit.LineDownExtend</summary>
-        public static CommandID Edit_LineDownExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 14 /* VSStd2KCmdID.DOWN_EXT */);
+        /// <summary>Edit.LineDownExtend<br/><c>VSConstants.VSStd2KCmdID.DOWN_EXT</c></summary>
+        public static CommandID Edit_LineDownExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 14);
 
-        /// <summary>Edit.LineDownExtendColumn</summary>
-        public static CommandID Edit_LineDownExtendColumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 120 /* VSStd2KCmdID.DOWN_EXT_COL */);
+        /// <summary>Edit.LineDownExtendColumn<br/><c>VSConstants.VSStd2KCmdID.DOWN_EXT_COL</c></summary>
+        public static CommandID Edit_LineDownExtendColumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 120);
 
-        /// <summary>Edit.LineEnd</summary>
-        public static CommandID Edit_LineEnd { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 23 /* VSStd2KCmdID.EOL */);
+        /// <summary>Edit.LineEnd<br/><c>VSConstants.VSStd2KCmdID.EOL</c></summary>
+        public static CommandID Edit_LineEnd => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 23);
 
-        /// <summary>Edit.LineEndExtend</summary>
-        public static CommandID Edit_LineEndExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 24 /* VSStd2KCmdID.EOL_EXT */);
+        /// <summary>Edit.LineEndExtend<br/><c>VSConstants.VSStd2KCmdID.EOL_EXT</c></summary>
+        public static CommandID Edit_LineEndExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 24);
 
-        /// <summary>Edit.LineEndExtendColumn</summary>
-        public static CommandID Edit_LineEndExtendColumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 125 /* VSStd2KCmdID.EOL_EXT_COL */);
+        /// <summary>Edit.LineEndExtendColumn<br/><c>VSConstants.VSStd2KCmdID.EOL_EXT_COL</c></summary>
+        public static CommandID Edit_LineEndExtendColumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 125);
 
-        /// <summary>Edit.LineFirstColumn</summary>
-        public static CommandID Edit_LineFirstColumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2250 /* VSStd2KCmdID.EditorLineFirstColumn */);
+        /// <summary>Edit.LineFirstColumn<br/><c>VSConstants.VSStd2KCmdID.EditorLineFirstColumn</c></summary>
+        public static CommandID Edit_LineFirstColumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2250);
 
-        /// <summary>Edit.LineFirstColumnExtend</summary>
-        public static CommandID Edit_LineFirstColumnExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2251 /* VSStd2KCmdID.EditorLineFirstColumnExtend */);
+        /// <summary>Edit.LineFirstColumnExtend<br/><c>VSConstants.VSStd2KCmdID.EditorLineFirstColumnExtend</c></summary>
+        public static CommandID Edit_LineFirstColumnExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2251);
 
-        /// <summary>Edit.LineLastChar</summary>
-        public static CommandID Edit_LineLastChar { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 25 /* VSStd2KCmdID.LASTCHAR */);
+        /// <summary>Edit.LineLastChar<br/><c>VSConstants.VSStd2KCmdID.LASTCHAR</c></summary>
+        public static CommandID Edit_LineLastChar => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 25);
 
-        /// <summary>Edit.LineLastCharExtend</summary>
-        public static CommandID Edit_LineLastCharExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 26 /* VSStd2KCmdID.LASTCHAR_EXT */);
+        /// <summary>Edit.LineLastCharExtend<br/><c>VSConstants.VSStd2KCmdID.LASTCHAR_EXT</c></summary>
+        public static CommandID Edit_LineLastCharExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 26);
 
-        /// <summary>Edit.LineOpenAbove</summary>
-        public static CommandID Edit_LineOpenAbove { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 67 /* VSStd2KCmdID.OPENLINEABOVE */);
+        /// <summary>Edit.LineOpenAbove<br/><c>VSConstants.VSStd2KCmdID.OPENLINEABOVE</c></summary>
+        public static CommandID Edit_LineOpenAbove => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 67);
 
-        /// <summary>Edit.LineOpenBelow</summary>
-        public static CommandID Edit_LineOpenBelow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 68 /* VSStd2KCmdID.OPENLINEBELOW */);
+        /// <summary>Edit.LineOpenBelow<br/><c>VSConstants.VSStd2KCmdID.OPENLINEBELOW</c></summary>
+        public static CommandID Edit_LineOpenBelow => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 68);
 
-        /// <summary>Edit.LineStart</summary>
-        public static CommandID Edit_LineStart { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 19 /* VSStd2KCmdID.BOL */);
+        /// <summary>Edit.LineStart<br/><c>VSConstants.VSStd2KCmdID.BOL</c></summary>
+        public static CommandID Edit_LineStart => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 19);
 
-        /// <summary>Edit.LineStartAfterIndentation</summary>
-        public static CommandID Edit_LineStartAfterIndentation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 21 /* VSStd2KCmdID.FIRSTCHAR */);
+        /// <summary>Edit.LineStartAfterIndentation<br/><c>VSConstants.VSStd2KCmdID.FIRSTCHAR</c></summary>
+        public static CommandID Edit_LineStartAfterIndentation => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 21);
 
-        /// <summary>Edit.LineStartAfterIndentationExtend</summary>
-        public static CommandID Edit_LineStartAfterIndentationExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 22 /* VSStd2KCmdID.FIRSTCHAR_EXT */);
+        /// <summary>Edit.LineStartAfterIndentationExtend<br/><c>VSConstants.VSStd2KCmdID.FIRSTCHAR_EXT</c></summary>
+        public static CommandID Edit_LineStartAfterIndentationExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 22);
 
-        /// <summary>Edit.LineStartAfterIndentationNext</summary>
-        public static CommandID Edit_LineStartAfterIndentationNext { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 110 /* VSStd2KCmdID.FIRSTNONWHITENEXT */);
+        /// <summary>Edit.LineStartAfterIndentationNext<br/><c>VSConstants.VSStd2KCmdID.FIRSTNONWHITENEXT</c></summary>
+        public static CommandID Edit_LineStartAfterIndentationNext => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 110);
 
-        /// <summary>Edit.LineStartAfterIndentationPrev</summary>
-        public static CommandID Edit_LineStartAfterIndentationPrev { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 109 /* VSStd2KCmdID.FIRSTNONWHITEPREV */);
+        /// <summary>Edit.LineStartAfterIndentationPrev<br/><c>VSConstants.VSStd2KCmdID.FIRSTNONWHITEPREV</c></summary>
+        public static CommandID Edit_LineStartAfterIndentationPrev => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 109);
 
-        /// <summary>Edit.LineStartExtend</summary>
-        public static CommandID Edit_LineStartExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 20 /* VSStd2KCmdID.BOL_EXT */);
+        /// <summary>Edit.LineStartExtend<br/><c>VSConstants.VSStd2KCmdID.BOL_EXT</c></summary>
+        public static CommandID Edit_LineStartExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 20);
 
-        /// <summary>Edit.LineStartExtendColumn</summary>
-        public static CommandID Edit_LineStartExtendColumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 124 /* VSStd2KCmdID.BOL_EXT_COL */);
+        /// <summary>Edit.LineStartExtendColumn<br/><c>VSConstants.VSStd2KCmdID.BOL_EXT_COL</c></summary>
+        public static CommandID Edit_LineStartExtendColumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 124);
 
-        /// <summary>Edit.LineTranspose</summary>
-        public static CommandID Edit_LineTranspose { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 89 /* VSStd2KCmdID.TRANSPOSELINE */);
+        /// <summary>Edit.LineTranspose<br/><c>VSConstants.VSStd2KCmdID.TRANSPOSELINE</c></summary>
+        public static CommandID Edit_LineTranspose => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 89);
 
-        /// <summary>Edit.LineUp</summary>
-        public static CommandID Edit_LineUp { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 11 /* VSStd2KCmdID.UP */);
+        /// <summary>Edit.LineUp<br/><c>VSConstants.VSStd2KCmdID.UP</c></summary>
+        public static CommandID Edit_LineUp => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 11);
 
-        /// <summary>Edit.LineUpExtend</summary>
-        public static CommandID Edit_LineUpExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 12 /* VSStd2KCmdID.UP_EXT */);
+        /// <summary>Edit.LineUpExtend<br/><c>VSConstants.VSStd2KCmdID.UP_EXT</c></summary>
+        public static CommandID Edit_LineUpExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 12);
 
-        /// <summary>Edit.LineUpExtendColumn</summary>
-        public static CommandID Edit_LineUpExtendColumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 119 /* VSStd2KCmdID.UP_EXT_COL */);
+        /// <summary>Edit.LineUpExtendColumn<br/><c>VSConstants.VSStd2KCmdID.UP_EXT_COL</c></summary>
+        public static CommandID Edit_LineUpExtendColumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 119);
 
-        /// <summary>Edit.ListMembers</summary>
-        public static CommandID Edit_ListMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 108 /* VSStd2KCmdID.SHOWMEMBERLIST */);
+        /// <summary>Edit.ListMembers<br/><c>VSConstants.VSStd2KCmdID.SHOWMEMBERLIST</c></summary>
+        public static CommandID Edit_ListMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 108);
 
-        /// <summary>Edit.MakeLowercase</summary>
-        public static CommandID Edit_MakeLowercase { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 47 /* VSStd2KCmdID.SELLOWCASE */);
+        /// <summary>Edit.MakeLowercase<br/><c>VSConstants.VSStd2KCmdID.SELLOWCASE</c></summary>
+        public static CommandID Edit_MakeLowercase => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 47);
 
-        /// <summary>Edit.MakeUppercase</summary>
-        public static CommandID Edit_MakeUppercase { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 48 /* VSStd2KCmdID.SELUPCASE */);
+        /// <summary>Edit.MakeUppercase<br/><c>VSConstants.VSStd2KCmdID.SELUPCASE</c></summary>
+        public static CommandID Edit_MakeUppercase => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 48);
 
-        /// <summary>Edit.MoveControlDown</summary>
-        public static CommandID Edit_MoveControlDown { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1225 /* VSStd2KCmdID.CTLMOVEDOWN */);
+        /// <summary>Edit.MoveControlDown<br/><c>VSConstants.VSStd2KCmdID.CTLMOVEDOWN</c></summary>
+        public static CommandID Edit_MoveControlDown => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1225);
 
-        /// <summary>Edit.MoveControlDownGrid</summary>
-        public static CommandID Edit_MoveControlDownGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1503 /* VSStd2KCmdID.CTLMOVEDOWNGRID */);
+        /// <summary>Edit.MoveControlDownGrid<br/><c>VSConstants.VSStd2KCmdID.CTLMOVEDOWNGRID</c></summary>
+        public static CommandID Edit_MoveControlDownGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1503);
 
-        /// <summary>Edit.MoveControlLeft</summary>
-        public static CommandID Edit_MoveControlLeft { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1224 /* VSStd2KCmdID.CTLMOVELEFT */);
+        /// <summary>Edit.MoveControlLeft<br/><c>VSConstants.VSStd2KCmdID.CTLMOVELEFT</c></summary>
+        public static CommandID Edit_MoveControlLeft => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1224);
 
-        /// <summary>Edit.MoveControlLeftGrid</summary>
-        public static CommandID Edit_MoveControlLeftGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1504 /* VSStd2KCmdID.CTLMOVELEFTGRID */);
+        /// <summary>Edit.MoveControlLeftGrid<br/><c>VSConstants.VSStd2KCmdID.CTLMOVELEFTGRID</c></summary>
+        public static CommandID Edit_MoveControlLeftGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1504);
 
-        /// <summary>Edit.MoveControlRight</summary>
-        public static CommandID Edit_MoveControlRight { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1226 /* VSStd2KCmdID.CTLMOVERIGHT */);
+        /// <summary>Edit.MoveControlRight<br/><c>VSConstants.VSStd2KCmdID.CTLMOVERIGHT</c></summary>
+        public static CommandID Edit_MoveControlRight => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1226);
 
-        /// <summary>Edit.MoveControlRightGrid</summary>
-        public static CommandID Edit_MoveControlRightGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1505 /* VSStd2KCmdID.CTLMOVERIGHTGRID */);
+        /// <summary>Edit.MoveControlRightGrid<br/><c>VSConstants.VSStd2KCmdID.CTLMOVERIGHTGRID</c></summary>
+        public static CommandID Edit_MoveControlRightGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1505);
 
-        /// <summary>Edit.MoveControlUp</summary>
-        public static CommandID Edit_MoveControlUp { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1227 /* VSStd2KCmdID.CTLMOVEUP */);
+        /// <summary>Edit.MoveControlUp<br/><c>VSConstants.VSStd2KCmdID.CTLMOVEUP</c></summary>
+        public static CommandID Edit_MoveControlUp => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1227);
 
-        /// <summary>Edit.MoveControlUpGrid</summary>
-        public static CommandID Edit_MoveControlUpGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1502 /* VSStd2KCmdID.CTLMOVEUPGRID */);
+        /// <summary>Edit.MoveControlUpGrid<br/><c>VSConstants.VSStd2KCmdID.CTLMOVEUPGRID</c></summary>
+        public static CommandID Edit_MoveControlUpGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1502);
 
-        /// <summary>Edit.MoveSelectedLinesDown</summary>
-        public static CommandID Edit_MoveSelectedLinesDown { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 259 /* VSStd12CmdID.MoveSelLinesDown */);
+        /// <summary>Edit.MoveSelectedLinesDown<br/><c>VSConstants.VSStd12CmdID.MoveSelLinesDown</c></summary>
+        public static CommandID Edit_MoveSelectedLinesDown => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 259);
 
-        /// <summary>Edit.MoveSelectedLinesUp</summary>
-        public static CommandID Edit_MoveSelectedLinesUp { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 258 /* VSStd12CmdID.MoveSelLinesUp */);
+        /// <summary>Edit.MoveSelectedLinesUp<br/><c>VSConstants.VSStd12CmdID.MoveSelLinesUp</c></summary>
+        public static CommandID Edit_MoveSelectedLinesUp => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 258);
 
-        /// <summary>Edit.NavigateTo</summary>
-        public static CommandID Edit_NavigateTo { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 256 /* VSStd12CmdID.NavigateTo */);
+        /// <summary>Edit.NavigateTo<br/><c>VSConstants.VSStd12CmdID.NavigateTo</c></summary>
+        public static CommandID Edit_NavigateTo => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 256);
 
-        /// <summary>Edit.NewAccelerator</summary>
-        public static CommandID Edit_NewAccelerator { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1232 /* VSStd2KCmdID.NEWACCELERATOR */);
+        /// <summary>Edit.NewAccelerator<br/><c>VSConstants.VSStd2KCmdID.NEWACCELERATOR</c></summary>
+        public static CommandID Edit_NewAccelerator => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1232);
 
-        /// <summary>Edit.NewString</summary>
-        public static CommandID Edit_NewString { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1240 /* VSStd2KCmdID.NEWSTRING */);
+        /// <summary>Edit.NewString<br/><c>VSConstants.VSStd2KCmdID.NEWSTRING</c></summary>
+        public static CommandID Edit_NewString => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1240);
 
-        /// <summary>Edit.NewVersionInfoBlock</summary>
-        public static CommandID Edit_NewVersionInfoBlock { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1241 /* VSStd2KCmdID.NEWINFOBLOCK */);
+        /// <summary>Edit.NewVersionInfoBlock<br/><c>VSConstants.VSStd2KCmdID.NEWINFOBLOCK</c></summary>
+        public static CommandID Edit_NewVersionInfoBlock => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1241);
 
-        /// <summary>Edit.NextBookmark</summary>
-        public static CommandID Edit_NextBookmark { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 77 /* VSStd2KCmdID.GOTONEXTBOOKMARK */);
+        /// <summary>Edit.NextBookmark<br/><c>VSConstants.VSStd2KCmdID.GOTONEXTBOOKMARK</c></summary>
+        public static CommandID Edit_NextBookmark => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 77);
 
-        /// <summary>Edit.NextBookmarkInDocument</summary>
-        public static CommandID Edit_NextBookmarkInDocument { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 151 /* VSStd2KCmdID.ECMD_GOTONEXTBOOKMARKINDOC */);
+        /// <summary>Edit.NextBookmarkInDocument<br/><c>VSConstants.VSStd2KCmdID.ECMD_GOTONEXTBOOKMARKINDOC</c></summary>
+        public static CommandID Edit_NextBookmarkInDocument => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 151);
 
-        /// <summary>Edit.NextKeyTyped</summary>
-        public static CommandID Edit_NextKeyTyped { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1233 /* VSStd2KCmdID.CAPTUREKEYSTROKE */);
+        /// <summary>Edit.NextKeyTyped<br/><c>VSConstants.VSStd2KCmdID.CAPTUREKEYSTROKE</c></summary>
+        public static CommandID Edit_NextKeyTyped => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1233);
 
-        /// <summary>Edit.NextMethod</summary>
-        public static CommandID Edit_NextMethod { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 450 /* VSStd2KCmdID.ECMD_NEXTMETHOD */);
+        /// <summary>Edit.NextMethod<br/><c>VSConstants.VSStd2KCmdID.ECMD_NEXTMETHOD</c></summary>
+        public static CommandID Edit_NextMethod => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 450);
 
-        /// <summary>Edit.OpenFile</summary>
-        public static CommandID Edit_OpenFile { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 138 /* VSStd2KCmdID.OPENFILE */);
+        /// <summary>Edit.OpenFile<br/><c>VSConstants.VSStd2KCmdID.OPENFILE</c></summary>
+        public static CommandID Edit_OpenFile => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 138);
 
-        /// <summary>Edit.OvertypeMode</summary>
-        public static CommandID Edit_OvertypeMode { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 57 /* VSStd2KCmdID.TOGGLE_OVERTYPE_MODE */);
+        /// <summary>Edit.OvertypeMode<br/><c>VSConstants.VSStd2KCmdID.TOGGLE_OVERTYPE_MODE</c></summary>
+        public static CommandID Edit_OvertypeMode => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 57);
 
-        /// <summary>Edit.PageDown</summary>
-        public static CommandID Edit_PageDown { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 29 /* VSStd2KCmdID.PAGEDN */);
+        /// <summary>Edit.PageDown<br/><c>VSConstants.VSStd2KCmdID.PAGEDN</c></summary>
+        public static CommandID Edit_PageDown => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 29);
 
-        /// <summary>Edit.PageDownExtend</summary>
-        public static CommandID Edit_PageDownExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 30 /* VSStd2KCmdID.PAGEDN_EXT */);
+        /// <summary>Edit.PageDownExtend<br/><c>VSConstants.VSStd2KCmdID.PAGEDN_EXT</c></summary>
+        public static CommandID Edit_PageDownExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 30);
 
-        /// <summary>Edit.PageUp</summary>
-        public static CommandID Edit_PageUp { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 27 /* VSStd2KCmdID.PAGEUP */);
+        /// <summary>Edit.PageUp<br/><c>VSConstants.VSStd2KCmdID.PAGEUP</c></summary>
+        public static CommandID Edit_PageUp => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 27);
 
-        /// <summary>Edit.PageUpExtend</summary>
-        public static CommandID Edit_PageUpExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 28 /* VSStd2KCmdID.PAGEUP_EXT */);
+        /// <summary>Edit.PageUpExtend<br/><c>VSConstants.VSStd2KCmdID.PAGEUP_EXT</c></summary>
+        public static CommandID Edit_PageUpExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 28);
 
-        /// <summary>Edit.ParameterInfo</summary>
-        public static CommandID Edit_ParameterInfo { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 104 /* VSStd2KCmdID.PARAMINFO */);
+        /// <summary>Edit.ParameterInfo<br/><c>VSConstants.VSStd2KCmdID.PARAMINFO</c></summary>
+        public static CommandID Edit_ParameterInfo => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 104);
 
-        /// <summary>Edit.Paste</summary>
-        public static CommandID Edit_Paste { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 26 /* VSStd97CmdID.Paste */);
+        /// <summary>Edit.Paste<br/><c>VSConstants.VSStd97CmdID.Paste</c></summary>
+        public static CommandID Edit_Paste => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 26);
 
-        /// <summary>Edit.PasteAsLink</summary>
-        public static CommandID Edit_PasteAsLink { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 41 /* VSStd11CmdID.PasteAsLink */);
+        /// <summary>Edit.PasteAsLink<br/><c>VSConstants.VSStd11CmdID.PasteAsLink</c></summary>
+        public static CommandID Edit_PasteAsLink => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 41);
 
-        /// <summary>Edit.PasteMovesCaret</summary>
-        public static CommandID Edit_PasteMovesCaret { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 106 /* VSStd2KCmdID.TOGGLECARETPASTEPOS */);
+        /// <summary>Edit.PasteMovesCaret<br/><c>VSConstants.VSStd2KCmdID.TOGGLECARETPASTEPOS</c></summary>
+        public static CommandID Edit_PasteMovesCaret => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 106);
 
-        /// <summary>Edit.PasteParameterTip</summary>
-        public static CommandID Edit_PasteParameterTip { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 149 /* VSStd2KCmdID.ECMD_PASTETIP */);
+        /// <summary>Edit.PasteParameterTip<br/><c>VSConstants.VSStd2KCmdID.ECMD_PASTETIP</c></summary>
+        public static CommandID Edit_PasteParameterTip => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 149);
 
-        /// <summary>Edit.PeekBackward</summary>
-        public static CommandID Edit_PeekBackward { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 7 /* VSStd12CmdID.PeekNavigateBackward */);
+        /// <summary>Edit.PeekBackward<br/><c>VSConstants.VSStd12CmdID.PeekNavigateBackward</c></summary>
+        public static CommandID Edit_PeekBackward => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 7);
 
-        /// <summary>Edit.PeekDefinition</summary>
-        public static CommandID Edit_PeekDefinition { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 4 /* VSStd12CmdID.PeekDefinition */);
+        /// <summary>Edit.PeekDefinition<br/><c>VSConstants.VSStd12CmdID.PeekDefinition</c></summary>
+        public static CommandID Edit_PeekDefinition => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 4);
 
-        /// <summary>Edit.PeekForward</summary>
-        public static CommandID Edit_PeekForward { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 6 /* VSStd12CmdID.PeekNavigateForward */);
+        /// <summary>Edit.PeekForward<br/><c>VSConstants.VSStd12CmdID.PeekNavigateForward</c></summary>
+        public static CommandID Edit_PeekForward => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 6);
 
-        /// <summary>Edit.PreviousBookmark</summary>
-        public static CommandID Edit_PreviousBookmark { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 78 /* VSStd2KCmdID.GOTOPREVBOOKMARK */);
+        /// <summary>Edit.PreviousBookmark<br/><c>VSConstants.VSStd2KCmdID.GOTOPREVBOOKMARK</c></summary>
+        public static CommandID Edit_PreviousBookmark => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 78);
 
-        /// <summary>Edit.PreviousBookmarkInDocument</summary>
-        public static CommandID Edit_PreviousBookmarkInDocument { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 152 /* VSStd2KCmdID.ECMD_GOTOPREVBOOKMARKINDOC */);
+        /// <summary>Edit.PreviousBookmarkInDocument<br/><c>VSConstants.VSStd2KCmdID.ECMD_GOTOPREVBOOKMARKINDOC</c></summary>
+        public static CommandID Edit_PreviousBookmarkInDocument => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 152);
 
-        /// <summary>Edit.PreviousMethod</summary>
-        public static CommandID Edit_PreviousMethod { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 451 /* VSStd2KCmdID.ECMD_PREVMETHOD */);
+        /// <summary>Edit.PreviousMethod<br/><c>VSConstants.VSStd2KCmdID.ECMD_PREVMETHOD</c></summary>
+        public static CommandID Edit_PreviousMethod => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 451);
 
-        /// <summary>Edit.QuickFindSymbol</summary>
-        public static CommandID Edit_QuickFindSymbol { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1119 /* VSStd97CmdID.QuickObjectSearch */);
+        /// <summary>Edit.QuickFindSymbol<br/><c>VSConstants.VSStd97CmdID.QuickObjectSearch</c></summary>
+        public static CommandID Edit_QuickFindSymbol => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1119);
 
-        /// <summary>Edit.QuickInfo</summary>
-        public static CommandID Edit_QuickInfo { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 116 /* VSStd2KCmdID.QUICKINFO */);
+        /// <summary>Edit.QuickInfo<br/><c>VSConstants.VSStd2KCmdID.QUICKINFO</c></summary>
+        public static CommandID Edit_QuickInfo => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 116);
 
-        /// <summary>Edit.Redo</summary>
-        public static CommandID Edit_Redo { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 29 /* VSStd97CmdID.Redo */);
+        /// <summary>Edit.Redo<br/><c>VSConstants.VSStd97CmdID.Redo</c></summary>
+        public static CommandID Edit_Redo => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 29);
 
-        /// <summary>Edit.RedoLastGlobalAction</summary>
-        public static CommandID Edit_RedoLastGlobalAction { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2139 /* VSStd2KCmdID.GlobalRedo */);
+        /// <summary>Edit.RedoLastGlobalAction<br/><c>VSConstants.VSStd2KCmdID.GlobalRedo</c></summary>
+        public static CommandID Edit_RedoLastGlobalAction => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2139);
 
-        /// <summary>Edit.Remove</summary>
-        public static CommandID Edit_Remove { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 168 /* VSStd97CmdID.Remove */);
+        /// <summary>Edit.Remove<br/><c>VSConstants.VSStd97CmdID.Remove</c></summary>
+        public static CommandID Edit_Remove => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 168);
 
-        /// <summary>Edit.RemoveTagHandler</summary>
-        public static CommandID Edit_RemoveTagHandler { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 240 /* VSStd2KCmdID.REMOVEHANDLER */);
+        /// <summary>Edit.RemoveTagHandler<br/><c>VSConstants.VSStd2KCmdID.REMOVEHANDLER</c></summary>
+        public static CommandID Edit_RemoveTagHandler => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 240);
 
-        /// <summary>Edit.Replace</summary>
-        public static CommandID Edit_Replace { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 230 /* VSStd97CmdID.Replace */);
+        /// <summary>Edit.Replace<br/><c>VSConstants.VSStd97CmdID.Replace</c></summary>
+        public static CommandID Edit_Replace => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 230);
 
-        /// <summary>Edit.ReplaceinFiles</summary>
-        public static CommandID Edit_ReplaceinFiles { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 278 /* VSStd97CmdID.ReplaceInFiles */);
+        /// <summary>Edit.ReplaceinFiles<br/><c>VSConstants.VSStd97CmdID.ReplaceInFiles</c></summary>
+        public static CommandID Edit_ReplaceinFiles => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 278);
 
-        /// <summary>Edit.ResourceIncludes</summary>
-        public static CommandID Edit_ResourceIncludes { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1216 /* VSStd2KCmdID.RESOURCEINCLUDES */);
+        /// <summary>Edit.ResourceIncludes<br/><c>VSConstants.VSStd2KCmdID.RESOURCEINCLUDES</c></summary>
+        public static CommandID Edit_ResourceIncludes => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1216);
 
-        /// <summary>Edit.ResourceSymbols</summary>
-        public static CommandID Edit_ResourceSymbols { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1217 /* VSStd2KCmdID.RESOURCESYMBOLS */);
+        /// <summary>Edit.ResourceSymbols<br/><c>VSConstants.VSStd2KCmdID.RESOURCESYMBOLS</c></summary>
+        public static CommandID Edit_ResourceSymbols => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1217);
 
-        /// <summary>Edit.ReverseCancel</summary>
-        public static CommandID Edit_ReverseCancel { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 221 /* VSStd2KCmdID.REVERSECANCEL */);
+        /// <summary>Edit.ReverseCancel<br/><c>VSConstants.VSStd2KCmdID.REVERSECANCEL</c></summary>
+        public static CommandID Edit_ReverseCancel => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 221);
 
-        /// <summary>Edit.ReverseIncrementalSearch</summary>
-        public static CommandID Edit_ReverseIncrementalSearch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 123 /* VSStd2KCmdID.ISEARCHBACK */);
+        /// <summary>Edit.ReverseIncrementalSearch<br/><c>VSConstants.VSStd2KCmdID.ISEARCHBACK</c></summary>
+        public static CommandID Edit_ReverseIncrementalSearch => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 123);
 
-        /// <summary>Edit.ScrollColumnLeft</summary>
-        public static CommandID Edit_ScrollColumnLeft { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 39 /* VSStd2KCmdID.SCROLLLEFT */);
+        /// <summary>Edit.ScrollColumnLeft<br/><c>VSConstants.VSStd2KCmdID.SCROLLLEFT</c></summary>
+        public static CommandID Edit_ScrollColumnLeft => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 39);
 
-        /// <summary>Edit.ScrollColumnRight</summary>
-        public static CommandID Edit_ScrollColumnRight { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 40 /* VSStd2KCmdID.SCROLLRIGHT */);
+        /// <summary>Edit.ScrollColumnRight<br/><c>VSConstants.VSStd2KCmdID.SCROLLRIGHT</c></summary>
+        public static CommandID Edit_ScrollColumnRight => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 40);
 
-        /// <summary>Edit.ScrollLineBottom</summary>
-        public static CommandID Edit_ScrollLineBottom { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 41 /* VSStd2KCmdID.SCROLLBOTTOM */);
+        /// <summary>Edit.ScrollLineBottom<br/><c>VSConstants.VSStd2KCmdID.SCROLLBOTTOM</c></summary>
+        public static CommandID Edit_ScrollLineBottom => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 41);
 
-        /// <summary>Edit.ScrollLineCenter</summary>
-        public static CommandID Edit_ScrollLineCenter { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 42 /* VSStd2KCmdID.SCROLLCENTER */);
+        /// <summary>Edit.ScrollLineCenter<br/><c>VSConstants.VSStd2KCmdID.SCROLLCENTER</c></summary>
+        public static CommandID Edit_ScrollLineCenter => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 42);
 
-        /// <summary>Edit.ScrollLineDown</summary>
-        public static CommandID Edit_ScrollLineDown { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 36 /* VSStd2KCmdID.SCROLLDN */);
+        /// <summary>Edit.ScrollLineDown<br/><c>VSConstants.VSStd2KCmdID.SCROLLDN</c></summary>
+        public static CommandID Edit_ScrollLineDown => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 36);
 
-        /// <summary>Edit.ScrollLineTop</summary>
-        public static CommandID Edit_ScrollLineTop { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 43 /* VSStd2KCmdID.SCROLLTOP */);
+        /// <summary>Edit.ScrollLineTop<br/><c>VSConstants.VSStd2KCmdID.SCROLLTOP</c></summary>
+        public static CommandID Edit_ScrollLineTop => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 43);
 
-        /// <summary>Edit.ScrollLineUp</summary>
-        public static CommandID Edit_ScrollLineUp { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 35 /* VSStd2KCmdID.SCROLLUP */);
+        /// <summary>Edit.ScrollLineUp<br/><c>VSConstants.VSStd2KCmdID.SCROLLUP</c></summary>
+        public static CommandID Edit_ScrollLineUp => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 35);
 
-        /// <summary>Edit.ScrollPageDown</summary>
-        public static CommandID Edit_ScrollPageDown { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 38 /* VSStd2KCmdID.SCROLLPAGEDN */);
+        /// <summary>Edit.ScrollPageDown<br/><c>VSConstants.VSStd2KCmdID.SCROLLPAGEDN</c></summary>
+        public static CommandID Edit_ScrollPageDown => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 38);
 
-        /// <summary>Edit.ScrollPageUp</summary>
-        public static CommandID Edit_ScrollPageUp { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 37 /* VSStd2KCmdID.SCROLLPAGEUP */);
+        /// <summary>Edit.ScrollPageUp<br/><c>VSConstants.VSStd2KCmdID.SCROLLPAGEUP</c></summary>
+        public static CommandID Edit_ScrollPageUp => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 37);
 
-        /// <summary>Edit.SelectAll</summary>
-        public static CommandID Edit_SelectAll { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 31 /* VSStd97CmdID.SelectAll */);
+        /// <summary>Edit.SelectAll<br/><c>VSConstants.VSStd97CmdID.SelectAll</c></summary>
+        public static CommandID Edit_SelectAll => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 31);
 
-        /// <summary>Edit.SelectCurrentWord</summary>
-        public static CommandID Edit_SelectCurrentWord { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 90 /* VSStd2KCmdID.SELECTCURRENTWORD */);
+        /// <summary>Edit.SelectCurrentWord<br/><c>VSConstants.VSStd2KCmdID.SELECTCURRENTWORD</c></summary>
+        public static CommandID Edit_SelectCurrentWord => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 90);
 
-        /// <summary>Edit.SelectionCancel</summary>
-        public static CommandID Edit_SelectionCancel { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 103 /* VSStd2KCmdID.CANCEL */);
+        /// <summary>Edit.SelectionCancel<br/><c>VSConstants.VSStd2KCmdID.CANCEL</c></summary>
+        public static CommandID Edit_SelectionCancel => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 103);
 
-        /// <summary>Edit.SelectNextControl</summary>
-        public static CommandID Edit_SelectNextControl { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1510 /* VSStd2KCmdID.NEXTCTL */);
+        /// <summary>Edit.SelectNextControl<br/><c>VSConstants.VSStd2KCmdID.NEXTCTL</c></summary>
+        public static CommandID Edit_SelectNextControl => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1510);
 
-        /// <summary>Edit.SelectPreviousControl</summary>
-        public static CommandID Edit_SelectPreviousControl { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1511 /* VSStd2KCmdID.PREVCTL */);
+        /// <summary>Edit.SelectPreviousControl<br/><c>VSConstants.VSStd2KCmdID.PREVCTL</c></summary>
+        public static CommandID Edit_SelectPreviousControl => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1511);
 
-        /// <summary>Edit.SelectToLastGoBack</summary>
-        public static CommandID Edit_SelectToLastGoBack { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 141 /* VSStd2KCmdID.SELTOGOBACK */);
+        /// <summary>Edit.SelectToLastGoBack<br/><c>VSConstants.VSStd2KCmdID.SELTOGOBACK</c></summary>
+        public static CommandID Edit_SelectToLastGoBack => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 141);
 
-        /// <summary>Edit.ShowGrid</summary>
-        public static CommandID Edit_ShowGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1500 /* VSStd2KCmdID.CANCELDRAG */);
+        /// <summary>Edit.ShowGrid<br/><c>VSConstants.VSStd2KCmdID.CANCELDRAG</c></summary>
+        public static CommandID Edit_ShowGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1500);
 
-        /// <summary>Edit.ShowSnippetHighlighting</summary>
-        public static CommandID Edit_ShowSnippetHighlighting { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 459 /* VSStd2KCmdID.SHOWSNIPPETHIGHLIGHTING */);
+        /// <summary>Edit.ShowSnippetHighlighting<br/><c>VSConstants.VSStd2KCmdID.SHOWSNIPPETHIGHLIGHTING</c></summary>
+        public static CommandID Edit_ShowSnippetHighlighting => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 459);
 
-        /// <summary>Edit.ShowTileGrid</summary>
-        public static CommandID Edit_ShowTileGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1501 /* VSStd2KCmdID.DEFAULTACTION */);
+        /// <summary>Edit.ShowTileGrid<br/><c>VSConstants.VSStd2KCmdID.DEFAULTACTION</c></summary>
+        public static CommandID Edit_ShowTileGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1501);
 
-        /// <summary>Edit.SizeControlDown</summary>
-        public static CommandID Edit_SizeControlDown { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1228 /* VSStd2KCmdID.CTLSIZEDOWN */);
+        /// <summary>Edit.SizeControlDown<br/><c>VSConstants.VSStd2KCmdID.CTLSIZEDOWN</c></summary>
+        public static CommandID Edit_SizeControlDown => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1228);
 
-        /// <summary>Edit.SizeControlDownGrid</summary>
-        public static CommandID Edit_SizeControlDownGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1509 /* VSStd2KCmdID.CTLSIZEDOWNGRID */);
+        /// <summary>Edit.SizeControlDownGrid<br/><c>VSConstants.VSStd2KCmdID.CTLSIZEDOWNGRID</c></summary>
+        public static CommandID Edit_SizeControlDownGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1509);
 
-        /// <summary>Edit.SizeControlLeft</summary>
-        public static CommandID Edit_SizeControlLeft { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1230 /* VSStd2KCmdID.CTLSIZELEFT */);
+        /// <summary>Edit.SizeControlLeft<br/><c>VSConstants.VSStd2KCmdID.CTLSIZELEFT</c></summary>
+        public static CommandID Edit_SizeControlLeft => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1230);
 
-        /// <summary>Edit.SizeControlLeftGrid</summary>
-        public static CommandID Edit_SizeControlLeftGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1508 /* VSStd2KCmdID.CTLSIZELEFTGRID */);
+        /// <summary>Edit.SizeControlLeftGrid<br/><c>VSConstants.VSStd2KCmdID.CTLSIZELEFTGRID</c></summary>
+        public static CommandID Edit_SizeControlLeftGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1508);
 
-        /// <summary>Edit.SizeControlRight</summary>
-        public static CommandID Edit_SizeControlRight { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1231 /* VSStd2KCmdID.CTLSIZERIGHT */);
+        /// <summary>Edit.SizeControlRight<br/><c>VSConstants.VSStd2KCmdID.CTLSIZERIGHT</c></summary>
+        public static CommandID Edit_SizeControlRight => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1231);
 
-        /// <summary>Edit.SizeControlRightGrid</summary>
-        public static CommandID Edit_SizeControlRightGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1506 /* VSStd2KCmdID.CTLSIZERIGHTGRID */);
+        /// <summary>Edit.SizeControlRightGrid<br/><c>VSConstants.VSStd2KCmdID.CTLSIZERIGHTGRID</c></summary>
+        public static CommandID Edit_SizeControlRightGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1506);
 
-        /// <summary>Edit.SizeControlUp</summary>
-        public static CommandID Edit_SizeControlUp { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1229 /* VSStd2KCmdID.CTLSIZEUP */);
+        /// <summary>Edit.SizeControlUp<br/><c>VSConstants.VSStd2KCmdID.CTLSIZEUP</c></summary>
+        public static CommandID Edit_SizeControlUp => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1229);
 
-        /// <summary>Edit.SizeControlUpGrid</summary>
-        public static CommandID Edit_SizeControlUpGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1507 /* VSStd2KCmdID.CTLSIZEUPGRID */);
+        /// <summary>Edit.SizeControlUpGrid<br/><c>VSConstants.VSStd2KCmdID.CTLSIZEUPGRID</c></summary>
+        public static CommandID Edit_SizeControlUpGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1507);
 
-        /// <summary>Edit.SmartBreakLine</summary>
-        public static CommandID Edit_SmartBreakLine { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 3 /* VSStd14CmdID.SmartBreakLine */);
+        /// <summary>Edit.SmartBreakLine<br/><c>VSConstants.VSStd14CmdID.SmartBreakLine</c></summary>
+        public static CommandID Edit_SmartBreakLine => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 3);
 
-        /// <summary>Edit.StartAutomaticOutlining</summary>
-        public static CommandID Edit_StartAutomaticOutlining { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 144 /* VSStd2KCmdID.OUTLN_START_AUTOHIDING */);
+        /// <summary>Edit.StartAutomaticOutlining<br/><c>VSConstants.VSStd2KCmdID.OUTLN_START_AUTOHIDING</c></summary>
+        public static CommandID Edit_StartAutomaticOutlining => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 144);
 
-        /// <summary>Edit.StopHidingCurrent</summary>
-        public static CommandID Edit_StopHidingCurrent { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 132 /* VSStd2KCmdID.OUTLN_STOP_HIDING_CURRENT */);
+        /// <summary>Edit.StopHidingCurrent<br/><c>VSConstants.VSStd2KCmdID.OUTLN_STOP_HIDING_CURRENT</c></summary>
+        public static CommandID Edit_StopHidingCurrent => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 132);
 
-        /// <summary>Edit.StopOutlining</summary>
-        public static CommandID Edit_StopOutlining { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 131 /* VSStd2KCmdID.OUTLN_STOP_HIDING_ALL */);
+        /// <summary>Edit.StopOutlining<br/><c>VSConstants.VSStd2KCmdID.OUTLN_STOP_HIDING_ALL</c></summary>
+        public static CommandID Edit_StopOutlining => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 131);
 
-        /// <summary>Edit.StopOutliningTag</summary>
-        public static CommandID Edit_StopOutliningTag { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 332 /* VSStd2KCmdID.UNCOLLAPSETAG */);
+        /// <summary>Edit.StopOutliningTag<br/><c>VSConstants.VSStd2KCmdID.UNCOLLAPSETAG</c></summary>
+        public static CommandID Edit_StopOutliningTag => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 332);
 
-        /// <summary>Edit.StopSearch</summary>
-        public static CommandID Edit_StopSearch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 355 /* VSStd97CmdID.FindStop */);
+        /// <summary>Edit.StopSearch<br/><c>VSConstants.VSStd97CmdID.FindStop</c></summary>
+        public static CommandID Edit_StopSearch => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 355);
 
-        /// <summary>Edit.SurroundWith</summary>
-        public static CommandID Edit_SurroundWith { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1561 /* VSStd2KCmdID.SURROUNDWITH */);
+        /// <summary>Edit.SurroundWith<br/><c>VSConstants.VSStd2KCmdID.SURROUNDWITH</c></summary>
+        public static CommandID Edit_SurroundWith => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1561);
 
-        /// <summary>Edit.SwapAnchor</summary>
-        public static CommandID Edit_SwapAnchor { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 51 /* VSStd2KCmdID.SELSWAPANCHOR */);
+        /// <summary>Edit.SwapAnchor<br/><c>VSConstants.VSStd2KCmdID.SELSWAPANCHOR</c></summary>
+        public static CommandID Edit_SwapAnchor => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 51);
 
-        /// <summary>Edit.SwitchbetweenautomaticandtabonlyIntelliSensecompletion</summary>
-        public static CommandID Edit_SwitchbetweenautomaticandtabonlyIntelliSensecompletion { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2303 /* VSStd2KCmdID.ToggleConsumeFirstCompletionMode */);
+        /// <summary>Edit.SwitchbetweenautomaticandtabonlyIntelliSensecompletion<br/><c>VSConstants.VSStd2KCmdID.ToggleConsumeFirstCompletionMode</c></summary>
+        public static CommandID Edit_SwitchbetweenautomaticandtabonlyIntelliSensecompletion => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2303);
 
-        /// <summary>Edit.SwitchtoFindinFiles</summary>
-        public static CommandID Edit_SwitchtoFindinFiles { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 282 /* VSStd2KCmdID.INSERTFORM */);
+        /// <summary>Edit.SwitchtoFindinFiles<br/><c>VSConstants.VSStd2KCmdID.INSERTFORM</c></summary>
+        public static CommandID Edit_SwitchtoFindinFiles => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 282);
 
-        /// <summary>Edit.SwitchtoQuickFind</summary>
-        public static CommandID Edit_SwitchtoQuickFind { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 281 /* VSStd2KCmdID.IMAGE */);
+        /// <summary>Edit.SwitchtoQuickFind<br/><c>VSConstants.VSStd2KCmdID.IMAGE</c></summary>
+        public static CommandID Edit_SwitchtoQuickFind => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 281);
 
-        /// <summary>Edit.SwitchtoQuickReplace</summary>
-        public static CommandID Edit_SwitchtoQuickReplace { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 285 /* VSStd2KCmdID.HTMLCLIENTSCRIPTBLOCK */);
+        /// <summary>Edit.SwitchtoQuickReplace<br/><c>VSConstants.VSStd2KCmdID.HTMLCLIENTSCRIPTBLOCK</c></summary>
+        public static CommandID Edit_SwitchtoQuickReplace => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 285);
 
-        /// <summary>Edit.SwitchtoReplaceinFiles</summary>
-        public static CommandID Edit_SwitchtoReplaceinFiles { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 286 /* VSStd2KCmdID.HTMLSERVERSCRIPTBLOCK */);
+        /// <summary>Edit.SwitchtoReplaceinFiles<br/><c>VSConstants.VSStd2KCmdID.HTMLSERVERSCRIPTBLOCK</c></summary>
+        public static CommandID Edit_SwitchtoReplaceinFiles => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 286);
 
-        /// <summary>Edit.TabifySelectedLines</summary>
-        public static CommandID Edit_TabifySelectedLines { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 45 /* VSStd2KCmdID.SELTABIFY */);
+        /// <summary>Edit.TabifySelectedLines<br/><c>VSConstants.VSStd2KCmdID.SELTABIFY</c></summary>
+        public static CommandID Edit_TabifySelectedLines => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 45);
 
-        /// <summary>Edit.TabLeft</summary>
-        public static CommandID Edit_TabLeft { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 5 /* VSStd2KCmdID.BACKTAB */);
+        /// <summary>Edit.TabLeft<br/><c>VSConstants.VSStd2KCmdID.BACKTAB</c></summary>
+        public static CommandID Edit_TabLeft => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 5);
 
-        /// <summary>Edit.ToggleAllOutlining</summary>
-        public static CommandID Edit_ToggleAllOutlining { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 130 /* VSStd2KCmdID.OUTLN_TOGGLE_ALL */);
+        /// <summary>Edit.ToggleAllOutlining<br/><c>VSConstants.VSStd2KCmdID.OUTLN_TOGGLE_ALL</c></summary>
+        public static CommandID Edit_ToggleAllOutlining => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 130);
 
-        /// <summary>Edit.ToggleBookmark</summary>
-        public static CommandID Edit_ToggleBookmark { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 76 /* VSStd2KCmdID.TOGGLETEMPBOOKMARK */);
+        /// <summary>Edit.ToggleBookmark<br/><c>VSConstants.VSStd2KCmdID.TOGGLETEMPBOOKMARK</c></summary>
+        public static CommandID Edit_ToggleBookmark => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 76);
 
-        /// <summary>Edit.ToggleCase</summary>
-        public static CommandID Edit_ToggleCase { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 49 /* VSStd2KCmdID.SELTOGGLECASE */);
+        /// <summary>Edit.ToggleCase<br/><c>VSConstants.VSStd2KCmdID.SELTOGGLECASE</c></summary>
+        public static CommandID Edit_ToggleCase => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 49);
 
-        /// <summary>Edit.ToggleOutliningExpansion</summary>
-        public static CommandID Edit_ToggleOutliningExpansion { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 129 /* VSStd2KCmdID.OUTLN_TOGGLE_CURRENT */);
+        /// <summary>Edit.ToggleOutliningExpansion<br/><c>VSConstants.VSStd2KCmdID.OUTLN_TOGGLE_CURRENT</c></summary>
+        public static CommandID Edit_ToggleOutliningExpansion => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 129);
 
-        /// <summary>Edit.ToggleTaskListShortcut</summary>
-        public static CommandID Edit_ToggleTaskListShortcut { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 115 /* VSStd2KCmdID.TOGGLESHORTCUT */);
+        /// <summary>Edit.ToggleTaskListShortcut<br/><c>VSConstants.VSStd2KCmdID.TOGGLESHORTCUT</c></summary>
+        public static CommandID Edit_ToggleTaskListShortcut => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 115);
 
-        /// <summary>Edit.ToggleWordWrap</summary>
-        public static CommandID Edit_ToggleWordWrap { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 121 /* VSStd2KCmdID.TOGGLEWORDWRAP */);
+        /// <summary>Edit.ToggleWordWrap<br/><c>VSConstants.VSStd2KCmdID.TOGGLEWORDWRAP</c></summary>
+        public static CommandID Edit_ToggleWordWrap => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 121);
 
-        /// <summary>Edit.UncommentSelection</summary>
-        public static CommandID Edit_UncommentSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 137 /* VSStd2KCmdID.UNCOMMENT_BLOCK */);
+        /// <summary>Edit.UncommentSelection<br/><c>VSConstants.VSStd2KCmdID.UNCOMMENT_BLOCK</c></summary>
+        public static CommandID Edit_UncommentSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 137);
 
-        /// <summary>Edit.Undo</summary>
-        public static CommandID Edit_Undo { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 43 /* VSStd97CmdID.Undo */);
+        /// <summary>Edit.Undo<br/><c>VSConstants.VSStd97CmdID.Undo</c></summary>
+        public static CommandID Edit_Undo => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 43);
 
-        /// <summary>Edit.UndoLastGlobalAction</summary>
-        public static CommandID Edit_UndoLastGlobalAction { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2138 /* VSStd2KCmdID.GlobalUndo */);
+        /// <summary>Edit.UndoLastGlobalAction<br/><c>VSConstants.VSStd2KCmdID.GlobalUndo</c></summary>
+        public static CommandID Edit_UndoLastGlobalAction => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2138);
 
-        /// <summary>Edit.UntabifySelectedLines</summary>
-        public static CommandID Edit_UntabifySelectedLines { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 46 /* VSStd2KCmdID.SELUNTABIFY */);
+        /// <summary>Edit.UntabifySelectedLines<br/><c>VSConstants.VSStd2KCmdID.SELUNTABIFY</c></summary>
+        public static CommandID Edit_UntabifySelectedLines => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 46);
 
-        /// <summary>Edit.ValidateDocument</summary>
-        public static CommandID Edit_ValidateDocument { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 314 /* VSStd2KCmdID.VALIDATEHTMLDATA */);
+        /// <summary>Edit.ValidateDocument<br/><c>VSConstants.VSStd2KCmdID.VALIDATEHTMLDATA</c></summary>
+        public static CommandID Edit_ValidateDocument => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 314);
 
-        /// <summary>Edit.ViewAsPopup</summary>
-        public static CommandID Edit_ViewAsPopup { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1253 /* VSStd2KCmdID.VIEWASPOPUP */);
+        /// <summary>Edit.ViewAsPopup<br/><c>VSConstants.VSStd2KCmdID.VIEWASPOPUP</c></summary>
+        public static CommandID Edit_ViewAsPopup => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1253);
 
-        /// <summary>Edit.ViewBottom</summary>
-        public static CommandID Edit_ViewBottom { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 33 /* VSStd2KCmdID.BOTTOMLINE */);
+        /// <summary>Edit.ViewBottom<br/><c>VSConstants.VSStd2KCmdID.BOTTOMLINE</c></summary>
+        public static CommandID Edit_ViewBottom => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 33);
 
-        /// <summary>Edit.ViewBottomExtend</summary>
-        public static CommandID Edit_ViewBottomExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 34 /* VSStd2KCmdID.BOTTOMLINE_EXT */);
+        /// <summary>Edit.ViewBottomExtend<br/><c>VSConstants.VSStd2KCmdID.BOTTOMLINE_EXT</c></summary>
+        public static CommandID Edit_ViewBottomExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 34);
 
-        /// <summary>Edit.ViewTop</summary>
-        public static CommandID Edit_ViewTop { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 31 /* VSStd2KCmdID.TOPLINE */);
+        /// <summary>Edit.ViewTop<br/><c>VSConstants.VSStd2KCmdID.TOPLINE</c></summary>
+        public static CommandID Edit_ViewTop => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 31);
 
-        /// <summary>Edit.ViewTopExtend</summary>
-        public static CommandID Edit_ViewTopExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 32 /* VSStd2KCmdID.TOPLINE_EXT */);
+        /// <summary>Edit.ViewTopExtend<br/><c>VSConstants.VSStd2KCmdID.TOPLINE_EXT</c></summary>
+        public static CommandID Edit_ViewTopExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 32);
 
-        /// <summary>Edit.ViewWhiteSpace</summary>
-        public static CommandID Edit_ViewWhiteSpace { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 105 /* VSStd2KCmdID.TOGGLEVISSPACE */);
+        /// <summary>Edit.ViewWhiteSpace<br/><c>VSConstants.VSStd2KCmdID.TOGGLEVISSPACE</c></summary>
+        public static CommandID Edit_ViewWhiteSpace => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 105);
 
-        /// <summary>Edit.WordDeleteToEnd</summary>
-        public static CommandID Edit_WordDeleteToEnd { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 91 /* VSStd2KCmdID.DELETEWORDRIGHT */);
+        /// <summary>Edit.WordDeleteToEnd<br/><c>VSConstants.VSStd2KCmdID.DELETEWORDRIGHT</c></summary>
+        public static CommandID Edit_WordDeleteToEnd => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 91);
 
-        /// <summary>Edit.WordDeleteToStart</summary>
-        public static CommandID Edit_WordDeleteToStart { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 92 /* VSStd2KCmdID.DELETEWORDLEFT */);
+        /// <summary>Edit.WordDeleteToStart<br/><c>VSConstants.VSStd2KCmdID.DELETEWORDLEFT</c></summary>
+        public static CommandID Edit_WordDeleteToStart => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 92);
 
-        /// <summary>Edit.WordNext</summary>
-        public static CommandID Edit_WordNext { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 96 /* VSStd2KCmdID.WORDNEXT */);
+        /// <summary>Edit.WordNext<br/><c>VSConstants.VSStd2KCmdID.WORDNEXT</c></summary>
+        public static CommandID Edit_WordNext => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 96);
 
-        /// <summary>Edit.WordNextExtend</summary>
-        public static CommandID Edit_WordNextExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 97 /* VSStd2KCmdID.WORDNEXT_EXT */);
+        /// <summary>Edit.WordNextExtend<br/><c>VSConstants.VSStd2KCmdID.WORDNEXT_EXT</c></summary>
+        public static CommandID Edit_WordNextExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 97);
 
-        /// <summary>Edit.WordNextExtendColumn</summary>
-        public static CommandID Edit_WordNextExtendColumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 127 /* VSStd2KCmdID.WORDNEXT_EXT_COL */);
+        /// <summary>Edit.WordNextExtendColumn<br/><c>VSConstants.VSStd2KCmdID.WORDNEXT_EXT_COL</c></summary>
+        public static CommandID Edit_WordNextExtendColumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 127);
 
-        /// <summary>Edit.WordPrevious</summary>
-        public static CommandID Edit_WordPrevious { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 93 /* VSStd2KCmdID.WORDPREV */);
+        /// <summary>Edit.WordPrevious<br/><c>VSConstants.VSStd2KCmdID.WORDPREV</c></summary>
+        public static CommandID Edit_WordPrevious => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 93);
 
-        /// <summary>Edit.WordPreviousExtend</summary>
-        public static CommandID Edit_WordPreviousExtend { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 94 /* VSStd2KCmdID.WORDPREV_EXT */);
+        /// <summary>Edit.WordPreviousExtend<br/><c>VSConstants.VSStd2KCmdID.WORDPREV_EXT</c></summary>
+        public static CommandID Edit_WordPreviousExtend => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 94);
 
-        /// <summary>Edit.WordPreviousExtendColumn</summary>
-        public static CommandID Edit_WordPreviousExtendColumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 126 /* VSStd2KCmdID.WORDPREV_EXT_COL */);
+        /// <summary>Edit.WordPreviousExtendColumn<br/><c>VSConstants.VSStd2KCmdID.WORDPREV_EXT_COL</c></summary>
+        public static CommandID Edit_WordPreviousExtendColumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 126);
 
-        /// <summary>Edit.WordTranspose</summary>
-        public static CommandID Edit_WordTranspose { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 88 /* VSStd2KCmdID.TRANSPOSEWORD */);
+        /// <summary>Edit.WordTranspose<br/><c>VSConstants.VSStd2KCmdID.TRANSPOSEWORD</c></summary>
+        public static CommandID Edit_WordTranspose => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 88);
 
-        /// <summary>EditorContextMenus.CodeWindow.Breakpoint.InsertBreakpoint</summary>
-        public static CommandID EditorContextMenus_CodeWindow_Breakpoint_InsertBreakpoint { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 375 /* VSStd97CmdID.InsertBreakpoint */);
+        /// <summary>EditorContextMenus.CodeWindow.Breakpoint.InsertBreakpoint<br/><c>VSConstants.VSStd97CmdID.InsertBreakpoint</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_Breakpoint_InsertBreakpoint => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 375);
 
-        /// <summary>EditorContextMenus.CodeWindow.ExecuteInInteractive</summary>
-        public static CommandID EditorContextMenus_CodeWindow_ExecuteInInteractive { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 24 /* VSStd11CmdID.ExecuteSelectionInInteractive */);
+        /// <summary>EditorContextMenus.CodeWindow.ExecuteInInteractive<br/><c>VSConstants.VSStd11CmdID.ExecuteSelectionInInteractive</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_ExecuteInInteractive => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 24);
 
-        /// <summary>EditorContextMenus.CodeWindow.ExecuteLineInInteractive</summary>
-        public static CommandID EditorContextMenus_CodeWindow_ExecuteLineInInteractive { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 25 /* VSStd11CmdID.ExecuteLineInInteractive */);
+        /// <summary>EditorContextMenus.CodeWindow.ExecuteLineInInteractive<br/><c>VSConstants.VSStd11CmdID.ExecuteLineInInteractive</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_ExecuteLineInInteractive => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 25);
 
-        /// <summary>EditorContextMenus.CodeWindow.GoToNext</summary>
-        public static CommandID EditorContextMenus_CodeWindow_GoToNext { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1928 /* VSStd2KCmdID.CodeDefViewGoToNext */);
+        /// <summary>EditorContextMenus.CodeWindow.GoToNext<br/><c>VSConstants.VSStd2KCmdID.CodeDefViewGoToNext</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_GoToNext => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1928);
 
-        /// <summary>EditorContextMenus.CodeWindow.GoToPrevious</summary>
-        public static CommandID EditorContextMenus_CodeWindow_GoToPrevious { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1927 /* VSStd2KCmdID.CodeDefViewGoToPrev */);
+        /// <summary>EditorContextMenus.CodeWindow.GoToPrevious<br/><c>VSConstants.VSStd2KCmdID.CodeDefViewGoToPrev</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_GoToPrevious => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1927);
 
-        /// <summary>EditorContextMenus.CodeWindow.OpenURL</summary>
-        public static CommandID EditorContextMenus_CodeWindow_OpenURL { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 113 /* VSStd2KCmdID.OPENURL */);
+        /// <summary>EditorContextMenus.CodeWindow.OpenURL<br/><c>VSConstants.VSStd2KCmdID.OPENURL</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_OpenURL => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 113);
 
-        /// <summary>EditorContextMenus.CodeWindow.QuickActionsForPosition</summary>
-        public static CommandID EditorContextMenus_CodeWindow_QuickActionsForPosition { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 6 /* VSStd14CmdID.ShowQuickFixesForPosition */);
+        /// <summary>EditorContextMenus.CodeWindow.QuickActionsForPosition<br/><c>VSConstants.VSStd14CmdID.ShowQuickFixesForPosition</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_QuickActionsForPosition => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 6);
 
-        /// <summary>EditorContextMenus.CodeWindow.ViewCallHierarchy</summary>
-        public static CommandID EditorContextMenus_CodeWindow_ViewCallHierarchy { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2301 /* VSStd2KCmdID.ViewCallHierarchy */);
+        /// <summary>EditorContextMenus.CodeWindow.ViewCallHierarchy<br/><c>VSConstants.VSStd2KCmdID.ViewCallHierarchy</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_ViewCallHierarchy => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2301);
 
-        /// <summary>Errors</summary>
-        public static CommandID Errors { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2210 /* VSStd2KCmdID.ErrorListShowErrors */);
+        /// <summary>Errors<br/><c>VSConstants.VSStd2KCmdID.ErrorListShowErrors</c></summary>
+        public static CommandID Errors => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2210);
 
-        /// <summary>File.AccountSettings</summary>
-        public static CommandID File_AccountSettings { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 5 /* VSStd12CmdID.AccountSettings */);
+        /// <summary>File.AccountSettings<br/><c>VSConstants.VSStd12CmdID.AccountSettings</c></summary>
+        public static CommandID File_AccountSettings => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 5);
 
-        /// <summary>File.AddExistingProject</summary>
-        public static CommandID File_AddExistingProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 773 /* VSStd97CmdID.AddExistingProject */);
+        /// <summary>File.AddExistingProject<br/><c>VSConstants.VSStd97CmdID.AddExistingProject</c></summary>
+        public static CommandID File_AddExistingProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 773);
 
-        /// <summary>File.AddNewProject</summary>
-        public static CommandID File_AddNewProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 772 /* VSStd97CmdID.AddNewProject */);
+        /// <summary>File.AddNewProject<br/><c>VSConstants.VSStd97CmdID.AddNewProject</c></summary>
+        public static CommandID File_AddNewProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 772);
 
-        /// <summary>File.AddtoSourceControl</summary>
-        public static CommandID File_AddtoSourceControl { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 3 /* VSStd12CmdID.ShareProject */);
+        /// <summary>File.AddtoSourceControl<br/><c>VSConstants.VSStd12CmdID.ShareProject</c></summary>
+        public static CommandID File_AddtoSourceControl => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 3);
 
-        /// <summary>File.AdvancedSaveOptions</summary>
-        public static CommandID File_AdvancedSaveOptions { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 959 /* VSStd97CmdID.SaveOptions */);
+        /// <summary>File.AdvancedSaveOptions<br/><c>VSConstants.VSStd97CmdID.SaveOptions</c></summary>
+        public static CommandID File_AdvancedSaveOptions => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 959);
 
-        /// <summary>File.BrowseWith</summary>
-        public static CommandID File_BrowseWith { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 336 /* VSStd97CmdID.BrowseWith */);
+        /// <summary>File.BrowseWith<br/><c>VSConstants.VSStd97CmdID.BrowseWith</c></summary>
+        public static CommandID File_BrowseWith => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 336);
 
-        /// <summary>File.Close</summary>
-        public static CommandID File_Close { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 223 /* VSStd97CmdID.FileClose */);
+        /// <summary>File.Close<br/><c>VSConstants.VSStd97CmdID.FileClose</c></summary>
+        public static CommandID File_Close => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 223);
 
-        /// <summary>File.CloseAllButThis</summary>
-        public static CommandID File_CloseAllButThis { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1650 /* VSStd2KCmdID.CloseAllButThis */);
+        /// <summary>File.CloseAllButThis<br/><c>VSConstants.VSStd2KCmdID.CloseAllButThis</c></summary>
+        public static CommandID File_CloseAllButThis => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1650);
 
-        /// <summary>File.CloseProject</summary>
-        public static CommandID File_CloseProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1982 /* VSStd2KCmdID.CloseProject */);
+        /// <summary>File.CloseProject<br/><c>VSConstants.VSStd2KCmdID.CloseProject</c></summary>
+        public static CommandID File_CloseProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1982);
 
-        /// <summary>File.CloseSolution</summary>
-        public static CommandID File_CloseSolution { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 219 /* VSStd97CmdID.CloseSolution */);
+        /// <summary>File.CloseSolution<br/><c>VSConstants.VSStd97CmdID.CloseSolution</c></summary>
+        public static CommandID File_CloseSolution => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 219);
 
-        /// <summary>File.CopyFullPath</summary>
-        public static CommandID File_CopyFullPath { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1610 /* VSStd2KCmdID.CopyFullPathName */);
+        /// <summary>File.CopyFullPath<br/><c>VSConstants.VSStd2KCmdID.CopyFullPathName</c></summary>
+        public static CommandID File_CopyFullPath => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1610);
 
-        /// <summary>File.Exit</summary>
-        public static CommandID File_Exit { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 229 /* VSStd97CmdID.Exit */);
+        /// <summary>File.Exit<br/><c>VSConstants.VSStd97CmdID.Exit</c></summary>
+        public static CommandID File_Exit => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 229);
 
-        /// <summary>File.NewFile</summary>
-        public static CommandID File_NewFile { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 221 /* VSStd97CmdID.FileNew */);
+        /// <summary>File.NewFile<br/><c>VSConstants.VSStd97CmdID.FileNew</c></summary>
+        public static CommandID File_NewFile => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 221);
 
-        /// <summary>File.NewProject</summary>
-        public static CommandID File_NewProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 216 /* VSStd97CmdID.NewProject */);
+        /// <summary>File.NewProject<br/><c>VSConstants.VSStd97CmdID.NewProject</c></summary>
+        public static CommandID File_NewProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 216);
 
-        /// <summary>File.NewProjectFromTemplate</summary>
-        public static CommandID File_NewProjectFromTemplate { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 37 /* VSStd11CmdID.NewProjectFromTemplate */);
+        /// <summary>File.NewProjectFromTemplate<br/><c>VSConstants.VSStd11CmdID.NewProjectFromTemplate</c></summary>
+        public static CommandID File_NewProjectFromTemplate => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 37);
 
-        /// <summary>File.OpenContainingFolder</summary>
-        public static CommandID File_OpenContainingFolder { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1642 /* VSStd2KCmdID.BrowseToFileInExplorer */);
+        /// <summary>File.OpenContainingFolder<br/><c>VSConstants.VSStd2KCmdID.BrowseToFileInExplorer</c></summary>
+        public static CommandID File_OpenContainingFolder => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1642);
 
-        /// <summary>File.OpenFile</summary>
-        public static CommandID File_OpenFile { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 222 /* VSStd97CmdID.FileOpen */);
+        /// <summary>File.OpenFile<br/><c>VSConstants.VSStd97CmdID.FileOpen</c></summary>
+        public static CommandID File_OpenFile => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 222);
 
-        /// <summary>File.OpenProject</summary>
-        public static CommandID File_OpenProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 217 /* VSStd97CmdID.OpenProject */);
+        /// <summary>File.OpenProject<br/><c>VSConstants.VSStd97CmdID.OpenProject</c></summary>
+        public static CommandID File_OpenProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 217);
 
-        /// <summary>File.PageSetup</summary>
-        public static CommandID File_PageSetup { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 227 /* VSStd97CmdID.PageSetup */);
+        /// <summary>File.PageSetup<br/><c>VSConstants.VSStd97CmdID.PageSetup</c></summary>
+        public static CommandID File_PageSetup => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 227);
 
-        /// <summary>File.Print</summary>
-        public static CommandID File_Print { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 27 /* VSStd97CmdID.Print */);
+        /// <summary>File.Print<br/><c>VSConstants.VSStd97CmdID.Print</c></summary>
+        public static CommandID File_Print => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 27);
 
-        /// <summary>File.PrintPreview</summary>
-        public static CommandID File_PrintPreview { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 228 /* VSStd97CmdID.PrintPreview */);
+        /// <summary>File.PrintPreview<br/><c>VSConstants.VSStd97CmdID.PrintPreview</c></summary>
+        public static CommandID File_PrintPreview => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 228);
 
-        /// <summary>File.ProjectPickerMoveInto</summary>
-        public static CommandID File_ProjectPickerMoveInto { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1081 /* VSStd97CmdID.MoveFileToProjectPick */);
+        /// <summary>File.ProjectPickerMoveInto<br/><c>VSConstants.VSStd97CmdID.MoveFileToProjectPick</c></summary>
+        public static CommandID File_ProjectPickerMoveInto => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1081);
 
-        /// <summary>File.Rename</summary>
-        public static CommandID File_Rename { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 150 /* VSStd97CmdID.Rename */);
+        /// <summary>File.Rename<br/><c>VSConstants.VSStd97CmdID.Rename</c></summary>
+        public static CommandID File_Rename => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 150);
 
-        /// <summary>File.SaveAll</summary>
-        public static CommandID File_SaveAll { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 224 /* VSStd97CmdID.SaveSolution */);
+        /// <summary>File.SaveAll<br/><c>VSConstants.VSStd97CmdID.SaveSolution</c></summary>
+        public static CommandID File_SaveAll => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 224);
 
-        /// <summary>File.SaveCopyofSelectedItemsAs</summary>
-        public static CommandID File_SaveCopyofSelectedItemsAs { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 223 /* VSStd2KCmdID.SAVECOPYOFITEMAS */);
+        /// <summary>File.SaveCopyofSelectedItemsAs<br/><c>VSConstants.VSStd2KCmdID.SAVECOPYOFITEMAS</c></summary>
+        public static CommandID File_SaveCopyofSelectedItemsAs => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 223);
 
-        /// <summary>File.SaveSelectedItems</summary>
-        public static CommandID File_SaveSelectedItems { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 331 /* VSStd97CmdID.SaveProjectItem */);
+        /// <summary>File.SaveSelectedItems<br/><c>VSConstants.VSStd97CmdID.SaveProjectItem</c></summary>
+        public static CommandID File_SaveSelectedItems => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 331);
 
-        /// <summary>File.SaveSelectedItemsAs</summary>
-        public static CommandID File_SaveSelectedItemsAs { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 226 /* VSStd97CmdID.SaveProjectItemAs */);
+        /// <summary>File.SaveSelectedItemsAs<br/><c>VSConstants.VSStd97CmdID.SaveProjectItemAs</c></summary>
+        public static CommandID File_SaveSelectedItemsAs => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 226);
 
-        /// <summary>File.SaveSelection</summary>
-        public static CommandID File_SaveSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 174 /* VSStd97CmdID.SaveSelection */);
+        /// <summary>File.SaveSelection<br/><c>VSConstants.VSStd97CmdID.SaveSelection</c></summary>
+        public static CommandID File_SaveSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 174);
 
-        /// <summary>File.SelectProjectTemplate</summary>
-        public static CommandID File_SelectProjectTemplate { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 415 /* VSStd97CmdID.SelectProjectTemplate */);
+        /// <summary>File.SelectProjectTemplate<br/><c>VSConstants.VSStd97CmdID.SelectProjectTemplate</c></summary>
+        public static CommandID File_SelectProjectTemplate => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 415);
 
-        /// <summary>File.ViewinBrowser</summary>
-        public static CommandID File_ViewinBrowser { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 334 /* VSStd97CmdID.PreviewInBrowser */);
+        /// <summary>File.ViewinBrowser<br/><c>VSConstants.VSStd97CmdID.PreviewInBrowser</c></summary>
+        public static CommandID File_ViewinBrowser => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 334);
 
-        /// <summary>Format.AlignBottoms</summary>
-        public static CommandID Format_AlignBottoms { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1 /* VSStd97CmdID.AlignBottom */);
+        /// <summary>Format.AlignBottoms<br/><c>VSConstants.VSStd97CmdID.AlignBottom</c></summary>
+        public static CommandID Format_AlignBottoms => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1);
 
-        /// <summary>Format.AlignCenters</summary>
-        public static CommandID Format_AlignCenters { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 7 /* VSStd97CmdID.AlignVerticalCenters */);
+        /// <summary>Format.AlignCenters<br/><c>VSConstants.VSStd97CmdID.AlignVerticalCenters</c></summary>
+        public static CommandID Format_AlignCenters => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 7);
 
-        /// <summary>Format.AlignLefts</summary>
-        public static CommandID Format_AlignLefts { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 3 /* VSStd97CmdID.AlignLeft */);
+        /// <summary>Format.AlignLefts<br/><c>VSConstants.VSStd97CmdID.AlignLeft</c></summary>
+        public static CommandID Format_AlignLefts => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 3);
 
-        /// <summary>Format.AlignMiddles</summary>
-        public static CommandID Format_AlignMiddles { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 2 /* VSStd97CmdID.AlignHorizontalCenters */);
+        /// <summary>Format.AlignMiddles<br/><c>VSConstants.VSStd97CmdID.AlignHorizontalCenters</c></summary>
+        public static CommandID Format_AlignMiddles => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 2);
 
-        /// <summary>Format.AlignRights</summary>
-        public static CommandID Format_AlignRights { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 4 /* VSStd97CmdID.AlignRight */);
+        /// <summary>Format.AlignRights<br/><c>VSConstants.VSStd97CmdID.AlignRight</c></summary>
+        public static CommandID Format_AlignRights => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 4);
 
-        /// <summary>Format.AligntoGrid</summary>
-        public static CommandID Format_AligntoGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 5 /* VSStd97CmdID.AlignToGrid */);
+        /// <summary>Format.AligntoGrid<br/><c>VSConstants.VSStd97CmdID.AlignToGrid</c></summary>
+        public static CommandID Format_AligntoGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 5);
 
-        /// <summary>Format.AlignTops</summary>
-        public static CommandID Format_AlignTops { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 6 /* VSStd97CmdID.AlignTop */);
+        /// <summary>Format.AlignTops<br/><c>VSConstants.VSStd97CmdID.AlignTop</c></summary>
+        public static CommandID Format_AlignTops => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 6);
 
-        /// <summary>Format.BackgroundColor</summary>
-        public static CommandID Format_BackgroundColor { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 51 /* VSStd97CmdID.BackColor */);
+        /// <summary>Format.BackgroundColor<br/><c>VSConstants.VSStd97CmdID.BackColor</c></summary>
+        public static CommandID Format_BackgroundColor => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 51);
 
-        /// <summary>Format.Bold</summary>
-        public static CommandID Format_Bold { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 52 /* VSStd97CmdID.Bold */);
+        /// <summary>Format.Bold<br/><c>VSConstants.VSStd97CmdID.Bold</c></summary>
+        public static CommandID Format_Bold => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 52);
 
-        /// <summary>Format.BringtoFront</summary>
-        public static CommandID Format_BringtoFront { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 11 /* VSStd97CmdID.BringToFront */);
+        /// <summary>Format.BringtoFront<br/><c>VSConstants.VSStd97CmdID.BringToFront</c></summary>
+        public static CommandID Format_BringtoFront => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 11);
 
-        /// <summary>Format.ButtonBottom</summary>
-        public static CommandID Format_ButtonBottom { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1211 /* VSStd2KCmdID.BUTTONBOTTOM */);
+        /// <summary>Format.ButtonBottom<br/><c>VSConstants.VSStd2KCmdID.BUTTONBOTTOM</c></summary>
+        public static CommandID Format_ButtonBottom => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1211);
 
-        /// <summary>Format.ButtonRight</summary>
-        public static CommandID Format_ButtonRight { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1210 /* VSStd2KCmdID.BUTTONRIGHT */);
+        /// <summary>Format.ButtonRight<br/><c>VSConstants.VSStd2KCmdID.BUTTONRIGHT</c></summary>
+        public static CommandID Format_ButtonRight => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1210);
 
-        /// <summary>Format.CenterHorizontal</summary>
-        public static CommandID Format_CenterHorizontal { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1207 /* VSStd2KCmdID.CENTERHORZ */);
+        /// <summary>Format.CenterHorizontal<br/><c>VSConstants.VSStd2KCmdID.CENTERHORZ</c></summary>
+        public static CommandID Format_CenterHorizontal => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1207);
 
-        /// <summary>Format.CenterHorizontally</summary>
-        public static CommandID Format_CenterHorizontally { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 12 /* VSStd97CmdID.CenterHorizontally */);
+        /// <summary>Format.CenterHorizontally<br/><c>VSConstants.VSStd97CmdID.CenterHorizontally</c></summary>
+        public static CommandID Format_CenterHorizontally => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 12);
 
-        /// <summary>Format.CenterVertical</summary>
-        public static CommandID Format_CenterVertical { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1206 /* VSStd2KCmdID.CENTERVERT */);
+        /// <summary>Format.CenterVertical<br/><c>VSConstants.VSStd2KCmdID.CENTERVERT</c></summary>
+        public static CommandID Format_CenterVertical => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1206);
 
-        /// <summary>Format.CenterVertically</summary>
-        public static CommandID Format_CenterVertically { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 13 /* VSStd97CmdID.CenterVertically */);
+        /// <summary>Format.CenterVertically<br/><c>VSConstants.VSStd97CmdID.CenterVertically</c></summary>
+        public static CommandID Format_CenterVertically => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 13);
 
-        /// <summary>Format.CheckMnemonics</summary>
-        public static CommandID Format_CheckMnemonics { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1246 /* VSStd2KCmdID.CHECKMNEMONICS */);
+        /// <summary>Format.CheckMnemonics<br/><c>VSConstants.VSStd2KCmdID.CHECKMNEMONICS</c></summary>
+        public static CommandID Format_CheckMnemonics => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1246);
 
-        /// <summary>Format.ConverttoHyperlink</summary>
-        public static CommandID Format_ConverttoHyperlink { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 280 /* VSStd2KCmdID.HYPERLINK */);
+        /// <summary>Format.ConverttoHyperlink<br/><c>VSConstants.VSStd2KCmdID.HYPERLINK</c></summary>
+        public static CommandID Format_ConverttoHyperlink => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 280);
 
-        /// <summary>Format.DecreaseHorizontalSpacing</summary>
-        public static CommandID Format_DecreaseHorizontalSpacing { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 22 /* VSStd97CmdID.HorizSpaceDecrease */);
+        /// <summary>Format.DecreaseHorizontalSpacing<br/><c>VSConstants.VSStd97CmdID.HorizSpaceDecrease</c></summary>
+        public static CommandID Format_DecreaseHorizontalSpacing => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 22);
 
-        /// <summary>Format.DecreaseIndent</summary>
-        public static CommandID Format_DecreaseIndent { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 239 /* VSStd2KCmdID.LAYOUTUNINDENT */);
+        /// <summary>Format.DecreaseIndent<br/><c>VSConstants.VSStd2KCmdID.LAYOUTUNINDENT</c></summary>
+        public static CommandID Format_DecreaseIndent => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 239);
 
-        /// <summary>Format.DecreaseVerticalSpacing</summary>
-        public static CommandID Format_DecreaseVerticalSpacing { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 47 /* VSStd97CmdID.VertSpaceDecrease */);
+        /// <summary>Format.DecreaseVerticalSpacing<br/><c>VSConstants.VSStd97CmdID.VertSpaceDecrease</c></summary>
+        public static CommandID Format_DecreaseVerticalSpacing => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 47);
 
-        /// <summary>Format.FixedWidth</summary>
-        public static CommandID Format_FixedWidth { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1213 /* VSStd2KCmdID.AUTOLAYOUTNORESIZE */);
+        /// <summary>Format.FixedWidth<br/><c>VSConstants.VSStd2KCmdID.AUTOLAYOUTNORESIZE</c></summary>
+        public static CommandID Format_FixedWidth => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1213);
 
-        /// <summary>Format.Flip</summary>
-        public static CommandID Format_Flip { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1208 /* VSStd2KCmdID.FLIPDIALOG */);
+        /// <summary>Format.Flip<br/><c>VSConstants.VSStd2KCmdID.FLIPDIALOG</c></summary>
+        public static CommandID Format_Flip => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1208);
 
-        /// <summary>Format.ForegroundColor</summary>
-        public static CommandID Format_ForegroundColor { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 69 /* VSStd97CmdID.ForeColor */);
+        /// <summary>Format.ForegroundColor<br/><c>VSConstants.VSStd97CmdID.ForeColor</c></summary>
+        public static CommandID Format_ForegroundColor => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 69);
 
-        /// <summary>Format.GuideSettings</summary>
-        public static CommandID Format_GuideSettings { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1215 /* VSStd2KCmdID.GUIDESETTINGS */);
+        /// <summary>Format.GuideSettings<br/><c>VSConstants.VSStd2KCmdID.GUIDESETTINGS</c></summary>
+        public static CommandID Format_GuideSettings => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1215);
 
-        /// <summary>Format.IncreaseHorizontalSpacing</summary>
-        public static CommandID Format_IncreaseHorizontalSpacing { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 23 /* VSStd97CmdID.HorizSpaceIncrease */);
+        /// <summary>Format.IncreaseHorizontalSpacing<br/><c>VSConstants.VSStd97CmdID.HorizSpaceIncrease</c></summary>
+        public static CommandID Format_IncreaseHorizontalSpacing => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 23);
 
-        /// <summary>Format.IncreaseIndent</summary>
-        public static CommandID Format_IncreaseIndent { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 238 /* VSStd2KCmdID.LAYOUTINDENT */);
+        /// <summary>Format.IncreaseIndent<br/><c>VSConstants.VSStd2KCmdID.LAYOUTINDENT</c></summary>
+        public static CommandID Format_IncreaseIndent => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 238);
 
-        /// <summary>Format.IncreaseVerticalSpacing</summary>
-        public static CommandID Format_IncreaseVerticalSpacing { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 48 /* VSStd97CmdID.VertSpaceIncrease */);
+        /// <summary>Format.IncreaseVerticalSpacing<br/><c>VSConstants.VSStd97CmdID.VertSpaceIncrease</c></summary>
+        public static CommandID Format_IncreaseVerticalSpacing => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 48);
 
-        /// <summary>Format.InsertBookmark</summary>
-        public static CommandID Format_InsertBookmark { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 279 /* VSStd2KCmdID.BOOKMARK */);
+        /// <summary>Format.InsertBookmark<br/><c>VSConstants.VSStd2KCmdID.BOOKMARK</c></summary>
+        public static CommandID Format_InsertBookmark => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 279);
 
-        /// <summary>Format.Italic</summary>
-        public static CommandID Format_Italic { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 70 /* VSStd97CmdID.Italic */);
+        /// <summary>Format.Italic<br/><c>VSConstants.VSStd97CmdID.Italic</c></summary>
+        public static CommandID Format_Italic => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 70);
 
-        /// <summary>Format.Justify</summary>
-        public static CommandID Format_Justify { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 72 /* VSStd97CmdID.JustifyGeneral */);
+        /// <summary>Format.Justify<br/><c>VSConstants.VSStd97CmdID.JustifyGeneral</c></summary>
+        public static CommandID Format_Justify => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 72);
 
-        /// <summary>Format.JustifyCenter</summary>
-        public static CommandID Format_JustifyCenter { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 71 /* VSStd97CmdID.JustifyCenter */);
+        /// <summary>Format.JustifyCenter<br/><c>VSConstants.VSStd97CmdID.JustifyCenter</c></summary>
+        public static CommandID Format_JustifyCenter => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 71);
 
-        /// <summary>Format.JustifyLeft</summary>
-        public static CommandID Format_JustifyLeft { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 73 /* VSStd97CmdID.JustifyLeft */);
+        /// <summary>Format.JustifyLeft<br/><c>VSConstants.VSStd97CmdID.JustifyLeft</c></summary>
+        public static CommandID Format_JustifyLeft => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 73);
 
-        /// <summary>Format.JustifyRight</summary>
-        public static CommandID Format_JustifyRight { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 74 /* VSStd97CmdID.JustifyRight */);
+        /// <summary>Format.JustifyRight<br/><c>VSConstants.VSStd97CmdID.JustifyRight</c></summary>
+        public static CommandID Format_JustifyRight => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 74);
 
-        /// <summary>Format.LockControls</summary>
-        public static CommandID Format_LockControls { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 369 /* VSStd97CmdID.LockControls */);
+        /// <summary>Format.LockControls<br/><c>VSConstants.VSStd97CmdID.LockControls</c></summary>
+        public static CommandID Format_LockControls => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 369);
 
-        /// <summary>Format.MakeHorizontalSpacingEqual</summary>
-        public static CommandID Format_MakeHorizontalSpacingEqual { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 24 /* VSStd97CmdID.HorizSpaceMakeEqual */);
+        /// <summary>Format.MakeHorizontalSpacingEqual<br/><c>VSConstants.VSStd97CmdID.HorizSpaceMakeEqual</c></summary>
+        public static CommandID Format_MakeHorizontalSpacingEqual => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 24);
 
-        /// <summary>Format.MakeSameHeight</summary>
-        public static CommandID Format_MakeSameHeight { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 36 /* VSStd97CmdID.SizeToControlHeight */);
+        /// <summary>Format.MakeSameHeight<br/><c>VSConstants.VSStd97CmdID.SizeToControlHeight</c></summary>
+        public static CommandID Format_MakeSameHeight => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 36);
 
-        /// <summary>Format.MakeSameSize</summary>
-        public static CommandID Format_MakeSameSize { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 35 /* VSStd97CmdID.SizeToControl */);
+        /// <summary>Format.MakeSameSize<br/><c>VSConstants.VSStd97CmdID.SizeToControl</c></summary>
+        public static CommandID Format_MakeSameSize => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 35);
 
-        /// <summary>Format.MakeSameWidth</summary>
-        public static CommandID Format_MakeSameWidth { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 37 /* VSStd97CmdID.SizeToControlWidth */);
+        /// <summary>Format.MakeSameWidth<br/><c>VSConstants.VSStd97CmdID.SizeToControlWidth</c></summary>
+        public static CommandID Format_MakeSameWidth => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 37);
 
-        /// <summary>Format.MakeVerticalSpacingEqual</summary>
-        public static CommandID Format_MakeVerticalSpacingEqual { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 49 /* VSStd97CmdID.VertSpaceMakeEqual */);
+        /// <summary>Format.MakeVerticalSpacingEqual<br/><c>VSConstants.VSStd97CmdID.VertSpaceMakeEqual</c></summary>
+        public static CommandID Format_MakeVerticalSpacingEqual => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 49);
 
-        /// <summary>Format.Optimize</summary>
-        public static CommandID Format_Optimize { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1214 /* VSStd2KCmdID.AUTOLAYOUTOPTIMIZE */);
+        /// <summary>Format.Optimize<br/><c>VSConstants.VSStd2KCmdID.AUTOLAYOUTOPTIMIZE</c></summary>
+        public static CommandID Format_Optimize => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1214);
 
-        /// <summary>Format.RemoveHorizontalSpacing</summary>
-        public static CommandID Format_RemoveHorizontalSpacing { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 21 /* VSStd97CmdID.HorizSpaceConcatenate */);
+        /// <summary>Format.RemoveHorizontalSpacing<br/><c>VSConstants.VSStd97CmdID.HorizSpaceConcatenate</c></summary>
+        public static CommandID Format_RemoveHorizontalSpacing => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 21);
 
-        /// <summary>Format.RemoveVerticalSpacing</summary>
-        public static CommandID Format_RemoveVerticalSpacing { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 46 /* VSStd97CmdID.VertSpaceConcatenate */);
+        /// <summary>Format.RemoveVerticalSpacing<br/><c>VSConstants.VSStd97CmdID.VertSpaceConcatenate</c></summary>
+        public static CommandID Format_RemoveVerticalSpacing => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 46);
 
-        /// <summary>Format.SendtoBack</summary>
-        public static CommandID Format_SendtoBack { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 33 /* VSStd97CmdID.SendToBack */);
+        /// <summary>Format.SendtoBack<br/><c>VSConstants.VSStd97CmdID.SendToBack</c></summary>
+        public static CommandID Format_SendtoBack => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 33);
 
-        /// <summary>Format.SizetoContent</summary>
-        public static CommandID Format_SizetoContent { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1205 /* VSStd2KCmdID.SIZETOTEXT */);
+        /// <summary>Format.SizetoContent<br/><c>VSConstants.VSStd2KCmdID.SIZETOTEXT</c></summary>
+        public static CommandID Format_SizetoContent => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1205);
 
-        /// <summary>Format.SizetoGrid</summary>
-        public static CommandID Format_SizetoGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 39 /* VSStd97CmdID.SizeToGrid */);
+        /// <summary>Format.SizetoGrid<br/><c>VSConstants.VSStd97CmdID.SizeToGrid</c></summary>
+        public static CommandID Format_SizetoGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 39);
 
-        /// <summary>Format.SpaceAcross</summary>
-        public static CommandID Format_SpaceAcross { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1201 /* VSStd2KCmdID.SPACEACROSS */);
+        /// <summary>Format.SpaceAcross<br/><c>VSConstants.VSStd2KCmdID.SPACEACROSS</c></summary>
+        public static CommandID Format_SpaceAcross => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1201);
 
-        /// <summary>Format.SpaceDown</summary>
-        public static CommandID Format_SpaceDown { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1202 /* VSStd2KCmdID.SPACEDOWN */);
+        /// <summary>Format.SpaceDown<br/><c>VSConstants.VSStd2KCmdID.SPACEDOWN</c></summary>
+        public static CommandID Format_SpaceDown => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1202);
 
-        /// <summary>Format.Stretch</summary>
-        public static CommandID Format_Stretch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1212 /* VSStd2KCmdID.AUTOLAYOUTGROW */);
+        /// <summary>Format.Stretch<br/><c>VSConstants.VSStd2KCmdID.AUTOLAYOUTGROW</c></summary>
+        public static CommandID Format_Stretch => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1212);
 
-        /// <summary>Format.Subscript</summary>
-        public static CommandID Format_Subscript { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 299 /* VSStd2KCmdID.SUBSCRIPT */);
+        /// <summary>Format.Subscript<br/><c>VSConstants.VSStd2KCmdID.SUBSCRIPT</c></summary>
+        public static CommandID Format_Subscript => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 299);
 
-        /// <summary>Format.Superscript</summary>
-        public static CommandID Format_Superscript { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 298 /* VSStd2KCmdID.SUPERSCRIPT */);
+        /// <summary>Format.Superscript<br/><c>VSConstants.VSStd2KCmdID.SUPERSCRIPT</c></summary>
+        public static CommandID Format_Superscript => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 298);
 
-        /// <summary>Format.TabOrder</summary>
-        public static CommandID Format_TabOrder { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1209 /* VSStd2KCmdID.SETTABORDER */);
+        /// <summary>Format.TabOrder<br/><c>VSConstants.VSStd2KCmdID.SETTABORDER</c></summary>
+        public static CommandID Format_TabOrder => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1209);
 
-        /// <summary>Format.TestDialog</summary>
-        public static CommandID Format_TestDialog { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1200 /* VSStd2KCmdID.TESTDIALOG */);
+        /// <summary>Format.TestDialog<br/><c>VSConstants.VSStd2KCmdID.TESTDIALOG</c></summary>
+        public static CommandID Format_TestDialog => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1200);
 
-        /// <summary>Format.ToggleGuides</summary>
-        public static CommandID Format_ToggleGuides { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1204 /* VSStd2KCmdID.TOGGLEGUIDES */);
+        /// <summary>Format.ToggleGuides<br/><c>VSConstants.VSStd2KCmdID.TOGGLEGUIDES</c></summary>
+        public static CommandID Format_ToggleGuides => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1204);
 
-        /// <summary>Format.Underline</summary>
-        public static CommandID Format_Underline { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 77 /* VSStd97CmdID.Underline */);
+        /// <summary>Format.Underline<br/><c>VSConstants.VSStd97CmdID.Underline</c></summary>
+        public static CommandID Format_Underline => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 77);
 
-        /// <summary>Help.About</summary>
-        public static CommandID Help_About { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 271 /* VSStd97CmdID.About */);
+        /// <summary>Help.About<br/><c>VSConstants.VSStd97CmdID.About</c></summary>
+        public static CommandID Help_About => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 271);
 
-        /// <summary>Help.DebugHelpContext</summary>
-        public static CommandID Help_DebugHelpContext { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 327 /* VSStd97CmdID.TaskListFilterByCategoryCompiler */);
+        /// <summary>Help.DebugHelpContext<br/><c>VSConstants.VSStd97CmdID.TaskListFilterByCategoryCompiler</c></summary>
+        public static CommandID Help_DebugHelpContext => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 327);
 
-        /// <summary>Help.F1Help</summary>
-        public static CommandID Help_F1Help { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 377 /* VSStd97CmdID.F1Help */);
+        /// <summary>Help.F1Help<br/><c>VSConstants.VSStd97CmdID.F1Help</c></summary>
+        public static CommandID Help_F1Help => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 377);
 
-        /// <summary>Help.RegisterProduct</summary>
-        public static CommandID Help_RegisterProduct { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2214 /* VSStd2KCmdID.Registration */);
+        /// <summary>Help.RegisterProduct<br/><c>VSConstants.VSStd2KCmdID.Registration</c></summary>
+        public static CommandID Help_RegisterProduct => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2214);
 
-        /// <summary>Help.TechnicalSupport</summary>
-        public static CommandID Help_TechnicalSupport { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 270 /* VSStd97CmdID.TechSupport */);
+        /// <summary>Help.TechnicalSupport<br/><c>VSConstants.VSStd97CmdID.TechSupport</c></summary>
+        public static CommandID Help_TechnicalSupport => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 270);
 
-        /// <summary>Help.WindowHelp</summary>
-        public static CommandID Help_WindowHelp { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1038 /* VSStd97CmdID.WindowHelp */);
+        /// <summary>Help.WindowHelp<br/><c>VSConstants.VSStd97CmdID.WindowHelp</c></summary>
+        public static CommandID Help_WindowHelp => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1038);
 
-        /// <summary>Image.AdjustColors</summary>
-        public static CommandID Image_AdjustColors { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1243 /* VSStd2KCmdID.ADJUSTCOLORS */);
+        /// <summary>Image.AdjustColors<br/><c>VSConstants.VSStd2KCmdID.ADJUSTCOLORS</c></summary>
+        public static CommandID Image_AdjustColors => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1243);
 
-        /// <summary>Image.AirbrushTool</summary>
-        public static CommandID Image_AirbrushTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1307 /* VSStd2KCmdID.AIRBRUSHTOOL */);
+        /// <summary>Image.AirbrushTool<br/><c>VSConstants.VSStd2KCmdID.AIRBRUSHTOOL</c></summary>
+        public static CommandID Image_AirbrushTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1307);
 
-        /// <summary>Image.BrushTool</summary>
-        public static CommandID Image_BrushTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1306 /* VSStd2KCmdID.BRUSHTOOL */);
+        /// <summary>Image.BrushTool<br/><c>VSConstants.VSStd2KCmdID.BRUSHTOOL</c></summary>
+        public static CommandID Image_BrushTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1306);
 
-        /// <summary>Image.ColorSelectionTool</summary>
-        public static CommandID Image_ColorSelectionTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1302 /* VSStd2KCmdID.PICKCOLOR */);
+        /// <summary>Image.ColorSelectionTool<br/><c>VSConstants.VSStd2KCmdID.PICKCOLOR</c></summary>
+        public static CommandID Image_ColorSelectionTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1302);
 
-        /// <summary>Image.CurveTool</summary>
-        public static CommandID Image_CurveTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1309 /* VSStd2KCmdID.CURVETOOL */);
+        /// <summary>Image.CurveTool<br/><c>VSConstants.VSStd2KCmdID.CURVETOOL</c></summary>
+        public static CommandID Image_CurveTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1309);
 
-        /// <summary>Image.DeleteImageType</summary>
-        public static CommandID Image_DeleteImageType { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1252 /* VSStd2KCmdID.DELETEDEVICEIMAGE */);
+        /// <summary>Image.DeleteImageType<br/><c>VSConstants.VSStd2KCmdID.DELETEDEVICEIMAGE</c></summary>
+        public static CommandID Image_DeleteImageType => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1252);
 
-        /// <summary>Image.DrawOpaque</summary>
-        public static CommandID Image_DrawOpaque { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1247 /* VSStd2KCmdID.DRAWOPAQUE */);
+        /// <summary>Image.DrawOpaque<br/><c>VSConstants.VSStd2KCmdID.DRAWOPAQUE</c></summary>
+        public static CommandID Image_DrawOpaque => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1247);
 
-        /// <summary>Image.EllipseTool</summary>
-        public static CommandID Image_EllipseTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1317 /* VSStd2KCmdID.ELLIPSETOOL */);
+        /// <summary>Image.EllipseTool<br/><c>VSConstants.VSStd2KCmdID.ELLIPSETOOL</c></summary>
+        public static CommandID Image_EllipseTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1317);
 
-        /// <summary>Image.EraseTool</summary>
-        public static CommandID Image_EraseTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1303 /* VSStd2KCmdID.ERASERTOOL */);
+        /// <summary>Image.EraseTool<br/><c>VSConstants.VSStd2KCmdID.ERASERTOOL</c></summary>
+        public static CommandID Image_EraseTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1303);
 
-        /// <summary>Image.FilledEllipseTool</summary>
-        public static CommandID Image_FilledEllipseTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1319 /* VSStd2KCmdID.FILLEDELLIPSETOOL */);
+        /// <summary>Image.FilledEllipseTool<br/><c>VSConstants.VSStd2KCmdID.FILLEDELLIPSETOOL</c></summary>
+        public static CommandID Image_FilledEllipseTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1319);
 
-        /// <summary>Image.FilledRectangleTool</summary>
-        public static CommandID Image_FilledRectangleTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1313 /* VSStd2KCmdID.FILLEDRECTTOOL */);
+        /// <summary>Image.FilledRectangleTool<br/><c>VSConstants.VSStd2KCmdID.FILLEDRECTTOOL</c></summary>
+        public static CommandID Image_FilledRectangleTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1313);
 
-        /// <summary>Image.FilledRoundedRectangleTool</summary>
-        public static CommandID Image_FilledRoundedRectangleTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1316 /* VSStd2KCmdID.FILLEDROUNDRECTTOOL */);
+        /// <summary>Image.FilledRoundedRectangleTool<br/><c>VSConstants.VSStd2KCmdID.FILLEDROUNDRECTTOOL</c></summary>
+        public static CommandID Image_FilledRoundedRectangleTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1316);
 
-        /// <summary>Image.FillTool</summary>
-        public static CommandID Image_FillTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1304 /* VSStd2KCmdID.FILLTOOL */);
+        /// <summary>Image.FillTool<br/><c>VSConstants.VSStd2KCmdID.FILLTOOL</c></summary>
+        public static CommandID Image_FillTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1304);
 
-        /// <summary>Image.FlipHorizontal</summary>
-        public static CommandID Image_FlipHorizontal { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1236 /* VSStd2KCmdID.FLIPHORIZONTAL */);
+        /// <summary>Image.FlipHorizontal<br/><c>VSConstants.VSStd2KCmdID.FLIPHORIZONTAL</c></summary>
+        public static CommandID Image_FlipHorizontal => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1236);
 
-        /// <summary>Image.FlipVertical</summary>
-        public static CommandID Image_FlipVertical { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1237 /* VSStd2KCmdID.FLIPVERTICAL */);
+        /// <summary>Image.FlipVertical<br/><c>VSConstants.VSStd2KCmdID.FLIPVERTICAL</c></summary>
+        public static CommandID Image_FlipVertical => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1237);
 
-        /// <summary>Image.GridSettings</summary>
-        public static CommandID Image_GridSettings { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1249 /* VSStd2KCmdID.GRIDSETTINGS */);
+        /// <summary>Image.GridSettings<br/><c>VSConstants.VSStd2KCmdID.GRIDSETTINGS</c></summary>
+        public static CommandID Image_GridSettings => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1249);
 
-        /// <summary>Image.InvertColors</summary>
-        public static CommandID Image_InvertColors { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1235 /* VSStd2KCmdID.INVERTCOLORS */);
+        /// <summary>Image.InvertColors<br/><c>VSConstants.VSStd2KCmdID.INVERTCOLORS</c></summary>
+        public static CommandID Image_InvertColors => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1235);
 
-        /// <summary>Image.IrregularSelectionTool</summary>
-        public static CommandID Image_IrregularSelectionTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1301 /* VSStd2KCmdID.PICKREGION */);
+        /// <summary>Image.IrregularSelectionTool<br/><c>VSConstants.VSStd2KCmdID.PICKREGION</c></summary>
+        public static CommandID Image_IrregularSelectionTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1301);
 
-        /// <summary>Image.LargerBrush</summary>
-        public static CommandID Image_LargerBrush { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1352 /* VSStd2KCmdID.LARGERBRUSH */);
+        /// <summary>Image.LargerBrush<br/><c>VSConstants.VSStd2KCmdID.LARGERBRUSH</c></summary>
+        public static CommandID Image_LargerBrush => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1352);
 
-        /// <summary>Image.LineTool</summary>
-        public static CommandID Image_LineTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1308 /* VSStd2KCmdID.LINETOOL */);
+        /// <summary>Image.LineTool<br/><c>VSConstants.VSStd2KCmdID.LINETOOL</c></summary>
+        public static CommandID Image_LineTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1308);
 
-        /// <summary>Image.LoadPalette</summary>
-        public static CommandID Image_LoadPalette { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1244 /* VSStd2KCmdID.LOADPALETTE */);
+        /// <summary>Image.LoadPalette<br/><c>VSConstants.VSStd2KCmdID.LOADPALETTE</c></summary>
+        public static CommandID Image_LoadPalette => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1244);
 
-        /// <summary>Image.MagnificationTool</summary>
-        public static CommandID Image_MagnificationTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1321 /* VSStd2KCmdID.ZOOMTOOL */);
+        /// <summary>Image.MagnificationTool<br/><c>VSConstants.VSStd2KCmdID.ZOOMTOOL</c></summary>
+        public static CommandID Image_MagnificationTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1321);
 
-        /// <summary>Image.Magnify</summary>
-        public static CommandID Image_Magnify { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1257 /* VSStd2KCmdID.MAGNIFY */);
+        /// <summary>Image.Magnify<br/><c>VSConstants.VSStd2KCmdID.MAGNIFY</c></summary>
+        public static CommandID Image_Magnify => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1257);
 
-        /// <summary>Image.NewImageType</summary>
-        public static CommandID Image_NewImageType { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1250 /* VSStd2KCmdID.NEWDEVICEIMAGE */);
+        /// <summary>Image.NewImageType<br/><c>VSConstants.VSStd2KCmdID.NEWDEVICEIMAGE</c></summary>
+        public static CommandID Image_NewImageType => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1250);
 
-        /// <summary>Image.NextColor</summary>
-        public static CommandID Image_NextColor { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1361 /* VSStd2KCmdID.NEXTCOLOR */);
+        /// <summary>Image.NextColor<br/><c>VSConstants.VSStd2KCmdID.NEXTCOLOR</c></summary>
+        public static CommandID Image_NextColor => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1361);
 
-        /// <summary>Image.NextRightColor</summary>
-        public static CommandID Image_NextRightColor { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1362 /* VSStd2KCmdID.NEXTECOLOR */);
+        /// <summary>Image.NextRightColor<br/><c>VSConstants.VSStd2KCmdID.NEXTECOLOR</c></summary>
+        public static CommandID Image_NextRightColor => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1362);
 
-        /// <summary>Image.OpenExternalEditor</summary>
-        public static CommandID Image_OpenExternalEditor { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1261 /* VSStd2KCmdID.OPENEXTERNALEDITOR */);
+        /// <summary>Image.OpenExternalEditor<br/><c>VSConstants.VSStd2KCmdID.OPENEXTERNALEDITOR</c></summary>
+        public static CommandID Image_OpenExternalEditor => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1261);
 
-        /// <summary>Image.OutlinedEllipseTool</summary>
-        public static CommandID Image_OutlinedEllipseTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1318 /* VSStd2KCmdID.OUTLINEELLIPSETOOL */);
+        /// <summary>Image.OutlinedEllipseTool<br/><c>VSConstants.VSStd2KCmdID.OUTLINEELLIPSETOOL</c></summary>
+        public static CommandID Image_OutlinedEllipseTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1318);
 
-        /// <summary>Image.OutlinedRectangleTool</summary>
-        public static CommandID Image_OutlinedRectangleTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1312 /* VSStd2KCmdID.OUTLINERECTTOOL */);
+        /// <summary>Image.OutlinedRectangleTool<br/><c>VSConstants.VSStd2KCmdID.OUTLINERECTTOOL</c></summary>
+        public static CommandID Image_OutlinedRectangleTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1312);
 
-        /// <summary>Image.OutlinedRoundedRectangleTool</summary>
-        public static CommandID Image_OutlinedRoundedRectangleTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1315 /* VSStd2KCmdID.OUTLINEROUNDRECTTOOL */);
+        /// <summary>Image.OutlinedRoundedRectangleTool<br/><c>VSConstants.VSStd2KCmdID.OUTLINEROUNDRECTTOOL</c></summary>
+        public static CommandID Image_OutlinedRoundedRectangleTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1315);
 
-        /// <summary>Image.PencilTool</summary>
-        public static CommandID Image_PencilTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1305 /* VSStd2KCmdID.PENCILTOOL */);
+        /// <summary>Image.PencilTool<br/><c>VSConstants.VSStd2KCmdID.PENCILTOOL</c></summary>
+        public static CommandID Image_PencilTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1305);
 
-        /// <summary>Image.PreviousColor</summary>
-        public static CommandID Image_PreviousColor { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1359 /* VSStd2KCmdID.PREVCOLOR */);
+        /// <summary>Image.PreviousColor<br/><c>VSConstants.VSStd2KCmdID.PREVCOLOR</c></summary>
+        public static CommandID Image_PreviousColor => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1359);
 
-        /// <summary>Image.PreviousRightColor</summary>
-        public static CommandID Image_PreviousRightColor { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1360 /* VSStd2KCmdID.PREVECOLOR */);
+        /// <summary>Image.PreviousRightColor<br/><c>VSConstants.VSStd2KCmdID.PREVECOLOR</c></summary>
+        public static CommandID Image_PreviousRightColor => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1360);
 
-        /// <summary>Image.RectangleSelectionTool</summary>
-        public static CommandID Image_RectangleSelectionTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1300 /* VSStd2KCmdID.PICKRECTANGLE */);
+        /// <summary>Image.RectangleSelectionTool<br/><c>VSConstants.VSStd2KCmdID.PICKRECTANGLE</c></summary>
+        public static CommandID Image_RectangleSelectionTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1300);
 
-        /// <summary>Image.RectangleTool</summary>
-        public static CommandID Image_RectangleTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1311 /* VSStd2KCmdID.RECTTOOL */);
+        /// <summary>Image.RectangleTool<br/><c>VSConstants.VSStd2KCmdID.RECTTOOL</c></summary>
+        public static CommandID Image_RectangleTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1311);
 
-        /// <summary>Image.Rotate90Degrees</summary>
-        public static CommandID Image_Rotate90Degrees { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1238 /* VSStd2KCmdID.ROTATE90 */);
+        /// <summary>Image.Rotate90Degrees<br/><c>VSConstants.VSStd2KCmdID.ROTATE90</c></summary>
+        public static CommandID Image_Rotate90Degrees => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1238);
 
-        /// <summary>Image.RoundedRectangleTool</summary>
-        public static CommandID Image_RoundedRectangleTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1314 /* VSStd2KCmdID.ROUNDRECTTOOL */);
+        /// <summary>Image.RoundedRectangleTool<br/><c>VSConstants.VSStd2KCmdID.ROUNDRECTTOOL</c></summary>
+        public static CommandID Image_RoundedRectangleTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1314);
 
-        /// <summary>Image.SavePalette</summary>
-        public static CommandID Image_SavePalette { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1245 /* VSStd2KCmdID.SAVEPALETTE */);
+        /// <summary>Image.SavePalette<br/><c>VSConstants.VSStd2KCmdID.SAVEPALETTE</c></summary>
+        public static CommandID Image_SavePalette => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1245);
 
-        /// <summary>Image.ShowColorsWindow</summary>
-        public static CommandID Image_ShowColorsWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1239 /* VSStd2KCmdID.SHOWCOLORSWINDOW */);
+        /// <summary>Image.ShowColorsWindow<br/><c>VSConstants.VSStd2KCmdID.SHOWCOLORSWINDOW</c></summary>
+        public static CommandID Image_ShowColorsWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1239);
 
-        /// <summary>Image.ShowGrid</summary>
-        public static CommandID Image_ShowGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1255 /* VSStd2KCmdID.SHOWIMAGEGRID */);
+        /// <summary>Image.ShowGrid<br/><c>VSConstants.VSStd2KCmdID.SHOWIMAGEGRID</c></summary>
+        public static CommandID Image_ShowGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1255);
 
-        /// <summary>Image.ShowTileGrid</summary>
-        public static CommandID Image_ShowTileGrid { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1256 /* VSStd2KCmdID.SHOWTILEGRID */);
+        /// <summary>Image.ShowTileGrid<br/><c>VSConstants.VSStd2KCmdID.SHOWTILEGRID</c></summary>
+        public static CommandID Image_ShowTileGrid => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1256);
 
-        /// <summary>Image.SmallBrush</summary>
-        public static CommandID Image_SmallBrush { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1355 /* VSStd2KCmdID.SMALLBRUSH */);
+        /// <summary>Image.SmallBrush<br/><c>VSConstants.VSStd2KCmdID.SMALLBRUSH</c></summary>
+        public static CommandID Image_SmallBrush => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1355);
 
-        /// <summary>Image.SmallerBrush</summary>
-        public static CommandID Image_SmallerBrush { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1356 /* VSStd2KCmdID.SMALLERBRUSH */);
+        /// <summary>Image.SmallerBrush<br/><c>VSConstants.VSStd2KCmdID.SMALLERBRUSH</c></summary>
+        public static CommandID Image_SmallerBrush => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1356);
 
-        /// <summary>Image.TextTool</summary>
-        public static CommandID Image_TextTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1310 /* VSStd2KCmdID.TEXTTOOL */);
+        /// <summary>Image.TextTool<br/><c>VSConstants.VSStd2KCmdID.TEXTTOOL</c></summary>
+        public static CommandID Image_TextTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1310);
 
-        /// <summary>Image.ToolbarEditor</summary>
-        public static CommandID Image_ToolbarEditor { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1248 /* VSStd2KCmdID.TOOLBAREDITOR */);
+        /// <summary>Image.ToolbarEditor<br/><c>VSConstants.VSStd2KCmdID.TOOLBAREDITOR</c></summary>
+        public static CommandID Image_ToolbarEditor => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1248);
 
-        /// <summary>Image.ZoomIn</summary>
-        public static CommandID Image_ZoomIn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1357 /* VSStd2KCmdID.ZOOMIN */);
+        /// <summary>Image.ZoomIn<br/><c>VSConstants.VSStd2KCmdID.ZOOMIN</c></summary>
+        public static CommandID Image_ZoomIn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1357);
 
-        /// <summary>Image.ZoomOut</summary>
-        public static CommandID Image_ZoomOut { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1358 /* VSStd2KCmdID.ZOOMOUT */);
+        /// <summary>Image.ZoomOut<br/><c>VSConstants.VSStd2KCmdID.ZOOMOUT</c></summary>
+        public static CommandID Image_ZoomOut => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1358);
 
-        /// <summary>Layout.MergeCells</summary>
-        public static CommandID Layout_MergeCells { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 265 /* VSStd2KCmdID.MERGECELLS */);
+        /// <summary>Layout.MergeCells<br/><c>VSConstants.VSStd2KCmdID.MERGECELLS</c></summary>
+        public static CommandID Layout_MergeCells => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 265);
 
-        /// <summary>Layout.Static</summary>
-        public static CommandID Layout_Static { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 339 /* VSStd2KCmdID.MAKESTATIC */);
+        /// <summary>Layout.Static<br/><c>VSConstants.VSStd2KCmdID.MAKESTATIC</c></summary>
+        public static CommandID Layout_Static => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 339);
 
-        /// <summary>ManageExtensions</summary>
-        public static CommandID ManageExtensions { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 3000 /* VSStd2010CmdID.ExtensionManager */);
+        /// <summary>ManageExtensions<br/><c>VSConstants.VSStd2010CmdID.ExtensionManager</c></summary>
+        public static CommandID ManageExtensions => new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 3000);
 
-        /// <summary>Messages</summary>
-        public static CommandID Messages { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2212 /* VSStd2KCmdID.ErrorListShowMessages */);
+        /// <summary>Messages<br/><c>VSConstants.VSStd2KCmdID.ErrorListShowMessages</c></summary>
+        public static CommandID Messages => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2212);
 
-        /// <summary>OtherContextMenus.ColumnContext.Deletekey</summary>
-        public static CommandID OtherContextMenus_ColumnContext_Deletekey { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1979 /* VSStd2KCmdID.ECMD_DELETECONSTRAINT */);
+        /// <summary>OtherContextMenus.ColumnContext.Deletekey<br/><c>VSConstants.VSStd2KCmdID.ECMD_DELETECONSTRAINT</c></summary>
+        public static CommandID OtherContextMenus_ColumnContext_Deletekey => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1979);
 
-        /// <summary>OtherContextMenus.ColumnContext.Editkey</summary>
-        public static CommandID OtherContextMenus_ColumnContext_Editkey { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1978 /* VSStd2KCmdID.ECMD_EDITCONSTRAINT */);
+        /// <summary>OtherContextMenus.ColumnContext.Editkey<br/><c>VSConstants.VSStd2KCmdID.ECMD_EDITCONSTRAINT</c></summary>
+        public static CommandID OtherContextMenus_ColumnContext_Editkey => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1978);
 
-        /// <summary>OtherContextMenus.ColumnContext.InsertColumn</summary>
-        public static CommandID OtherContextMenus_ColumnContext_InsertColumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1968 /* VSStd2KCmdID.ECMD_INSERT_COLUMN */);
+        /// <summary>OtherContextMenus.ColumnContext.InsertColumn<br/><c>VSConstants.VSStd2KCmdID.ECMD_INSERT_COLUMN</c></summary>
+        public static CommandID OtherContextMenus_ColumnContext_InsertColumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1968);
 
-        /// <summary>OtherContextMenus.ColumnContext.SetPrimaryKey</summary>
-        public static CommandID OtherContextMenus_ColumnContext_SetPrimaryKey { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1967 /* VSStd2KCmdID.ECMD_SET_PRIMARY_KEY */);
+        /// <summary>OtherContextMenus.ColumnContext.SetPrimaryKey<br/><c>VSConstants.VSStd2KCmdID.ECMD_SET_PRIMARY_KEY</c></summary>
+        public static CommandID OtherContextMenus_ColumnContext_SetPrimaryKey => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1967);
 
-        /// <summary>OtherContextMenus.Context.EditImage</summary>
-        public static CommandID OtherContextMenus_Context_EditImage { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 347 /* VSStd2KCmdID.EDITIMAGE */);
+        /// <summary>OtherContextMenus.Context.EditImage<br/><c>VSConstants.VSStd2KCmdID.EDITIMAGE</c></summary>
+        public static CommandID OtherContextMenus_Context_EditImage => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 347);
 
-        /// <summary>OtherContextMenus.Context.ViewCode</summary>
-        public static CommandID OtherContextMenus_Context_ViewCode { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 290 /* VSStd2KCmdID.EDITCODEBEHIND */);
+        /// <summary>OtherContextMenus.Context.ViewCode<br/><c>VSConstants.VSStd2KCmdID.EDITCODEBEHIND</c></summary>
+        public static CommandID OtherContextMenus_Context_ViewCode => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 290);
 
-        /// <summary>OtherContextMenus.DatabaseDesigner.NewTable</summary>
-        public static CommandID OtherContextMenus_DatabaseDesigner_NewTable { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 104 /* VSStd97CmdID.NewTable */);
+        /// <summary>OtherContextMenus.DatabaseDesigner.NewTable<br/><c>VSConstants.VSStd97CmdID.NewTable</c></summary>
+        public static CommandID OtherContextMenus_DatabaseDesigner_NewTable => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 104);
 
-        /// <summary>OtherContextMenus.DataSourceContext.Add.DataTable</summary>
-        public static CommandID OtherContextMenus_DataSourceContext_Add_DataTable { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1951 /* VSStd2KCmdID.ECMD_ADDDATATABLE */);
+        /// <summary>OtherContextMenus.DataSourceContext.Add.DataTable<br/><c>VSConstants.VSStd2KCmdID.ECMD_ADDDATATABLE</c></summary>
+        public static CommandID OtherContextMenus_DataSourceContext_Add_DataTable => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1951);
 
-        /// <summary>OtherContextMenus.DataSourceContext.Add.Query</summary>
-        public static CommandID OtherContextMenus_DataSourceContext_Add_Query { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2002 /* VSStd2KCmdID.ECMD_QUERY */);
+        /// <summary>OtherContextMenus.DataSourceContext.Add.Query<br/><c>VSConstants.VSStd2KCmdID.ECMD_QUERY</c></summary>
+        public static CommandID OtherContextMenus_DataSourceContext_Add_Query => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2002);
 
-        /// <summary>OtherContextMenus.DataSourceContext.Add.Relation</summary>
-        public static CommandID OtherContextMenus_DataSourceContext_Add_Relation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1953 /* VSStd2KCmdID.ECMD_ADDRELATION */);
+        /// <summary>OtherContextMenus.DataSourceContext.Add.Relation<br/><c>VSConstants.VSStd2KCmdID.ECMD_ADDRELATION</c></summary>
+        public static CommandID OtherContextMenus_DataSourceContext_Add_Relation => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1953);
 
-        /// <summary>OtherContextMenus.DataSourceContext.Add.TableAdapter</summary>
-        public static CommandID OtherContextMenus_DataSourceContext_Add_TableAdapter { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2000 /* VSStd2KCmdID.ECMD_DATAACCESSOR */);
+        /// <summary>OtherContextMenus.DataSourceContext.Add.TableAdapter<br/><c>VSConstants.VSStd2KCmdID.ECMD_DATAACCESSOR</c></summary>
+        public static CommandID OtherContextMenus_DataSourceContext_Add_TableAdapter => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2000);
 
-        /// <summary>OtherContextMenus.DataSourceContext.PreviewData</summary>
-        public static CommandID OtherContextMenus_DataSourceContext_PreviewData { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1972 /* VSStd2KCmdID.VSDPreview */);
+        /// <summary>OtherContextMenus.DataSourceContext.PreviewData<br/><c>VSConstants.VSStd2KCmdID.VSDPreview</c></summary>
+        public static CommandID OtherContextMenus_DataSourceContext_PreviewData => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1972);
 
-        /// <summary>OtherContextMenus.DataSourceContext.ShowRelationLabels</summary>
-        public static CommandID OtherContextMenus_DataSourceContext_ShowRelationLabels { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1970 /* VSStd2KCmdID.ECMD_SHOW_RELATION_LABELS */);
+        /// <summary>OtherContextMenus.DataSourceContext.ShowRelationLabels<br/><c>VSConstants.VSStd2KCmdID.ECMD_SHOW_RELATION_LABELS</c></summary>
+        public static CommandID OtherContextMenus_DataSourceContext_ShowRelationLabels => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1970);
 
-        /// <summary>OtherContextMenus.DbTableContext.Add.Column</summary>
-        public static CommandID OtherContextMenus_DbTableContext_Add_Column { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1955 /* VSStd2KCmdID.ECMD_ADDCOLUMN */);
+        /// <summary>OtherContextMenus.DbTableContext.Add.Column<br/><c>VSConstants.VSStd2KCmdID.ECMD_ADDCOLUMN</c></summary>
+        public static CommandID OtherContextMenus_DbTableContext_Add_Column => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1955);
 
-        /// <summary>OtherContextMenus.DbTableContext.Add.Key</summary>
-        public static CommandID OtherContextMenus_DbTableContext_Add_Key { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1954 /* VSStd2KCmdID.ECMD_ADDKEY */);
+        /// <summary>OtherContextMenus.DbTableContext.Add.Key<br/><c>VSConstants.VSStd2KCmdID.ECMD_ADDKEY</c></summary>
+        public static CommandID OtherContextMenus_DbTableContext_Add_Key => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1954);
 
-        /// <summary>OtherContextMenus.DbTableContext.Configure</summary>
-        public static CommandID OtherContextMenus_DbTableContext_Configure { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1962 /* VSStd2KCmdID.ECMD_CONFIGURE */);
+        /// <summary>OtherContextMenus.DbTableContext.Configure<br/><c>VSConstants.VSStd2KCmdID.ECMD_CONFIGURE</c></summary>
+        public static CommandID OtherContextMenus_DbTableContext_Configure => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1962);
 
-        /// <summary>OtherContextMenus.DragandDrop.Cancel</summary>
-        public static CommandID OtherContextMenus_DragandDrop_Cancel { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1142 /* VSStd2KCmdID.DRAG_CANCEL */);
+        /// <summary>OtherContextMenus.DragandDrop.Cancel<br/><c>VSConstants.VSStd2KCmdID.DRAG_CANCEL</c></summary>
+        public static CommandID OtherContextMenus_DragandDrop_Cancel => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1142);
 
-        /// <summary>OtherContextMenus.DragandDrop.CopyHere</summary>
-        public static CommandID OtherContextMenus_DragandDrop_CopyHere { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1141 /* VSStd2KCmdID.DRAG_COPY */);
+        /// <summary>OtherContextMenus.DragandDrop.CopyHere<br/><c>VSConstants.VSStd2KCmdID.DRAG_COPY</c></summary>
+        public static CommandID OtherContextMenus_DragandDrop_CopyHere => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1141);
 
-        /// <summary>OtherContextMenus.DragandDrop.MoveHere</summary>
-        public static CommandID OtherContextMenus_DragandDrop_MoveHere { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1140 /* VSStd2KCmdID.DRAG_MOVE */);
+        /// <summary>OtherContextMenus.DragandDrop.MoveHere<br/><c>VSConstants.VSStd2KCmdID.DRAG_MOVE</c></summary>
+        public static CommandID OtherContextMenus_DragandDrop_MoveHere => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1140);
 
-        /// <summary>OtherContextMenus.EasyMDIDragging.Cancel</summary>
-        public static CommandID OtherContextMenus_EasyMDIDragging_Cancel { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 326 /* VSStd97CmdID.CancelEZDrag */);
+        /// <summary>OtherContextMenus.EasyMDIDragging.Cancel<br/><c>VSConstants.VSStd97CmdID.CancelEZDrag</c></summary>
+        public static CommandID OtherContextMenus_EasyMDIDragging_Cancel => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 326);
 
-        /// <summary>OtherContextMenus.ErrorCorrection.Correction1</summary>
-        public static CommandID OtherContextMenus_ErrorCorrection_Correction1 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1900 /* VSStd2KCmdID.ECMD_CORRECTION_1 */);
+        /// <summary>OtherContextMenus.ErrorCorrection.Correction1<br/><c>VSConstants.VSStd2KCmdID.ECMD_CORRECTION_1</c></summary>
+        public static CommandID OtherContextMenus_ErrorCorrection_Correction1 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1900);
 
-        /// <summary>OtherContextMenus.ErrorCorrection.Correction10</summary>
-        public static CommandID OtherContextMenus_ErrorCorrection_Correction10 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1909 /* VSStd2KCmdID.ECMD_CORRECTION_10 */);
+        /// <summary>OtherContextMenus.ErrorCorrection.Correction10<br/><c>VSConstants.VSStd2KCmdID.ECMD_CORRECTION_10</c></summary>
+        public static CommandID OtherContextMenus_ErrorCorrection_Correction10 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1909);
 
-        /// <summary>OtherContextMenus.ErrorCorrection.Correction2</summary>
-        public static CommandID OtherContextMenus_ErrorCorrection_Correction2 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1901 /* VSStd2KCmdID.ECMD_CORRECTION_2 */);
+        /// <summary>OtherContextMenus.ErrorCorrection.Correction2<br/><c>VSConstants.VSStd2KCmdID.ECMD_CORRECTION_2</c></summary>
+        public static CommandID OtherContextMenus_ErrorCorrection_Correction2 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1901);
 
-        /// <summary>OtherContextMenus.ErrorCorrection.Correction3</summary>
-        public static CommandID OtherContextMenus_ErrorCorrection_Correction3 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1902 /* VSStd2KCmdID.ECMD_CORRECTION_3 */);
+        /// <summary>OtherContextMenus.ErrorCorrection.Correction3<br/><c>VSConstants.VSStd2KCmdID.ECMD_CORRECTION_3</c></summary>
+        public static CommandID OtherContextMenus_ErrorCorrection_Correction3 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1902);
 
-        /// <summary>OtherContextMenus.ErrorCorrection.Correction4</summary>
-        public static CommandID OtherContextMenus_ErrorCorrection_Correction4 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1903 /* VSStd2KCmdID.ECMD_CORRECTION_4 */);
+        /// <summary>OtherContextMenus.ErrorCorrection.Correction4<br/><c>VSConstants.VSStd2KCmdID.ECMD_CORRECTION_4</c></summary>
+        public static CommandID OtherContextMenus_ErrorCorrection_Correction4 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1903);
 
-        /// <summary>OtherContextMenus.ErrorCorrection.Correction5</summary>
-        public static CommandID OtherContextMenus_ErrorCorrection_Correction5 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1904 /* VSStd2KCmdID.ECMD_CORRECTION_5 */);
+        /// <summary>OtherContextMenus.ErrorCorrection.Correction5<br/><c>VSConstants.VSStd2KCmdID.ECMD_CORRECTION_5</c></summary>
+        public static CommandID OtherContextMenus_ErrorCorrection_Correction5 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1904);
 
-        /// <summary>OtherContextMenus.ErrorCorrection.Correction6</summary>
-        public static CommandID OtherContextMenus_ErrorCorrection_Correction6 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1905 /* VSStd2KCmdID.ECMD_CORRECTION_6 */);
+        /// <summary>OtherContextMenus.ErrorCorrection.Correction6<br/><c>VSConstants.VSStd2KCmdID.ECMD_CORRECTION_6</c></summary>
+        public static CommandID OtherContextMenus_ErrorCorrection_Correction6 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1905);
 
-        /// <summary>OtherContextMenus.ErrorCorrection.Correction7</summary>
-        public static CommandID OtherContextMenus_ErrorCorrection_Correction7 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1906 /* VSStd2KCmdID.ECMD_CORRECTION_7 */);
+        /// <summary>OtherContextMenus.ErrorCorrection.Correction7<br/><c>VSConstants.VSStd2KCmdID.ECMD_CORRECTION_7</c></summary>
+        public static CommandID OtherContextMenus_ErrorCorrection_Correction7 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1906);
 
-        /// <summary>OtherContextMenus.ErrorCorrection.Correction8</summary>
-        public static CommandID OtherContextMenus_ErrorCorrection_Correction8 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1907 /* VSStd2KCmdID.ECMD_CORRECTION_8 */);
+        /// <summary>OtherContextMenus.ErrorCorrection.Correction8<br/><c>VSConstants.VSStd2KCmdID.ECMD_CORRECTION_8</c></summary>
+        public static CommandID OtherContextMenus_ErrorCorrection_Correction8 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1907);
 
-        /// <summary>OtherContextMenus.ErrorCorrection.Correction9</summary>
-        public static CommandID OtherContextMenus_ErrorCorrection_Correction9 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1908 /* VSStd2KCmdID.ECMD_CORRECTION_9 */);
+        /// <summary>OtherContextMenus.ErrorCorrection.Correction9<br/><c>VSConstants.VSStd2KCmdID.ECMD_CORRECTION_9</c></summary>
+        public static CommandID OtherContextMenus_ErrorCorrection_Correction9 => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1908);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Captureandimplicitlynumberthesubexpressiondogorcat</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Captureandimplicitlynumberthesubexpressiondogorcat { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 742 /* VSStd97CmdID.Or */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Captureandimplicitlynumberthesubexpressiondogorcat<br/><c>VSConstants.VSStd97CmdID.Or</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Captureandimplicitlynumberthesubexpressiondogorcat => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 742);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Capturesubexpressiondogorcatandnameitpet</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Capturesubexpressiondogorcatandnameitpet { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 744 /* VSStd97CmdID.TagExp */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Capturesubexpressiondogorcatandnameitpet<br/><c>VSConstants.VSStd97CmdID.TagExp</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Capturesubexpressiondogorcatandnameitpet => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 744);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanycharacterinthesetabc</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanycharacterinthesetabc { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 740 /* VSStd97CmdID.CharInSet */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanycharacterinthesetabc<br/><c>VSConstants.VSStd97CmdID.CharInSet</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanycharacterinthesetabc => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 740);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.MatchanycharacterNOTinthesetabc</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_MatchanycharacterNOTinthesetabc { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 741 /* VSStd97CmdID.CharNotInSet */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.MatchanycharacterNOTinthesetabc<br/><c>VSConstants.VSStd97CmdID.CharNotInSet</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_MatchanycharacterNOTinthesetabc => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 741);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanycharacteroneormoretimes</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanycharacteroneormoretimes { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 735 /* VSStd97CmdID.OneOrMore */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanycharacteroneormoretimes<br/><c>VSConstants.VSStd97CmdID.OneOrMore</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanycharacteroneormoretimes => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 735);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanycharacterzeroormoretimes</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanycharacterzeroormoretimes { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 734 /* VSStd97CmdID.ZeroOrMore */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanycharacterzeroormoretimes<br/><c>VSConstants.VSStd97CmdID.ZeroOrMore</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanycharacterzeroormoretimes => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 734);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanylinebreak</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanylinebreak { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1026 /* VSStd97CmdID.LineBreak */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanylinebreak<br/><c>VSConstants.VSStd97CmdID.LineBreak</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanylinebreak => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1026);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanynumericcharacter</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanynumericcharacter { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1030 /* VSStd97CmdID.Integer */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanynumericcharacter<br/><c>VSConstants.VSStd97CmdID.Integer</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanynumericcharacter => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1030);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanysinglecharacterexceptalinebreak</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanysinglecharacterexceptalinebreak { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 733 /* VSStd97CmdID.SingleChar */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanysinglecharacterexceptalinebreak<br/><c>VSConstants.VSStd97CmdID.SingleChar</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanysinglecharacterexceptalinebreak => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 733);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanywhitespacecharacter</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanywhitespacecharacter { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1029 /* VSStd97CmdID.SpaceOrTab */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchanywhitespacecharacter<br/><c>VSConstants.VSStd97CmdID.SpaceOrTab</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchanywhitespacecharacter => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1029);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchatbeginningofline</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchatbeginningofline { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 736 /* VSStd97CmdID.BeginLine */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchatbeginningofline<br/><c>VSConstants.VSStd97CmdID.BeginLine</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchatbeginningofline => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 736);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchatbeginningorendofword</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchatbeginningorendofword { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 738 /* VSStd97CmdID.BeginWord */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchatbeginningorendofword<br/><c>VSConstants.VSStd97CmdID.BeginWord</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchatbeginningorendofword => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 738);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchawordcharacteratendofline</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchawordcharacteratendofline { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 737 /* VSStd97CmdID.EndLine */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.Matchawordcharacteratendofline<br/><c>VSConstants.VSStd97CmdID.EndLine</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_Matchawordcharacteratendofline => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 737);
 
-        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.RegularExpressionHelp</summary>
-        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_RegularExpressionHelp { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 746 /* VSStd97CmdID.RegExList */);
+        /// <summary>OtherContextMenus.FindRegularExpressionBuilder.RegularExpressionHelp<br/><c>VSConstants.VSStd97CmdID.RegExList</c></summary>
+        public static CommandID OtherContextMenus_FindRegularExpressionBuilder_RegularExpressionHelp => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 746);
 
-        /// <summary>OtherContextMenus.FSIConsoleContext.CancelInteractiveEvaluation</summary>
-        public static CommandID OtherContextMenus_FSIConsoleContext_CancelInteractiveEvaluation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 26 /* VSStd11CmdID.InteractiveSessionInterrupt */);
+        /// <summary>OtherContextMenus.FSIConsoleContext.CancelInteractiveEvaluation<br/><c>VSConstants.VSStd11CmdID.InteractiveSessionInterrupt</c></summary>
+        public static CommandID OtherContextMenus_FSIConsoleContext_CancelInteractiveEvaluation => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 26);
 
-        /// <summary>OtherContextMenus.FSIConsoleContext.ResetInteractiveSession</summary>
-        public static CommandID OtherContextMenus_FSIConsoleContext_ResetInteractiveSession { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 27 /* VSStd11CmdID.InteractiveSessionRestart */);
+        /// <summary>OtherContextMenus.FSIConsoleContext.ResetInteractiveSession<br/><c>VSConstants.VSStd11CmdID.InteractiveSessionRestart</c></summary>
+        public static CommandID OtherContextMenus_FSIConsoleContext_ResetInteractiveSession => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 27);
 
-        /// <summary>OtherContextMenus.FunctionContext.AddQuery</summary>
-        public static CommandID OtherContextMenus_FunctionContext_AddQuery { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2003 /* VSStd2KCmdID.ECMD_ADD_QUERY */);
+        /// <summary>OtherContextMenus.FunctionContext.AddQuery<br/><c>VSConstants.VSStd2KCmdID.ECMD_ADD_QUERY</c></summary>
+        public static CommandID OtherContextMenus_FunctionContext_AddQuery => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2003);
 
-        /// <summary>OtherContextMenus.HTMLContext.FormattingandValidation</summary>
-        public static CommandID OtherContextMenus_HTMLContext_FormattingandValidation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 324 /* VSStd2KCmdID.FORMATANDVALIDATION */);
+        /// <summary>OtherContextMenus.HTMLContext.FormattingandValidation<br/><c>VSConstants.VSStd2KCmdID.FORMATANDVALIDATION</c></summary>
+        public static CommandID OtherContextMenus_HTMLContext_FormattingandValidation => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 324);
 
-        /// <summary>OtherContextMenus.MenuDesigner.ViewCode</summary>
-        public static CommandID OtherContextMenus_MenuDesigner_ViewCode { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 14 /* VSStd97CmdID.Code */);
+        /// <summary>OtherContextMenus.MenuDesigner.ViewCode<br/><c>VSConstants.VSStd97CmdID.Code</c></summary>
+        public static CommandID OtherContextMenus_MenuDesigner_ViewCode => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 14);
 
-        /// <summary>OtherContextMenus.NoCommandsAvailable.NoCommandsAvailable</summary>
-        public static CommandID OtherContextMenus_NoCommandsAvailable_NoCommandsAvailable { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 424 /* VSStd97CmdID.NoCmdsAvailable */);
+        /// <summary>OtherContextMenus.NoCommandsAvailable.NoCommandsAvailable<br/><c>VSConstants.VSStd97CmdID.NoCmdsAvailable</c></summary>
+        public static CommandID OtherContextMenus_NoCommandsAvailable_NoCommandsAvailable => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 424);
 
-        /// <summary>OtherContextMenus.QueryDiagramTable.SelectAllColumns</summary>
-        public static CommandID OtherContextMenus_QueryDiagramTable_SelectAllColumns { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 135 /* VSStd97CmdID.SelectAllFields */);
+        /// <summary>OtherContextMenus.QueryDiagramTable.SelectAllColumns<br/><c>VSConstants.VSStd97CmdID.SelectAllFields</c></summary>
+        public static CommandID OtherContextMenus_QueryDiagramTable_SelectAllColumns => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 135);
 
-        /// <summary>OtherContextMenus.RelationContext.EditRelation</summary>
-        public static CommandID OtherContextMenus_RelationContext_EditRelation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1980 /* VSStd2KCmdID.ECMD_EDITDATARELATION */);
+        /// <summary>OtherContextMenus.RelationContext.EditRelation<br/><c>VSConstants.VSStd2KCmdID.ECMD_EDITDATARELATION</c></summary>
+        public static CommandID OtherContextMenus_RelationContext_EditRelation => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1980);
 
-        /// <summary>OtherContextMenus.ResourceDialogEditors.InsertActiveXControl</summary>
-        public static CommandID OtherContextMenus_ResourceDialogEditors_InsertActiveXControl { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1234 /* VSStd2KCmdID.INSERTACTIVEXCTL */);
+        /// <summary>OtherContextMenus.ResourceDialogEditors.InsertActiveXControl<br/><c>VSConstants.VSStd2KCmdID.INSERTACTIVEXCTL</c></summary>
+        public static CommandID OtherContextMenus_ResourceDialogEditors_InsertActiveXControl => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1234);
 
-        /// <summary>OtherContextMenus.ResourceView.Export</summary>
-        public static CommandID OtherContextMenus_ResourceView_Export { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1223 /* VSStd2KCmdID.EXPORT */);
+        /// <summary>OtherContextMenus.ResourceView.Export<br/><c>VSConstants.VSStd2KCmdID.EXPORT</c></summary>
+        public static CommandID OtherContextMenus_ResourceView_Export => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1223);
 
-        /// <summary>OtherContextMenus.ResourceView.Insert</summary>
-        public static CommandID OtherContextMenus_ResourceView_Insert { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1222 /* VSStd2KCmdID.INSERT */);
+        /// <summary>OtherContextMenus.ResourceView.Insert<br/><c>VSConstants.VSStd2KCmdID.INSERT</c></summary>
+        public static CommandID OtherContextMenus_ResourceView_Insert => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1222);
 
-        /// <summary>OtherContextMenus.ResourceView.InsertCopy</summary>
-        public static CommandID OtherContextMenus_ResourceView_InsertCopy { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1221 /* VSStd2KCmdID.RESOURCENEWCOPY */);
+        /// <summary>OtherContextMenus.ResourceView.InsertCopy<br/><c>VSConstants.VSStd2KCmdID.RESOURCENEWCOPY</c></summary>
+        public static CommandID OtherContextMenus_ResourceView_InsertCopy => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1221);
 
-        /// <summary>OtherContextMenus.ResourceView.Open</summary>
-        public static CommandID OtherContextMenus_ResourceView_Open { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1219 /* VSStd2KCmdID.RESOURCEOPEN */);
+        /// <summary>OtherContextMenus.ResourceView.Open<br/><c>VSConstants.VSStd2KCmdID.RESOURCEOPEN</c></summary>
+        public static CommandID OtherContextMenus_ResourceView_Open => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1219);
 
-        /// <summary>OtherContextMenus.ResourceView.OpenBinaryData</summary>
-        public static CommandID OtherContextMenus_ResourceView_OpenBinaryData { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1218 /* VSStd2KCmdID.OPENBINARY */);
+        /// <summary>OtherContextMenus.ResourceView.OpenBinaryData<br/><c>VSConstants.VSStd2KCmdID.OPENBINARY</c></summary>
+        public static CommandID OtherContextMenus_ResourceView_OpenBinaryData => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1218);
 
-        /// <summary>OtherContextMenus.ResultsList.GoToLocation</summary>
-        public static CommandID OtherContextMenus_ResultsList_GoToLocation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 319 /* VSStd97CmdID.GotoErrorTag */);
+        /// <summary>OtherContextMenus.ResultsList.GoToLocation<br/><c>VSConstants.VSStd97CmdID.GotoErrorTag</c></summary>
+        public static CommandID OtherContextMenus_ResultsList_GoToLocation => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 319);
 
-        /// <summary>OtherContextMenus.SchemaExplorer.ViewCode</summary>
-        public static CommandID OtherContextMenus_SchemaExplorer_ViewCode { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1634 /* VSStd2KCmdID.OpenInCodeView */);
+        /// <summary>OtherContextMenus.SchemaExplorer.ViewCode<br/><c>VSConstants.VSStd2KCmdID.OpenInCodeView</c></summary>
+        public static CommandID OtherContextMenus_SchemaExplorer_ViewCode => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1634);
 
-        /// <summary>OtherContextMenus.Toolbox.RenameItem</summary>
-        public static CommandID OtherContextMenus_Toolbox_RenameItem { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 305 /* VSStd97CmdID.ToolboxRenameItem */);
+        /// <summary>OtherContextMenus.Toolbox.RenameItem<br/><c>VSConstants.VSStd97CmdID.ToolboxRenameItem</c></summary>
+        public static CommandID OtherContextMenus_Toolbox_RenameItem => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 305);
 
-        /// <summary>Project.AddClass</summary>
-        public static CommandID Project_AddClass { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 946 /* VSStd97CmdID.AddClass */);
+        /// <summary>Project.AddClass<br/><c>VSConstants.VSStd97CmdID.AddClass</c></summary>
+        public static CommandID Project_AddClass => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 946);
 
-        /// <summary>Project.AddComponent</summary>
-        public static CommandID Project_AddComponent { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 442 /* VSStd2KCmdID.ADDTBXCOMPONENT */);
+        /// <summary>Project.AddComponent<br/><c>VSConstants.VSStd2KCmdID.ADDTBXCOMPONENT</c></summary>
+        public static CommandID Project_AddComponent => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 442);
 
-        /// <summary>Project.AddConnectionPoint</summary>
-        public static CommandID Project_AddConnectionPoint { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 956 /* VSStd97CmdID.AddConnectionPoint */);
+        /// <summary>Project.AddConnectionPoint<br/><c>VSConstants.VSStd97CmdID.AddConnectionPoint</c></summary>
+        public static CommandID Project_AddConnectionPoint => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 956);
 
-        /// <summary>Project.AddContentPage</summary>
-        public static CommandID Project_AddContentPage { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 413 /* VSStd2KCmdID.ECMD_ADDCONTENTPAGE */);
+        /// <summary>Project.AddContentPage<br/><c>VSConstants.VSStd2KCmdID.ECMD_ADDCONTENTPAGE</c></summary>
+        public static CommandID Project_AddContentPage => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 413);
 
-        /// <summary>Project.AddEvent</summary>
-        public static CommandID Project_AddEvent { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 951 /* VSStd97CmdID.AddEvent */);
+        /// <summary>Project.AddEvent<br/><c>VSConstants.VSStd97CmdID.AddEvent</c></summary>
+        public static CommandID Project_AddEvent => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 951);
 
-        /// <summary>Project.AddExistingItem</summary>
-        public static CommandID Project_AddExistingItem { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 244 /* VSStd97CmdID.AddExistingItem */);
+        /// <summary>Project.AddExistingItem<br/><c>VSConstants.VSStd97CmdID.AddExistingItem</c></summary>
+        public static CommandID Project_AddExistingItem => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 244);
 
-        /// <summary>Project.AddFormWindowsForms</summary>
-        public static CommandID Project_AddFormWindowsForms { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 406 /* VSStd2KCmdID.ADDWFCFORM */);
+        /// <summary>Project.AddFormWindowsForms<br/><c>VSConstants.VSStd2KCmdID.ADDWFCFORM</c></summary>
+        public static CommandID Project_AddFormWindowsForms => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 406);
 
-        /// <summary>Project.AddFunction</summary>
-        public static CommandID Project_AddFunction { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 955 /* VSStd97CmdID.AddFunction */);
+        /// <summary>Project.AddFunction<br/><c>VSConstants.VSStd97CmdID.AddFunction</c></summary>
+        public static CommandID Project_AddFunction => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 955);
 
-        /// <summary>Project.AddHTMLPage</summary>
-        public static CommandID Project_AddHTMLPage { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 400 /* VSStd2KCmdID.ADDHTMLPAGE */);
+        /// <summary>Project.AddHTMLPage<br/><c>VSConstants.VSStd2KCmdID.ADDHTMLPAGE</c></summary>
+        public static CommandID Project_AddHTMLPage => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 400);
 
-        /// <summary>Project.AddIndexer</summary>
-        public static CommandID Project_AddIndexer { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 957 /* VSStd97CmdID.AddIndexer */);
+        /// <summary>Project.AddIndexer<br/><c>VSConstants.VSStd97CmdID.AddIndexer</c></summary>
+        public static CommandID Project_AddIndexer => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 957);
 
-        /// <summary>Project.AddInterface</summary>
-        public static CommandID Project_AddInterface { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 948 /* VSStd97CmdID.AddInterface */);
+        /// <summary>Project.AddInterface<br/><c>VSConstants.VSStd97CmdID.AddInterface</c></summary>
+        public static CommandID Project_AddInterface => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 948);
 
-        /// <summary>Project.AddMasterPage</summary>
-        public static CommandID Project_AddMasterPage { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 411 /* VSStd2KCmdID.ECMD_ADDMASTERPAGE */);
+        /// <summary>Project.AddMasterPage<br/><c>VSConstants.VSStd2KCmdID.ECMD_ADDMASTERPAGE</c></summary>
+        public static CommandID Project_AddMasterPage => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 411);
 
-        /// <summary>Project.AddMethod</summary>
-        public static CommandID Project_AddMethod { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 949 /* VSStd97CmdID.AddMethod */);
+        /// <summary>Project.AddMethod<br/><c>VSConstants.VSStd97CmdID.AddMethod</c></summary>
+        public static CommandID Project_AddMethod => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 949);
 
-        /// <summary>Project.AddModule</summary>
-        public static CommandID Project_AddModule { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 402 /* VSStd2KCmdID.ADDMODULE */);
+        /// <summary>Project.AddModule<br/><c>VSConstants.VSStd2KCmdID.ADDMODULE</c></summary>
+        public static CommandID Project_AddModule => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 402);
 
-        /// <summary>Project.AddNestedClass</summary>
-        public static CommandID Project_AddNestedClass { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 947 /* VSStd97CmdID.AddNestedClass */);
+        /// <summary>Project.AddNestedClass<br/><c>VSConstants.VSStd97CmdID.AddNestedClass</c></summary>
+        public static CommandID Project_AddNestedClass => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 947);
 
-        /// <summary>Project.AddNewItem</summary>
-        public static CommandID Project_AddNewItem { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 220 /* VSStd97CmdID.AddNewItem */);
+        /// <summary>Project.AddNewItem<br/><c>VSConstants.VSStd97CmdID.AddNewItem</c></summary>
+        public static CommandID Project_AddNewItem => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 220);
 
-        /// <summary>Project.AddNewSolutionFolder</summary>
-        public static CommandID Project_AddNewSolutionFolder { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1613 /* VSStd2KCmdID.NewSolutionFolder */);
+        /// <summary>Project.AddNewSolutionFolder<br/><c>VSConstants.VSStd2KCmdID.NewSolutionFolder</c></summary>
+        public static CommandID Project_AddNewSolutionFolder => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1613);
 
-        /// <summary>Project.AddProjectOutputs</summary>
-        public static CommandID Project_AddProjectOutputs { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1112 /* VSStd2KCmdID.ADDPROJECTOUTPUTS */);
+        /// <summary>Project.AddProjectOutputs<br/><c>VSConstants.VSStd2KCmdID.ADDPROJECTOUTPUTS</c></summary>
+        public static CommandID Project_AddProjectOutputs => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1112);
 
-        /// <summary>Project.AddProperty</summary>
-        public static CommandID Project_AddProperty { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 950 /* VSStd97CmdID.AddProperty */);
+        /// <summary>Project.AddProperty<br/><c>VSConstants.VSStd97CmdID.AddProperty</c></summary>
+        public static CommandID Project_AddProperty => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 950);
 
-        /// <summary>Project.AddReference</summary>
-        public static CommandID Project_AddReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1113 /* VSStd2KCmdID.ADDREFERENCE */);
+        /// <summary>Project.AddReference<br/><c>VSConstants.VSStd2KCmdID.ADDREFERENCE</c></summary>
+        public static CommandID Project_AddReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1113);
 
-        /// <summary>Project.AddServiceReference</summary>
-        public static CommandID Project_AddServiceReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1129 /* VSStd2KCmdID.ADDSERVICEREFERENCE */);
+        /// <summary>Project.AddServiceReference<br/><c>VSConstants.VSStd2KCmdID.ADDSERVICEREFERENCE</c></summary>
+        public static CommandID Project_AddServiceReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1129);
 
-        /// <summary>Project.AddStyleSheet</summary>
-        public static CommandID Project_AddStyleSheet { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 445 /* VSStd2KCmdID.ECMD_ADDSTYLESHEET */);
+        /// <summary>Project.AddStyleSheet<br/><c>VSConstants.VSStd2KCmdID.ECMD_ADDSTYLESHEET</c></summary>
+        public static CommandID Project_AddStyleSheet => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 445);
 
-        /// <summary>Project.AddUserControlWindowsForms</summary>
-        public static CommandID Project_AddUserControlWindowsForms { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 412 /* VSStd2KCmdID.ADDUSERCONTROL */);
+        /// <summary>Project.AddUserControlWindowsForms<br/><c>VSConstants.VSStd2KCmdID.ADDUSERCONTROL</c></summary>
+        public static CommandID Project_AddUserControlWindowsForms => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 412);
 
-        /// <summary>Project.AddVariable</summary>
-        public static CommandID Project_AddVariable { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 952 /* VSStd97CmdID.AddVariable */);
+        /// <summary>Project.AddVariable<br/><c>VSConstants.VSStd97CmdID.AddVariable</c></summary>
+        public static CommandID Project_AddVariable => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 952);
 
-        /// <summary>Project.AddWebForm</summary>
-        public static CommandID Project_AddWebForm { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 410 /* VSStd2KCmdID.ADDWEBFORM */);
+        /// <summary>Project.AddWebForm<br/><c>VSConstants.VSStd2KCmdID.ADDWEBFORM</c></summary>
+        public static CommandID Project_AddWebForm => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 410);
 
-        /// <summary>Project.AddWebReference</summary>
-        public static CommandID Project_AddWebReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1114 /* VSStd2KCmdID.ADDWEBREFERENCE */);
+        /// <summary>Project.AddWebReference<br/><c>VSConstants.VSStd2KCmdID.ADDWEBREFERENCE</c></summary>
+        public static CommandID Project_AddWebReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1114);
 
-        /// <summary>Project.AddWebService</summary>
-        public static CommandID Project_AddWebService { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 444 /* VSStd2KCmdID.ADDWEBSERVICE */);
+        /// <summary>Project.AddWebService<br/><c>VSConstants.VSStd2KCmdID.ADDWEBSERVICE</c></summary>
+        public static CommandID Project_AddWebService => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 444);
 
-        /// <summary>Project.AddWebUserControl</summary>
-        public static CommandID Project_AddWebUserControl { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 438 /* VSStd2KCmdID.ADDWEBUSERCONTROL */);
+        /// <summary>Project.AddWebUserControl<br/><c>VSConstants.VSStd2KCmdID.ADDWEBUSERCONTROL</c></summary>
+        public static CommandID Project_AddWebUserControl => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 438);
 
-        /// <summary>Project.ConfigureServiceReference</summary>
-        public static CommandID Project_ConfigureServiceReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1132 /* VSStd2KCmdID.CONFIGURESERVICEREFERENCE */);
+        /// <summary>Project.ConfigureServiceReference<br/><c>VSConstants.VSStd2KCmdID.CONFIGURESERVICEREFERENCE</c></summary>
+        public static CommandID Project_ConfigureServiceReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1132);
 
-        /// <summary>Project.EditProjectFile</summary>
-        public static CommandID Project_EditProjectFile { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1632 /* VSStd2KCmdID.EditProjectFile */);
+        /// <summary>Project.EditProjectFile<br/><c>VSConstants.VSStd2KCmdID.EditProjectFile</c></summary>
+        public static CommandID Project_EditProjectFile => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1632);
 
-        /// <summary>Project.ExcludeFromProject</summary>
-        public static CommandID Project_ExcludeFromProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1110 /* VSStd2KCmdID.EXCLUDEFROMPROJECT */);
+        /// <summary>Project.ExcludeFromProject<br/><c>VSConstants.VSStd2KCmdID.EXCLUDEFROMPROJECT</c></summary>
+        public static CommandID Project_ExcludeFromProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1110);
 
-        /// <summary>Project.HideFolder</summary>
-        public static CommandID Project_HideFolder { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1608 /* VSStd2KCmdID.HideFolder */);
+        /// <summary>Project.HideFolder<br/><c>VSConstants.VSStd2KCmdID.HideFolder</c></summary>
+        public static CommandID Project_HideFolder => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1608);
 
-        /// <summary>Project.ImplementInterface</summary>
-        public static CommandID Project_ImplementInterface { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 953 /* VSStd97CmdID.ImplementInterface */);
+        /// <summary>Project.ImplementInterface<br/><c>VSConstants.VSStd97CmdID.ImplementInterface</c></summary>
+        public static CommandID Project_ImplementInterface => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 953);
 
-        /// <summary>Project.IncludeInProject</summary>
-        public static CommandID Project_IncludeInProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1109 /* VSStd2KCmdID.INCLUDEINPROJECT */);
+        /// <summary>Project.IncludeInProject<br/><c>VSConstants.VSStd2KCmdID.INCLUDEINPROJECT</c></summary>
+        public static CommandID Project_IncludeInProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1109);
 
-        /// <summary>Project.InstallMissingFeatures</summary>
-        public static CommandID Project_InstallMissingFeatures { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 9 /* VSStd12CmdID.RetargetProjectInstallComponent */);
+        /// <summary>Project.InstallMissingFeatures<br/><c>VSConstants.VSStd12CmdID.RetargetProjectInstallComponent</c></summary>
+        public static CommandID Project_InstallMissingFeatures => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 9);
 
-        /// <summary>Project.NestRelatedFiles</summary>
-        public static CommandID Project_NestRelatedFiles { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1401 /* VSStd2KCmdID.NESTRELATEDFILES */);
+        /// <summary>Project.NestRelatedFiles<br/><c>VSConstants.VSStd2KCmdID.NESTRELATEDFILES</c></summary>
+        public static CommandID Project_NestRelatedFiles => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1401);
 
-        /// <summary>Project.NewFolder</summary>
-        public static CommandID Project_NewFolder { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 245 /* VSStd97CmdID.NewFolder */);
+        /// <summary>Project.NewFolder<br/><c>VSConstants.VSStd97CmdID.NewFolder</c></summary>
+        public static CommandID Project_NewFolder => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 245);
 
-        /// <summary>Project.Override</summary>
-        public static CommandID Project_Override { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 954 /* VSStd97CmdID.Override */);
+        /// <summary>Project.Override<br/><c>VSConstants.VSStd97CmdID.Override</c></summary>
+        public static CommandID Project_Override => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 954);
 
-        /// <summary>Project.ProjectBuildOrder</summary>
-        public static CommandID Project_ProjectBuildOrder { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 958 /* VSStd97CmdID.BuildOrder */);
+        /// <summary>Project.ProjectBuildOrder<br/><c>VSConstants.VSStd97CmdID.BuildOrder</c></summary>
+        public static CommandID Project_ProjectBuildOrder => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 958);
 
-        /// <summary>Project.ProjectDependencies</summary>
-        public static CommandID Project_ProjectDependencies { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 657 /* VSStd97CmdID.ProjectDependencies */);
+        /// <summary>Project.ProjectDependencies<br/><c>VSConstants.VSStd97CmdID.ProjectDependencies</c></summary>
+        public static CommandID Project_ProjectDependencies => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 657);
 
-        /// <summary>Project.Properties</summary>
-        public static CommandID Project_Properties { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 396 /* VSStd97CmdID.ProjectProperties */);
+        /// <summary>Project.Properties<br/><c>VSConstants.VSStd97CmdID.ProjectProperties</c></summary>
+        public static CommandID Project_Properties => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 396);
 
-        /// <summary>Project.RecalculateLinks</summary>
-        public static CommandID Project_RecalculateLinks { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1101 /* VSStd2KCmdID.RECALCULATELINKS */);
+        /// <summary>Project.RecalculateLinks<br/><c>VSConstants.VSStd2KCmdID.RECALCULATELINKS</c></summary>
+        public static CommandID Project_RecalculateLinks => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1101);
 
-        /// <summary>Project.ReloadProject</summary>
-        public static CommandID Project_ReloadProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 412 /* VSStd97CmdID.ReloadProject */);
+        /// <summary>Project.ReloadProject<br/><c>VSConstants.VSStd97CmdID.ReloadProject</c></summary>
+        public static CommandID Project_ReloadProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 412);
 
-        /// <summary>Project.RetargetProject</summary>
-        public static CommandID Project_RetargetProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 8 /* VSStd12CmdID.RetargetProject */);
+        /// <summary>Project.RetargetProject<br/><c>VSConstants.VSStd12CmdID.RetargetProject</c></summary>
+        public static CommandID Project_RetargetProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 8);
 
-        /// <summary>Project.RunCustomTool</summary>
-        public static CommandID Project_RunCustomTool { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1117 /* VSStd2KCmdID.RUNCUSTOMTOOL */);
+        /// <summary>Project.RunCustomTool<br/><c>VSConstants.VSStd2KCmdID.RUNCUSTOMTOOL</c></summary>
+        public static CommandID Project_RunCustomTool => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1117);
 
-        /// <summary>Project.SetAsStartPage</summary>
-        public static CommandID Project_SetAsStartPage { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1100 /* VSStd2KCmdID.SETASSTARTPAGE */);
+        /// <summary>Project.SetAsStartPage<br/><c>VSConstants.VSStd2KCmdID.SETASSTARTPAGE</c></summary>
+        public static CommandID Project_SetAsStartPage => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1100);
 
-        /// <summary>Project.SetasStartupProject</summary>
-        public static CommandID Project_SetasStartupProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 246 /* VSStd97CmdID.SetStartupProject */);
+        /// <summary>Project.SetasStartupProject<br/><c>VSConstants.VSStd97CmdID.SetStartupProject</c></summary>
+        public static CommandID Project_SetasStartupProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 246);
 
-        /// <summary>Project.ShowAllFiles</summary>
-        public static CommandID Project_ShowAllFiles { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 600 /* VSStd2KCmdID.SHOWALLFILES */);
+        /// <summary>Project.ShowAllFiles<br/><c>VSConstants.VSStd2KCmdID.SHOWALLFILES</c></summary>
+        public static CommandID Project_ShowAllFiles => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 600);
 
-        /// <summary>Project.StartOptions</summary>
-        public static CommandID Project_StartOptions { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1124 /* VSStd2KCmdID.STARTOPTIONS */);
+        /// <summary>Project.StartOptions<br/><c>VSConstants.VSStd2KCmdID.STARTOPTIONS</c></summary>
+        public static CommandID Project_StartOptions => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1124);
 
-        /// <summary>Project.UnhideFolders</summary>
-        public static CommandID Project_UnhideFolders { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1609 /* VSStd2KCmdID.UnhideFolders */);
+        /// <summary>Project.UnhideFolders<br/><c>VSConstants.VSStd2KCmdID.UnhideFolders</c></summary>
+        public static CommandID Project_UnhideFolders => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1609);
 
-        /// <summary>Project.UnloadProject</summary>
-        public static CommandID Project_UnloadProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 413 /* VSStd97CmdID.UnloadProject */);
+        /// <summary>Project.UnloadProject<br/><c>VSConstants.VSStd97CmdID.UnloadProject</c></summary>
+        public static CommandID Project_UnloadProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 413);
 
-        /// <summary>Project.UpdateServiceReference</summary>
-        public static CommandID Project_UpdateServiceReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1131 /* VSStd2KCmdID.UPDATESERVICEREFERENCE */);
+        /// <summary>Project.UpdateServiceReference<br/><c>VSConstants.VSStd2KCmdID.UPDATESERVICEREFERENCE</c></summary>
+        public static CommandID Project_UpdateServiceReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1131);
 
-        /// <summary>Project.UpdateWebReference</summary>
-        public static CommandID Project_UpdateWebReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1116 /* VSStd2KCmdID.UPDATEWEBREFERENCE */);
+        /// <summary>Project.UpdateWebReference<br/><c>VSConstants.VSStd2KCmdID.UPDATEWEBREFERENCE</c></summary>
+        public static CommandID Project_UpdateWebReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1116);
 
-        /// <summary>Project.WebPermissions</summary>
-        public static CommandID Project_WebPermissions { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1102 /* VSStd2KCmdID.WEBPERMISSIONS */);
+        /// <summary>Project.WebPermissions<br/><c>VSConstants.VSStd2KCmdID.WEBPERMISSIONS</c></summary>
+        public static CommandID Project_WebPermissions => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1102);
 
-        /// <summary>ProjectandSolutionContextMenus.CrossProjectMultiItem.Detach</summary>
-        public static CommandID ProjectandSolutionContextMenus_CrossProjectMultiItem_Detach { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1128 /* VSStd2KCmdID.DETACHLOCALDATAFILECTX */);
+        /// <summary>ProjectandSolutionContextMenus.CrossProjectMultiItem.Detach<br/><c>VSConstants.VSStd2KCmdID.DETACHLOCALDATAFILECTX</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_CrossProjectMultiItem_Detach => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1128);
 
-        /// <summary>ProjectandSolutionContextMenus.CrossProjectMultiItem.RefreshFolder</summary>
-        public static CommandID ProjectandSolutionContextMenus_CrossProjectMultiItem_RefreshFolder { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 447 /* VSStd2KCmdID.ECMD_REFRESHFOLDER */);
+        /// <summary>ProjectandSolutionContextMenus.CrossProjectMultiItem.RefreshFolder<br/><c>VSConstants.VSStd2KCmdID.ECMD_REFRESHFOLDER</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_CrossProjectMultiItem_RefreshFolder => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 447);
 
-        /// <summary>ProjectandSolutionContextMenus.Folder.AddServiceReference</summary>
-        public static CommandID ProjectandSolutionContextMenus_Folder_AddServiceReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1130 /* VSStd2KCmdID.ADDSERVICEREFERENCECTX */);
+        /// <summary>ProjectandSolutionContextMenus.Folder.AddServiceReference<br/><c>VSConstants.VSStd2KCmdID.ADDSERVICEREFERENCECTX</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_Folder_AddServiceReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1130);
 
-        /// <summary>ProjectandSolutionContextMenus.Folder.AddWebReference</summary>
-        public static CommandID ProjectandSolutionContextMenus_Folder_AddWebReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1115 /* VSStd2KCmdID.ADDWEBREFERENCECTX */);
+        /// <summary>ProjectandSolutionContextMenus.Folder.AddWebReference<br/><c>VSConstants.VSStd2KCmdID.ADDWEBREFERENCECTX</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_Folder_AddWebReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1115);
 
-        /// <summary>ProjectandSolutionContextMenus.Project.Add.AddReference</summary>
-        public static CommandID ProjectandSolutionContextMenus_Project_Add_AddReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 10 /* VSStd12CmdID.AddReferenceProjectOnly */);
+        /// <summary>ProjectandSolutionContextMenus.Project.Add.AddReference<br/><c>VSConstants.VSStd12CmdID.AddReferenceProjectOnly</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_Project_Add_AddReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 10);
 
-        /// <summary>ProjectandSolutionContextMenus.Project.Add.AddServiceReference</summary>
-        public static CommandID ProjectandSolutionContextMenus_Project_Add_AddServiceReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 12 /* VSStd12CmdID.AddServiceReferenceProjectOnly */);
+        /// <summary>ProjectandSolutionContextMenus.Project.Add.AddServiceReference<br/><c>VSConstants.VSStd12CmdID.AddServiceReferenceProjectOnly</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_Project_Add_AddServiceReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 12);
 
-        /// <summary>ProjectandSolutionContextMenus.Project.Add.AddWebReference</summary>
-        public static CommandID ProjectandSolutionContextMenus_Project_Add_AddWebReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 11 /* VSStd12CmdID.AddWebReferenceProjectOnly */);
+        /// <summary>ProjectandSolutionContextMenus.Project.Add.AddWebReference<br/><c>VSConstants.VSStd12CmdID.AddWebReferenceProjectOnly</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_Project_Add_AddWebReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 11);
 
-        /// <summary>ProjectandSolutionContextMenus.Project.OpenFolderinFileExplorer</summary>
-        public static CommandID ProjectandSolutionContextMenus_Project_OpenFolderinFileExplorer { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1635 /* VSStd2KCmdID.ExploreFolderInWindows */);
+        /// <summary>ProjectandSolutionContextMenus.Project.OpenFolderinFileExplorer<br/><c>VSConstants.VSStd2KCmdID.ExploreFolderInWindows</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_Project_OpenFolderinFileExplorer => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1635);
 
-        /// <summary>ProjectandSolutionContextMenus.Project.SolutionExplorer.NewScopedWindow</summary>
-        public static CommandID ProjectandSolutionContextMenus_Project_SolutionExplorer_NewScopedWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 34 /* VSStd11CmdID.SolutionExplorerNewScopedWindow */);
+        /// <summary>ProjectandSolutionContextMenus.Project.SolutionExplorer.NewScopedWindow<br/><c>VSConstants.VSStd11CmdID.SolutionExplorerNewScopedWindow</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_Project_SolutionExplorer_NewScopedWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 34);
 
-        /// <summary>ProjectandSolutionContextMenus.Project.SolutionExplorer.ScopeToThis</summary>
-        public static CommandID ProjectandSolutionContextMenus_Project_SolutionExplorer_ScopeToThis { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 38 /* VSStd11CmdID.SolutionExplorerScopeToThis */);
+        /// <summary>ProjectandSolutionContextMenus.Project.SolutionExplorer.ScopeToThis<br/><c>VSConstants.VSStd11CmdID.SolutionExplorerScopeToThis</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_Project_SolutionExplorer_ScopeToThis => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 38);
 
-        /// <summary>ProjectandSolutionContextMenus.References.AddReference</summary>
-        public static CommandID ProjectandSolutionContextMenus_References_AddReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1125 /* VSStd2KCmdID.ADDREFERENCECTX */);
+        /// <summary>ProjectandSolutionContextMenus.References.AddReference<br/><c>VSConstants.VSStd2KCmdID.ADDREFERENCECTX</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_References_AddReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1125);
 
-        /// <summary>ProjectandSolutionContextMenus.Solution.ResolveErrors</summary>
-        public static CommandID ProjectandSolutionContextMenus_Solution_ResolveErrors { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 23 /* VSStd11CmdID.ResolveFaultedProjects */);
+        /// <summary>ProjectandSolutionContextMenus.Solution.ResolveErrors<br/><c>VSConstants.VSStd11CmdID.ResolveFaultedProjects</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_Solution_ResolveErrors => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 23);
 
-        /// <summary>ProjectandSolutionContextMenus.WebProjectFolder.AddReference</summary>
-        public static CommandID ProjectandSolutionContextMenus_WebProjectFolder_AddReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 13 /* VSStd12CmdID.AddReferenceNonProjectOnly */);
+        /// <summary>ProjectandSolutionContextMenus.WebProjectFolder.AddReference<br/><c>VSConstants.VSStd12CmdID.AddReferenceNonProjectOnly</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_WebProjectFolder_AddReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 13);
 
-        /// <summary>ProjectandSolutionContextMenus.WebProjectFolder.AddServiceReference</summary>
-        public static CommandID ProjectandSolutionContextMenus_WebProjectFolder_AddServiceReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 15 /* VSStd12CmdID.AddServiceReferenceNonProjectOnly */);
+        /// <summary>ProjectandSolutionContextMenus.WebProjectFolder.AddServiceReference<br/><c>VSConstants.VSStd12CmdID.AddServiceReferenceNonProjectOnly</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_WebProjectFolder_AddServiceReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 15);
 
-        /// <summary>ProjectandSolutionContextMenus.WebProjectFolder.AddWebReference</summary>
-        public static CommandID ProjectandSolutionContextMenus_WebProjectFolder_AddWebReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 14 /* VSStd12CmdID.AddWebReferenceNonProjectOnly */);
+        /// <summary>ProjectandSolutionContextMenus.WebProjectFolder.AddWebReference<br/><c>VSConstants.VSStd12CmdID.AddWebReferenceNonProjectOnly</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_WebProjectFolder_AddWebReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 14);
 
-        /// <summary>ProjectandSolutionContextMenus.WebProjectFolder.StartOptions</summary>
-        public static CommandID ProjectandSolutionContextMenus_WebProjectFolder_StartOptions { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1127 /* VSStd2KCmdID.STARTOPTIONSCTX */);
+        /// <summary>ProjectandSolutionContextMenus.WebProjectFolder.StartOptions<br/><c>VSConstants.VSStd2KCmdID.STARTOPTIONSCTX</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_WebProjectFolder_StartOptions => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1127);
 
-        /// <summary>QueryDesigner.AddGroupBy</summary>
-        public static CommandID QueryDesigner_AddGroupBy { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 121 /* VSStd97CmdID.Totals */);
+        /// <summary>QueryDesigner.AddGroupBy<br/><c>VSConstants.VSStd97CmdID.Totals</c></summary>
+        public static CommandID QueryDesigner_AddGroupBy => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 121);
 
-        /// <summary>QueryDesigner.AddtoSelect</summary>
-        public static CommandID QueryDesigner_AddtoSelect { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 171 /* VSStd97CmdID.AddToOutput */);
+        /// <summary>QueryDesigner.AddtoSelect<br/><c>VSConstants.VSStd97CmdID.AddToOutput</c></summary>
+        public static CommandID QueryDesigner_AddtoSelect => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 171);
 
-        /// <summary>QueryDesigner.ClearResults</summary>
-        public static CommandID QueryDesigner_ClearResults { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 202 /* VSStd97CmdID.ClearQuery */);
+        /// <summary>QueryDesigner.ClearResults<br/><c>VSConstants.VSStd97CmdID.ClearQuery</c></summary>
+        public static CommandID QueryDesigner_ClearResults => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 202);
 
-        /// <summary>QueryDesigner.Criteria</summary>
-        public static CommandID QueryDesigner_Criteria { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 134 /* VSStd97CmdID.ShowQBEPane */);
+        /// <summary>QueryDesigner.Criteria<br/><c>VSConstants.VSStd97CmdID.ShowQBEPane</c></summary>
+        public static CommandID QueryDesigner_Criteria => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 134);
 
-        /// <summary>QueryDesigner.Delete</summary>
-        public static CommandID QueryDesigner_Delete { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 116 /* VSStd97CmdID.DeleteQuery */);
+        /// <summary>QueryDesigner.Delete<br/><c>VSConstants.VSStd97CmdID.DeleteQuery</c></summary>
+        public static CommandID QueryDesigner_Delete => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 116);
 
-        /// <summary>QueryDesigner.Diagram</summary>
-        public static CommandID QueryDesigner_Diagram { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 132 /* VSStd97CmdID.ShowGraphicalPane */);
+        /// <summary>QueryDesigner.Diagram<br/><c>VSConstants.VSStd97CmdID.ShowGraphicalPane</c></summary>
+        public static CommandID QueryDesigner_Diagram => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 132);
 
-        /// <summary>QueryDesigner.ExecuteSQL</summary>
-        public static CommandID QueryDesigner_ExecuteSQL { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 201 /* VSStd97CmdID.RunQuery */);
+        /// <summary>QueryDesigner.ExecuteSQL<br/><c>VSConstants.VSStd97CmdID.RunQuery</c></summary>
+        public static CommandID QueryDesigner_ExecuteSQL => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 201);
 
-        /// <summary>QueryDesigner.GotoRow</summary>
-        public static CommandID QueryDesigner_GotoRow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 207 /* VSStd97CmdID.RecordGoto */);
+        /// <summary>QueryDesigner.GotoRow<br/><c>VSConstants.VSStd97CmdID.RecordGoto</c></summary>
+        public static CommandID QueryDesigner_GotoRow => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 207);
 
-        /// <summary>QueryDesigner.InsertResults</summary>
-        public static CommandID QueryDesigner_InsertResults { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 114 /* VSStd97CmdID.AppendQuery */);
+        /// <summary>QueryDesigner.InsertResults<br/><c>VSConstants.VSStd97CmdID.AppendQuery</c></summary>
+        public static CommandID QueryDesigner_InsertResults => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 114);
 
-        /// <summary>QueryDesigner.InsertValues</summary>
-        public static CommandID QueryDesigner_InsertValues { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 309 /* VSStd97CmdID.InsertValuesQuery */);
+        /// <summary>QueryDesigner.InsertValues<br/><c>VSConstants.VSStd97CmdID.InsertValuesQuery</c></summary>
+        public static CommandID QueryDesigner_InsertValues => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 309);
 
-        /// <summary>QueryDesigner.MakeTable</summary>
-        public static CommandID QueryDesigner_MakeTable { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 117 /* VSStd97CmdID.MakeTableQuery */);
+        /// <summary>QueryDesigner.MakeTable<br/><c>VSConstants.VSStd97CmdID.MakeTableQuery</c></summary>
+        public static CommandID QueryDesigner_MakeTable => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 117);
 
-        /// <summary>QueryDesigner.RemoveFilter</summary>
-        public static CommandID QueryDesigner_RemoveFilter { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 164 /* VSStd97CmdID.RemoveFilter */);
+        /// <summary>QueryDesigner.RemoveFilter<br/><c>VSConstants.VSStd97CmdID.RemoveFilter</c></summary>
+        public static CommandID QueryDesigner_RemoveFilter => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 164);
 
-        /// <summary>QueryDesigner.Results</summary>
-        public static CommandID QueryDesigner_Results { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 133 /* VSStd97CmdID.ShowDataPane */);
+        /// <summary>QueryDesigner.Results<br/><c>VSConstants.VSStd97CmdID.ShowDataPane</c></summary>
+        public static CommandID QueryDesigner_Results => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 133);
 
-        /// <summary>QueryDesigner.Select</summary>
-        public static CommandID QueryDesigner_Select { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 118 /* VSStd97CmdID.SelectQuery */);
+        /// <summary>QueryDesigner.Select<br/><c>VSConstants.VSStd97CmdID.SelectQuery</c></summary>
+        public static CommandID QueryDesigner_Select => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 118);
 
-        /// <summary>QueryDesigner.SelectAllRowsFromTableA</summary>
-        public static CommandID QueryDesigner_SelectAllRowsFromTableA { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 169 /* VSStd97CmdID.JoinLeftAll */);
+        /// <summary>QueryDesigner.SelectAllRowsFromTableA<br/><c>VSConstants.VSStd97CmdID.JoinLeftAll</c></summary>
+        public static CommandID QueryDesigner_SelectAllRowsFromTableA => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 169);
 
-        /// <summary>QueryDesigner.SelectAllRowsFromTableB</summary>
-        public static CommandID QueryDesigner_SelectAllRowsFromTableB { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 170 /* VSStd97CmdID.JoinRightAll */);
+        /// <summary>QueryDesigner.SelectAllRowsFromTableB<br/><c>VSConstants.VSStd97CmdID.JoinRightAll</c></summary>
+        public static CommandID QueryDesigner_SelectAllRowsFromTableB => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 170);
 
-        /// <summary>QueryDesigner.SortAscending</summary>
-        public static CommandID QueryDesigner_SortAscending { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 112 /* VSStd97CmdID.SortAscending */);
+        /// <summary>QueryDesigner.SortAscending<br/><c>VSConstants.VSStd97CmdID.SortAscending</c></summary>
+        public static CommandID QueryDesigner_SortAscending => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 112);
 
-        /// <summary>QueryDesigner.SortDescending</summary>
-        public static CommandID QueryDesigner_SortDescending { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 113 /* VSStd97CmdID.SortDescending */);
+        /// <summary>QueryDesigner.SortDescending<br/><c>VSConstants.VSStd97CmdID.SortDescending</c></summary>
+        public static CommandID QueryDesigner_SortDescending => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 113);
 
-        /// <summary>QueryDesigner.SQL</summary>
-        public static CommandID QueryDesigner_SQL { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 131 /* VSStd97CmdID.ShowSQLPane */);
+        /// <summary>QueryDesigner.SQL<br/><c>VSConstants.VSStd97CmdID.ShowSQLPane</c></summary>
+        public static CommandID QueryDesigner_SQL => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 131);
 
-        /// <summary>QueryDesigner.Update</summary>
-        public static CommandID QueryDesigner_Update { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 119 /* VSStd97CmdID.UpdateQuery */);
+        /// <summary>QueryDesigner.Update<br/><c>VSConstants.VSStd97CmdID.UpdateQuery</c></summary>
+        public static CommandID QueryDesigner_Update => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 119);
 
-        /// <summary>QueryDesigner.VerifySQLSyntax</summary>
-        public static CommandID QueryDesigner_VerifySQLSyntax { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 107 /* VSStd97CmdID.VerifySQL */);
+        /// <summary>QueryDesigner.VerifySQLSyntax<br/><c>VSConstants.VSStd97CmdID.VerifySQL</c></summary>
+        public static CommandID QueryDesigner_VerifySQLSyntax => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 107);
 
-        /// <summary>Refactor.EncapsulateField</summary>
-        public static CommandID Refactor_EncapsulateField { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1552 /* VSStd2KCmdID.ENCAPSULATEFIELD */);
+        /// <summary>Refactor.EncapsulateField<br/><c>VSConstants.VSStd2KCmdID.ENCAPSULATEFIELD</c></summary>
+        public static CommandID Refactor_EncapsulateField => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1552);
 
-        /// <summary>Refactor.ExtractInterface</summary>
-        public static CommandID Refactor_ExtractInterface { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1553 /* VSStd2KCmdID.EXTRACTINTERFACE */);
+        /// <summary>Refactor.ExtractInterface<br/><c>VSConstants.VSStd2KCmdID.EXTRACTINTERFACE</c></summary>
+        public static CommandID Refactor_ExtractInterface => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1553);
 
-        /// <summary>Refactor.ExtractMethod</summary>
-        public static CommandID Refactor_ExtractMethod { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1551 /* VSStd2KCmdID.EXTRACTMETHOD */);
+        /// <summary>Refactor.ExtractMethod<br/><c>VSConstants.VSStd2KCmdID.EXTRACTMETHOD</c></summary>
+        public static CommandID Refactor_ExtractMethod => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1551);
 
-        /// <summary>Refactor.RemoveParameters</summary>
-        public static CommandID Refactor_RemoveParameters { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1555 /* VSStd2KCmdID.REMOVEPARAMETERS */);
+        /// <summary>Refactor.RemoveParameters<br/><c>VSConstants.VSStd2KCmdID.REMOVEPARAMETERS</c></summary>
+        public static CommandID Refactor_RemoveParameters => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1555);
 
-        /// <summary>Refactor.Rename</summary>
-        public static CommandID Refactor_Rename { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1550 /* VSStd2KCmdID.RENAME */);
+        /// <summary>Refactor.Rename<br/><c>VSConstants.VSStd2KCmdID.RENAME</c></summary>
+        public static CommandID Refactor_Rename => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1550);
 
-        /// <summary>Refactor.ReorderParameters</summary>
-        public static CommandID Refactor_ReorderParameters { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1556 /* VSStd2KCmdID.REORDERPARAMETERS */);
+        /// <summary>Refactor.ReorderParameters<br/><c>VSConstants.VSStd2KCmdID.REORDERPARAMETERS</c></summary>
+        public static CommandID Refactor_ReorderParameters => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1556);
 
-        /// <summary>SolutionExplorer.Back</summary>
-        public static CommandID SolutionExplorer_Back { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 30 /* VSStd11CmdID.SolutionExplorerBack */);
+        /// <summary>SolutionExplorer.Back<br/><c>VSConstants.VSStd11CmdID.SolutionExplorerBack</c></summary>
+        public static CommandID SolutionExplorer_Back => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 30);
 
-        /// <summary>SolutionExplorer.CollapseAll</summary>
-        public static CommandID SolutionExplorer_CollapseAll { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 29 /* VSStd11CmdID.SolutionExplorerCollapseAll */);
+        /// <summary>SolutionExplorer.CollapseAll<br/><c>VSConstants.VSStd11CmdID.SolutionExplorerCollapseAll</c></summary>
+        public static CommandID SolutionExplorer_CollapseAll => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 29);
 
-        /// <summary>SolutionExplorer.Forward</summary>
-        public static CommandID SolutionExplorer_Forward { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 33 /* VSStd11CmdID.SolutionExplorerForward */);
+        /// <summary>SolutionExplorer.Forward<br/><c>VSConstants.VSStd11CmdID.SolutionExplorerForward</c></summary>
+        public static CommandID SolutionExplorer_Forward => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 33);
 
-        /// <summary>SolutionExplorer.Home</summary>
-        public static CommandID SolutionExplorer_Home { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 31 /* VSStd11CmdID.SolutionExplorerHome */);
+        /// <summary>SolutionExplorer.Home<br/><c>VSConstants.VSStd11CmdID.SolutionExplorerHome</c></summary>
+        public static CommandID SolutionExplorer_Home => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 31);
 
-        /// <summary>SolutionExplorer.OpenFilesFilter</summary>
-        public static CommandID SolutionExplorer_OpenFilesFilter { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 39 /* VSStd11CmdID.SolutionExplorerFilterOpened */);
+        /// <summary>SolutionExplorer.OpenFilesFilter<br/><c>VSConstants.VSStd11CmdID.SolutionExplorerFilterOpened</c></summary>
+        public static CommandID SolutionExplorer_OpenFilesFilter => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 39);
 
-        /// <summary>SolutionExplorer.PendingChangesFilter</summary>
-        public static CommandID SolutionExplorer_PendingChangesFilter { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 40 /* VSStd11CmdID.SolutionExplorerFilterPendingChanges */);
+        /// <summary>SolutionExplorer.PendingChangesFilter<br/><c>VSConstants.VSStd11CmdID.SolutionExplorerFilterPendingChanges</c></summary>
+        public static CommandID SolutionExplorer_PendingChangesFilter => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 40);
 
-        /// <summary>SolutionExplorer.Refresh</summary>
-        public static CommandID SolutionExplorer_Refresh { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 222 /* VSStd2KCmdID.SLNREFRESH */);
+        /// <summary>SolutionExplorer.Refresh<br/><c>VSConstants.VSStd2KCmdID.SLNREFRESH</c></summary>
+        public static CommandID SolutionExplorer_Refresh => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 222);
 
-        /// <summary>SolutionExplorer.SyncWithActiveDocument</summary>
-        public static CommandID SolutionExplorer_SyncWithActiveDocument { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 36 /* VSStd11CmdID.SolutionExplorerSyncWithActiveDocument */);
+        /// <summary>SolutionExplorer.SyncWithActiveDocument<br/><c>VSConstants.VSStd11CmdID.SolutionExplorerSyncWithActiveDocument</c></summary>
+        public static CommandID SolutionExplorer_SyncWithActiveDocument => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 36);
 
-        /// <summary>SolutionExplorer.ToggleSingleClickPreview</summary>
-        public static CommandID SolutionExplorer_ToggleSingleClickPreview { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 35 /* VSStd11CmdID.SolutionExplorerToggleSingleClickPreview */);
+        /// <summary>SolutionExplorer.ToggleSingleClickPreview<br/><c>VSConstants.VSStd11CmdID.SolutionExplorerToggleSingleClickPreview</c></summary>
+        public static CommandID SolutionExplorer_ToggleSingleClickPreview => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 35);
 
-        /// <summary>SwitchtoFindSymbol</summary>
-        public static CommandID SwitchtoFindSymbol { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 283 /* VSStd2KCmdID.INSERTSPAN */);
+        /// <summary>SwitchtoFindSymbol<br/><c>VSConstants.VSStd2KCmdID.INSERTSPAN</c></summary>
+        public static CommandID SwitchtoFindSymbol => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 283);
 
-        /// <summary>TableDesigner.ColumnNames</summary>
-        public static CommandID TableDesigner_ColumnNames { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 123 /* VSStd97CmdID.ViewFieldList */);
+        /// <summary>TableDesigner.ColumnNames<br/><c>VSConstants.VSStd97CmdID.ViewFieldList</c></summary>
+        public static CommandID TableDesigner_ColumnNames => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 123);
 
-        /// <summary>TableDesigner.GenerateChangeScript</summary>
-        public static CommandID TableDesigner_GenerateChangeScript { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 173 /* VSStd97CmdID.GenerateChangeScript */);
+        /// <summary>TableDesigner.GenerateChangeScript<br/><c>VSConstants.VSStd97CmdID.GenerateChangeScript</c></summary>
+        public static CommandID TableDesigner_GenerateChangeScript => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 173);
 
-        /// <summary>TableDesigner.Keys</summary>
-        public static CommandID TableDesigner_Keys { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 124 /* VSStd97CmdID.ViewKeys */);
+        /// <summary>TableDesigner.Keys<br/><c>VSConstants.VSStd97CmdID.ViewKeys</c></summary>
+        public static CommandID TableDesigner_Keys => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 124);
 
-        /// <summary>TableDesigner.NameOnly</summary>
-        public static CommandID TableDesigner_NameOnly { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 122 /* VSStd97CmdID.ViewCollapsed */);
+        /// <summary>TableDesigner.NameOnly<br/><c>VSConstants.VSStd97CmdID.ViewCollapsed</c></summary>
+        public static CommandID TableDesigner_NameOnly => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 122);
 
-        /// <summary>TableDesigner.SetPrimaryKey</summary>
-        public static CommandID TableDesigner_SetPrimaryKey { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 109 /* VSStd97CmdID.PrimaryKey */);
+        /// <summary>TableDesigner.SetPrimaryKey<br/><c>VSConstants.VSStd97CmdID.PrimaryKey</c></summary>
+        public static CommandID TableDesigner_SetPrimaryKey => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 109);
 
-        /// <summary>TableDesigner.Standard</summary>
-        public static CommandID TableDesigner_Standard { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 125 /* VSStd97CmdID.ViewGrid */);
+        /// <summary>TableDesigner.Standard<br/><c>VSConstants.VSStd97CmdID.ViewGrid</c></summary>
+        public static CommandID TableDesigner_Standard => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 125);
 
-        /// <summary>ToggleOutputWindowWordWrap</summary>
-        public static CommandID ToggleOutputWindowWordWrap { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1600 /* VSStd2KCmdID.ToggleWordWrapOW */);
+        /// <summary>ToggleOutputWindowWordWrap<br/><c>VSConstants.VSStd2KCmdID.ToggleWordWrapOW</c></summary>
+        public static CommandID ToggleOutputWindowWordWrap => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1600);
 
-        /// <summary>Tools.AddRemoveToolboxItems</summary>
-        public static CommandID Tools_AddRemoveToolboxItems { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 329 /* VSStd97CmdID.ToolboxAddItem */);
+        /// <summary>Tools.AddRemoveToolboxItems<br/><c>VSConstants.VSStd97CmdID.ToolboxAddItem</c></summary>
+        public static CommandID Tools_AddRemoveToolboxItems => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 329);
 
-        /// <summary>Tools.AddTab</summary>
-        public static CommandID Tools_AddTab { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 300 /* VSStd97CmdID.ToolboxAddTab */);
+        /// <summary>Tools.AddTab<br/><c>VSConstants.VSStd97CmdID.ToolboxAddTab</c></summary>
+        public static CommandID Tools_AddTab => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 300);
 
-        /// <summary>Tools.Alias</summary>
-        public static CommandID Tools_Alias { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 428 /* VSStd97CmdID.Alias */);
+        /// <summary>Tools.Alias<br/><c>VSConstants.VSStd97CmdID.Alias</c></summary>
+        public static CommandID Tools_Alias => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 428);
 
-        /// <summary>Tools.BinaryDirectory</summary>
-        public static CommandID Tools_BinaryDirectory { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1121 /* VSStd97CmdID.ExtToolsBinDir */);
+        /// <summary>Tools.BinaryDirectory<br/><c>VSConstants.VSStd97CmdID.ExtToolsBinDir</c></summary>
+        public static CommandID Tools_BinaryDirectory => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1121);
 
-        /// <summary>Tools.CheckAccessibility</summary>
-        public static CommandID Tools_CheckAccessibility { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 331 /* VSStd2KCmdID.CHECK_ACCESSIBILITY */);
+        /// <summary>Tools.CheckAccessibility<br/><c>VSConstants.VSStd2KCmdID.CHECK_ACCESSIBILITY</c></summary>
+        public static CommandID Tools_CheckAccessibility => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 331);
 
-        /// <summary>Tools.CodeSnippetsManager</summary>
-        public static CommandID Tools_CodeSnippetsManager { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1123 /* VSStd97CmdID.CodeExpansionWindow */);
+        /// <summary>Tools.CodeSnippetsManager<br/><c>VSConstants.VSStd97CmdID.CodeExpansionWindow</c></summary>
+        public static CommandID Tools_CodeSnippetsManager => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1123);
 
-        /// <summary>Tools.CurrentColumn</summary>
-        public static CommandID Tools_CurrentColumn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1114 /* VSStd97CmdID.ExtToolsCurCol */);
+        /// <summary>Tools.CurrentColumn<br/><c>VSConstants.VSStd97CmdID.ExtToolsCurCol</c></summary>
+        public static CommandID Tools_CurrentColumn => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1114);
 
-        /// <summary>Tools.CurrentLine</summary>
-        public static CommandID Tools_CurrentLine { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1113 /* VSStd97CmdID.ExtToolsCurLine */);
+        /// <summary>Tools.CurrentLine<br/><c>VSConstants.VSStd97CmdID.ExtToolsCurLine</c></summary>
+        public static CommandID Tools_CurrentLine => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1113);
 
-        /// <summary>Tools.CurrentText</summary>
-        public static CommandID Tools_CurrentText { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1115 /* VSStd97CmdID.ExtToolsCurText */);
+        /// <summary>Tools.CurrentText<br/><c>VSConstants.VSStd97CmdID.ExtToolsCurText</c></summary>
+        public static CommandID Tools_CurrentText => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1115);
 
-        /// <summary>Tools.Customize</summary>
-        public static CommandID Tools_Customize { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1036 /* VSStd97CmdID.CustomizeToolbars */);
+        /// <summary>Tools.Customize<br/><c>VSConstants.VSStd97CmdID.CustomizeToolbars</c></summary>
+        public static CommandID Tools_Customize => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1036);
 
-        /// <summary>Tools.CustomizeKeyboard</summary>
-        public static CommandID Tools_CustomizeKeyboard { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 263 /* VSStd97CmdID.CustomizeKeyboard */);
+        /// <summary>Tools.CustomizeKeyboard<br/><c>VSConstants.VSStd97CmdID.CustomizeKeyboard</c></summary>
+        public static CommandID Tools_CustomizeKeyboard => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 263);
 
-        /// <summary>Tools.DeleteTab</summary>
-        public static CommandID Tools_DeleteTab { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 301 /* VSStd97CmdID.ToolboxDeleteTab */);
+        /// <summary>Tools.DeleteTab<br/><c>VSConstants.VSStd97CmdID.ToolboxDeleteTab</c></summary>
+        public static CommandID Tools_DeleteTab => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 301);
 
-        /// <summary>Tools.EditCustomComponentSet</summary>
-        public static CommandID Tools_EditCustomComponentSet { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1095 /* VSStd97CmdID.DefineSubset */);
+        /// <summary>Tools.EditCustomComponentSet<br/><c>VSConstants.VSStd97CmdID.DefineSubset</c></summary>
+        public static CommandID Tools_EditCustomComponentSet => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1095);
 
-        /// <summary>Tools.ExternalCommand1</summary>
-        public static CommandID Tools_ExternalCommand1 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 630 /* VSStd97CmdID.Tool1 */);
+        /// <summary>Tools.ExternalCommand1<br/><c>VSConstants.VSStd97CmdID.Tool1</c></summary>
+        public static CommandID Tools_ExternalCommand1 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 630);
 
-        /// <summary>Tools.ExternalCommand10</summary>
-        public static CommandID Tools_ExternalCommand10 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 639 /* VSStd97CmdID.Tool10 */);
+        /// <summary>Tools.ExternalCommand10<br/><c>VSConstants.VSStd97CmdID.Tool10</c></summary>
+        public static CommandID Tools_ExternalCommand10 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 639);
 
-        /// <summary>Tools.ExternalCommand11</summary>
-        public static CommandID Tools_ExternalCommand11 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 640 /* VSStd97CmdID.Tool11 */);
+        /// <summary>Tools.ExternalCommand11<br/><c>VSConstants.VSStd97CmdID.Tool11</c></summary>
+        public static CommandID Tools_ExternalCommand11 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 640);
 
-        /// <summary>Tools.ExternalCommand12</summary>
-        public static CommandID Tools_ExternalCommand12 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 641 /* VSStd97CmdID.Tool12 */);
+        /// <summary>Tools.ExternalCommand12<br/><c>VSConstants.VSStd97CmdID.Tool12</c></summary>
+        public static CommandID Tools_ExternalCommand12 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 641);
 
-        /// <summary>Tools.ExternalCommand13</summary>
-        public static CommandID Tools_ExternalCommand13 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 642 /* VSStd97CmdID.Tool13 */);
+        /// <summary>Tools.ExternalCommand13<br/><c>VSConstants.VSStd97CmdID.Tool13</c></summary>
+        public static CommandID Tools_ExternalCommand13 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 642);
 
-        /// <summary>Tools.ExternalCommand14</summary>
-        public static CommandID Tools_ExternalCommand14 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 643 /* VSStd97CmdID.Tool14 */);
+        /// <summary>Tools.ExternalCommand14<br/><c>VSConstants.VSStd97CmdID.Tool14</c></summary>
+        public static CommandID Tools_ExternalCommand14 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 643);
 
-        /// <summary>Tools.ExternalCommand15</summary>
-        public static CommandID Tools_ExternalCommand15 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 644 /* VSStd97CmdID.Tool15 */);
+        /// <summary>Tools.ExternalCommand15<br/><c>VSConstants.VSStd97CmdID.Tool15</c></summary>
+        public static CommandID Tools_ExternalCommand15 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 644);
 
-        /// <summary>Tools.ExternalCommand16</summary>
-        public static CommandID Tools_ExternalCommand16 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 645 /* VSStd97CmdID.Tool16 */);
+        /// <summary>Tools.ExternalCommand16<br/><c>VSConstants.VSStd97CmdID.Tool16</c></summary>
+        public static CommandID Tools_ExternalCommand16 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 645);
 
-        /// <summary>Tools.ExternalCommand17</summary>
-        public static CommandID Tools_ExternalCommand17 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 646 /* VSStd97CmdID.Tool17 */);
+        /// <summary>Tools.ExternalCommand17<br/><c>VSConstants.VSStd97CmdID.Tool17</c></summary>
+        public static CommandID Tools_ExternalCommand17 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 646);
 
-        /// <summary>Tools.ExternalCommand18</summary>
-        public static CommandID Tools_ExternalCommand18 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 647 /* VSStd97CmdID.Tool18 */);
+        /// <summary>Tools.ExternalCommand18<br/><c>VSConstants.VSStd97CmdID.Tool18</c></summary>
+        public static CommandID Tools_ExternalCommand18 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 647);
 
-        /// <summary>Tools.ExternalCommand19</summary>
-        public static CommandID Tools_ExternalCommand19 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 648 /* VSStd97CmdID.Tool19 */);
+        /// <summary>Tools.ExternalCommand19<br/><c>VSConstants.VSStd97CmdID.Tool19</c></summary>
+        public static CommandID Tools_ExternalCommand19 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 648);
 
-        /// <summary>Tools.ExternalCommand2</summary>
-        public static CommandID Tools_ExternalCommand2 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 631 /* VSStd97CmdID.Tool2 */);
+        /// <summary>Tools.ExternalCommand2<br/><c>VSConstants.VSStd97CmdID.Tool2</c></summary>
+        public static CommandID Tools_ExternalCommand2 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 631);
 
-        /// <summary>Tools.ExternalCommand20</summary>
-        public static CommandID Tools_ExternalCommand20 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 649 /* VSStd97CmdID.Tool20 */);
+        /// <summary>Tools.ExternalCommand20<br/><c>VSConstants.VSStd97CmdID.Tool20</c></summary>
+        public static CommandID Tools_ExternalCommand20 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 649);
 
-        /// <summary>Tools.ExternalCommand21</summary>
-        public static CommandID Tools_ExternalCommand21 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 650 /* VSStd97CmdID.Tool21 */);
+        /// <summary>Tools.ExternalCommand21<br/><c>VSConstants.VSStd97CmdID.Tool21</c></summary>
+        public static CommandID Tools_ExternalCommand21 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 650);
 
-        /// <summary>Tools.ExternalCommand22</summary>
-        public static CommandID Tools_ExternalCommand22 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 651 /* VSStd97CmdID.Tool22 */);
+        /// <summary>Tools.ExternalCommand22<br/><c>VSConstants.VSStd97CmdID.Tool22</c></summary>
+        public static CommandID Tools_ExternalCommand22 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 651);
 
-        /// <summary>Tools.ExternalCommand23</summary>
-        public static CommandID Tools_ExternalCommand23 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 652 /* VSStd97CmdID.Tool23 */);
+        /// <summary>Tools.ExternalCommand23<br/><c>VSConstants.VSStd97CmdID.Tool23</c></summary>
+        public static CommandID Tools_ExternalCommand23 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 652);
 
-        /// <summary>Tools.ExternalCommand24</summary>
-        public static CommandID Tools_ExternalCommand24 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 653 /* VSStd97CmdID.Tool24 */);
+        /// <summary>Tools.ExternalCommand24<br/><c>VSConstants.VSStd97CmdID.Tool24</c></summary>
+        public static CommandID Tools_ExternalCommand24 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 653);
 
-        /// <summary>Tools.ExternalCommand3</summary>
-        public static CommandID Tools_ExternalCommand3 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 632 /* VSStd97CmdID.Tool3 */);
+        /// <summary>Tools.ExternalCommand3<br/><c>VSConstants.VSStd97CmdID.Tool3</c></summary>
+        public static CommandID Tools_ExternalCommand3 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 632);
 
-        /// <summary>Tools.ExternalCommand4</summary>
-        public static CommandID Tools_ExternalCommand4 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 633 /* VSStd97CmdID.Tool4 */);
+        /// <summary>Tools.ExternalCommand4<br/><c>VSConstants.VSStd97CmdID.Tool4</c></summary>
+        public static CommandID Tools_ExternalCommand4 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 633);
 
-        /// <summary>Tools.ExternalCommand5</summary>
-        public static CommandID Tools_ExternalCommand5 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 634 /* VSStd97CmdID.Tool5 */);
+        /// <summary>Tools.ExternalCommand5<br/><c>VSConstants.VSStd97CmdID.Tool5</c></summary>
+        public static CommandID Tools_ExternalCommand5 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 634);
 
-        /// <summary>Tools.ExternalCommand6</summary>
-        public static CommandID Tools_ExternalCommand6 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 635 /* VSStd97CmdID.Tool6 */);
+        /// <summary>Tools.ExternalCommand6<br/><c>VSConstants.VSStd97CmdID.Tool6</c></summary>
+        public static CommandID Tools_ExternalCommand6 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 635);
 
-        /// <summary>Tools.ExternalCommand7</summary>
-        public static CommandID Tools_ExternalCommand7 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 636 /* VSStd97CmdID.Tool7 */);
+        /// <summary>Tools.ExternalCommand7<br/><c>VSConstants.VSStd97CmdID.Tool7</c></summary>
+        public static CommandID Tools_ExternalCommand7 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 636);
 
-        /// <summary>Tools.ExternalCommand8</summary>
-        public static CommandID Tools_ExternalCommand8 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 637 /* VSStd97CmdID.Tool8 */);
+        /// <summary>Tools.ExternalCommand8<br/><c>VSConstants.VSStd97CmdID.Tool8</c></summary>
+        public static CommandID Tools_ExternalCommand8 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 637);
 
-        /// <summary>Tools.ExternalCommand9</summary>
-        public static CommandID Tools_ExternalCommand9 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 638 /* VSStd97CmdID.Tool9 */);
+        /// <summary>Tools.ExternalCommand9<br/><c>VSConstants.VSStd97CmdID.Tool9</c></summary>
+        public static CommandID Tools_ExternalCommand9 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 638);
 
-        /// <summary>Tools.ExternalTools</summary>
-        public static CommandID Tools_ExternalTools { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 654 /* VSStd97CmdID.ExternalCommands */);
+        /// <summary>Tools.ExternalTools<br/><c>VSConstants.VSStd97CmdID.ExternalCommands</c></summary>
+        public static CommandID Tools_ExternalTools => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 654);
 
-        /// <summary>Tools.GenerateLocalResource</summary>
-        public static CommandID Tools_GenerateLocalResource { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 333 /* VSStd2KCmdID.GENERATEPAGERESOURCE */);
+        /// <summary>Tools.GenerateLocalResource<br/><c>VSConstants.VSStd2KCmdID.GENERATEPAGERESOURCE</c></summary>
+        public static CommandID Tools_GenerateLocalResource => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 333);
 
-        /// <summary>Tools.GoToCommandLine</summary>
-        public static CommandID Tools_GoToCommandLine { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 429 /* VSStd97CmdID.GotoCommandLine */);
+        /// <summary>Tools.GoToCommandLine<br/><c>VSConstants.VSStd97CmdID.GotoCommandLine</c></summary>
+        public static CommandID Tools_GoToCommandLine => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 429);
 
-        /// <summary>Tools.ImmediateMode</summary>
-        public static CommandID Tools_ImmediateMode { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 431 /* VSStd97CmdID.ImmediateMode */);
+        /// <summary>Tools.ImmediateMode<br/><c>VSConstants.VSStd97CmdID.ImmediateMode</c></summary>
+        public static CommandID Tools_ImmediateMode => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 431);
 
-        /// <summary>Tools.ImportandExportSettings</summary>
-        public static CommandID Tools_ImportandExportSettings { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1612 /* VSStd2KCmdID.ManageUserSettings */);
+        /// <summary>Tools.ImportandExportSettings<br/><c>VSConstants.VSStd2KCmdID.ManageUserSettings</c></summary>
+        public static CommandID Tools_ImportandExportSettings => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1612);
 
-        /// <summary>Tools.ItemDirectory</summary>
-        public static CommandID Tools_ItemDirectory { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 926 /* VSStd97CmdID.ExtToolsCurDir */);
+        /// <summary>Tools.ItemDirectory<br/><c>VSConstants.VSStd97CmdID.ExtToolsCurDir</c></summary>
+        public static CommandID Tools_ItemDirectory => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 926);
 
-        /// <summary>Tools.ItemExtension</summary>
-        public static CommandID Tools_ItemExtension { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 928 /* VSStd97CmdID.ExtToolsCurExtension */);
+        /// <summary>Tools.ItemExtension<br/><c>VSConstants.VSStd97CmdID.ExtToolsCurExtension</c></summary>
+        public static CommandID Tools_ItemExtension => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 928);
 
-        /// <summary>Tools.ItemFileName</summary>
-        public static CommandID Tools_ItemFileName { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 927 /* VSStd97CmdID.ExtToolsCurFileName */);
+        /// <summary>Tools.ItemFileName<br/><c>VSConstants.VSStd97CmdID.ExtToolsCurFileName</c></summary>
+        public static CommandID Tools_ItemFileName => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 927);
 
-        /// <summary>Tools.ItemPath</summary>
-        public static CommandID Tools_ItemPath { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 925 /* VSStd97CmdID.ExtToolsCurPath */);
+        /// <summary>Tools.ItemPath<br/><c>VSConstants.VSStd97CmdID.ExtToolsCurPath</c></summary>
+        public static CommandID Tools_ItemPath => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 925);
 
-        /// <summary>Tools.ListView</summary>
-        public static CommandID Tools_ListView { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 306 /* VSStd97CmdID.ToolboxListView */);
+        /// <summary>Tools.ListView<br/><c>VSConstants.VSStd97CmdID.ToolboxListView</c></summary>
+        public static CommandID Tools_ListView => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 306);
 
-        /// <summary>Tools.LogCommandWindowOutput</summary>
-        public static CommandID Tools_LogCommandWindowOutput { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 731 /* VSStd97CmdID.LogCommandWindow */);
+        /// <summary>Tools.LogCommandWindowOutput<br/><c>VSConstants.VSStd97CmdID.LogCommandWindow</c></summary>
+        public static CommandID Tools_LogCommandWindowOutput => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 731);
 
-        /// <summary>Tools.MoveDown</summary>
-        public static CommandID Tools_MoveDown { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 304 /* VSStd97CmdID.ToolboxTabMoveDown */);
+        /// <summary>Tools.MoveDown<br/><c>VSConstants.VSStd97CmdID.ToolboxTabMoveDown</c></summary>
+        public static CommandID Tools_MoveDown => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 304);
 
-        /// <summary>Tools.MoveUp</summary>
-        public static CommandID Tools_MoveUp { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 303 /* VSStd97CmdID.ToolboxTabMoveUp */);
+        /// <summary>Tools.MoveUp<br/><c>VSConstants.VSStd97CmdID.ToolboxTabMoveUp</c></summary>
+        public static CommandID Tools_MoveUp => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 303);
 
-        /// <summary>Tools.Open</summary>
-        public static CommandID Tools_Open { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1058 /* VSStd97CmdID.OpenDropDownOpen */);
+        /// <summary>Tools.Open<br/><c>VSConstants.VSStd97CmdID.OpenDropDownOpen</c></summary>
+        public static CommandID Tools_Open => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1058);
 
-        /// <summary>Tools.OpenWith</summary>
-        public static CommandID Tools_OpenWith { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1059 /* VSStd97CmdID.OpenDropDownOpenWith */);
+        /// <summary>Tools.OpenWith<br/><c>VSConstants.VSStd97CmdID.OpenDropDownOpenWith</c></summary>
+        public static CommandID Tools_OpenWith => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1059);
 
-        /// <summary>Tools.Options</summary>
-        public static CommandID Tools_Options { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 264 /* VSStd97CmdID.ToolsOptions */);
+        /// <summary>Tools.Options<br/><c>VSConstants.VSStd97CmdID.ToolsOptions</c></summary>
+        public static CommandID Tools_Options => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 264);
 
-        /// <summary>Tools.ProjectDirectory</summary>
-        public static CommandID Tools_ProjectDirectory { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 929 /* VSStd97CmdID.ExtToolsProjDir */);
+        /// <summary>Tools.ProjectDirectory<br/><c>VSConstants.VSStd97CmdID.ExtToolsProjDir</c></summary>
+        public static CommandID Tools_ProjectDirectory => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 929);
 
-        /// <summary>Tools.ProjectFileName</summary>
-        public static CommandID Tools_ProjectFileName { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 930 /* VSStd97CmdID.ExtToolsProjFileName */);
+        /// <summary>Tools.ProjectFileName<br/><c>VSConstants.VSStd97CmdID.ExtToolsProjFileName</c></summary>
+        public static CommandID Tools_ProjectFileName => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 930);
 
-        /// <summary>Tools.RenameTab</summary>
-        public static CommandID Tools_RenameTab { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 302 /* VSStd97CmdID.ToolboxRenameTab */);
+        /// <summary>Tools.RenameTab<br/><c>VSConstants.VSStd97CmdID.ToolboxRenameTab</c></summary>
+        public static CommandID Tools_RenameTab => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 302);
 
-        /// <summary>Tools.ResetToolbox</summary>
-        public static CommandID Tools_ResetToolbox { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 330 /* VSStd97CmdID.ToolboxReset */);
+        /// <summary>Tools.ResetToolbox<br/><c>VSConstants.VSStd97CmdID.ToolboxReset</c></summary>
+        public static CommandID Tools_ResetToolbox => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 330);
 
-        /// <summary>Tools.Shell</summary>
-        public static CommandID Tools_Shell { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 732 /* VSStd97CmdID.Shell */);
+        /// <summary>Tools.Shell<br/><c>VSConstants.VSStd97CmdID.Shell</c></summary>
+        public static CommandID Tools_Shell => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 732);
 
-        /// <summary>Tools.ShowAll</summary>
-        public static CommandID Tools_ShowAll { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 656 /* VSStd97CmdID.ToolboxShowAllTabs */);
+        /// <summary>Tools.ShowAll<br/><c>VSConstants.VSStd97CmdID.ToolboxShowAllTabs</c></summary>
+        public static CommandID Tools_ShowAll => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 656);
 
-        /// <summary>Tools.SolutionDirectory</summary>
-        public static CommandID Tools_SolutionDirectory { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 931 /* VSStd97CmdID.ExtToolsSlnDir */);
+        /// <summary>Tools.SolutionDirectory<br/><c>VSConstants.VSStd97CmdID.ExtToolsSlnDir</c></summary>
+        public static CommandID Tools_SolutionDirectory => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 931);
 
-        /// <summary>Tools.SolutionFileName</summary>
-        public static CommandID Tools_SolutionFileName { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 932 /* VSStd97CmdID.ExtToolsSlnFileName */);
+        /// <summary>Tools.SolutionFileName<br/><c>VSConstants.VSStd97CmdID.ExtToolsSlnFileName</c></summary>
+        public static CommandID Tools_SolutionFileName => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 932);
 
-        /// <summary>Tools.SortItemsAlphabetically</summary>
-        public static CommandID Tools_SortItemsAlphabetically { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 659 /* VSStd97CmdID.ToolboxSortItems */);
+        /// <summary>Tools.SortItemsAlphabetically<br/><c>VSConstants.VSStd97CmdID.ToolboxSortItems</c></summary>
+        public static CommandID Tools_SortItemsAlphabetically => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 659);
 
-        /// <summary>Tools.TargetDirectory</summary>
-        public static CommandID Tools_TargetDirectory { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1110 /* VSStd97CmdID.ExtToolsTargetDir */);
+        /// <summary>Tools.TargetDirectory<br/><c>VSConstants.VSStd97CmdID.ExtToolsTargetDir</c></summary>
+        public static CommandID Tools_TargetDirectory => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1110);
 
-        /// <summary>Tools.TargetExtension</summary>
-        public static CommandID Tools_TargetExtension { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1112 /* VSStd97CmdID.ExtToolsTargetExtension */);
+        /// <summary>Tools.TargetExtension<br/><c>VSConstants.VSStd97CmdID.ExtToolsTargetExtension</c></summary>
+        public static CommandID Tools_TargetExtension => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1112);
 
-        /// <summary>Tools.TargetName</summary>
-        public static CommandID Tools_TargetName { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1111 /* VSStd97CmdID.ExtToolsTargetFileName */);
+        /// <summary>Tools.TargetName<br/><c>VSConstants.VSStd97CmdID.ExtToolsTargetFileName</c></summary>
+        public static CommandID Tools_TargetName => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1111);
 
-        /// <summary>Tools.TargetPath</summary>
-        public static CommandID Tools_TargetPath { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1109 /* VSStd97CmdID.ExtToolsTargetPath */);
+        /// <summary>Tools.TargetPath<br/><c>VSConstants.VSStd97CmdID.ExtToolsTargetPath</c></summary>
+        public static CommandID Tools_TargetPath => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1109);
 
-        /// <summary>Tools.UnloadSourceBrowserFiles</summary>
-        public static CommandID Tools_UnloadSourceBrowserFiles { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1118 /* VSStd97CmdID.BrowseUnload */);
+        /// <summary>Tools.UnloadSourceBrowserFiles<br/><c>VSConstants.VSStd97CmdID.BrowseUnload</c></summary>
+        public static CommandID Tools_UnloadSourceBrowserFiles => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1118);
 
-        /// <summary>View.AddRemoveColumns</summary>
-        public static CommandID View_AddRemoveColumns { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 926 /* VSStd2KCmdID.ADDREMOVECOLUMNS */);
+        /// <summary>View.AddRemoveColumns<br/><c>VSConstants.VSStd2KCmdID.ADDREMOVECOLUMNS</c></summary>
+        public static CommandID View_AddRemoveColumns => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 926);
 
-        /// <summary>View.AllWindows</summary>
-        public static CommandID View_AllWindows { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 8 /* VSStd11CmdID.BringFloatingWindowsToFront */);
+        /// <summary>View.AllWindows<br/><c>VSConstants.VSStd11CmdID.BringFloatingWindowsToFront</c></summary>
+        public static CommandID View_AllWindows => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 8);
 
-        /// <summary>View.Autosize</summary>
-        public static CommandID View_Autosize { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1969 /* VSStd2KCmdID.ECMD_AUTO_SIZE */);
+        /// <summary>View.Autosize<br/><c>VSConstants.VSStd2KCmdID.ECMD_AUTO_SIZE</c></summary>
+        public static CommandID View_Autosize => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1969);
 
-        /// <summary>View.Backward</summary>
-        public static CommandID View_Backward { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1800 /* VSStd2KCmdID.NavigateBack */);
+        /// <summary>View.Backward<br/><c>VSConstants.VSStd2KCmdID.NavigateBack</c></summary>
+        public static CommandID View_Backward => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1800);
 
-        /// <summary>View.BookmarkWindow</summary>
-        public static CommandID View_BookmarkWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1122 /* VSStd97CmdID.BookmarkWindow */);
+        /// <summary>View.BookmarkWindow<br/><c>VSConstants.VSStd97CmdID.BookmarkWindow</c></summary>
+        public static CommandID View_BookmarkWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1122);
 
-        /// <summary>View.BrokenLinksReport</summary>
-        public static CommandID View_BrokenLinksReport { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1111 /* VSStd2KCmdID.BROKENLINKSREPORT */);
+        /// <summary>View.BrokenLinksReport<br/><c>VSConstants.VSStd2KCmdID.BROKENLINKSREPORT</c></summary>
+        public static CommandID View_BrokenLinksReport => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1111);
 
-        /// <summary>View.BrowseDefinition</summary>
-        public static CommandID View_BrowseDefinition { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 937 /* VSStd97CmdID.BrowseDefn */);
+        /// <summary>View.BrowseDefinition<br/><c>VSConstants.VSStd97CmdID.BrowseDefn</c></summary>
+        public static CommandID View_BrowseDefinition => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 937);
 
-        /// <summary>View.BrowseNext</summary>
-        public static CommandID View_BrowseNext { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1116 /* VSStd97CmdID.BrowseNext */);
+        /// <summary>View.BrowseNext<br/><c>VSConstants.VSStd97CmdID.BrowseNext</c></summary>
+        public static CommandID View_BrowseNext => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1116);
 
-        /// <summary>View.BrowsePrevious</summary>
-        public static CommandID View_BrowsePrevious { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1117 /* VSStd97CmdID.BrowsePrev */);
+        /// <summary>View.BrowsePrevious<br/><c>VSConstants.VSStd97CmdID.BrowsePrev</c></summary>
+        public static CommandID View_BrowsePrevious => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1117);
 
-        /// <summary>View.BuildStartupProjectsOnlyOnRun</summary>
-        public static CommandID View_BuildStartupProjectsOnlyOnRun { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1606 /* VSStd2KCmdID.SetBuildStartupsOnlyOnRun */);
+        /// <summary>View.BuildStartupProjectsOnlyOnRun<br/><c>VSConstants.VSStd2KCmdID.SetBuildStartupsOnlyOnRun</c></summary>
+        public static CommandID View_BuildStartupProjectsOnlyOnRun => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1606);
 
-        /// <summary>View.CallBrowserCallersGraph</summary>
-        public static CommandID View_CallBrowserCallersGraph { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2140 /* VSStd2KCmdID.CallBrowserShowCallsToCmd */);
+        /// <summary>View.CallBrowserCallersGraph<br/><c>VSConstants.VSStd2KCmdID.CallBrowserShowCallsToCmd</c></summary>
+        public static CommandID View_CallBrowserCallersGraph => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2140);
 
-        /// <summary>View.CallBrowserCallersGraphNewWindow</summary>
-        public static CommandID View_CallBrowserCallersGraphNewWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2142 /* VSStd2KCmdID.CallBrowserShowNewCallsToCmd */);
+        /// <summary>View.CallBrowserCallersGraphNewWindow<br/><c>VSConstants.VSStd2KCmdID.CallBrowserShowNewCallsToCmd</c></summary>
+        public static CommandID View_CallBrowserCallersGraphNewWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2142);
 
-        /// <summary>View.CallBrowserCallGraph</summary>
-        public static CommandID View_CallBrowserCallGraph { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2141 /* VSStd2KCmdID.CallBrowserShowCallsFromCmd */);
+        /// <summary>View.CallBrowserCallGraph<br/><c>VSConstants.VSStd2KCmdID.CallBrowserShowCallsFromCmd</c></summary>
+        public static CommandID View_CallBrowserCallGraph => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2141);
 
-        /// <summary>View.CallBrowserCallGraphNewWindow</summary>
-        public static CommandID View_CallBrowserCallGraphNewWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2143 /* VSStd2KCmdID.CallBrowserShowNewCallsFromCmd */);
+        /// <summary>View.CallBrowserCallGraphNewWindow<br/><c>VSConstants.VSStd2KCmdID.CallBrowserShowNewCallsFromCmd</c></summary>
+        public static CommandID View_CallBrowserCallGraphNewWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2143);
 
-        /// <summary>View.ChooseEncoding</summary>
-        public static CommandID View_ChooseEncoding { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1930 /* VSStd2KCmdID.CodeDefViewChooseEncoding */);
+        /// <summary>View.ChooseEncoding<br/><c>VSConstants.VSStd2KCmdID.CodeDefViewChooseEncoding</c></summary>
+        public static CommandID View_ChooseEncoding => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1930);
 
-        /// <summary>View.ClassView</summary>
-        public static CommandID View_ClassView { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 599 /* VSStd97CmdID.ClassView */);
+        /// <summary>View.ClassView<br/><c>VSConstants.VSStd97CmdID.ClassView</c></summary>
+        public static CommandID View_ClassView => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 599);
 
-        /// <summary>View.ClassViewClearSearch</summary>
-        public static CommandID View_ClassViewClearSearch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1674 /* VSStd2KCmdID.CVClearSearch */);
+        /// <summary>View.ClassViewClearSearch<br/><c>VSConstants.VSStd2KCmdID.CVClearSearch</c></summary>
+        public static CommandID View_ClassViewClearSearch => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1674);
 
-        /// <summary>View.ClassViewFilterToType</summary>
-        public static CommandID View_ClassViewFilterToType { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1675 /* VSStd2KCmdID.CVFilterToType */);
+        /// <summary>View.ClassViewFilterToType<br/><c>VSConstants.VSStd2KCmdID.CVFilterToType</c></summary>
+        public static CommandID View_ClassViewFilterToType => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1675);
 
-        /// <summary>View.ClassViewGoToSearchCombo</summary>
-        public static CommandID View_ClassViewGoToSearchCombo { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1680 /* VSStd2KCmdID.CVGoToSearchCmd */);
+        /// <summary>View.ClassViewGoToSearchCombo<br/><c>VSConstants.VSStd2KCmdID.CVGoToSearchCmd</c></summary>
+        public static CommandID View_ClassViewGoToSearchCombo => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1680);
 
-        /// <summary>View.ClassViewGroupMembersByType</summary>
-        public static CommandID View_ClassViewGroupMembersByType { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1673 /* VSStd2KCmdID.CVGroupMembersType */);
+        /// <summary>View.ClassViewGroupMembersByType<br/><c>VSConstants.VSStd2KCmdID.CVGroupMembersType</c></summary>
+        public static CommandID View_ClassViewGroupMembersByType => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1673);
 
-        /// <summary>View.ClassViewNewFolder</summary>
-        public static CommandID View_ClassViewNewFolder { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 975 /* VSStd97CmdID.CVNewFolder */);
+        /// <summary>View.ClassViewNewFolder<br/><c>VSConstants.VSStd97CmdID.CVNewFolder</c></summary>
+        public static CommandID View_ClassViewNewFolder => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 975);
 
-        /// <summary>View.ClassViewSearch</summary>
-        public static CommandID View_ClassViewSearch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1679 /* VSStd2KCmdID.CVSearchCmd */);
+        /// <summary>View.ClassViewSearch<br/><c>VSConstants.VSStd2KCmdID.CVSearchCmd</c></summary>
+        public static CommandID View_ClassViewSearch => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1679);
 
-        /// <summary>View.ClassViewShowBaseTypes</summary>
-        public static CommandID View_ClassViewShowBaseTypes { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1652 /* VSStd2KCmdID.CVShowBaseTypes */);
+        /// <summary>View.ClassViewShowBaseTypes<br/><c>VSConstants.VSStd2KCmdID.CVShowBaseTypes</c></summary>
+        public static CommandID View_ClassViewShowBaseTypes => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1652);
 
-        /// <summary>View.ClassViewShowDerivedTypes</summary>
-        public static CommandID View_ClassViewShowDerivedTypes { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1653 /* VSStd2KCmdID.CVShowDerivedTypes */);
+        /// <summary>View.ClassViewShowDerivedTypes<br/><c>VSConstants.VSStd2KCmdID.CVShowDerivedTypes</c></summary>
+        public static CommandID View_ClassViewShowDerivedTypes => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1653);
 
-        /// <summary>View.ClassViewShowInheritedMembers</summary>
-        public static CommandID View_ClassViewShowInheritedMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1651 /* VSStd2KCmdID.CVShowInheritedMembers */);
+        /// <summary>View.ClassViewShowInheritedMembers<br/><c>VSConstants.VSStd2KCmdID.CVShowInheritedMembers</c></summary>
+        public static CommandID View_ClassViewShowInheritedMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1651);
 
-        /// <summary>View.ClassViewShowOtherMembers</summary>
-        public static CommandID View_ClassViewShowOtherMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1678 /* VSStd2KCmdID.CVViewOtherMembers */);
+        /// <summary>View.ClassViewShowOtherMembers<br/><c>VSConstants.VSStd2KCmdID.CVViewOtherMembers</c></summary>
+        public static CommandID View_ClassViewShowOtherMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1678);
 
-        /// <summary>View.ClassViewShowPrivateMembers</summary>
-        public static CommandID View_ClassViewShowPrivateMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1667 /* VSStd2KCmdID.CVViewMembersAsImplementor */);
+        /// <summary>View.ClassViewShowPrivateMembers<br/><c>VSConstants.VSStd2KCmdID.CVViewMembersAsImplementor</c></summary>
+        public static CommandID View_ClassViewShowPrivateMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1667);
 
-        /// <summary>View.ClassViewShowProjectReferences</summary>
-        public static CommandID View_ClassViewShowProjectReferences { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1672 /* VSStd2KCmdID.CVShowProjectReferences */);
+        /// <summary>View.ClassViewShowProjectReferences<br/><c>VSConstants.VSStd2KCmdID.CVShowProjectReferences</c></summary>
+        public static CommandID View_ClassViewShowProjectReferences => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1672);
 
-        /// <summary>View.ClassViewShowProtectedMembers</summary>
-        public static CommandID View_ClassViewShowProtectedMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1668 /* VSStd2KCmdID.CVViewMembersAsSubclass */);
+        /// <summary>View.ClassViewShowProtectedMembers<br/><c>VSConstants.VSStd2KCmdID.CVViewMembersAsSubclass</c></summary>
+        public static CommandID View_ClassViewShowProtectedMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1668);
 
-        /// <summary>View.ClassViewShowPublicMembers</summary>
-        public static CommandID View_ClassViewShowPublicMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1669 /* VSStd2KCmdID.CVViewMembersAsUser */);
+        /// <summary>View.ClassViewShowPublicMembers<br/><c>VSConstants.VSStd2KCmdID.CVViewMembersAsUser</c></summary>
+        public static CommandID View_ClassViewShowPublicMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1669);
 
-        /// <summary>View.ClassViewSortByBestMatch</summary>
-        public static CommandID View_ClassViewSortByBestMatch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1676 /* VSStd2KCmdID.CVSortByBestMatch */);
+        /// <summary>View.ClassViewSortByBestMatch<br/><c>VSConstants.VSStd2KCmdID.CVSortByBestMatch</c></summary>
+        public static CommandID View_ClassViewSortByBestMatch => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1676);
 
-        /// <summary>View.CodeDefinitionWindow</summary>
-        public static CommandID View_CodeDefinitionWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1926 /* VSStd2KCmdID.CodeDefView */);
+        /// <summary>View.CodeDefinitionWindow<br/><c>VSConstants.VSStd2KCmdID.CodeDefView</c></summary>
+        public static CommandID View_CodeDefinitionWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1926);
 
-        /// <summary>View.CommandWindow</summary>
-        public static CommandID View_CommandWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 729 /* VSStd97CmdID.CommandWindow */);
+        /// <summary>View.CommandWindow<br/><c>VSConstants.VSStd97CmdID.CommandWindow</c></summary>
+        public static CommandID View_CommandWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 729);
 
-        /// <summary>View.Details</summary>
-        public static CommandID View_Details { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 249 /* VSStd2KCmdID.VIEWDETAILS */);
+        /// <summary>View.Details<br/><c>VSConstants.VSStd2KCmdID.VIEWDETAILS</c></summary>
+        public static CommandID View_Details => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 249);
 
-        /// <summary>View.DocumentOutline</summary>
-        public static CommandID View_DocumentOutline { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 239 /* VSStd97CmdID.DocOutlineWindow */);
+        /// <summary>View.DocumentOutline<br/><c>VSConstants.VSStd97CmdID.DocOutlineWindow</c></summary>
+        public static CommandID View_DocumentOutline => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 239);
 
-        /// <summary>View.EditDefinition</summary>
-        public static CommandID View_EditDefinition { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1929 /* VSStd2KCmdID.CodeDefViewEditDefinition */);
+        /// <summary>View.EditDefinition<br/><c>VSConstants.VSStd2KCmdID.CodeDefViewEditDefinition</c></summary>
+        public static CommandID View_EditDefinition => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1929);
 
-        /// <summary>View.EditLabel</summary>
-        public static CommandID View_EditLabel { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 338 /* VSStd97CmdID.EditLabel */);
+        /// <summary>View.EditLabel<br/><c>VSConstants.VSStd97CmdID.EditLabel</c></summary>
+        public static CommandID View_EditLabel => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 338);
 
-        /// <summary>View.EditMaster</summary>
-        public static CommandID View_EditMaster { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 322 /* VSStd2KCmdID.EDITMASTER */);
+        /// <summary>View.EditMaster<br/><c>VSConstants.VSStd2KCmdID.EDITMASTER</c></summary>
+        public static CommandID View_EditMaster => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 322);
 
-        /// <summary>View.ErrorList</summary>
-        public static CommandID View_ErrorList { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 320 /* VSStd97CmdID.TaskListSortByCategory */);
+        /// <summary>View.ErrorList<br/><c>VSConstants.VSStd97CmdID.TaskListSortByCategory</c></summary>
+        public static CommandID View_ErrorList => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 320);
 
-        /// <summary>View.ExpandAll</summary>
-        public static CommandID View_ExpandAll { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1120 /* VSStd97CmdID.ExpandAll */);
+        /// <summary>View.ExpandAll<br/><c>VSConstants.VSStd97CmdID.ExpandAll</c></summary>
+        public static CommandID View_ExpandAll => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1120);
 
-        /// <summary>View.FindResults1</summary>
-        public static CommandID View_FindResults1 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 433 /* VSStd97CmdID.FindResultWindow1 */);
+        /// <summary>View.FindResults1<br/><c>VSConstants.VSStd97CmdID.FindResultWindow1</c></summary>
+        public static CommandID View_FindResults1 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 433);
 
-        /// <summary>View.FindResults2</summary>
-        public static CommandID View_FindResults2 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 434 /* VSStd97CmdID.FindResultWindow2 */);
+        /// <summary>View.FindResults2<br/><c>VSConstants.VSStd97CmdID.FindResultWindow2</c></summary>
+        public static CommandID View_FindResults2 => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 434);
 
-        /// <summary>View.FindSymbolResults</summary>
-        public static CommandID View_FindSymbolResults { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 978 /* VSStd97CmdID.ObjectSearchResults */);
+        /// <summary>View.FindSymbolResults<br/><c>VSConstants.VSStd97CmdID.ObjectSearchResults</c></summary>
+        public static CommandID View_FindSymbolResults => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 978);
 
-        /// <summary>View.Forward</summary>
-        public static CommandID View_Forward { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1801 /* VSStd2KCmdID.NavigateForward */);
+        /// <summary>View.Forward<br/><c>VSConstants.VSStd2KCmdID.NavigateForward</c></summary>
+        public static CommandID View_Forward => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1801);
 
-        /// <summary>View.ForwardBrowseContext</summary>
-        public static CommandID View_ForwardBrowseContext { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1126 /* VSStd97CmdID.ForwardBrowseContext */);
+        /// <summary>View.ForwardBrowseContext<br/><c>VSConstants.VSStd97CmdID.ForwardBrowseContext</c></summary>
+        public static CommandID View_ForwardBrowseContext => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1126);
 
-        /// <summary>View.FullScreen</summary>
-        public static CommandID View_FullScreen { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 233 /* VSStd97CmdID.FullScreen */);
+        /// <summary>View.FullScreen<br/><c>VSConstants.VSStd97CmdID.FullScreen</c></summary>
+        public static CommandID View_FullScreen => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 233);
 
-        /// <summary>View.NavigateBackward</summary>
-        public static CommandID View_NavigateBackward { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 809 /* VSStd97CmdID.ShellNavBackward */);
+        /// <summary>View.NavigateBackward<br/><c>VSConstants.VSStd97CmdID.ShellNavBackward</c></summary>
+        public static CommandID View_NavigateBackward => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 809);
 
-        /// <summary>View.NavigateForward</summary>
-        public static CommandID View_NavigateForward { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 810 /* VSStd97CmdID.ShellNavForward */);
+        /// <summary>View.NavigateForward<br/><c>VSConstants.VSStd97CmdID.ShellNavForward</c></summary>
+        public static CommandID View_NavigateForward => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 810);
 
-        /// <summary>View.NextView</summary>
-        public static CommandID View_NextView { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1043 /* VSStd97CmdID.ViewNextTab */);
+        /// <summary>View.NextView<br/><c>VSConstants.VSStd97CmdID.ViewNextTab</c></summary>
+        public static CommandID View_NextView => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1043);
 
-        /// <summary>View.Notifications</summary>
-        public static CommandID View_Notifications { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 1 /* VSStd12CmdID.ShowUserNotificationsToolWindow */);
+        /// <summary>View.Notifications<br/><c>VSConstants.VSStd12CmdID.ShowUserNotificationsToolWindow</c></summary>
+        public static CommandID View_Notifications => new CommandID(VSConstants.CMDSETID.StandardCommandSet12_guid, 1);
 
-        /// <summary>View.ObjectBrowser</summary>
-        public static CommandID View_ObjectBrowser { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 238 /* VSStd97CmdID.ObjectBrowser */);
+        /// <summary>View.ObjectBrowser<br/><c>VSConstants.VSStd97CmdID.ObjectBrowser</c></summary>
+        public static CommandID View_ObjectBrowser => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 238);
 
-        /// <summary>View.ObjectBrowserAddReference</summary>
-        public static CommandID View_ObjectBrowserAddReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1914 /* VSStd2KCmdID.OBAddReference */);
+        /// <summary>View.ObjectBrowserAddReference<br/><c>VSConstants.VSStd2KCmdID.OBAddReference</c></summary>
+        public static CommandID View_ObjectBrowserAddReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1914);
 
-        /// <summary>View.ObjectBrowserClearSearch</summary>
-        public static CommandID View_ObjectBrowserClearSearch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1734 /* VSStd2KCmdID.OBClearSearch */);
+        /// <summary>View.ObjectBrowserClearSearch<br/><c>VSConstants.VSStd2KCmdID.OBClearSearch</c></summary>
+        public static CommandID View_ObjectBrowserClearSearch => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1734);
 
-        /// <summary>View.ObjectBrowserFilterToType</summary>
-        public static CommandID View_ObjectBrowserFilterToType { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1735 /* VSStd2KCmdID.OBFilterToType */);
+        /// <summary>View.ObjectBrowserFilterToType<br/><c>VSConstants.VSStd2KCmdID.OBFilterToType</c></summary>
+        public static CommandID View_ObjectBrowserFilterToType => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1735);
 
-        /// <summary>View.ObjectBrowserGoToSearchCombo</summary>
-        public static CommandID View_ObjectBrowserGoToSearchCombo { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1740 /* VSStd2KCmdID.OBGoToSearchCmd */);
+        /// <summary>View.ObjectBrowserGoToSearchCombo<br/><c>VSConstants.VSStd2KCmdID.OBGoToSearchCmd</c></summary>
+        public static CommandID View_ObjectBrowserGoToSearchCombo => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1740);
 
-        /// <summary>View.ObjectBrowserGroupMembersByType</summary>
-        public static CommandID View_ObjectBrowserGroupMembersByType { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1733 /* VSStd2KCmdID.OBGroupMembersType */);
+        /// <summary>View.ObjectBrowserGroupMembersByType<br/><c>VSConstants.VSStd2KCmdID.OBGroupMembersType</c></summary>
+        public static CommandID View_ObjectBrowserGroupMembersByType => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1733);
 
-        /// <summary>View.ObjectBrowserSearch</summary>
-        public static CommandID View_ObjectBrowserSearch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1739 /* VSStd2KCmdID.OBSearchCmd */);
+        /// <summary>View.ObjectBrowserSearch<br/><c>VSConstants.VSStd2KCmdID.OBSearchCmd</c></summary>
+        public static CommandID View_ObjectBrowserSearch => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1739);
 
-        /// <summary>View.ObjectBrowserShowBaseTypes</summary>
-        public static CommandID View_ObjectBrowserShowBaseTypes { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1712 /* VSStd2KCmdID.OBShowBaseTypes */);
+        /// <summary>View.ObjectBrowserShowBaseTypes<br/><c>VSConstants.VSStd2KCmdID.OBShowBaseTypes</c></summary>
+        public static CommandID View_ObjectBrowserShowBaseTypes => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1712);
 
-        /// <summary>View.ObjectBrowserShowDerivedTypes</summary>
-        public static CommandID View_ObjectBrowserShowDerivedTypes { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1713 /* VSStd2KCmdID.OBShowDerivedTypes */);
+        /// <summary>View.ObjectBrowserShowDerivedTypes<br/><c>VSConstants.VSStd2KCmdID.OBShowDerivedTypes</c></summary>
+        public static CommandID View_ObjectBrowserShowDerivedTypes => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1713);
 
-        /// <summary>View.ObjectBrowserShowExtensionMembers</summary>
-        public static CommandID View_ObjectBrowserShowExtensionMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1741 /* VSStd2KCmdID.OBShowExtensionMembers */);
+        /// <summary>View.ObjectBrowserShowExtensionMembers<br/><c>VSConstants.VSStd2KCmdID.OBShowExtensionMembers</c></summary>
+        public static CommandID View_ObjectBrowserShowExtensionMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1741);
 
-        /// <summary>View.ObjectBrowserShowInheritedMembers</summary>
-        public static CommandID View_ObjectBrowserShowInheritedMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1711 /* VSStd2KCmdID.OBShowInheritedMembers */);
+        /// <summary>View.ObjectBrowserShowInheritedMembers<br/><c>VSConstants.VSStd2KCmdID.OBShowInheritedMembers</c></summary>
+        public static CommandID View_ObjectBrowserShowInheritedMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1711);
 
-        /// <summary>View.ObjectBrowserShowOtherMembers</summary>
-        public static CommandID View_ObjectBrowserShowOtherMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1738 /* VSStd2KCmdID.OBViewOtherMembers */);
+        /// <summary>View.ObjectBrowserShowOtherMembers<br/><c>VSConstants.VSStd2KCmdID.OBViewOtherMembers</c></summary>
+        public static CommandID View_ObjectBrowserShowOtherMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1738);
 
-        /// <summary>View.ObjectBrowserShowPrivateMembers</summary>
-        public static CommandID View_ObjectBrowserShowPrivateMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1727 /* VSStd2KCmdID.OBViewMembersAsImplementor */);
+        /// <summary>View.ObjectBrowserShowPrivateMembers<br/><c>VSConstants.VSStd2KCmdID.OBViewMembersAsImplementor</c></summary>
+        public static CommandID View_ObjectBrowserShowPrivateMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1727);
 
-        /// <summary>View.ObjectBrowserShowProtectedMembers</summary>
-        public static CommandID View_ObjectBrowserShowProtectedMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1728 /* VSStd2KCmdID.OBViewMembersAsSubclass */);
+        /// <summary>View.ObjectBrowserShowProtectedMembers<br/><c>VSConstants.VSStd2KCmdID.OBViewMembersAsSubclass</c></summary>
+        public static CommandID View_ObjectBrowserShowProtectedMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1728);
 
-        /// <summary>View.ObjectBrowserShowPublicMembers</summary>
-        public static CommandID View_ObjectBrowserShowPublicMembers { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1729 /* VSStd2KCmdID.OBViewMembersAsUser */);
+        /// <summary>View.ObjectBrowserShowPublicMembers<br/><c>VSConstants.VSStd2KCmdID.OBViewMembersAsUser</c></summary>
+        public static CommandID View_ObjectBrowserShowPublicMembers => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1729);
 
-        /// <summary>View.ObjectBrowserSortByBestMatch</summary>
-        public static CommandID View_ObjectBrowserSortByBestMatch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1736 /* VSStd2KCmdID.OBSortByBestMatch */);
+        /// <summary>View.ObjectBrowserSortByBestMatch<br/><c>VSConstants.VSStd2KCmdID.OBSortByBestMatch</c></summary>
+        public static CommandID View_ObjectBrowserSortByBestMatch => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1736);
 
-        /// <summary>View.ObjectBrowserViewObjectsbyNamespace</summary>
-        public static CommandID View_ObjectBrowserViewObjectsbyNamespace { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1730 /* VSStd2KCmdID.OBNamespacesView */);
+        /// <summary>View.ObjectBrowserViewObjectsbyNamespace<br/><c>VSConstants.VSStd2KCmdID.OBNamespacesView</c></summary>
+        public static CommandID View_ObjectBrowserViewObjectsbyNamespace => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1730);
 
-        /// <summary>View.ObjectBrowserViewObjectsbyPhysicalContainer</summary>
-        public static CommandID View_ObjectBrowserViewObjectsbyPhysicalContainer { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1731 /* VSStd2KCmdID.OBContainersView */);
+        /// <summary>View.ObjectBrowserViewObjectsbyPhysicalContainer<br/><c>VSConstants.VSStd2KCmdID.OBContainersView</c></summary>
+        public static CommandID View_ObjectBrowserViewObjectsbyPhysicalContainer => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1731);
 
-        /// <summary>View.ObjectBrowsingScope</summary>
-        public static CommandID View_ObjectBrowsingScope { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1096 /* VSStd97CmdID.SubsetCombo */);
+        /// <summary>View.ObjectBrowsingScope<br/><c>VSConstants.VSStd97CmdID.SubsetCombo</c></summary>
+        public static CommandID View_ObjectBrowsingScope => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1096);
 
-        /// <summary>View.Open</summary>
-        public static CommandID View_Open { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 261 /* VSStd97CmdID.Open */);
+        /// <summary>View.Open<br/><c>VSConstants.VSStd97CmdID.Open</c></summary>
+        public static CommandID View_Open => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 261);
 
-        /// <summary>View.OpenWith</summary>
-        public static CommandID View_OpenWith { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 199 /* VSStd97CmdID.OpenWith */);
+        /// <summary>View.OpenWith<br/><c>VSConstants.VSStd97CmdID.OpenWith</c></summary>
+        public static CommandID View_OpenWith => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 199);
 
-        /// <summary>View.Output</summary>
-        public static CommandID View_Output { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 237 /* VSStd97CmdID.OutputWindow */);
+        /// <summary>View.Output<br/><c>VSConstants.VSStd97CmdID.OutputWindow</c></summary>
+        public static CommandID View_Output => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 237);
 
-        /// <summary>View.PopBrowseContext</summary>
-        public static CommandID View_PopBrowseContext { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1106 /* VSStd97CmdID.PopBrowseContext */);
+        /// <summary>View.PopBrowseContext<br/><c>VSConstants.VSStd97CmdID.PopBrowseContext</c></summary>
+        public static CommandID View_PopBrowseContext => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1106);
 
-        /// <summary>View.PropertiesWindow</summary>
-        public static CommandID View_PropertiesWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 235 /* VSStd97CmdID.PropertiesWindow */);
+        /// <summary>View.PropertiesWindow<br/><c>VSConstants.VSStd97CmdID.PropertiesWindow</c></summary>
+        public static CommandID View_PropertiesWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 235);
 
-        /// <summary>View.PropertyPages</summary>
-        public static CommandID View_PropertyPages { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 232 /* VSStd97CmdID.PropertyPages */);
+        /// <summary>View.PropertyPages<br/><c>VSConstants.VSStd97CmdID.PropertyPages</c></summary>
+        public static CommandID View_PropertyPages => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 232);
 
-        /// <summary>View.QuickActions</summary>
-        public static CommandID View_QuickActions { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 1 /* VSStd14CmdID.ShowQuickFixes */);
+        /// <summary>View.QuickActions<br/><c>VSConstants.VSStd14CmdID.ShowQuickFixes</c></summary>
+        public static CommandID View_QuickActions => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 1);
 
-        /// <summary>View.QuickActionsForPosition</summary>
-        public static CommandID View_QuickActionsForPosition { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 7 /* VSStd14CmdID.ShowQuickFixesForPosition2 */);
+        /// <summary>View.QuickActionsForPosition<br/><c>VSConstants.VSStd14CmdID.ShowQuickFixesForPosition2</c></summary>
+        public static CommandID View_QuickActionsForPosition => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 7);
 
-        /// <summary>View.Refresh</summary>
-        public static CommandID View_Refresh { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 189 /* VSStd97CmdID.Refresh */);
+        /// <summary>View.Refresh<br/><c>VSConstants.VSStd97CmdID.Refresh</c></summary>
+        public static CommandID View_Refresh => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 189);
 
-        /// <summary>View.ResourceView</summary>
-        public static CommandID View_ResourceView { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1023 /* VSStd97CmdID.ResourceView */);
+        /// <summary>View.ResourceView<br/><c>VSConstants.VSStd97CmdID.ResourceView</c></summary>
+        public static CommandID View_ResourceView => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1023);
 
-        /// <summary>View.ServerExplorer</summary>
-        public static CommandID View_ServerExplorer { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2260 /* VSStd2KCmdID.SEServerExplorer */);
+        /// <summary>View.ServerExplorer<br/><c>VSConstants.VSStd2KCmdID.SEServerExplorer</c></summary>
+        public static CommandID View_ServerExplorer => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2260);
 
-        /// <summary>View.ShowReferences</summary>
-        public static CommandID View_ShowReferences { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 943 /* VSStd97CmdID.ShowRefs */);
+        /// <summary>View.ShowReferences<br/><c>VSConstants.VSStd97CmdID.ShowRefs</c></summary>
+        public static CommandID View_ShowReferences => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 943);
 
-        /// <summary>View.SolutionExplorer</summary>
-        public static CommandID View_SolutionExplorer { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 234 /* VSStd97CmdID.ProjectExplorer */);
+        /// <summary>View.SolutionExplorer<br/><c>VSConstants.VSStd97CmdID.ProjectExplorer</c></summary>
+        public static CommandID View_SolutionExplorer => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 234);
 
-        /// <summary>View.Sort</summary>
-        public static CommandID View_Sort { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 927 /* VSStd2KCmdID.SORTCOLUMNS */);
+        /// <summary>View.Sort<br/><c>VSConstants.VSStd2KCmdID.SORTCOLUMNS</c></summary>
+        public static CommandID View_Sort => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 927);
 
-        /// <summary>View.Stop</summary>
-        public static CommandID View_Stop { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 220 /* VSStd2KCmdID.STOP */);
+        /// <summary>View.Stop<br/><c>VSConstants.VSStd2KCmdID.STOP</c></summary>
+        public static CommandID View_Stop => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 220);
 
-        /// <summary>View.SynchronizeClassView</summary>
-        public static CommandID View_SynchronizeClassView { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 938 /* VSStd97CmdID.SyncClassView */);
+        /// <summary>View.SynchronizeClassView<br/><c>VSConstants.VSStd97CmdID.SyncClassView</c></summary>
+        public static CommandID View_SynchronizeClassView => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 938);
 
-        /// <summary>View.TabOrder</summary>
-        public static CommandID View_TabOrder { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 41 /* VSStd97CmdID.TabOrder */);
+        /// <summary>View.TabOrder<br/><c>VSConstants.VSStd97CmdID.TabOrder</c></summary>
+        public static CommandID View_TabOrder => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 41);
 
-        /// <summary>View.TaskList</summary>
-        public static CommandID View_TaskList { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 236 /* VSStd97CmdID.TaskListWindow */);
+        /// <summary>View.TaskList<br/><c>VSConstants.VSStd97CmdID.TaskListWindow</c></summary>
+        public static CommandID View_TaskList => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 236);
 
-        /// <summary>View.ToggleDesigner</summary>
-        public static CommandID View_ToggleDesigner { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 347 /* VSStd97CmdID.TaskListPreviousView */);
+        /// <summary>View.ToggleDesigner<br/><c>VSConstants.VSStd97CmdID.TaskListPreviousView</c></summary>
+        public static CommandID View_ToggleDesigner => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 347);
 
-        /// <summary>View.Toolbox</summary>
-        public static CommandID View_Toolbox { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 42 /* VSStd97CmdID.Toolbox */);
+        /// <summary>View.Toolbox<br/><c>VSConstants.VSStd97CmdID.Toolbox</c></summary>
+        public static CommandID View_Toolbox => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 42);
 
-        /// <summary>View.ViewCode</summary>
-        public static CommandID View_ViewCode { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 333 /* VSStd97CmdID.ViewCode */);
+        /// <summary>View.ViewCode<br/><c>VSConstants.VSStd97CmdID.ViewCode</c></summary>
+        public static CommandID View_ViewCode => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 333);
 
-        /// <summary>View.ViewComponentDesigner</summary>
-        public static CommandID View_ViewComponentDesigner { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 457 /* VSStd2KCmdID.VIEWCOMPONENTDESIGNER */);
+        /// <summary>View.ViewComponentDesigner<br/><c>VSConstants.VSStd2KCmdID.VIEWCOMPONENTDESIGNER</c></summary>
+        public static CommandID View_ViewComponentDesigner => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 457);
 
-        /// <summary>View.ViewDesigner</summary>
-        public static CommandID View_ViewDesigner { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 332 /* VSStd97CmdID.ViewForm */);
+        /// <summary>View.ViewDesigner<br/><c>VSConstants.VSStd97CmdID.ViewForm</c></summary>
+        public static CommandID View_ViewDesigner => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 332);
 
-        /// <summary>View.ViewMarkup</summary>
-        public static CommandID View_ViewMarkup { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 449 /* VSStd2KCmdID.ECMD_VIEWMARKUP */);
+        /// <summary>View.ViewMarkup<br/><c>VSConstants.VSStd2KCmdID.ECMD_VIEWMARKUP</c></summary>
+        public static CommandID View_ViewMarkup => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 449);
 
-        /// <summary>View.Zoom</summary>
-        public static CommandID View_Zoom { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 348 /* VSStd97CmdID.ZoomDialog */);
+        /// <summary>View.Zoom<br/><c>VSConstants.VSStd97CmdID.ZoomDialog</c></summary>
+        public static CommandID View_Zoom => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 348);
 
-        /// <summary>View.ZoomIn</summary>
-        public static CommandID View_ZoomIn { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2100 /* VSStd2010CmdID.ZoomIn */);
+        /// <summary>View.ZoomIn<br/><c>VSConstants.VSStd2010CmdID.ZoomIn</c></summary>
+        public static CommandID View_ZoomIn => new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2100);
 
-        /// <summary>View.ZoomOut</summary>
-        public static CommandID View_ZoomOut { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2101 /* VSStd2010CmdID.ZoomOut */);
+        /// <summary>View.ZoomOut<br/><c>VSConstants.VSStd2010CmdID.ZoomOut</c></summary>
+        public static CommandID View_ZoomOut => new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 2101);
 
-        /// <summary>Warnings</summary>
-        public static CommandID Warnings { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2211 /* VSStd2KCmdID.ErrorListShowWarnings */);
+        /// <summary>Warnings<br/><c>VSConstants.VSStd2KCmdID.ErrorListShowWarnings</c></summary>
+        public static CommandID Warnings => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 2211);
 
-        /// <summary>Window.ActivateDocumentWindow</summary>
-        public static CommandID Window_ActivateDocumentWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 289 /* VSStd97CmdID.PaneActivateDocWindow */);
+        /// <summary>Window.ActivateDocumentWindow<br/><c>VSConstants.VSStd97CmdID.PaneActivateDocWindow</c></summary>
+        public static CommandID Window_ActivateDocumentWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 289);
 
-        /// <summary>Window.ActivateQuickLaunch</summary>
-        public static CommandID Window_ActivateQuickLaunch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 18 /* VSStd11CmdID.GlobalSearch */);
+        /// <summary>Window.ActivateQuickLaunch<br/><c>VSConstants.VSStd11CmdID.GlobalSearch</c></summary>
+        public static CommandID Window_ActivateQuickLaunch => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 18);
 
-        /// <summary>Window.ActivateQuickLaunchPreviousCategory</summary>
-        public static CommandID Window_ActivateQuickLaunchPreviousCategory { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 19 /* VSStd11CmdID.GlobalSearchBack */);
+        /// <summary>Window.ActivateQuickLaunchPreviousCategory<br/><c>VSConstants.VSStd11CmdID.GlobalSearchBack</c></summary>
+        public static CommandID Window_ActivateQuickLaunchPreviousCategory => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 19);
 
-        /// <summary>Window.ActivateSolutionExplorerSearch</summary>
-        public static CommandID Window_ActivateSolutionExplorerSearch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 20 /* VSStd11CmdID.SolutionExplorerSearch */);
+        /// <summary>Window.ActivateSolutionExplorerSearch<br/><c>VSConstants.VSStd11CmdID.SolutionExplorerSearch</c></summary>
+        public static CommandID Window_ActivateSolutionExplorerSearch => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 20);
 
-        /// <summary>Window.ActivateWindowSearch</summary>
-        public static CommandID Window_ActivateWindowSearch { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 17 /* VSStd11CmdID.WindowSearch */);
+        /// <summary>Window.ActivateWindowSearch<br/><c>VSConstants.VSStd11CmdID.WindowSearch</c></summary>
+        public static CommandID Window_ActivateWindowSearch => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 17);
 
-        /// <summary>Window.AddTabtoSelection</summary>
-        public static CommandID Window_AddTabtoSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 4 /* VSStd11CmdID.MultiSelect */);
+        /// <summary>Window.AddTabtoSelection<br/><c>VSConstants.VSStd11CmdID.MultiSelect</c></summary>
+        public static CommandID Window_AddTabtoSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 4);
 
-        /// <summary>Window.ApplyWindowLayout1</summary>
-        public static CommandID Window_ApplyWindowLayout1 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4096 /* VSStd14CmdID.WindowLayoutListFirst */);
+        /// <summary>Window.ApplyWindowLayout1<br/><c>VSConstants.VSStd14CmdID.WindowLayoutListFirst</c></summary>
+        public static CommandID Window_ApplyWindowLayout1 => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4096);
 
-        /// <summary>Window.ApplyWindowLayout10</summary>
-        public static CommandID Window_ApplyWindowLayout10 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4105 /* VSStd14CmdID.WindowLayoutList9 */);
+        /// <summary>Window.ApplyWindowLayout10<br/><c>VSConstants.VSStd14CmdID.WindowLayoutList9</c></summary>
+        public static CommandID Window_ApplyWindowLayout10 => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4105);
 
-        /// <summary>Window.ApplyWindowLayout2</summary>
-        public static CommandID Window_ApplyWindowLayout2 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4097 /* VSStd14CmdID.WindowLayoutList1 */);
+        /// <summary>Window.ApplyWindowLayout2<br/><c>VSConstants.VSStd14CmdID.WindowLayoutList1</c></summary>
+        public static CommandID Window_ApplyWindowLayout2 => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4097);
 
-        /// <summary>Window.ApplyWindowLayout3</summary>
-        public static CommandID Window_ApplyWindowLayout3 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4098 /* VSStd14CmdID.WindowLayoutList2 */);
+        /// <summary>Window.ApplyWindowLayout3<br/><c>VSConstants.VSStd14CmdID.WindowLayoutList2</c></summary>
+        public static CommandID Window_ApplyWindowLayout3 => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4098);
 
-        /// <summary>Window.ApplyWindowLayout4</summary>
-        public static CommandID Window_ApplyWindowLayout4 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4099 /* VSStd14CmdID.WindowLayoutList3 */);
+        /// <summary>Window.ApplyWindowLayout4<br/><c>VSConstants.VSStd14CmdID.WindowLayoutList3</c></summary>
+        public static CommandID Window_ApplyWindowLayout4 => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4099);
 
-        /// <summary>Window.ApplyWindowLayout5</summary>
-        public static CommandID Window_ApplyWindowLayout5 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4100 /* VSStd14CmdID.WindowLayoutList4 */);
+        /// <summary>Window.ApplyWindowLayout5<br/><c>VSConstants.VSStd14CmdID.WindowLayoutList4</c></summary>
+        public static CommandID Window_ApplyWindowLayout5 => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4100);
 
-        /// <summary>Window.ApplyWindowLayout6</summary>
-        public static CommandID Window_ApplyWindowLayout6 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4101 /* VSStd14CmdID.WindowLayoutList5 */);
+        /// <summary>Window.ApplyWindowLayout6<br/><c>VSConstants.VSStd14CmdID.WindowLayoutList5</c></summary>
+        public static CommandID Window_ApplyWindowLayout6 => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4101);
 
-        /// <summary>Window.ApplyWindowLayout7</summary>
-        public static CommandID Window_ApplyWindowLayout7 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4102 /* VSStd14CmdID.WindowLayoutList6 */);
+        /// <summary>Window.ApplyWindowLayout7<br/><c>VSConstants.VSStd14CmdID.WindowLayoutList6</c></summary>
+        public static CommandID Window_ApplyWindowLayout7 => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4102);
 
-        /// <summary>Window.ApplyWindowLayout8</summary>
-        public static CommandID Window_ApplyWindowLayout8 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4103 /* VSStd14CmdID.WindowLayoutList7 */);
+        /// <summary>Window.ApplyWindowLayout8<br/><c>VSConstants.VSStd14CmdID.WindowLayoutList7</c></summary>
+        public static CommandID Window_ApplyWindowLayout8 => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4103);
 
-        /// <summary>Window.ApplyWindowLayout9</summary>
-        public static CommandID Window_ApplyWindowLayout9 { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4104 /* VSStd14CmdID.WindowLayoutList8 */);
+        /// <summary>Window.ApplyWindowLayout9<br/><c>VSConstants.VSStd14CmdID.WindowLayoutList8</c></summary>
+        public static CommandID Window_ApplyWindowLayout9 => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4104);
 
-        /// <summary>Window.AutoHide</summary>
-        public static CommandID Window_AutoHide { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 292 /* VSStd97CmdID.AutoHideWindow */);
+        /// <summary>Window.AutoHide<br/><c>VSConstants.VSStd97CmdID.AutoHideWindow</c></summary>
+        public static CommandID Window_AutoHide => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 292);
 
-        /// <summary>Window.AutoHideAll</summary>
-        public static CommandID Window_AutoHideAll { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 597 /* VSStd97CmdID.AutoHideAllWindows */);
+        /// <summary>Window.AutoHideAll<br/><c>VSConstants.VSStd97CmdID.AutoHideAllWindows</c></summary>
+        public static CommandID Window_AutoHideAll => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 597);
 
-        /// <summary>Window.Cascade</summary>
-        public static CommandID Window_Cascade { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 267 /* VSStd97CmdID.Cascade */);
+        /// <summary>Window.Cascade<br/><c>VSConstants.VSStd97CmdID.Cascade</c></summary>
+        public static CommandID Window_Cascade => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 267);
 
-        /// <summary>Window.Close</summary>
-        public static CommandID Window_Close { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 285 /* VSStd97CmdID.HideActivePane */);
+        /// <summary>Window.Close<br/><c>VSConstants.VSStd97CmdID.HideActivePane</c></summary>
+        public static CommandID Window_Close => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 285);
 
-        /// <summary>Window.CloseAllButPinned</summary>
-        public static CommandID Window_CloseAllButPinned { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 22 /* VSStd11CmdID.CloseAllButPinned */);
+        /// <summary>Window.CloseAllButPinned<br/><c>VSConstants.VSStd11CmdID.CloseAllButPinned</c></summary>
+        public static CommandID Window_CloseAllButPinned => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 22);
 
-        /// <summary>Window.CloseAllDocuments</summary>
-        public static CommandID Window_CloseAllDocuments { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 627 /* VSStd97CmdID.CloseAllDocuments */);
+        /// <summary>Window.CloseAllDocuments<br/><c>VSConstants.VSStd97CmdID.CloseAllDocuments</c></summary>
+        public static CommandID Window_CloseAllDocuments => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 627);
 
-        /// <summary>Window.CloseDocumentWindow</summary>
-        public static CommandID Window_CloseDocumentWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 658 /* VSStd97CmdID.CloseDocument */);
+        /// <summary>Window.CloseDocumentWindow<br/><c>VSConstants.VSStd97CmdID.CloseDocument</c></summary>
+        public static CommandID Window_CloseDocumentWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 658);
 
-        /// <summary>Window.CloseToolWindow</summary>
-        public static CommandID Window_CloseToolWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 288 /* VSStd97CmdID.PaneCloseToolWindow */);
+        /// <summary>Window.CloseToolWindow<br/><c>VSConstants.VSStd97CmdID.PaneCloseToolWindow</c></summary>
+        public static CommandID Window_CloseToolWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 288);
 
-        /// <summary>Window.Dock</summary>
-        public static CommandID Window_Dock { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 284 /* VSStd97CmdID.DockingView */);
+        /// <summary>Window.Dock<br/><c>VSConstants.VSStd97CmdID.DockingView</c></summary>
+        public static CommandID Window_Dock => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 284);
 
-        /// <summary>Window.DockasTabbedDocument</summary>
-        public static CommandID Window_DockasTabbedDocument { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 290 /* VSStd97CmdID.DockingViewMDI */);
+        /// <summary>Window.DockasTabbedDocument<br/><c>VSConstants.VSStd97CmdID.DockingViewMDI</c></summary>
+        public static CommandID Window_DockasTabbedDocument => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 290);
 
-        /// <summary>Window.Float</summary>
-        public static CommandID Window_Float { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 291 /* VSStd97CmdID.DockingViewFloater */);
+        /// <summary>Window.Float<br/><c>VSConstants.VSStd97CmdID.DockingViewFloater</c></summary>
+        public static CommandID Window_Float => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 291);
 
-        /// <summary>Window.FloatAll</summary>
-        public static CommandID Window_FloatAll { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 1 /* VSStd11CmdID.FloatAll */);
+        /// <summary>Window.FloatAll<br/><c>VSConstants.VSStd11CmdID.FloatAll</c></summary>
+        public static CommandID Window_FloatAll => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 1);
 
-        /// <summary>Window.KeepTabOpen</summary>
-        public static CommandID Window_KeepTabOpen { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 9 /* VSStd11CmdID.PromoteTab */);
+        /// <summary>Window.KeepTabOpen<br/><c>VSConstants.VSStd11CmdID.PromoteTab</c></summary>
+        public static CommandID Window_KeepTabOpen => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 9);
 
-        /// <summary>Window.ManageWindowLayouts</summary>
-        public static CommandID Window_ManageWindowLayouts { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4 /* VSStd14CmdID.ManageWindowLayouts */);
+        /// <summary>Window.ManageWindowLayouts<br/><c>VSConstants.VSStd14CmdID.ManageWindowLayouts</c></summary>
+        public static CommandID Window_ManageWindowLayouts => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 4);
 
-        /// <summary>Window.MoveAllToNextTabGroup</summary>
-        public static CommandID Window_MoveAllToNextTabGroup { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 2 /* VSStd11CmdID.MoveAllToNext */);
+        /// <summary>Window.MoveAllToNextTabGroup<br/><c>VSConstants.VSStd11CmdID.MoveAllToNext</c></summary>
+        public static CommandID Window_MoveAllToNextTabGroup => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 2);
 
-        /// <summary>Window.MoveAllToPreviousTabGroup</summary>
-        public static CommandID Window_MoveAllToPreviousTabGroup { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 3 /* VSStd11CmdID.MoveAllToPrevious */);
+        /// <summary>Window.MoveAllToPreviousTabGroup<br/><c>VSConstants.VSStd11CmdID.MoveAllToPrevious</c></summary>
+        public static CommandID Window_MoveAllToPreviousTabGroup => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 3);
 
-        /// <summary>Window.MoveToMainDocumentGroup</summary>
-        public static CommandID Window_MoveToMainDocumentGroup { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 10 /* VSStd11CmdID.MoveToMainTabWell */);
+        /// <summary>Window.MoveToMainDocumentGroup<br/><c>VSConstants.VSStd11CmdID.MoveToMainTabWell</c></summary>
+        public static CommandID Window_MoveToMainDocumentGroup => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 10);
 
-        /// <summary>Window.MovetoNavigationBar</summary>
-        public static CommandID Window_MovetoNavigationBar { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 293 /* VSStd97CmdID.MoveToDropdownBar */);
+        /// <summary>Window.MovetoNavigationBar<br/><c>VSConstants.VSStd97CmdID.MoveToDropdownBar</c></summary>
+        public static CommandID Window_MovetoNavigationBar => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 293);
 
-        /// <summary>Window.MovetoNextTabGroup</summary>
-        public static CommandID Window_MovetoNextTabGroup { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 384 /* VSStd97CmdID.MoveToNextEZCntr */);
+        /// <summary>Window.MovetoNextTabGroup<br/><c>VSConstants.VSStd97CmdID.MoveToNextEZCntr</c></summary>
+        public static CommandID Window_MovetoNextTabGroup => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 384);
 
-        /// <summary>Window.MovetoPreviousTabGroup</summary>
-        public static CommandID Window_MovetoPreviousTabGroup { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 393 /* VSStd97CmdID.MoveToPreviousEZCntr */);
+        /// <summary>Window.MovetoPreviousTabGroup<br/><c>VSConstants.VSStd97CmdID.MoveToPreviousEZCntr</c></summary>
+        public static CommandID Window_MovetoPreviousTabGroup => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 393);
 
-        /// <summary>Window.NewHorizontalTabGroup</summary>
-        public static CommandID Window_NewHorizontalTabGroup { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 268 /* VSStd97CmdID.TileHorz */);
+        /// <summary>Window.NewHorizontalTabGroup<br/><c>VSConstants.VSStd97CmdID.TileHorz</c></summary>
+        public static CommandID Window_NewHorizontalTabGroup => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 268);
 
-        /// <summary>Window.NewVerticalTabGroup</summary>
-        public static CommandID Window_NewVerticalTabGroup { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 269 /* VSStd97CmdID.TileVert */);
+        /// <summary>Window.NewVerticalTabGroup<br/><c>VSConstants.VSStd97CmdID.TileVert</c></summary>
+        public static CommandID Window_NewVerticalTabGroup => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 269);
 
-        /// <summary>Window.NewWindow</summary>
-        public static CommandID Window_NewWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 265 /* VSStd97CmdID.NewWindow */);
+        /// <summary>Window.NewWindow<br/><c>VSConstants.VSStd97CmdID.NewWindow</c></summary>
+        public static CommandID Window_NewWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 265);
 
-        /// <summary>Window.NextDocumentWindow</summary>
-        public static CommandID Window_NextDocumentWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 628 /* VSStd97CmdID.NextDocument */);
+        /// <summary>Window.NextDocumentWindow<br/><c>VSConstants.VSStd97CmdID.NextDocument</c></summary>
+        public static CommandID Window_NextDocumentWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 628);
 
-        /// <summary>Window.NextDocumentWindowNav</summary>
-        public static CommandID Window_NextDocumentWindowNav { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1124 /* VSStd97CmdID.NextDocumentNav */);
+        /// <summary>Window.NextDocumentWindowNav<br/><c>VSConstants.VSStd97CmdID.NextDocumentNav</c></summary>
+        public static CommandID Window_NextDocumentWindowNav => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1124);
 
-        /// <summary>Window.NextPane</summary>
-        public static CommandID Window_NextPane { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 316 /* VSStd97CmdID.PaneNextPane */);
+        /// <summary>Window.NextPane<br/><c>VSConstants.VSStd97CmdID.PaneNextPane</c></summary>
+        public static CommandID Window_NextPane => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 316);
 
-        /// <summary>Window.NextSplitPane</summary>
-        public static CommandID Window_NextSplitPane { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 625 /* VSStd97CmdID.SplitNext */);
+        /// <summary>Window.NextSplitPane<br/><c>VSConstants.VSStd97CmdID.SplitNext</c></summary>
+        public static CommandID Window_NextSplitPane => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 625);
 
-        /// <summary>Window.NextSubpane</summary>
-        public static CommandID Window_NextSubpane { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1062 /* VSStd97CmdID.PaneNextSubPane */);
+        /// <summary>Window.NextSubpane<br/><c>VSConstants.VSStd97CmdID.PaneNextSubPane</c></summary>
+        public static CommandID Window_NextSubpane => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1062);
 
-        /// <summary>Window.NextTab</summary>
-        public static CommandID Window_NextTab { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 286 /* VSStd97CmdID.PaneNextTab */);
+        /// <summary>Window.NextTab<br/><c>VSConstants.VSStd97CmdID.PaneNextTab</c></summary>
+        public static CommandID Window_NextTab => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 286);
 
-        /// <summary>Window.NextTabandAddtoSelection</summary>
-        public static CommandID Window_NextTabandAddtoSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 5 /* VSStd11CmdID.PaneNextTabAndMultiSelect */);
+        /// <summary>Window.NextTabandAddtoSelection<br/><c>VSConstants.VSStd11CmdID.PaneNextTabAndMultiSelect</c></summary>
+        public static CommandID Window_NextTabandAddtoSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 5);
 
-        /// <summary>Window.NextToolWindow</summary>
-        public static CommandID Window_NextToolWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1640 /* VSStd2KCmdID.NextToolWindow */);
+        /// <summary>Window.NextToolWindow<br/><c>VSConstants.VSStd2KCmdID.NextToolWindow</c></summary>
+        public static CommandID Window_NextToolWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1640);
 
-        /// <summary>Window.PinTab</summary>
-        public static CommandID Window_PinTab { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 7 /* VSStd11CmdID.PinTab */);
+        /// <summary>Window.PinTab<br/><c>VSConstants.VSStd11CmdID.PinTab</c></summary>
+        public static CommandID Window_PinTab => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 7);
 
-        /// <summary>Window.PreviousDocumentWindow</summary>
-        public static CommandID Window_PreviousDocumentWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 629 /* VSStd97CmdID.PrevDocument */);
+        /// <summary>Window.PreviousDocumentWindow<br/><c>VSConstants.VSStd97CmdID.PrevDocument</c></summary>
+        public static CommandID Window_PreviousDocumentWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 629);
 
-        /// <summary>Window.PreviousDocumentWindowNav</summary>
-        public static CommandID Window_PreviousDocumentWindowNav { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1125 /* VSStd97CmdID.PrevDocumentNav */);
+        /// <summary>Window.PreviousDocumentWindowNav<br/><c>VSConstants.VSStd97CmdID.PrevDocumentNav</c></summary>
+        public static CommandID Window_PreviousDocumentWindowNav => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1125);
 
-        /// <summary>Window.PreviousPane</summary>
-        public static CommandID Window_PreviousPane { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 317 /* VSStd97CmdID.PanePrevPane */);
+        /// <summary>Window.PreviousPane<br/><c>VSConstants.VSStd97CmdID.PanePrevPane</c></summary>
+        public static CommandID Window_PreviousPane => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 317);
 
-        /// <summary>Window.PreviousSplitPane</summary>
-        public static CommandID Window_PreviousSplitPane { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 626 /* VSStd97CmdID.SplitPrev */);
+        /// <summary>Window.PreviousSplitPane<br/><c>VSConstants.VSStd97CmdID.SplitPrev</c></summary>
+        public static CommandID Window_PreviousSplitPane => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 626);
 
-        /// <summary>Window.PreviousSubpane</summary>
-        public static CommandID Window_PreviousSubpane { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1063 /* VSStd97CmdID.PanePrevSubPane */);
+        /// <summary>Window.PreviousSubpane<br/><c>VSConstants.VSStd97CmdID.PanePrevSubPane</c></summary>
+        public static CommandID Window_PreviousSubpane => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 1063);
 
-        /// <summary>Window.PreviousTab</summary>
-        public static CommandID Window_PreviousTab { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 287 /* VSStd97CmdID.PanePrevTab */);
+        /// <summary>Window.PreviousTab<br/><c>VSConstants.VSStd97CmdID.PanePrevTab</c></summary>
+        public static CommandID Window_PreviousTab => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 287);
 
-        /// <summary>Window.PreviousTabandAddtoSelection</summary>
-        public static CommandID Window_PreviousTabandAddtoSelection { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 6 /* VSStd11CmdID.PanePrevTabAndMultiSelect */);
+        /// <summary>Window.PreviousTabandAddtoSelection<br/><c>VSConstants.VSStd11CmdID.PanePrevTabAndMultiSelect</c></summary>
+        public static CommandID Window_PreviousTabandAddtoSelection => new CommandID(VSConstants.CMDSETID.StandardCommandSet11_guid, 6);
 
-        /// <summary>Window.PreviousToolWindow</summary>
-        public static CommandID Window_PreviousToolWindow { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1641 /* VSStd2KCmdID.PrevToolWindow */);
+        /// <summary>Window.PreviousToolWindow<br/><c>VSConstants.VSStd2KCmdID.PrevToolWindow</c></summary>
+        public static CommandID Window_PreviousToolWindow => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1641);
 
-        /// <summary>Window.PreviousToolWindowNav</summary>
-        public static CommandID Window_PreviousToolWindowNav { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1645 /* VSStd2KCmdID.PrevToolWindowNav */);
+        /// <summary>Window.PreviousToolWindowNav<br/><c>VSConstants.VSStd2KCmdID.PrevToolWindowNav</c></summary>
+        public static CommandID Window_PreviousToolWindowNav => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1645);
 
-        /// <summary>Window.SaveWindowLayout</summary>
-        public static CommandID Window_SaveWindowLayout { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 5 /* VSStd14CmdID.SaveWindowLayout */);
+        /// <summary>Window.SaveWindowLayout<br/><c>VSConstants.VSStd14CmdID.SaveWindowLayout</c></summary>
+        public static CommandID Window_SaveWindowLayout => new CommandID(VSConstants.CMDSETID.StandardCommandSet14_guid, 5);
 
-        /// <summary>Window.ShowDockMenu</summary>
-        public static CommandID Window_ShowDockMenu { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 500 /* VSStd2010CmdID.WindowFrameDockMenu */);
+        /// <summary>Window.ShowDockMenu<br/><c>VSConstants.VSStd2010CmdID.WindowFrameDockMenu</c></summary>
+        public static CommandID Window_ShowDockMenu => new CommandID(VSConstants.CMDSETID.StandardCommandSet2010_guid, 500);
 
-        /// <summary>Window.ShowEzMDIFileList</summary>
-        public static CommandID Window_ShowEzMDIFileList { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1643 /* VSStd2KCmdID.ShowEzMDIFileMenu */);
+        /// <summary>Window.ShowEzMDIFileList<br/><c>VSConstants.VSStd2KCmdID.ShowEzMDIFileMenu</c></summary>
+        public static CommandID Window_ShowEzMDIFileList => new CommandID(VSConstants.CMDSETID.StandardCommandSet2K_guid, 1643);
 
-        /// <summary>Window.Split</summary>
-        public static CommandID Window_Split { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 266 /* VSStd97CmdID.Split */);
+        /// <summary>Window.Split<br/><c>VSConstants.VSStd97CmdID.Split</c></summary>
+        public static CommandID Window_Split => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 266);
 
-        /// <summary>Window.Windows</summary>
-        public static CommandID Window_Windows { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 595 /* VSStd97CmdID.MoreWindows */);
+        /// <summary>Window.Windows<br/><c>VSConstants.VSStd97CmdID.MoreWindows</c></summary>
+        public static CommandID Window_Windows => new CommandID(VSConstants.CMDSETID.StandardCommandSet97_guid, 595);
 #if VS15 || VS16 || VS17
-        /// <summary>Edit.GoToFile</summary>
-        public static CommandID Edit_GoToFile { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 1 /* VSStd15CmdID.NavigateToFile */);
+        /// <summary>Edit.GoToFile<br/><c>VSConstants.VSStd15CmdID.NavigateToFile</c></summary>
+        public static CommandID Edit_GoToFile => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 1);
 
-        /// <summary>Edit.GoToMember</summary>
-        public static CommandID Edit_GoToMember { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 4 /* VSStd15CmdID.NavigateToMember */);
+        /// <summary>Edit.GoToMember<br/><c>VSConstants.VSStd15CmdID.NavigateToMember</c></summary>
+        public static CommandID Edit_GoToMember => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 4);
 
-        /// <summary>Edit.GoToRecentFile</summary>
-        public static CommandID Edit_GoToRecentFile { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 5 /* VSStd15CmdID.NavigateToRecentFile */);
+        /// <summary>Edit.GoToRecentFile<br/><c>VSConstants.VSStd15CmdID.NavigateToRecentFile</c></summary>
+        public static CommandID Edit_GoToRecentFile => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 5);
 
-        /// <summary>Edit.GoToSymbol</summary>
-        public static CommandID Edit_GoToSymbol { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 3 /* VSStd15CmdID.NavigateToSymbol */);
+        /// <summary>Edit.GoToSymbol<br/><c>VSConstants.VSStd15CmdID.NavigateToSymbol</c></summary>
+        public static CommandID Edit_GoToSymbol => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 3);
 
-        /// <summary>Edit.GoToType</summary>
-        public static CommandID Edit_GoToType { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 2 /* VSStd15CmdID.NavigateToType */);
+        /// <summary>Edit.GoToType<br/><c>VSConstants.VSStd15CmdID.NavigateToType</c></summary>
+        public static CommandID Edit_GoToType => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 2);
 
-        /// <summary>EditorContextMenus.CodeWindow.Annotation.MoveToNextAnnotation</summary>
-        public static CommandID EditorContextMenus_CodeWindow_Annotation_MoveToNextAnnotation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 77 /* VSStd15CmdID.MoveToNextAnnotation */);
+        /// <summary>EditorContextMenus.CodeWindow.Annotation.MoveToNextAnnotation<br/><c>VSConstants.VSStd15CmdID.MoveToNextAnnotation</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_Annotation_MoveToNextAnnotation => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 77);
 
-        /// <summary>EditorContextMenus.CodeWindow.Annotation.MoveToPreviousAnnotation</summary>
-        public static CommandID EditorContextMenus_CodeWindow_Annotation_MoveToPreviousAnnotation { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 78 /* VSStd15CmdID.MoveToPreviousAnnotation */);
+        /// <summary>EditorContextMenus.CodeWindow.Annotation.MoveToPreviousAnnotation<br/><c>VSConstants.VSStd15CmdID.MoveToPreviousAnnotation</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_Annotation_MoveToPreviousAnnotation => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 78);
 
-        /// <summary>EditorContextMenus.CodeWindow.Annotation.ShowLineAnnotations</summary>
-        public static CommandID EditorContextMenus_CodeWindow_Annotation_ShowLineAnnotations { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 76 /* VSStd15CmdID.ShowLineAnnotations */);
+        /// <summary>EditorContextMenus.CodeWindow.Annotation.ShowLineAnnotations<br/><c>VSConstants.VSStd15CmdID.ShowLineAnnotations</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_Annotation_ShowLineAnnotations => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 76);
 
-        /// <summary>EditorContextMenus.CodeWindow.Annotation.ShowStructure</summary>
-        public static CommandID EditorContextMenus_CodeWindow_Annotation_ShowStructure { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 79 /* VSStd15CmdID.ShowStructure */);
+        /// <summary>EditorContextMenus.CodeWindow.Annotation.ShowStructure<br/><c>VSConstants.VSStd15CmdID.ShowStructure</c></summary>
+        public static CommandID EditorContextMenus_CodeWindow_Annotation_ShowStructure => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 79);
 
-        /// <summary>Help.KeyboardAccessibility</summary>
-        public static CommandID Help_KeyboardAccessibility { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 112 /* VSStd15CmdID.HelpAccessibility */);
+        /// <summary>Help.KeyboardAccessibility<br/><c>VSConstants.VSStd15CmdID.HelpAccessibility</c></summary>
+        public static CommandID Help_KeyboardAccessibility => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 112);
 
-        /// <summary>KeepResults</summary>
-        public static CommandID KeepResults { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 44 /* VSStd15CmdID.FindAllRefLockWindow */);
+        /// <summary>KeepResults<br/><c>VSConstants.VSStd15CmdID.FindAllRefLockWindow</c></summary>
+        public static CommandID KeepResults => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 44);
 
-        /// <summary>ListView</summary>
-        public static CommandID ListView { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 45 /* VSStd15CmdID.FindAllRefFlatList */);
+        /// <summary>ListView<br/><c>VSConstants.VSStd15CmdID.FindAllRefFlatList</c></summary>
+        public static CommandID ListView => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 45);
 
-        /// <summary>Tools.GetToolsandFeatures</summary>
-        public static CommandID Tools_GetToolsandFeatures { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 60 /* VSStd15CmdID.GetToolsAndFeatures */);
+        /// <summary>Tools.GetToolsandFeatures<br/><c>VSConstants.VSStd15CmdID.GetToolsAndFeatures</c></summary>
+        public static CommandID Tools_GetToolsandFeatures => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 60);
 
-        /// <summary>View.RestoreDocumentsOnSolutionLoad</summary>
-        public static CommandID View_RestoreDocumentsOnSolutionLoad { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 512 /* VSStd15CmdID.EnableRestoreDocumentsOnSolutionLoad */);
+        /// <summary>View.RestoreDocumentsOnSolutionLoad<br/><c>VSConstants.VSStd15CmdID.EnableRestoreDocumentsOnSolutionLoad</c></summary>
+        public static CommandID View_RestoreDocumentsOnSolutionLoad => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 512);
 
-        /// <summary>View.SkipRestoreDocumentsOnSolutionLoad</summary>
-        public static CommandID View_SkipRestoreDocumentsOnSolutionLoad { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 513 /* VSStd15CmdID.DisableRestoreDocumentsOnSolutionLoad */);
+        /// <summary>View.SkipRestoreDocumentsOnSolutionLoad<br/><c>VSConstants.VSStd15CmdID.DisableRestoreDocumentsOnSolutionLoad</c></summary>
+        public static CommandID View_SkipRestoreDocumentsOnSolutionLoad => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 513);
 
-        /// <summary>Window.CloseAllButToolWindows</summary>
-        public static CommandID Window_CloseAllButToolWindows { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 528 /* VSStd15CmdID.CloseAllButToolWindows */);
+        /// <summary>Window.CloseAllButToolWindows<br/><c>VSConstants.VSStd15CmdID.CloseAllButToolWindows</c></summary>
+        public static CommandID Window_CloseAllButToolWindows => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 528);
 
-        /// <summary>Window.ShowSidebarTabs</summary>
-        public static CommandID Window_ShowSidebarTabs { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 256 /* VSStd15CmdID.ToggleAutoHideChannels */);
+        /// <summary>Window.ShowSidebarTabs<br/><c>VSConstants.VSStd15CmdID.ToggleAutoHideChannels</c></summary>
+        public static CommandID Window_ShowSidebarTabs => new CommandID(VSConstants.CMDSETID.StandardCommandSet15_guid, 256);
 #endif
 
 #if VS16 || VS17
-        /// <summary>File.CopyRelativePath</summary>
-        public static CommandID File_CopyRelativePath { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 128 /* VSStd16CmdID.CopyRelativePath */);
+        /// <summary>File.CopyRelativePath<br/><c>VSConstants.VSStd16CmdID.CopyRelativePath</c></summary>
+        public static CommandID File_CopyRelativePath => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 128);
 
-        /// <summary>OtherContextMenus.DocumentTabWellSettings.GroupbyProject</summary>
-        public static CommandID OtherContextMenus_DocumentTabWellSettings_GroupbyProject { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 6 /* VSStd16CmdID.DocumentTabsGroupByProject */);
+        /// <summary>OtherContextMenus.DocumentTabWellSettings.GroupbyProject<br/><c>VSConstants.VSStd16CmdID.DocumentTabsGroupByProject</c></summary>
+        public static CommandID OtherContextMenus_DocumentTabWellSettings_GroupbyProject => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 6);
 
-        /// <summary>OtherContextMenus.DocumentTabWellSettings.NoGrouping</summary>
-        public static CommandID OtherContextMenus_DocumentTabWellSettings_NoGrouping { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 7 /* VSStd16CmdID.DocumentTabsGroupNone */);
+        /// <summary>OtherContextMenus.DocumentTabWellSettings.NoGrouping<br/><c>VSConstants.VSStd16CmdID.DocumentTabsGroupNone</c></summary>
+        public static CommandID OtherContextMenus_DocumentTabWellSettings_NoGrouping => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 7);
 
-        /// <summary>OtherContextMenus.DocumentTabWellSettings.SortAlphabetically</summary>
-        public static CommandID OtherContextMenus_DocumentTabWellSettings_SortAlphabetically { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 8 /* VSStd16CmdID.DocumentTabsSortAlpha */);
+        /// <summary>OtherContextMenus.DocumentTabWellSettings.SortAlphabetically<br/><c>VSConstants.VSStd16CmdID.DocumentTabsSortAlpha</c></summary>
+        public static CommandID OtherContextMenus_DocumentTabWellSettings_SortAlphabetically => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 8);
 
-        /// <summary>OtherContextMenus.DocumentTabWellSettings.SortbyRecentlyOpenedFirst</summary>
-        public static CommandID OtherContextMenus_DocumentTabWellSettings_SortbyRecentlyOpenedFirst { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 9 /* VSStd16CmdID.DocumentTabsSortMroFirst */);
+        /// <summary>OtherContextMenus.DocumentTabWellSettings.SortbyRecentlyOpenedFirst<br/><c>VSConstants.VSStd16CmdID.DocumentTabsSortMroFirst</c></summary>
+        public static CommandID OtherContextMenus_DocumentTabWellSettings_SortbyRecentlyOpenedFirst => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 9);
 
-        /// <summary>OtherContextMenus.DocumentTabWellSettings.SortbyRecentlyOpenedLast</summary>
-        public static CommandID OtherContextMenus_DocumentTabWellSettings_SortbyRecentlyOpenedLast { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 10 /* VSStd16CmdID.DocumentTabsSortMroLast */);
+        /// <summary>OtherContextMenus.DocumentTabWellSettings.SortbyRecentlyOpenedLast<br/><c>VSConstants.VSStd16CmdID.DocumentTabsSortMroLast</c></summary>
+        public static CommandID OtherContextMenus_DocumentTabWellSettings_SortbyRecentlyOpenedLast => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 10);
 
-        /// <summary>OtherContextMenus.EasyMDIToolWindow.SetTabLayout.Options</summary>
-        public static CommandID OtherContextMenus_EasyMDIToolWindow_SetTabLayout_Options { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 5 /* VSStd16CmdID.DocumentTabSettings */);
+        /// <summary>OtherContextMenus.EasyMDIToolWindow.SetTabLayout.Options<br/><c>VSConstants.VSStd16CmdID.DocumentTabSettings</c></summary>
+        public static CommandID OtherContextMenus_EasyMDIToolWindow_SetTabLayout_Options => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 5);
 
-        /// <summary>OtherContextMenus.EasyMDIToolWindow.SetTabLayout.PlaceTabsontheLeft</summary>
-        public static CommandID OtherContextMenus_EasyMDIToolWindow_SetTabLayout_PlaceTabsontheLeft { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 2 /* VSStd16CmdID.DocumentTabsLeft */);
+        /// <summary>OtherContextMenus.EasyMDIToolWindow.SetTabLayout.PlaceTabsontheLeft<br/><c>VSConstants.VSStd16CmdID.DocumentTabsLeft</c></summary>
+        public static CommandID OtherContextMenus_EasyMDIToolWindow_SetTabLayout_PlaceTabsontheLeft => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 2);
 
-        /// <summary>OtherContextMenus.EasyMDIToolWindow.SetTabLayout.PlaceTabsontheRight</summary>
-        public static CommandID OtherContextMenus_EasyMDIToolWindow_SetTabLayout_PlaceTabsontheRight { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 4 /* VSStd16CmdID.DocumentTabsRight */);
+        /// <summary>OtherContextMenus.EasyMDIToolWindow.SetTabLayout.PlaceTabsontheRight<br/><c>VSConstants.VSStd16CmdID.DocumentTabsRight</c></summary>
+        public static CommandID OtherContextMenus_EasyMDIToolWindow_SetTabLayout_PlaceTabsontheRight => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 4);
 
-        /// <summary>OtherContextMenus.EasyMDIToolWindow.SetTabLayout.PlaceTabsontheTop</summary>
-        public static CommandID OtherContextMenus_EasyMDIToolWindow_SetTabLayout_PlaceTabsontheTop { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 3 /* VSStd16CmdID.DocumentTabsTop */);
+        /// <summary>OtherContextMenus.EasyMDIToolWindow.SetTabLayout.PlaceTabsontheTop<br/><c>VSConstants.VSStd16CmdID.DocumentTabsTop</c></summary>
+        public static CommandID OtherContextMenus_EasyMDIToolWindow_SetTabLayout_PlaceTabsontheTop => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 3);
 
-        /// <summary>Project.AddAssemblyReference</summary>
-        public static CommandID Project_AddAssemblyReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 512 /* VSStd16CmdID.AddAssemblyReference */);
+        /// <summary>Project.AddAssemblyReference<br/><c>VSConstants.VSStd16CmdID.AddAssemblyReference</c></summary>
+        public static CommandID Project_AddAssemblyReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 512);
 
-        /// <summary>Project.AddCOMReference</summary>
-        public static CommandID Project_AddCOMReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 513 /* VSStd16CmdID.AddComReference */);
+        /// <summary>Project.AddCOMReference<br/><c>VSConstants.VSStd16CmdID.AddComReference</c></summary>
+        public static CommandID Project_AddCOMReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 513);
 
-        /// <summary>Project.AddProjectReference</summary>
-        public static CommandID Project_AddProjectReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 514 /* VSStd16CmdID.AddProjectReference */);
+        /// <summary>Project.AddProjectReference<br/><c>VSConstants.VSStd16CmdID.AddProjectReference</c></summary>
+        public static CommandID Project_AddProjectReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 514);
 
-        /// <summary>Project.AddSDKReference</summary>
-        public static CommandID Project_AddSDKReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 516 /* VSStd16CmdID.AddSdkReference */);
+        /// <summary>Project.AddSDKReference<br/><c>VSConstants.VSStd16CmdID.AddSdkReference</c></summary>
+        public static CommandID Project_AddSDKReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 516);
 
-        /// <summary>Project.AddSharedProjectReference</summary>
-        public static CommandID Project_AddSharedProjectReference { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 515 /* VSStd16CmdID.AddSharedProjectReference */);
+        /// <summary>Project.AddSharedProjectReference<br/><c>VSConstants.VSStd16CmdID.AddSharedProjectReference</c></summary>
+        public static CommandID Project_AddSharedProjectReference => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 515);
 
-        /// <summary>ProjectandSolutionContextMenus.Project.LoadAllProjectDependencies</summary>
-        public static CommandID ProjectandSolutionContextMenus_Project_LoadAllProjectDependencies { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 1656 /* VSStd16CmdID.LoadAllProjectDependencies */);
+        /// <summary>ProjectandSolutionContextMenus.Project.LoadAllProjectDependencies<br/><c>VSConstants.VSStd16CmdID.LoadAllProjectDependencies</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_Project_LoadAllProjectDependencies => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 1656);
 
-        /// <summary>ProjectandSolutionContextMenus.Project.LoadProjectDependencies</summary>
-        public static CommandID ProjectandSolutionContextMenus_Project_LoadProjectDependencies { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 1655 /* VSStd16CmdID.LoadProjectDependencies */);
+        /// <summary>ProjectandSolutionContextMenus.Project.LoadProjectDependencies<br/><c>VSConstants.VSStd16CmdID.LoadProjectDependencies</c></summary>
+        public static CommandID ProjectandSolutionContextMenus_Project_LoadProjectDependencies => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 1655);
 
-        /// <summary>RepeatFind</summary>
-        public static CommandID RepeatFind { get; } = new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 46 /* VSStd16CmdID.RepeatFind */);
+        /// <summary>RepeatFind<br/><c>VSConstants.VSStd16CmdID.RepeatFind</c></summary>
+        public static CommandID RepeatFind => new CommandID(VSConstants.CMDSETID.StandardCommandSet16_guid, 46);
 #endif
 
     }

@@ -58,8 +58,7 @@ function Write-Commands {
                 $writer.WriteLine()
             }
 
-            $writer.WriteLine("        /// <summary>$($command.Name)</summary>")
-            $writer.WriteLine("        public static CommandID $($command.Name.Replace(".", "_")) { get; } = new CommandID($($command.CommandSet), $($command.ID));")
+            $command.Code | ForEach-Object { $writer.WriteLine($_) }
             $first = $false
         }
     }
@@ -94,14 +93,16 @@ foreach ($set in $COMMAND_SETS) {
 
         if ($name -and $usedCommands.Add($name)) {
             $commands += @{
-                CommandSet     = "VSConstants.CMDSETID.$($set.Guid)"
+                Name           = $name
+                MinimumVersion = $set.Introduced
                 # Some enum members were added in later versions. For example, an enum member in a command set
                 # that is available from v15 may only be defined in the v16 assembly, which means we can't use
                 # the enum values when defining the commands. Use the raw value instead, but include the enum 
                 # member name in a command so that you can see what it is meant to be using.
-                ID             = "$([int]$value) /* $($enum.Name).$($value.ToString()) */"
-                Name           = $name
-                MinimumVersion = $set.Introduced
+                Code           = @(
+                    "        /// <summary>$($name)<br/><c>VSConstants.$($enum.Name).$($value.ToString())`</c></summary>",
+                    "        public static CommandID $($name.Replace(".", "_")) => new CommandID(VSConstants.CMDSETID.$($set.Guid), $([int]$value));"
+                )
             }
         }
     }
