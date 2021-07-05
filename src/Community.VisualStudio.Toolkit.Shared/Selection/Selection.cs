@@ -12,7 +12,7 @@ using Task = System.Threading.Tasks.Task;
 namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
-    /// Services related to the selection of windows and nodes.
+    /// Services related to the selection of windows and items in solution.
     /// </summary>
     public class Selection
     {
@@ -25,19 +25,19 @@ namespace Community.VisualStudio.Toolkit
         public async Task<IEnumerable<SolutionItem>> GetSelectedItemsAsync()
         {
             IEnumerable<IVsHierarchyItem>? hierarchies = await GetSelectedHierarchiesAsync();
-            List<SolutionItem> nodes = new();
+            List<SolutionItem> items = new();
 
             foreach (IVsHierarchyItem hierarchy in hierarchies)
             {
-                SolutionItem? node = await SolutionItem.FromHierarchyAsync(hierarchy.HierarchyIdentity.Hierarchy, hierarchy.HierarchyIdentity.ItemID);
+                SolutionItem? item = await SolutionItem.FromHierarchyAsync(hierarchy.HierarchyIdentity.Hierarchy, hierarchy.HierarchyIdentity.ItemID);
 
-                if (node != null)
+                if (item != null)
                 {
-                    nodes.Add(node);
+                    items.Add(item);
                 }
             }
 
-            return nodes;
+            return items;
         }
 
         /// <summary>

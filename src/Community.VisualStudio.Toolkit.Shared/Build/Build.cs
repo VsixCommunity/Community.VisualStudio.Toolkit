@@ -49,7 +49,7 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public async Task<bool> BuildProjectAsync(SolutionItem project, BuildAction action = BuildAction.Build)
         {
-            if (project?.Type != NodeType.Project && project?.Type != NodeType.VirtualProject)
+            if (project?.Type != SolutionItemType.Project && project?.Type != SolutionItemType.VirtualProject)
             {
                 return false;
             }
