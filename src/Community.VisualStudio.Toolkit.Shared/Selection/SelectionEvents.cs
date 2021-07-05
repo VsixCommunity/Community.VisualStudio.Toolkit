@@ -27,7 +27,7 @@ namespace Community.VisualStudio.Toolkit
         internal SelectionEvents()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var monitor = (IVsMonitorSelection)ServiceProvider.GlobalProvider.GetService(typeof(SVsShellMonitorSelection));
+            IVsMonitorSelection monitor = (IVsMonitorSelection)ServiceProvider.GlobalProvider.GetService(typeof(SVsShellMonitorSelection));
             Assumes.Present(monitor);
             monitor.AdviseSelectionEvents(this, out _);
         }
@@ -48,8 +48,8 @@ namespace Community.VisualStudio.Toolkit
 
             if (SelectionChanged != null)
             {
-                var from = SolutionItem.FromHierarchy(pHierOld, itemidOld);
-                var to = SolutionItem.FromHierarchy(pHierNew, itemidNew);
+                SolutionItem? from = SolutionItem.FromHierarchy(pHierOld, itemidOld);
+                SolutionItem? to = SolutionItem.FromHierarchy(pHierNew, itemidNew);
 
                 SelectionChanged.Invoke(this, new SelectionChangedEventArgs(from, to));
             }

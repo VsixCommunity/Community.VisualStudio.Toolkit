@@ -69,10 +69,10 @@ namespace Community.VisualStudio.Toolkit
 
             IVsMonitorSelection? svc = await VS.Services.GetMonitorSelectionAsync();
 
-            var cookieResult = svc.GetCmdUIContextCookie(uiContextGuid, out var cookie);
+            int cookieResult = svc.GetCmdUIContextCookie(uiContextGuid, out uint cookie);
             ErrorHandler.ThrowOnFailure(cookieResult);
 
-            var setContextResult = svc.SetCmdUIContext(cookie, isActive ? 1 : 0);
+            int setContextResult = svc.SetCmdUIContext(cookie, isActive ? 1 : 0);
             ErrorHandler.ThrowOnFailure(setContextResult);
         }
 
@@ -91,13 +91,13 @@ namespace Community.VisualStudio.Toolkit
 
             try
             {
-                svc.GetCurrentSelection(out hierPtr, out var itemId, out IVsMultiItemSelect multiSelect, out containerPtr);
+                svc.GetCurrentSelection(out hierPtr, out uint itemId, out IVsMultiItemSelect multiSelect, out containerPtr);
 
                 if (itemId == VSConstants.VSITEMID_SELECTION)
                 {
-                    multiSelect.GetSelectionInfo(out var itemCount, out var fSingleHierarchy);
+                    multiSelect.GetSelectionInfo(out uint itemCount, out int fSingleHierarchy);
 
-                    var items = new VSITEMSELECTION[itemCount];
+                    VSITEMSELECTION[] items = new VSITEMSELECTION[itemCount];
                     multiSelect.GetSelectedItems(0, itemCount, items);
 
                     foreach (VSITEMSELECTION item in items)
@@ -111,7 +111,7 @@ namespace Community.VisualStudio.Toolkit
                 }
                 else if (hierPtr != IntPtr.Zero)
                 {
-                    var hierarchy = (IVsHierarchy)Marshal.GetUniqueObjectForIUnknown(hierPtr);
+                    IVsHierarchy hierarchy = (IVsHierarchy)Marshal.GetUniqueObjectForIUnknown(hierPtr);
                     IVsHierarchyItem? hierItem = await hierarchy.ToHierarcyItemAsync(itemId);
 
                     if (hierItem != null)

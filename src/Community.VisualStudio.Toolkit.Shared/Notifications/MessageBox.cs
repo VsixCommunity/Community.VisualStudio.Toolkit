@@ -28,7 +28,7 @@ namespace Community.VisualStudio.Toolkit
                                             OLEMSGDEFBUTTON defaultButton = OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var result = VsShellUtilities.ShowMessageBox(ServiceProvider.GlobalProvider, line2, line1, icon, buttons, defaultButton);
+            int result = VsShellUtilities.ShowMessageBox(ServiceProvider.GlobalProvider, line2, line1, icon, buttons, defaultButton);
 
             return (MessageBoxResult)result;
         }

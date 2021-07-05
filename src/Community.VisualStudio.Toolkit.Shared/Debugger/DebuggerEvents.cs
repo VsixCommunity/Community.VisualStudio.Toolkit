@@ -22,7 +22,7 @@ namespace Community.VisualStudio.Toolkit
         internal DebuggerEvents()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var svc = (IVsDebugger)ServiceProvider.GlobalProvider.GetService(typeof(IVsDebugger));
+            IVsDebugger svc = (IVsDebugger)ServiceProvider.GlobalProvider.GetService(typeof(IVsDebugger));
             Assumes.Present(svc);
             svc.AdviseDebuggerEvents(this, out _);
         }

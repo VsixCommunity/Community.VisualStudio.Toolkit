@@ -28,7 +28,7 @@ namespace System.ComponentModel.Design
             try
             {
                 Marshal.GetNativeVariantForObject(argument, inArgPtr);
-                var result = cs.Exec(cmd.Guid, (uint)cmd.ID, (uint)OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT, inArgPtr, IntPtr.Zero);
+                int result = cs.Exec(cmd.Guid, (uint)cmd.ID, (uint)OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT, inArgPtr, IntPtr.Zero);
 
                 return result == VSConstants.S_OK;
             }

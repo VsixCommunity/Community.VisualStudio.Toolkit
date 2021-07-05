@@ -48,13 +48,13 @@ namespace Microsoft.VisualStudio.Text
             }
 
             string? ppzsFilename = null;
-            var returnCode = -1;
+            int returnCode = -1;
 
             if (bufferAdapter is IPersistFileFormat persistFileFormat)
             {
                 try
                 {
-                    returnCode = persistFileFormat.GetCurFile(out ppzsFilename, out var pnFormatIndex);
+                    returnCode = persistFileFormat.GetCurFile(out ppzsFilename, out uint pnFormatIndex);
                 }
                 catch (NotImplementedException)
                 {

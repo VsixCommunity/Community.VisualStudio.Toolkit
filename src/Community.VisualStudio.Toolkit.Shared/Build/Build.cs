@@ -22,7 +22,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsSolutionBuildManager svc = await VS.Services.GetSolutionBuildManagerAsync();
-            svc.CanCancelUpdateSolutionConfiguration(out var canCancel);
+            svc.CanCancelUpdateSolutionConfiguration(out int canCancel);
 
             if (canCancel == 0)
             {
@@ -39,7 +39,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsSolutionBuildManager svc = await VS.Services.GetSolutionBuildManagerAsync();
-            var buildFlags = (uint)GetBuildFlags(action);
+            uint buildFlags = (uint)GetBuildFlags(action);
 
             return svc.StartSimpleUpdateSolutionConfiguration(buildFlags, 0, 0) == VSConstants.S_OK;
         }
@@ -56,7 +56,7 @@ namespace Community.VisualStudio.Toolkit
 
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsSolutionBuildManager svc = await VS.Services.GetSolutionBuildManagerAsync();
-            var buildFlags = (uint)GetBuildFlags(action);
+            uint buildFlags = (uint)GetBuildFlags(action);
 
             project.GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
             return svc.StartSimpleUpdateProjectConfiguration(hierarchy, null, null, buildFlags, 0, 0) == VSConstants.S_OK;
@@ -70,14 +70,14 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IVsSolutionBuildManager svc = await VS.Services.GetSolutionBuildManagerAsync();
-            var projectConfig = new IVsProjectCfg2[1];
+            IVsProjectCfg2[] projectConfig = new IVsProjectCfg2[1];
 
             project.GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
 
             if (ErrorHandler.Succeeded(svc.FindActiveProjectCfg(IntPtr.Zero, IntPtr.Zero, hierarchy, projectConfig)))
             {
-                var supported = new int[1];
-                var ready = new int[1];
+                int[] supported = new int[1];
+                int[] ready = new int[1];
 
                 if (ErrorHandler.Succeeded(projectConfig[0].get_BuildableProjectCfg(out IVsBuildableProjectCfg buildableProjectConfig)) &&
                     ErrorHandler.Succeeded(buildableProjectConfig.QueryStartUpToDateCheck(0, supported, ready)) &&

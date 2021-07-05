@@ -22,7 +22,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 IVsStatusbar statusBar = await VS.Services.GetStatusBarAsync();
 
-                statusBar.GetText(out var pszText);
+                statusBar.GetText(out string pszText);
                 return pszText;
             }
             catch (Exception ex)

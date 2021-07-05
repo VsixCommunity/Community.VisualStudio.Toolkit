@@ -54,7 +54,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 Document = document;
 
-                var docView = textView.ToDocumentView();
+                DocumentView docView = textView.ToDocumentView();
 
                 Created(docView);
 
@@ -64,7 +64,7 @@ namespace Community.VisualStudio.Toolkit
             }
             else
             {
-                var docView = textView.ToDocumentView();
+                DocumentView docView = textView.ToDocumentView();
                 Created(docView);
             }
         }
@@ -87,7 +87,7 @@ namespace Community.VisualStudio.Toolkit
 
         private void OnViewClosed(object sender, EventArgs e)
         {
-            var textView = (IWpfTextView)sender;
+            IWpfTextView textView = (IWpfTextView)sender;
             textView.Closed -= OnViewClosed;
 
             if (Document != null)

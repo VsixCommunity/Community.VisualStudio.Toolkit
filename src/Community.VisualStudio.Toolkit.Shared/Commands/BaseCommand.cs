@@ -41,9 +41,9 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public static async Task<T> InitializeAsync(AsyncPackage package)
         {
-            var instance = (BaseCommand<T>)(object)new T();
+            BaseCommand<T> instance = (BaseCommand<T>)(object)new T();
 
-            var attr = (CommandAttribute)instance.GetType().GetCustomAttributes(typeof(CommandAttribute), true).FirstOrDefault();
+            CommandAttribute? attr = (CommandAttribute)instance.GetType().GetCustomAttributes(typeof(CommandAttribute), true).FirstOrDefault();
 
             if (attr is null)
             {
@@ -52,7 +52,7 @@ namespace Community.VisualStudio.Toolkit
 
             // Use package guid if no command set guid has been specified
             Guid cmdGuid = attr.Guid == Guid.Empty ? package.GetType().GUID : attr.Guid;
-            var cmd = new CommandID(cmdGuid, attr.Id);
+            CommandID cmd = new CommandID(cmdGuid, attr.Id);
 
             instance.Command = new OleMenuCommand(instance.Execute, cmd);
             instance.Package = package;
@@ -61,7 +61,7 @@ namespace Community.VisualStudio.Toolkit
 
             await package.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
-            var commandService = (IMenuCommandService)await package.GetServiceAsync(typeof(IMenuCommandService));
+            IMenuCommandService commandService = (IMenuCommandService)await package.GetServiceAsync(typeof(IMenuCommandService));
             Assumes.Present(commandService);
 
             commandService.AddCommand(instance.Command);  // Requires main/UI thread

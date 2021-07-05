@@ -17,7 +17,7 @@ namespace Microsoft.VisualStudio.Text
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var fileName = textView.TextBuffer.GetFileName();
+            string? fileName = textView.TextBuffer.GetFileName();
 
             if (!string.IsNullOrEmpty(fileName))
             {
