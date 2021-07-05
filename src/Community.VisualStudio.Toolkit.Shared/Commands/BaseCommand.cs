@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,12 +29,12 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// The command object associated with the command ID (guid/id).
         /// </summary>
-        public OleMenuCommand? Command { get; private set; }
+        public OleMenuCommand Command { get; private set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
 
         /// <summary>
         /// The package class that initialized this class.
         /// </summary>
-        public AsyncPackage? Package { get; private set; }
+        public AsyncPackage Package { get; private set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
 
         /// <summary>
         /// Initializes the command. This method must be called from the <see cref="AsyncPackage.InitializeAsync"/> method for the command to work.
@@ -60,7 +60,7 @@ namespace Community.VisualStudio.Toolkit
             instance.Command.BeforeQueryStatus += (s, e) => { instance.BeforeQueryStatus(e); };
 
             await package.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
-            
+
             var commandService = (IMenuCommandService)await package.GetServiceAsync(typeof(IMenuCommandService));
             Assumes.Present(commandService);
 
@@ -86,7 +86,7 @@ namespace Community.VisualStudio.Toolkit
         /// </remarks>
         protected virtual void Execute(object sender, EventArgs e)
         {
-            Package?.JoinableTaskFactory.RunAsync(async delegate
+            Package.JoinableTaskFactory.RunAsync(async delegate
             {
                 try
                 {
@@ -96,7 +96,7 @@ namespace Community.VisualStudio.Toolkit
                 {
                     await ex.LogAsync();
                 }
-            });
+            }).FireAndForget();
         }
 
         /// <summary>Executes asynchronously when the command is invoked and <c>Execute(object, EventArgs)</c> isn't overridden.</summary>
