@@ -66,7 +66,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
         internal static DocumentView ToDocumentView(this IWpfTextView textView)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            IVsTextView nativeView = textView.ToIVsTextView();
+            IVsTextView? nativeView = textView.ToIVsTextView();
 
             if (nativeView != null)
             {
