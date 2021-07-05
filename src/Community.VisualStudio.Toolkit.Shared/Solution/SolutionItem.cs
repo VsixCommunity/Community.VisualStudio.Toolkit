@@ -13,7 +13,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
-    /// An item reprensenting a file, folder, project or other item in Solution Explorer.
+    /// Represents a file, folder, project, or other item in Solution Explorer.
     /// </summary>
     [DebuggerDisplay("{Name} ({Type})")]
     public class SolutionItem
