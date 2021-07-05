@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Debugger\DebuggerEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Selection\SelectionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Solution\SolutionItemType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\SolutionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Documents\DocumentEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ExceptionExtensions.cs" />

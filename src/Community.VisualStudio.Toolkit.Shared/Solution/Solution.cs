@@ -62,12 +62,12 @@ namespace Community.VisualStudio.Toolkit
         {
             SolutionItem? item = await GetActiveSolutionItemAsync();
 
-            if (item?.Type == NodeType.Project)
+            if (item?.Type == SolutionItemType.Project)
             {
                 return item;
             }
 
-            return item?.FindParent(NodeType.Project);
+            return item?.FindParent(SolutionItemType.Project);
         }
 
         /// <summary>
@@ -95,11 +95,11 @@ namespace Community.VisualStudio.Toolkit
             {
                 SolutionItem? proj = await SolutionItem.FromHierarchyAsync(hierarchy, VSConstants.VSITEMID_ROOT);
 
-                if (proj?.Type == NodeType.Project)
+                if (proj?.Type == SolutionItemType.Project)
                 {
                     list.Add(proj);
                 }
-                else if (includeSolutionFolders && proj?.Type == NodeType.SolutionFolder)
+                else if (includeSolutionFolders && proj?.Type == SolutionItemType.SolutionFolder)
                 {
                     list.Add(proj);
                 }

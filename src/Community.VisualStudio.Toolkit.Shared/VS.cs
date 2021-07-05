@@ -29,7 +29,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Shows message boxes.</summary>
         public static MessageBox MessageBox { get; } = new();
 
-        /// <summary>Services related to the selection of windows and nodes.</summary>
+        /// <summary>Services related to the selection of windows and items in solution.</summary>
         public static Selection Selection { get; } = new();
 
         /// <summary>A collection of services commonly used by extensions.</summary>

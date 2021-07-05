@@ -33,12 +33,12 @@ namespace Community.VisualStudio.Toolkit
             _itemId = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedItemID : item.HierarchyIdentity.ItemID;
 
             Name = item.Text;
-            Type = GetNodeType(item.HierarchyIdentity);
+            Type = GetSolutionItemType(item.HierarchyIdentity);
             FileName = GetFileName();
         }
 
         /// <summary>
-        /// The display name of the node
+        /// The display name of the item.
         /// </summary>
         public string Name { get; set; }
 
@@ -48,17 +48,17 @@ namespace Community.VisualStudio.Toolkit
         public string? FileName { get; set; }
 
         /// <summary>
-        /// The type of node.
+        /// The type of solution item.
         /// </summary>
-        public NodeType Type { get; }
+        public SolutionItemType Type { get; }
 
         /// <summary>
-        /// The parent node. Is <see langword="null"/> when there is no parent.
+        /// The parent item. Is <see langword="null"/> when there is no parent.
         /// </summary>
         public SolutionItem? Parent => _parent ??= FromHierarchyItem(_item.Parent);
 
         /// <summary>
-        /// A list of child nodes.
+        /// A list of child items.
         /// </summary>
         public IEnumerable<SolutionItem?> Children => _children ??= _item.Children.Select(t => FromHierarchyItem(t));
 
@@ -80,7 +80,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            if (Type == NodeType.Project || Type == NodeType.VirtualProject)
+            if (Type == SolutionItemType.Project || Type == SolutionItemType.VirtualProject)
             {
                 return _hierarchy.IsProjectOfType(typeGuid);
             }
@@ -98,7 +98,7 @@ namespace Community.VisualStudio.Toolkit
             List<SolutionItem>? items = new();
 
             // Add solution folder
-            if (Type == NodeType.Solution)
+            if (Type == SolutionItemType.Solution)
             {
                 Guid guid = new Guid(ProjectTypes.SOLUTION_FOLDER_OTHER);
                 Guid iidProject = typeof(IVsHierarchy).GUID;
@@ -124,7 +124,7 @@ namespace Community.VisualStudio.Toolkit
                 }
             }
             // Add file
-            else if (Type == NodeType.Project || Type == NodeType.PhysicalFolder || Type == NodeType.PhysicalFile)
+            else if (Type == SolutionItemType.Project || Type == SolutionItemType.PhysicalFolder || Type == SolutionItemType.PhysicalFile)
             {
                 VSADDRESULT[] result = new VSADDRESULT[files.Count()];
                 IVsProject ip = (IVsProject)_hierarchy;
@@ -139,7 +139,7 @@ namespace Community.VisualStudio.Toolkit
                     {
                         items.Add(item);
 
-                        if (Type == NodeType.PhysicalFile)
+                        if (Type == SolutionItemType.PhysicalFile)
                         {
                             await item.TrySetAttributeAsync("DependentUpon", Name);
                         }
@@ -147,7 +147,7 @@ namespace Community.VisualStudio.Toolkit
                 }
             }
             // Add file to solution folder
-            else if (Type == NodeType.SolutionFolder)
+            else if (Type == SolutionItemType.SolutionFolder)
             {
                 IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
                 uiShell.GetDialogOwnerHwnd(out IntPtr hwndDlgOwner);
@@ -181,14 +181,14 @@ namespace Community.VisualStudio.Toolkit
         public async Task<bool> TryRemoveAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            SolutionItem? parent = FindParent(NodeType.Project) ?? FindParent(NodeType.SolutionFolder) ?? FindParent(NodeType.Solution);
+            SolutionItem? parent = FindParent(SolutionItemType.Project) ?? FindParent(SolutionItemType.SolutionFolder) ?? FindParent(SolutionItemType.Solution);
 
             if (parent == null)
             {
                 return false;
             }
 
-            if (Type == NodeType.PhysicalFile)
+            if (Type == SolutionItemType.PhysicalFile)
             {
                 if (parent._hierarchy is IVsProject2 project)
                 {
@@ -198,7 +198,7 @@ namespace Community.VisualStudio.Toolkit
             }
             else
             {
-                SolutionItem? solution = FindParent(NodeType.Solution);
+                SolutionItem? solution = FindParent(SolutionItemType.Solution);
 
                 if (solution?._hierarchy is IVsSolution ivsSolution)
                 {
@@ -219,12 +219,12 @@ namespace Community.VisualStudio.Toolkit
 
             if (_hierarchy is IVsBuildPropertyStorage storage)
             {
-                if (Type == NodeType.Project || Type == NodeType.VirtualProject || Type == NodeType.MiscProject)
+                if (Type == SolutionItemType.Project || Type == SolutionItemType.VirtualProject || Type == SolutionItemType.MiscProject)
                 {
                     storage.SetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, value);
                     return true;
                 }
-                else if (Type == NodeType.PhysicalFile || Type == NodeType.PhysicalFolder)
+                else if (Type == SolutionItemType.PhysicalFile || Type == SolutionItemType.PhysicalFolder)
                 {
                     storage.SetItemAttribute(_itemId, name, value);
                     return true;
@@ -244,12 +244,12 @@ namespace Community.VisualStudio.Toolkit
 
             if (_hierarchy is IVsBuildPropertyStorage storage)
             {
-                if (Type == NodeType.Project || Type == NodeType.VirtualProject || Type == NodeType.MiscProject)
+                if (Type == SolutionItemType.Project || Type == SolutionItemType.VirtualProject || Type == SolutionItemType.MiscProject)
                 {
                     storage.GetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, out string? value);
                     return value;
                 }
-                else if (Type == NodeType.PhysicalFile || Type == NodeType.PhysicalFolder)
+                else if (Type == SolutionItemType.PhysicalFile || Type == SolutionItemType.PhysicalFolder)
                 {
                     storage.GetItemAttribute(_itemId, name, out string? value);
                     return value;
@@ -262,7 +262,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Find the nearest parent matching the specified type.
         /// </summary>
-        public SolutionItem? FindParent(NodeType type)
+        public SolutionItem? FindParent(SolutionItemType type)
         {
             SolutionItem? parent = Parent;
 
@@ -374,45 +374,45 @@ namespace Community.VisualStudio.Toolkit
             return items;
         }
 
-        private NodeType GetNodeType(IVsHierarchyItemIdentity identity)
+        private SolutionItemType GetSolutionItemType(IVsHierarchyItemIdentity identity)
         {
             if (HierarchyUtilities.IsSolutionNode(identity))
             {
-                return NodeType.Solution;
+                return SolutionItemType.Solution;
             }
             else if (HierarchyUtilities.IsSolutionFolder(identity))
             {
-                return NodeType.SolutionFolder;
+                return SolutionItemType.SolutionFolder;
             }
             else if (HierarchyUtilities.IsMiscellaneousProject(identity))
             {
-                return NodeType.MiscProject;
+                return SolutionItemType.MiscProject;
             }
             else if (HierarchyUtilities.IsVirtualProject(identity))
             {
-                return NodeType.VirtualProject;
+                return SolutionItemType.VirtualProject;
             }
             else if (HierarchyUtilities.IsProject(identity))
             {
-                return NodeType.Project;
+                return SolutionItemType.Project;
             }
             else if (HierarchyUtilities.IsPhysicalFile(identity))
             {
-                return NodeType.PhysicalFile;
+                return SolutionItemType.PhysicalFile;
             }
             else if (HierarchyUtilities.IsPhysicalFolder(identity))
             {
-                return NodeType.PhysicalFolder;
+                return SolutionItemType.PhysicalFolder;
             }
 
-            return NodeType.Unknown;
+            return SolutionItemType.Unknown;
         }
 
         private string? GetFileName()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            if (Type == NodeType.SolutionFolder)
+            if (Type == SolutionItemType.SolutionFolder)
             {
                 return null;
             }
@@ -431,28 +431,5 @@ namespace Community.VisualStudio.Toolkit
 
             return fileName;
         }
-    }
-
-    /// <summary>
-    /// Types of nodes.
-    /// </summary>
-    public enum NodeType
-    {
-        /// <summary>Physical file on disk</summary>
-        PhysicalFile,
-        /// <summary>Physical folder on disk</summary>
-        PhysicalFolder,
-        /// <summary>A project</summary>
-        Project,
-        /// <summary>A miscellaneous project</summary>
-        MiscProject,
-        /// <summary>A virtual project</summary>
-        VirtualProject,
-        /// <summary>The solution</summary>
-        Solution,
-        /// <summary>A solution folder</summary>
-        SolutionFolder,
-        /// <summary>Unknown node type</summary>
-        Unknown,
     }
 }
