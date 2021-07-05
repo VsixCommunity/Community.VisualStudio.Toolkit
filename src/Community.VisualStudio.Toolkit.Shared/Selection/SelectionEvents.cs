@@ -38,7 +38,7 @@ namespace Community.VisualStudio.Toolkit
         public event EventHandler<SelectionChangedEventArgs>? SelectionChanged;
 
         /// <summary>
-        /// Fires when the UI Context changes.
+        /// Fires when the UI context changes.
         /// </summary>
         public event EventHandler<UIContextChangedEventArgs>? UIContextChanged;
 
