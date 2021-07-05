@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -57,7 +58,7 @@ namespace Community.VisualStudio.Toolkit
             _implementation = new T() { Package = package };
 
             // Verify that the package has a ProvideToolWindow attribute for this tool window.
-            var toolWindowAttributes = (ProvideToolWindowAttribute[])package.GetType().GetCustomAttributes(typeof(ProvideToolWindowAttribute), true);
+            ProvideToolWindowAttribute[] toolWindowAttributes = (ProvideToolWindowAttribute[])package.GetType().GetCustomAttributes(typeof(ProvideToolWindowAttribute), true);
             ProvideToolWindowAttribute? foundToolWindowAttr = toolWindowAttributes.FirstOrDefault(a => a.ToolType == _implementation.PaneType);
             if (foundToolWindowAttr == null)
             {
@@ -99,7 +100,7 @@ namespace Community.VisualStudio.Toolkit
             }
 
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var windowFrame = (Microsoft.VisualStudio.Shell.Interop.IVsWindowFrame)window.Frame;
+            IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
             Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
 
             return window;

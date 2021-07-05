@@ -34,7 +34,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
                 return new DocumentView(null, null);
             }
 
-            ErrorHandler.ThrowOnFailure(nativeView.GetWindowFrame(out var frameValue));
+            ErrorHandler.ThrowOnFailure(nativeView.GetWindowFrame(out object frameValue));
 
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -42,7 +42,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
 
             if (frameValue is IVsWindowFrame frame && view != null)
             {
-                var windowFrame = new WindowFrame(frame);
+                WindowFrame windowFrame = new WindowFrame(frame);
                 return new DocumentView(windowFrame, view);
             }
 
@@ -66,7 +66,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
         internal static DocumentView ToDocumentView(this IWpfTextView textView)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var nativeView = textView.ToIVsTextView();
+            IVsTextView nativeView = textView.ToIVsTextView();
 
             if (nativeView != null)
             {
@@ -94,7 +94,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            var compService = ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel)) as IComponentModel2;
+            IComponentModel2? compService = ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel)) as IComponentModel2;
             Assumes.Present(compService);
 
             IVsEditorAdaptersFactoryService? editorAdapter = compService?.GetService<IVsEditorAdaptersFactoryService>();
@@ -119,7 +119,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            var compService = ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel)) as IComponentModel2;
+            IComponentModel2? compService = ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel)) as IComponentModel2;
             Assumes.Present(compService);
 
             IVsEditorAdaptersFactoryService? editorAdapter = compService?.GetService<IVsEditorAdaptersFactoryService>();

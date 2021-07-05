@@ -82,7 +82,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (element is Control control)
             {
-                var original = control.ReadLocalValue(property);
+                object original = control.ReadLocalValue(property);
 
                 if (!ReferenceEquals(value, DependencyProperty.UnsetValue))
                 {
@@ -97,7 +97,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (element is Control control)
             {
-                var value = control.ReadLocalValue(backup);
+                object value = control.ReadLocalValue(backup);
 
                 if (!ReferenceEquals(value, DependencyProperty.UnsetValue))
                 {
@@ -114,7 +114,7 @@ namespace Community.VisualStudio.Toolkit
 
         private static void OnElementInitialized(object sender, EventArgs args)
         {
-            var element = (FrameworkElement)sender;
+            FrameworkElement element = (FrameworkElement)sender;
             MergeStyles(element);
             element.Initialized -= OnElementInitialized;
         }
@@ -132,11 +132,11 @@ namespace Community.VisualStudio.Toolkit
 
         private static ResourceDictionary BuildThemeResources()
         {
-            var resources = new ResourceDictionary();
+            ResourceDictionary resources = new ResourceDictionary();
 
             try
             {
-                var inputPadding = new Thickness(6, 8, 6, 8); // This is the same padding used by WatermarkedTextBox.
+                Thickness inputPadding = new Thickness(6, 8, 6, 8); // This is the same padding used by WatermarkedTextBox.
 
                 resources[ToolkitResourceKeys.InputPaddingKey] = inputPadding;
 

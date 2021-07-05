@@ -21,7 +21,7 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsShell? shell = await VS.Services.GetShellAsync();
 
-            shell.GetProperty((int)__VSSPROPID5.VSSPROPID_ReleaseVersion, out var value);
+            shell.GetProperty((int)__VSSPROPID5.VSSPROPID_ReleaseVersion, out object value);
 
             if (value is string raw)
             {
@@ -39,7 +39,7 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IVsAppCommandLine? acl = await VS.Services.GetAppCommandLineAsync();
-            acl.GetOption(key, out _, out var value);
+            acl.GetOption(key, out _, out string value);
 
             return value;
         }
@@ -53,7 +53,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task RestartAsync(bool forceElevated = false)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var shell = (IVsShell4)await VS.Services.GetShellAsync();
+            IVsShell4 shell = (IVsShell4)await VS.Services.GetShellAsync();
 
             if (forceElevated)
             {
@@ -61,7 +61,7 @@ namespace Community.VisualStudio.Toolkit
             }
             else
             {
-                ((IVsShell3)shell).IsRunningElevated(out var elevated);
+                ((IVsShell3)shell).IsRunningElevated(out bool elevated);
                 __VSRESTARTTYPE type = elevated ? __VSRESTARTTYPE.RESTART_Elevated : __VSRESTARTTYPE.RESTART_Normal;
                 shell.Restart((uint)type);
             }

@@ -42,7 +42,7 @@ namespace Community.VisualStudio.Toolkit
             get
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
-                ErrorHandler.ThrowOnFailure(_frame.GetProperty((int)__VSFPROPID.VSFPROPID_Caption, out var result));
+                ErrorHandler.ThrowOnFailure(_frame.GetProperty((int)__VSFPROPID.VSFPROPID_Caption, out object result));
                 return result.ToString();
             }
             set
@@ -199,8 +199,8 @@ namespace Community.VisualStudio.Toolkit
             //TODO: Make this async
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            var pdwSFP = new VSSETFRAMEPOS[1];
-            ErrorHandler.ThrowOnFailure(((IVsWindowFrame)this).GetFramePos(pdwSFP, out _, out var left, out var top, out var width, out var height));
+            VSSETFRAMEPOS[] pdwSFP = new VSSETFRAMEPOS[1];
+            ErrorHandler.ThrowOnFailure(((IVsWindowFrame)this).GetFramePos(pdwSFP, out _, out int left, out int top, out int width, out int height));
             position = new Rectangle(left, top, width, height);
 
             return pdwSFP[0] switch
@@ -221,7 +221,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            ErrorHandler.ThrowOnFailure(((IVsWindowFrame)this).IsOnScreen(out var onScreen));
+            ErrorHandler.ThrowOnFailure(((IVsWindowFrame)this).IsOnScreen(out int onScreen));
             return onScreen != 0;
         }
 
@@ -328,7 +328,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnShow != null)
             {
-                var e = new WindowFrameShowEventArgs((FrameShow)fShow);
+                WindowFrameShowEventArgs e = new WindowFrameShowEventArgs((FrameShow)fShow);
                 OnShow(this, e);
             }
             InvokeStatusChanged();
@@ -339,7 +339,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnMove != null)
             {
-                var e = new WindowFramePositionChangedEventArgs(new Rectangle(x, y, w, h));
+                WindowFramePositionChangedEventArgs e = new WindowFramePositionChangedEventArgs(new Rectangle(x, y, w, h));
                 OnMove(this, e);
             }
             InvokeStatusChanged();
@@ -350,7 +350,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnResize != null)
             {
-                var e = new WindowFramePositionChangedEventArgs(new Rectangle(x, y, w, h));
+                WindowFramePositionChangedEventArgs e = new WindowFramePositionChangedEventArgs(new Rectangle(x, y, w, h));
                 OnResize(this, e);
             }
             InvokeStatusChanged();
@@ -361,7 +361,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnDockChange != null)
             {
-                var e = new WindowFrameDockChangedEventArgs(new Rectangle(x, y, w, h), fDockable != 0);
+                WindowFrameDockChangedEventArgs e = new WindowFrameDockChangedEventArgs(new Rectangle(x, y, w, h), fDockable != 0);
                 OnDockChange(this, e);
             }
             InvokeStatusChanged();
@@ -372,7 +372,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnClose != null)
             {
-                var e = new WindowFrameCloseEventArgs((FrameCloseOption)pgrfSaveOptions);
+                WindowFrameCloseEventArgs e = new WindowFrameCloseEventArgs((FrameCloseOption)pgrfSaveOptions);
                 OnClose(this, e);
             }
             InvokeStatusChanged();
@@ -388,7 +388,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnStatusChange != null)
             {
-                var e = new EventArgs();
+                EventArgs e = new EventArgs();
                 OnStatusChange(this, e);
             }
         }

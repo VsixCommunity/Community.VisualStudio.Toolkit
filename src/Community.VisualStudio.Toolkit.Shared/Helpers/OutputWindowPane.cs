@@ -79,7 +79,7 @@ namespace Community.VisualStudio.Toolkit
                     if (_pane == null)
                         throw new InvalidOperationException("IVsOutputWindowPane should exist");
 
-                    var name = string.Empty;
+                    string name = string.Empty;
                     _pane.GetName(ref name);
                     return name;
                 });
@@ -105,7 +105,7 @@ namespace Community.VisualStudio.Toolkit
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentException(nameof(name));
 
-            var pane = new OutputWindowPane(name, Guid.NewGuid());
+            OutputWindowPane pane = new OutputWindowPane(name, Guid.NewGuid());
 
             if (!lazyCreate)
             {
@@ -143,7 +143,7 @@ namespace Community.VisualStudio.Toolkit
         public static async Task<OutputWindowPane?> GetAsync(Guid guid)
         {
             // Empty string for `newPaneName` signals to EnsurePaneAsync that we want to get an existing pane.
-            var pane = new OutputWindowPane(string.Empty, guid);
+            OutputWindowPane pane = new OutputWindowPane(string.Empty, guid);
 
             try
             {

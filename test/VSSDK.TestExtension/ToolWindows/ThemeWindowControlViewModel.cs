@@ -19,7 +19,7 @@ namespace TestExtension
 
         private void OpenDialog()
         {
-            var dialog = new ThemeWindowDialog { DataContext = new ThemeWindowDialogViewModel { UseVsTheme = UseVsTheme } };
+            ThemeWindowDialog dialog = new ThemeWindowDialog { DataContext = new ThemeWindowDialogViewModel { UseVsTheme = UseVsTheme } };
             dialog.ShowModal();
         }
     }

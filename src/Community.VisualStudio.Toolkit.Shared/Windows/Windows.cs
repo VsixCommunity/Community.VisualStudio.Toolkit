@@ -71,7 +71,7 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IVsMonitorSelection? svc = await VS.Services.GetMonitorSelectionAsync();
-            svc.GetCurrentElementValue((uint)VSConstants.VSSELELEMID.SEID_WindowFrame, out var selection);
+            svc.GetCurrentElementValue((uint)VSConstants.VSSELELEMID.SEID_WindowFrame, out object selection);
 
             if (selection is IVsWindowFrame frame)
             {
@@ -108,7 +108,7 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
-            var hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fFindFirst, ref toolWindowGuid, out IVsWindowFrame? frame);
+            int hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fFindFirst, ref toolWindowGuid, out IVsWindowFrame? frame);
 
             if (hr == VSConstants.S_OK)
             {
@@ -138,7 +138,7 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
-            var hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref toolWindowGuid, out IVsWindowFrame? frame);
+            int hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref toolWindowGuid, out IVsWindowFrame? frame);
 
             if (hr == VSConstants.S_OK)
             {
@@ -159,13 +159,13 @@ namespace Community.VisualStudio.Toolkit
             IVsUIShell uiShell = await VS.Services.GetUIShellAsync();
 
             ErrorHandler.ThrowOnFailure(uiShell.GetToolWindowEnum(out IEnumWindowFrames windowEnumerator));
-            var frame = new IVsWindowFrame[1];
-            var hr = VSConstants.S_OK;
+            IVsWindowFrame[]? frame = new IVsWindowFrame[1];
+            int hr = VSConstants.S_OK;
             List<WindowFrame> list = new();
 
             while (hr == VSConstants.S_OK)
             {
-                hr = windowEnumerator.Next(1, frame, out var fetched);
+                hr = windowEnumerator.Next(1, frame, out uint fetched);
                 ErrorHandler.ThrowOnFailure(hr);
 
                 if (fetched == 1)

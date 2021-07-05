@@ -18,7 +18,7 @@ namespace Microsoft.VisualStudio.Shell.Interop
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            solution.GetProperty((int)__VSPROPID.VSPROPID_IsSolutionOpen, out var value);
+            solution.GetProperty((int)__VSPROPID.VSPROPID_IsSolutionOpen, out object value);
             return value is bool isOpen && isOpen;
         }
 
@@ -30,7 +30,7 @@ namespace Microsoft.VisualStudio.Shell.Interop
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            solution.GetProperty((int)__VSPROPID.VSPROPID_IsSolutionOpening, out var value);
+            solution.GetProperty((int)__VSPROPID.VSPROPID_IsSolutionOpening, out object value);
             return value is bool isOpening && isOpening;
         }
 
@@ -62,8 +62,8 @@ namespace Microsoft.VisualStudio.Shell.Interop
                 yield break;
             }
 
-            var hierarchy = new IVsHierarchy[1];
-            while (enumHierarchies.Next(1, hierarchy, out var fetched) == VSConstants.S_OK && fetched == 1)
+            IVsHierarchy[] hierarchy = new IVsHierarchy[1];
+            while (enumHierarchies.Next(1, hierarchy, out uint fetched) == VSConstants.S_OK && fetched == 1)
             {
                 if (hierarchy.Length > 0 && hierarchy[0] != null)
                 {

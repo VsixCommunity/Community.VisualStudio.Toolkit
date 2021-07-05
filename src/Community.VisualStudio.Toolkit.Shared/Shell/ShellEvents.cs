@@ -24,7 +24,7 @@ namespace Community.VisualStudio.Toolkit
         internal ShellEvents()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var svc = (IVsShell)ServiceProvider.GlobalProvider.GetService(typeof(SVsShell));
+            IVsShell svc = (IVsShell)ServiceProvider.GlobalProvider.GetService(typeof(SVsShell));
             Assumes.Present(svc);
             svc.AdviseShellPropertyChanges(this, out _);
             svc.AdviseBroadcastMessages(this, out _);

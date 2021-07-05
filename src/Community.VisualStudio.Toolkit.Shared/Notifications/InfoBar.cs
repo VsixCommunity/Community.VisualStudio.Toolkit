@@ -34,7 +34,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            frame.GetProperty((int)__VSFPROPID7.VSFPROPID_InfoBarHost, out var value);
+            frame.GetProperty((int)__VSFPROPID7.VSFPROPID_InfoBarHost, out object value);
 
             if (value is IVsInfoBarHost host)
             {
@@ -96,7 +96,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<bool> TryShowInfoBarUIAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var infoBarUIFactory = (IVsInfoBarUIFactory)await VS.GetRequiredServiceAsync<SVsInfoBarUIFactory, object>();
+            IVsInfoBarUIFactory infoBarUIFactory = (IVsInfoBarUIFactory)await VS.GetRequiredServiceAsync<SVsInfoBarUIFactory, object>();
 
             _uiElement = infoBarUIFactory.CreateInfoBar(_model);
             _uiElement.Advise(this, out _);

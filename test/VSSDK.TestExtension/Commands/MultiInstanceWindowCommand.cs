@@ -10,7 +10,7 @@ namespace TestExtension
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
             // Create the window with the first free ID.
-            for (var i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 ToolWindowPane window = await MultiInstanceWindow.ShowAsync(id: i, create: false);
 

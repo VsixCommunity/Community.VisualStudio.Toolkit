@@ -29,7 +29,7 @@ namespace Microsoft.VisualStudio.Imaging.Interop
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IVsUIObject? result = await ToUiObjectAsync(moniker, size);
-            ErrorHandler.ThrowOnFailure(result.get_Data(out var data));
+            ErrorHandler.ThrowOnFailure(result.get_Data(out object data));
 
             return data as BitmapSource;
         }
@@ -44,7 +44,7 @@ namespace Microsoft.VisualStudio.Imaging.Interop
             IVsImageService2 imageService = await VS.GetRequiredServiceAsync<SVsImageService, IVsImageService2>();
             Color backColor = VSColorTheme.GetThemedColor(EnvironmentColors.ToolWindowBackgroundColorKey);
 
-            var imageAttributes = new ImageAttributes
+            ImageAttributes imageAttributes = new ImageAttributes
             {
                 Flags = (uint)_ImageAttributesFlags.IAF_RequiredFlags | unchecked((uint)_ImageAttributesFlags.IAF_Background),
                 ImageType = (uint)_UIImageType.IT_Bitmap,

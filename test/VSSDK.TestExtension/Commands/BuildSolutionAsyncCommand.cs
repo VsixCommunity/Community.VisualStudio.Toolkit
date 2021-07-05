@@ -11,11 +11,15 @@ namespace TestExtension.Commands
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var buildResult = await VS.Build.BuildSolutionAsync();
+            bool buildResult = await VS.Build.BuildSolutionAsync();
             if (buildResult)
+            {
                 await VS.MessageBox.ShowAsync("Build Result", $"The solution was built successfully!");
+            }
             else
+            {
                 await VS.MessageBox.ShowErrorAsync("Build Result", $"The solution did not build successfully :(");
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsCommandWindow cw = await VS.Services.GetCommandWindowAsync();
 
-            var hr = cw.PrepareCommand(name, out Guid commandGroup, out var commandId, out _, new PREPARECOMMANDRESULT[0]);
+            int hr = cw.PrepareCommand(name, out Guid commandGroup, out uint commandId, out _, new PREPARECOMMANDRESULT[0]);
 
             if (hr == VSConstants.S_OK)
             {
@@ -103,7 +103,7 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             
             IVsRegisterPriorityCommandTarget? priority = await VS.Services.GetPriorityCommandTargetAsync();
-            var interceptor = new CommandInterceptor(cmd, func);
+            CommandInterceptor interceptor = new CommandInterceptor(cmd, func);
 
             ErrorHandler.ThrowOnFailure(priority.RegisterPriorityCommandTarget(0, interceptor, out _));
         }

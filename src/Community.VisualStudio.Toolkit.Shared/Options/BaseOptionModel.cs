@@ -74,7 +74,7 @@ namespace Community.VisualStudio.Toolkit
         /// <returns></returns>
         public static async Task<T> CreateAsync()
         {
-            var instance = new T();
+            T instance = new T();
             await instance.LoadAsync();
             return instance;
         }
@@ -102,7 +102,7 @@ namespace Community.VisualStudio.Toolkit
             ShellSettingsManager manager = await _settingsManager.GetValueAsync();
             SettingsScope scope = SettingsScope.UserSettings;
             SettingsStore settingsStore = manager.GetReadOnlySettingsStore(scope);
-            var testedCollections = new HashSet<string>();
+            HashSet<string> testedCollections = new HashSet<string>();
 
             bool DoesCollectionExist(string collectionName)
             {
@@ -122,7 +122,7 @@ namespace Community.VisualStudio.Toolkit
             foreach (PropertyInfo property in GetOptionProperties())
             {
                 object? value = null;
-                var collectionName = CollectionName;
+                string collectionName = CollectionName;
                 SettingDataType dataType = SettingDataType.Serialized;
                 string? serializedValue = null;
                 try
@@ -196,12 +196,12 @@ namespace Community.VisualStudio.Toolkit
             ShellSettingsManager manager = await _settingsManager.GetValueAsync();
             SettingsScope scope = SettingsScope.UserSettings;
             WritableSettingsStore settingsStore = manager.GetWritableSettingsStore(scope);
-            var testedCollections = new HashSet<string>();
+            HashSet<string> testedCollections = new HashSet<string>();
 
             foreach (PropertyInfo property in GetOptionProperties())
             {
                 OverrideCollectionNameAttribute? collectionNameAttribute = property.GetCustomAttribute<OverrideCollectionNameAttribute>();
-                var collectionName = collectionNameAttribute?.CollectionName ?? CollectionName;
+                string collectionName = collectionNameAttribute?.CollectionName ?? CollectionName;
 
                 OverrideDataTypeAttribute? overrideDataTypeAttribute = property.GetCustomAttribute<OverrideDataTypeAttribute>();
                 SettingDataType dataType = overrideDataTypeAttribute?.SettingDataType ?? SettingDataType.Serialized;
@@ -222,31 +222,31 @@ namespace Community.VisualStudio.Toolkit
                     switch (dataType)
                     {
                         case SettingDataType.Serialized:
-                            var serializedValue = SerializeValue(property.GetValue(this));
+                            string serializedValue = SerializeValue(property.GetValue(this));
                             settingsStore.SetString(collectionName, property.Name, serializedValue);
                             break;
                         case SettingDataType.Bool:
-                            var boolValue = Convert.ToBoolean(property.GetValue(this));
+                            bool boolValue = Convert.ToBoolean(property.GetValue(this));
                             settingsStore.SetBoolean(collectionName, property.Name, boolValue);
                             break;
                         case SettingDataType.Int32:
-                            var intValue = Convert.ToInt32(property.GetValue(this));
+                            int intValue = Convert.ToInt32(property.GetValue(this));
                             settingsStore.SetInt32(collectionName, property.Name, intValue);
                             break;
                         case SettingDataType.UInt32:
-                            var uintValue = Convert.ToUInt32(property.GetValue(this));
+                            uint uintValue = Convert.ToUInt32(property.GetValue(this));
                             settingsStore.SetUInt32(collectionName, property.Name, uintValue);
                             break;
                         case SettingDataType.Int64:
-                            var int64Value = Convert.ToInt64(property.GetValue(this));
+                            long int64Value = Convert.ToInt64(property.GetValue(this));
                             settingsStore.SetInt64(collectionName, property.Name, int64Value);
                             break;
                         case SettingDataType.UInt64:
-                            var uint64Value = Convert.ToUInt64(property.GetValue(this));
+                            ulong uint64Value = Convert.ToUInt64(property.GetValue(this));
                             settingsStore.SetUInt64(collectionName, property.Name, uint64Value);
                             break;
                         case SettingDataType.String:
-                            var stringValue = Convert.ToString(property.GetValue(this));
+                            string stringValue = Convert.ToString(property.GetValue(this));
                             settingsStore.SetString(collectionName, property.Name, stringValue);
                             break;
                         default:
@@ -276,9 +276,9 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         protected virtual string SerializeValue(object value)
         {
-            using (var stream = new MemoryStream())
+            using (MemoryStream stream = new MemoryStream())
             {
-                var formatter = new BinaryFormatter();
+                BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(stream, value);
                 stream.Flush();
                 return Convert.ToBase64String(stream.ToArray());
@@ -290,11 +290,11 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         protected virtual object DeserializeValue(string value, Type type)
         {
-            var b = Convert.FromBase64String(value);
+            byte[] b = Convert.FromBase64String(value);
 
-            using (var stream = new MemoryStream(b))
+            using (MemoryStream stream = new MemoryStream(b))
             {
-                var formatter = new BinaryFormatter();
+                BinaryFormatter formatter = new BinaryFormatter();
                 return formatter.Deserialize(stream);
             }
         }

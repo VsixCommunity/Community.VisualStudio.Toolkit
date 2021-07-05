@@ -26,10 +26,10 @@ namespace TestExtension
         private async Task ShowMessageAsync()
         {
             await VS.StatusBar.ShowMessageAsync("Test");
-            var text = await VS.StatusBar.GetMessageAsync();
+            string text = await VS.StatusBar.GetMessageAsync();
             await VS.StatusBar.ShowMessageAsync(text + " OK");
 
-            var ex = new Exception(nameof(TestExtension));
+            Exception ex = new Exception(nameof(TestExtension));
             await ex.LogAsync();
 
             VSConstants.MessageBoxResult button = await VS.MessageBox.ShowAsync("message", "title");

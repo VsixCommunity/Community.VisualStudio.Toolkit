@@ -84,11 +84,11 @@ namespace Microsoft.VisualStudio.Shell.Interop
 
             if (hierarchy is IVsAggregatableProject aggregatable)
             {
-                if (ErrorHandler.Succeeded(aggregatable.GetAggregateProjectTypeGuids(out var types)))
+                if (ErrorHandler.Succeeded(aggregatable.GetAggregateProjectTypeGuids(out string types)))
                 {
-                    var guid = new Guid(typeGuid);
+                    Guid guid = new Guid(typeGuid);
 
-                    foreach (var type in types.Split(';'))
+                    foreach (string type in types.Split(';'))
                     {
                         if (Guid.TryParse(type, out Guid identifier) && guid.Equals(identifier))
                         {

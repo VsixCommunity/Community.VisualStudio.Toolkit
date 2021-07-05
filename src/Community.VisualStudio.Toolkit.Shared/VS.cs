@@ -98,7 +98,7 @@ namespace Community.VisualStudio.Toolkit
         public static TInterface GetMefService<TInterface>() where TInterface : class
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var compService = (IComponentModel2)ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel));
+            IComponentModel2 compService = (IComponentModel2)ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel));
             Assumes.Present(compService);
             return compService.GetService<TInterface>();
         }

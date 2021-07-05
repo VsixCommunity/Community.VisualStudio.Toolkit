@@ -21,7 +21,7 @@ namespace Community.VisualStudio.Toolkit
         internal WindowEvents()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var svc = (IVsUIShell7)ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell));
+            IVsUIShell7 svc = (IVsUIShell7)ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell));
             Assumes.Present(svc);
             svc.AdviseWindowFrameEvents(this);
         }

@@ -22,7 +22,7 @@ namespace Community.VisualStudio.Toolkit
         internal BuildEvents()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var svc = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolutionBuildManager)) as IVsSolutionBuildManager;
+            IVsSolutionBuildManager? svc = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolutionBuildManager)) as IVsSolutionBuildManager;
             Assumes.Present(svc);
             svc!.AdviseUpdateSolutionEvents(this, out _);
         }
@@ -111,7 +111,7 @@ namespace Community.VisualStudio.Toolkit
             // if rebuild project or solution, dwAction == 0x410000
             if (ProjectCleanStarted != null || ProjectBuildStarted != null)
             {
-                var project = SolutionItem.FromHierarchy(pHierProj, VSConstants.VSITEMID_ROOT);
+                SolutionItem? project = SolutionItem.FromHierarchy(pHierProj, VSConstants.VSITEMID_ROOT);
 
                 // Clean
                 if (dwAction == 0x100000)
@@ -134,7 +134,7 @@ namespace Community.VisualStudio.Toolkit
             // This method is called when a specific project finishes building.
             if (ProjectBuildDone != null || ProjectCleanDone != null)
             {
-                var project = SolutionItem.FromHierarchy(pHierProj, VSConstants.VSITEMID_ROOT);
+                SolutionItem? project = SolutionItem.FromHierarchy(pHierProj, VSConstants.VSITEMID_ROOT);
 
                 // Clean
                 if (dwAction == 0x100000)

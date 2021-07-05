@@ -45,7 +45,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (Opened != null)
             {
-                var file = _rdt.GetDocumentInfo(docCookie).Moniker;
+                string file = _rdt.GetDocumentInfo(docCookie).Moniker;
                 Opened.Invoke(this, file);
             }
 
@@ -56,7 +56,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (Closed != null)
             {
-                var file = _rdt.GetDocumentInfo(docCookie).Moniker;
+                string file = _rdt.GetDocumentInfo(docCookie).Moniker;
                 Closed!.Invoke(this, file);
             }
 
@@ -67,7 +67,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (Saved != null)
             {
-                var file = _rdt.GetDocumentInfo(docCookie).Moniker;
+                string file = _rdt.GetDocumentInfo(docCookie).Moniker;
                 Saved?.Invoke(this, file);
             }
 

@@ -100,14 +100,14 @@ namespace Community.VisualStudio.Toolkit
             // Add solution folder
             if (Type == NodeType.Solution)
             {
-                var guid = new Guid(ProjectTypes.SOLUTION_FOLDER_OTHER);
+                Guid guid = new Guid(ProjectTypes.SOLUTION_FOLDER_OTHER);
                 Guid iidProject = typeof(IVsHierarchy).GUID;
                 IVsSolution sol = await VS.Services.GetSolutionAsync();
 
-                foreach (var file in files)
+                foreach (string file in files)
                 {
-                    var solFldName = Path.GetDirectoryName(file);
-                    var hr = sol.CreateProject(ref guid, null, null, solFldName, 0, ref iidProject, out IntPtr ptr);
+                    string solFldName = Path.GetDirectoryName(file);
+                    int hr = sol.CreateProject(ref guid, null, null, solFldName, 0, ref iidProject, out IntPtr ptr);
 
                     if (hr == VSConstants.S_OK && ptr != IntPtr.Zero)
                     {
@@ -126,12 +126,12 @@ namespace Community.VisualStudio.Toolkit
             // Add file
             else if (Type == NodeType.Project || Type == NodeType.PhysicalFolder || Type == NodeType.PhysicalFile)
             {
-                var result = new VSADDRESULT[files.Count()];
-                var ip = (IVsProject)_hierarchy;
+                VSADDRESULT[] result = new VSADDRESULT[files.Count()];
+                IVsProject ip = (IVsProject)_hierarchy;
 
                 ErrorHandler.ThrowOnFailure(ip.AddItem(_itemId, VSADDITEMOPERATION.VSADDITEMOP_LINKTOFILE, string.Empty, (uint)files.Count(), files, IntPtr.Zero, result));
 
-                foreach (var file in files)
+                foreach (string file in files)
                 {
                     SolutionItem? item = await FromFileAsync(file);
 
@@ -153,8 +153,8 @@ namespace Community.VisualStudio.Toolkit
                 uiShell.GetDialogOwnerHwnd(out IntPtr hwndDlgOwner);
 
                 Guid rguidEditorType = Guid.Empty, rguidLogicalView = Guid.Empty;
-                var result = new VSADDRESULT[1];
-                var project3 = (IVsProject3)_hierarchy;
+                VSADDRESULT[] result = new VSADDRESULT[1];
+                IVsProject3 project3 = (IVsProject3)_hierarchy;
 
                 project3.AddItemWithSpecific(itemidLoc: (uint)VSConstants.VSITEMID.Root,
                     dwAddItemOperation: VSADDITEMOPERATION.VSADDITEMOP_OPENFILE,
@@ -192,7 +192,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 if (parent._hierarchy is IVsProject2 project)
                 {
-                    project.RemoveItem(0, _itemId, out var result);
+                    project.RemoveItem(0, _itemId, out int result);
                     return result == 1;
                 }
             }
@@ -202,7 +202,7 @@ namespace Community.VisualStudio.Toolkit
 
                 if (solution?._hierarchy is IVsSolution ivsSolution)
                 {
-                    var hr = ivsSolution.CloseSolutionElement(0, _hierarchy, 0);
+                    int hr = ivsSolution.CloseSolutionElement(0, _hierarchy, 0);
                     return hr == 1;
                 }
             }
@@ -246,12 +246,12 @@ namespace Community.VisualStudio.Toolkit
             {
                 if (Type == NodeType.Project || Type == NodeType.VirtualProject || Type == NodeType.MiscProject)
                 {
-                    storage.GetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, out var value);
+                    storage.GetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, out string? value);
                     return value;
                 }
                 else if (Type == NodeType.PhysicalFile || Type == NodeType.PhysicalFolder)
                 {
-                    storage.GetItemAttribute(_itemId, name, out var value);
+                    storage.GetItemAttribute(_itemId, name, out string? value);
                     return value;
                 }
             }
@@ -340,8 +340,8 @@ namespace Community.VisualStudio.Toolkit
 
             foreach (IVsHierarchy? hierarchy in projects)
             {
-                var proj = (IVsProject)hierarchy;
-                proj.IsDocumentInProject(filePath, out var isFound, new VSDOCUMENTPRIORITY[1], out var itemId);
+                IVsProject proj = (IVsProject)hierarchy;
+                proj.IsDocumentInProject(filePath, out int isFound, new VSDOCUMENTPRIORITY[1], out uint itemId);
 
                 if (isFound == 1)
                 {
@@ -361,7 +361,7 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             List<SolutionItem> items = new();
 
-            foreach (var filePath in filePaths)
+            foreach (string filePath in filePaths)
             {
                 SolutionItem? item = await FromFileAsync(filePath);
 
@@ -417,14 +417,14 @@ namespace Community.VisualStudio.Toolkit
                 return null;
             }
 
-            _hierarchy.GetCanonicalName(_itemId, out var fileName);
+            _hierarchy.GetCanonicalName(_itemId, out string? fileName);
 
             if (_hierarchy is IVsProject project && project.GetMkDocument(_itemId, out fileName) == VSConstants.S_OK)
             {
                 return fileName;
             }
 
-            if (_hierarchy is IVsSolution solution && solution.GetSolutionInfo(out _, out var slnFile, out _) == VSConstants.S_OK)
+            if (_hierarchy is IVsSolution solution && solution.GetSolutionInfo(out _, out string? slnFile, out _) == VSConstants.S_OK)
             {
                 return slnFile;
             }

@@ -136,7 +136,7 @@ namespace System
         /// </example>
         public static Task LogAsync(this Exception exception, string format, params object?[] args)
         {
-            var message = format;
+            string message = format;
 
             try
             {
