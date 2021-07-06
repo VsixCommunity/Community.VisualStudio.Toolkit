@@ -43,22 +43,22 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Fires when a project starts building.
         /// </summary>
-        public event Action<SolutionItem?>? ProjectBuildStarted;
+        public event Action<Project?>? ProjectBuildStarted;
 
         /// <summary>
         /// Fires when a project is done building.
         /// </summary>
-        public event Action<SolutionItem?>? ProjectBuildDone;
+        public event Action<Project?>? ProjectBuildDone;
 
         /// <summary>
         /// Fires when a project starts cleaning.
         /// </summary>
-        public event Action<SolutionItem?>? ProjectCleanStarted;
+        public event Action<Project?>? ProjectCleanStarted;
 
         /// <summary>
         /// Fires when a project is done cleaning.
         /// </summary>
-        public event Action<SolutionItem?>? ProjectCleanDone;
+        public event Action<Project?>? ProjectCleanDone;
 
         int IVsUpdateSolutionEvents.UpdateSolution_Begin(ref int pfCancelUpdate)
         {
@@ -109,7 +109,7 @@ namespace Community.VisualStudio.Toolkit
             // if rebuild project or solution, dwAction == 0x410000
             if (ProjectCleanStarted != null || ProjectBuildStarted != null)
             {
-                SolutionItem? project = SolutionItem.FromHierarchy(pHierProj, VSConstants.VSITEMID_ROOT);
+                Project? project = SolutionItem.FromHierarchy(pHierProj, VSConstants.VSITEMID_ROOT) as Project;
 
                 // Clean
                 if (dwAction == 0x100000)
@@ -132,7 +132,7 @@ namespace Community.VisualStudio.Toolkit
             // This method is called when a specific project finishes building.
             if (ProjectBuildDone != null || ProjectCleanDone != null)
             {
-                SolutionItem? project = SolutionItem.FromHierarchy(pHierProj, VSConstants.VSITEMID_ROOT);
+                Project? project = SolutionItem.FromHierarchy(pHierProj, VSConstants.VSITEMID_ROOT) as Project;
 
                 // Clean
                 if (dwAction == 0x100000)

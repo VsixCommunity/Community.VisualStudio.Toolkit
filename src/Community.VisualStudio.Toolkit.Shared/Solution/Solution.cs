@@ -56,16 +56,16 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Gets the active project.
         /// </summary>
-        public async Task<SolutionItem?> GetActiveProjectAsync()
+        public async Task<Project?> GetActiveProjectAsync()
         {
             SolutionItem? item = await GetActiveSolutionItemAsync();
 
             if (item?.Type == SolutionItemType.Project)
             {
-                return item;
+                return item as Project;
             }
 
-            return item?.FindParent(SolutionItemType.Project);
+            return item?.FindParent(SolutionItemType.Project) as Project;
         }
 
         /// <summary>
@@ -81,23 +81,19 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Gets all projects in the solution
         /// </summary>
-        public async Task<IEnumerable<SolutionItem>> GetAllProjectsAsync(bool includeSolutionFolders = false)
+        public async Task<IEnumerable<Project>> GetAllProjectsAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsSolution solution = await VS.Services.GetSolutionAsync();
             IEnumerable<IVsHierarchy>? hierarchies = solution.GetAllProjectHierarchys();
 
-            List<SolutionItem> list = new();
+            List<Project> list = new();
 
             foreach (IVsHierarchy? hierarchy in hierarchies)
             {
-                SolutionItem? proj = await SolutionItem.FromHierarchyAsync(hierarchy, VSConstants.VSITEMID_ROOT);
+                Project? proj = await SolutionItem.FromHierarchyAsync(hierarchy, VSConstants.VSITEMID_ROOT) as Project;
 
                 if (proj?.Type == SolutionItemType.Project)
-                {
-                    list.Add(proj);
-                }
-                else if (includeSolutionFolders && proj?.Type == SolutionItemType.SolutionFolder)
                 {
                     list.Add(proj);
                 }

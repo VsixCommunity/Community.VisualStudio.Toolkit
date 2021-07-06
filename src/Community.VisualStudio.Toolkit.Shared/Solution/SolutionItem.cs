@@ -24,7 +24,10 @@ namespace Community.VisualStudio.Toolkit
         private readonly IVsHierarchy _hierarchy;
         private readonly uint _itemId;
 
-        private SolutionItem(IVsHierarchyItem item)
+        /// <summary>
+        /// Creates s new instance of the solution item.
+        /// </summary>
+        protected SolutionItem(IVsHierarchyItem item)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             _item = item;
@@ -73,22 +76,6 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Checks what kind the project is.
-        /// </summary>
-        /// <param name="typeGuid">Use the <see cref="ProjectTypes"/> collection for known guids.</param>
-        public async Task<bool> IsKindAsync(string typeGuid)
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            if (Type == SolutionItemType.Project || Type == SolutionItemType.VirtualProject)
-            {
-                return _hierarchy.IsProjectOfType(typeGuid);
-            }
-
-            return false;
-        }
-
-        /// <summary>
         /// Adds a file as a child to the item. 
         /// </summary>
         /// <param name="files">A list of absolute file paths.</param>
@@ -100,7 +87,7 @@ namespace Community.VisualStudio.Toolkit
             // Add solution folder
             if (Type == SolutionItemType.Solution)
             {
-                Guid guid = new Guid(ProjectTypes.SOLUTION_FOLDER_OTHER);
+                Guid guid = new(ProjectTypes.SOLUTION_FOLDER_OTHER);
                 Guid iidProject = typeof(IVsHierarchy).GUID;
                 IVsSolution sol = await VS.Services.GetSolutionAsync();
 
@@ -160,7 +147,7 @@ namespace Community.VisualStudio.Toolkit
                     dwAddItemOperation: VSADDITEMOPERATION.VSADDITEMOP_OPENFILE,
                     pszItemName: "test",
                     cFilesToOpen: (uint)files.Count(), //The name of the parameter is misleading, it's the number of files to process, 
-                                     //and whether to open in editor or not is determined by other flag
+                                                       //and whether to open in editor or not is determined by other flag
                     rgpszFilesToOpen: files,
                     hwndDlgOwner: hwndDlgOwner,
                     grfEditorFlags: 0u, //We do not want to open in the editor
@@ -280,20 +267,6 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Opens the item in the editor window.
-        /// </summary>
-        /// <returns><see langword="null"/> if the item was not succesfully opened.</returns>
-        public async Task<WindowFrame?> OpenAsync()
-        {
-            if (!string.IsNullOrEmpty(FileName))
-            {
-                await VS.Documents.OpenViaProjectAsync(FileName!);
-            }
-
-            return null;
-        }
-
-        /// <summary>
         /// Creates a new instance based on a hierarchy.
         /// </summary>
         public static async Task<SolutionItem?> FromHierarchyAsync(IVsHierarchy hierarchy, uint itemId)
@@ -333,7 +306,7 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         /// <param name="filePath">The absolute file path of a file that exist in the solution.</param>
         /// <returns><see langword="null"/> if the file wasn't found in the solution.</returns>
-        public static async Task<SolutionItem?> FromFileAsync(string filePath)
+        public static async Task<PhysicalFile?> FromFileAsync(string filePath)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IEnumerable<IVsHierarchy>? projects = await VS.Solution.GetAllProjectHierarchiesAsync();
@@ -345,7 +318,7 @@ namespace Community.VisualStudio.Toolkit
 
                 if (isFound == 1)
                 {
-                    return await FromHierarchyAsync(hierarchy, itemId);
+                    return await FromHierarchyAsync(hierarchy, itemId) as PhysicalFile;
                 }
             }
 
@@ -356,14 +329,14 @@ namespace Community.VisualStudio.Toolkit
         /// Finds the item in the solution matching the specified file path.
         /// </summary>
         /// <param name="filePaths">The absolute file paths of files that exist in the solution.</param>
-        public static async Task<IEnumerable<SolutionItem>?> FromFilesAsync(params string[] filePaths)
+        public static async Task<IEnumerable<PhysicalFile>?> FromFilesAsync(params string[] filePaths)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            List<SolutionItem> items = new();
+            List<PhysicalFile> items = new();
 
             foreach (string filePath in filePaths)
             {
-                SolutionItem? item = await FromFileAsync(filePath);
+                PhysicalFile? item = await FromFileAsync(filePath);
 
                 if (item != null)
                 {

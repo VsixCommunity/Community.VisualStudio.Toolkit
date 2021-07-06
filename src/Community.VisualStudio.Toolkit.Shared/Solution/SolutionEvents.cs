@@ -37,10 +37,10 @@ namespace Community.VisualStudio.Toolkit
         public event Action? OnAfterCloseSolution;
 
         /// <summary>Notifies listening clients that the project has been loaded.</summary>
-        public event Action<SolutionItem?>? OnAfterLoadProject;
+        public event Action<Project?>? OnAfterLoadProject;
 
         /// <summary>Notifies listening clients that the project has been opened.</summary>
-        public event Action<SolutionItem?>? OnAfterOpenProject;
+        public event Action<Project?>? OnAfterOpenProject;
 
         /// <summary></summary>
         public event Action? OnBeforeOpenSolution;
@@ -49,7 +49,7 @@ namespace Community.VisualStudio.Toolkit
         public event Action<SolutionItem?>? OnAfterOpenSolution;
 
         /// <summary>Notifies listening clients that the project is about to be closed.</summary>
-        public event Action<SolutionItem?>? OnBeforeCloseProject;
+        public event Action<Project?>? OnBeforeCloseProject;
 
         /// <summary>Notifies listening clients that a solution has been closed.</summary>
         public event Action? OnBeforeCloseSolution;
@@ -58,10 +58,10 @@ namespace Community.VisualStudio.Toolkit
         public event Action? OnAfterMergeSolution;
 
         /// <summary>Notifies listening clients that the project is about to be unloaded.</summary>
-        public event Action<SolutionItem?>? OnBeforeUnloadProject;
+        public event Action<Project?>? OnBeforeUnloadProject;
 
         /// <summary>Notifies listening clients that a project has been renamed.</summary>
-        public event Action<SolutionItem?>? OnAfterRenameProject;
+        public event Action<Project?>? OnAfterRenameProject;
 
 #if !VS14
         /// <summary>Notifies listening clients that the folder is being closed.</summary>
@@ -83,7 +83,7 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             if (OnAfterOpenProject != null)
             {
-                SolutionItem? project = SolutionItem.FromHierarchy(pHierarchy, 1);
+                Project? project = SolutionItem.FromHierarchy(pHierarchy, 1) as Project;
                 OnAfterOpenProject?.Invoke(project);
             }
             return VSConstants.S_OK;
@@ -99,7 +99,7 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             if (OnBeforeCloseProject != null)
             {
-                SolutionItem? project = SolutionItem.FromHierarchy(pHierarchy, 1);
+                Project? project = SolutionItem.FromHierarchy(pHierarchy, 1) as Project;
                 OnBeforeCloseProject?.Invoke(project);
             }
             return VSConstants.S_OK;
@@ -110,7 +110,7 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             if (OnAfterLoadProject != null)
             {
-                SolutionItem? project = SolutionItem.FromHierarchy(pRealHierarchy, 1);
+                Project? project = SolutionItem.FromHierarchy(pRealHierarchy, 1) as Project;
                 OnAfterLoadProject?.Invoke(project);
             }
             return VSConstants.S_OK;
@@ -127,7 +127,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (OnBeforeCloseProject != null)
             {
-                SolutionItem? project = SolutionItem.FromHierarchy(pRealHierarchy, 1);
+                Project? project = SolutionItem.FromHierarchy(pRealHierarchy, 1) as Project;
                 OnBeforeUnloadProject?.Invoke(project);
             }
             return VSConstants.S_OK;
@@ -245,7 +245,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (OnAfterRenameProject != null)
             {
-                SolutionItem? project = SolutionItem.FromHierarchy(pHierarchy, 1);
+                Project? project = SolutionItem.FromHierarchy(pHierarchy, 1) as Project;
                 OnAfterRenameProject?.Invoke(project);
             }
             return VSConstants.S_OK;
