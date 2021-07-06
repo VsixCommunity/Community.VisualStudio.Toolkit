@@ -86,7 +86,7 @@ namespace Microsoft.VisualStudio.Shell.Interop
             {
                 if (ErrorHandler.Succeeded(aggregatable.GetAggregateProjectTypeGuids(out string types)))
                 {
-                    Guid guid = new Guid(typeGuid);
+                    Guid guid = new(typeGuid);
 
                     foreach (string type in types.Split(';'))
                     {

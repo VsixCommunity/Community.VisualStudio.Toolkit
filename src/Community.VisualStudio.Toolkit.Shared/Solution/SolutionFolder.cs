@@ -45,7 +45,7 @@ namespace Community.VisualStudio.Toolkit
                 rguidLogicalView: ref rguidLogicalView,
                 pResult: result);
 
-            return await FromFilesAsync(files);
+            return await File.FromFilesAsync(files);
         }
 
         /// <summary>

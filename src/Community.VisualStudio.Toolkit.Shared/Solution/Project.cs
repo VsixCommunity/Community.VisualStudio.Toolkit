@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
@@ -32,6 +33,21 @@ namespace Community.VisualStudio.Toolkit
             GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
 
             return hierarchy.IsProjectOfType(typeGuid);
+        }
+
+        /// <summary>
+        /// Save the project if it's dirty.
+        /// </summary>
+        public async Task SaveAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            
+            GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
+
+            IVsSolution solution = await VS.Services.GetSolutionAsync();
+            int hr = solution.SaveSolutionElement((uint)__VSSLNSAVEOPTIONS.SLNSAVEOPT_SaveIfDirty, hierarchy, 0);
+
+            ErrorHandler.ThrowOnFailure(hr);
         }
 
         /// <summary>

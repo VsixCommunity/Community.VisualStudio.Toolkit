@@ -34,7 +34,7 @@ namespace Community.VisualStudio.Toolkit
 
             foreach (string file in files)
             {
-                File? item = await FromFileAsync(file);
+                File? item = await File.FromFileAsync(file);
 
                 if (item != null)
                 {

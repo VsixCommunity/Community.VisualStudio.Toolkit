@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -13,14 +15,24 @@ namespace Community.VisualStudio.Toolkit
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
         /// <summary>
+        /// The containing folder of file file.
+        /// </summary>
+        public string Folder => Path.GetDirectoryName(FullPath);
+
+        /// <summary>
+        /// The file extensions starting with a dot.
+        /// </summary>
+        public string Extension => Path.GetExtension(FullPath);
+
+        /// <summary>
         /// Opens the item in the editor window.
         /// </summary>
         /// <returns><see langword="null"/> if the item was not succesfully opened.</returns>
         public async Task<WindowFrame?> OpenAsync()
         {
-            if (!string.IsNullOrEmpty(FileName))
+            if (!string.IsNullOrEmpty(FullPath))
             {
-                await VS.Documents.OpenViaProjectAsync(FileName!);
+                await VS.Documents.OpenViaProjectAsync(FullPath!);
             }
 
             return null;
@@ -81,6 +93,53 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return null;
+        }
+
+
+        /// <summary>
+        /// Finds the item in the solution matching the specified file path.
+        /// </summary>
+        /// <param name="filePath">The absolute file path of a file that exist in the solution.</param>
+        /// <returns><see langword="null"/> if the file wasn't found in the solution.</returns>
+        public static async Task<File?> FromFileAsync(string filePath)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IEnumerable<IVsHierarchy>? projects = await VS.Solutions.GetAllProjectHierarchiesAsync();
+
+            foreach (IVsHierarchy? hierarchy in projects)
+            {
+                IVsProject proj = (IVsProject)hierarchy;
+                proj.IsDocumentInProject(filePath, out int isFound, new VSDOCUMENTPRIORITY[1], out uint itemId);
+
+                if (isFound == 1)
+                {
+                    return await FromHierarchyAsync(hierarchy, itemId) as File;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Finds the item in the solution matching the specified file path.
+        /// </summary>
+        /// <param name="filePaths">The absolute file paths of files that exist in the solution.</param>
+        public static async Task<IEnumerable<File>?> FromFilesAsync(params string[] filePaths)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            List<File> items = new();
+
+            foreach (string filePath in filePaths)
+            {
+                File? item = await FromFileAsync(filePath);
+
+                if (item != null)
+                {
+                    items.Add(item);
+                }
+            }
+
+            return items;
         }
     }
 }

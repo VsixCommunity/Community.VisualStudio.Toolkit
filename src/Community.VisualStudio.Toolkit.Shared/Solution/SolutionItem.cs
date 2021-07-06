@@ -28,13 +28,13 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             _item = item;
-
+            
             _hierarchy = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedHierarchy : item.HierarchyIdentity.Hierarchy;
             _itemId = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedItemID : item.HierarchyIdentity.ItemID;
 
             Name = item.Text;
             Type = GetSolutionItemType(item.HierarchyIdentity);
-            FileName = GetFileName();
+            FullPath = GetFullPath();
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// The absolute file path on disk.
         /// </summary>
-        public string? FileName { get; set; }
+        public string? FullPath { get; set; }
 
         /// <summary>
         /// The type of solution item.
@@ -127,52 +127,6 @@ namespace Community.VisualStudio.Toolkit
             return new SolutionItem(item);
         }
 
-        /// <summary>
-        /// Finds the item in the solution matching the specified file path.
-        /// </summary>
-        /// <param name="filePath">The absolute file path of a file that exist in the solution.</param>
-        /// <returns><see langword="null"/> if the file wasn't found in the solution.</returns>
-        public static async Task<File?> FromFileAsync(string filePath)
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IEnumerable<IVsHierarchy>? projects = await VS.Solutions.GetAllProjectHierarchiesAsync();
-
-            foreach (IVsHierarchy? hierarchy in projects)
-            {
-                IVsProject proj = (IVsProject)hierarchy;
-                proj.IsDocumentInProject(filePath, out int isFound, new VSDOCUMENTPRIORITY[1], out uint itemId);
-
-                if (isFound == 1)
-                {
-                    return await FromHierarchyAsync(hierarchy, itemId) as File;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Finds the item in the solution matching the specified file path.
-        /// </summary>
-        /// <param name="filePaths">The absolute file paths of files that exist in the solution.</param>
-        public static async Task<IEnumerable<File>?> FromFilesAsync(params string[] filePaths)
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            List<File> items = new();
-
-            foreach (string filePath in filePaths)
-            {
-                File? item = await FromFileAsync(filePath);
-
-                if (item != null)
-                {
-                    items.Add(item);
-                }
-            }
-
-            return items;
-        }
-
         private SolutionItemType GetSolutionItemType(IVsHierarchyItemIdentity identity)
         {
             if (HierarchyUtilities.IsSolutionNode(identity))
@@ -207,7 +161,7 @@ namespace Community.VisualStudio.Toolkit
             return SolutionItemType.Unknown;
         }
 
-        private string? GetFileName()
+        private string? GetFullPath()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
