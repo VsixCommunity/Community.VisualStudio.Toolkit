@@ -84,6 +84,18 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// Gets a global service synchronously.
+        /// </summary>
+        /// <typeparam name="TService">The type identity of the service.</typeparam>
+        /// <typeparam name="TInterface">The interface to cast the service to.</typeparam>
+        /// <exception cref="Exception">Throws an exception when the service is not available.</exception>
+        internal static TInterface GetRequiredService<TService, TInterface>() where TService : class where TInterface : class
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            return (TInterface)ServiceProvider.GlobalProvider.GetService(typeof(TService));
+        }
+
+        /// <summary>
         /// Gets a service from the MEF component catalog
         /// </summary>
         public static async Task<TInterface> GetMefServiceAsync<TInterface>() where TInterface : class
@@ -95,11 +107,10 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Gets a service from the MEF component catalog
         /// </summary>
-        public static TInterface GetMefService<TInterface>() where TInterface : class
+        internal static TInterface GetMefService<TInterface>() where TInterface : class
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            IComponentModel2 compService = (IComponentModel2)ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel));
-            Assumes.Present(compService);
+            IComponentModel2 compService = GetRequiredService<SComponentModel, IComponentModel2>();
             return compService.GetService<TInterface>();
         }
     }

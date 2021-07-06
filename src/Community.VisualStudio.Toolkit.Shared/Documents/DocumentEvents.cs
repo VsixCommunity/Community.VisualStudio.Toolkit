@@ -10,7 +10,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Events related to the editor documents.
         /// </summary>
-        public DocumentEvents DocumentEvents => new();
+        public DocumentEvents DocumentEvents { get; } = new();
     }
 
     /// <summary>

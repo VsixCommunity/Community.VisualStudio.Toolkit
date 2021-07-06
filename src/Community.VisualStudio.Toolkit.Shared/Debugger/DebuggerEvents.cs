@@ -11,7 +11,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Events related to the selection in Visusal Studio.
         /// </summary>
-        public DebuggerEvents DebuggerEvents => new();
+        public DebuggerEvents DebuggerEvents { get; } = new();
     }
 
     /// <summary>
@@ -22,8 +22,7 @@ namespace Community.VisualStudio.Toolkit
         internal DebuggerEvents()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            IVsDebugger svc = (IVsDebugger)ServiceProvider.GlobalProvider.GetService(typeof(IVsDebugger));
-            Assumes.Present(svc);
+            IVsDebugger svc = VS.GetRequiredService<IVsDebugger, IVsDebugger>();
             svc.AdviseDebuggerEvents(this, out _);
         }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -11,7 +10,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Events related to the editor documents.
         /// </summary>
-        public SolutionEvents SolutionEvents => new();
+        public SolutionEvents SolutionEvents { get; } = new();
     }
 
     /// <summary>
@@ -30,8 +29,7 @@ namespace Community.VisualStudio.Toolkit
         internal SolutionEvents()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            IVsSolution svc = (IVsSolution)ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution));
-            Assumes.Present(svc);
+            IVsSolution svc = VS.GetRequiredService<SVsSolution, IVsSolution>();
             svc.AdviseSolutionEvents(this, out _);
         }
 

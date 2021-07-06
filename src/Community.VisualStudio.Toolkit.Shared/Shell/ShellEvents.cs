@@ -11,7 +11,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Events related to the Visual Studio Shell.
         /// </summary>
-        public ShellEvents ShellEvents => new();
+        public ShellEvents ShellEvents { get; } = new();
     }
 
     /// <summary>
@@ -24,8 +24,7 @@ namespace Community.VisualStudio.Toolkit
         internal ShellEvents()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            IVsShell svc = (IVsShell)ServiceProvider.GlobalProvider.GetService(typeof(SVsShell));
-            Assumes.Present(svc);
+            IVsShell svc = VS.GetRequiredService<SVsShell, IVsShell>();
             svc.AdviseShellPropertyChanges(this, out _);
             svc.AdviseBroadcastMessages(this, out _);
         }
@@ -74,7 +73,7 @@ namespace Community.VisualStudio.Toolkit
                     MainWindowVisibilityChanged?.Invoke(isVisible);
                 }
             }
-            
+
             return VSConstants.S_OK;
         }
 
@@ -82,7 +81,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (msg == _wm_syscolorchange)
             {
-                EnvironmentColorChanged?.Invoke();  
+                EnvironmentColorChanged?.Invoke();
             }
 
             return VSConstants.S_OK;

@@ -93,11 +93,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
         internal static IWpfTextView? ToIWpfTextView(this IVsTextView nativeView)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-
-            IComponentModel2? compService = ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel)) as IComponentModel2;
-            Assumes.Present(compService);
-
-            IVsEditorAdaptersFactoryService? editorAdapter = compService?.GetService<IVsEditorAdaptersFactoryService>();
+            IVsEditorAdaptersFactoryService? editorAdapter = VS.GetMefService<IVsEditorAdaptersFactoryService>();
             return editorAdapter?.GetWpfTextView(nativeView);
         }
 
@@ -118,11 +114,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
         internal static IVsTextView? ToIVsTextView(this IWpfTextView view)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-
-            IComponentModel2? compService = ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel)) as IComponentModel2;
-            Assumes.Present(compService);
-
-            IVsEditorAdaptersFactoryService? editorAdapter = compService?.GetService<IVsEditorAdaptersFactoryService>();
+            IVsEditorAdaptersFactoryService? editorAdapter = VS.GetMefService<IVsEditorAdaptersFactoryService>();
             return editorAdapter?.GetViewAdapter(view);
         }
     }

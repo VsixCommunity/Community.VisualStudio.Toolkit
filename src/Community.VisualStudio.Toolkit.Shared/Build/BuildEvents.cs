@@ -11,7 +11,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Events related to the editor documents.
         /// </summary>
-        public BuildEvents BuildEvents => new();
+        public BuildEvents BuildEvents { get; } = new();
     }
 
     /// <summary>
@@ -22,8 +22,7 @@ namespace Community.VisualStudio.Toolkit
         internal BuildEvents()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            IVsSolutionBuildManager? svc = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolutionBuildManager)) as IVsSolutionBuildManager;
-            Assumes.Present(svc);
+            IVsSolutionBuildManager svc = VS.GetRequiredService<SVsSolutionBuildManager, IVsSolutionBuildManager>();
             svc!.AdviseUpdateSolutionEvents(this, out _);
         }
 

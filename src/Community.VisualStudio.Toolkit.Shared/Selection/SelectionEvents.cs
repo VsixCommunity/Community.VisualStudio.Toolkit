@@ -15,7 +15,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Events related to the selection in Visusal Studio
         /// </summary>
-        public SelectionEvents? SelectionEvents => new();
+        public SelectionEvents? SelectionEvents { get; } = new();
     }
 
 
@@ -27,8 +27,7 @@ namespace Community.VisualStudio.Toolkit
         internal SelectionEvents()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            IVsMonitorSelection monitor = (IVsMonitorSelection)ServiceProvider.GlobalProvider.GetService(typeof(SVsShellMonitorSelection));
-            Assumes.Present(monitor);
+            IVsMonitorSelection monitor = VS.GetRequiredService<SVsShellMonitorSelection, IVsMonitorSelection>();
             monitor.AdviseSelectionEvents(this, out _);
         }
 

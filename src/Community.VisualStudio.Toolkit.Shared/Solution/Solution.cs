@@ -33,8 +33,7 @@ namespace Community.VisualStudio.Toolkit
         public SolutionItem? GetCurrentSolution()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            IVsHierarchy solution = (IVsHierarchy)ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution));
-            Assumes.Present(solution);
+            IVsHierarchy solution = VS.GetRequiredService<SVsSolution, IVsHierarchy>();
             IVsHierarchyItem? hierItem = solution.ToHierarcyItem(VSConstants.VSITEMID_ROOT);
             return SolutionItem.FromHierarchyItem(hierItem);
         }

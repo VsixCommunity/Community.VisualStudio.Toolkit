@@ -49,7 +49,7 @@ namespace Microsoft.VisualStudio.Shell.Interop
                 return null;
             }
 
-            IVsHierarchyItemManager manager = VS.GetMefService<IVsHierarchyItemManager>();
+            IVsHierarchyItemManager? manager = VS.GetMefService<IVsHierarchyItemManager>();
 
             manager.TryGetHierarchyItem(hierarchy, itemId, out IVsHierarchyItem? item);
             return item;

@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -10,7 +9,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Events related to the window frames.
         /// </summary>
-        public WindowEvents WindowEvents => new();
+        public WindowEvents WindowEvents { get; } = new();
     }
 
     /// <summary>
@@ -21,8 +20,7 @@ namespace Community.VisualStudio.Toolkit
         internal WindowEvents()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            IVsUIShell7 svc = (IVsUIShell7)ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell));
-            Assumes.Present(svc);
+            IVsUIShell7 svc = VS.GetRequiredService<SVsUIShell, IVsUIShell7>();
             svc.AdviseWindowFrameEvents(this);
         }
 
