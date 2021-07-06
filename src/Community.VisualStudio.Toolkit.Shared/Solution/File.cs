@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -23,6 +24,11 @@ namespace Community.VisualStudio.Toolkit
         /// The file extensions starting with a dot.
         /// </summary>
         public string Extension => Path.GetExtension(FullPath);
+
+        /// <summary>
+        /// The project containing this file, or <see langword="null"/>.
+        /// </summary>
+        public Project? ContainingProject => FindParent(SolutionItemType.Project) as Project;
 
         /// <summary>
         /// Opens the item in the editor window.
@@ -59,6 +65,12 @@ namespace Community.VisualStudio.Toolkit
 
             return false;
         }
+
+        /// <summary>
+        /// Nests a file under this file by setting its <c>DependentUpon</c> property..
+        /// </summary>
+        public Task AddNestedFileAsync(File fileToNest)
+            => fileToNest.TrySetAttributeAsync("DependentUpon", Name);
 
         /// <summary>
         /// Tries to set an attribute in the project file for the item.

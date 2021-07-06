@@ -17,6 +17,11 @@ namespace Community.VisualStudio.Toolkit
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
         /// <summary>
+        /// The project containing this file, or <see langword="null"/>.
+        /// </summary>
+        public Project? ContainingProject => FindParent(SolutionItemType.Project) as Project;
+
+        /// <summary>
         /// Opens the item in the editor window.
         /// </summary>
         /// <returns><see langword="null"/> if the item was not succesfully opened.</returns>
@@ -38,8 +43,7 @@ namespace Community.VisualStudio.Toolkit
 
                 if (item != null)
                 {
-                    items.Add(item);
-                    await item.TrySetAttributeAsync("DependentUpon", Name);
+                    items.Add(item);                    
                 }
             }
 
