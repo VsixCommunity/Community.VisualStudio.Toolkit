@@ -22,8 +22,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Debugger\DebuggerEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Selection\SelectionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Solution\PhysicalFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Solution\Folder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Solution\File.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\Project.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Solution\Solution.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Solution\SolutionFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\SolutionItemType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\SolutionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Documents\DocumentEvents.cs" />
@@ -63,7 +66,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Shell.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Solution\Solution.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Solution\Solutions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\Windows.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\BaseCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\StatusBar.cs" />

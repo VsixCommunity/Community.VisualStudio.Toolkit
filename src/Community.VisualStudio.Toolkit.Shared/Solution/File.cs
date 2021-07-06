@@ -1,37 +1,51 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
-    /// Represents a project in the solution hierarchy.
+    /// Represents a physical file in the solution hierarchy.
     /// </summary>
-    public class Project : SolutionItem
+    public class File : SolutionItem
     {
-        internal Project(IVsHierarchyItem item) : base(item)
+        internal File(IVsHierarchyItem item) : base(item)
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
         /// <summary>
-        /// Starts a build, rebuild, or clean of the project.
+        /// Opens the item in the editor window.
         /// </summary>
-        public Task BuildAsync(BuildAction action = BuildAction.Build)
+        /// <returns><see langword="null"/> if the item was not succesfully opened.</returns>
+        public async Task<WindowFrame?> OpenAsync()
         {
-            return VS.Build.BuildProjectAsync(this, action);
+            if (!string.IsNullOrEmpty(FileName))
+            {
+                await VS.Documents.OpenViaProjectAsync(FileName!);
+            }
+
+            return null;
         }
 
         /// <summary>
-        /// Checks what kind the project is.
+        /// Tries to remove the file from the project or solution folder.
         /// </summary>
-        /// <param name="typeGuid">Use the <see cref="ProjectTypes"/> collection for known guids.</param>
-        public async Task<bool> IsKindAsync(string typeGuid)
+        public async Task<bool> TryRemoveAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            SolutionItem? parent = FindParent(SolutionItemType.Project) ?? FindParent(SolutionItemType.SolutionFolder);
 
-            GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
+            if (parent != null)
+            {
+                GetItemInfo(out IVsHierarchy? hierarchy, out uint itemId, out _);
 
-            return hierarchy.IsProjectOfType(typeGuid);
+                if (hierarchy is IVsProject2 project)
+                {
+                    project.RemoveItem(0, itemId, out int result);
+                    return result == 1;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -40,11 +54,11 @@ namespace Community.VisualStudio.Toolkit
         public async Task<bool> TrySetAttributeAsync(string name, string value)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            GetItemInfo(out IVsHierarchy? hierarchy, out _, out _);
+            GetItemInfo(out IVsHierarchy? hierarchy, out uint itemId, out _);
 
             if (hierarchy is IVsBuildPropertyStorage storage)
             {
-                storage.SetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, value);
+                storage.SetItemAttribute(itemId, name, value);
                 return true;
             }
 
@@ -58,11 +72,11 @@ namespace Community.VisualStudio.Toolkit
         public async Task<string?> GetAttributeAsync(string name)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            GetItemInfo(out IVsHierarchy? hierarchy, out _, out _);
+            GetItemInfo(out IVsHierarchy? hierarchy, out uint itemId, out _);
 
             if (hierarchy is IVsBuildPropertyStorage storage)
             {
-                storage.GetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, out string? value);
+                storage.GetItemAttribute(itemId, name, out string? value);
                 return value;
             }
 

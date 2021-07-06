@@ -139,7 +139,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (OnAfterOpenSolution != null)
             {
-                SolutionItem? solution = VS.Solution.GetCurrentSolution();
+                SolutionItem? solution = VS.Solutions.GetCurrentSolution();
                 OnAfterOpenSolution?.Invoke(solution);
             }
             return VSConstants.S_OK;
@@ -156,7 +156,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (OnBeforeCloseSolution != null)
             {
-                SolutionItem? solution = VS.Solution.GetCurrentSolution();
+                SolutionItem? solution = VS.Solutions.GetCurrentSolution();
                 OnBeforeCloseSolution?.Invoke();
             }
             return VSConstants.S_OK;

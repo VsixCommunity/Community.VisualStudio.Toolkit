@@ -11,7 +11,7 @@ namespace TestExtension.Commands
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            SolutionItem activeProject = await VS.Solution.GetActiveSolutionItemAsync();
+            SolutionItem activeProject = await VS.Solutions.GetActiveSolutionItemAsync();
             if (activeProject != null)
             {
                 bool buildResult = await VS.Build.BuildProjectAsync(activeProject);

@@ -42,7 +42,7 @@ namespace Community.VisualStudio.Toolkit
         public static Shell Shell { get; } = new();
 
         /// <summary>A collection of services related to solutions.</summary>
-        public static Solution Solution { get; } = new();
+        public static Solutions Solutions { get; } = new();
 
         /// <summary>An API wrapper that makes it easy to work with the status bar.</summary>
         public static StatusBar StatusBar { get; } = new();
