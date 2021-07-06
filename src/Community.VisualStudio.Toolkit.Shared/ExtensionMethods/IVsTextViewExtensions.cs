@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Community.VisualStudio.Toolkit;
-using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
