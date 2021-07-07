@@ -22,7 +22,7 @@ namespace Community.VisualStudio.Toolkit
         private readonly uint _itemId;
 
         /// <summary>
-        /// Creates s new instance of the solution item.
+        /// Creates a new instance of the solution item.
         /// </summary>
         protected SolutionItem(IVsHierarchyItem item)
         {
@@ -63,7 +63,7 @@ namespace Community.VisualStudio.Toolkit
         public IEnumerable<SolutionItem?> Children => _children ??= _item.Children.Select(t => FromHierarchyItem(t));
 
         /// <summary>
-        /// Get information from the underlying data types.
+        /// Gets information from the underlying data types.
         /// </summary>
         public void GetItemInfo(out IVsHierarchy hierarchy, out uint itemId, out IVsHierarchyItem hierarchyItem)
         {
@@ -73,7 +73,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Find the nearest parent matching the specified type.
+        /// Finds the nearest parent matching the specified type.
         /// </summary>
         public SolutionItem? FindParent(SolutionItemType type)
         {
@@ -170,7 +170,7 @@ namespace Community.VisualStudio.Toolkit
                 return null;
             }
 
-            _hierarchy.GetCanonicalName(_itemId, out string? fileName);
+            ErrorHandler.ThrowOnFailure(_hierarchy.GetCanonicalName(_itemId, out string? fileName));
 
             if (_hierarchy is IVsProject project && project.GetMkDocument(_itemId, out fileName) == VSConstants.S_OK)
             {
