@@ -100,7 +100,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (hierarchy is IVsBuildPropertyStorage storage)
             {
-                storage.GetItemAttribute(itemId, name, out string? value);
+                storage.GetItemAttribute(itemId, name, out string value);
                 return value;
             }
 
@@ -115,9 +115,9 @@ namespace Community.VisualStudio.Toolkit
         public static async Task<File?> FromFileAsync(string filePath)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IEnumerable<IVsHierarchy>? projects = await VS.Solutions.GetAllProjectHierarchiesAsync();
+            IEnumerable<IVsHierarchy> projects = await VS.Solutions.GetAllProjectHierarchiesAsync();
 
-            foreach (IVsHierarchy? hierarchy in projects)
+            foreach (IVsHierarchy hierarchy in projects)
             {
                 IVsProject proj = (IVsProject)hierarchy;
                 proj.IsDocumentInProject(filePath, out int isFound, new VSDOCUMENTPRIORITY[1], out uint itemId);
