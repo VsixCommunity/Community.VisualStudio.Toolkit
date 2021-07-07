@@ -107,7 +107,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
+            IVsUIShell uiShell = await VS.Services.GetUIShellAsync();
             int hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fFindFirst, ref toolWindowGuid, out IVsWindowFrame? frame);
 
             if (hr == VSConstants.S_OK)
@@ -137,7 +137,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
+            IVsUIShell uiShell = await VS.Services.GetUIShellAsync();
             int hr = uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref toolWindowGuid, out IVsWindowFrame? frame);
 
             if (hr == VSConstants.S_OK)
@@ -159,7 +159,7 @@ namespace Community.VisualStudio.Toolkit
             IVsUIShell uiShell = await VS.Services.GetUIShellAsync();
 
             ErrorHandler.ThrowOnFailure(uiShell.GetToolWindowEnum(out IEnumWindowFrames windowEnumerator));
-            IVsWindowFrame[]? frame = new IVsWindowFrame[1];
+            IVsWindowFrame[] frame = new IVsWindowFrame[1];
             int hr = VSConstants.S_OK;
             List<WindowFrame> list = new();
 

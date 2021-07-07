@@ -14,7 +14,7 @@ namespace Community.VisualStudio.Toolkit
     }
 
     /// <summary>
-    /// Events related to the editor documents.
+    /// Events related to solutions.
     /// </summary>
     public class SolutionEvents :
         IVsSolutionEvents,

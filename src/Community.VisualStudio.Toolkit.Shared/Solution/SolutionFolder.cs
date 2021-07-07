@@ -19,11 +19,11 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Adds one or more files to the solution folder.
         /// </summary>
-        public async Task<IEnumerable<File>?> AddExistingFilesAsync(params string[] files)
+        public async Task<IEnumerable<File>> AddExistingFilesAsync(params string[] files)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
+            IVsUIShell uiShell = await VS.Services.GetUIShellAsync();
             uiShell.GetDialogOwnerHwnd(out IntPtr hwndDlgOwner);
 
             GetItemInfo(out IVsHierarchy? hierarchy, out _, out _);

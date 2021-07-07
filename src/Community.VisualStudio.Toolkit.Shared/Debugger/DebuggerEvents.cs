@@ -8,13 +8,13 @@ namespace Community.VisualStudio.Toolkit
     public partial class Events
     {
         /// <summary>
-        /// Events related to the selection in Visusal Studio.
+        /// Events related to the debugger in Visual Studio.
         /// </summary>
         public DebuggerEvents DebuggerEvents { get; } = new();
     }
 
     /// <summary>
-    /// Events related to the selection in Visusal Studio.
+    /// Events related to the debugger in Visual Studio.
     /// </summary>
     public class DebuggerEvents : IVsDebuggerEvents
     {

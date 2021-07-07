@@ -8,13 +8,13 @@ namespace Community.VisualStudio.Toolkit
     public partial class Events
     {
         /// <summary>
-        /// Events related to the editor documents.
+        /// Events related to building projects and solutions.
         /// </summary>
         public BuildEvents BuildEvents { get; } = new();
     }
 
     /// <summary>
-    /// Events related to the editor documents.
+    /// Events related to building projects and solutions.
     /// </summary>
     public class BuildEvents : IVsUpdateSolutionEvents2
     {
