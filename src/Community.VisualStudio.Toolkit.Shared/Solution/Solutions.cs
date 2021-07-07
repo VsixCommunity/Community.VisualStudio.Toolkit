@@ -16,7 +16,7 @@ namespace Community.VisualStudio.Toolkit
         { }
 
         /// <summary>
-        /// Get the current solution.
+        /// Gets the current solution.
         /// </summary>
         public async Task<SolutionItem?> GetCurrentSolutionAsync()
         {
@@ -27,7 +27,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Get the current solution.
+        /// Gets the current solution.
         /// </summary>
         public SolutionItem? GetCurrentSolution()
         {
@@ -69,7 +69,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Get all projects in the solution.
+        /// Gets all projects in the solution.
         /// </summary>
         public async Task<IEnumerable<IVsHierarchy>> GetAllProjectHierarchiesAsync()
         {
@@ -113,7 +113,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Checks if a solution is openign.
+        /// Checks if a solution is opening.
         /// </summary>
         public async Task<bool> IsOpeningAsync()
         {
