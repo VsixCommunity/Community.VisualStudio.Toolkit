@@ -23,7 +23,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsUIShell? uiShell = await VS.Services.GetUIShellAsync();
+            IVsUIShell uiShell = await VS.Services.GetUIShellAsync();
             uiShell.GetDialogOwnerHwnd(out IntPtr hwndDlgOwner);
 
             GetItemInfo(out IVsHierarchy? hierarchy, out _, out _);
