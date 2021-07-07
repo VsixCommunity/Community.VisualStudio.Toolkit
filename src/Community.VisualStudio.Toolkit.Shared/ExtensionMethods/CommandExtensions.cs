@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
 using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio;
@@ -23,7 +24,8 @@ namespace System.ComponentModel.Design
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IOleCommandTarget cs = await VS.GetRequiredServiceAsync<SUIHostCommandDispatcher, IOleCommandTarget>();
 
-            IntPtr inArgPtr = Marshal.AllocCoTaskMem(200);
+            int argByteCount = Encoding.Unicode.GetByteCount(argument);
+            IntPtr inArgPtr = Marshal.AllocCoTaskMem(argByteCount);
 
             try
             {

@@ -40,13 +40,12 @@ namespace Community.VisualStudio.Toolkit
         public async Task<bool> ExecuteAsync(string name, string argument = "")
         {
             CommandID? cmd = await FindCommandAsync(name);
-
-            if (cmd != null)
+            if (cmd == null)
             {
-                return await ExecuteAsync(cmd.Guid, cmd.ID, argument);
+                return false;
             }
 
-            return false;
+            return await cmd.ExecuteAsync(argument);
         }
 
         /// <summary>
