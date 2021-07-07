@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
-    /// Represents a physical file in the solution hierarchy.
+    /// Represents a physical folder in the solution hierarchy.
     /// </summary>
     public class Folder : SolutionItem
     {
@@ -17,37 +17,38 @@ namespace Community.VisualStudio.Toolkit
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
         /// <summary>
-        /// The project containing this file, or <see langword="null"/>.
+        /// The project containing this folder, or <see langword="null"/>.
         /// </summary>
         public Project? ContainingProject => FindParent(SolutionItemType.Project) as Project;
 
         /// <summary>
-        /// Opens the item in the editor window.
+        /// Add existing files to the folder.
         /// </summary>
-        /// <returns><see langword="null"/> if the item was not succesfully opened.</returns>
-        public async Task<IEnumerable<File>> AddExistingFilesAsync(params string[] files)
+        /// <returns>A list of <see cref="File"/> items added to the folder.</returns>
+        public async Task<IEnumerable<File>> AddExistingFilesAsync(params string[] filePaths)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            List<File>? items = new();
-            GetItemInfo(out IVsHierarchy? hierarchy, out uint itemId, out _);
+            GetItemInfo(out IVsHierarchy hierarchy, out uint itemId, out _);
 
-            VSADDRESULT[] result = new VSADDRESULT[files.Count()];
+            VSADDRESULT[] result = new VSADDRESULT[filePaths.Count()];
             IVsProject ip = (IVsProject)hierarchy;
 
-            ErrorHandler.ThrowOnFailure(ip.AddItem(itemId, VSADDITEMOPERATION.VSADDITEMOP_LINKTOFILE, string.Empty, (uint)files.Count(), files, IntPtr.Zero, result));
+            ErrorHandler.ThrowOnFailure(ip.AddItem(itemId, VSADDITEMOPERATION.VSADDITEMOP_LINKTOFILE, string.Empty, (uint)filePaths.Count(), filePaths, IntPtr.Zero, result));
 
-            foreach (string file in files)
+            List<File> files = new();
+
+            foreach (string filePath in filePaths)
             {
-                File? item = await File.FromFileAsync(file);
+                File? file = await File.FromFileAsync(filePath);
 
-                if (item != null)
+                if (file != null)
                 {
-                    items.Add(item);                    
+                    files.Add(file);                    
                 }
             }
 
-            return items;
+            return files;
         }
     }
 }
