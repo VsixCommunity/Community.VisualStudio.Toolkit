@@ -54,7 +54,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (parent != null)
             {
-                GetItemInfo(out IVsHierarchy? hierarchy, out uint itemId, out _);
+                GetItemInfo(out IVsHierarchy hierarchy, out uint itemId, out _);
 
                 if (hierarchy is IVsProject2 project)
                 {
@@ -78,7 +78,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<bool> TrySetAttributeAsync(string name, string value)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            GetItemInfo(out IVsHierarchy? hierarchy, out uint itemId, out _);
+            GetItemInfo(out IVsHierarchy hierarchy, out uint itemId, out _);
 
             if (hierarchy is IVsBuildPropertyStorage storage)
             {
@@ -96,11 +96,11 @@ namespace Community.VisualStudio.Toolkit
         public async Task<string?> GetAttributeAsync(string name)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            GetItemInfo(out IVsHierarchy? hierarchy, out uint itemId, out _);
+            GetItemInfo(out IVsHierarchy hierarchy, out uint itemId, out _);
 
             if (hierarchy is IVsBuildPropertyStorage storage)
             {
-                storage.GetItemAttribute(itemId, name, out string? value);
+                storage.GetItemAttribute(itemId, name, out string value);
                 return value;
             }
 
@@ -115,12 +115,14 @@ namespace Community.VisualStudio.Toolkit
         public static async Task<File?> FromFileAsync(string filePath)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IEnumerable<IVsHierarchy>? projects = await VS.Solutions.GetAllProjectHierarchiesAsync();
+            IEnumerable<IVsHierarchy> projects = await VS.Solutions.GetAllProjectHierarchiesAsync();
 
-            foreach (IVsHierarchy? hierarchy in projects)
+            VSDOCUMENTPRIORITY[] priority = new VSDOCUMENTPRIORITY[1];
+
+            foreach (IVsHierarchy hierarchy in projects)
             {
                 IVsProject proj = (IVsProject)hierarchy;
-                proj.IsDocumentInProject(filePath, out int isFound, new VSDOCUMENTPRIORITY[1], out uint itemId);
+                proj.IsDocumentInProject(filePath, out int isFound, priority, out uint itemId);
 
                 if (isFound == 1)
                 {
