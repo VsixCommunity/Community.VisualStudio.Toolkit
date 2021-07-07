@@ -117,10 +117,12 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IEnumerable<IVsHierarchy> projects = await VS.Solutions.GetAllProjectHierarchiesAsync();
 
+            VSDOCUMENTPRIORITY[] priority = new VSDOCUMENTPRIORITY[1];
+
             foreach (IVsHierarchy hierarchy in projects)
             {
                 IVsProject proj = (IVsProject)hierarchy;
-                proj.IsDocumentInProject(filePath, out int isFound, new VSDOCUMENTPRIORITY[1], out uint itemId);
+                proj.IsDocumentInProject(filePath, out int isFound, priority, out uint itemId);
 
                 if (isFound == 1)
                 {
