@@ -42,15 +42,12 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public async Task<SolutionItem?> GetActiveSolutionItemAsync()
         {
-            IEnumerable<IVsHierarchyItem>? hierarchies = await VS.Selection.GetSelectedHierarchiesAsync();
-            IVsHierarchyItem? hierarchy = hierarchies.FirstOrDefault();
+            IEnumerable<IVsHierarchyItem> hierarchies = await VS.Selection.GetSelectedHierarchiesAsync();
+            if (!hierarchies.Any())
+                return null;
 
-            if (hierarchy != null)
-            {
-                return await SolutionItem.FromHierarchyAsync(hierarchy.HierarchyIdentity.NestedHierarchy, VSConstants.VSITEMID_ROOT);
-            }
-
-            return null;
+            IVsHierarchyItem hierarchy = hierarchies.First();
+            return await SolutionItem.FromHierarchyAsync(hierarchy.HierarchyIdentity.NestedHierarchy, VSConstants.VSITEMID_ROOT);
         }
 
         /// <summary>
@@ -59,13 +56,15 @@ namespace Community.VisualStudio.Toolkit
         public async Task<Project?> GetActiveProjectAsync()
         {
             SolutionItem? item = await GetActiveSolutionItemAsync();
+            if (item == null)
+                return null;
 
-            if (item?.Type == SolutionItemType.Project)
+            if (item.Type == SolutionItemType.Project)
             {
                 return item as Project;
             }
 
-            return item?.FindParent(SolutionItemType.Project) as Project;
+            return item.FindParent(SolutionItemType.Project) as Project;
         }
 
         /// <summary>
@@ -85,11 +84,11 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsSolution solution = await VS.Services.GetSolutionAsync();
-            IEnumerable<IVsHierarchy>? hierarchies = solution.GetAllProjectHierarchys();
+            IEnumerable<IVsHierarchy> hierarchies = solution.GetAllProjectHierarchys();
 
             List<Project> list = new();
 
-            foreach (IVsHierarchy? hierarchy in hierarchies)
+            foreach (IVsHierarchy hierarchy in hierarchies)
             {
                 Project? proj = await SolutionItem.FromHierarchyAsync(hierarchy, VSConstants.VSITEMID_ROOT) as Project;
 
@@ -109,7 +108,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsSolution solution = await VS.Services.GetSolutionAsync();
-            return solution?.IsOpen() == true;
+            return solution.IsOpen() == true;
         }
 
         /// <summary>
@@ -119,7 +118,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsSolution solution = await VS.Services.GetSolutionAsync();
-            return solution?.IsOpening() == true;
+            return solution.IsOpening() == true;
         }
     }
 }
