@@ -67,7 +67,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsMonitorSelection? svc = await VS.Services.GetMonitorSelectionAsync();
+            IVsMonitorSelection svc = await VS.Services.GetMonitorSelectionAsync();
 
             int cookieResult = svc.GetCmdUIContextCookie(uiContextGuid, out uint cookie);
             ErrorHandler.ThrowOnFailure(cookieResult);
@@ -83,7 +83,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsMonitorSelection? svc = await VS.Services.GetMonitorSelectionAsync();
+            IVsMonitorSelection svc = await VS.Services.GetMonitorSelectionAsync();
             IntPtr hierPtr = IntPtr.Zero;
             IntPtr containerPtr = IntPtr.Zero;
 
