@@ -16,12 +16,12 @@ namespace Community.VisualStudio.Toolkit
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
         /// <summary>
-        /// The containing folder of file file.
+        /// The containing folder of the file.
         /// </summary>
         public string Folder => Path.GetDirectoryName(FullPath);
 
         /// <summary>
-        /// The file extensions starting with a dot.
+        /// The file extension starting with a dot.
         /// </summary>
         public string Extension => Path.GetExtension(FullPath);
 
@@ -107,11 +107,10 @@ namespace Community.VisualStudio.Toolkit
             return null;
         }
 
-
         /// <summary>
         /// Finds the item in the solution matching the specified file path.
         /// </summary>
-        /// <param name="filePath">The absolute file path of a file that exist in the solution.</param>
+        /// <param name="filePath">The absolute file path of a file that exists in the solution.</param>
         /// <returns><see langword="null"/> if the file wasn't found in the solution.</returns>
         public static async Task<File?> FromFileAsync(string filePath)
         {
@@ -136,7 +135,7 @@ namespace Community.VisualStudio.Toolkit
         /// Finds the item in the solution matching the specified file path.
         /// </summary>
         /// <param name="filePaths">The absolute file paths of files that exist in the solution.</param>
-        public static async Task<IEnumerable<File>?> FromFilesAsync(params string[] filePaths)
+        public static async Task<IEnumerable<File>> FromFilesAsync(params string[] filePaths)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             List<File> items = new();
