@@ -18,7 +18,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<Version?> GetVsVersionAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsShell? shell = await VS.Services.GetShellAsync();
+            IVsShell shell = await VS.Services.GetShellAsync();
 
             shell.GetProperty((int)__VSSPROPID5.VSSPROPID_ReleaseVersion, out object value);
 
@@ -37,7 +37,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsAppCommandLine? acl = await VS.Services.GetAppCommandLineAsync();
+            IVsAppCommandLine acl = await VS.Services.GetAppCommandLineAsync();
             acl.GetOption(key, out _, out string value);
 
             return value;

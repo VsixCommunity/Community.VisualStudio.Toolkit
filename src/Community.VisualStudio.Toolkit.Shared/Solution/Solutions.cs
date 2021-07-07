@@ -74,7 +74,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<IEnumerable<IVsHierarchy>> GetAllProjectHierarchiesAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsSolution? sol = await VS.Services.GetSolutionAsync();
+            IVsSolution sol = await VS.Services.GetSolutionAsync();
             return sol.GetAllProjectHierarchys();
         }
 

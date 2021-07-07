@@ -67,7 +67,7 @@ namespace Community.VisualStudio.Toolkit
             }
 
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsStatusbar? statusBar = await VS.Services.GetStatusBarAsync();
+            IVsStatusbar statusBar = await VS.Services.GetStatusBarAsync();
 
             statusBar.FreezeOutput(0);
             uint cookie = 0;
