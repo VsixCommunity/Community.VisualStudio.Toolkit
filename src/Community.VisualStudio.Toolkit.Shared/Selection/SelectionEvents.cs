@@ -12,14 +12,14 @@ namespace Community.VisualStudio.Toolkit
         { }
 
         /// <summary>
-        /// Events related to the selection in Visusal Studio
+        /// Events related to the selection in Visual Studio
         /// </summary>
         public SelectionEvents? SelectionEvents { get; } = new();
     }
 
 
     /// <summary>
-    /// Events related to the selection in Visusal Studio.
+    /// Events related to the selection in Visual Studio.
     /// </summary>
     public class SelectionEvents : IVsSelectionEvents
     {
