@@ -26,7 +26,7 @@ namespace Community.VisualStudio.Toolkit
             IVsUIShell uiShell = await VS.Services.GetUIShellAsync();
             uiShell.GetDialogOwnerHwnd(out IntPtr hwndDlgOwner);
 
-            GetItemInfo(out IVsHierarchy? hierarchy, out _, out _);
+            GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
 
             Guid rguidEditorType = Guid.Empty, rguidLogicalView = Guid.Empty;
             VSADDRESULT[] result = new VSADDRESULT[1];
@@ -58,7 +58,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (solution != null)
             {
-                GetItemInfo(out IVsHierarchy? hierarchy, out _, out _);
+                GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
 
                 if (hierarchy is IVsSolution ivsSolution)
                 {

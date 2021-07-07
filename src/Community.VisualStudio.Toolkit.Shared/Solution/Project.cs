@@ -56,7 +56,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<bool> TrySetAttributeAsync(string name, string value)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            GetItemInfo(out IVsHierarchy? hierarchy, out _, out _);
+            GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
 
             if (hierarchy is IVsBuildPropertyStorage storage)
             {
@@ -74,7 +74,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<string?> GetAttributeAsync(string name)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            GetItemInfo(out IVsHierarchy? hierarchy, out _, out _);
+            GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
 
             if (hierarchy is IVsBuildPropertyStorage storage)
             {
