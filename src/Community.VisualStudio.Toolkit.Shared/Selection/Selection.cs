@@ -100,6 +100,8 @@ namespace Community.VisualStudio.Toolkit
                     VSITEMSELECTION[] items = new VSITEMSELECTION[itemCount];
                     multiSelect.GetSelectedItems(0, itemCount, items);
 
+                    results.Capacity = (int)itemCount;
+
                     foreach (VSITEMSELECTION item in items)
                     {
                         IVsHierarchyItem? hierItem = await item.pHier.ToHierarcyItemAsync(item.itemid);
