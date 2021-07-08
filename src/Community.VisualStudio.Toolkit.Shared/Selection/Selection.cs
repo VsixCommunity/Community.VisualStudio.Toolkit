@@ -105,11 +105,26 @@ namespace Community.VisualStudio.Toolkit
                     foreach (VSITEMSELECTION item in items)
                     {
                         IVsHierarchyItem? hierItem = await item.pHier.ToHierarcyItemAsync(item.itemid);
-                        if (hierItem != null && !results.Contains(hierItem))
+
+                        if (hierItem != null)
                         {
                             results.Add(hierItem);
                         }
+                        else
+                        {
+                            IVsHierarchy solution = (IVsHierarchy)await VS.Services.GetSolutionAsync();
+                            IVsHierarchyItem? sol = await solution.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
+
+                            if (sol != null)
+                            {
+                                results.Add(sol);
+                            }
+                        }
                     }
+                }
+                else if (itemId == VSConstants.VSITEMID_NIL)
+                {
+                    // Empty Solution Explorer or nothing selected, so don't add anything.
                 }
                 else if (hierPtr != IntPtr.Zero)
                 {
@@ -124,6 +139,7 @@ namespace Community.VisualStudio.Toolkit
                 else if (await VS.Services.GetSolutionAsync() is IVsHierarchy solution)
                 {
                     IVsHierarchyItem? sol = await solution.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
+
                     if (sol != null)
                     {
                         results.Add(sol);
@@ -147,7 +163,7 @@ namespace Community.VisualStudio.Toolkit
                 }
             }
 
-            return results;
+            return results.Distinct();
         }
     }
 }
