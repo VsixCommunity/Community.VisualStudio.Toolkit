@@ -25,7 +25,7 @@ namespace Microsoft.VisualStudio.Shell.Interop
         /// Converts a <see cref="IVsHierarchy"/> to a <see cref="IVsHierarchyItem"/>.
         /// </summary>
         /// <returns>Returns <see langword="null"/> if unable to get the hierarchy item.</returns>
-        public static async Task<IVsHierarchyItem?> ToHierarcyItemAsync(this IVsHierarchy hierarchy, uint itemId)
+        public static async Task<IVsHierarchyItem?> ToHierarchyItemAsync(this IVsHierarchy hierarchy, uint itemId)
         {
             if (hierarchy == null)
             {
@@ -42,7 +42,7 @@ namespace Microsoft.VisualStudio.Shell.Interop
         /// Converts a <see cref="IVsHierarchy"/> to a <see cref="IVsHierarchyItem"/>.
         /// </summary>
         /// <returns>Returns <see langword="null"/> if unable to get the hierarchy item.</returns>
-        public static IVsHierarchyItem? ToHierarcyItem(this IVsHierarchy hierarchy, uint itemId)
+        public static IVsHierarchyItem? ToHierarchyItem(this IVsHierarchy hierarchy, uint itemId)
         {
             if (hierarchy == null)
             {

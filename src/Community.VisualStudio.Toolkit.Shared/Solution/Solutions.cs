@@ -22,7 +22,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsHierarchy solution = (IVsHierarchy)await VS.Services.GetSolutionAsync();
-            IVsHierarchyItem? hierItem = await solution.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
+            IVsHierarchyItem? hierItem = await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
             return SolutionItem.FromHierarchyItem(hierItem);
         }
 
@@ -33,7 +33,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             IVsHierarchy solution = VS.GetRequiredService<SVsSolution, IVsHierarchy>();
-            IVsHierarchyItem? hierItem = solution.ToHierarcyItem(VSConstants.VSITEMID_ROOT);
+            IVsHierarchyItem? hierItem = solution.ToHierarchyItem(VSConstants.VSITEMID_ROOT);
             return SolutionItem.FromHierarchyItem(hierItem);
         }
 

@@ -11,7 +11,7 @@ namespace Community.VisualStudio.Toolkit
     public class MessageBox
     {
         /// <summary>
-        /// Shows a message box that is parented to the main Visual Studio window
+        /// Shows a message box that is parented to the main Visual Studio window.
         /// </summary>
         /// <returns>
         /// The result of which button on the message box was clicked.
@@ -22,10 +22,10 @@ namespace Community.VisualStudio.Toolkit
         /// </code>
         /// </example>
         public MessageBoxResult Show(string line1,
-                                            string line2 = "",
-                                            OLEMSGICON icon = OLEMSGICON.OLEMSGICON_INFO,
-                                            OLEMSGBUTTON buttons = OLEMSGBUTTON.OLEMSGBUTTON_OKCANCEL,
-                                            OLEMSGDEFBUTTON defaultButton = OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST)
+            string line2 = "",
+            OLEMSGICON icon = OLEMSGICON.OLEMSGICON_INFO,
+            OLEMSGBUTTON buttons = OLEMSGBUTTON.OLEMSGBUTTON_OKCANCEL,
+            OLEMSGDEFBUTTON defaultButton = OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             int result = VsShellUtilities.ShowMessageBox(ServiceProvider.GlobalProvider, line2, line1, icon, buttons, defaultButton);
@@ -34,7 +34,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Shows a message box that is parented to the main Visual Studio window
+        /// Shows a message box that is parented to the main Visual Studio window.
         /// </summary>
         /// <returns>
         /// The result of which button on the message box was clicked.
@@ -45,13 +45,13 @@ namespace Community.VisualStudio.Toolkit
         /// </code>
         /// </example>
         public async Task<MessageBoxResult> ShowAsync(string line1,
-                                    string line2 = "",
-                                    OLEMSGICON icon = OLEMSGICON.OLEMSGICON_INFO,
-                                    OLEMSGBUTTON buttons = OLEMSGBUTTON.OLEMSGBUTTON_OKCANCEL,
-                                    OLEMSGDEFBUTTON defaultButton = OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST)
+            string line2 = "",
+            OLEMSGICON icon = OLEMSGICON.OLEMSGICON_INFO,
+            OLEMSGBUTTON buttons = OLEMSGBUTTON.OLEMSGBUTTON_OKCANCEL,
+            OLEMSGDEFBUTTON defaultButton = OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            return Show(line2, line1, icon, buttons, defaultButton);
+            return Show(line1, line2, icon, buttons, defaultButton);
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Shows a yes/no/cancel message box .
+        /// Shows a yes/no/cancel message box.
         /// </summary>
         /// <returns>true if the user clicks the 'Yes' button.</returns>
         public bool ShowConfirm(string line1, string line2 = "")
@@ -105,7 +105,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Shows a yes/no/cancel message box .
+        /// Shows a yes/no/cancel message box.
         /// </summary>
         /// <returns>true if the user clicks the 'Yes' button.</returns>
         public async Task<bool> ShowConfirmAsync(string line1, string line2 = "")
