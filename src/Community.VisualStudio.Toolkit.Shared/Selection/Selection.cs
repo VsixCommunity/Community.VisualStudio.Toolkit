@@ -104,7 +104,7 @@ namespace Community.VisualStudio.Toolkit
 
                     foreach (VSITEMSELECTION item in items)
                     {
-                        IVsHierarchyItem? hierItem = await item.pHier.ToHierarcyItemAsync(item.itemid);
+                        IVsHierarchyItem? hierItem = await item.pHier.ToHierarchyItemAsync(item.itemid);
 
                         if (hierItem != null)
                         {
@@ -113,7 +113,7 @@ namespace Community.VisualStudio.Toolkit
                         else
                         {
                             IVsHierarchy solution = (IVsHierarchy)await VS.Services.GetSolutionAsync();
-                            IVsHierarchyItem? sol = await solution.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
+                            IVsHierarchyItem? sol = await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
 
                             if (sol != null)
                             {
@@ -129,7 +129,7 @@ namespace Community.VisualStudio.Toolkit
                 else if (hierPtr != IntPtr.Zero)
                 {
                     IVsHierarchy hierarchy = (IVsHierarchy)Marshal.GetUniqueObjectForIUnknown(hierPtr);
-                    IVsHierarchyItem? hierItem = await hierarchy.ToHierarcyItemAsync(itemId);
+                    IVsHierarchyItem? hierItem = await hierarchy.ToHierarchyItemAsync(itemId);
 
                     if (hierItem != null)
                     {
@@ -138,7 +138,7 @@ namespace Community.VisualStudio.Toolkit
                 }
                 else if (await VS.Services.GetSolutionAsync() is IVsHierarchy solution)
                 {
-                    IVsHierarchyItem? sol = await solution.ToHierarcyItemAsync(VSConstants.VSITEMID_ROOT);
+                    IVsHierarchyItem? sol = await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
 
                     if (sol != null)
                     {
