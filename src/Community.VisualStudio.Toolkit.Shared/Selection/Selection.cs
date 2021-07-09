@@ -163,7 +163,7 @@ namespace Community.VisualStudio.Toolkit
                 }
             }
 
-            return results.Distinct();
+            return results;
         }
     }
 }
