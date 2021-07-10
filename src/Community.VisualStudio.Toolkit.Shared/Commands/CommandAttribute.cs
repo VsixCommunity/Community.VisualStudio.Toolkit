@@ -3,7 +3,7 @@
 namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
-    /// Attribute for specifying command guids and ids.
+    /// Attribute for specifying command GUIDs and IDs.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class CommandAttribute : Attribute

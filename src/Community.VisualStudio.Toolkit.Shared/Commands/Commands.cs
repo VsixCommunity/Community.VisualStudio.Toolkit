@@ -49,7 +49,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Executes a command by guid and ID
+        /// Executes a command by GUID and ID
         /// </summary>
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
         public Task<bool> ExecuteAsync(Guid menuGroup, int commandId, string argument = "")
@@ -70,7 +70,7 @@ namespace Community.VisualStudio.Toolkit
           => ExecuteAsync(typeof(VSConstants.VSStd2KCmdID).GUID, (int)command, argument);
 
         /// <summary>
-        /// Executes a command by guid and ID
+        /// Executes a command by GUID and ID
         /// </summary>
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
         public Task<bool> ExecuteAsync(CommandID cmd, string argument = "")

@@ -52,7 +52,7 @@ namespace Community.VisualStudio.Toolkit
 
         /// <summary>
         /// Gets an existing Output window pane.
-        /// Returns null if a pane with the specified guid does not exist.
+        /// Returns null if a pane with the specified GUID does not exist.
         /// </summary>
         /// <param name="guid">The pane's unique identifier.</param>
         /// <returns>A new OutputWindowPane or <see langword="null"/>.</returns>
@@ -99,9 +99,9 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Finds tool windows matching the specified guid.
+        /// Finds tool windows matching the specified GUID.
         /// </summary>
-        /// <param name="toolWindowGuid">Find known tool window guids in the <see cref="WindowGuids"/> class.</param>
+        /// <param name="toolWindowGuid">Find known tool window GUIDs in the <see cref="WindowGuids"/> class.</param>
         /// <returns>An instance of an <see cref="IVsWindowFrame"/> or <see langword="null"/>.</returns>
         public async Task<WindowFrame?> FindWindowAsync(Guid toolWindowGuid)
         {
@@ -119,9 +119,9 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Finds tool windows matching the specified guid.
+        /// Finds tool windows matching the specified GUID.
         /// </summary>
-        /// <param name="toolWindowGuid">Find known tool window guids in the <see cref="WindowGuids"/> class.</param>
+        /// <param name="toolWindowGuid">Find known tool window GUIDs in the <see cref="WindowGuids"/> class.</param>
         /// <returns>An instance of an <see cref="IVsWindowFrame"/> or <see langword="null"/>.</returns>
         public async Task<WindowFrame?> FindOrShowToolWindowAsync(Guid toolWindowGuid)
         {
@@ -131,7 +131,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Shows any toolwindow.
         /// </summary>
-        /// <param name="toolWindowGuid">Find known tool window guids in the <see cref="WindowGuids"/> class.</param>
+        /// <param name="toolWindowGuid">Find known tool window GUIDs in the <see cref="WindowGuids"/> class.</param>
         /// <returns>An instance of an <see cref="IVsWindowFrame"/> or <see langword="null"/>.</returns>
         public async Task<WindowFrame?> ShowToolWindowAsync(Guid toolWindowGuid)
         {

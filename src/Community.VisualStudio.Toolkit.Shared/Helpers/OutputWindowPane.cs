@@ -54,7 +54,7 @@ namespace Community.VisualStudio.Toolkit
 
         /// <summary>
         /// Uniquely identifies the Output window pane.
-        /// After creating a pane, you can cache this Guid and later obtain the same pane from <see cref="GetAsync(Guid)"/>.
+        /// After creating a pane, you can cache this GUID and later obtain the same pane from <see cref="GetAsync(Guid)"/>.
         /// </summary>
         public Guid Guid { get; }
 
@@ -136,7 +136,7 @@ namespace Community.VisualStudio.Toolkit
 
         /// <summary>
         /// Gets an existing Output window pane.
-        /// Returns null if a pane with the specified guid does not exist.
+        /// Returns null if a pane with the specified GUID does not exist.
         /// </summary>
         /// <param name="guid">The pane's unique identifier.</param>
         /// <returns>A new OutputWindowPane or null.</returns>

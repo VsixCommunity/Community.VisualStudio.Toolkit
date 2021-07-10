@@ -66,7 +66,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// The editor guid associated with this frame.
+        /// The editor GUID associated with this frame.
         /// </summary>
         public Guid Editor
         {

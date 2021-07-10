@@ -25,7 +25,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Checks what kind the project is.
         /// </summary>
-        /// <param name="typeGuid">Use the <see cref="ProjectTypes"/> collection for known guids.</param>
+        /// <param name="typeGuid">Use the <see cref="ProjectTypes"/> collection for known GUIDs.</param>
         public async Task<bool> IsKindAsync(string typeGuid)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
