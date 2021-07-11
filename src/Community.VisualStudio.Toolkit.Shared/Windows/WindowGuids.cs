@@ -93,5 +93,8 @@
 
         /// <summary>Provides a second list of search results.</summary>
         public const string FindResults2 = "{0F887921-C2B6-11D2-9375-0080C747D9A0}";
+
+        /// <summary>Provides a command prompt for PowerShell.</summary>
+        public const string DeveloperPowerShell = "{D212F56B-C48A-434C-A121-1C5D80B59B9F}";
     }
 }
