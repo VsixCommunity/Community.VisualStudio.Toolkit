@@ -140,7 +140,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<bool> IsVisibleAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            return ((IVsWindowFrame)this).Hide() == VSConstants.S_OK;
+            return ((IVsWindowFrame)this).IsVisible() == VSConstants.S_OK;
         }
 
         /// <summary>
