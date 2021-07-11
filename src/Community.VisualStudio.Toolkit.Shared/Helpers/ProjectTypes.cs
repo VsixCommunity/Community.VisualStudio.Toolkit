@@ -1,7 +1,7 @@
 ﻿namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
-    /// A list of known project types guids.
+    /// A list of known project type GUIDs.
     /// </summary>
     public static class ProjectTypes
     {

@@ -53,7 +53,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Sets the current UI context.
         /// </summary>
-        /// <param name="uiContextGuid">The guid to uniquely identify the UI context.</param>
+        /// <param name="uiContextGuid">The GUID to uniquely identify the UI context.</param>
         /// <param name="isActive">Determines if the UI context is active or not.</param>
         public Task SetUIContextAsync(string uiContextGuid, bool isActive) 
             => SetUIContextAsync(new Guid(uiContextGuid), isActive);
@@ -61,7 +61,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Sets the current UI context.
         /// </summary>
-        /// <param name="uiContextGuid">The guid to uniquely identify the UI context.</param>
+        /// <param name="uiContextGuid">The GUID to uniquely identify the UI context.</param>
         /// <param name="isActive">Determines if the UI context is active or not.</param>
         public async Task SetUIContextAsync(Guid uiContextGuid, bool isActive)
         {

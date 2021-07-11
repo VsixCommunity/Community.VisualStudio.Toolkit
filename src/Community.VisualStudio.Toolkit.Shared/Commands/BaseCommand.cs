@@ -27,7 +27,7 @@ namespace Community.VisualStudio.Toolkit
     public abstract class BaseCommand<T> where T : class, new()
     {
         /// <summary>
-        /// The command object associated with the command ID (guid/id).
+        /// The command object associated with the command ID (GUID/ID).
         /// </summary>
         public OleMenuCommand Command { get; private set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
 
@@ -47,10 +47,10 @@ namespace Community.VisualStudio.Toolkit
 
             if (attr is null)
             {
-                throw new InvalidOperationException($"No [Command(guid, id)] attribute was added to {typeof(T).Name}");
+                throw new InvalidOperationException($"No [Command(GUID, ID)] attribute was added to {typeof(T).Name}");
             }
 
-            // Use package guid if no command set guid has been specified
+            // Use package GUID if no command set GUID has been specified
             Guid cmdGuid = attr.Guid == Guid.Empty ? package.GetType().GUID : attr.Guid;
             CommandID cmd = new CommandID(cmdGuid, attr.Id);
 
