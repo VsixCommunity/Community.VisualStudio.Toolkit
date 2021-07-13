@@ -4,17 +4,58 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Community.VisualStudio.Toolkit.Shared.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
     /// An <see cref="AsyncPackage"/> that provides additional functionality.
     /// </summary>
+    [ProvideService(typeof(SToolkitServiceProvider), IsAsyncQueryable = true)]
     public abstract class ToolkitPackage : AsyncPackage
     {
         private List<IToolWindowProvider>? _toolWindowProviders;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IToolkitServiceProvider ServiceProvider { get; private set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
+
+        /// <summary>
+        /// Initializes the <see cref="AsyncPackage"/>
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <param name="progress"></param>
+        /// <returns></returns>
+        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        {
+            await base.InitializeAsync(cancellationToken, progress);
+
+            ServiceCollection services = new ServiceCollection();
+            InitializeServices(services);
+            ServiceProvider = new ToolkitServiceProvider(services);
+
+            // Add the IToolkitServiceProvider to the VS IServiceProvider
+            AsyncServiceCreatorCallback serviceCreatorCallback = (sc, ct, t) =>
+            {
+                return Task.FromResult((object)this.ServiceProvider);
+            };
+
+            AddService(typeof(SToolkitServiceProvider), serviceCreatorCallback, false);
+        }
+
+        /// <summary>
+        /// Initialize the services in the DI container.
+        /// </summary>
+        /// <param name="services"></param>
+        protected virtual void InitializeServices(ServiceCollection services)
+        {
+            // Nothing
+        }
 
         internal void AddToolWindow(IToolWindowProvider provider)
         {
