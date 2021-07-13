@@ -2,6 +2,7 @@
 using Community.VisualStudio.Toolkit;
 using Community.VisualStudio.Toolkit.Shared.DependencyInjection;
 using Microsoft.VisualStudio.Shell;
+using VSSDK.TestExtension;
 
 namespace TestExtension.Commands
 {
@@ -12,9 +13,9 @@ namespace TestExtension.Commands
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IToolkitServiceProvider serviceProvider = await VS.GetRequiredServiceAsync<SToolkitServiceProvider, IToolkitServiceProvider>();
+            IToolkitServiceProvider<TestExtensionPackage> serviceProvider = await VS.GetRequiredServiceAsync<SToolkitServiceProvider<TestExtensionPackage>, IToolkitServiceProvider<TestExtensionPackage>>();
 
-            await VS.MessageBox.ShowAsync($"The {nameof(IToolkitServiceProvider)} was retrieved from the service collection succuessfully!");
+            await VS.MessageBox.ShowAsync($"The {nameof(IToolkitServiceProvider<TestExtensionPackage>)} was retrieved from the service collection succuessfully!");
         }
     }
 }

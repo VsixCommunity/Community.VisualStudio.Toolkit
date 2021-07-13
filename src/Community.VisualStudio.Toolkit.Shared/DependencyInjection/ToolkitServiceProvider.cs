@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.Shell;
 
 namespace Community.VisualStudio.Toolkit.Shared.DependencyInjection
 {
-    internal class ToolkitServiceProvider : IToolkitServiceProvider
+    internal class ToolkitServiceProvider<TPackage> : IToolkitServiceProvider<TPackage>
+         where TPackage : AsyncPackage
     {
         private readonly IServiceProvider _serviceProvider;
 

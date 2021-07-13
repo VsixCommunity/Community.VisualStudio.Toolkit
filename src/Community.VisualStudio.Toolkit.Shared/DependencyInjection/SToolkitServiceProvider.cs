@@ -1,9 +1,10 @@
 ﻿namespace Community.VisualStudio.Toolkit.Shared.DependencyInjection
 {
     /// <summary>
-    /// Placeholder interface for registering the <see cref="IToolkitServiceProvider"/> in the main Visual Studio service provider.
+    /// Placeholder interface for registering the <see cref="IToolkitServiceProvider{TPackage}"/> in the main Visual Studio service provider.
     /// </summary>
-    public interface SToolkitServiceProvider
+    /// <typeparam name="TPackage">Type of the implementing package.</typeparam>
+    public interface SToolkitServiceProvider<TPackage>
     {
     }
 }

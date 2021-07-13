@@ -6,7 +6,9 @@ namespace Community.VisualStudio.Toolkit.Shared.DependencyInjection
     /// <summary>
     /// Service provider
     /// </summary>
-    public interface IToolkitServiceProvider: IServiceProvider
+    /// <typeparam name="TPackage">Type of the implementing package.</typeparam>
+    public interface IToolkitServiceProvider<TPackage> : IServiceProvider
+         where TPackage : AsyncPackage
     {
     }
 }

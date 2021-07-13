@@ -23,7 +23,7 @@ namespace VSSDK.TestExtension
     [ProvideFileIcon(".abc", "KnownMonikers.Reference")]
     [ProvideToolWindow(typeof(MultiInstanceWindow.Pane))]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    public sealed class TestExtensionPackage : ToolkitPackage
+    public sealed class TestExtensionPackage : DependencyInjectionContainerToolkitPackage<TestExtensionPackage>
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {

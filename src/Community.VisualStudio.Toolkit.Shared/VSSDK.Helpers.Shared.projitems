@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Build\Build.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\KnownCommands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DependencyInjectionContainerToolkitPackage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DependencyInjection\IToolkitServiceProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DependencyInjection\SToolkitServiceProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DependencyInjection\ToolkitServiceProvider.cs" />
