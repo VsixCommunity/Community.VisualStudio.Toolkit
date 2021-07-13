@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Commands\BuildActiveProjectAsyncCommand.cs" />
     <Compile Include="Commands\BuildSolutionAsyncCommand.cs" />
+    <Compile Include="Commands\DependencyInjectionCommand.cs" />
     <Compile Include="Commands\MultiInstanceWindowCommand.cs" />
     <Compile Include="Commands\RunnerWindowCommand.cs" />
     <Compile Include="Commands\ThemeWindowCommand.cs" />

@@ -70,6 +70,15 @@
           <ButtonText>Build Solution Async</ButtonText>
         </Strings>
       </Button>
+
+      <Button guid="TestExtension" id="TestDependencyInjection" priority="0x0102" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1"/>
+        <Icon guid="ImageCatalogGuid" id="BuildSolution" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Test Dependency Injection Functionality</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
   </Commands>
 
@@ -83,6 +92,7 @@
       <IDSymbol name="MultiInstanceWindow" value="0x0102" />
       <IDSymbol name="BuildActiveProjectAsync" value="0x0103" />
       <IDSymbol name="BuildSolutionAsync" value="0x0104" />
+      <IDSymbol name="TestDependencyInjection" value="0x0105" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

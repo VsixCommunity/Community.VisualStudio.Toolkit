@@ -8,6 +8,9 @@ using TestExtension;
 using TestExtension.Commands;
 using Task = System.Threading.Tasks.Task;
 
+[assembly: ProvideCodeBase(AssemblyName = "Microsoft.Extensions.DependencyInjection", CodeBase = "$PackageFolder$\\Microsoft.Extensions.DependencyInjection.dll")]
+[assembly: ProvideCodeBase(AssemblyName = "Microsoft.Extensions.DependencyInjection.Abstractions", CodeBase = "$PackageFolder$\\Microsoft.Extensions.DependencyInjection.Abstractions.dll")]
+
 namespace VSSDK.TestExtension
 {
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
@@ -24,6 +27,8 @@ namespace VSSDK.TestExtension
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
+            await base.InitializeAsync(cancellationToken, progress);
+
             // Tool windows
             RunnerWindow.Initialize(this);
             ThemeWindow.Initialize(this);
@@ -37,6 +42,7 @@ namespace VSSDK.TestExtension
             await MultiInstanceWindowCommand.InitializeAsync(this);
             await BuildActiveProjectAsyncCommand.InitializeAsync(this);
             await BuildSolutionAsyncCommand.InitializeAsync(this);
+            await DependencyInjectionCommand.InitializeAsync(this);
         }
     }
 }
