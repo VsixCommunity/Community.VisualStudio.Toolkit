@@ -45,7 +45,7 @@ namespace Community.VisualStudio.Toolkit
                 return Task.FromResult((object)this.ServiceProvider);
             };
 
-            AddService(typeof(SToolkitServiceProvider), serviceCreatorCallback, false);
+            AddService(typeof(SToolkitServiceProvider), serviceCreatorCallback, true);
         }
 
         /// <summary>
