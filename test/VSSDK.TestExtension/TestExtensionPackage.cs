@@ -8,9 +8,6 @@ using TestExtension;
 using TestExtension.Commands;
 using Task = System.Threading.Tasks.Task;
 
-[assembly: ProvideCodeBase(AssemblyName = "Microsoft.Extensions.DependencyInjection", CodeBase = "$PackageFolder$\\Microsoft.Extensions.DependencyInjection.dll")]
-[assembly: ProvideCodeBase(AssemblyName = "Microsoft.Extensions.DependencyInjection.Abstractions", CodeBase = "$PackageFolder$\\Microsoft.Extensions.DependencyInjection.Abstractions.dll")]
-
 namespace VSSDK.TestExtension
 {
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]

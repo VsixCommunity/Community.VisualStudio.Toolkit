@@ -3,3 +3,5 @@
 using Microsoft.VisualStudio.Shell;
 
 [assembly: ProvideCodeBase(AssemblyName = "Community.VisualStudio.Toolkit")]
+[assembly: ProvideCodeBase(AssemblyName = "Microsoft.Extensions.DependencyInjection")]
+[assembly: ProvideCodeBase(AssemblyName = "Microsoft.Extensions.DependencyInjection.Abstractions")]
