@@ -13,7 +13,7 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class Solution : SolutionItem
     {
-        internal Solution(IVsHierarchyItem item) : base(item)
+        internal Solution(IVsHierarchyItem item, SolutionItemType type) : base(item, type)
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
         /// <summary>

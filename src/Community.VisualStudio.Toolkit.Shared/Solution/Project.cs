@@ -11,7 +11,7 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class Project : SolutionItem
     {
-        internal Project(IVsHierarchyItem item) : base(item)
+        internal Project(IVsHierarchyItem item, SolutionItemType type) : base(item, type)
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
         /// <summary>
