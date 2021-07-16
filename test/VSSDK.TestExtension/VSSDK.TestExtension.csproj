@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Commands\BuildActiveProjectAsyncCommand.cs" />
     <Compile Include="Commands\BuildSolutionAsyncCommand.cs" />
+    <Compile Include="Commands\DependencyInjectionCommand.cs" />
     <Compile Include="Commands\MultiInstanceWindowCommand.cs" />
     <Compile Include="Commands\RunnerWindowCommand.cs" />
     <Compile Include="Commands\ThemeWindowCommand.cs" />
@@ -146,6 +147,14 @@
     <ProjectReference Include="..\..\src\Community.VisualStudio.Toolkit.17.0\Community.VisualStudio.Toolkit.17.0.csproj">
       <Project>{d000c76d-4d0f-48f9-b5ab-5696c92cc7bd}</Project>
       <Name>Community.VisualStudio.Toolkit.17.0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\DependencyInjection\Core\17.0\Community.VisualStudio.Toolkit.DependencyInjection.Core.17.0.csproj">
+      <Project>{46f70315-990a-43dc-a28b-f61672050d7d}</Project>
+      <Name>Community.VisualStudio.Toolkit.DependencyInjection.Core.17.0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\DependencyInjection\Microsoft\17.0\Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.17.0.csproj">
+      <Project>{c54ad939-b3b3-4234-b3d0-4929e32b7b72}</Project>
+      <Name>Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.17.0</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@
   <Extern href="vsshlids.h"/>
   <Include href="KnownImageIds.vsct"/>
   <Include href="VSGlobals.vsct"/>
-  
+
   <Commands package="TestExtension">
     <!--This section defines the elements the user can interact with, like a menu command or a button
         or combo box in a toolbar. -->
@@ -18,13 +18,13 @@
         </Strings>
       </Menu>
     </Menus>
-    
+
     <Groups>
       <Group guid="TestExtension" id="TestExtensionMainMenuGroup1" priority="0x1100">
         <Parent guid="TestExtension" id="TestExtensionMainMenu" />
       </Group>
     </Groups>
-    
+
     <Buttons>
       <Button guid="TestExtension" id="RunnerWindow" priority="0x0105" type="Button">
         <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
@@ -70,6 +70,15 @@
           <ButtonText>Build Solution Async</ButtonText>
         </Strings>
       </Button>
+
+      <Button guid="TestExtension" id="TestDependencyInjection" priority="0x0102" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1"/>
+        <Icon guid="ImageCatalogGuid" id="BuildSolution" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Test Dependency Injection Functionality</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
   </Commands>
 
@@ -77,12 +86,13 @@
     <GuidSymbol name="TestExtension" value="{05271709-8845-42fb-9d10-621cc8cffc5d}">
       <IDSymbol name="TestExtensionMainMenu" value="0x1000" />
       <IDSymbol name="TestExtensionMainMenuGroup1" value="0x1100" />
-      
+
       <IDSymbol name="RunnerWindow" value="0x0100" />
       <IDSymbol name="ThemeWindow" value="0x0101" />
       <IDSymbol name="MultiInstanceWindow" value="0x0102" />
       <IDSymbol name="BuildActiveProjectAsync" value="0x0103" />
       <IDSymbol name="BuildSolutionAsync" value="0x0104" />
+      <IDSymbol name="TestDependencyInjection" value="0x0105" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

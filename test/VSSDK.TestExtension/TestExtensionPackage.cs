@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 using Community.VisualStudio.Toolkit;
+using Community.VisualStudio.Toolkit.DependencyInjection.Microsoft;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using TestExtension;
@@ -20,10 +21,12 @@ namespace VSSDK.TestExtension
     [ProvideFileIcon(".abc", "KnownMonikers.Reference")]
     [ProvideToolWindow(typeof(MultiInstanceWindow.Pane))]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    public sealed class TestExtensionPackage : ToolkitPackage
+    public sealed class TestExtensionPackage : MicrosoftDIToolkitPackage<TestExtensionPackage>
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
+            await base.InitializeAsync(cancellationToken, progress);
+
             // Tool windows
             RunnerWindow.Initialize(this);
             ThemeWindow.Initialize(this);
@@ -37,6 +40,7 @@ namespace VSSDK.TestExtension
             await MultiInstanceWindowCommand.InitializeAsync(this);
             await BuildActiveProjectAsyncCommand.InitializeAsync(this);
             await BuildSolutionAsyncCommand.InitializeAsync(this);
+            await DependencyInjectionCommand.InitializeAsync(this);
         }
     }
 }

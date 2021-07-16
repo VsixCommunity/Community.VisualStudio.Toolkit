@@ -27,5 +27,6 @@ namespace TestExtension
         public const int MultiInstanceWindow = 0x0102;
         public const int BuildActiveProjectAsync = 0x0103;
         public const int BuildSolutionAsync = 0x0104;
+        public const int TestDependencyInjection = 0x0105;
     }
 }
