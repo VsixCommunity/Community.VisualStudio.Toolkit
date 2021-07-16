@@ -9,5 +9,6 @@
     <Import_RootNamespace>Community.VisualStudio.Toolkit.DependencyInjection.Microsoft</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)MicrosoftDIToolkitPackage.cs" />
   </ItemGroup>
 </Project>

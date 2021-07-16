@@ -12,7 +12,7 @@ namespace Community.VisualStudio.Toolkit.DependencyInjection
     /// </summary>
     /// <typeparam name="TPackage"></typeparam>
     [ProvideService(typeof(SToolkitServiceProvider<>), IsAsyncQueryable = true)]
-    public class DIToolkitPackage<TPackage> : ToolkitPackage
+    public abstract class DIToolkitPackage<TPackage> : ToolkitPackage
         where TPackage : AsyncPackage
     {
         /// <summary>
@@ -30,9 +30,11 @@ namespace Community.VisualStudio.Toolkit.DependencyInjection
         {
             await base.InitializeAsync(cancellationToken, progress);
 
-            ServiceCollection services = new ServiceCollection();
+            IServiceCollection services = this.CreateServiceCollection();
             InitializeServices(services);
-            ServiceProvider = new ToolkitServiceProvider<TPackage>(services);
+
+            IServiceProvider serviceProvider = BuildServiceProvider(services);
+            ServiceProvider = new ToolkitServiceProvider<TPackage>(serviceProvider);
 
             // Add the IToolkitServiceProvider to the VS IServiceProvider
             AsyncServiceCreatorCallback serviceCreatorCallback = (sc, ct, t) =>
@@ -44,10 +46,23 @@ namespace Community.VisualStudio.Toolkit.DependencyInjection
         }
 
         /// <summary>
+        /// Create the service collection.
+        /// </summary>
+        /// <returns></returns>
+        protected abstract IServiceCollection CreateServiceCollection();
+
+        /// <summary>
+        /// Builds the service collection
+        /// </summary>
+        /// <param name="serviceCollection"></param>
+        /// <returns></returns>
+        protected abstract IServiceProvider BuildServiceProvider(IServiceCollection serviceCollection);
+
+        /// <summary>
         /// Initialize the services in the DI container.
         /// </summary>
         /// <param name="services"></param>
-        protected virtual void InitializeServices(ServiceCollection services)
+        protected virtual void InitializeServices(IServiceCollection services)
         {
             // Nothing
         }

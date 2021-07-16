@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.Shell;
 
 namespace Community.VisualStudio.Toolkit.DependencyInjection.Core
@@ -9,9 +8,9 @@ namespace Community.VisualStudio.Toolkit.DependencyInjection.Core
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public ToolkitServiceProvider(ServiceCollection services)
+        public ToolkitServiceProvider(IServiceProvider services)
         {
-            _serviceProvider = services.BuildServiceProvider();
+            _serviceProvider = services;
         }
 
         public object GetService(Type serviceType)
