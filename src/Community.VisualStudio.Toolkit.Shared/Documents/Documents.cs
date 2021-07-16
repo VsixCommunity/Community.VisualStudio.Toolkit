@@ -53,7 +53,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Opens a file in the Preview Tab (provisional tab) if supported by the editor factory.
+        /// Opens a file in editor window.
         /// </summary>
         public async Task<DocumentView?> OpenAsync(string file)
         {

@@ -7,7 +7,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Settings;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell.Settings;
 using Microsoft.VisualStudio.Threading;
 using Task = System.Threading.Tasks.Task;
@@ -55,8 +54,11 @@ namespace Community.VisualStudio.Toolkit
         {
             get
             {
-                ThreadHelper.ThrowIfNotOnUIThread();
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable VSTHRD104 // Offer async methods
                 return ThreadHelper.JoinableTaskFactory.Run(GetLiveInstanceAsync);
+#pragma warning restore VSTHRD104 // Offer async methods
+#pragma warning restore IDE0079 // Remove unnecessary suppression
             }
         }
 
@@ -74,7 +76,7 @@ namespace Community.VisualStudio.Toolkit
         /// <returns></returns>
         public static async Task<T> CreateAsync()
         {
-            T instance = new T();
+            T instance = new();
             await instance.LoadAsync();
             return instance;
         }
@@ -102,7 +104,7 @@ namespace Community.VisualStudio.Toolkit
             ShellSettingsManager manager = await _settingsManager.GetValueAsync();
             SettingsScope scope = SettingsScope.UserSettings;
             SettingsStore settingsStore = manager.GetReadOnlySettingsStore(scope);
-            HashSet<string> testedCollections = new HashSet<string>();
+            HashSet<string> testedCollections = new();
 
             bool DoesCollectionExist(string collectionName)
             {
@@ -196,7 +198,7 @@ namespace Community.VisualStudio.Toolkit
             ShellSettingsManager manager = await _settingsManager.GetValueAsync();
             SettingsScope scope = SettingsScope.UserSettings;
             WritableSettingsStore settingsStore = manager.GetWritableSettingsStore(scope);
-            HashSet<string> testedCollections = new HashSet<string>();
+            HashSet<string> testedCollections = new();
 
             foreach (PropertyInfo property in GetOptionProperties())
             {
@@ -276,9 +278,9 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         protected virtual string SerializeValue(object value)
         {
-            using (MemoryStream stream = new MemoryStream())
+            using (MemoryStream stream = new())
             {
-                BinaryFormatter formatter = new BinaryFormatter();
+                BinaryFormatter formatter = new();
                 formatter.Serialize(stream, value);
                 stream.Flush();
                 return Convert.ToBase64String(stream.ToArray());
@@ -292,9 +294,9 @@ namespace Community.VisualStudio.Toolkit
         {
             byte[] b = Convert.FromBase64String(value);
 
-            using (MemoryStream stream = new MemoryStream(b))
+            using (MemoryStream stream = new(b))
             {
-                BinaryFormatter formatter = new BinaryFormatter();
+                BinaryFormatter formatter = new();
                 return formatter.Deserialize(stream);
             }
         }
