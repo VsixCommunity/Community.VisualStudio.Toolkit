@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\DependencyInjection.Core.Common.props" />
+  
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+    <Version>15.0</Version>
+    <DefineConstants>VS15</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Community.VisualStudio.Toolkit.15.0\Community.VisualStudio.Toolkit.15.0.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,52 @@
+<Project>
+
+  <PropertyGroup>
+    <Authors>VSIX Community</Authors>
+    <Owners>VSIX Community</Owners>
+    <Copyright>© Mads Kristensen. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/VsixCommunity/Community.VisualStudio.Toolkit</PackageProjectUrl>
+    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>embedded</DebugType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <DebugType>portable</DebugType>
+    
+    <PackageId>Community.VisualStudio.Toolkit.DependencyInjection.Core</PackageId>
+    <AssemblyName>Community.VisualStudio.Toolkit.DependencyInjection.Core</AssemblyName>
+    <PackageDescription>Adds Dependency Injection to the Community.VisualStudio.Toolkit</PackageDescription>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageIcon>Icon.png</PackageIcon>
+    <PackageTags>VisualStudio, VSSDK, SDK</PackageTags>
+    <RootNamespace>Community.VisualStudio.Toolkit.DependencyInjection.Core</RootNamespace>
+
+    <LangVersion>9</LangVersion>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../../key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\..\Icon.png" Link="Icon.png" Pack="true" PackagePath="" Visible="false" />
+    <None Include="../Community.VisualStudio.Toolkit.DependencyInjection.Core.props" Pack="true" PackagePath="build" Visible="false" />
+    <None Include="../Community.VisualStudio.Toolkit.DependencyInjection.Core.targets" Pack="true" PackagePath="build" Visible="false" />
+    <None Include="../AssemblyInfo.cs" Pack="true" PackagePath="build" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Windows" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)Shared\Community.VisualStudio.Toolkit.DependencyInjection.Core.Shared.projitems" Label="Shared" />
+
+</Project>

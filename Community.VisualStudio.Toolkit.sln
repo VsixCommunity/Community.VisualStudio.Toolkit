@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31321.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31512.422
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.16.0", "src\Community.VisualStudio.Toolkit.16.0\Community.VisualStudio.Toolkit.16.0.csproj", "{38DC82EA-91D6-4360-B76C-995708EE43A3}"
 EndProject
@@ -26,9 +26,49 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Tool
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.17.0", "src\Community.VisualStudio.Toolkit.17.0\Community.VisualStudio.Toolkit.17.0.csproj", "{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependency Injection", "Dependency Injection", "{1F7643C0-767C-4A40-A352-0BD660C3EBD5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0F83D953-61A7-47DE-AEAE-1AE531D3C3E3}"
+	ProjectSection(SolutionItems) = preProject
+		src\DependencyInjection\Core\AssemblyInfo.cs = src\DependencyInjection\Core\AssemblyInfo.cs
+		src\DependencyInjection\Core\Community.VisualStudio.Toolkit.DependencyInjection.Core.props = src\DependencyInjection\Core\Community.VisualStudio.Toolkit.DependencyInjection.Core.props
+		src\DependencyInjection\Core\Community.VisualStudio.Toolkit.DependencyInjection.Core.targets = src\DependencyInjection\Core\Community.VisualStudio.Toolkit.DependencyInjection.Core.targets
+		src\DependencyInjection\Core\DependencyInjection.Core.Common.props = src\DependencyInjection\Core\DependencyInjection.Core.Common.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft", "Microsoft", "{698A7ACD-A78A-4067-B6AC-2DD15B74D714}"
+	ProjectSection(SolutionItems) = preProject
+		src\DependencyInjection\Microsoft\AssemblyInfo.cs = src\DependencyInjection\Microsoft\AssemblyInfo.cs
+		src\DependencyInjection\Microsoft\Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.props = src\DependencyInjection\Microsoft\Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.props
+		src\DependencyInjection\Microsoft\Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.targets = src\DependencyInjection\Microsoft\Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.targets
+		src\DependencyInjection\Microsoft\DependencyInjection.Microsoft.Common.props = src\DependencyInjection\Microsoft\DependencyInjection.Microsoft.Common.props
+	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.Shared", "src\DependencyInjection\Microsoft\Shared\Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.Shared.shproj", "{249F45FF-16E4-417B-99FA-686D20ED42C2}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Community.VisualStudio.Toolkit.DependencyInjection.Core.Shared", "src\DependencyInjection\Core\Shared\Community.VisualStudio.Toolkit.DependencyInjection.Core.Shared.shproj", "{BEB996A4-E7DA-4D44-A21C-493AAF842203}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.DependencyInjection.Core.14.0", "src\DependencyInjection\Core\14.0\Community.VisualStudio.Toolkit.DependencyInjection.Core.14.0.csproj", "{17327EA4-F625-4052-BEA5-51AFD7997DA5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.DependencyInjection.Core.15.0", "src\DependencyInjection\Core\15.0\Community.VisualStudio.Toolkit.DependencyInjection.Core.15.0.csproj", "{6CAC1ADB-7D98-4EF4-8012-91EEBDD6007F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.DependencyInjection.Core.16.0", "src\DependencyInjection\Core\16.0\Community.VisualStudio.Toolkit.DependencyInjection.Core.16.0.csproj", "{45C54640-DF4D-432B-9029-0BFAB40D62A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.DependencyInjection.Core.17.0", "src\DependencyInjection\Core\17.0\Community.VisualStudio.Toolkit.DependencyInjection.Core.17.0.csproj", "{46F70315-990A-43DC-A28B-F61672050D7D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.14.0", "src\DependencyInjection\Microsoft\14.0\Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.14.0.csproj", "{23C52E2F-772C-4069-B81F-F47F6B25EF93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.15.0", "src\DependencyInjection\Microsoft\15.0\Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.15.0.csproj", "{026F18E6-62D7-40EF-847A-2F1B247E0FBA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.16.0", "src\DependencyInjection\Microsoft\16.0\Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.16.0.csproj", "{8B7860D7-7AAC-4868-97D4-EF998B07AB56}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.17.0", "src\DependencyInjection\Microsoft\17.0\Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.17.0.csproj", "{C54AD939-B3B3-4234-B3D0-4929E32B7B72}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\DependencyInjection\Microsoft\Shared\Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.Shared.projitems*{249f45ff-16e4-417b-99fa-686d20ed42c2}*SharedItemsImports = 13
 		src\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{5ec463ac-24cb-443e-9ff9-91b7ecb1f822}*SharedItemsImports = 13
+		src\DependencyInjection\Core\Shared\Community.VisualStudio.Toolkit.DependencyInjection.Core.Shared.projitems*{beb996a4-e7da-4d44-a21c-493aaf842203}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,9 +95,55 @@ Global
 		{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17327EA4-F625-4052-BEA5-51AFD7997DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17327EA4-F625-4052-BEA5-51AFD7997DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17327EA4-F625-4052-BEA5-51AFD7997DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17327EA4-F625-4052-BEA5-51AFD7997DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CAC1ADB-7D98-4EF4-8012-91EEBDD6007F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CAC1ADB-7D98-4EF4-8012-91EEBDD6007F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CAC1ADB-7D98-4EF4-8012-91EEBDD6007F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CAC1ADB-7D98-4EF4-8012-91EEBDD6007F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C54640-DF4D-432B-9029-0BFAB40D62A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C54640-DF4D-432B-9029-0BFAB40D62A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C54640-DF4D-432B-9029-0BFAB40D62A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C54640-DF4D-432B-9029-0BFAB40D62A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46F70315-990A-43DC-A28B-F61672050D7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46F70315-990A-43DC-A28B-F61672050D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46F70315-990A-43DC-A28B-F61672050D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46F70315-990A-43DC-A28B-F61672050D7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23C52E2F-772C-4069-B81F-F47F6B25EF93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23C52E2F-772C-4069-B81F-F47F6B25EF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23C52E2F-772C-4069-B81F-F47F6B25EF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23C52E2F-772C-4069-B81F-F47F6B25EF93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{026F18E6-62D7-40EF-847A-2F1B247E0FBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{026F18E6-62D7-40EF-847A-2F1B247E0FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{026F18E6-62D7-40EF-847A-2F1B247E0FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{026F18E6-62D7-40EF-847A-2F1B247E0FBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B7860D7-7AAC-4868-97D4-EF998B07AB56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B7860D7-7AAC-4868-97D4-EF998B07AB56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B7860D7-7AAC-4868-97D4-EF998B07AB56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B7860D7-7AAC-4868-97D4-EF998B07AB56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C54AD939-B3B3-4234-B3D0-4929E32B7B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C54AD939-B3B3-4234-B3D0-4929E32B7B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C54AD939-B3B3-4234-B3D0-4929E32B7B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C54AD939-B3B3-4234-B3D0-4929E32B7B72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F83D953-61A7-47DE-AEAE-1AE531D3C3E3} = {1F7643C0-767C-4A40-A352-0BD660C3EBD5}
+		{698A7ACD-A78A-4067-B6AC-2DD15B74D714} = {1F7643C0-767C-4A40-A352-0BD660C3EBD5}
+		{249F45FF-16E4-417B-99FA-686D20ED42C2} = {698A7ACD-A78A-4067-B6AC-2DD15B74D714}
+		{BEB996A4-E7DA-4D44-A21C-493AAF842203} = {0F83D953-61A7-47DE-AEAE-1AE531D3C3E3}
+		{17327EA4-F625-4052-BEA5-51AFD7997DA5} = {0F83D953-61A7-47DE-AEAE-1AE531D3C3E3}
+		{6CAC1ADB-7D98-4EF4-8012-91EEBDD6007F} = {0F83D953-61A7-47DE-AEAE-1AE531D3C3E3}
+		{45C54640-DF4D-432B-9029-0BFAB40D62A5} = {0F83D953-61A7-47DE-AEAE-1AE531D3C3E3}
+		{46F70315-990A-43DC-A28B-F61672050D7D} = {0F83D953-61A7-47DE-AEAE-1AE531D3C3E3}
+		{23C52E2F-772C-4069-B81F-F47F6B25EF93} = {698A7ACD-A78A-4067-B6AC-2DD15B74D714}
+		{026F18E6-62D7-40EF-847A-2F1B247E0FBA} = {698A7ACD-A78A-4067-B6AC-2DD15B74D714}
+		{8B7860D7-7AAC-4868-97D4-EF998B07AB56} = {698A7ACD-A78A-4067-B6AC-2DD15B74D714}
+		{C54AD939-B3B3-4234-B3D0-4929E32B7B72} = {698A7ACD-A78A-4067-B6AC-2DD15B74D714}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0DD67C0-2617-498C-81F0-A5E4FF5831F1}
