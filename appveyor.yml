@@ -19,6 +19,16 @@ build_script:
   - ps: dotnet build src/Community.VisualStudio.Toolkit.16.0/Community.VisualStudio.Toolkit.16.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=16.0.75.$($env:appveyor_build_number)-pre
   - ps: dotnet build src/Community.VisualStudio.Toolkit.17.0/Community.VisualStudio.Toolkit.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=17.0.75.$($env:appveyor_build_number)-pre
 
+  - ps: dotnet build src/DependencyInjection/Core/14.0/Community.VisualStudio.Toolkit.DependencyInjection.Core.14.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=14.0.75.$($env:appveyor_build_number)-pre
+  - ps: dotnet build src/DependencyInjection/Core/15.0/Community.VisualStudio.Toolkit.DependencyInjection.Core.15.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=14.0.75.$($env:appveyor_build_number)-pre
+  - ps: dotnet build src/DependencyInjection/Core/16.0/Community.VisualStudio.Toolkit.DependencyInjection.Core.16.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=14.0.75.$($env:appveyor_build_number)-pre
+  - ps: dotnet build src/DependencyInjection/Core/17.0/Community.VisualStudio.Toolkit.DependencyInjection.Core.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=14.0.75.$($env:appveyor_build_number)-pre
+
+  - ps: dotnet build src/DependencyInjection/Microsoft/14.0/Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.14.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=14.0.75.$($env:appveyor_build_number)-pre
+  - ps: dotnet build src/DependencyInjection/Microsoft/15.0/Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.15.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=14.0.75.$($env:appveyor_build_number)-pre
+  - ps: dotnet build src/DependencyInjection/Microsoft/16.0/Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.16.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=14.0.75.$($env:appveyor_build_number)-pre
+  - ps: dotnet build src/DependencyInjection/Microsoft/17.0/Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=14.0.75.$($env:appveyor_build_number)-pre
+
 test: off
 
 artifacts:
