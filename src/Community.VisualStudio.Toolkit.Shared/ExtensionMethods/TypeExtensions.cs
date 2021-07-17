@@ -30,7 +30,6 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
             if (type == null || genericType == null)
                 return null;
 
-            var typeName = type.FullName;
             if (type == genericType)
                 return type;
 
