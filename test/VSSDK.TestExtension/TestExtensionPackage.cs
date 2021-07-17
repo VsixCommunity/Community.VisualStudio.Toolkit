@@ -25,12 +25,12 @@ namespace VSSDK.TestExtension
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             // Tool windows
-            this.AutoRegisterToolWindows();
+            this.RegisterToolWindows();
 
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
             // Commands
-            await this.AutoRegisterCommandsAsync();
+            await this.RegisterCommandsAsync();
         }
     }
 }

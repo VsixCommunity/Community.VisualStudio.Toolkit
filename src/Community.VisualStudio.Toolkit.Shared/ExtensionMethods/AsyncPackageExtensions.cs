@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
+using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
 {
@@ -18,7 +19,7 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
         /// <param name="package"></param>
         /// <param name="assemblies"></param>
         /// <returns>A collection of the command instances</returns>
-        public static async Task<IEnumerable<object>> AutoRegisterCommandsAsync(this AsyncPackage package, params Assembly[] assemblies)
+        public static async Task<IEnumerable<object>> RegisterCommandsAsync(this AsyncPackage package, params Assembly[] assemblies)
         {
             List<Assembly> assembliesList = assemblies.ToList();
             Assembly packageAssembly = package.GetType().Assembly;
@@ -53,7 +54,7 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
         /// <param name="package"></param>
         /// <param name="assemblies"></param>
         /// <returns></returns>
-        public static void AutoRegisterToolWindows(this AsyncPackage package, params Assembly[] assemblies)
+        public static void RegisterToolWindows(this AsyncPackage package, params Assembly[] assemblies)
         {
             List<Assembly> assembliesList = assemblies.ToList();
             Assembly packageAssembly = package.GetType().Assembly;
