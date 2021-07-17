@@ -132,11 +132,11 @@ namespace Community.VisualStudio.Toolkit
 
         private static ResourceDictionary BuildThemeResources()
         {
-            ResourceDictionary resources = new ResourceDictionary();
+            ResourceDictionary resources = new();
 
             try
             {
-                Thickness inputPadding = new Thickness(6, 8, 6, 8); // This is the same padding used by WatermarkedTextBox.
+                Thickness inputPadding = new(6, 8, 6, 8); // This is the same padding used by WatermarkedTextBox.
 
                 resources[ToolkitResourceKeys.InputPaddingKey] = inputPadding;
 

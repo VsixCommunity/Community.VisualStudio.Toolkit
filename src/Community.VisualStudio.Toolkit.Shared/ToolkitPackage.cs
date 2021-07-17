@@ -76,7 +76,7 @@ namespace Community.VisualStudio.Toolkit
                 // The context object we have been given was returned from the `InitializeToolWindowAsync()`
                 // method, and is an `InstantiateToolWindowData` object that contains the content for the tool 
                 // window and its ID. The tool window is always created with an unspecified context object.
-                var data = (InstantiateToolWindowData)context;
+                InstantiateToolWindowData? data = (InstantiateToolWindowData)context;
                 WindowPane pane = base.InstantiateToolWindow(toolWindowType, ToolWindowCreationContext.Unspecified);
 
                 // Set the content and the caption of the tool window. This needs to be 
@@ -155,10 +155,13 @@ namespace Community.VisualStudio.Toolkit
                 // Set the content and the caption of the tool window. This needs to be 
                 // done as part of initializing the tool window. Doing it later results in
                 // errors being thrown when Visual Studio creates the tool window's frame.
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable VSTHRD104 // Offer async methods
                 windowPane.Content = ThreadHelper.JoinableTaskFactory.Run(
                     () => provider.CreateAsync(_currentToolWindowId, DisposalToken)
                 );
-
+#pragma warning restore VSTHRD104 // Offer async methods
+#pragma warning restore IDE0079 // Remove unnecessary suppression
                 if (windowPane is ToolWindowPane toolPane)
                 {
                     toolPane.Caption = provider.GetTitle(_currentToolWindowId);

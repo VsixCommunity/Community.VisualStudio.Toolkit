@@ -44,7 +44,7 @@ namespace Microsoft.VisualStudio.Imaging.Interop
             IVsImageService2 imageService = await VS.GetRequiredServiceAsync<SVsImageService, IVsImageService2>();
             Color backColor = VSColorTheme.GetThemedColor(EnvironmentColors.ToolWindowBackgroundColorKey);
 
-            ImageAttributes imageAttributes = new ImageAttributes
+            ImageAttributes imageAttributes = new()
             {
                 Flags = (uint)_ImageAttributesFlags.IAF_RequiredFlags | unchecked((uint)_ImageAttributesFlags.IAF_Background),
                 ImageType = (uint)_UIImageType.IT_Bitmap,

@@ -105,7 +105,7 @@ namespace Community.VisualStudio.Toolkit
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentException(nameof(name));
 
-            OutputWindowPane pane = new OutputWindowPane(name, Guid.NewGuid());
+            OutputWindowPane pane = new(name, Guid.NewGuid());
 
             if (!lazyCreate)
             {
@@ -143,7 +143,7 @@ namespace Community.VisualStudio.Toolkit
         public static async Task<OutputWindowPane?> GetAsync(Guid guid)
         {
             // Empty string for `newPaneName` signals to EnsurePaneAsync that we want to get an existing pane.
-            OutputWindowPane pane = new OutputWindowPane(string.Empty, guid);
+            OutputWindowPane pane = new(string.Empty, guid);
 
             try
             {

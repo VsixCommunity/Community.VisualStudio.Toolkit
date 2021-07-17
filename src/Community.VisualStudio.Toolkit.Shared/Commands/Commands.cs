@@ -102,7 +102,7 @@ namespace Community.VisualStudio.Toolkit
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             
             IVsRegisterPriorityCommandTarget? priority = await VS.Services.GetPriorityCommandTargetAsync();
-            CommandInterceptor interceptor = new CommandInterceptor(cmd, func);
+            CommandInterceptor interceptor = new(cmd, func);
 
             ErrorHandler.ThrowOnFailure(priority.RegisterPriorityCommandTarget(0, interceptor, out _));
         }

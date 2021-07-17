@@ -41,7 +41,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
 
             if (frameValue is IVsWindowFrame frame && view != null)
             {
-                WindowFrame windowFrame = new WindowFrame(frame);
+                WindowFrame windowFrame = new(frame);
                 return new DocumentView(windowFrame, view);
             }
 
