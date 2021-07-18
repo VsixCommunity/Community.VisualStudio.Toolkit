@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
@@ -147,6 +147,12 @@
       <Project>{d000c76d-4d0f-48f9-b5ab-5696c92cc7bd}</Project>
       <Name>Community.VisualStudio.Toolkit.17.0</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Theme.Blue.vssettings" />
+    <EmbeddedResource Include="Resources\Theme.BlueHighContrast.vssettings" />
+    <EmbeddedResource Include="Resources\Theme.Dark.vssettings" />
+    <EmbeddedResource Include="Resources\Theme.Light.vssettings" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
