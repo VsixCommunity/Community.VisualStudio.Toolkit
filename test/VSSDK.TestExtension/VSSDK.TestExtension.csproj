@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
@@ -61,16 +61,17 @@
     <Compile Include="ToolWindows\RunnerWindowControl.xaml.cs">
       <DependentUpon>RunnerWindowControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToolWindows\ThemeWindow.cs" />
-    <Compile Include="ToolWindows\ThemeWindowControl.xaml.cs">
+    <Compile Include="ToolWindows\ThemeWindow\ThemedControl.cs" />
+    <Compile Include="ToolWindows\ThemeWindow\ThemeWindow.cs" />
+    <Compile Include="ToolWindows\ThemeWindow\ThemeWindowControl.xaml.cs">
       <DependentUpon>ThemeWindowControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToolWindows\ThemeWindowDemo.xaml.cs">
+    <Compile Include="ToolWindows\ThemeWindow\ThemeWindowDemo.xaml.cs">
       <DependentUpon>ThemeWindowDemo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToolWindows\ThemeWindowDialogViewModel.cs" />
-    <Compile Include="ToolWindows\ThemeWindowControlViewModel.cs" />
-    <Compile Include="ToolWindows\ThemeWindowDialog.xaml.cs">
+    <Compile Include="ToolWindows\ThemeWindow\ThemeWindowDialogViewModel.cs" />
+    <Compile Include="ToolWindows\ThemeWindow\ThemeWindowControlViewModel.cs" />
+    <Compile Include="ToolWindows\ThemeWindow\ThemeWindowDialog.xaml.cs">
       <DependentUpon>ThemeWindowDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="VSCommandTable.cs">
@@ -114,6 +115,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolWindows\ThemeWindow\ThemedControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ToolWindows\MultiInstanceWindowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,15 +131,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ToolWindows\ThemeWindowControl.xaml">
+    <Page Include="ToolWindows\ThemeWindow\ThemeWindowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ToolWindows\ThemeWindowDemo.xaml">
+    <Page Include="ToolWindows\ThemeWindow\ThemeWindowDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ToolWindows\ThemeWindowDialog.xaml">
+    <Page Include="ToolWindows\ThemeWindow\ThemeWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
