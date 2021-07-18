@@ -40,6 +40,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- 
+    Include the XAML theme resources file here rather than in the shared project, because 
+    when it's included in the shared project, you don't get Intellisense when editing the file.
+    Also note that this is an EmbeddedResource rather than a Page, because we need to load and edit
+    the file at runtime to account for different assembly versions that are referenced in the namespaces.
+    -->
+    <EmbeddedResource Include="..\Community.VisualStudio.Toolkit.Shared\Themes\ThemeResources.xaml" Link="Themes\ThemeResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  
+  <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Design" />
