@@ -1,4 +1,4 @@
-﻿<UserControl 
+<UserControl 
     x:Class="TestExtension.ThemeWindowDemo"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -15,17 +15,17 @@
     <UserControl.Resources>
         <!-- Uncomment the line below to override the padding used in TextBox and ComboBox controls. -->
         <!--<Thickness x:Key="{x:Static toolkit:ToolkitResourceKeys.InputPaddingKey}">1,1,1,1</Thickness>-->
-        
+
         <Thickness x:Key="SmallMargin">0,0,0,5</Thickness>
     </UserControl.Resources>
-    
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="10" Orientation="Vertical" Grid.IsSharedSizeScope="True">
             <local:ThemedControl Label="Label:">
                 <local:ThemedControl.Enabled>
                     <Label>Enabled</Label>
                 </local:ThemedControl.Enabled>
-                
+
                 <local:ThemedControl.Disabled>
                     <Label IsEnabled="False">Disabled</Label>
                 </local:ThemedControl.Disabled>
@@ -143,6 +143,22 @@
                 <local:ThemedControl.Disabled>
                     <ListBox Height="80" IsEnabled="False" ItemsSource="{Binding ListItems}" />
                 </local:ThemedControl.Disabled>
+            </local:ThemedControl>
+
+            <local:ThemedControl Label="SmoothProgressBar:" DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:ThemeWindowDemo}}">
+                <local:ThemedControl.Enabled>
+                    <StackPanel Orientation="Vertical">
+                        <platform:SmoothProgressBar ToolTip="Normal" Minimum="0" Maximum="100" Value="{Binding Progress}" Margin="{StaticResource SmallMargin}"/>
+                        <platform:SmoothProgressBar ToolTip="IsIndeterminate=True" IsIndeterminate="True" Margin="{StaticResource SmallMargin}"/>
+                        <platform:SmoothProgressBar ToolTip="ToolkitResourceKeys.ThickProgressBarHeight" Minimum="0" Maximum="100" Value="{Binding Progress}" Height="{DynamicResource {x:Static toolkit:ToolkitResourceKeys.ThickProgressBarHeight}}"/>
+                    </StackPanel>
+                </local:ThemedControl.Enabled>
+            </local:ThemedControl>
+
+            <local:ThemedControl Label="MarchingAntsProgressBar:">
+                <local:ThemedControl.Enabled>
+                    <platform:MarchingAntsProgressBar/>
+                </local:ThemedControl.Enabled>
             </local:ThemedControl>
 
             <local:ThemedControl Label="InputPaddingKey:">
