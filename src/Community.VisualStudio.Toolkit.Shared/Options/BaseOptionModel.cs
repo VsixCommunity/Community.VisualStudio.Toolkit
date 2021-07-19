@@ -123,7 +123,7 @@ namespace Community.VisualStudio.Toolkit
             SettingsScope scope = SettingsScope.UserSettings;
             SettingsStore settingsStore = manager.GetReadOnlySettingsStore(scope);
 
-            foreach (var propertyWrapper in GetPropertyWrappers())
+            foreach (IOptionModelPropertyWrapper? propertyWrapper in GetPropertyWrappers())
             {
                 propertyWrapper.Load(this, settingsStore);
             }
@@ -148,7 +148,7 @@ namespace Community.VisualStudio.Toolkit
             SettingsScope scope = SettingsScope.UserSettings;
             WritableSettingsStore settingsStore = manager.GetWritableSettingsStore(scope);
 
-            foreach (var propertyWrapper in GetPropertyWrappers())
+            foreach (IOptionModelPropertyWrapper? propertyWrapper in GetPropertyWrappers())
             {
                 propertyWrapper.Save(this, settingsStore);
             }

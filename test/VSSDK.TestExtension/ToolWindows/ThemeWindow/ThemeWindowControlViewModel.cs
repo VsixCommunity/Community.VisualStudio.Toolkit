@@ -77,7 +77,7 @@ namespace TestExtension
             // There doesn't appear to be a way to set the theme programatically, 
             // but we can change the theme by using a pre-defined settings file and importing those settings.
             // The settings files were created by exporting only the "Options/General/Font and Colors" setting.
-            var tempFileName = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("n") + ".vssettings");
+            string tempFileName = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("n") + ".vssettings");
 
             using (Stream resource = GetType().Assembly.GetManifestResourceStream($"TestExtension.Resources.{theme.ResourceName}"))
             {
