@@ -33,7 +33,7 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
                     && x.IsAssignableToGenericType(baseCommandType)
                     && x.GetCustomAttribute<CommandAttribute>() != null);
 
-            List<object>? commands = new List<object>();
+            List<object> commands = new();
             foreach (Type? commandType in commandTypes)
             {
                 MethodInfo initializeAsyncMethod = commandType.GetMethod(
