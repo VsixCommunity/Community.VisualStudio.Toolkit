@@ -36,12 +36,12 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
             // See if any of the base types implement the type
             while (type != null && type != typeof(object))
             {
-                var currentType = type.IsGenericType ? type.GetGenericTypeDefinition() : type;
+                Type? currentType = type.IsGenericType ? type.GetGenericTypeDefinition() : type;
                 if (genericType == currentType)
                     return currentType;
 
                 // See if any of the interfaces implement the type
-                var interfaceType = type.GetInterfaces()
+                Type? interfaceType = type.GetInterfaces()
                     .FirstOrDefault(t => t.IsGenericType && t.GetGenericTypeDefinition() == genericType);
 
                 if (interfaceType != null)
