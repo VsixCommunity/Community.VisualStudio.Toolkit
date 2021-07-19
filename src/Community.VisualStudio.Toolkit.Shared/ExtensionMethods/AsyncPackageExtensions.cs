@@ -67,7 +67,6 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
                     !x.IsAbstract
                     && x.IsAssignableToGenericType(baseToolWindowType));
 
-            var toolWindows = new List<object>();
             foreach (var toolWindowtype in toolWindowTypes)
             {
                 MethodInfo initializeMethod = toolWindowtype.GetMethod(
