@@ -32,7 +32,7 @@ namespace TestExtension
 
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
-            var manager = (IVsSettingsManager)await VS.Services.GetSettingsManagerAsync();
+            IVsSettingsManager manager = (IVsSettingsManager)await VS.Services.GetSettingsManagerAsync();
             SettingsStore store = new ShellSettingsManager(manager).GetReadOnlySettingsStore(SettingsScope.UserSettings);
 
             if (store.CollectionExists(COLLECTION_NAME))
@@ -41,7 +41,7 @@ namespace TestExtension
                 {
                     // The value is made up of three parts, separated
                     // by a star. The third part is the GUID of the theme.
-                    var parts = store.GetString(COLLECTION_NAME, PROPERTY_NAME).Split('*');
+                    string[] parts = store.GetString(COLLECTION_NAME, PROPERTY_NAME).Split('*');
                     if (parts.Length == 3)
                     {
                         if (Guid.TryParse(parts[2], out Guid value))

@@ -1124,7 +1124,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
 
             if (destinationType == typeof(byte[]))
             {
-                var tmpStr = ToString(customType);
+                string? tmpStr = ToString(customType);
                 return Encoding.UTF8.GetBytes(tmpStr);
             }
 
