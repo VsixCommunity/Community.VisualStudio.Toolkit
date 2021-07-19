@@ -33,8 +33,8 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
                     && x.IsAssignableToGenericType(baseCommandType)
                     && x.GetCustomAttribute<CommandAttribute>() != null);
 
-            var commands = new List<object>();
-            foreach (var commandType in commandTypes)
+            List<object>? commands = new List<object>();
+            foreach (Type? commandType in commandTypes)
             {
                 MethodInfo initializeAsyncMethod = commandType.GetMethod(
                     nameof(BaseCommand<object>.InitializeAsync),
@@ -67,7 +67,7 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
                     !x.IsAbstract
                     && x.IsAssignableToGenericType(baseToolWindowType));
 
-            foreach (var toolWindowtype in toolWindowTypes)
+            foreach (Type? toolWindowtype in toolWindowTypes)
             {
                 MethodInfo initializeMethod = toolWindowtype.GetMethod(
                     "Initialize",
