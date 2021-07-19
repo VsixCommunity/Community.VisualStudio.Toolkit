@@ -2,6 +2,8 @@
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Text.Editor;
+using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -29,24 +31,34 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Happens when a file is saved to disk.
         /// </summary>
-        public event EventHandler<string>? Saved;
+        public event Action<string>? Saved;
 
         /// <summary>
         /// Fires after the document was opened in the editor.
         /// </summary>
-        public event EventHandler<string>? Opened;
+        public event Action<string>? Opened;
 
         /// <summary>
         /// Fires after the document was closed.s
         /// </summary>
-        public event EventHandler<string>? Closed;
+        public event Action<string>? Closed;
+
+        /// <summary>
+        /// Fires before the document takes focus.
+        /// </summary>
+        public event Action<DocumentView>? BeforeDocumentWindowShow;
+
+        /// <summary>
+        /// Fires after the document lost focus.
+        /// </summary>
+        public event Action<DocumentView>? AfterDocumentWindowHide;
 
         int IVsRunningDocTableEvents.OnAfterFirstDocumentLock(uint docCookie, uint dwRDTLockType, uint dwReadLocksRemaining, uint dwEditLocksRemaining)
         {
             if (Opened != null)
             {
                 string file = _rdt.GetDocumentInfo(docCookie).Moniker;
-                Opened.Invoke(this, file);
+                Opened.Invoke(file);
             }
 
             return VSConstants.S_OK;
@@ -57,7 +69,7 @@ namespace Community.VisualStudio.Toolkit
             if (Closed != null)
             {
                 string file = _rdt.GetDocumentInfo(docCookie).Moniker;
-                Closed!.Invoke(this, file);
+                Closed!.Invoke(file);
             }
 
             return VSConstants.S_OK;
@@ -68,7 +80,7 @@ namespace Community.VisualStudio.Toolkit
             if (Saved != null)
             {
                 string file = _rdt.GetDocumentInfo(docCookie).Moniker;
-                Saved?.Invoke(this, file);
+                Saved?.Invoke(file);
             }
 
             return VSConstants.S_OK;
@@ -81,11 +93,23 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsRunningDocTableEvents.OnBeforeDocumentWindowShow(uint docCookie, int fFirstShow, IVsWindowFrame pFrame)
         {
+            if (BeforeDocumentWindowShow != null)
+            {
+                DocumentView docView = new(pFrame);
+                BeforeDocumentWindowShow.Invoke(docView);
+            }
+
             return VSConstants.S_OK;
         }
 
         int IVsRunningDocTableEvents.OnAfterDocumentWindowHide(uint docCookie, IVsWindowFrame pFrame)
         {
+            if (AfterDocumentWindowHide != null)
+            {
+                DocumentView docView = new(pFrame);
+                AfterDocumentWindowHide.Invoke(docView);
+            }
+
             return VSConstants.S_OK;
         }
     }

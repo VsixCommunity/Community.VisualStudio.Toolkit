@@ -1,0 +1,35 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:TestExtension"
+    >
+
+    <Style TargetType="{x:Type local:ThemedControl}">
+        <Setter Property="Margin" Value="0,0,0,10" />
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ThemedControl}">
+                    <Grid x:Name="PART_Grid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="ThemedControlLabel"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/> <!-- Spacer to apply a gap while keeping the other two columns the same width. -->
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="{TemplateBinding Label}" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <ContentPresenter x:Name="EnabledContent" Grid.Column="1" ContentSource="Enabled"/>
+                        <ContentPresenter Grid.Column="3" ContentSource="Disabled"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Disabled" Value="{x:Null}">
+                            <Setter TargetName="EnabledContent" Property="Grid.ColumnSpan" Value="3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

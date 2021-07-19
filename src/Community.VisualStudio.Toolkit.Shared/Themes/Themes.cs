@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.VisualStudio;
@@ -25,6 +26,8 @@ namespace Community.VisualStudio.Toolkit
     {
         private static readonly DependencyProperty _originalBackgroundProperty = DependencyProperty.RegisterAttached("OriginalBackground", typeof(object), typeof(Themes));
         private static readonly DependencyProperty _originalForegroundProperty = DependencyProperty.RegisterAttached("OriginalForeground", typeof(object), typeof(Themes));
+
+        private static ResourceDictionary? _themeResources;
 
         /// <summary>
         /// The property to add to your XAML control.
@@ -68,7 +71,10 @@ namespace Community.VisualStudio.Toolkit
                     }
                     else
                     {
-                        element.Resources.MergedDictionaries.Remove(ThemeResources);
+                        if (_themeResources is not null)
+                        {
+                            element.Resources.MergedDictionaries.Remove(_themeResources);
+                        }
                         ImageThemingUtilities.SetThemeScrollBars(element, null);
                         ThemedDialogStyleLoader.SetUseDefaultThemedDialogStyles(element, false);
                         RestoreProperty(element, Control.ForegroundProperty, _originalForegroundProperty);
@@ -121,51 +127,70 @@ namespace Community.VisualStudio.Toolkit
 
         private static void MergeStyles(FrameworkElement element)
         {
-            Collection<ResourceDictionary> dictionaries = element.Resources.MergedDictionaries;
-            if (!dictionaries.Contains(ThemeResources))
+#if DEBUG
+            // Always reload the theme resources in DEBUG mode, because it allows
+            // them to be edited on disk without needing to restart Visual Studio,
+            // which makes it much easier to create and test new styles.
+            _themeResources = null;
+#endif
+
+            if (_themeResources is null)
             {
-                dictionaries.Add(ThemeResources);
+                _themeResources = LoadThemeResources();
+            }
+
+            Collection<ResourceDictionary> dictionaries = element.Resources.MergedDictionaries;
+            if (!dictionaries.Contains(_themeResources))
+            {
+                dictionaries.Add(_themeResources);
             }
         }
 
-        private static ResourceDictionary ThemeResources { get; } = BuildThemeResources();
-
-        private static ResourceDictionary BuildThemeResources()
+        private static ResourceDictionary LoadThemeResources()
         {
-            ResourceDictionary resources = new ResourceDictionary();
-
             try
             {
-                Thickness inputPadding = new Thickness(6, 8, 6, 8); // This is the same padding used by WatermarkedTextBox.
-
-                resources[ToolkitResourceKeys.InputPaddingKey] = inputPadding;
-
-                resources[typeof(TextBox)] = new Style
-                {
-                    TargetType = typeof(TextBox),
-                    BasedOn = (Style)Application.Current.FindResource(VsResourceKeys.TextBoxStyleKey),
-                    Setters =
-                    {
-                        new Setter(Control.PaddingProperty, new DynamicResourceExtension(ToolkitResourceKeys.InputPaddingKey))
-                    }
-                };
-
-                resources[typeof(ComboBox)] = new Style
-                {
-                    TargetType = typeof(ComboBox),
-                    BasedOn = (Style)Application.Current.FindResource(VsResourceKeys.ComboBoxStyleKey),
-                    Setters =
-                    {
-                        new Setter(Control.PaddingProperty, new DynamicResourceExtension(ToolkitResourceKeys.InputPaddingKey))
-                    }
-                };
+                return LoadResources();
             }
             catch (Exception ex) when (!ErrorHandler.IsCriticalException(ex))
             {
                 ex.Log();
+                return new ResourceDictionary();
             }
+        }
 
-            return resources;
+        private static ResourceDictionary LoadResources(
+#if DEBUG
+            [System.Runtime.CompilerServices.CallerFilePath] string? thisFilePath = null
+#endif
+        )
+        {
+#if DEBUG
+            // Load the resources from disk in DEBUG mode, because this allows
+            // you to edit the resources without needing to reload Visual Studio.
+            using (StreamReader reader = new(Path.Combine(Path.GetDirectoryName(thisFilePath), "ThemeResources.xaml")))
+#else
+            using (StreamReader reader = new(typeof(Themes).Assembly.GetManifestResourceStream("Community.VisualStudio.Toolkit.Themes.ThemeResources.xaml")))
+#endif
+            {
+                string content = reader.ReadToEnd();
+
+                // The XAML uses the `VsResourceKeys` type and needs to specify the assembly
+                // that the type is in, but the exact assembly name differs between the
+                // toolkit versions, so we need to replace the assembly name at runtime.
+                content = content.Replace(
+                    "clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0",
+                    $"clr-namespace:Microsoft.VisualStudio.Shell;assembly={typeof(VsResourceKeys).Assembly.GetName().Name}"
+                );
+
+                // Do the same thing for the `CommonControlsColors` namespace.
+                content = content.Replace(
+                    "clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0",
+                    $"clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly={typeof(CommonControlsColors).Assembly.GetName().Name}"
+                );
+
+                return (ResourceDictionary)System.Windows.Markup.XamlReader.Parse(content);
+            }
         }
     }
 }

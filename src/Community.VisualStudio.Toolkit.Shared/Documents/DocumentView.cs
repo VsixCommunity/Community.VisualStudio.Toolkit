@@ -1,5 +1,8 @@
-﻿using Microsoft.VisualStudio.Text;
+﻿using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
+using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -13,6 +16,24 @@ namespace Community.VisualStudio.Toolkit
             WindowFrame = frame;
             TextView = view;
             Document = TextBuffer?.GetTextDocument();
+            FilePath = Document?.FilePath;
+        }
+
+        internal DocumentView(IVsWindowFrame nativeFrame)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            WindowFrame frame = new(nativeFrame);
+            IWpfTextView? view = VsShellUtilities.GetTextView(nativeFrame)?.ToIWpfTextView();
+            
+            WindowFrame = frame;
+            TextView = view;
+            Document = TextBuffer?.GetTextDocument();
+            nativeFrame.GetProperty((int)__VSFPROPID.VSFPROPID_pszMkDocument, out object pvar);
+
+            if (pvar is string filePath)
+            {
+                FilePath = filePath;
+            }
         }
 
         /// <summary>
@@ -34,5 +55,10 @@ namespace Community.VisualStudio.Toolkit
         /// The text buffer loaded in the view.
         /// </summary>
         public ITextBuffer? TextBuffer => TextView?.TextBuffer;
+
+        /// <summary>
+        /// The absolute file path of the document.
+        /// </summary>
+        public string? FilePath { get; }
     }
 }

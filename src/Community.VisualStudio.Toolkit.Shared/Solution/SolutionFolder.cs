@@ -13,7 +13,7 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class SolutionFolder : SolutionItem
     {
-        internal SolutionFolder(IVsHierarchyItem item) : base(item)
+        internal SolutionFolder(IVsHierarchyItem item, SolutionItemType type) : base(item, type)
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
         /// <summary>

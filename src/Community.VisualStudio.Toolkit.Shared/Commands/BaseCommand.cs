@@ -52,7 +52,7 @@ namespace Community.VisualStudio.Toolkit
 
             // Use package GUID if no command set GUID has been specified
             Guid cmdGuid = attr.Guid == Guid.Empty ? package.GetType().GUID : attr.Guid;
-            CommandID cmd = new CommandID(cmdGuid, attr.Id);
+            CommandID cmd = new(cmdGuid, attr.Id);
 
             instance.Command = new OleMenuCommand(instance.Execute, cmd);
             instance.Package = package;

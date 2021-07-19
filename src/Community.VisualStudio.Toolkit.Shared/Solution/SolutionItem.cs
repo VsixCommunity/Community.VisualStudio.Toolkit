@@ -24,16 +24,16 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Creates a new instance of the solution item.
         /// </summary>
-        protected SolutionItem(IVsHierarchyItem item)
+        protected SolutionItem(IVsHierarchyItem item, SolutionItemType type)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             _item = item;
-            
+
             _hierarchy = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedHierarchy : item.HierarchyIdentity.Hierarchy;
             _itemId = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedItemID : item.HierarchyIdentity.ItemID;
 
             Name = item.Text;
-            Type = GetSolutionItemType(item.HierarchyIdentity);
+            Type = type;
             FullPath = GetFullPath();
         }
 
@@ -124,10 +124,20 @@ namespace Community.VisualStudio.Toolkit
                 return null;
             }
 
-            return new SolutionItem(item);
+            SolutionItemType type = GetSolutionItemType(item.HierarchyIdentity);
+            
+            return type switch
+            {
+                SolutionItemType.Solution => new Solution(item, type),
+                SolutionItemType.Project => new Project(item, type),
+                SolutionItemType.PhysicalFile => new File(item, type),
+                SolutionItemType.PhysicalFolder => new Folder(item, type),
+                SolutionItemType.SolutionFolder => new SolutionFolder(item, type),
+                _ => new SolutionItem(item, type)
+            };
         }
 
-        private SolutionItemType GetSolutionItemType(IVsHierarchyItemIdentity identity)
+        private static SolutionItemType GetSolutionItemType(IVsHierarchyItemIdentity identity)
         {
             if (HierarchyUtilities.IsSolutionNode(identity))
             {

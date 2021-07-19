@@ -328,7 +328,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnShow != null)
             {
-                WindowFrameShowEventArgs e = new WindowFrameShowEventArgs((FrameShow)fShow);
+                WindowFrameShowEventArgs e = new((FrameShow)fShow);
                 OnShow(this, e);
             }
             InvokeStatusChanged();
@@ -339,7 +339,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnMove != null)
             {
-                WindowFramePositionChangedEventArgs e = new WindowFramePositionChangedEventArgs(new Rectangle(x, y, w, h));
+                WindowFramePositionChangedEventArgs e = new(new Rectangle(x, y, w, h));
                 OnMove(this, e);
             }
             InvokeStatusChanged();
@@ -350,7 +350,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnResize != null)
             {
-                WindowFramePositionChangedEventArgs e = new WindowFramePositionChangedEventArgs(new Rectangle(x, y, w, h));
+                WindowFramePositionChangedEventArgs e = new(new Rectangle(x, y, w, h));
                 OnResize(this, e);
             }
             InvokeStatusChanged();
@@ -361,7 +361,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnDockChange != null)
             {
-                WindowFrameDockChangedEventArgs e = new WindowFrameDockChangedEventArgs(new Rectangle(x, y, w, h), fDockable != 0);
+                WindowFrameDockChangedEventArgs e = new(new Rectangle(x, y, w, h), fDockable != 0);
                 OnDockChange(this, e);
             }
             InvokeStatusChanged();
@@ -372,7 +372,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnClose != null)
             {
-                WindowFrameCloseEventArgs e = new WindowFrameCloseEventArgs((FrameCloseOption)pgrfSaveOptions);
+                WindowFrameCloseEventArgs e = new((FrameCloseOption)pgrfSaveOptions);
                 OnClose(this, e);
             }
             InvokeStatusChanged();
@@ -388,7 +388,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (OnStatusChange != null)
             {
-                EventArgs e = new EventArgs();
+                EventArgs e = new();
                 OnStatusChange(this, e);
             }
         }

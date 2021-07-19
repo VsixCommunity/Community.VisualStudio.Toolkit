@@ -31,6 +31,19 @@ namespace VSSDK.TestExtension
 
             // Commands
             await this.RegisterCommandsAsync();
+
+            VS.Events.DocumentEvents.AfterDocumentWindowHide += DocumentEvents_AfterDocumentWindowHide;
+            VS.Events.DocumentEvents.BeforeDocumentWindowShow += DocumentEvents_BeforeDocumentWindowShow;
+        }
+
+        private void DocumentEvents_BeforeDocumentWindowShow(DocumentView obj)
+        {
+            VS.StatusBar.ShowMessageAsync(obj.Document?.FilePath).FireAndForget();
+        }
+
+        private void DocumentEvents_AfterDocumentWindowHide(DocumentView obj)
+        {
+            VS.StatusBar.ShowMessageAsync(obj.Document?.FilePath).FireAndForget();
         }
     }
 }
