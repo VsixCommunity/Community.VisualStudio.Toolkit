@@ -2,10 +2,10 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 using Community.VisualStudio.Toolkit;
+using Community.VisualStudio.Toolkit.Shared.ExtensionMethods;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using TestExtension;
-using TestExtension.Commands;
 using Task = System.Threading.Tasks.Task;
 
 namespace VSSDK.TestExtension
@@ -25,18 +25,12 @@ namespace VSSDK.TestExtension
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             // Tool windows
-            RunnerWindow.Initialize(this);
-            ThemeWindow.Initialize(this);
-            MultiInstanceWindow.Initialize(this);
+            this.RegisterToolWindows();
 
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
             // Commands
-            await RunnerWindowCommand.InitializeAsync(this);
-            await ThemeWindowCommand.InitializeAsync(this);
-            await MultiInstanceWindowCommand.InitializeAsync(this);
-            await BuildActiveProjectAsyncCommand.InitializeAsync(this);
-            await BuildSolutionAsyncCommand.InitializeAsync(this);
+            await this.RegisterCommandsAsync();
 
             VS.Events.DocumentEvents.AfterDocumentWindowHide += DocumentEvents_AfterDocumentWindowHide;
             VS.Events.DocumentEvents.BeforeDocumentWindowShow += DocumentEvents_BeforeDocumentWindowShow;
