@@ -4,9 +4,14 @@
     xmlns:local="clr-namespace:Community.VisualStudio.Toolkit;assembly=Community.VisualStudio.Toolkit"
     xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
     xmlns:platform="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
     >
 
+    <!-- This is the same padding used by WatermarkedTextBox. -->
     <Thickness x:Key="{x:Static local:ToolkitResourceKeys.InputPaddingKey}">6,8,6,8</Thickness>
+    
+    <!-- This is the same height used in the IVsThreadedWaitDialog. -->
+    <system:Double x:Key="{x:Static local:ToolkitResourceKeys.ThickProgressBarHeight}">16</system:Double>
 
     <Style TargetType="TextBox" BasedOn="{StaticResource {x:Static shell:VsResourceKeys.TextBoxStyleKey}}">
         <Setter Property="Padding" Value="{StaticResource {x:Static local:ToolkitResourceKeys.InputPaddingKey}}" />
@@ -49,7 +54,7 @@
                 <Setter Property="Foreground" Value="{DynamicResource {x:Static platform:CommonControlsColors.TextBoxTextBrushKey}}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static platform:CommonControlsColors.TextBoxBorderBrushKey}}" />
             </Trigger>
-            
+
             <Trigger Property="IsFocused" Value="True">
                 <Setter Property="Background" Value="{DynamicResource {x:Static platform:CommonControlsColors.TextBoxBackgroundFocusedBrushKey}}" />
                 <Setter Property="Foreground" Value="{DynamicResource {x:Static platform:CommonControlsColors.TextBoxTextFocusedBrushKey}}" />
