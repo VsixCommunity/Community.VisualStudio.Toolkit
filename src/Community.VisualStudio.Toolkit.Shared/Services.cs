@@ -47,8 +47,10 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>This interface is used by a package to read command-line switches entered by the user.</summary>
         public Task<IVsAppCommandLine> GetAppCommandLineAsync() => VS.GetRequiredServiceAsync<SVsAppCommandLine, IVsAppCommandLine>();
 
-        /// <summary>Registers well-known images (such as icons) for Visual Studio.</summary>
-        /// <returns>Cast return object to <see cref="IVsImageService2"/></returns>
+        /// <summary>
+        /// Registers well-known images (such as icons) for Visual Studio.<br/>
+        /// Cast the result to <see cref="IVsImageService2"/>.
+        /// </summary>
         public Task<object> GetImageServiceAsync() => VS.GetRequiredServiceAsync<SVsImageService, object>();
 
         /// <summary>Controls the caching of font and color settings.</summary>
@@ -57,8 +59,10 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Allows a VSPackage to retrieve or save font and color data to the registry.</summary>
         public Task<IVsFontAndColorStorage> GetFontAndColorStorageAsync() => VS.GetRequiredServiceAsync<SVsFontAndColorStorage, IVsFontAndColorStorage>();
 
-        /// <summary>Controls the most recently used (MRU) items collection.</summary>
-        /// <returns>Cast return object to <see cref="IVsMRUItemsStore"/></returns>
+        /// <summary>
+        /// Controls the most recently used (MRU) items collection.<br/>
+        /// Cast the result to <see cref="IVsMRUItemsStore"/>.
+        /// </summary>
         public Task<object> GetMRUItemsStoreAsync() => VS.GetRequiredServiceAsync<SVsMRUItemsStore, object>();
 
         /// <summary>Used to retrieved services defined in the MEF catalog, such as the editor specific services like <see cref="IVsEditorAdaptersFactoryService"/>.</summary>
@@ -69,8 +73,10 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Provides access to the environment's status bar.</summary>
         public Task<IVsStatusbar> GetStatusBarAsync() => VS.GetRequiredServiceAsync<SVsStatusbar, IVsStatusbar>();
 
-        /// <summary>The <see cref="InfoBar"/> is often referred to as the 'yellow' or 'gold' bar.</summary>
-        /// <returns>Cast return object to <see cref="IVsInfoBarUIFactory"/>.</returns>
+        /// <summary>
+        /// The <see cref="InfoBar"/> is often referred to as the 'yellow' or 'gold' bar.<br/>
+        /// Cast the result to <see cref="IVsInfoBarUIFactory"/>.
+        /// </summary>
         public Task<object> GetInfoBarUIFactoryAsync() => VS.GetRequiredServiceAsync<SVsInfoBarUIFactory, object>();
 
 #if VS16 || VS17
@@ -79,8 +85,10 @@ namespace Community.VisualStudio.Toolkit
         public Task<IVsTaskStatusCenterService> GetTaskStatusCenterAsync() => VS.GetRequiredServiceAsync<SVsTaskStatusCenterService, IVsTaskStatusCenterService>();
 #endif
 
-        /// <summary>Used for background tasks that needs to block the UI if they take longer than the specified seconds.</summary>
-        /// <returns>Cast return object to <see cref="IVsThreadedWaitDialogFactory"/>.</returns>
+        /// <summary>
+        /// Used for background tasks that needs to block the UI if they take longer than the specified seconds.<br/>
+        /// Cast the result to <see cref="IVsThreadedWaitDialogFactory"/>.
+        /// </summary>
         public Task<object> GetThreadedWaitDialogAsync() => VS.GetRequiredServiceAsync<SVsThreadedWaitDialogFactory, object>();
 
         /// <summary>Used to write log messaged to the ActivityLog.xml file.</summary>
@@ -134,8 +142,9 @@ namespace Community.VisualStudio.Toolkit
         #endregion
 
         #region Settings
-        /// <summary>Provides access to the settings manager.</summary>
-        /// /// <returns>Cast return object to <see cref="IVsSettingsManager"/></returns>
+        /// <summary>Provides access to the settings manager.<br/>
+        /// Cast the result to <see cref="IVsSettingsManager"/>.
+        /// </summary>
         public Task<object> GetSettingsManagerAsync() => VS.GetRequiredServiceAsync<SVsSettingsManager, object>();
 
         /// <summary>Manages a Tools Options dialog box. The environment implements this interface.</summary>
