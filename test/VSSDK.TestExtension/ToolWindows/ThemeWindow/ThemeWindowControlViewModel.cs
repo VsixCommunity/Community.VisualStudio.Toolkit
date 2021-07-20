@@ -80,11 +80,9 @@ namespace TestExtension
             string tempFileName = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("n") + ".vssettings");
 
             using (Stream resource = GetType().Assembly.GetManifestResourceStream($"TestExtension.Resources.{theme.ResourceName}"))
+            using (FileStream file = System.IO.File.Open(tempFileName, FileMode.Create, FileAccess.Write))
             {
-                using (FileStream file = System.IO.File.Open(tempFileName, FileMode.Create, FileAccess.Write))
-                {
-                    await resource.CopyToAsync(file);
-                }
+                await resource.CopyToAsync(file);
             }
 
             try
