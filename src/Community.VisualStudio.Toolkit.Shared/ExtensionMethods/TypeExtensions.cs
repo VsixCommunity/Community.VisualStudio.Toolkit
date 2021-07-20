@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
-namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
+namespace System
 {
     /// <summary>
     /// Extensions for <see cref="Type"/>
@@ -28,24 +27,32 @@ namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
         public static Type? FindGenericBaseType(this Type type, Type genericType)
         {
             if (type == null || genericType == null)
+            {
                 return null;
+            }
 
             if (type == genericType)
+            {
                 return type;
+            }
 
             // See if any of the base types implement the type
             while (type != null && type != typeof(object))
             {
                 Type? currentType = type.IsGenericType ? type.GetGenericTypeDefinition() : type;
                 if (genericType == currentType)
+                {
                     return currentType;
+                }
 
                 // See if any of the interfaces implement the type
                 Type? interfaceType = type.GetInterfaces()
                     .FirstOrDefault(t => t.IsGenericType && t.GetGenericTypeDefinition() == genericType);
 
                 if (interfaceType != null)
+                {
                     return interfaceType;
+                }
 
                 type = type.BaseType;
             }

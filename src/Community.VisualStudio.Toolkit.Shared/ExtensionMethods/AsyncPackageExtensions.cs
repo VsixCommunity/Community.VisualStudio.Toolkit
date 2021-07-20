@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
-namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
+namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
     /// Extensions for an <see cref="AsyncPackage"/>
