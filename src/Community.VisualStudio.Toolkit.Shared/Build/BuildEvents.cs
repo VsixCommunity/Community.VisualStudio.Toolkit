@@ -48,7 +48,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Fires when a project is done building.
         /// </summary>
-        public event Action<Project?>? ProjectBuildDone;
+        public event Action<ProjectBuildDoneEventArgs>? ProjectBuildDone;
 
         /// <summary>
         /// Fires when a project starts cleaning.
@@ -58,7 +58,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Fires when a project is done cleaning.
         /// </summary>
-        public event Action<Project?>? ProjectCleanDone;
+        public event Action<ProjectBuildDoneEventArgs>? ProjectCleanDone;
 
         int IVsUpdateSolutionEvents.UpdateSolution_Begin(ref int pfCancelUpdate)
         {
@@ -73,12 +73,12 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsUpdateSolutionEvents.UpdateSolution_Done(int fSucceeded, int fModified, int fCancelCommand)
         {
-            SolutionBuildDone?.Invoke(fSucceeded == 0);
+            SolutionBuildDone?.Invoke(fSucceeded == 1);
             return VSConstants.S_OK;
         }
         int IVsUpdateSolutionEvents2.UpdateSolution_Done(int fSucceeded, int fModified, int fCancelCommand)
         {
-            SolutionBuildDone?.Invoke(fSucceeded == 0);
+            SolutionBuildDone?.Invoke(fSucceeded == 1);
             return VSConstants.S_OK;
         }
 
@@ -137,16 +137,30 @@ namespace Community.VisualStudio.Toolkit
                 // Clean
                 if (dwAction == 0x100000)
                 {
-                    ProjectCleanDone?.Invoke(project);
+                    ProjectCleanDone?.Invoke(new ProjectBuildDoneEventArgs(project, fSuccess == 1));
                 }
                 // Build and rebuild
                 else
                 {
-                    ProjectBuildDone?.Invoke(project);
+                    ProjectBuildDone?.Invoke(new ProjectBuildDoneEventArgs(project, fSuccess == 1));
                 }
             }
 
             return VSConstants.S_OK;
         }
+    }
+
+    /// <inheritdoc/>
+    public class ProjectBuildDoneEventArgs : EventArgs
+    {
+        public ProjectBuildDoneEventArgs(Project? project, bool isSuccesfull)
+        {
+            Project = project;
+            IsSuccesful = isSuccesfull;
+        }
+        /// <summary>The project that finished building.</summary>
+        public Project? Project { get; }
+        /// <summary>Indicates if the build was successful.</summary>
+        public bool IsSuccesful { get; }
     }
 }
