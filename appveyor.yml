@@ -20,7 +20,6 @@ build_script:
   - ps: dotnet pack src/Community.VisualStudio.Toolkit.17.0/Community.VisualStudio.Toolkit.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=17.0.75.$($env:appveyor_build_number)-pre
 
 test_script:
-  #- msbuild test/VSSDK.TestExtension/VSSDK.TestExtension.csproj
   - dotnet test src/Community.VisualStudio.Toolkit.UnitTests/Community.VisualStudio.Toolkit.UnitTests.csproj
 
 artifacts:
@@ -36,5 +35,5 @@ deploy:
     api_key:
       secure: 2LiTL6oY/0UkItVFZDP+iQqDsLl9BK9yM4rMyvbB9pL+/bXzzaerqFhR6NRmhRbs
     on:
-      branch: master2
+      branch: master
       appveyor_repo_commit_message_extended: /\[release\]/
