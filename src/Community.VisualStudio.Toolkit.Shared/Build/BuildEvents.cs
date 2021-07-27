@@ -153,14 +153,14 @@ namespace Community.VisualStudio.Toolkit
     /// <inheritdoc/>
     public class ProjectBuildDoneEventArgs : EventArgs
     {
-        public ProjectBuildDoneEventArgs(Project? project, bool isSuccesfull)
+        public ProjectBuildDoneEventArgs(Project? project, bool isSuccessful)
         {
             Project = project;
-            IsSuccesful = isSuccesfull;
+            IsSuccessful = isSuccessful;
         }
         /// <summary>The project that finished building.</summary>
         public Project? Project { get; }
         /// <summary>Indicates if the build was successful.</summary>
-        public bool IsSuccesful { get; }
+        public bool IsSuccessful { get; }
     }
 }
