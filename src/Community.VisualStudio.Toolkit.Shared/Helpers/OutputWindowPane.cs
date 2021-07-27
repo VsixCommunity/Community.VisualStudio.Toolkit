@@ -67,7 +67,9 @@ namespace Community.VisualStudio.Toolkit
             {
                 // We may already have the pane's name either from CreateOutputWindowPaneAsync, or a previous call to this getter.
                 if (!string.IsNullOrEmpty(_paneName))
+                {
                     return _paneName;
+                }
 
                 // Query the pane's name and then cache it for future use.
                 _paneName = ThreadHelper.JoinableTaskFactory.Run(async () =>
@@ -77,7 +79,9 @@ namespace Community.VisualStudio.Toolkit
                     await EnsurePaneAsync();
 
                     if (_pane == null)
+                    {
                         throw new InvalidOperationException("IVsOutputWindowPane should exist");
+                    }
 
                     string name = string.Empty;
                     _pane.GetName(ref name);
@@ -103,7 +107,9 @@ namespace Community.VisualStudio.Toolkit
         public static async Task<OutputWindowPane> CreateAsync(string name, bool lazyCreate = true)
         {
             if (string.IsNullOrEmpty(name))
+            {
                 throw new ArgumentException(nameof(name));
+            }
 
             OutputWindowPane pane = new(name, Guid.NewGuid());
 
@@ -166,7 +172,9 @@ namespace Community.VisualStudio.Toolkit
             await EnsurePaneAsync();
 
             if (_pane == null)
+            {
                 throw new InvalidOperationException("IVsOutputWindowPane should exist");
+            }
 
             _pane.Activate();
         }
@@ -181,7 +189,9 @@ namespace Community.VisualStudio.Toolkit
             await EnsurePaneAsync();
 
             if (_pane == null)
+            {
                 throw new InvalidOperationException("IVsOutputWindowPane should exist");
+            }
 
             _pane.Hide();
         }
@@ -196,7 +206,9 @@ namespace Community.VisualStudio.Toolkit
             await EnsurePaneAsync();
 
             if (_pane == null)
+            {
                 throw new InvalidOperationException("IVsOutputWindowPane should exist");
+            }
 
             _pane.Clear();
         }
@@ -243,9 +255,18 @@ namespace Community.VisualStudio.Toolkit
             await EnsurePaneAsync();
 
             if (_pane == null)
+            {
                 throw new InvalidOperationException("IVsOutputWindowPane should exist");
+            }
 
-            _pane.OutputString(value + Environment.NewLine);
+            if (_pane is IVsOutputWindowPaneNoPump nopump)
+            {
+                nopump.OutputStringNoPump(value + Environment.NewLine);
+            }
+            else
+            {
+                ErrorHandler.ThrowOnFailure(_pane.OutputStringThreadSafe(value + Environment.NewLine));
+            }
         }
 
         /// <summary>
@@ -260,7 +281,9 @@ namespace Community.VisualStudio.Toolkit
             await EnsurePaneAsync();
 
             if (_pane == null)
+            {
                 throw new InvalidOperationException("IVsOutputWindowPane should exist");
+            }
 
 #if VS16 || VS17
             return new OutputWindowTextWriter(_pane);

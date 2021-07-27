@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
@@ -29,6 +30,19 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public override Encoding Encoding => Encoding.Default;
 
+        private void Output(string value)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            if (_pane is IVsOutputWindowPaneNoPump nopump)
+            {
+                nopump.OutputStringNoPump(value);
+            }
+            else
+            {
+                ErrorHandler.ThrowOnFailure(_pane.OutputStringThreadSafe(value));
+            }
+        }
+
         #region Write
 
         /// <summary>
@@ -38,7 +52,7 @@ namespace Community.VisualStudio.Toolkit
         public override void Write(string value)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            _pane.OutputString(value);
+            Output(value);
         }
 
         /// <summary>
@@ -50,7 +64,7 @@ namespace Community.VisualStudio.Toolkit
         public override void Write(char[] buffer, int index, int count)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            _pane.OutputString(new string(buffer, index, count));
+            Output(new string(buffer, index, count));
         }
 
         #endregion
@@ -64,7 +78,7 @@ namespace Community.VisualStudio.Toolkit
         public override async Task WriteAsync(string value)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            _pane.OutputString(value);
+            Output(value);
         }
 
         /// <summary>
@@ -74,7 +88,7 @@ namespace Community.VisualStudio.Toolkit
         public override async Task WriteAsync(char value)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            _pane.OutputString(value.ToString());
+            Output(value.ToString());
         }
 
         /// <summary>
@@ -86,7 +100,7 @@ namespace Community.VisualStudio.Toolkit
         public override async Task WriteAsync(char[] buffer, int index, int count)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            _pane.OutputString(new string(buffer, index, count));
+            Output(new string(buffer, index, count));
         }
 
         #endregion
@@ -96,7 +110,7 @@ namespace Community.VisualStudio.Toolkit
         public override void WriteLine(string value)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            _pane.OutputString(value + Environment.NewLine);
+            Output(value + Environment.NewLine);
         }
 
         #endregion
@@ -109,7 +123,7 @@ namespace Community.VisualStudio.Toolkit
         public override async Task WriteLineAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            _pane.OutputString(Environment.NewLine);
+            Output(Environment.NewLine);
         }
 
         /// <summary>
@@ -119,7 +133,7 @@ namespace Community.VisualStudio.Toolkit
         public override async Task WriteLineAsync(string value)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            _pane.OutputString(value + Environment.NewLine);
+            Output(value + Environment.NewLine);
         }
 
         /// <summary>
@@ -129,7 +143,7 @@ namespace Community.VisualStudio.Toolkit
         public override async Task WriteLineAsync(char value)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            _pane.OutputString(value.ToString() + Environment.NewLine);
+            Output(value.ToString() + Environment.NewLine);
         }
 
         /// <summary>
@@ -141,7 +155,7 @@ namespace Community.VisualStudio.Toolkit
         public override async Task WriteLineAsync(char[] buffer, int index, int count)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            _pane.OutputString(new string(buffer, index, count) + Environment.NewLine);
+            Output(new string(buffer, index, count) + Environment.NewLine);
         }
 
         #endregion

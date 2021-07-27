@@ -153,6 +153,9 @@ namespace Community.VisualStudio.Toolkit
     /// <inheritdoc/>
     public class ProjectBuildDoneEventArgs : EventArgs
     {
+        /// <summary>
+        /// Creates a new instance of the event args.
+        /// </summary>
         public ProjectBuildDoneEventArgs(Project? project, bool isSuccessful)
         {
             Project = project;
