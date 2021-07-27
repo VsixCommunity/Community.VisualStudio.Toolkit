@@ -20,7 +20,7 @@ build_script:
   - ps: dotnet pack src/Community.VisualStudio.Toolkit.17.0/Community.VisualStudio.Toolkit.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=17.0.75.$($env:appveyor_build_number)-pre
 
 test_script:
-  - dotnet build test/VSSDK.TestExtension/VSSDK.TestExtension.csproj
+  - msbuild test/VSSDK.TestExtension/VSSDK.TestExtension.csproj
   - dotnet test src/Community.VisualStudio.Toolkit.UnitTests/Community.VisualStudio.Toolkit.UnitTests.csproj
 
 artifacts:
