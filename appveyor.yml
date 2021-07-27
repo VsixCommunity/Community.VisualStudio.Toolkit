@@ -19,8 +19,6 @@ build_script:
   - ps: dotnet pack src/Community.VisualStudio.Toolkit.16.0/Community.VisualStudio.Toolkit.16.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=16.0.75.$($env:appveyor_build_number)-pre
   - ps: dotnet pack src/Community.VisualStudio.Toolkit.17.0/Community.VisualStudio.Toolkit.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=17.0.75.$($env:appveyor_build_number)-pre
 
-test: off
-
 artifacts:
   - path: src\**\*.nupkg
     name: NuGet package
@@ -34,5 +32,5 @@ deploy:
     api_key:
       secure: 2LiTL6oY/0UkItVFZDP+iQqDsLl9BK9yM4rMyvbB9pL+/bXzzaerqFhR6NRmhRbs
     on:
-      branch: master
+      branch: master2
       appveyor_repo_commit_message_extended: /\[release\]/
