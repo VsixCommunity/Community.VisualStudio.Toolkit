@@ -7,10 +7,12 @@ namespace Community.VisualStudio.Toolkit
 {
     public partial class Events
     {
+        private BuildEvents? _buildEvents;
+
         /// <summary>
         /// Events related to building projects and solutions.
         /// </summary>
-        public BuildEvents BuildEvents { get; } = new();
+        public BuildEvents BuildEvents => _buildEvents ??= new();
     }
 
     /// <summary>

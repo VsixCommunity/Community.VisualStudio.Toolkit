@@ -7,10 +7,12 @@ namespace Community.VisualStudio.Toolkit
 {
     public partial class Events
     {
+        private ShellEvents? _shellEvents;
+
         /// <summary>
         /// Events related to the Visual Studio Shell.
         /// </summary>
-        public ShellEvents ShellEvents { get; } = new();
+        public ShellEvents ShellEvents => _shellEvents ??= new();
     }
 
     /// <summary>

@@ -7,10 +7,12 @@ namespace Community.VisualStudio.Toolkit
 {
     public partial class Events
     {
+        private DebuggerEvents? _debuggerEvents;
+
         /// <summary>
         /// Events related to the debugger in Visual Studio.
         /// </summary>
-        public DebuggerEvents DebuggerEvents { get; } = new();
+        public DebuggerEvents DebuggerEvents => _debuggerEvents ??= new();
     }
 
     /// <summary>

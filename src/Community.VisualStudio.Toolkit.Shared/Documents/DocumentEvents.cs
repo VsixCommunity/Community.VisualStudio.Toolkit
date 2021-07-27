@@ -2,17 +2,17 @@
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Text.Editor;
-using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace Community.VisualStudio.Toolkit
 {
     public partial class Events
     {
+        private DocumentEvents? _documentEvents;
+
         /// <summary>
         /// Events related to the editor documents.
         /// </summary>
-        public DocumentEvents DocumentEvents { get; } = new();
+        public DocumentEvents DocumentEvents => _documentEvents ??= new();
     }
 
     /// <summary>

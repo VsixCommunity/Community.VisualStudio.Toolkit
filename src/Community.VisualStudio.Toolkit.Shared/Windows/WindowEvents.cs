@@ -6,10 +6,12 @@ namespace Community.VisualStudio.Toolkit
 {
     public partial class Events
     {
+        private WindowEvents? _windowEvents;
+
         /// <summary>
         /// Events related to the window frames.
         /// </summary>
-        public WindowEvents WindowEvents { get; } = new();
+        public WindowEvents WindowEvents => _windowEvents ??= new();
     }
 
     /// <summary>

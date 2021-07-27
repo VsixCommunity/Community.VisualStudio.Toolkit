@@ -7,10 +7,12 @@ namespace Community.VisualStudio.Toolkit
 {
     public partial class Events
     {
+        private SolutionEvents? _solutionEvents;
+
         /// <summary>
         /// Events related to the editor documents.
         /// </summary>
-        public SolutionEvents SolutionEvents { get; } = new();
+        public SolutionEvents SolutionEvents => _solutionEvents ??= new();
     }
 
     /// <summary>

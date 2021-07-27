@@ -11,10 +11,12 @@ namespace Community.VisualStudio.Toolkit
         internal Events()
         { }
 
+        private SelectionEvents? _selectionEvents;
+
         /// <summary>
         /// Events related to the selection in Visual Studio
         /// </summary>
-        public SelectionEvents? SelectionEvents { get; } = new();
+        public SelectionEvents SelectionEvents => _selectionEvents ??= new();
     }
 
 
