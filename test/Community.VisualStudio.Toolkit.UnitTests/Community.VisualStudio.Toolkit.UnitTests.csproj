@@ -15,7 +15,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   
-  <Import Project="$(MSBuildThisFileDirectory)\..\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\src\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems" Label="Shared" />
   
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.0.0-previews-1-31410-273" IncludeAssets="All" PrivateAssets="None" />

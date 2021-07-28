@@ -20,7 +20,7 @@ build_script:
   - ps: dotnet pack src/Community.VisualStudio.Toolkit.17.0/Community.VisualStudio.Toolkit.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=17.0.76.$($env:appveyor_build_number)-pre
 
 test_script:
-  - dotnet test src/Community.VisualStudio.Toolkit.UnitTests/Community.VisualStudio.Toolkit.UnitTests.csproj
+  - dotnet test test/Community.VisualStudio.Toolkit.UnitTests/Community.VisualStudio.Toolkit.UnitTests.csproj
 
 artifacts:
   - path: src\**\*.nupkg
