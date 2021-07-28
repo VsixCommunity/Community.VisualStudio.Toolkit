@@ -11,44 +11,57 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public static class VS
     {
+        private static Build? _build;
         /// <summary>Handles building of solutions and projects.</summary>
-        public static Build Build { get; } = new();
+        public static Build Build => _build ??= new();
 
+        private static Commands? _commands;
         /// <summary>A collection of services related to the command system.</summary>
-        public static Commands Commands { get; } = new();
+        public static Commands Commands => _commands ??= new();
 
+        private static Documents? _documents;
         /// <summary>Contains helper methods for dealing with documents.</summary>
-        public static Documents Documents { get; } = new();
+        public static Documents Documents => _documents ??= new();
 
+        private static Events? _events;
         /// <summary>A collection of events.</summary>
-        public static Events Events { get; } = new();
+        public static Events Events => _events ??= new();
 
+        private static InfoBarFactory? _infoBarFactory;
         /// <summary>Creates InfoBar controls for use on documents and tool windows.</summary>
-        public static InfoBarFactory InfoBar { get; } = new();
+        public static InfoBarFactory InfoBar => _infoBarFactory ??= new();
 
+        private static MessageBox? _messageBox;
         /// <summary>Shows message boxes.</summary>
-        public static MessageBox MessageBox { get; } = new();
+        public static MessageBox MessageBox => _messageBox ??= new();
 
+        private static Selection? _selection;
         /// <summary>Services related to the selection of windows and items in solution.</summary>
-        public static Selection Selection { get; } = new();
+        public static Selection Selection => _selection ??= new();
 
+        private static Services? _services;
         /// <summary>A collection of services commonly used by extensions.</summary>
-        public static Services Services { get; } = new();
+        public static Services Services => _services ??= new();
 
+        private static Settings? _settings;
         /// <summary>A collection of services related to settings.</summary>
-        public static Settings Settings { get; } = new();
+        public static Settings Settings => _settings ??= new();
 
+        private static Shell? _shell;
         /// <summary>A collection of services related to the shell.</summary>
-        public static Shell Shell { get; } = new();
+        public static Shell Shell => _shell ??= new();
 
+        private static Solutions? _solutions;
         /// <summary>A collection of services related to solutions.</summary>
-        public static Solutions Solutions { get; } = new();
+        public static Solutions Solutions => _solutions ??= new();
 
+        private static StatusBar? _statusBar;
         /// <summary>An API wrapper that makes it easy to work with the status bar.</summary>
-        public static StatusBar StatusBar { get; } = new();
+        public static StatusBar StatusBar => _statusBar ??= new();
 
+        private static Windows? _windows;
         /// <summary>A collection of services related to windows.</summary>
-        public static Windows Windows { get; } = new();
+        public static Windows Windows => _windows ??= new();
 
         /// <summary>
         /// Gets a global service asynchronously.
