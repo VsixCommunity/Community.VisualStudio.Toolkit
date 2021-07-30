@@ -44,8 +44,8 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Notifies listening clients that the project has been opened.</summary>
         public event Action<Project?>? OnAfterOpenProject;
 
-        /// <summary></summary>
-        public event Action? OnBeforeOpenSolution;
+        /// <summary>Notifies listening clients that the solution is about to be opened.</summary>
+        public event Action<string>? OnBeforeOpenSolution;
 
         /// <summary>Notifies listening clients that the solution has been opened.</summary>
         public event Action<SolutionItem?>? OnAfterOpenSolution;
@@ -302,9 +302,9 @@ namespace Community.VisualStudio.Toolkit
         #endregion
 
         #region IVsSolutionLoadEvents
-        int IVsSolutionLoadEvents.OnBeforeOpenSolution(string pszSolutionFilename)
+        int IVsSolutionLoadEvents.OnBeforeOpenSolution(string solutionFilename)
         {
-            OnBeforeOpenSolution?.Invoke();
+            OnBeforeOpenSolution?.Invoke(solutionFilename);
             return VSConstants.S_OK;
         }
 
