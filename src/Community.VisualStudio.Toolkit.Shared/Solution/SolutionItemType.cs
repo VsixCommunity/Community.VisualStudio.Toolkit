@@ -21,5 +21,7 @@
         SolutionFolder,
         /// <summary>An unknown item.</summary>
         Unknown,
+        /// <summary>A virtual folder.</summary>
+        VirtualFolder,
     }
 }
