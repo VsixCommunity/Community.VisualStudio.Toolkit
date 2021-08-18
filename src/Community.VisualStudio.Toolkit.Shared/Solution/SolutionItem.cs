@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -125,13 +126,14 @@ namespace Community.VisualStudio.Toolkit
             }
 
             SolutionItemType type = GetSolutionItemType(item.HierarchyIdentity);
-            
+
             return type switch
             {
                 SolutionItemType.Solution => new Solution(item, type),
                 SolutionItemType.Project => new Project(item, type),
                 SolutionItemType.PhysicalFile => new File(item, type),
-                SolutionItemType.PhysicalFolder => new Folder(item, type),
+                SolutionItemType.PhysicalFolder => new PhysicalFolder(item, type),
+                SolutionItemType.VirtualFolder => new VirtualFolder(item, type),
                 SolutionItemType.SolutionFolder => new SolutionFolder(item, type),
                 _ => new SolutionItem(item, type)
             };
@@ -168,6 +170,12 @@ namespace Community.VisualStudio.Toolkit
                 return SolutionItemType.PhysicalFolder;
             }
 
+            Guid itemType = HierarchyUtilities.GetItemType(identity);
+            if (itemType == VSConstants.ItemTypeGuid.VirtualFolder_guid)
+            {
+                return SolutionItemType.VirtualFolder;
+            }
+
             return SolutionItemType.Unknown;
         }
 
@@ -175,7 +183,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            if (Type == SolutionItemType.SolutionFolder)
+            if (Type == SolutionItemType.Unknown || IsVirtualItem(Type))
             {
                 return null;
             }
@@ -193,6 +201,17 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return fileName;
+        }
+
+        private static bool IsVirtualItem(SolutionItemType type)
+        {
+            return type switch
+            {
+                SolutionItemType.SolutionFolder => true,
+                SolutionItemType.VirtualProject => true,
+                SolutionItemType.VirtualFolder => true,
+                _ => false
+            };
         }
     }
 }

@@ -11,9 +11,9 @@ namespace Community.VisualStudio.Toolkit
     /// <summary>
     /// Represents a physical folder in the solution hierarchy.
     /// </summary>
-    public class Folder : SolutionItem
+    public class PhysicalFolder : SolutionItem
     {
-        internal Folder(IVsHierarchyItem item, SolutionItemType type) : base(item, type)
+        internal PhysicalFolder(IVsHierarchyItem item, SolutionItemType type) : base(item, type)
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
         /// <summary>
