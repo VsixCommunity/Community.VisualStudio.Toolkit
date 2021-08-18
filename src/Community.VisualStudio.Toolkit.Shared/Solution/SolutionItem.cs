@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -183,7 +183,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            if (Type == SolutionItemType.SolutionFolder)
+            if (Type == SolutionItemType.Unknown || IsVirtualItem(Type))
             {
                 return null;
             }
@@ -201,6 +201,17 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return fileName;
+        }
+
+        private static bool IsVirtualItem(SolutionItemType type)
+        {
+            return type switch
+            {
+                SolutionItemType.SolutionFolder => true,
+                SolutionItemType.VirtualProject => true,
+                SolutionItemType.VirtualFolder => true,
+                _ => false
+            };
         }
     }
 }
