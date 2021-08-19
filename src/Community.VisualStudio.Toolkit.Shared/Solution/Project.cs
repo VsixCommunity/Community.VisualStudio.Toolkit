@@ -28,7 +28,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Adds one or more files to the project.
         /// </summary>
-        public async Task<IEnumerable<File>> AddExistingFilesAsync(params string[] filePaths)
+        public async Task<IEnumerable<PhysicalFile>> AddExistingFilesAsync(params string[] filePaths)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -39,11 +39,11 @@ namespace Community.VisualStudio.Toolkit
 
             ErrorHandler.ThrowOnFailure(ip.AddItem(itemId, VSADDITEMOPERATION.VSADDITEMOP_LINKTOFILE, string.Empty, (uint)filePaths.Count(), filePaths, IntPtr.Zero, result));
 
-            List<File> files = new();
+            List<PhysicalFile> files = new();
 
             foreach (string filePath in filePaths)
             {
-                File? file = await File.FromFileAsync(filePath);
+                PhysicalFile? file = await PhysicalFile.FromFileAsync(filePath);
 
                 if (file != null)
                 {

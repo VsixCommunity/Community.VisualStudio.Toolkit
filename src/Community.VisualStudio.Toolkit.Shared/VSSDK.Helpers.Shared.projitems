@@ -30,7 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\PhysicalFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\VirtualFolder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Solution\File.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Solution\PhysicalFile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\Project.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\Solution.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\SolutionFolder.cs" />

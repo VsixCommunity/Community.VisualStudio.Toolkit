@@ -10,9 +10,9 @@ namespace Community.VisualStudio.Toolkit
     /// <summary>
     /// Represents a physical file in the solution hierarchy.
     /// </summary>
-    public class File : SolutionItem
+    public class PhysicalFile : SolutionItem
     {
-        internal File(IVsHierarchyItem item, SolutionItemType type) : base(item, type)
+        internal PhysicalFile(IVsHierarchyItem item, SolutionItemType type) : base(item, type)
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Opens the item in the editor window.
         /// </summary>
-        /// <returns><see langword="null"/> if the item was not succesfully opened.</returns>
+        /// <returns><see langword="null"/> if the item was not successfully opened.</returns>
         public async Task<WindowFrame?> OpenAsync()
         {
             if (!string.IsNullOrEmpty(FullPath))
@@ -69,7 +69,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Nests a file under this file by setting its <c>DependentUpon</c> property..
         /// </summary>
-        public Task AddNestedFileAsync(File fileToNest)
+        public Task AddNestedFileAsync(PhysicalFile fileToNest)
             => fileToNest.TrySetAttributeAsync("DependentUpon", Name);
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         /// <param name="filePath">The absolute file path of a file that exists in the solution.</param>
         /// <returns><see langword="null"/> if the file wasn't found in the solution.</returns>
-        public static async Task<File?> FromFileAsync(string filePath)
+        public static async Task<PhysicalFile?> FromFileAsync(string filePath)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IEnumerable<IVsHierarchy> projects = await VS.Solutions.GetAllProjectHierarchiesAsync();
@@ -126,7 +126,7 @@ namespace Community.VisualStudio.Toolkit
 
                 if (isFound == 1)
                 {
-                    return await FromHierarchyAsync(hierarchy, itemId) as File;
+                    return await FromHierarchyAsync(hierarchy, itemId) as PhysicalFile;
                 }
             }
 
@@ -137,14 +137,14 @@ namespace Community.VisualStudio.Toolkit
         /// Finds the item in the solution matching the specified file path.
         /// </summary>
         /// <param name="filePaths">The absolute file paths of files that exist in the solution.</param>
-        public static async Task<IEnumerable<File>> FromFilesAsync(params string[] filePaths)
+        public static async Task<IEnumerable<PhysicalFile>> FromFilesAsync(params string[] filePaths)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            List<File> items = new();
+            List<PhysicalFile> items = new();
 
             foreach (string filePath in filePaths)
             {
-                File? item = await FromFileAsync(filePath);
+                PhysicalFile? item = await FromFileAsync(filePath);
 
                 if (item != null)
                 {
