@@ -19,7 +19,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Adds one or more files to the solution folder.
         /// </summary>
-        public async Task<IEnumerable<File>> AddExistingFilesAsync(params string[] files)
+        public async Task<IEnumerable<PhysicalFile>> AddExistingFilesAsync(params string[] files)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -45,7 +45,7 @@ namespace Community.VisualStudio.Toolkit
                 rguidLogicalView: ref rguidLogicalView,
                 pResult: result);
 
-            return await File.FromFilesAsync(files);
+            return await PhysicalFile.FromFilesAsync(files);
         }
 
         /// <summary>

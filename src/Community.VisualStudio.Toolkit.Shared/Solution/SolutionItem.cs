@@ -131,7 +131,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 SolutionItemType.Solution => new Solution(item, type),
                 SolutionItemType.Project => new Project(item, type),
-                SolutionItemType.PhysicalFile => new File(item, type),
+                SolutionItemType.PhysicalFile => new PhysicalFile(item, type),
                 SolutionItemType.PhysicalFolder => new PhysicalFolder(item, type),
                 SolutionItemType.VirtualFolder => new VirtualFolder(item, type),
                 SolutionItemType.SolutionFolder => new SolutionFolder(item, type),

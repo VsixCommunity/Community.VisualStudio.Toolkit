@@ -211,5 +211,8 @@
 
         /// <summary>The project type of XNA Zune</summary>
         public const string XNA_ZUNE = "{D399B71A-8929-442a-A9AC-8BEC78BB2433}";
+
+        /// <summary>The project type of X#</summary>
+        public const string XSHARP = "{AA6C8D78-22FF-423A-9C7C-5F2393824E04}";
     }
 }
