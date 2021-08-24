@@ -2,7 +2,6 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 using Community.VisualStudio.Toolkit;
-using Community.VisualStudio.Toolkit.Shared.ExtensionMethods;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using TestExtension;
