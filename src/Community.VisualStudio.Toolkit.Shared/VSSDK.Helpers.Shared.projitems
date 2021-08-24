@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\AsyncPackageExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsTextViewExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TypeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProvideGalleryFeedAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\WpfTextViewCreationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Build\BuildEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\IOptionModelPropertyWrapper.cs" />
