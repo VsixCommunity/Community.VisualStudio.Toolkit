@@ -51,12 +51,6 @@ namespace Community.VisualStudio.Toolkit
                 ErrorHandler.ThrowOnFailure(_frame.SetProperty((int)__VSFPROPID.VSFPROPID_Caption, value));
             }
         }
-        public async Task<DocumentView?> GetDocumentAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            ErrorHandler.ThrowOnFailure(_frame.GetProperty((int)__VSFPROPID.VSFPROPID_pszMkDocument, out object result));
-            return await VS.Documents.GetDocumentViewAsync((string) result);
-        }
 
         /// <summary>
         /// Gets the GUID of this window frame.

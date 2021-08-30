@@ -44,11 +44,14 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Notifies listening clients that the project has been opened.</summary>
         public event Action<Project?>? OnAfterOpenProject;
 
+        /// <summary>Notifies listening clients that the a project with the specified file name is about to open.</summary>
+        public event Action<string?>? OnBeforeOpenProject;
+
         /// <summary>Notifies listening clients that the solution is about to be opened.</summary>
         public event Action<string>? OnBeforeOpenSolution;
 
         /// <summary>Notifies listening clients that the solution has been opened.</summary>
-        public event Action<SolutionItem?>? OnAfterOpenSolution;
+        public event Action<Solution?>? OnAfterOpenSolution;
 
         /// <summary>Notifies listening clients that the project is about to be closed.</summary>
         public event Action<Project?>? OnBeforeCloseProject;
@@ -141,7 +144,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (OnAfterOpenSolution != null)
             {
-                SolutionItem? solution = VS.Solutions.GetCurrentSolution();
+                Solution? solution = VS.Solutions.GetCurrentSolution();
                 OnAfterOpenSolution?.Invoke(solution);
             }
             return VSConstants.S_OK;
@@ -272,7 +275,7 @@ namespace Community.VisualStudio.Toolkit
         #region IVsSolutionEvents5
         void IVsSolutionEvents5.OnBeforeOpenProject(ref Guid guidProjectID, ref Guid guidProjectType, string pszFileName)
         {
-            // TODO: Implement
+            OnBeforeOpenProject?.Invoke(pszFileName);
         }
         #endregion
 

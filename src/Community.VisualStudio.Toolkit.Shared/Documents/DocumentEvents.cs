@@ -69,7 +69,11 @@ namespace Community.VisualStudio.Toolkit
             if (Closed != null)
             {
                 string file = _rdt.GetDocumentInfo(docCookie).Moniker;
-                Closed!.Invoke(file);
+
+                if (!string.IsNullOrEmpty(file))
+                {
+                    Closed.Invoke(file);
+                }
             }
 
             return VSConstants.S_OK;

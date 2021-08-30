@@ -1,13 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows;
-using Microsoft;
+﻿using System.Threading.Tasks;
+using Community.VisualStudio.Toolkit;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Community.VisualStudio.Toolkit.Shared.ExtensionMethods
+namespace System.Windows
 {
     /// <summary>Extension methods for the <see cref="Window"/> class.</summary>
     public static class WindowExtensions
