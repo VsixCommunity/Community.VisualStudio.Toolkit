@@ -150,10 +150,10 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Obtains all window frames visible in the IDE.
+        /// Obtains all window frames for ToolWindows visible in the IDE.
         /// </summary>
-        /// <value>All available window frames.</value>
-        public async Task<IEnumerable<WindowFrame>> GetAllWindowsAsync()
+        /// <returns>All available window frames for ToolWindows.</returns>
+        public async Task<IEnumerable<WindowFrame>> GetAllToolWindowsAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsUIShell uiShell = await VS.Services.GetUIShellAsync();
@@ -176,5 +176,38 @@ namespace Community.VisualStudio.Toolkit
 
             return list;
         }
+
+        /// <summary>
+        /// Obtains all window frames for DocumentWindows visible in the IDE.
+        /// </summary>
+        /// <returns>All available window frames for DocumentWindows.</returns>
+        public async Task<IEnumerable<WindowFrame>> GetAllDocumentWindowsAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsUIShell uiShell = await VS.Services.GetUIShellAsync();
+            ErrorHandler.ThrowOnFailure(uiShell.GetDocumentWindowEnum(out IEnumWindowFrames? docEnum));
+            IVsWindowFrame[] windowFrames = new IVsWindowFrame[1];
+            List<WindowFrame>? frames = new List<WindowFrame>();
+            uint fetched = 0;
+            while (docEnum.Next(1, windowFrames, out fetched) == VSConstants.S_OK && fetched == 1)
+            {
+                IVsWindowFrame? windowFrame = windowFrames[0];
+                WindowFrame? frame = new WindowFrame(windowFrame);
+                frames.Add(frame);
+            }
+            return frames;
+        }
+        /// <summary>
+        /// Obtains all window frames for ToolWindows and DocumentWindows visible in the IDE.
+        /// </summary>
+        /// <returns>All available window frames for ToolWindows and DocumentWindows.</returns>
+        public async Task<IEnumerable<WindowFrame>> GetAllWindowsAsync()
+        {
+            List<WindowFrame>? allwindows = new List<WindowFrame>();
+            allwindows.AddRange(await GetAllToolWindowsAsync());
+            allwindows.AddRange(await GetAllDocumentWindowsAsync());
+            return allwindows;
+        }
+
     }
 }

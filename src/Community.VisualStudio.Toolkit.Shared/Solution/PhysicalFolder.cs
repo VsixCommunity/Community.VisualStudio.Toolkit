@@ -24,7 +24,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Add existing files to the folder.
         /// </summary>
-        /// <returns>A list of <see cref="File"/> items added to the folder.</returns>
+        /// <returns>A list of <see cref="PhysicalFile"/> items added to the folder.</returns>
         public async Task<IEnumerable<PhysicalFile>> AddExistingFilesAsync(params string[] filePaths)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
