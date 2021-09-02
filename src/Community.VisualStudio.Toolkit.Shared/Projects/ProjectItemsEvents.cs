@@ -4,7 +4,7 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Community.VisualStudio.Toolkit.Shared.Projects
+namespace Community.VisualStudio.Toolkit
 {
     public partial class Events
     {
@@ -31,7 +31,7 @@ namespace Community.VisualStudio.Toolkit.Shared.Projects
         /// <summary>
         /// Fires after project items was renamed
         /// </summary>
-        public event Action<AfterRenameProjectItemEventArgs?>? OnAfterRenameProjectItems;
+        public event Action<AfterRenameProjectItemEventArgs?>? AfterRenameProjectItems;
 
         /// <summary>
         /// Fires after project items was removed
@@ -96,7 +96,7 @@ namespace Community.VisualStudio.Toolkit.Shared.Projects
         private void HandleRenamedItems(int cProjects, int cItems, IVsProject[] rgpProjects, int[] rgFirstIndices, string[] rgszMkOldNames, string[] rgszMkNewNames)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (OnAfterRenameProjectItems != null)
+            if (AfterRenameProjectItems != null)
             {
                 List<ProjectItemRename> renameParams = new List<ProjectItemRename>();
                 for (int projectIndex = 0; projectIndex < cProjects; projectIndex++)
@@ -121,7 +121,7 @@ namespace Community.VisualStudio.Toolkit.Shared.Projects
                     }
                 }
 
-                OnAfterRenameProjectItems?.Invoke(new AfterRenameProjectItemEventArgs(renameParams.ToArray()));
+                AfterRenameProjectItems?.Invoke(new AfterRenameProjectItemEventArgs(renameParams.ToArray()));
             }
         }
 
