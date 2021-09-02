@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Options\NativeSettingsType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\OptionModelPropertyWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\OverridePropertyNameAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Projects\ProjectItemsEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Selection\Selection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\ShellEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Debugger\DebuggerEvents.cs" />
