@@ -4,7 +4,7 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Community.VisualStudio.Toolkit.Shared.Projects
+namespace Community.VisualStudio.Toolkit
 {
     public partial class Events
     {
@@ -31,17 +31,17 @@ namespace Community.VisualStudio.Toolkit.Shared.Projects
         /// <summary>
         /// Fires after project items was renamed
         /// </summary>
-        public event Action<AfterRenameProjectItemEventArgs?>? OnAfterRenameProjectItems;
+        public event Action<AfterRenameProjectItemEventArgs?>? AfterRenameProjectItems;
 
         /// <summary>
         /// Fires after project items was removed
         /// </summary>
-        public event Action<IEnumerable<SolutionItem>>? OnAfterRemoveProjectItems;
+        public event Action<IEnumerable<SolutionItem>>? AfterRemoveProjectItems;
 
         /// <summary>
         /// Fires after project items was added
         /// </summary>
-        public event Action<IEnumerable<SolutionItem>>? OnAfterAddProjectItems;
+        public event Action<IEnumerable<SolutionItem>>? AfterAddProjectItems;
 
         int IVsTrackProjectDocumentsEvents2.OnQueryAddFiles(IVsProject pProject, int cFiles, string[] rgpszMkDocuments, VSQUERYADDFILEFLAGS[] rgFlags, VSQUERYADDFILERESULTS[] pSummaryResult, VSQUERYADDFILERESULTS[] rgResults) => VSConstants.S_OK;
 
@@ -96,9 +96,9 @@ namespace Community.VisualStudio.Toolkit.Shared.Projects
         private void HandleRenamedItems(int cProjects, int cItems, IVsProject[] rgpProjects, int[] rgFirstIndices, string[] rgszMkOldNames, string[] rgszMkNewNames)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (OnAfterRenameProjectItems != null)
+            if (AfterRenameProjectItems != null)
             {
-                List<ProjectItemRename> renameParams = new List<ProjectItemRename>();
+                List<ProjectItemRename> renameParams = new();
                 for (int projectIndex = 0; projectIndex < cProjects; projectIndex++)
                 {
                     int firstIndex = rgFirstIndices[projectIndex];
@@ -121,16 +121,16 @@ namespace Community.VisualStudio.Toolkit.Shared.Projects
                     }
                 }
 
-                OnAfterRenameProjectItems?.Invoke(new AfterRenameProjectItemEventArgs(renameParams.ToArray()));
+                AfterRenameProjectItems?.Invoke(new AfterRenameProjectItemEventArgs(renameParams.ToArray()));
             }
         }
 
         private void HandleRemoveItems(int cProjects, int cItems, IVsProject[] rgpProjects, int[] rgFirstIndices, string[] rgpszMkDocuments)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (OnAfterRemoveProjectItems != null)
+            if (AfterRemoveProjectItems != null)
             {
-                List<SolutionItem> removedItems = new List<SolutionItem>();
+                List<SolutionItem> removedItems = new();
                 for (int projectIndex = 0; projectIndex < cProjects; projectIndex++)
                 {
                     int firstIndex = rgFirstIndices[projectIndex];
@@ -153,16 +153,16 @@ namespace Community.VisualStudio.Toolkit.Shared.Projects
                     }
                 }
 
-                OnAfterRemoveProjectItems?.Invoke(removedItems);
+                AfterRemoveProjectItems?.Invoke(removedItems);
             }
         }
 
         private void HandleAddItems(int cProjects, int cItems, IVsProject[] rgpProjects, int[] rgFirstIndices, string[] rgpszMkDocuments)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (OnAfterAddProjectItems != null)
+            if (AfterAddProjectItems != null)
             {
-                List<SolutionItem> addedItems = new List<SolutionItem>();
+                List<SolutionItem> addedItems = new();
                 for (int projectIndex = 0; projectIndex < cProjects; projectIndex++)
                 {
                     int firstIndex = rgFirstIndices[projectIndex];
@@ -185,7 +185,7 @@ namespace Community.VisualStudio.Toolkit.Shared.Projects
                     }
                 }
 
-                OnAfterAddProjectItems?.Invoke(addedItems);
+                AfterAddProjectItems?.Invoke(addedItems);
             }
         }
     }
