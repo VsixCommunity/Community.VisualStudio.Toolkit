@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Community.VisualStudio.Toolkit;
@@ -33,6 +34,20 @@ namespace VSSDK.TestExtension
 
             VS.Events.DocumentEvents.AfterDocumentWindowHide += DocumentEvents_AfterDocumentWindowHide;
             VS.Events.DocumentEvents.BeforeDocumentWindowShow += DocumentEvents_BeforeDocumentWindowShow;
+            VS.Events.ProjectItemsEvents.AfterRenameProjectItems += ProjectItemsEvents_AfterRenameProjectItems;
+            VS.Events.ProjectItemsEvents.AfterRemoveProjectItems += ProjectItemsEvents_AfterRemoveProjectItems;
+        }
+
+        private void ProjectItemsEvents_AfterRemoveProjectItems(AfterRemoveProjectItemEventArgs obj)
+        {
+            string info = string.Join(",", obj.ProjectItemRemoves.Select(x => $"{x.Project.Name}:{x.RemovedItemName}"));
+            VS.MessageBox.ShowConfirm(info);
+        }
+
+        private void ProjectItemsEvents_AfterRenameProjectItems(AfterRenameProjectItemEventArgs obj)
+        {
+            string info = string.Join(",", obj.ProjectItemRenames.Select(x => $"{x.SolutionItem.Name}:{x.OldName}"));
+            VS.MessageBox.ShowConfirm(info);
         }
 
         private void DocumentEvents_BeforeDocumentWindowShow(DocumentView obj)

@@ -36,7 +36,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Fires after project items was removed
         /// </summary>
-        public event Action<IEnumerable<SolutionItem>>? AfterRemoveProjectItems;
+        public event Action<AfterRemoveProjectItemEventArgs?>? AfterRemoveProjectItems;
 
         /// <summary>
         /// Fires after project items was added
@@ -98,7 +98,7 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             if (AfterRenameProjectItems != null)
             {
-                List<ProjectItemRename> renameParams = new();
+                List<ProjectItemRenameDetails> renameParams = new();
                 for (int projectIndex = 0; projectIndex < cProjects; projectIndex++)
                 {
                     int firstIndex = rgFirstIndices[projectIndex];
@@ -117,7 +117,7 @@ namespace Community.VisualStudio.Toolkit
                         string oldName = rgszMkOldNames[itemIndex];
                         vsProject.IsDocumentInProject(newName, out _, new VSDOCUMENTPRIORITY[1], out uint itemid);
                         SolutionItem? projectFile = SolutionItem.FromHierarchy(vsHierarchy, itemid);
-                        renameParams.Add(new ProjectItemRename(projectFile, oldName));
+                        renameParams.Add(new ProjectItemRenameDetails(projectFile, oldName));
                     }
                 }
 
@@ -130,12 +130,13 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             if (AfterRemoveProjectItems != null)
             {
-                List<SolutionItem> removedItems = new();
+                List<ProjectItemRemoveDetails> removedItems = new();
                 for (int projectIndex = 0; projectIndex < cProjects; projectIndex++)
                 {
                     int firstIndex = rgFirstIndices[projectIndex];
                     IVsProject vsProject = rgpProjects[projectIndex];
                     IVsHierarchy vsHierarchy = (IVsHierarchy)vsProject;
+                    Project? project = SolutionItem.FromHierarchy(vsHierarchy, VSConstants.VSITEMID_ROOT) as Project;
 
                     int nextProjectIndex = cItems;
                     if (rgFirstIndices.Length > projectIndex + 1)
@@ -144,16 +145,13 @@ namespace Community.VisualStudio.Toolkit
                     }
 
                     for (int itemIndex = firstIndex; itemIndex < nextProjectIndex; itemIndex++)
-                    {   //do I need the item after the removal or just the string??
-                        //string itemName = rgpszMkDocuments[itemIndex];
-                        //vsProject.IsDocumentInProject(itemName, out _, new VSDOCUMENTPRIORITY[1], out uint itemid);
-                        //SolutionItem? projectFile = SolutionItem.FromHierarchy(vsHierarchy, itemid);
-                        //if (projectFile != null)
-                        //    removedItems.Add(projectFile);
+                    {   
+                        string itemName = rgpszMkDocuments[itemIndex];
+                        removedItems.Add(new ProjectItemRemoveDetails(project, itemName));
                     }
                 }
 
-                AfterRemoveProjectItems?.Invoke(removedItems);
+                AfterRemoveProjectItems?.Invoke(new AfterRemoveProjectItemEventArgs(removedItems.ToArray()));
             }
         }
 
@@ -190,26 +188,81 @@ namespace Community.VisualStudio.Toolkit
         }
     }
 
+    /// <inheritdoc/>
     public class AfterRenameProjectItemEventArgs : EventArgs
     {
-        public AfterRenameProjectItemEventArgs(ProjectItemRename[]? projectItemsRename)
+        /// <summary>
+        /// Creates an instance of the event args
+        /// </summary>
+        public AfterRenameProjectItemEventArgs(ProjectItemRenameDetails[]? projectItemRenames)
         {
-            ProjectItemsRename = projectItemsRename;
+            ProjectItemRenames = projectItemRenames;
         }
 
-        public ProjectItemRename[]? ProjectItemsRename { get; }
+        /// <summary>
+        /// ProjectItem details that was renamed
+        /// </summary>
+        public ProjectItemRenameDetails[]? ProjectItemRenames { get; }
     }
 
-    public class ProjectItemRename
+    /// <summary>
+    /// ProjectItem rename details 
+    /// </summary>
+    public class ProjectItemRenameDetails
     {
-        public ProjectItemRename(SolutionItem? solutionItem, string? oldName)
+        public ProjectItemRenameDetails(SolutionItem? solutionItem, string? oldName)
         {
             SolutionItem = solutionItem;
             OldName = oldName;
         }
 
+        /// <summary>
+        /// The rename solution item
+        /// </summary>
         public SolutionItem? SolutionItem { get; }
 
+        /// <summary>
+        /// The name before the rename
+        /// </summary>
         public string? OldName { get; }
+    }
+
+    /// <inheritdoc/>
+    public class AfterRemoveProjectItemEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Creates an instance of the event args
+        /// </summary>
+        public AfterRemoveProjectItemEventArgs(ProjectItemRemoveDetails[]? projectItemRemoves)
+        {
+            ProjectItemRemoves = projectItemRemoves;
+        }
+
+        /// <summary>
+        /// ProjectItem details that was removed
+        /// </summary>
+        public ProjectItemRemoveDetails[]? ProjectItemRemoves { get; }
+    }
+
+    /// <summary>
+    /// Removed ProjectItem details
+    /// </summary>
+    public class ProjectItemRemoveDetails
+    {
+        public ProjectItemRemoveDetails(Project? project, string? itemName)
+        {
+            Project = project;
+            RemovedItemName = itemName;
+        }
+
+        /// <summary>
+        /// The project that removed the item
+        /// </summary>
+        public Project? Project { get; }
+
+        /// <summary>
+        /// The item name that was removed
+        /// </summary>
+        public string? RemovedItemName { get; }
     }
 }
