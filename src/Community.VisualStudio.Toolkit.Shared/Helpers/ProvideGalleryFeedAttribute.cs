@@ -4,13 +4,13 @@ using Microsoft.VisualStudio.Shell;
 namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
-    /// Associates an <c>ImageMoniker</c> icon to a file extension in Solution Explorer
+    /// Registers a feed gallery to the extensions manager
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     public class ProvideGalleryFeedAttribute : RegistrationAttribute
     {
         /// <summary>
-        /// Associates an icon with a file extension.
+        /// Registers a feed gallery
         /// </summary>
         /// <param name="guid">A unique guid to use for registering the feed.</param>
         /// <param name="name">The name of the feed as it shows up in the Extension Manager dialog.</param>
