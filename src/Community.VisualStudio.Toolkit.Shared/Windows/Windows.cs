@@ -196,6 +196,7 @@ namespace Community.VisualStudio.Toolkit
             }
             return frames;
         }
+
         /// <summary>
         /// Obtains all window frames for ToolWindows and DocumentWindows visible in the IDE.
         /// </summary>
@@ -208,5 +209,26 @@ namespace Community.VisualStudio.Toolkit
             return allwindows;
         }
 
+        /// <summary>
+        /// Gets the Solution Explorer window.
+        /// </summary>
+        /// <returns>The Solution Explorer window.</returns>
+        public async Task<SolutionExplorerWindow?> GetSolutionExplorerWindowAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            IVsUIShell shell = await VS.Services.GetUIShellAsync();
+            Guid slot = Guid.Parse(WindowGuids.SolutionExplorer);
+
+            ErrorHandler.ThrowOnFailure(shell.FindToolWindow(0, ref slot, out IVsWindowFrame frame));
+            ErrorHandler.ThrowOnFailure(frame.GetProperty((int)__VSFPROPID.VSFPROPID_DocView, out object? docView));
+
+            if (docView is not null)
+            {
+                return new SolutionExplorerWindow(frame, (IVsUIHierarchyWindow)docView);
+            }
+
+            return null;
+        }
     }
 }

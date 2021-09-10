@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -161,59 +162,7 @@ namespace Community.VisualStudio.Toolkit
             try
             {
                 svc.GetCurrentSelection(out hierPtr, out uint itemId, out IVsMultiItemSelect multiSelect, out containerPtr);
-
-                if (itemId == VSConstants.VSITEMID_SELECTION)
-                {
-                    multiSelect.GetSelectionInfo(out uint itemCount, out int fSingleHierarchy);
-
-                    VSITEMSELECTION[] items = new VSITEMSELECTION[itemCount];
-                    multiSelect.GetSelectedItems(0, itemCount, items);
-
-                    results.Capacity = (int)itemCount;
-
-                    foreach (VSITEMSELECTION item in items)
-                    {
-                        IVsHierarchyItem? hierItem = await item.pHier.ToHierarchyItemAsync(item.itemid);
-
-                        if (hierItem != null)
-                        {
-                            results.Add(hierItem);
-                        }
-                        else
-                        {
-                            IVsHierarchy solution = (IVsHierarchy)await VS.Services.GetSolutionAsync();
-                            IVsHierarchyItem? sol = await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
-
-                            if (sol != null)
-                            {
-                                results.Add(sol);
-                            }
-                        }
-                    }
-                }
-                else if (itemId == VSConstants.VSITEMID_NIL)
-                {
-                    // Empty Solution Explorer or nothing selected, so don't add anything.
-                }
-                else if (hierPtr != IntPtr.Zero)
-                {
-                    IVsHierarchy hierarchy = (IVsHierarchy)Marshal.GetUniqueObjectForIUnknown(hierPtr);
-                    IVsHierarchyItem? hierItem = await hierarchy.ToHierarchyItemAsync(itemId);
-
-                    if (hierItem != null)
-                    {
-                        results.Add(hierItem);
-                    }
-                }
-                else if (await VS.Services.GetSolutionAsync() is IVsHierarchy solution)
-                {
-                    IVsHierarchyItem? sol = await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
-
-                    if (sol != null)
-                    {
-                        results.Add(sol);
-                    }
-                }
+                await AddHierarchiesFromSelectionAsync(hierPtr, itemId, multiSelect, results);
             }
             catch (Exception ex)
             {
@@ -233,6 +182,64 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return results;
+        }
+
+        internal static async Task AddHierarchiesFromSelectionAsync(IntPtr hierPtr, uint itemId, IVsMultiItemSelect? multiSelect, List<IVsHierarchyItem> hierarchies)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            if (itemId == VSConstants.VSITEMID_SELECTION && multiSelect is not null)
+            {
+                multiSelect.GetSelectionInfo(out uint itemCount, out int _);
+
+                VSITEMSELECTION[] items = new VSITEMSELECTION[itemCount];
+                multiSelect.GetSelectedItems(0, itemCount, items);
+
+                hierarchies.Capacity = (int)itemCount;
+
+                foreach (VSITEMSELECTION item in items)
+                {
+                    IVsHierarchyItem? hierItem = await item.pHier.ToHierarchyItemAsync(item.itemid);
+
+                    if (hierItem != null)
+                    {
+                        hierarchies.Add(hierItem);
+                    }
+                    else
+                    {
+                        IVsHierarchy solution = (IVsHierarchy)await VS.Services.GetSolutionAsync();
+                        IVsHierarchyItem? sol = await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
+
+                        if (sol != null)
+                        {
+                            hierarchies.Add(sol);
+                        }
+                    }
+                }
+            }
+            else if (itemId == VSConstants.VSITEMID_NIL)
+            {
+                // Empty Solution Explorer or nothing selected, so don't add anything.
+            }
+            else if (hierPtr != IntPtr.Zero)
+            {
+                IVsHierarchy hierarchy = (IVsHierarchy)Marshal.GetUniqueObjectForIUnknown(hierPtr);
+                IVsHierarchyItem? hierItem = await hierarchy.ToHierarchyItemAsync(itemId);
+
+                if (hierItem != null)
+                {
+                    hierarchies.Add(hierItem);
+                }
+            }
+            else if (await VS.Services.GetSolutionAsync() is IVsHierarchy solution)
+            {
+                IVsHierarchyItem? sol = await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
+
+                if (sol != null)
+                {
+                    hierarchies.Add(sol);
+                }
+            }
         }
     }
 }

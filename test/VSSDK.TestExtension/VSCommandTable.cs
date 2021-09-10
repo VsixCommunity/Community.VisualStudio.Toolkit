@@ -21,11 +21,19 @@ namespace TestExtension
     internal sealed partial class PackageIds
     {
         public const int TestExtensionMainMenu = 0x1000;
+        public const int TestExtensionSolutionExplorerMenu = 0x1001;
         public const int TestExtensionMainMenuGroup1 = 0x1100;
+        public const int TestExtensionSolutionExplorerGroup = 0x1101;
         public const int RunnerWindow = 0x0100;
         public const int ThemeWindow = 0x0101;
         public const int MultiInstanceWindow = 0x0102;
         public const int BuildActiveProjectAsync = 0x0103;
         public const int BuildSolutionAsync = 0x0104;
+        public const int VsixManifestSolutionExplorerFilter = 0x0105;
+        public const int ToggleVsixManifestFilter = 0x0106;
+        public const int SelectCurrentProject = 0x0107;
+        public const int EditSelectedItemLabel = 0x0108;
+        public const int ExpandSelectedItems = 0x0109;
+        public const int CollapseSelectedItems = 0x0110;
     }
 }
