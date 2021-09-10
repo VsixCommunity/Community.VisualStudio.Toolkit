@@ -17,11 +17,22 @@
           <ButtonText>VSSDK Test Extension</ButtonText>
         </Strings>
       </Menu>
+
+      <Menu guid="TestExtension" id="TestExtensionSolutionExplorerMenu" priority="0x0200" type="Menu">
+        <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1" />
+        <Strings>
+          <ButtonText>Solution Explorer</ButtonText>
+        </Strings>
+      </Menu>
     </Menus>
     
     <Groups>
       <Group guid="TestExtension" id="TestExtensionMainMenuGroup1" priority="0x1100">
         <Parent guid="TestExtension" id="TestExtensionMainMenu" />
+      </Group>
+      
+      <Group guid="TestExtension" id="TestExtensionSolutionExplorerGroup" priority="0x1101">
+        <Parent guid="TestExtension" id="TestExtensionSolutionExplorerMenu" />
       </Group>
     </Groups>
     
@@ -53,6 +64,15 @@
         </Strings>
       </Button>
 
+      <Button guid="TestExtension" id="VsixManifestSolutionExplorerFilter" priority="0x0400" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TOOLBAR_PROJWIN_FILTERS" />
+        <Icon guid="ImageCatalogGuid" id="VisualStudioSettingsFile" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>VSIX Manifest Filter</ButtonText>
+        </Strings>
+      </Button>
+
       <Button guid="TestExtension" id="BuildActiveProjectAsync" priority="0x0100" type="Button">
         <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1"/>
         <Icon guid="ImageCatalogGuid" id="BuildSelection" />
@@ -70,19 +90,64 @@
           <ButtonText>Build Solution Async</ButtonText>
         </Strings>
       </Button>
+
+      <Button guid="TestExtension" id="ToggleVsixManifestFilter" priority="0x0100" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionSolutionExplorerGroup"/>
+        <Icon guid="ImageCatalogGuid" id="VisualStudioSettingsFile" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Toggle VSIX Manifest Filter</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="TestExtension" id="SelectCurrentProject" priority="0x0101" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionSolutionExplorerGroup"/>
+        <Strings>
+          <ButtonText>Select Current Project</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="TestExtension" id="EditSelectedItemLabel" priority="0x0102" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionSolutionExplorerGroup"/>
+        <Strings>
+          <ButtonText>Edit Selected Item Label</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="TestExtension" id="ExpandSelectedItems" priority="0x0103" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionSolutionExplorerGroup"/>
+        <Strings>
+          <ButtonText>Expand Selected Items</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="TestExtension" id="CollapseSelectedItems" priority="0x0104" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionSolutionExplorerGroup"/>
+        <Strings>
+          <ButtonText>Collapse Selected Items</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
   </Commands>
 
   <Symbols>
     <GuidSymbol name="TestExtension" value="{05271709-8845-42fb-9d10-621cc8cffc5d}">
       <IDSymbol name="TestExtensionMainMenu" value="0x1000" />
+      <IDSymbol name="TestExtensionSolutionExplorerMenu" value="0x1001" />
       <IDSymbol name="TestExtensionMainMenuGroup1" value="0x1100" />
-      
+      <IDSymbol name="TestExtensionSolutionExplorerGroup" value="0x1101" />
+
       <IDSymbol name="RunnerWindow" value="0x0100" />
       <IDSymbol name="ThemeWindow" value="0x0101" />
       <IDSymbol name="MultiInstanceWindow" value="0x0102" />
       <IDSymbol name="BuildActiveProjectAsync" value="0x0103" />
       <IDSymbol name="BuildSolutionAsync" value="0x0104" />
+      <IDSymbol name="VsixManifestSolutionExplorerFilter" value="0x0105" />
+      <IDSymbol name="ToggleVsixManifestFilter" value="0x0106" />
+      <IDSymbol name="SelectCurrentProject" value="0x0107" />
+      <IDSymbol name="EditSelectedItemLabel" value="0x0108" />
+      <IDSymbol name="ExpandSelectedItems" value="0x0109" />
+      <IDSymbol name="CollapseSelectedItems" value="0x0110" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

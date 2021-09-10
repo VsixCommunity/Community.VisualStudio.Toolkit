@@ -47,12 +47,18 @@
   <ItemGroup>
     <Compile Include="Commands\BuildActiveProjectAsyncCommand.cs" />
     <Compile Include="Commands\BuildSolutionAsyncCommand.cs" />
+    <Compile Include="Commands\CollapseSelectedItemsCommand.cs" />
+    <Compile Include="Commands\ExpandSelectedItemsCommand.cs" />
     <Compile Include="Commands\MultiInstanceWindowCommand.cs" />
+    <Compile Include="Commands\EditSelectedItemLabelCommand.cs" />
+    <Compile Include="Commands\SelectCurrentProjectCommand.cs" />
+    <Compile Include="Commands\ToggleVsixManifestFilterCommand.cs" />
     <Compile Include="Commands\RunnerWindowCommand.cs" />
     <Compile Include="Commands\ThemeWindowCommand.cs" />
     <Compile Include="MEF\TextViewCreationListener.cs" />
     <Compile Include="Options\General.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SolutionExplorer\VsixManifestFilterProvider.cs" />
     <Compile Include="ToolWindows\MultiInstanceWindow.cs" />
     <Compile Include="ToolWindows\MultiInstanceWindowControl.xaml.cs">
       <DependentUpon>MultiInstanceWindowControl.xaml</DependentUpon>

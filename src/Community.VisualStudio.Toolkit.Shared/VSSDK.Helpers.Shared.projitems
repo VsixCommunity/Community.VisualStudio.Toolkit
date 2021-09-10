@@ -67,6 +67,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ToolkitPackage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\BaseToolWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\IToolWindowProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Windows\SolutionExplorerWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowFrame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowGuids.cs" />
