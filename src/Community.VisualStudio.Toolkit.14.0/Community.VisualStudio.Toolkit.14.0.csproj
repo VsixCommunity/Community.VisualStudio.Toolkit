@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\Common.props" />
+  <Import Project="..\Toolkit.props" />
   
   <PropertyGroup>
     <TargetFramework>net46</TargetFramework>

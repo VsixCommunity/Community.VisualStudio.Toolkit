@@ -13,11 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		appveyor.yml = appveyor.yml
 		src\AssemblyInfo.cs = src\AssemblyInfo.cs
-		src\Common.props = src\Common.props
+		Common.props = Common.props
 		src\Community.VisualStudio.Toolkit.props = src\Community.VisualStudio.Toolkit.props
 		src\Community.VisualStudio.Toolkit.targets = src\Community.VisualStudio.Toolkit.targets
 		src\GenerateKnownCommands.ps1 = src\GenerateKnownCommands.ps1
 		README.md = README.md
+		src\Toolkit.props = src\Toolkit.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSSDK.TestExtension", "test\VSSDK.TestExtension\VSSDK.TestExtension.csproj", "{7F36F7DF-119E-4175-B1FA-C723EE10BD9B}"

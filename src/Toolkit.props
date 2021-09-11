@@ -1,35 +1,20 @@
 <Project>
 
+  <Import Project="..\Common.props" />
+
   <PropertyGroup>
-    <Authors>VSIX Community</Authors>
-    <Owners>VSIX Community</Owners>
-    <Copyright>© Mads Kristensen. All rights reserved.</Copyright>
-    <PackageProjectUrl>https://github.com/VsixCommunity/Community.VisualStudio.Toolkit</PackageProjectUrl>
-    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <DebugType>embedded</DebugType>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <DebugType>portable</DebugType>
-    
     <PackageId>Community.VisualStudio.Toolkit</PackageId>
     <AssemblyName>Community.VisualStudio.Toolkit</AssemblyName>
     <PackageDescription>A community driven effort for a better Visual Studio experience developing extensions.</PackageDescription>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageIcon>Icon.png</PackageIcon>
     <PackageTags>VisualStudio, VSSDK, SDK</PackageTags>
-    <RootNamespace>Community.VisualStudio.Toolkit</RootNamespace>
 
-    <LangVersion>9</LangVersion>
-    <Nullable>enable</Nullable>
+    <RootNamespace>Community.VisualStudio.Toolkit</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>../key.snk</AssemblyOriginatorKeyFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <DebugType>portable</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
