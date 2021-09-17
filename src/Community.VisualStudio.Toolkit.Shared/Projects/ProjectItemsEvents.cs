@@ -210,6 +210,11 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class ProjectItemRenameDetails
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectItemRenameDetails"/> class.
+        /// </summary>
+        /// <param name="solutionItem">The solution item that was renamed.</param>
+        /// <param name="oldName">The old name of the solution item.</param>
         public ProjectItemRenameDetails(SolutionItem? solutionItem, string? oldName)
         {
             SolutionItem = solutionItem;
@@ -249,6 +254,11 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class ProjectItemRemoveDetails
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectItemRemoveDetails"/> class.
+        /// </summary>
+        /// <param name="project">The project that the item was removed from.</param>
+        /// <param name="itemName">The name of the item that was removed.</param>
         public ProjectItemRemoveDetails(Project? project, string? itemName)
         {
             Project = project;
