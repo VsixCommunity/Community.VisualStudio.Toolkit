@@ -47,24 +47,28 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsTrackProjectDocumentsEvents2.OnAfterAddFilesEx(int cProjects, int cFiles, IVsProject[] rgpProjects, int[] rgFirstIndices, string[] rgpszMkDocuments, VSADDFILEFLAGS[] rgFlags)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             HandleAddItems(cProjects, cFiles, rgpProjects, rgFirstIndices, rgpszMkDocuments);
             return VSConstants.S_OK;
         }
 
         int IVsTrackProjectDocumentsEvents2.OnAfterAddDirectoriesEx(int cProjects, int cDirectories, IVsProject[] rgpProjects, int[] rgFirstIndices, string[] rgpszMkDocuments, VSADDDIRECTORYFLAGS[] rgFlags)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             HandleAddItems(cProjects, cDirectories, rgpProjects, rgFirstIndices, rgpszMkDocuments);
             return VSConstants.S_OK;
         }
 
         int IVsTrackProjectDocumentsEvents2.OnAfterRemoveFiles(int cProjects, int cFiles, IVsProject[] rgpProjects, int[] rgFirstIndices, string[] rgpszMkDocuments, VSREMOVEFILEFLAGS[] rgFlags)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             HandleRemoveItems(cProjects, cFiles, rgpProjects, rgFirstIndices, rgpszMkDocuments);
             return VSConstants.S_OK;
         }
 
         int IVsTrackProjectDocumentsEvents2.OnAfterRemoveDirectories(int cProjects, int cDirectories, IVsProject[] rgpProjects, int[] rgFirstIndices, string[] rgpszMkDocuments, VSREMOVEDIRECTORYFLAGS[] rgFlags)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             HandleRemoveItems(cProjects, cDirectories, rgpProjects, rgFirstIndices, rgpszMkDocuments);
             return VSConstants.S_OK;
         }
@@ -73,6 +77,7 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsTrackProjectDocumentsEvents2.OnAfterRenameFiles(int cProjects, int cFiles, IVsProject[] rgpProjects, int[] rgFirstIndices, string[] rgszMkOldNames, string[] rgszMkNewNames, VSRENAMEFILEFLAGS[] rgFlags)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             HandleRenamedItems(cProjects, cFiles, rgpProjects, rgFirstIndices, rgszMkOldNames, rgszMkNewNames);
             return VSConstants.S_OK;
         }
@@ -81,6 +86,7 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsTrackProjectDocumentsEvents2.OnAfterRenameDirectories(int cProjects, int cDirs, IVsProject[] rgpProjects, int[] rgFirstIndices, string[] rgszMkOldNames, string[] rgszMkNewNames, VSRENAMEDIRECTORYFLAGS[] rgFlags)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             HandleRenamedItems(cProjects, cDirs, rgpProjects, rgFirstIndices, rgszMkOldNames, rgszMkNewNames);
             return VSConstants.S_OK;
         }
@@ -210,6 +216,11 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class ProjectItemRenameDetails
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectItemRenameDetails"/> class.
+        /// </summary>
+        /// <param name="solutionItem">The solution item that was renamed.</param>
+        /// <param name="oldName">The old name of the solution item.</param>
         public ProjectItemRenameDetails(SolutionItem? solutionItem, string? oldName)
         {
             SolutionItem = solutionItem;
@@ -249,6 +260,11 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class ProjectItemRemoveDetails
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectItemRemoveDetails"/> class.
+        /// </summary>
+        /// <param name="project">The project that the item was removed from.</param>
+        /// <param name="itemName">The name of the item that was removed.</param>
         public ProjectItemRemoveDetails(Project? project, string? itemName)
         {
             Project = project;
