@@ -53,6 +53,7 @@ namespace Community.VisualStudio.Toolkit
         /// <typeparam name="TFilter">The type of the filter to test for.</typeparam>
         public bool IsFilterEnabled<TFilter>() where TFilter : HierarchyTreeFilterProvider
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             GetFilterIdentifier<TFilter>(out Guid filterGroup, out uint filterId);
             return IsFilterEnabled(filterGroup, filterId);
         }
@@ -62,6 +63,7 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public bool IsFilterEnabled(Guid filterGroup, uint filterId)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             if (IsFilterEnabled())
             {
                 CommandID? current = GetCurrentFilter();
@@ -86,6 +88,7 @@ namespace Community.VisualStudio.Toolkit
         /// <typeparam name="TFilter">The type of the filter to enable.</typeparam>
         public void EnableFilter<TFilter>() where TFilter : HierarchyTreeFilterProvider
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             GetFilterIdentifier<TFilter>(out Guid filterGroup, out uint filterId);
             EnableFilter(filterGroup, filterId);
         }
@@ -195,6 +198,7 @@ namespace Community.VisualStudio.Toolkit
                 throw new ArgumentNullException(nameof(item));
             }
 
+            ThreadHelper.ThrowIfNotOnUIThread();
             SetSelection(new[] { item });
         }
 
@@ -277,6 +281,7 @@ namespace Community.VisualStudio.Toolkit
                 throw new ArgumentNullException(nameof(item));
             }
 
+            ThreadHelper.ThrowIfNotOnUIThread();
             Expand(new[] { item }, mode);
         }
 
@@ -291,6 +296,8 @@ namespace Community.VisualStudio.Toolkit
             {
                 throw new ArgumentNullException(nameof(items));
             }
+
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             // Although the `EXPANDFLAGS` has the `[Flags]` attribute, the values 
             // cannot actually be combined because the values are sequential.
@@ -337,6 +344,7 @@ namespace Community.VisualStudio.Toolkit
                 throw new ArgumentNullException(nameof(item));
             }
 
+            ThreadHelper.ThrowIfNotOnUIThread();
             Collapse(new[] { item });
         }
 
