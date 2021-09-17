@@ -1,6 +1,12 @@
 <Project>
 
   <PropertyGroup>
+    <MajorVersion Condition="'$(MajorVersion)' == ''">1</MajorVersion>
+    <MinorVersion Condition="'$(MinorVersion)' == ''">0</MinorVersion>
+    <Version>$(MajorVersion).$(MinorVersion)$(VersionSuffix)</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Authors>VSIX Community</Authors>
     <Owners>VSIX Community</Owners>
     <Copyright>© Mads Kristensen. All rights reserved.</Copyright>

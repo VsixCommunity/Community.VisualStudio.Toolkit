@@ -1,5 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+
+  <PropertyGroup>
+    <MajorVersion>1</MajorVersion>
+  </PropertyGroup>
+
   <Import Project="..\..\Common.props" />
   
   <PropertyGroup>
