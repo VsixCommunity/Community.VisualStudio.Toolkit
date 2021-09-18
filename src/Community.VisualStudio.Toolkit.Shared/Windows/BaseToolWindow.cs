@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -105,6 +106,38 @@ namespace Community.VisualStudio.Toolkit
 
             return window;
 #endif
+        }
+
+        /// <summary>
+        /// Hides the tool window.
+        /// </summary>
+        /// <param name="id">For multi-instance tool windows, this specifies the ID of the window to close.</param>
+        /// <returns>True if the tool window was hidden; otherwise, false.</returns>
+        public static async Task<bool> HideAsync(int id = 0)
+        {
+            if (_implementation is null || _package is null)
+            {
+                // The tool window hasn't been initialized, which means it is not currently shown.
+                // Return true, because the end result is that the tool window is not visible.
+                return false;
+            }
+
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            ToolWindowPane? window;
+
+#if VS16 || VS17
+            window = await _package.FindToolWindowAsync(_implementation.PaneType, id, false, _package.DisposalToken);
+#else
+            window = _package.FindToolWindow(_implementation.PaneType, id, false);
+#endif
+
+            if (window?.Frame is IVsWindowFrame frame)
+            {
+                return ErrorHandler.Succeeded(frame.Hide());
+            }
+
+            return false;
         }
 
         /// <summary>

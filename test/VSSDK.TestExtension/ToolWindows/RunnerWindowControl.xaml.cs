@@ -18,9 +18,14 @@ namespace TestExtension
             lblHeadline.Content = $"Visual Studio v{vsVersion}";
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void btnShowMessage_Click(object sender, RoutedEventArgs e)
         {
             ShowMessageAsync().FireAndForget();
+        }
+
+        private void btnHide_Click(object sender, RoutedEventArgs e)
+        {
+            HideAsync().FireAndForget();
         }
 
         private async Task ShowMessageAsync()
@@ -34,6 +39,11 @@ namespace TestExtension
 
             VSConstants.MessageBoxResult button = await VS.MessageBox.ShowAsync("message", "title");
             Debug.WriteLine(button);
+        }
+
+        private async Task HideAsync()
+        {
+            await RunnerWindow.HideAsync();
         }
     }
 }
