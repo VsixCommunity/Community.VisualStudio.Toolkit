@@ -18,4 +18,13 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- 
+    Prevent version conflicts with the `Microsoft.CodeAnalysis.*` libraries (caused by our reference to 
+    the analyzers project) by referencing a specific version here. We don't actually need this packages
+    to operate (and nor do any consumers of the toolkit), so we can safely exclude it from the output.
+    -->
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0-3.final" ReferenceOutputAssembly="false" PrivateAssets="All" />
+  </ItemGroup>
+
 </Project>
