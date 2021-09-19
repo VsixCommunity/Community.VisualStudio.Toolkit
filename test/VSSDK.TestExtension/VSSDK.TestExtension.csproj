@@ -162,6 +162,13 @@
       <Project>{d000c76d-4d0f-48f9-b5ab-5696c92cc7bd}</Project>
       <Name>Community.VisualStudio.Toolkit.17.0</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Community.VisualStudio.Toolkit.Analyzers\Community.VisualStudio.Toolkit.Analyzers.csproj">
+      <Project>{8b8b82c4-bf62-48c7-91bf-151b32cb9a4b}</Project>
+      <Name>Community.VisualStudio.Toolkit.Analyzers</Name>
+      <PrivateAssets>all</PrivateAssets>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Analyzer</OutputItemType>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Theme.Blue.vssettings" />
