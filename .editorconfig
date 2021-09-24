@@ -104,3 +104,4 @@ csharp_new_line_before_members_in_anonymous_types     = true
 
 # IDE 
 dotnet_diagnostic.IDE0058.severity = none
+dotnet_diagnostic.RS2008.severity = none # RS2008: Enable analyzer release tracking

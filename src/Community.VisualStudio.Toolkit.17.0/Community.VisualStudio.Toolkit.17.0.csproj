@@ -1,10 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\Common.props" />
+  <PropertyGroup>
+    <MajorVersion>17</MajorVersion>
+    <VersionSuffix>-pre</VersionSuffix>
+  </PropertyGroup>
+  
+  <Import Project="..\Toolkit.props" />
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <Version>17.0.0-pre</Version>
     <DefineConstants>VS17</DefineConstants>
     <NoWarn>NU1603</NoWarn>
   </PropertyGroup>
@@ -12,6 +16,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.0.0-previews-1-31410-273" IncludeAssets="All" PrivateAssets="None" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 
+    Prevent version conflicts with the `Microsoft.CodeAnalysis.*` libraries (caused by our reference to 
+    the analyzers project) by referencing a specific version here. We don't actually need this packages
+    to operate (and nor do any consumers of the toolkit), so we can safely exclude it from the output.
+    -->
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0-3.final" ReferenceOutputAssembly="false" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>

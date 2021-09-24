@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using System;
+using System.ComponentModel.Design;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
@@ -51,6 +52,7 @@ namespace Community.VisualStudio.Toolkit
         /// Registers well-known images (such as icons) for Visual Studio.<br/>
         /// Cast the result to <see cref="IVsImageService2"/>.
         /// </summary>
+        [CastTo("Microsoft.VisualStudio.Shell.Interop.IVsImageService2")]
         public Task<object> GetImageServiceAsync() => VS.GetRequiredServiceAsync<SVsImageService, object>();
 
         /// <summary>Controls the caching of font and color settings.</summary>
@@ -63,6 +65,7 @@ namespace Community.VisualStudio.Toolkit
         /// Controls the most recently used (MRU) items collection.<br/>
         /// Cast the result to <see cref="IVsMRUItemsStore"/>.
         /// </summary>
+        [CastTo("Microsoft.VisualStudio.Shell.Interop.IVsMRUItemsStore")]
         public Task<object> GetMRUItemsStoreAsync() => VS.GetRequiredServiceAsync<SVsMRUItemsStore, object>();
 
         /// <summary>Used to retrieved services defined in the MEF catalog, such as the editor specific services like <see cref="IVsEditorAdaptersFactoryService"/>.</summary>
@@ -77,6 +80,7 @@ namespace Community.VisualStudio.Toolkit
         /// The <see cref="InfoBar"/> is often referred to as the 'yellow' or 'gold' bar.<br/>
         /// Cast the result to <see cref="IVsInfoBarUIFactory"/>.
         /// </summary>
+        [CastTo("Microsoft.VisualStudio.Shell.Interop.IVsInfoBarUIFactory")]
         public Task<object> GetInfoBarUIFactoryAsync() => VS.GetRequiredServiceAsync<SVsInfoBarUIFactory, object>();
 
 #if VS16 || VS17
@@ -89,6 +93,7 @@ namespace Community.VisualStudio.Toolkit
         /// Used for background tasks that needs to block the UI if they take longer than the specified seconds.<br/>
         /// Cast the result to <see cref="IVsThreadedWaitDialogFactory"/>.
         /// </summary>
+        [CastTo("Microsoft.VisualStudio.Shell.Interop.IVsThreadedWaitDialogFactory")]
         public Task<object> GetThreadedWaitDialogAsync() => VS.GetRequiredServiceAsync<SVsThreadedWaitDialogFactory, object>();
 
         /// <summary>Used to write log messaged to the ActivityLog.xml file.</summary>
@@ -145,10 +150,19 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Provides access to the settings manager.<br/>
         /// Cast the result to <see cref="IVsSettingsManager"/>.
         /// </summary>
+        [CastTo("Microsoft.VisualStudio.Shell.Interop.IVsSettingsManager")]
         public Task<object> GetSettingsManagerAsync() => VS.GetRequiredServiceAsync<SVsSettingsManager, object>();
 
         /// <summary>Manages a Tools Options dialog box. The environment implements this interface.</summary>
         public Task<IVsToolsOptions> GetToolsOptionsAsync() => VS.GetRequiredServiceAsync<SVsToolsOptions, IVsToolsOptions>();
         #endregion
+
+        [AttributeUsage(AttributeTargets.Method)]
+        internal sealed class CastToAttribute : Attribute
+        {
+#pragma warning disable IDE0060 // Parameter is used by code analyzers only.
+            public CastToAttribute(string typeName) { }
+#pragma warning restore IDE0060
+        }
     }
 }

@@ -14,10 +14,13 @@ install:
   - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
 
 build_script:
-  - ps: dotnet pack src/Community.VisualStudio.Toolkit.14.0/Community.VisualStudio.Toolkit.14.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=14.0.76.$($env:appveyor_build_number)-pre
-  - ps: dotnet pack src/Community.VisualStudio.Toolkit.15.0/Community.VisualStudio.Toolkit.15.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=15.0.76.$($env:appveyor_build_number)-pre
-  - ps: dotnet pack src/Community.VisualStudio.Toolkit.16.0/Community.VisualStudio.Toolkit.16.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=16.0.76.$($env:appveyor_build_number)-pre
-  - ps: dotnet pack src/Community.VisualStudio.Toolkit.17.0/Community.VisualStudio.Toolkit.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true /p:Version=17.0.76.$($env:appveyor_build_number)-pre
+  - ps: $env:MinorVersion = "0.76.$($env:appveyor_build_number)"
+  - ps: $env:VersionSuffix = "-pre"
+  - ps: dotnet pack src/Community.VisualStudio.Toolkit.14.0/Community.VisualStudio.Toolkit.14.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
+  - ps: dotnet pack src/Community.VisualStudio.Toolkit.15.0/Community.VisualStudio.Toolkit.15.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
+  - ps: dotnet pack src/Community.VisualStudio.Toolkit.16.0/Community.VisualStudio.Toolkit.16.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
+  - ps: dotnet pack src/Community.VisualStudio.Toolkit.17.0/Community.VisualStudio.Toolkit.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
+  - ps: dotnet pack src/Community.VisualStudio.Toolkit.Analyzers/Community.VisualStudio.Toolkit.Analyzers.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
 
 test_script:
   - dotnet test test/Community.VisualStudio.Toolkit.UnitTests/Community.VisualStudio.Toolkit.UnitTests.csproj

@@ -1,10 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\Common.props" />
+  <PropertyGroup>
+    <MajorVersion>14</MajorVersion>
+  </PropertyGroup>
+
+  <Import Project="..\Toolkit.props" />
   
   <PropertyGroup>
     <TargetFramework>net46</TargetFramework>
-    <Version>14.0</Version>
     <DefineConstants>VS14</DefineConstants>
   </PropertyGroup>
 
