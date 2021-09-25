@@ -1,4 +1,5 @@
-﻿using Community.VisualStudio.Toolkit;
+﻿using System;
+using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
@@ -11,14 +12,21 @@ namespace TestExtension.Commands
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            bool buildResult = await VS.Build.BuildSolutionAsync();
-            if (buildResult)
+            try
             {
-                await VS.MessageBox.ShowAsync("Build Result", $"The solution was built successfully!");
+                bool buildResult = await VS.Build.BuildSolutionAsync();
+                if (buildResult)
+                {
+                    await VS.MessageBox.ShowAsync("Build Result", $"The solution was built successfully!");
+                }
+                else
+                {
+                    await VS.MessageBox.ShowErrorAsync("Build Result", $"The solution did not build successfully :(");
+                }
             }
-            else
+            catch (OperationCanceledException)
             {
-                await VS.MessageBox.ShowErrorAsync("Build Result", $"The solution did not build successfully :(");
+                await VS.MessageBox.ShowAsync("Build Result", "The solution build was cancelled.");
             }
         }
     }
