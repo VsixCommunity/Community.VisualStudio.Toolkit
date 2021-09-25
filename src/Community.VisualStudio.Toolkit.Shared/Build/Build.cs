@@ -33,7 +33,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Builds the solution or project if one is specified.
+        /// Builds the solution.
         /// </summary>
         public async Task<bool> BuildSolutionAsync(BuildAction action = BuildAction.Build)
         {
@@ -41,11 +41,22 @@ namespace Community.VisualStudio.Toolkit
             IVsSolutionBuildManager svc = await VS.Services.GetSolutionBuildManagerAsync();
             uint buildFlags = (uint)GetBuildFlags(action);
 
-            return svc.StartSimpleUpdateSolutionConfiguration(buildFlags, 0, 0) == VSConstants.S_OK;
+            BuildObserver observer = new(null);
+            ErrorHandler.ThrowOnFailure(svc.AdviseUpdateSolutionEvents(observer, out uint cookie));
+
+            try
+            {
+                ErrorHandler.ThrowOnFailure(svc.StartSimpleUpdateSolutionConfiguration(buildFlags, 0, 0));
+                return await observer.Result;
+            }
+            finally
+            {
+                svc.UnadviseUpdateSolutionEvents(cookie);
+            }
         }
 
         /// <summary>
-        /// Builds the solution or project if one is specified.
+        /// Builds the specified project.
         /// </summary>
         public async Task<bool> BuildProjectAsync(SolutionItem project, BuildAction action = BuildAction.Build)
         {
@@ -59,7 +70,19 @@ namespace Community.VisualStudio.Toolkit
             uint buildFlags = (uint)GetBuildFlags(action);
 
             project.GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
-            return svc.StartSimpleUpdateProjectConfiguration(hierarchy, null, null, buildFlags, 0, 0) == VSConstants.S_OK;
+
+            BuildObserver observer = new(hierarchy);
+            ErrorHandler.ThrowOnFailure(svc.AdviseUpdateSolutionEvents(observer, out uint cookie));
+
+            try
+            {
+                ErrorHandler.ThrowOnFailure(svc.StartSimpleUpdateProjectConfiguration(hierarchy, null, null, buildFlags, 0, 0));
+                return await observer.Result;
+            }
+            finally
+            {
+                svc.UnadviseUpdateSolutionEvents(cookie);
+            }
         }
 
         /// <summary>
@@ -99,6 +122,70 @@ namespace Community.VisualStudio.Toolkit
                 BuildAction.Clean => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_CLEAN,
                 _ => VSSOLNBUILDUPDATEFLAGS.SBF_OPERATION_BUILD,
             };
+        }
+
+        private class BuildObserver : IVsUpdateSolutionEvents2
+        {
+            private readonly TaskCompletionSource<bool> _result = new();
+            private readonly IVsHierarchy? _hierarchy;
+
+            public BuildObserver(IVsHierarchy? hierarchy)
+            {
+                _hierarchy = hierarchy;
+            }
+
+            public Task<bool> Result => _result.Task;
+
+            public int UpdateSolution_Begin(ref int pfCancelUpdate) => VSConstants.S_OK;
+
+            public int UpdateSolution_Done(int fSucceeded, int fModified, int fCancelCommand)
+            {
+                if (_hierarchy is null)
+                {
+                    // We are watching the build of the entire solution, 
+                    // so we can set the result now.
+                    if (fCancelCommand != 0)
+                    {
+                        _result.SetCanceled();
+                    }
+                    else
+                    {
+                        _result.SetResult(fSucceeded != 0);
+                    }
+                }
+
+                return VSConstants.S_OK;
+            }
+
+            public int UpdateSolution_StartUpdate(ref int pfCancelUpdate) => VSConstants.S_OK;
+
+            public int UpdateSolution_Cancel() => VSConstants.S_OK;
+
+            public int OnActiveProjectCfgChange(IVsHierarchy pIVsHierarchy) => VSConstants.S_OK;
+
+            public int UpdateProjectCfg_Begin(IVsHierarchy pHierProj, IVsCfg pCfgProj, IVsCfg pCfgSln, uint dwAction, ref int pfCancel) => VSConstants.S_OK;
+
+            public int UpdateProjectCfg_Done(IVsHierarchy pHierProj, IVsCfg pCfgProj, IVsCfg pCfgSln, uint dwAction, int fSuccess, int fCancel)
+            {
+                if (_hierarchy is not null)
+                {
+                    // We are observing the build of a specific project. If the project
+                    // that finished is the one we are observing, then we can set the result.
+                    if (pHierProj == _hierarchy)
+                    {
+                        if (fCancel != 0)
+                        {
+                            _result.SetCanceled();
+                        }
+                        else
+                        {
+                            _result.SetResult(fSuccess != 0);
+                        }
+                    }
+                }
+
+                return VSConstants.S_OK;
+            }
         }
     }
 

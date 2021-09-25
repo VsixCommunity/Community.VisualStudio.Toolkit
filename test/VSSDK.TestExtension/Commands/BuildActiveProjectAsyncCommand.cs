@@ -1,4 +1,5 @@
-﻿using Community.VisualStudio.Toolkit;
+﻿using System;
+using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
@@ -11,17 +12,38 @@ namespace TestExtension.Commands
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            SolutionItem activeProject = await VS.Solutions.GetActiveItemAsync();
-            if (activeProject != null)
+            SolutionItem activeItem = await VS.Solutions.GetActiveItemAsync();
+            if (activeItem != null)
             {
-                bool buildResult = await VS.Build.BuildProjectAsync(activeProject);
-                if (buildResult)
+                Project activeProject;
+                if (activeItem.Type == SolutionItemType.Project)
                 {
-                    await VS.MessageBox.ShowAsync("Build Result", $"The '{activeProject.Name}' project was built successfully!");
+                    activeProject = (Project)activeItem;
                 }
                 else
                 {
-                    await VS.MessageBox.ShowErrorAsync("Build Result", $"The '{activeProject.Name}' project did not build successfully :(");
+                    activeProject = activeItem.FindParent(SolutionItemType.Project) as Project;
+                }
+
+                if (activeProject != null) 
+                {
+                    try
+                    {
+                        bool buildResult = await VS.Build.BuildProjectAsync(activeProject);
+                        if (buildResult)
+                        {
+                            await VS.MessageBox.ShowAsync("Build Result", $"The '{activeProject.Name}' project was built successfully!");
+                        }
+                        else
+                        {
+                            await VS.MessageBox.ShowErrorAsync("Build Result", $"The '{activeProject.Name}' project did not build successfully :(");
+                        }
+
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        await VS.MessageBox.ShowAsync("Build Result", $"The build of '{activeProject.Name}' was cancelled.");
+                    }
                 }
             }
         }
