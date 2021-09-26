@@ -1,0 +1,17 @@
+<!-- All projects that create NuGet packages. -->
+<Project>
+
+  <PropertyGroup>
+    <!-- 
+    The major version number should be specified in each project file, but
+    that property definition will occur _after_ the `Directory.Build.props`
+    file is imported. That means the major version number isn't available in
+    the `.props` file. This `.targets` file is automatically imported at the
+    end of the project file, so we can create the full version number here.
+    -->
+    <MajorVersion Condition="'$(MajorVersion)' == ''">1</MajorVersion>
+    <MinorVersion Condition="'$(MinorVersion)' == ''">0</MinorVersion>
+    <Version>$(MajorVersion).$(MinorVersion)$(VersionSuffix)</Version>
+  </PropertyGroup>
+
+</Project>

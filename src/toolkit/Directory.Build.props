@@ -1,27 +1,22 @@
+<!-- Toolkit projects. -->
 <Project>
 
-  <Import Project="..\Common.props" />
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)..\'))" />
 
   <PropertyGroup>
     <PackageId>Community.VisualStudio.Toolkit</PackageId>
     <AssemblyName>Community.VisualStudio.Toolkit</AssemblyName>
     <PackageDescription>A community driven effort for a better Visual Studio experience developing extensions.</PackageDescription>
-    <PackageIcon>Icon.png</PackageIcon>
     <PackageTags>VisualStudio, VSSDK, SDK</PackageTags>
-
     <RootNamespace>Community.VisualStudio.Toolkit</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <DebugType>portable</DebugType>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Icon.png" Link="Icon.png" Pack="true" PackagePath="" Visible="false" />
-    <None Include="../Community.VisualStudio.Toolkit.props" Pack="true" PackagePath="build" Visible="false" />
-    <None Include="../Community.VisualStudio.Toolkit.targets" Pack="true" PackagePath="build" Visible="false" />
-    <None Include="../AssemblyInfo.cs" Pack="true" PackagePath="build" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)nuget\build\Community.VisualStudio.Toolkit.props" Pack="true" PackagePath="build" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)nuget\build\Community.VisualStudio.Toolkit.targets" Pack="true" PackagePath="build" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)nuget\build\AssemblyInfo.cs" Pack="true" PackagePath="build" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,7 +26,7 @@
     Also note that this is an EmbeddedResource rather than a Page, because we need to load and edit
     the file at runtime to account for different assembly versions that are referenced in the namespaces.
     -->
-    <EmbeddedResource Include="..\Community.VisualStudio.Toolkit.Shared\Themes\ThemeResources.xaml" Link="Themes\ThemeResources.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Community.VisualStudio.Toolkit.Shared\Themes\ThemeResources.xaml" Link="Themes\ThemeResources.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -45,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(MSBuildThisFileDirectory)Community.VisualStudio.Toolkit.Analyzers\Community.VisualStudio.Toolkit.Analyzers.csproj"/>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)..\analyzers\Community.VisualStudio.Toolkit.Analyzers\Community.VisualStudio.Toolkit.Analyzers.csproj"/>
   </ItemGroup>
   
   <Import Project="$(MSBuildThisFileDirectory)Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems" Label="Shared" />
