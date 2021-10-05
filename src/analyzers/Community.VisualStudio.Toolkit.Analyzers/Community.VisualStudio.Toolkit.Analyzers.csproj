@@ -1,14 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <MajorVersion>1</MajorVersion>
-  </PropertyGroup>
-
-  <Import Project="..\..\Common.props" />
-  
-  <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
     <RootNamespace>Community.VisualStudio.Toolkit.Analyzers</RootNamespace>
+    <MajorVersion>1</MajorVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -18,6 +13,7 @@
     <DevelopmentDependency>true</DevelopmentDependency>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <IncludeBuildOutput>false</IncludeBuildOutput>
+    <IncludeSymbols>false</IncludeSymbols>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>

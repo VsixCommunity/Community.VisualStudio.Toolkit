@@ -16,14 +16,14 @@ install:
 build_script:
   - ps: $env:MinorVersion = "0.76.$($env:appveyor_build_number)"
   - ps: $env:VersionSuffix = "-pre"
-  - ps: dotnet pack src/Community.VisualStudio.Toolkit.14.0/Community.VisualStudio.Toolkit.14.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
-  - ps: dotnet pack src/Community.VisualStudio.Toolkit.15.0/Community.VisualStudio.Toolkit.15.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
-  - ps: dotnet pack src/Community.VisualStudio.Toolkit.16.0/Community.VisualStudio.Toolkit.16.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
-  - ps: dotnet pack src/Community.VisualStudio.Toolkit.17.0/Community.VisualStudio.Toolkit.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
-  - ps: dotnet pack src/Community.VisualStudio.Toolkit.Analyzers/Community.VisualStudio.Toolkit.Analyzers.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
+  - ps: dotnet pack src/toolkit/Community.VisualStudio.Toolkit.14.0/Community.VisualStudio.Toolkit.14.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
+  - ps: dotnet pack src/toolkit/Community.VisualStudio.Toolkit.15.0/Community.VisualStudio.Toolkit.15.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
+  - ps: dotnet pack src/toolkit/Community.VisualStudio.Toolkit.16.0/Community.VisualStudio.Toolkit.16.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
+  - ps: dotnet pack src/toolkit/Community.VisualStudio.Toolkit.17.0/Community.VisualStudio.Toolkit.17.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
+  - ps: dotnet pack src/analyzers/Community.VisualStudio.Toolkit.Analyzers/Community.VisualStudio.Toolkit.Analyzers.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
 
 test_script:
-  - dotnet test test/Community.VisualStudio.Toolkit.UnitTests/Community.VisualStudio.Toolkit.UnitTests.csproj
+  - dotnet test test/toolkit/Community.VisualStudio.Toolkit.UnitTests/Community.VisualStudio.Toolkit.UnitTests.csproj
 
 artifacts:
   - path: src\**\*.nupkg

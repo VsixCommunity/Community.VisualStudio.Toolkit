@@ -108,7 +108,7 @@ foreach ($set in $COMMAND_SETS) {
     }
 }
 
-$fileName = Join-Path -Path $PSScriptRoot -ChildPath "Community.VisualStudio.Toolkit.Shared/Commands/KnownCommands.cs"
+$fileName = Join-Path -Path $PSScriptRoot -ChildPath "../src/toolkit/Community.VisualStudio.Toolkit.Shared/Commands/KnownCommands.cs"
 $writer = New-Object -TypeName "System.IO.StreamWriter" -ArgumentList $fileName
 
 try {

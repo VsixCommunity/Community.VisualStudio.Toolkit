@@ -1,0 +1,15 @@
+<!-- Toolkit projects. -->
+<Project>
+
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.targets', '$(MSBuildThisFileDirectory)..\'))" />
+
+  <PropertyGroup>
+    <!-- 
+    The major version number has not been set at the point 
+    that the `Directory.Build.props` file is imported, 
+    so we can't define the `VSXX` constant until now.
+    -->
+    <DefineConstants>VS$(MajorVersion)</DefineConstants>
+  </PropertyGroup>
+
+</Project>

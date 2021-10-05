@@ -1,14 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <MajorVersion>16</MajorVersion>
-  </PropertyGroup>
-
-  <Import Project="..\Toolkit.props" />
-
-  <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <DefineConstants>VS16</DefineConstants>
+    <MajorVersion>16</MajorVersion>
   </PropertyGroup>
 
   <ItemGroup>

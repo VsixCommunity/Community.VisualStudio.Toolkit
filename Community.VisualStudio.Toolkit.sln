@@ -2,43 +2,74 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31512.422
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.16.0", "src\Community.VisualStudio.Toolkit.16.0\Community.VisualStudio.Toolkit.16.0.csproj", "{38DC82EA-91D6-4360-B76C-995708EE43A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.16.0", "src\toolkit\Community.VisualStudio.Toolkit.16.0\Community.VisualStudio.Toolkit.16.0.csproj", "{38DC82EA-91D6-4360-B76C-995708EE43A3}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Community.VisualStudio.Toolkit.Shared", "src\Community.VisualStudio.Toolkit.Shared\Community.VisualStudio.Toolkit.Shared.shproj", "{5EC463AC-24CB-443E-9FF9-91B7ECB1F822}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Community.VisualStudio.Toolkit.Shared", "src\toolkit\Community.VisualStudio.Toolkit.Shared\Community.VisualStudio.Toolkit.Shared.shproj", "{5EC463AC-24CB-443E-9FF9-91B7ECB1F822}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.15.0", "src\Community.VisualStudio.Toolkit.15.0\Community.VisualStudio.Toolkit.15.0.csproj", "{A9E80C7B-8ED1-4D7B-B1F3-575FD70001BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.15.0", "src\toolkit\Community.VisualStudio.Toolkit.15.0\Community.VisualStudio.Toolkit.15.0.csproj", "{A9E80C7B-8ED1-4D7B-B1F3-575FD70001BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{04B6A6A3-DDE9-44E3-9F95-329655236728}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		appveyor.yml = appveyor.yml
-		src\AssemblyInfo.cs = src\AssemblyInfo.cs
-		Common.props = Common.props
-		src\Community.VisualStudio.Toolkit.props = src\Community.VisualStudio.Toolkit.props
-		src\Community.VisualStudio.Toolkit.targets = src\Community.VisualStudio.Toolkit.targets
-		src\GenerateKnownCommands.ps1 = src\GenerateKnownCommands.ps1
+		Directory.Build.props = Directory.Build.props
 		README.md = README.md
-		src\Toolkit.props = src\Toolkit.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSSDK.TestExtension", "test\VSSDK.TestExtension\VSSDK.TestExtension.csproj", "{7F36F7DF-119E-4175-B1FA-C723EE10BD9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSSDK.TestExtension", "demo\VSSDK.TestExtension\VSSDK.TestExtension.csproj", "{7F36F7DF-119E-4175-B1FA-C723EE10BD9B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.14.0", "src\Community.VisualStudio.Toolkit.14.0\Community.VisualStudio.Toolkit.14.0.csproj", "{86209D58-39B0-4D96-AA71-FF0D009E627A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.14.0", "src\toolkit\Community.VisualStudio.Toolkit.14.0\Community.VisualStudio.Toolkit.14.0.csproj", "{86209D58-39B0-4D96-AA71-FF0D009E627A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.17.0", "src\Community.VisualStudio.Toolkit.17.0\Community.VisualStudio.Toolkit.17.0.csproj", "{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.17.0", "src\toolkit\Community.VisualStudio.Toolkit.17.0\Community.VisualStudio.Toolkit.17.0.csproj", "{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C48F613F-44F9-44F0-BAF5-F2A4F83A67ED}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C48F613F-44F9-44F0-BAF5-F2A4F83A67ED}"
+	ProjectSection(SolutionItems) = preProject
+		test\Directory.Build.props = test\Directory.Build.props
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.UnitTests", "test\Community.VisualStudio.Toolkit.UnitTests\Community.VisualStudio.Toolkit.UnitTests.csproj", "{FF58BACD-16B0-4C73-BA03-4A255925153F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.UnitTests", "test\toolkit\Community.VisualStudio.Toolkit.UnitTests\Community.VisualStudio.Toolkit.UnitTests.csproj", "{FF58BACD-16B0-4C73-BA03-4A255925153F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.Analyzers", "src\Community.VisualStudio.Toolkit.Analyzers\Community.VisualStudio.Toolkit.Analyzers.csproj", "{8B8B82C4-BF62-48C7-91BF-151B32CB9A4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.Analyzers", "src\analyzers\Community.VisualStudio.Toolkit.Analyzers\Community.VisualStudio.Toolkit.Analyzers.csproj", "{8B8B82C4-BF62-48C7-91BF-151B32CB9A4B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.Analyzers.UnitTests", "test\Community.VisualStudio.Toolkit.Analyzers.UnitTests\Community.VisualStudio.Toolkit.Analyzers.UnitTests.csproj", "{6AB57B05-4938-44BB-BBE4-38F3A55D1A54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.Toolkit.Analyzers.UnitTests", "test\analyzers\Community.VisualStudio.Toolkit.Analyzers.UnitTests\Community.VisualStudio.Toolkit.Analyzers.UnitTests.csproj", "{6AB57B05-4938-44BB-BBE4-38F3A55D1A54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02AFFAC5-D8AF-42F3-9A65-7DC4D9D2723F}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+		src\Directory.Build.targets = src\Directory.Build.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "toolkit", "toolkit", "{C27D922F-7897-4199-A2F9-6E1ED66C440A}"
+	ProjectSection(SolutionItems) = preProject
+		src\toolkit\Directory.Build.props = src\toolkit\Directory.Build.props
+		src\toolkit\Directory.Build.targets = src\toolkit\Directory.Build.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analyzers", "analyzers", "{C7A1F99E-D80D-471B-B616-66DBA1E4C109}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analyzers", "analyzers", "{69557EC0-DB00-412D-9FF4-C1EF755C2262}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "toolkit", "toolkit", "{2A0196FD-9245-4682-A34D-5532873535FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{0AD6630A-44DB-4FDA-A985-79D6A740CCAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{2EC8051C-B422-4CEC-BA2F-BBD15551E6CB}"
+	ProjectSection(SolutionItems) = preProject
+		src\toolkit\nuget\build\AssemblyInfo.cs = src\toolkit\nuget\build\AssemblyInfo.cs
+		src\toolkit\nuget\build\Community.VisualStudio.Toolkit.props = src\toolkit\nuget\build\Community.VisualStudio.Toolkit.props
+		src\toolkit\nuget\build\Community.VisualStudio.Toolkit.targets = src\toolkit\nuget\build\Community.VisualStudio.Toolkit.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{6ED8D47D-D076-44C4-B0CE-B6CF944C71D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{3F2F4E99-C896-4C92-9F6D-66D2A8360168}"
+	ProjectSection(SolutionItems) = preProject
+		tools\GenerateKnownCommands.ps1 = tools\GenerateKnownCommands.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{5ec463ac-24cb-443e-9ff9-91b7ecb1f822}*SharedItemsImports = 13
-		src\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{ff58bacd-16b0-4c73-ba03-4a255925153f}*SharedItemsImports = 5
+		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{ff58bacd-16b0-4c73-ba03-4a255925153f}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,9 +147,21 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7F36F7DF-119E-4175-B1FA-C723EE10BD9B} = {C48F613F-44F9-44F0-BAF5-F2A4F83A67ED}
-		{FF58BACD-16B0-4C73-BA03-4A255925153F} = {C48F613F-44F9-44F0-BAF5-F2A4F83A67ED}
-		{6AB57B05-4938-44BB-BBE4-38F3A55D1A54} = {C48F613F-44F9-44F0-BAF5-F2A4F83A67ED}
+		{38DC82EA-91D6-4360-B76C-995708EE43A3} = {C27D922F-7897-4199-A2F9-6E1ED66C440A}
+		{5EC463AC-24CB-443E-9FF9-91B7ECB1F822} = {C27D922F-7897-4199-A2F9-6E1ED66C440A}
+		{A9E80C7B-8ED1-4D7B-B1F3-575FD70001BA} = {C27D922F-7897-4199-A2F9-6E1ED66C440A}
+		{7F36F7DF-119E-4175-B1FA-C723EE10BD9B} = {0AD6630A-44DB-4FDA-A985-79D6A740CCAB}
+		{86209D58-39B0-4D96-AA71-FF0D009E627A} = {C27D922F-7897-4199-A2F9-6E1ED66C440A}
+		{D000C76D-4D0F-48F9-B5AB-5696C92CC7BD} = {C27D922F-7897-4199-A2F9-6E1ED66C440A}
+		{FF58BACD-16B0-4C73-BA03-4A255925153F} = {2A0196FD-9245-4682-A34D-5532873535FF}
+		{8B8B82C4-BF62-48C7-91BF-151B32CB9A4B} = {C7A1F99E-D80D-471B-B616-66DBA1E4C109}
+		{6AB57B05-4938-44BB-BBE4-38F3A55D1A54} = {69557EC0-DB00-412D-9FF4-C1EF755C2262}
+		{C27D922F-7897-4199-A2F9-6E1ED66C440A} = {02AFFAC5-D8AF-42F3-9A65-7DC4D9D2723F}
+		{C7A1F99E-D80D-471B-B616-66DBA1E4C109} = {02AFFAC5-D8AF-42F3-9A65-7DC4D9D2723F}
+		{69557EC0-DB00-412D-9FF4-C1EF755C2262} = {C48F613F-44F9-44F0-BAF5-F2A4F83A67ED}
+		{2A0196FD-9245-4682-A34D-5532873535FF} = {C48F613F-44F9-44F0-BAF5-F2A4F83A67ED}
+		{2EC8051C-B422-4CEC-BA2F-BBD15551E6CB} = {6ED8D47D-D076-44C4-B0CE-B6CF944C71D3}
+		{6ED8D47D-D076-44C4-B0CE-B6CF944C71D3} = {C27D922F-7897-4199-A2F9-6E1ED66C440A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0DD67C0-2617-498C-81F0-A5E4FF5831F1}
