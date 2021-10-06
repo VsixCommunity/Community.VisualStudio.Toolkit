@@ -83,8 +83,14 @@
         public const string BrowserDoc = "{6B8E94B4-0949-4D9C-A81F-C1B9B744185C}";
 
         /// <summary>Provides the ability to search and replace on the currently opened file.</summary>
-        public const string FindReplace = "{CF2DDC32-8CAD-11D2-9302-005345000000}";
-
+        public const string FindReplace =
+#if VS14 || VS15
+            "{CF2DDC32-8CAD-11D2-9302-005345000000}"
+#else
+            "{6324226F-61B6-4F28-92EE-18D4B5FE1E48}"
+#endif
+            ;
+        
         /// <summary>Provides the ability to search files for a string.</summary>
         public const string FindAdvanced = "{E830EC50-C2B5-11D2-9375-0080C747D9A0}";
 
