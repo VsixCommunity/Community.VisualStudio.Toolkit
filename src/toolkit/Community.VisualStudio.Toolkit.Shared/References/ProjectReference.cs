@@ -55,6 +55,8 @@ namespace Community.VisualStudio.Toolkit
 
         private Guid GetProjectGuid()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             // A `ProjectReference` can represent an `IVsProjectReference` or an `IVsSharedProjectReference`.
             if (VsReference is IVsProjectReference projectReference)
             {

@@ -238,6 +238,7 @@ namespace Community.VisualStudio.Toolkit
 
         IEnumerator IEnumerable.GetEnumerator()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             return GetEnumerator();
         }
 
@@ -300,6 +301,8 @@ namespace Community.VisualStudio.Toolkit
 
         private static void PopulateSharedProjectReference(IVsSharedProjectReference reference, IVsSolution solution, Project project, IVsSharedAssetsProject sharedProject)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             project.GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
             ErrorHandler.ThrowOnFailure(solution.GetGuidOfProject(hierarchy, out Guid projectGuid));
 
