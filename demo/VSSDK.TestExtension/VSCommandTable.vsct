@@ -91,6 +91,15 @@
         </Strings>
       </Button>
 
+      <Button guid="TestExtension" id="ListReferences" priority="0x0102" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1"/>
+        <Icon guid="ImageCatalogGuid" id="Reference" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>List References</ButtonText>
+        </Strings>
+      </Button>
+      
       <Button guid="TestExtension" id="ToggleVsixManifestFilter" priority="0x0100" type="Button">
         <Parent guid="TestExtension" id="TestExtensionSolutionExplorerGroup"/>
         <Icon guid="ImageCatalogGuid" id="VisualStudioSettingsFile" />
@@ -148,6 +157,7 @@
       <IDSymbol name="EditSelectedItemLabel" value="0x0108" />
       <IDSymbol name="ExpandSelectedItems" value="0x0109" />
       <IDSymbol name="CollapseSelectedItems" value="0x0110" />
+      <IDSymbol name="ListReferences" value="0x0111" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>
