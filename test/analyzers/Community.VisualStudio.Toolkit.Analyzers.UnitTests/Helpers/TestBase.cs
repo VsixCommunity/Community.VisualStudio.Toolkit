@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
@@ -20,14 +21,22 @@ namespace Community.VisualStudio.Toolkit.Analyzers.UnitTests
 
         protected string TestCode
         {
-            set { _test.TestCode = value; }
+            set { _test.TestCode = NormalizeLineEndings(value); }
         }
 
         protected string FixedCode
         {
-            set { _test.FixedCode = value; }
+            set { _test.FixedCode = NormalizeLineEndings(value); }
         }
-        
+
+        private static string NormalizeLineEndings(string value)
+        {
+            // The code may contain different line endings to what is expected depending on how
+            // it was checked out in Git. Change the line endings to match the current environment,
+            // because that is the type of line ending that that will be used by the code fix.
+            return Regex.Replace(value, "\r?\n", Environment.NewLine);
+        }
+
         protected void AddReference(Type typeInAssemblyToReference)
         {
             _test.References.Add(typeInAssemblyToReference);
