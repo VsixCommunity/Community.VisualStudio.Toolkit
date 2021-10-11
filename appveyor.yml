@@ -24,6 +24,7 @@ build_script:
 
 test_script:
   - dotnet test test/toolkit/Community.VisualStudio.Toolkit.UnitTests/Community.VisualStudio.Toolkit.UnitTests.csproj
+  - dotnet test test/analyzers/Community.VisualStudio.Toolkit.Analyzers.UnitTests/Community.VisualStudio.Toolkit.Analyzers.UnitTests.csproj
 
 artifacts:
   - path: src\**\*.nupkg
