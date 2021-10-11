@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System;
 using System.Threading.Tasks;
+using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -14,6 +15,8 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class Project : SolutionItem
     {
+        private ReferenceCollection? _references;
+
         internal Project(IVsHierarchyItem item, SolutionItemType type) : base(item, type)
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
@@ -55,6 +58,11 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// References in the project.
+        /// </summary>
+        public ReferenceCollection References => _references ??= new(this);
+
+        /// <summary>
         /// Checks what kind the project is.
         /// </summary>
         /// <param name="typeGuid">Use the <see cref="ProjectTypes"/> collection for known GUIDs.</param>
@@ -73,7 +81,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task SaveAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            
+
             GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
 
             IVsSolution solution = await VS.Services.GetSolutionAsync();

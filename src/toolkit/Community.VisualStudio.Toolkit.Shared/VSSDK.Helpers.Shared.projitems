@@ -30,6 +30,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Debugger\DebuggerEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Selection\SelectionEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)References\AssemblyReference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)References\ProjectReference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)References\Reference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)References\ReferenceCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\PhysicalFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\VirtualFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\PhysicalFile.cs" />
@@ -80,9 +84,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Windows\Windows.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\BaseCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\StatusBar.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Debugger\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Shell\" />
   </ItemGroup>
 </Project>
