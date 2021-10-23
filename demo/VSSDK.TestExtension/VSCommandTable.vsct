@@ -5,7 +5,7 @@
   <Extern href="vsshlids.h"/>
   <Include href="KnownImageIds.vsct"/>
   <Include href="VSGlobals.vsct"/>
-  
+
   <Commands package="TestExtension">
     <!--This section defines the elements the user can interact with, like a menu command or a button
         or combo box in a toolbar. -->
@@ -24,18 +24,29 @@
           <ButtonText>Solution Explorer</ButtonText>
         </Strings>
       </Menu>
+
+      <Menu guid="TestExtension" id="TestExtensionEditProjectFileMenu" priority="0x0200" type="Menu">
+        <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1" />
+        <Strings>
+          <ButtonText>Edit Project File</ButtonText>
+        </Strings>
+      </Menu>
     </Menus>
-    
+
     <Groups>
       <Group guid="TestExtension" id="TestExtensionMainMenuGroup1" priority="0x1100">
         <Parent guid="TestExtension" id="TestExtensionMainMenu" />
       </Group>
-      
+
       <Group guid="TestExtension" id="TestExtensionSolutionExplorerGroup" priority="0x1101">
         <Parent guid="TestExtension" id="TestExtensionSolutionExplorerMenu" />
       </Group>
+
+      <Group guid="TestExtension" id="TestExtensionEditProjectFileGroup" priority="0x1102">
+        <Parent guid="TestExtension" id="TestExtensionEditProjectFileMenu" />
+      </Group>
     </Groups>
-    
+
     <Buttons>
       <Button guid="TestExtension" id="RunnerWindow" priority="0x0105" type="Button">
         <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
@@ -99,7 +110,18 @@
           <ButtonText>List References</ButtonText>
         </Strings>
       </Button>
-      
+
+      <Button guid="TestExtension" id="EditProjectFile" priority="0x0103" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionEditProjectFileGroup"/>
+        <CommandFlag>DynamicItemStart</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>TextChanges</CommandFlag>
+        <Strings>
+          <ButtonText>Loading...</ButtonText>
+        </Strings>
+      </Button>
+
       <Button guid="TestExtension" id="ToggleVsixManifestFilter" priority="0x0100" type="Button">
         <Parent guid="TestExtension" id="TestExtensionSolutionExplorerGroup"/>
         <Icon guid="ImageCatalogGuid" id="VisualStudioSettingsFile" />
@@ -139,12 +161,19 @@
     </Buttons>
   </Commands>
 
+  <VisibilityConstraints>
+    <VisibilityItem guid="TestExtension" id="EditProjectFile" context="UICONTEXT_SolutionExists" />
+  </VisibilityConstraints>
+
   <Symbols>
     <GuidSymbol name="TestExtension" value="{05271709-8845-42fb-9d10-621cc8cffc5d}">
       <IDSymbol name="TestExtensionMainMenu" value="0x1000" />
       <IDSymbol name="TestExtensionSolutionExplorerMenu" value="0x1001" />
+      <IDSymbol name="TestExtensionEditProjectFileMenu" value="0x1002" />
+
       <IDSymbol name="TestExtensionMainMenuGroup1" value="0x1100" />
       <IDSymbol name="TestExtensionSolutionExplorerGroup" value="0x1101" />
+      <IDSymbol name="TestExtensionEditProjectFileGroup" value="0x1102" />
 
       <IDSymbol name="RunnerWindow" value="0x0100" />
       <IDSymbol name="ThemeWindow" value="0x0101" />
@@ -158,6 +187,8 @@
       <IDSymbol name="ExpandSelectedItems" value="0x0109" />
       <IDSymbol name="CollapseSelectedItems" value="0x0110" />
       <IDSymbol name="ListReferences" value="0x0111" />
+
+      <IDSymbol name="EditProjectFile" value="0x2001" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>
