@@ -54,10 +54,17 @@ namespace Community.VisualStudio.Toolkit
             Guid cmdGuid = attr.Guid == Guid.Empty ? package.GetType().GUID : attr.Guid;
             CommandID cmd = new(cmdGuid, attr.Id);
 
-            instance.Command = new OleMenuCommand(instance.Execute, cmd);
+            if (instance is IBaseDynamicCommand dynamicCommand)
+            {
+                instance.Command = new DynamicItemMenuCommand(dynamicCommand.IsMatch, instance.Execute, instance.BeforeQueryStatus, cmd);
+            }
+            else
+            {
+                instance.Command = new OleMenuCommand(instance.Execute, changeHandler: null, instance.BeforeQueryStatus, cmd);
+            }
+
             instance.Package = package;
 
-            instance.Command.BeforeQueryStatus += (s, e) => { instance.BeforeQueryStatus(e); };
 
             await package.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
@@ -99,11 +106,16 @@ namespace Community.VisualStudio.Toolkit
             }).FireAndForget();
         }
 
-        /// <summary>Executes asynchronously when the command is invoked and <c>Execute(object, EventArgs)</c> isn't overridden.</summary>
+        /// <summary>Executes asynchronously when the command is invoked and <see cref="Execute(object, EventArgs)"/> isn't overridden.</summary>
         /// <remarks>Use this method instead of <see cref="Execute"/> if you're invoking any async tasks by using async/await patterns.</remarks>
         protected virtual Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
             return Task.CompletedTask;
+        }
+
+        internal virtual void BeforeQueryStatus(object sender, EventArgs e)
+        {
+            BeforeQueryStatus(e);
         }
 
         /// <summary>Override this method to control the commands visibility and other properties.</summary>

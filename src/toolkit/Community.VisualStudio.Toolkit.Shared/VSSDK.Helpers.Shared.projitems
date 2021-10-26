@@ -83,6 +83,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Solution\Solutions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\Windows.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\BaseCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\BaseDynamicCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\DynamicItemMenuCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\StatusBar.cs" />
   </ItemGroup>
 </Project>

@@ -22,8 +22,10 @@ namespace TestExtension
     {
         public const int TestExtensionMainMenu = 0x1000;
         public const int TestExtensionSolutionExplorerMenu = 0x1001;
+        public const int TestExtensionEditProjectFileMenu = 0x1002;
         public const int TestExtensionMainMenuGroup1 = 0x1100;
         public const int TestExtensionSolutionExplorerGroup = 0x1101;
+        public const int TestExtensionEditProjectFileGroup = 0x1102;
         public const int RunnerWindow = 0x0100;
         public const int ThemeWindow = 0x0101;
         public const int MultiInstanceWindow = 0x0102;
@@ -36,5 +38,6 @@ namespace TestExtension
         public const int ExpandSelectedItems = 0x0109;
         public const int CollapseSelectedItems = 0x0110;
         public const int ListReferences = 0x0111;
+        public const int EditProjectFile = 0x2001;
     }
 }

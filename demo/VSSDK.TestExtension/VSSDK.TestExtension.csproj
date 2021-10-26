@@ -49,6 +49,7 @@
     <Compile Include="Commands\BuildActiveProjectAsyncCommand.cs" />
     <Compile Include="Commands\BuildSolutionAsyncCommand.cs" />
     <Compile Include="Commands\CollapseSelectedItemsCommand.cs" />
+    <Compile Include="Commands\EditProjectFileCommand.cs" />
     <Compile Include="Commands\ExpandSelectedItemsCommand.cs" />
     <Compile Include="Commands\ListReferencesCommand.cs" />
     <Compile Include="Commands\MultiInstanceWindowCommand.cs" />
