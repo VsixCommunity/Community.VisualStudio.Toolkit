@@ -14,16 +14,6 @@
     </ItemGroup>
 
     <PropertyGroup>
-      <!-- 
-      Determine whether a `HelpLink` property is supported on Warning and Error tasks. 
-      The ability to supply a `HelpLink` property was added in MSBuild v16.8.
-      -->
-      <MSBuildMajorVersion>$([System.Version]::Parse($(MSBuildVersion)).Major)</MSBuildMajorVersion>
-      <MSBuildMinorVersion>$([System.Version]::Parse($(MSBuildVersion)).Minor)</MSBuildMinorVersion>
-      <WarningsAndErrorsHaveHelpLink Condition="($(MSBuildMajorVersion) > 16) or ($(MSBuildMajorVersion) == 16 and $(MSBuildMinorVersion) >= 8)">true</WarningsAndErrorsHaveHelpLink>
-    </PropertyGroup>
-
-    <PropertyGroup>
       <!-- Message text. -->
       <ExtensibilityEssentialsInfoText Condition="'$(ExtensibilityEssentialsInfoText)' == ''">The 'Extensibility Essentials' extension makes extension development easier.</ExtensibilityEssentialsInfoText>
       <ExtensibilityEssentialsWarningText Condition="'$(ExtensibilityEssentialsWarningText)' == ''">The 'Extensibility Essentials' extension is recommended for this project.</ExtensibilityEssentialsWarningText>
@@ -69,27 +59,27 @@
 
     <!-- For MSBuild versions that do not support `HelpLink`. -->
     <Warning
-      Condition="'$(WarningsAndErrorsHaveHelpLink)' != 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Warning'"
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' != 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Warning'"
       Text="$(ExtensibilityEssentialsWarningText)"
       Code="$(ExtensibilityEssentialsCode)"
       />
 
     <Error
-      Condition="'$(WarningsAndErrorsHaveHelpLink)' != 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Error'"
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' != 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Error'"
       Text="$(ExtensibilityEssentialsErrorText)"
       Code="$(ExtensibilityEssentialsCode)"
       />
 
     <!-- For MSBuild versions that support `HelpLink`. -->
     <Warning
-      Condition="'$(WarningsAndErrorsHaveHelpLink)' == 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Warning'"
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' == 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Warning'"
       Text="$(ExtensibilityEssentialsWarningText)"
       Code="$(ExtensibilityEssentialsCode)"
       HelpLink="$(ExtensibilityEssentialsHelpLink)"
       />
 
     <Error
-      Condition="'$(WarningsAndErrorsHaveHelpLink)' == 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Error'"
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' == 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Error'"
       Text="$(ExtensibilityEssentialsErrorText)"
       Code="$(ExtensibilityEssentialsCode)"
       HelpLink="$(ExtensibilityEssentialsHelpLink)"

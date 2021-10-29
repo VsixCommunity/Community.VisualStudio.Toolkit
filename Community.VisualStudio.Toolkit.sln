@@ -70,6 +70,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imports", "imports", "{544DB8D0-6BAB-4739-B141-971AA59A494C}"
 	ProjectSection(SolutionItems) = preProject
 		src\toolkit\nuget\build\imports\ExtensibilityEssentialsCheck.targets = src\toolkit\nuget\build\imports\ExtensibilityEssentialsCheck.targets
+		src\toolkit\nuget\build\imports\MSBuildCapabilities.props = src\toolkit\nuget\build\imports\MSBuildCapabilities.props
 	EndProjectSection
 EndProject
 Global
