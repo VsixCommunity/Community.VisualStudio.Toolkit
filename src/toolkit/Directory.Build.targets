@@ -12,4 +12,9 @@
     <DefineConstants>VS$(MajorVersion)</DefineConstants>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!-- Include the correct constnats file now that we know the major version. -->
+    <None Include="$(MSBuildThisFileDirectory)nuget\build\imports\Constants.$(MajorVersion).props" Pack="true" PackagePath="build\imports\Constants.props" Visible="false" />
+  </ItemGroup>
+  
 </Project>

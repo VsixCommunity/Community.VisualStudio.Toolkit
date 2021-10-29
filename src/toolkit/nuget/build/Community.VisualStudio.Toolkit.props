@@ -1,5 +1,6 @@
-<Project>
+﻿<Project>
 
+  <Import Project="$(MSBuildThisFileDirectory)imports\Constants.props" />
   <Import Project="$(MSBuildThisFileDirectory)imports\MSBuildCapabilities.props" />
 
   <ItemGroup>

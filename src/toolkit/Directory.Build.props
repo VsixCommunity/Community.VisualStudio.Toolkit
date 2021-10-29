@@ -17,7 +17,14 @@
     <None Include="$(MSBuildThisFileDirectory)nuget\build\Community.VisualStudio.Toolkit.props" Pack="true" PackagePath="build" Visible="false" />
     <None Include="$(MSBuildThisFileDirectory)nuget\build\Community.VisualStudio.Toolkit.targets" Pack="true" PackagePath="build" Visible="false" />
     <None Include="$(MSBuildThisFileDirectory)nuget\build\AssemblyInfo.cs" Pack="true" PackagePath="build" Visible="false" />
+
+    <!-- 
+    Include all of the files in the "imports" folder, but exclude the "Constants.xx.props" files, because we
+    only want to include the one for the major version of this package, and we don't know the major version yet.
+    The correct file will be imported in the `Directory.Build.targets` file.
+    -->
     <None Include="$(MSBuildThisFileDirectory)nuget\build\imports\*" Pack="true" PackagePath="build\imports" Visible="false" />
+    <None Remove="$(MSBuildThisFileDirectory)nuget\build\imports\Constants.*.props" />
   </ItemGroup>
 
   <ItemGroup>
