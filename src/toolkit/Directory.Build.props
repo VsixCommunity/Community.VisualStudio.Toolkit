@@ -17,6 +17,7 @@
     <None Include="$(MSBuildThisFileDirectory)nuget\build\Community.VisualStudio.Toolkit.props" Pack="true" PackagePath="build" Visible="false" />
     <None Include="$(MSBuildThisFileDirectory)nuget\build\Community.VisualStudio.Toolkit.targets" Pack="true" PackagePath="build" Visible="false" />
     <None Include="$(MSBuildThisFileDirectory)nuget\build\AssemblyInfo.cs" Pack="true" PackagePath="build" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)nuget\build\imports\*" Pack="true" PackagePath="build\imports" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>

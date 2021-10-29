@@ -67,6 +67,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{3F2F4E99
 		tools\GenerateKnownCommands.ps1 = tools\GenerateKnownCommands.ps1
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imports", "imports", "{544DB8D0-6BAB-4739-B141-971AA59A494C}"
+	ProjectSection(SolutionItems) = preProject
+		src\toolkit\nuget\build\imports\ExtensibilityEssentialsCheck.targets = src\toolkit\nuget\build\imports\ExtensibilityEssentialsCheck.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{ff58bacd-16b0-4c73-ba03-4a255925153f}*SharedItemsImports = 5
@@ -162,6 +167,7 @@ Global
 		{2A0196FD-9245-4682-A34D-5532873535FF} = {C48F613F-44F9-44F0-BAF5-F2A4F83A67ED}
 		{2EC8051C-B422-4CEC-BA2F-BBD15551E6CB} = {6ED8D47D-D076-44C4-B0CE-B6CF944C71D3}
 		{6ED8D47D-D076-44C4-B0CE-B6CF944C71D3} = {C27D922F-7897-4199-A2F9-6E1ED66C440A}
+		{544DB8D0-6BAB-4739-B141-971AA59A494C} = {2EC8051C-B422-4CEC-BA2F-BBD15551E6CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0DD67C0-2617-498C-81F0-A5E4FF5831F1}
