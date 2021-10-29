@@ -27,7 +27,7 @@
       <ExtensibilityEssentialsLevel Condition="'$(ExtensibilityEssentialsLevel)' == ''">Info</ExtensibilityEssentialsLevel>
 
       <!-- Message metadata (not intended to be configurable, but defined in a property because it's used in a number of places). -->
-      <CVST_ExtensibilityEssentialsCode>VSTK001</CVST_ExtensibilityEssentialsCode>
+      <CVST_ExtensibilityEssentialsCode>CVSTBLD001</CVST_ExtensibilityEssentialsCode>
       
       <!--
       Visibility Calculation. Only show the message, warning or error for VSIX projects, and only
