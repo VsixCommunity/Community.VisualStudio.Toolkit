@@ -1,5 +1,6 @@
 <Project>
 
   <Import Project="$(MSBuildThisFileDirectory)imports\ExtensibilityEssentialsCheck.targets"/>
+  <Import Project="$(MSBuildThisFileDirectory)imports\NewtonsoftJsonVersionCheck.targets"/>
 
 </Project>
