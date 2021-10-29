@@ -9,32 +9,34 @@
       First, turn the `ProjectTypeGuids` property into a set of items, then create another set by 
       filtering out any types that are not the VSIX project type. 
       -->
-      <ExtensibilityEssentialsProjectTypes Include="$(ProjectTypeGuids)"/>
-      <ExtensibilityEssentialsVsixProjectTypes Include="@(ExtensibilityEssentialsProjectTypes)" Condition="'%(Identity)' == '{82b43b9b-a64c-4715-b499-d71e9ca2bd60}'"/>
+      <CVST_ExtensibilityEssentialsProjectTypes Include="$(ProjectTypeGuids)"/>
+      <CVST_ExtensibilityEssentialsVsixProjectTypes Include="@(CVST_ExtensibilityEssentialsProjectTypes)" Condition="'%(Identity)' == '{82b43b9b-a64c-4715-b499-d71e9ca2bd60}'"/>
     </ItemGroup>
 
     <PropertyGroup>
-      <!-- Message text. -->
+      <!-- Message text (can be overridden by the user). -->
       <ExtensibilityEssentialsInfoText Condition="'$(ExtensibilityEssentialsInfoText)' == ''">The 'Extensibility Essentials' extension makes extension development easier.</ExtensibilityEssentialsInfoText>
       <ExtensibilityEssentialsWarningText Condition="'$(ExtensibilityEssentialsWarningText)' == ''">The 'Extensibility Essentials' extension is recommended for this project.</ExtensibilityEssentialsWarningText>
       <ExtensibilityEssentialsErrorText Condition="'$(ExtensibilityEssentialsErrorText)' == ''">The 'Extensibility Essentials' extension is required for this project.</ExtensibilityEssentialsErrorText>
 
-      <!-- Message metadata. -->
-      <ExtensibilityEssentialsCode>VSTK001</ExtensibilityEssentialsCode>
+      <!-- Help Links (can be overridden by the user in case a private gallery is used). -->
       <ExtensibilityEssentialsHelpLink Condition="'$(VisualStudioVersion)' == '15.0'">https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityEssentials</ExtensibilityEssentialsHelpLink>
       <ExtensibilityEssentialsHelpLink Condition="'$(VisualStudioVersion)' == '16.0'">https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityEssentials2019</ExtensibilityEssentialsHelpLink>
 
-      <!-- Default level. -->
+      <!-- Default level (can be overridden by the user). -->
       <ExtensibilityEssentialsLevel Condition="'$(ExtensibilityEssentialsLevel)' == ''">Info</ExtensibilityEssentialsLevel>
 
+      <!-- Message metadata (not intended to be configurable, but defined in a property because it's used in a number of places). -->
+      <CVST_ExtensibilityEssentialsCode>VSTK001</CVST_ExtensibilityEssentialsCode>
+      
       <!--
       Visibility Calculation. Only show the message, warning or error for VSIX projects, and only
       when building them inside Visual Studio so that we don't break command line builds (because
       the extension won't be able to provide the `ExtensibilityEssentialsInstalled` property).
       Also omit the message for CI builds, just in case Visual Studio is being used for CI. 
       -->
-      <IsVsixProject Condition="'@(ExtensibilityEssentialsVsixProjectTypes->Count())' &gt; 0">true</IsVsixProject>
-      <IsExtensibilityEssentialsMissing Condition="'$(IsVsixProject)' == 'true' and '$(CI)' == '' and '$(BuildingInsideVisualStudio)' == 'true' and '$(ExtensibilityEssentialsInstalled)' != 'true'">true</IsExtensibilityEssentialsMissing>
+      <CVST_IsVsixProject Condition="'@(CVST_ExtensibilityEssentialsVsixProjectTypes->Count())' &gt; 0">true</CVST_IsVsixProject>
+      <CVST_IsExtensibilityEssentialsMissing Condition="'$(CVST_IsVsixProject)' == 'true' and '$(CI)' == '' and '$(BuildingInsideVisualStudio)' == 'true' and '$(ExtensibilityEssentialsInstalled)' != 'true'">true</CVST_IsExtensibilityEssentialsMissing>
     </PropertyGroup>
 
     <!-- 
@@ -51,37 +53,37 @@
     Note that the Message task does not support the `HelpLink` property. :(
     -->
     <Message
-      Condition="'$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Info'"
+      Condition="'$(CVST_IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Info'"
       Text="$(ExtensibilityEssentialsInfoText)"
-      Code="$(ExtensibilityEssentialsCode)"
+      Code="$(CVST_ExtensibilityEssentialsCode)"
       IsCritical="true"
       />
 
     <!-- For MSBuild versions that do not support `HelpLink`. -->
     <Warning
-      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' != 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Warning'"
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' != 'true' and '$(CVST_IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Warning'"
       Text="$(ExtensibilityEssentialsWarningText)"
-      Code="$(ExtensibilityEssentialsCode)"
+      Code="$(CVST_ExtensibilityEssentialsCode)"
       />
 
     <Error
-      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' != 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Error'"
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' != 'true' and '$(CVST_IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Error'"
       Text="$(ExtensibilityEssentialsErrorText)"
-      Code="$(ExtensibilityEssentialsCode)"
+      Code="$(CVST_ExtensibilityEssentialsCode)"
       />
 
     <!-- For MSBuild versions that support `HelpLink`. -->
     <Warning
-      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' == 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Warning'"
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' == 'true' and '$(CVST_IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Warning'"
       Text="$(ExtensibilityEssentialsWarningText)"
-      Code="$(ExtensibilityEssentialsCode)"
+      Code="$(CVST_ExtensibilityEssentialsCode)"
       HelpLink="$(ExtensibilityEssentialsHelpLink)"
       />
 
     <Error
-      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' == 'true' and '$(IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Error'"
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' == 'true' and '$(CVST_IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Error'"
       Text="$(ExtensibilityEssentialsErrorText)"
-      Code="$(ExtensibilityEssentialsCode)"
+      Code="$(CVST_ExtensibilityEssentialsCode)"
       HelpLink="$(ExtensibilityEssentialsHelpLink)"
       />
   </Target>
