@@ -1,13 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project>
+﻿<Project>
 
-    <ItemGroup>
-      <Content Include="$(MSBuildThisFileDirectory)..\lib\*\*.dll" CopyToOutputDirectory="PreserveNewest" Visible="false">
-        <Link>Community.VisualStudio.Toolkit.dll</Link>
-        <IncludeInVSIX>true</IncludeInVSIX>
-      </Content>
+  <Import Project="$(MSBuildThisFileDirectory)imports\Constants.props" />
+  <Import Project="$(MSBuildThisFileDirectory)imports\MSBuildCapabilities.props" />
 
-      <Compile Condition="'$(Language)'=='C#'" Include="$(MSBuildThisFileDirectory)*.cs" />
-    </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)..\lib\*\*.dll" CopyToOutputDirectory="PreserveNewest" Visible="false">
+      <Link>Community.VisualStudio.Toolkit.dll</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+
+    <Compile Condition="'$(Language)'=='C#'" Include="$(MSBuildThisFileDirectory)*.cs" />
+  </ItemGroup>
 
 </Project>

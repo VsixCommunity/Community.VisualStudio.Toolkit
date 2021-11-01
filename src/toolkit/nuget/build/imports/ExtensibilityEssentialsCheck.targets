@@ -1,0 +1,91 @@
+<Project>
+
+  <Target Name="ExtensibilityEssentialsCheck" BeforeTargets="PrepareForBuild">
+    <ItemGroup>
+      <!-- 
+      We only want to check if the Extensibility Essentials extension is installed for VSIX projects,
+      because that is the only type of projects that the extension will add the build property for.
+      This requires two steps because we cannot filter an item group as it's created from a property.
+      First, turn the `ProjectTypeGuids` property into a set of items, then create another set by 
+      filtering out any types that are not the VSIX project type. 
+      -->
+      <CVST_ExtensibilityEssentialsProjectTypes Include="$(ProjectTypeGuids)"/>
+      <CVST_ExtensibilityEssentialsVsixProjectTypes Include="@(CVST_ExtensibilityEssentialsProjectTypes)" Condition="'%(Identity)' == '{82b43b9b-a64c-4715-b499-d71e9ca2bd60}'"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+      <!-- Message text (can be overridden by the user). -->
+      <ExtensibilityEssentialsInfoText Condition="'$(ExtensibilityEssentialsInfoText)' == ''">The 'Extensibility Essentials' extension makes extension development easier.</ExtensibilityEssentialsInfoText>
+      <ExtensibilityEssentialsWarningText Condition="'$(ExtensibilityEssentialsWarningText)' == ''">The 'Extensibility Essentials' extension is recommended for this project.</ExtensibilityEssentialsWarningText>
+      <ExtensibilityEssentialsErrorText Condition="'$(ExtensibilityEssentialsErrorText)' == ''">The 'Extensibility Essentials' extension is required for this project.</ExtensibilityEssentialsErrorText>
+
+      <!-- Help Links (can be overridden by the user in case a private gallery is used). -->
+      <ExtensibilityEssentialsHelpLink Condition="'$(VisualStudioVersion)' == '15.0'">https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityEssentials</ExtensibilityEssentialsHelpLink>
+      <ExtensibilityEssentialsHelpLink Condition="'$(VisualStudioVersion)' == '16.0'">https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityEssentials2019</ExtensibilityEssentialsHelpLink>
+
+      <!-- Default level (can be overridden by the user). -->
+      <ExtensibilityEssentialsLevel Condition="'$(ExtensibilityEssentialsLevel)' == ''">Info</ExtensibilityEssentialsLevel>
+
+      <!-- Message metadata (not intended to be configurable, but defined in a property because it's used in a number of places). -->
+      <CVST_ExtensibilityEssentialsCode>CVSTBLD001</CVST_ExtensibilityEssentialsCode>
+      
+      <!--
+      Visibility Calculation. Only show the message, warning or error for VSIX projects, and only
+      when building them inside Visual Studio so that we don't break command line builds (because
+      the extension won't be able to provide the `ExtensibilityEssentialsInstalled` property).
+      Also omit the message for CI builds, just in case Visual Studio is being used for CI. 
+      -->
+      <CVST_IsVsixProject Condition="'@(CVST_ExtensibilityEssentialsVsixProjectTypes->Count())' &gt; 0">true</CVST_IsVsixProject>
+      <CVST_IsExtensibilityEssentialsMissing Condition="'$(CVST_IsVsixProject)' == 'true' and '$(CI)' == '' and '$(BuildingInsideVisualStudio)' == 'true' and '$(ExtensibilityEssentialsInstalled)' != 'true'">true</CVST_IsExtensibilityEssentialsMissing>
+    </PropertyGroup>
+
+    <!-- 
+    Verify that a valid "level" has been specified. This protects against the 
+    user making a mistake and not realizing that the message will never be shown.
+    -->
+    <Warning
+      Condition="'$(ExtensibilityEssentialsLevel)' != 'None' and '$(ExtensibilityEssentialsLevel)' != 'Info' and '$(ExtensibilityEssentialsLevel)' != 'Warning' and '$(ExtensibilityEssentialsLevel)' != 'Error'"
+      Text="The 'ExtensibilityEssentialsLevel' property value '$(ExtensibilityEssentialsLevel)' is invalid. Valid values are 'None', 'Info', 'Warning' or 'Error'."
+      />
+
+    <!-- 
+    Messages marked as `IsCritical` appear in Visual Studio's Error List under the 'Messages' tab. 
+    Note that the Message task does not support the `HelpLink` property. :(
+    -->
+    <Message
+      Condition="'$(CVST_IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Info'"
+      Text="$(ExtensibilityEssentialsInfoText)"
+      Code="$(CVST_ExtensibilityEssentialsCode)"
+      IsCritical="true"
+      />
+
+    <!-- For MSBuild versions that do not support `HelpLink`. -->
+    <Warning
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' != 'true' and '$(CVST_IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Warning'"
+      Text="$(ExtensibilityEssentialsWarningText)"
+      Code="$(CVST_ExtensibilityEssentialsCode)"
+      />
+
+    <Error
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' != 'true' and '$(CVST_IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Error'"
+      Text="$(ExtensibilityEssentialsErrorText)"
+      Code="$(CVST_ExtensibilityEssentialsCode)"
+      />
+
+    <!-- For MSBuild versions that support `HelpLink`. -->
+    <Warning
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' == 'true' and '$(CVST_IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Warning'"
+      Text="$(ExtensibilityEssentialsWarningText)"
+      Code="$(CVST_ExtensibilityEssentialsCode)"
+      HelpLink="$(ExtensibilityEssentialsHelpLink)"
+      />
+
+    <Error
+      Condition="'$(CVST_WarningsAndErrorsHaveHelpLink)' == 'true' and '$(CVST_IsExtensibilityEssentialsMissing)' == 'true' and '$(ExtensibilityEssentialsLevel)' == 'Error'"
+      Text="$(ExtensibilityEssentialsErrorText)"
+      Code="$(CVST_ExtensibilityEssentialsCode)"
+      HelpLink="$(ExtensibilityEssentialsHelpLink)"
+      />
+  </Target>
+
+</Project>

@@ -1,0 +1,17 @@
+<!-- 
+This file calculates certain capabilities of the current version of MSBuild.
+-->
+<Project>
+
+  <PropertyGroup>
+    <CVST_MSBuildMajorVersion>$([System.Version]::Parse($(MSBuildVersion)).Major)</CVST_MSBuildMajorVersion>
+    <CVST_MSBuildMinorVersion>$([System.Version]::Parse($(MSBuildVersion)).Minor)</CVST_MSBuildMinorVersion>
+
+    <!-- The ability to supply a `HelpLink` property to Warning and Error tasks was added in MSBuild 16.8. -->
+    <CVST_WarningsAndErrorsHaveHelpLink Condition="($(CVST_MSBuildMajorVersion) > 16) or ($(CVST_MSBuildMajorVersion) == 16 and $(CVST_MSBuildMinorVersion) >= 8)">true</CVST_WarningsAndErrorsHaveHelpLink>
+
+    <!-- MSBuild 16.5 introduced property functions for comparing properties. -->
+    <CVST_VersionPropertyFunctionsExist Condition="($(CVST_MSBuildMajorVersion) > 16) or ($(CVST_MSBuildMajorVersion) == 16 and $(CVST_MSBuildMinorVersion) >= 5)">true</CVST_VersionPropertyFunctionsExist>
+  </PropertyGroup>
+
+</Project>

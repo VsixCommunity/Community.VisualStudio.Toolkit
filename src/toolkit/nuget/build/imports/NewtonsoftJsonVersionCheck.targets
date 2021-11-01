@@ -1,0 +1,46 @@
+<Project>
+
+  <Target Name="NewtonsoftJsonVersionCheck" AfterTargets="ResolveReferences">
+    <ItemGroup>
+      <!-- 
+      Any NuGet packages that are referenced (even transitive references) are in the `Reference`
+      item. For NuGet packages, there will be `NuGetPackageId` and `NuGetPackageVersion` metadata.
+      Filter the list of references to get the version of Newtonsoft.Json that is referenced (if any).
+      -->
+      <CVST_NewtonsoftJsonReferenceVersion Include="%(Reference.NuGetPackageVersion)" Condition="'%(Reference.NuGetPackageId)' == 'Newtonsoft.Json'"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+      <!-- Turn the item list of version numbers into a single property value. -->
+      <CVST_NewtonsoftJsonVersion>@(CVST_NewtonsoftJsonReferenceVersion)</CVST_NewtonsoftJsonVersion>
+      
+      <!-- 
+      The property functions for version comparisons are the preferred way to compare versions, 
+      but they are not available in older versions of MSBuild. In earlier versions we can compare 
+      the version values directly, although that is not always accurate.
+      See: https://docs.microsoft.com/visualstudio/msbuild/msbuild-conditions#comparing-versions
+      -->
+      <CVST_NewtonsoftJsonIsValid Condition="( '$(CVST_NewtonsoftJsonVersion)' != '' ) AND ( '$(CVST_VersionPropertyFunctionsExist)' == 'true' )">$([MSBuild]::VersionLessThanOrEquals('$(CVST_NewtonsoftJsonVersion)', '$(CVST_NewtonsoftJsonMaxVersion)'))</CVST_NewtonsoftJsonIsValid>
+      <CVST_NewtonsoftJsonIsValid Condition="( '$(CVST_NewtonsoftJsonVersion)' != '' ) AND ( '$(CVST_VersionPropertyFunctionsExist)' != 'true' ) AND ( $(CVST_NewtonsoftJsonVersion) &lt;= $(CVST_NewtonsoftJsonMaxVersion) )">true</CVST_NewtonsoftJsonIsValid>
+
+      <CVST_NewtonsoftJsonVersionWarningText>The version of Newtonsoft.Json cannot be greater than $(CVST_NewtonsoftJsonMaxVersion), but version $(CVST_NewtonsoftJsonVersion) is currently being used.</CVST_NewtonsoftJsonVersionWarningText>
+      <CVST_NewtonsoftJsonVersionWarningCode>CVSTBLD002</CVST_NewtonsoftJsonVersionWarningCode>
+    </PropertyGroup>
+
+    <!-- For MSBuild versions that do not support `HelpLink`. -->
+    <Warning
+      Condition="( '$(CVST_NewtonsoftJsonIsValid)' != 'true' ) and ( '$(CVST_WarningsAndErrorsHaveHelpLink)' != 'true' )"
+      Text="$(CVST_NewtonsoftJsonVersionWarningText)"
+      Code="$(CVST_NewtonsoftJsonVersionWarningCode)"
+      />
+  
+    <!-- For MSBuild versions that support `HelpLink`. -->
+    <Warning
+      Condition="( '$(CVST_NewtonsoftJsonIsValid)' != 'true' ) and ( '$(CVST_WarningsAndErrorsHaveHelpLink)' == 'true' )"
+      Text="$(CVST_NewtonsoftJsonVersionWarningText)"
+      Code="$(CVST_NewtonsoftJsonVersionWarningCode)"
+      HelpLink="https://devblogs.microsoft.com/visualstudio/using-newtonsoft-json-in-a-visual-studio-extension/"
+      />
+  </Target>
+
+</Project>

@@ -1,0 +1,7 @@
+<Project>
+
+  <PropertyGroup>
+    <CVST_NewtonsoftJsonMaxVersion>9.0.1</CVST_NewtonsoftJsonMaxVersion>
+  </PropertyGroup>
+
+</Project>
