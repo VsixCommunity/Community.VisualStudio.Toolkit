@@ -9,7 +9,6 @@
     <PackageTags>VisualStudio, VSSDK, SDK</PackageTags>
     <RootNamespace>Community.VisualStudio.Toolkit</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DebugType>portable</DebugType>
   </PropertyGroup>
   
