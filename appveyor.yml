@@ -14,7 +14,7 @@ install:
   - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
 
 build_script:
-  - ps: $env:MinorVersion = "0.77.$($env:appveyor_build_number)"
+  - ps: $env:MinorVersion = "0.$($env:appveyor_build_number)"
   - ps: $env:VersionSuffix = "-pre"
   - ps: dotnet pack src/toolkit/Community.VisualStudio.Toolkit.14.0/Community.VisualStudio.Toolkit.14.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
   - ps: dotnet pack src/toolkit/Community.VisualStudio.Toolkit.15.0/Community.VisualStudio.Toolkit.15.0.csproj /p:configuration=Release /p:ContinuousIntegrationBuild=true
