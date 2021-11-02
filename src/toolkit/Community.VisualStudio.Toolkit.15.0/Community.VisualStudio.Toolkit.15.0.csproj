@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net46</TargetFramework>
     <MajorVersion>15</MajorVersion>
+    <PackageId>Community.VisualStudio.Toolkit.$(MajorVersion)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

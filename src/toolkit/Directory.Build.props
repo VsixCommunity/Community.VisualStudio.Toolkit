@@ -4,12 +4,12 @@
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)..\'))" />
 
   <PropertyGroup>
-    <PackageId>Community.VisualStudio.Toolkit</PackageId>
     <AssemblyName>Community.VisualStudio.Toolkit</AssemblyName>
     <PackageDescription>A community driven effort for a better Visual Studio experience developing extensions.</PackageDescription>
     <PackageTags>VisualStudio, VSSDK, SDK</PackageTags>
     <RootNamespace>Community.VisualStudio.Toolkit</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DebugType>portable</DebugType>
   </PropertyGroup>
   
