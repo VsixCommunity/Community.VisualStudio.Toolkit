@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
@@ -78,11 +82,38 @@ namespace Community.VisualStudio.Toolkit
         public async Task<bool> TrySetAttributeAsync(string name, string value)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            GetItemInfo(out IVsHierarchy hierarchy, out uint itemId, out _);
 
-            if (hierarchy is IVsBuildPropertyStorage storage)
+            GetItemInfo(out IVsHierarchy hierarchy, out uint itemId, out _);
+            int hr = hierarchy.GetProperty(itemId, (int)__VSHPROPID.VSHPROPID_BrowseObject, out object? browseObject);
+
+            // First try if the attribute name exist in the Property Descriptor Collection
+            if (ErrorHandler.Succeeded(hr))
             {
-                storage.SetItemAttribute(itemId, name, value);
+                // Inspired by this sample: https://stackoverflow.com/a/24538728
+
+                string cleanName = Regex.Replace(name, @"\s+", ""); // remove whitespace
+                PropertyDescriptorCollection propertyDescriptors = TypeDescriptor.GetProperties(browseObject);
+                PropertyDescriptor? customToolDescriptor = propertyDescriptors?.Find(cleanName, true);
+
+                if (customToolDescriptor != null)
+                {
+                    string? invariantValue = customToolDescriptor.Converter.ConvertToInvariantString(value);
+                    customToolDescriptor.SetValue(browseObject, invariantValue);
+                    IVsUIShell? shell = await VS.Services.GetUIShellAsync();
+
+                    // Refresh the Property window
+                    if (customToolDescriptor.Attributes[typeof(DispIdAttribute)] is DispIdAttribute dispId)
+                    {
+                        ErrorHandler.ThrowOnFailure(shell.RefreshPropertyBrowser(dispId.Value));
+                    }
+
+                    return true;
+                }
+            }
+            // Then write straight to project file
+            else if (hierarchy is IVsBuildPropertyStorage storage)
+            {
+                ErrorHandler.ThrowOnFailure(storage.SetItemAttribute(itemId, name, value));
                 return true;
             }
 

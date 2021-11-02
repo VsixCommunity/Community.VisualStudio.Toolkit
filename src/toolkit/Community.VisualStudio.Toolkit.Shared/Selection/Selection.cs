@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -24,7 +20,7 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         /// <param name="uiContextGuid">The GUID to uniquely identify the UI context.</param>
         /// <param name="isActive">Determines if the UI context is active or not.</param>
-        public Task SetUIContextAsync(string uiContextGuid, bool isActive) 
+        public Task SetUIContextAsync(string uiContextGuid, bool isActive)
             => SetUIContextAsync(new Guid(uiContextGuid), isActive);
 
         /// <summary>
