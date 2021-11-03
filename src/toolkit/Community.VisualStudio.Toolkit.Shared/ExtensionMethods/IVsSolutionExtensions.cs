@@ -37,16 +37,28 @@ namespace Microsoft.VisualStudio.Shell.Interop
         /// <summary>
         /// Gets all projects in the solution as IVsHierarchy items.
         /// </summary>
-        public static IEnumerable<IVsHierarchy> GetAllProjectHierarchys(this IVsSolution solution)
+        public static IEnumerable<IVsHierarchy> GetAllProjectHierarchies(this IVsSolution solution, ProjectStateFilter filter = ProjectStateFilter.Loaded)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            return GetAllProjectHierarchys(solution, __VSENUMPROJFLAGS.EPF_LOADEDINSOLUTION);
+            
+            __VSENUMPROJFLAGS flags = 0;
+            if ((filter & ProjectStateFilter.Loaded) == ProjectStateFilter.Loaded)
+            {
+                flags |= __VSENUMPROJFLAGS.EPF_LOADEDINSOLUTION;
+            }
+
+            if ((filter & ProjectStateFilter.Unloaded) == ProjectStateFilter.Unloaded)
+            {
+                flags |= __VSENUMPROJFLAGS.EPF_UNLOADEDINSOLUTION;
+            }
+
+            return GetAllProjectHierarchies(solution, flags);
         }
 
         /// <summary>
         /// Gets all projects in the solution as IVsHierarchy items.
         /// </summary>
-        public static IEnumerable<IVsHierarchy> GetAllProjectHierarchys(this IVsSolution solution, __VSENUMPROJFLAGS flags)
+        public static IEnumerable<IVsHierarchy> GetAllProjectHierarchies(this IVsSolution solution, __VSENUMPROJFLAGS flags)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -78,7 +90,7 @@ namespace Microsoft.VisualStudio.Shell.Interop
         public static async Task<SolutionItem?> ToSolutionItemAsync(this IVsSolution solution)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            
+
             if (solution is IVsHierarchy hier)
             {
                 IVsHierarchyItem? item = await hier.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);

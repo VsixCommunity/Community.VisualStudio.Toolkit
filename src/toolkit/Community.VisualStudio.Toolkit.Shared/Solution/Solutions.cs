@@ -63,21 +63,21 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Gets all projects in the solution.
         /// </summary>
-        public async Task<IEnumerable<IVsHierarchy>> GetAllProjectHierarchiesAsync()
+        public async Task<IEnumerable<IVsHierarchy>> GetAllProjectHierarchiesAsync(ProjectStateFilter filter = ProjectStateFilter.Loaded)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsSolution sol = await VS.Services.GetSolutionAsync();
-            return sol.GetAllProjectHierarchys();
+            return sol.GetAllProjectHierarchies(filter);
         }
 
         /// <summary>
         /// Gets all projects in the solution
         /// </summary>
-        public async Task<IEnumerable<Project>> GetAllProjectsAsync()
+        public async Task<IEnumerable<Project>> GetAllProjectsAsync(ProjectStateFilter filter = ProjectStateFilter.Loaded)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsSolution solution = await VS.Services.GetSolutionAsync();
-            IEnumerable<IVsHierarchy> hierarchies = solution.GetAllProjectHierarchys();
+            IEnumerable<IVsHierarchy> hierarchies = solution.GetAllProjectHierarchies(filter);
 
             List<Project> list = new();
 

@@ -161,6 +161,11 @@ namespace Community.VisualStudio.Toolkit
             {
                 return SolutionItemType.Project;
             }
+            else if (HierarchyUtilities.IsStubHierarchy(identity))
+            {
+                // This is most likely an unloaded project.
+                return SolutionItemType.Project;
+            }
             else if (HierarchyUtilities.IsPhysicalFile(identity))
             {
                 return SolutionItemType.PhysicalFile;
