@@ -33,20 +33,24 @@ namespace Community.VisualStudio.Toolkit
             _hierarchy = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedHierarchy : item.HierarchyIdentity.Hierarchy;
             _itemId = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedItemID : item.HierarchyIdentity.ItemID;
 
-            Name = item.Text;
             Type = type;
             FullPath = GetFullPath();
         }
 
         /// <summary>
-        /// The display name of the item.
+        /// The name of the item.
         /// </summary>
-        public string Name { get; set; }
+        public string Name => _item.CanonicalName;
+
+        /// <summary>
+        /// The display text of the item.
+        /// </summary>
+        public string Text => _item.Text;
 
         /// <summary>
         /// The absolute file path on disk.
         /// </summary>
-        public string? FullPath { get; set; }
+        public string? FullPath { get; }
 
         /// <summary>
         /// The type of solution item.
