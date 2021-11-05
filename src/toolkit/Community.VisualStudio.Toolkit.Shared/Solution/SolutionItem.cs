@@ -102,8 +102,13 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public static async Task<SolutionItem?> FromHierarchyAsync(IVsHierarchy hierarchy, uint itemId)
         {
+            if (hierarchy is null)
+            {
+                throw new ArgumentNullException(nameof(hierarchy));
+            }
+
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsHierarchyItem? item = await hierarchy.ToHierarchyItemAsync(itemId);
+            IVsHierarchyItem item = await hierarchy.ToHierarchyItemAsync(itemId);
 
             return FromHierarchyItem(item);
         }
@@ -113,8 +118,13 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public static SolutionItem? FromHierarchy(IVsHierarchy hierarchy, uint itemId)
         {
+            if (hierarchy is null)
+            {
+                throw new ArgumentNullException(nameof(hierarchy));
+            }
+            
             ThreadHelper.ThrowIfNotOnUIThread();
-            IVsHierarchyItem? item = hierarchy.ToHierarchyItem(itemId);
+            IVsHierarchyItem item = hierarchy.ToHierarchyItem(itemId);
 
             return FromHierarchyItem(item);
         }

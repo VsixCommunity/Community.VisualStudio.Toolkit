@@ -24,35 +24,29 @@ namespace Microsoft.VisualStudio.Shell.Interop
         /// <summary>
         /// Converts a <see cref="IVsHierarchy"/> to a <see cref="IVsHierarchyItem"/>.
         /// </summary>
-        /// <returns>Returns <see langword="null"/> if unable to get the hierarchy item.</returns>
-        public static async Task<IVsHierarchyItem?> ToHierarchyItemAsync(this IVsHierarchy hierarchy, uint itemId)
+        public static async Task<IVsHierarchyItem> ToHierarchyItemAsync(this IVsHierarchy hierarchy, uint itemId)
         {
             if (hierarchy == null)
             {
-                return null;
+                throw new ArgumentNullException(nameof(hierarchy));
             }
 
-            IVsHierarchyItemManager? manager = await VS.GetMefServiceAsync<IVsHierarchyItemManager>();
-
-            manager.TryGetHierarchyItem(hierarchy, itemId, out IVsHierarchyItem? item);
-            return item;
+            IVsHierarchyItemManager manager = await VS.GetMefServiceAsync<IVsHierarchyItemManager>();
+            return manager.GetHierarchyItem(hierarchy, itemId);
         }
 
         /// <summary>
         /// Converts a <see cref="IVsHierarchy"/> to a <see cref="IVsHierarchyItem"/>.
         /// </summary>
-        /// <returns>Returns <see langword="null"/> if unable to get the hierarchy item.</returns>
-        public static IVsHierarchyItem? ToHierarchyItem(this IVsHierarchy hierarchy, uint itemId)
+        public static IVsHierarchyItem ToHierarchyItem(this IVsHierarchy hierarchy, uint itemId)
         {
             if (hierarchy == null)
             {
-                return null;
+                throw new ArgumentNullException(nameof(hierarchy));
             }
 
-            IVsHierarchyItemManager? manager = VS.GetMefService<IVsHierarchyItemManager>();
-
-            manager.TryGetHierarchyItem(hierarchy, itemId, out IVsHierarchyItem? item);
-            return item;
+            IVsHierarchyItemManager manager = VS.GetMefService<IVsHierarchyItemManager>();
+            return manager.GetHierarchyItem(hierarchy, itemId);
         }
 
         /// <summary>
