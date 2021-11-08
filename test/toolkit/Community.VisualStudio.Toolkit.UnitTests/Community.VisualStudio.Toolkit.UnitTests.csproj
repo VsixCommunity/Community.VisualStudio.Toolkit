@@ -16,7 +16,7 @@
   <Import Project="..\..\..\src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems" Label="Shared" />
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.0.0-previews-1-31410-273" IncludeAssets="All" PrivateAssets="None" />
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.0.31902.203" IncludeAssets="All" PrivateAssets="None" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
