@@ -130,7 +130,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            if (OnBeforeCloseProject != null)
+            if (OnBeforeUnloadProject != null)
             {
                 Project? project = SolutionItem.FromHierarchy(pRealHierarchy, 1) as Project;
                 OnBeforeUnloadProject?.Invoke(project);
