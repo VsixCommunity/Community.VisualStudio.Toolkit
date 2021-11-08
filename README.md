@@ -5,18 +5,18 @@ A community driven effort for a better Visual Studio experience developing exten
 [![Build status](https://ci.appveyor.com/api/projects/status/0p4wvtwuj55qixhr?svg=true)](https://ci.appveyor.com/project/madskristensen/community-visualstudio-toolkit-1dwx1)
 [![NuGet](https://img.shields.io/nuget/vpre/Community.VisualStudio.Toolkit)](https://nuget.org/packages/Community.VisualStudio.Toolkit/)
 
-The NuGet package [Community.VisualStudio.Toolkit](https://www.nuget.org/packages/Community.VisualStudio.Toolkit/) acts as a companion to the regular Visual Studio SDK packages with helper methods, classes and extension methods that makes writing extensions a lot easier. 
+The NuGet package [Community.VisualStudio.Toolkit.17](https://www.nuget.org/packages/Community.VisualStudio.Toolkit.17/) acts as a companion to the regular Visual Studio SDK packages with helper methods, classes and extension methods that makes writing extensions a lot easier. 
 
 * The [VSIX Cookbook](https://www.vsixcookbook.com) shows you how to build extensions using this toolkit
-* [Community.VisualStudio.Toolkit](https://www.nuget.org/packages/Community.VisualStudio.Toolkit/) official NuGet package
+* [Community.VisualStudio.Toolkit.17](https://www.nuget.org/packages/Community.VisualStudio.Toolkit.17/) official NuGet package
 * [CI NuGet feed](https://ci.appveyor.com/nuget/community-visualstudio-toolkit) for nightly builds
 
 ## Supported versions
 
-* Visual Studio 2015
-* Visual Studio 2017
-* Visual Studio 2019
-* Visual Studio 2022
+* Visual Studio 2015 ([Community.VisualStudio.Toolkit.14](https://www.nuget.org/packages/Community.VisualStudio.Toolkit.14/))
+* Visual Studio 2017 ([Community.VisualStudio.Toolkit.15](https://www.nuget.org/packages/Community.VisualStudio.Toolkit.15/))
+* Visual Studio 2019 ([Community.VisualStudio.Toolkit.16](https://www.nuget.org/packages/Community.VisualStudio.Toolkit.16/))
+* Visual Studio 2022 ([Community.VisualStudio.Toolkit.17](https://www.nuget.org/packages/Community.VisualStudio.Toolkit.17/))
 
 ## Try the nightly builds
 
