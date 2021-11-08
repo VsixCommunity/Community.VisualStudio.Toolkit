@@ -25,7 +25,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsHierarchy solution = (IVsHierarchy)await VS.Services.GetSolutionAsync();
-            IVsHierarchyItem? hierItem = await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
+            IVsHierarchyItem hierItem = await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
             return SolutionItem.FromHierarchyItem(hierItem) as Solution;
         }
 
@@ -36,7 +36,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             IVsHierarchy solution = VS.GetRequiredService<SVsSolution, IVsHierarchy>();
-            IVsHierarchyItem? hierItem = solution.ToHierarchyItem(VSConstants.VSITEMID_ROOT);
+            IVsHierarchyItem hierItem = solution.ToHierarchyItem(VSConstants.VSITEMID_ROOT);
             return SolutionItem.FromHierarchyItem(hierItem) as Solution;
         }
 
@@ -199,21 +199,14 @@ namespace Community.VisualStudio.Toolkit
 
                 foreach (VSITEMSELECTION item in items)
                 {
-                    IVsHierarchyItem? hierItem = await item.pHier.ToHierarchyItemAsync(item.itemid);
-
-                    if (hierItem != null)
+                    if (item.pHier != null)
                     {
-                        hierarchies.Add(hierItem);
+                        hierarchies.Add(await item.pHier.ToHierarchyItemAsync(item.itemid));
                     }
                     else
                     {
                         IVsHierarchy solution = (IVsHierarchy)await VS.Services.GetSolutionAsync();
-                        IVsHierarchyItem? sol = await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
-
-                        if (sol != null)
-                        {
-                            hierarchies.Add(sol);
-                        }
+                        hierarchies.Add(await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT));
                     }
                 }
             }
@@ -224,21 +217,11 @@ namespace Community.VisualStudio.Toolkit
             else if (hierPtr != IntPtr.Zero)
             {
                 IVsHierarchy hierarchy = (IVsHierarchy)Marshal.GetUniqueObjectForIUnknown(hierPtr);
-                IVsHierarchyItem? hierItem = await hierarchy.ToHierarchyItemAsync(itemId);
-
-                if (hierItem != null)
-                {
-                    hierarchies.Add(hierItem);
-                }
+                hierarchies.Add(await hierarchy.ToHierarchyItemAsync(itemId));
             }
             else if (await VS.Services.GetSolutionAsync() is IVsHierarchy solution)
             {
-                IVsHierarchyItem? sol = await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
-
-                if (sol != null)
-                {
-                    hierarchies.Add(sol);
-                }
+                hierarchies.Add(await solution.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT));
             }
         }
     }

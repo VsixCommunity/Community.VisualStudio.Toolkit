@@ -93,7 +93,7 @@ namespace Microsoft.VisualStudio.Shell.Interop
 
             if (solution is IVsHierarchy hier)
             {
-                IVsHierarchyItem? item = await hier.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
+                IVsHierarchyItem item = await hier.ToHierarchyItemAsync(VSConstants.VSITEMID_ROOT);
                 return SolutionItem.FromHierarchyItem(item);
             }
 
