@@ -37,6 +37,36 @@ namespace VSSDK.TestExtension
             VS.Events.DocumentEvents.BeforeDocumentWindowShow += DocumentEvents_BeforeDocumentWindowShow;
             VS.Events.ProjectItemsEvents.AfterRenameProjectItems += ProjectItemsEvents_AfterRenameProjectItems;
             VS.Events.ProjectItemsEvents.AfterRemoveProjectItems += ProjectItemsEvents_AfterRemoveProjectItems;
+            VS.Events.SolutionEvents.OnAfterOpenProject += SolutionEvents_OnAfterOpenProject;
+            VS.Events.SolutionEvents.OnBeforeOpenProject += SolutionEvents_OnBeforeOpenProject;
+            VS.Events.BuildEvents.ProjectConfigurationChanged += BuildEvents_ProjectConfigurationChanged;
+            VS.Events.BuildEvents.SolutionConfigurationChanged += BuildEvents_SolutionConfigurationChanged;
+
+        }
+
+        private void BuildEvents_SolutionConfigurationChanged()
+        {
+            VS.StatusBar.ShowMessageAsync("Solution configuration changed").FireAndForget();
+        }
+
+        private void BuildEvents_ProjectConfigurationChanged(Project? obj)
+        {
+            if (obj != null)
+            {
+                VS.StatusBar.ShowMessageAsync($"Configuration for project {obj.Name} changed").FireAndForget();
+            }
+
+        }
+
+         private void SolutionEvents_OnBeforeOpenProject(string obj)
+        {
+            VS.StatusBar.ShowMessageAsync("About to open " + obj).FireAndForget();
+        }
+
+        private void SolutionEvents_OnAfterOpenProject(Project obj)
+        {
+            if (obj != null)
+                VS.StatusBar.ShowMessageAsync("Opened project " + obj.Name).FireAndForget();
         }
 
         private void ProjectItemsEvents_AfterRemoveProjectItems(AfterRemoveProjectItemEventArgs obj)
@@ -53,12 +83,12 @@ namespace VSSDK.TestExtension
 
         private void DocumentEvents_BeforeDocumentWindowShow(DocumentView obj)
         {
-            VS.StatusBar.ShowMessageAsync(obj.Document?.FilePath).FireAndForget();
+            VS.StatusBar.ShowMessageAsync(obj.Document?.FilePath ?? "").FireAndForget();
         }
 
         private void DocumentEvents_AfterDocumentWindowHide(DocumentView obj)
         {
-            VS.StatusBar.ShowMessageAsync(obj.Document?.FilePath).FireAndForget();
+            VS.StatusBar.ShowMessageAsync(obj.Document?.FilePath ?? "").FireAndForget();
         }
     }
 }

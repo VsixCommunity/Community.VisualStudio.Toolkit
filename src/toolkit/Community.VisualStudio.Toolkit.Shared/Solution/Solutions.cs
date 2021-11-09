@@ -94,6 +94,31 @@ namespace Community.VisualStudio.Toolkit
             return list;
         }
 
+        /// <summary>
+        /// Find a project in the current solution
+        /// </summary>
+        /// <param name="projectName">Name of the project to find. The name is compared case insensitive</param>
+        /// <returns>a project object or null when no match is found.</returns>
+        public async Task<Project?> FindProjectsAsync(string projectName)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsSolution solution = await VS.Services.GetSolutionAsync();
+            IEnumerable<IVsHierarchy> hierarchies = solution.GetAllProjectHierarchies(ProjectStateFilter.All);
+
+            foreach (IVsHierarchy hierarchy in hierarchies)
+            {
+                Project? proj = await SolutionItem.FromHierarchyAsync(hierarchy, VSConstants.VSITEMID_ROOT) as Project;
+                if (proj != null)
+                {
+                    if (proj.Type == SolutionItemType.Project && string.Compare(proj.Name, projectName, true) == 0)
+                    {
+                        return proj;
+                    }
+                }
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// Gets the currently selected items.
