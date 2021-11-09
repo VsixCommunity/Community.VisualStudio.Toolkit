@@ -104,7 +104,7 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             if (OnBeforeCloseProject != null)
             {
-                Project? project = SolutionItem.FromHierarchy(pHierarchy, 1) as Project;
+                Project? project = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT) as Project;
                 OnBeforeCloseProject?.Invoke(project);
             }
             return VSConstants.S_OK;
