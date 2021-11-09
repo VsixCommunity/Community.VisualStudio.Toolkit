@@ -37,6 +37,20 @@ namespace VSSDK.TestExtension
             VS.Events.DocumentEvents.BeforeDocumentWindowShow += DocumentEvents_BeforeDocumentWindowShow;
             VS.Events.ProjectItemsEvents.AfterRenameProjectItems += ProjectItemsEvents_AfterRenameProjectItems;
             VS.Events.ProjectItemsEvents.AfterRemoveProjectItems += ProjectItemsEvents_AfterRemoveProjectItems;
+            VS.Events.SolutionEvents.OnAfterOpenProject += SolutionEvents_OnAfterOpenProject;
+            VS.Events.SolutionEvents.OnBeforeOpenProject += SolutionEvents_OnBeforeOpenProject; ;
+
+        }
+
+        private void SolutionEvents_OnBeforeOpenProject(string obj)
+        {
+            VS.StatusBar.ShowMessageAsync("About to open " + obj).FireAndForget();
+        }
+
+        private void SolutionEvents_OnAfterOpenProject(Project obj)
+        {
+            if (obj != null)
+                VS.StatusBar.ShowMessageAsync("Opened project " + obj.Name).FireAndForget();
         }
 
         private void ProjectItemsEvents_AfterRemoveProjectItems(AfterRemoveProjectItemEventArgs obj)

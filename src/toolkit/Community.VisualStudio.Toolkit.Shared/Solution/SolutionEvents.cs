@@ -88,7 +88,7 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             if (OnAfterOpenProject != null)
             {
-                Project? project = SolutionItem.FromHierarchy(pHierarchy, 1) as Project;
+                Project? project = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT) as Project;
                 OnAfterOpenProject?.Invoke(project);
             }
             return VSConstants.S_OK;
@@ -115,7 +115,7 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             if (OnAfterLoadProject != null)
             {
-                Project? project = SolutionItem.FromHierarchy(pRealHierarchy, 1) as Project;
+                Project? project = SolutionItem.FromHierarchy(pRealHierarchy, VSConstants.VSITEMID_ROOT) as Project;
                 OnAfterLoadProject?.Invoke(project);
             }
             return VSConstants.S_OK;
@@ -130,9 +130,9 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            if (OnBeforeCloseProject != null)
+            if (OnBeforeUnloadProject != null)
             {
-                Project? project = SolutionItem.FromHierarchy(pRealHierarchy, 1) as Project;
+                Project? project = SolutionItem.FromHierarchy(pRealHierarchy, VSConstants.VSITEMID_ROOT) as Project;
                 OnBeforeUnloadProject?.Invoke(project);
             }
             return VSConstants.S_OK;
@@ -250,7 +250,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (OnAfterRenameProject != null)
             {
-                Project? project = SolutionItem.FromHierarchy(pHierarchy, 1) as Project;
+                Project? project = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT) as Project;
                 OnAfterRenameProject?.Invoke(project);
             }
             return VSConstants.S_OK;
