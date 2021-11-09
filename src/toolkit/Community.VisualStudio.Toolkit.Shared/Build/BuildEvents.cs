@@ -58,6 +58,16 @@ namespace Community.VisualStudio.Toolkit
         public event Action<Project?>? ProjectCleanStarted;
 
         /// <summary>
+        /// Fires when a project configuration has changed
+        /// </summary>
+        public event Action<Project?>? ProjectConfigurationChanged;
+
+        /// <summary>
+        /// Fires when a solution configuration has changed
+        /// </summary>
+        public event Action? SolutionConfigurationChanged;
+
+        /// <summary>
         /// Fires when a project is done cleaning.
         /// </summary>
         public event Action<ProjectBuildDoneEventArgs>? ProjectCleanDone;
@@ -98,8 +108,27 @@ namespace Community.VisualStudio.Toolkit
             return VSConstants.S_OK;
         }
 
-        int IVsUpdateSolutionEvents.OnActiveProjectCfgChange(IVsHierarchy pIVsHierarchy) => VSConstants.S_OK;
-        int IVsUpdateSolutionEvents2.OnActiveProjectCfgChange(IVsHierarchy pIVsHierarchy) => VSConstants.S_OK;
+        int IVsUpdateSolutionEvents.OnActiveProjectCfgChange(IVsHierarchy pIVsHierarchy)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            if (ProjectConfigurationChanged != null && pIVsHierarchy != null)
+            {
+                Project? project = SolutionItem.FromHierarchy(pIVsHierarchy, VSConstants.VSITEMID_ROOT) as Project;
+                ProjectConfigurationChanged?.Invoke(project);
+            }
+
+            if (SolutionConfigurationChanged != null && pIVsHierarchy == null)
+            {
+                SolutionConfigurationChanged?.Invoke();
+            }
+
+            return VSConstants.S_OK;
+        }
+        int IVsUpdateSolutionEvents2.OnActiveProjectCfgChange(IVsHierarchy pIVsHierarchy)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            return ((IVsUpdateSolutionEvents) this).OnActiveProjectCfgChange(pIVsHierarchy);
+        }
 
         int IVsUpdateSolutionEvents2.UpdateProjectCfg_Begin(IVsHierarchy pHierProj, IVsCfg pCfgProj, IVsCfg pCfgSln, uint dwAction, ref int pfCancel)
         {
