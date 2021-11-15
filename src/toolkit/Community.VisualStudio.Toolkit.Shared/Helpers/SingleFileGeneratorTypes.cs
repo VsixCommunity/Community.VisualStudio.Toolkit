@@ -10,7 +10,7 @@ namespace Community.VisualStudio.Toolkit
     /// [Guid("Guid-For-Your-IVsSingleFileGenerator")] <br/>
     /// [ComVisible(true)] <br/>
     /// [ProvideObject(typeof(YourCustomToolClass))] <br/>
-    /// [CodeGeneratorRegistration(typeof(YourCustomToolClass), "NameOfCustomTool", SingleFileGeneratorTypes.CSHARP, GeneratesDesignTimeSource = true, GeneratorRegKeyName = "CustomTool for C#")] <br/>
+    /// [CodeGeneratorRegistration(typeof(YourCustomToolClass), "NameOfCustomTool", SingleFileGeneratorTypes.CSHARP)] <br/>
     /// </remarks>
     public static class SingleFileGeneratorTypes
     {
