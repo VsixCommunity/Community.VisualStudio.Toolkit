@@ -24,3 +24,4 @@ namespace Community.VisualStudio.Toolkit
         public const string VisualBasic = "{164B10B9-B200-11D0-8C61-00A0C91E29D5}";
     }
 }
+
