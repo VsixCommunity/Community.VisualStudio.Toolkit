@@ -49,6 +49,20 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// Checks if a command is enabled and supported.
+        /// </summary>
+        public async Task<bool> IsAvailableAsync(string name)
+        {
+            CommandID? cmd = await FindCommandAsync(name);
+            if (cmd == null)
+            {
+                return false;
+            }
+
+            return await cmd.IsAvailableAsync();
+        }
+
+        /// <summary>
         /// Executes a command by GUID and ID
         /// </summary>
         /// <returns>Returns <see langword="true"/> if the command was succesfully executed; otherwise <see langword="false"/>.</returns>
