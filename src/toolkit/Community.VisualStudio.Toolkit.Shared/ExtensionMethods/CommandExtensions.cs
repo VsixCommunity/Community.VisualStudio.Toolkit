@@ -22,22 +22,58 @@ namespace System.ComponentModel.Design
         public static async Task<bool> ExecuteAsync(this CommandID cmd, string argument = "")
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IOleCommandTarget cs = await VS.GetRequiredServiceAsync<SUIHostCommandDispatcher, IOleCommandTarget>();
+            int hr = VSConstants.E_FAIL;
 
-            int argByteCount = Encoding.Unicode.GetByteCount(argument);
-            IntPtr inArgPtr = Marshal.AllocCoTaskMem(argByteCount);
+            if (await cmd.IsAvailableAsync())
+            {
+                IOleCommandTarget cs = await VS.GetRequiredServiceAsync<SUIHostCommandDispatcher, IOleCommandTarget>();
+
+                int argByteCount = Encoding.Unicode.GetByteCount(argument);
+                IntPtr inArgPtr = Marshal.AllocCoTaskMem(argByteCount);
+
+                try
+                {
+                    Marshal.GetNativeVariantForObject(argument, inArgPtr);
+                    hr = cs.Exec(cmd.Guid, (uint)cmd.ID, (uint)OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT, inArgPtr, IntPtr.Zero);
+                }
+                finally
+                {
+                    Marshal.Release(inArgPtr);
+                }
+            }
+
+            return hr == VSConstants.S_OK;
+        }
+
+        /// <summary>
+        /// Checks if a command is enabled and supported.
+        /// </summary>
+        public static async Task<bool> IsAvailableAsync(this CommandID cmd)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IOleCommandTarget cs = await VS.GetRequiredServiceAsync<SUIHostCommandDispatcher, IOleCommandTarget>();
 
             try
             {
-                Marshal.GetNativeVariantForObject(argument, inArgPtr);
-                int result = cs.Exec(cmd.Guid, (uint)cmd.ID, (uint)OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT, inArgPtr, IntPtr.Zero);
+                Guid guid = cmd.Guid;
+                OLECMD[] prgCmds = new OLECMD[1];
+                prgCmds[0].cmdID = (uint)cmd.ID;
+                int hr = cs.QueryStatus(ref guid, (uint)cmd.ID, prgCmds, IntPtr.Zero);
 
-                return result == VSConstants.S_OK;
+                if (ErrorHandler.Succeeded(hr))
+                {
+                    if ((prgCmds[0].cmdf & (uint)OLECMDF.OLECMDF_ENABLED) != 0)
+                    {
+                        return true;
+                    }
+                }
             }
-            finally
+            catch (Exception ex)
             {
-                Marshal.Release(inArgPtr);
+                await ex.LogAsync();
             }
+
+            return false;
         }
     }
 }

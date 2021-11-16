@@ -21,9 +21,9 @@ namespace Community.VisualStudio.Toolkit
         public async Task<CommandID?> FindCommandAsync(string name)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            IVsCommandWindow cw = await VS.Services.GetCommandWindowAsync();
 
-            int hr = cw.PrepareCommand(name, out Guid commandGroup, out uint commandId, out _, new PREPARECOMMANDRESULT[0]);
+            IVsCmdNameMapping cmdNameMap = await VS.Services.GetCommandNameMappingAsync();
+            int hr = cmdNameMap.MapNameToGUIDID(name, out Guid commandGroup, out uint commandId);
 
             if (hr == VSConstants.S_OK)
             {
@@ -91,7 +91,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Intercept any command before it is being handled by other command handlers.
         /// </summary>
-        public Task InterceptAsync(Guid menuGroup, int commandId, Func<CommandProgression> func) 
+        public Task InterceptAsync(Guid menuGroup, int commandId, Func<CommandProgression> func)
             => InterceptAsync(new CommandID(menuGroup, commandId), func);
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task InterceptAsync(CommandID cmd, Func<CommandProgression> func)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            
+
             IVsRegisterPriorityCommandTarget? priority = await VS.Services.GetPriorityCommandTargetAsync();
             CommandInterceptor interceptor = new(cmd, func);
 

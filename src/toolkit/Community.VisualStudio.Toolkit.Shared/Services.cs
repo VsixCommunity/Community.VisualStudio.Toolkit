@@ -114,6 +114,9 @@ namespace Community.VisualStudio.Toolkit
 
         /// <summary>Used to register and unregister a command target as a high priority command handler.</summary>
         public Task<IVsRegisterPriorityCommandTarget> GetPriorityCommandTargetAsync() => VS.GetRequiredServiceAsync<SVsRegisterPriorityCommandTarget, IVsRegisterPriorityCommandTarget>();
+
+        /// <summary>Maps command names and GUIDs. Enables you to determine all commands and names.</summary>
+        public Task<IVsCmdNameMapping> GetCommandNameMappingAsync() => VS.GetRequiredServiceAsync<SVsCmdNameMapping, IVsCmdNameMapping>();
         #endregion
 
         #region Build
