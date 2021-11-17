@@ -32,7 +32,7 @@ namespace System.ComponentModel.Design
 
             try
             {
-                if (argument != null)
+                if (!string.IsNullOrWhiteSpace(argument))
                 {
                     vIn = Marshal.AllocCoTaskMem(128);
                     Marshal.GetNativeVariantForObject(argument, vIn);
