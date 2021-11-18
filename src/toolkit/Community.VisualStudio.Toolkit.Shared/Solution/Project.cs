@@ -76,6 +76,15 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// Tests if the given capability is found in the project's capabilities.
+        /// </summary>
+        public bool IsCapabilityMatch(string capability)
+        {
+            GetItemInfo(out IVsHierarchy? hier, out _, out _);
+            return hier.IsCapabilityMatch(capability);
+        }
+
+        /// <summary>
         /// Save the project if it's dirty.
         /// </summary>
         public async Task SaveAsync()
