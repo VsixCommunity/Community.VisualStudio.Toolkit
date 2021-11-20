@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Utilities;
 using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
@@ -47,6 +48,14 @@ namespace Community.VisualStudio.Toolkit
 
             return null;
         }
+
+#if VS16 || VS17
+        public async Task<IContentType> GetContentTypeAsync()
+        {
+            IFileToContentTypeService fileToContentTypeService = await VS.GetMefServiceAsync<IFileToContentTypeService>();
+            return fileToContentTypeService.GetContentTypeForFileNameOrExtension(Text);
+        }
+#endif
 
         /// <summary>
         /// Tries to remove the file from the project or solution folder.
