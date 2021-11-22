@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -125,6 +127,21 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             IComponentModel2 compService = GetRequiredService<SComponentModel, IComponentModel2>();
             return compService.GetService<TInterface>();
+        }
+
+        /// <summary>
+        /// Restarts Visual Studio.
+        /// </summary>
+        public static async Task<bool> RestartAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            IVsShell4 shell = await GetRequiredServiceAsync<SVsShell, IVsShell4>();
+
+            ((IVsShell3)shell).IsRunningElevated(out bool elevated);
+            __VSRESTARTTYPE type = elevated ? __VSRESTARTTYPE.RESTART_Elevated : __VSRESTARTTYPE.RESTART_Normal;
+            int hr = shell.Restart((uint)type);
+
+            return ErrorHandler.Succeeded(hr);
         }
     }
 }

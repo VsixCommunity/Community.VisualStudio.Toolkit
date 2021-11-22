@@ -25,6 +25,8 @@ namespace System.ComponentModel.Design
                 return false;
             }
 
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             IOleCommandTarget cs = await VS.GetRequiredServiceAsync<SUIHostCommandDispatcher, IOleCommandTarget>();
 
             IntPtr vIn = IntPtr.Zero;

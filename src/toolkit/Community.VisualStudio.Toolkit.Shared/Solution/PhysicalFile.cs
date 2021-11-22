@@ -50,6 +50,9 @@ namespace Community.VisualStudio.Toolkit
         }
 
 #if VS16 || VS17
+        /// <summary>
+        /// Gets the content type associated with this type of physical files.
+        /// </summary>
         public async Task<IContentType> GetContentTypeAsync()
         {
             IFileToContentTypeService fileToContentTypeService = await VS.GetMefServiceAsync<IFileToContentTypeService>();
