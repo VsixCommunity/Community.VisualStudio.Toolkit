@@ -25,7 +25,7 @@
         </Strings>
       </Menu>
 
-      <Menu guid="TestExtension" id="TestExtensionEditProjectFileMenu" priority="0x0200" type="Menu">
+      <Menu guid="TestExtension" id="TestExtensionEditProjectFileMenu" priority="0x0201" type="Menu">
         <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1" />
         <Strings>
           <ButtonText>Edit Project File</ButtonText>
@@ -111,7 +111,21 @@
         </Strings>
       </Button>
 
-      <Button guid="TestExtension" id="EditProjectFile" priority="0x0103" type="Button">
+      <Button guid="TestExtension" id="LoadSelectedProject" priority="0x0103" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1"/>
+        <Strings>
+          <ButtonText>Load Selected Project</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="TestExtension" id="UnloadSelectedProject" priority="0x0104" type="Button">
+        <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1"/>
+        <Strings>
+          <ButtonText>Unload Selected Project</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="TestExtension" id="EditProjectFile" priority="0x0105" type="Button">
         <Parent guid="TestExtension" id="TestExtensionEditProjectFileGroup"/>
         <CommandFlag>DynamicItemStart</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
@@ -187,6 +201,8 @@
       <IDSymbol name="ExpandSelectedItems" value="0x0109" />
       <IDSymbol name="CollapseSelectedItems" value="0x0110" />
       <IDSymbol name="ListReferences" value="0x0111" />
+      <IDSymbol name="LoadSelectedProject" value="0x0112" />
+      <IDSymbol name="UnloadSelectedProject" value="0x0113" />
 
       <IDSymbol name="EditProjectFile" value="0x2001" />
     </GuidSymbol>

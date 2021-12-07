@@ -133,5 +133,65 @@ namespace Community.VisualStudio.Toolkit
 
             return null;
         }
+
+        /// <summary>
+        /// Determines whether the project is loaded.
+        /// </summary>
+        public bool IsLoaded
+        {
+            get
+            {
+                GetItemInfo(out _, out _, out IVsHierarchyItem item);
+                return !HierarchyUtilities.IsStubHierarchy(item.HierarchyIdentity);
+            }
+        }
+
+        /// <summary>
+        /// Loads the project.
+        /// </summary>
+        public async Task LoadAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
+
+            IVsSolution solution = await VS.Services.GetSolutionAsync();
+            ErrorHandler.ThrowOnFailure(solution.GetGuidOfProject(hierarchy, out Guid guid));
+            ErrorHandler.ThrowOnFailure(((IVsSolution4)solution).ReloadProject(ref guid));
+
+            // Loading and unloading a project causes the hierarchy to be disposed,
+            // so we need to refresh the underlying hierarchy object.
+            await RefreshAsync(solution, guid);
+        }
+
+        /// <summary>
+        /// Unloads the project.
+        /// </summary>
+        public async Task UnloadAsync(_VSProjectUnloadStatus reason = _VSProjectUnloadStatus.UNLOADSTATUS_UnloadedByUser)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
+
+            IVsSolution solution = await VS.Services.GetSolutionAsync();
+            ErrorHandler.ThrowOnFailure(solution.GetGuidOfProject(hierarchy, out Guid guid));
+            ErrorHandler.ThrowOnFailure(((IVsSolution4)solution).UnloadProject(ref guid, (uint)reason));
+
+            // Loading and unloading a project causes the hierarchy to be disposed,
+            // so we need to refresh the underlying hierarchy object.
+            await RefreshAsync(solution, guid);
+        }
+
+        private async Task RefreshAsync(IVsSolution solution, Guid guid)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            // Use the GUID to get the new IVsHierarchy object.
+            ErrorHandler.ThrowOnFailure(solution.GetProjectOfGuid(ref guid, out IVsHierarchy hierarchy));
+
+            // Use the existing item ID to get the new `IVsHierarchyItem`.
+            GetItemInfo(out _, out uint itemId, out _);
+            Update(await hierarchy.ToHierarchyItemAsync(itemId));
+        }
     }
 }

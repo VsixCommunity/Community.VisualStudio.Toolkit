@@ -38,6 +38,8 @@ namespace TestExtension
         public const int ExpandSelectedItems = 0x0109;
         public const int CollapseSelectedItems = 0x0110;
         public const int ListReferences = 0x0111;
+        public const int LoadSelectedProject = 0x0112;
+        public const int UnloadSelectedProject = 0x0113;
         public const int EditProjectFile = 0x2001;
     }
 }

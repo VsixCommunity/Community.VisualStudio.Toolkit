@@ -18,9 +18,10 @@ namespace Community.VisualStudio.Toolkit
     {
         private SolutionItem? _parent;
         private IEnumerable<SolutionItem?>? _children;
-        private readonly IVsHierarchyItem _item;
-        private readonly IVsHierarchy _hierarchy;
-        private readonly uint _itemId;
+        private IVsHierarchyItem _item = default!; // Initialized to non-null via the `Update()` method.
+        private IVsHierarchy _hierarchy = default!; // Initialized to non-null via the `Update()` method.
+        private string? _fullPath;
+        private uint _itemId;
 
         /// <summary>
         /// Creates a new instance of the solution item.
@@ -28,13 +29,17 @@ namespace Community.VisualStudio.Toolkit
         protected SolutionItem(IVsHierarchyItem item, SolutionItemType type)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            _item = item;
+            Type = type;
+            Update(item);
+        }
 
+        internal void Update(IVsHierarchyItem item)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            _item = item;
             _hierarchy = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedHierarchy : item.HierarchyIdentity.Hierarchy;
             _itemId = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedItemID : item.HierarchyIdentity.ItemID;
-
-            Type = type;
-            FullPath = GetFullPath();
+            _fullPath = GetFullPath();
         }
 
         /// <summary>
@@ -50,7 +55,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// The absolute file path on disk.
         /// </summary>
-        public string? FullPath { get; }
+        public string? FullPath => _fullPath;
 
         /// <summary>
         /// The type of solution item.
