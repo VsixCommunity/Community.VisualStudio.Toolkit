@@ -62,7 +62,7 @@ namespace Community.VisualStudio.Toolkit
                 // Do nothing, the 'frame' is assigned
             }
 
-            return null;
+            return frame;
         }
     }
 
