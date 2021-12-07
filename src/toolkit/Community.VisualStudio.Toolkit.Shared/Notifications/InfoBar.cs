@@ -11,6 +11,25 @@ namespace Community.VisualStudio.Toolkit
     public class InfoBarFactory
     {
         /// <summary>
+        /// Creates a new InfoBar in the main window.
+        /// </summary>
+        /// <param name="model">A model representing the text, icon, and actions of the InfoBar.</param>
+        public async Task<InfoBar?> CreateAsync(InfoBarModel model)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            
+            IVsShell shell = await VS.Services.GetShellAsync();
+            shell.GetProperty((int)__VSSPROPID7.VSSPROPID_MainWindowInfoBarHost, out object value);
+
+            if (value is IVsInfoBarHost host)
+            {
+                return new InfoBar(host, model);
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Creates a new InfoBar in any tool- or document window.
         /// </summary>
         /// <param name="windowGuidOrFileName">The GUID of the tool window or filename of document. For instance, <c>ToolWindowGuids80.SolutionExplorer</c></param>
