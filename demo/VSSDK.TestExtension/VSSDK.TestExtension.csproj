@@ -52,12 +52,14 @@
     <Compile Include="Commands\EditProjectFileCommand.cs" />
     <Compile Include="Commands\ExpandSelectedItemsCommand.cs" />
     <Compile Include="Commands\ListReferencesCommand.cs" />
+    <Compile Include="Commands\LoadSelectedProject.cs" />
     <Compile Include="Commands\MultiInstanceWindowCommand.cs" />
     <Compile Include="Commands\EditSelectedItemLabelCommand.cs" />
     <Compile Include="Commands\SelectCurrentProjectCommand.cs" />
     <Compile Include="Commands\ToggleVsixManifestFilterCommand.cs" />
     <Compile Include="Commands\RunnerWindowCommand.cs" />
     <Compile Include="Commands\ThemeWindowCommand.cs" />
+    <Compile Include="Commands\UnloadSelectedProject.cs" />
     <Compile Include="MEF\TextViewCreationListener.cs" />
     <Compile Include="Options\General.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
