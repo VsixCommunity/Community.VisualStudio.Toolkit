@@ -11,11 +11,18 @@ namespace TestExtension
 {
     public partial class RunnerWindowControl : UserControl
     {
-        public RunnerWindowControl(Version vsVersion)
+        public RunnerWindowControl(Version vsVersion, RunnerWindowMessenger messenger)
         {
             InitializeComponent();
 
             lblHeadline.Content = $"Visual Studio v{vsVersion}";
+
+            messenger.MessageReceived += OnMessageReceived;
+        }
+
+        private void OnMessageReceived(object sender, string e)
+        {
+            MessageList.Items.Add(e);
         }
 
         private void btnShowMessage_Click(object sender, RoutedEventArgs e)

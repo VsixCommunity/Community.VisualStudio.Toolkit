@@ -21,10 +21,13 @@ namespace VSSDK.TestExtension
     [ProvideToolWindow(typeof(MultiInstanceWindow.Pane))]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideService(typeof(RunnerWindowMessenger), IsAsyncQueryable = true)]
     public sealed class TestExtensionPackage : ToolkitPackage
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
+            AddService(typeof(RunnerWindowMessenger), (_, _, _) => Task.FromResult<object>(new RunnerWindowMessenger()));
+
             // Tool windows
             this.RegisterToolWindows();
 
@@ -41,7 +44,6 @@ namespace VSSDK.TestExtension
             VS.Events.SolutionEvents.OnBeforeOpenProject += SolutionEvents_OnBeforeOpenProject;
             VS.Events.BuildEvents.ProjectConfigurationChanged += BuildEvents_ProjectConfigurationChanged;
             VS.Events.BuildEvents.SolutionConfigurationChanged += BuildEvents_SolutionConfigurationChanged;
-
         }
 
         private void BuildEvents_SolutionConfigurationChanged()
@@ -58,7 +60,7 @@ namespace VSSDK.TestExtension
 
         }
 
-         private void SolutionEvents_OnBeforeOpenProject(string obj)
+        private void SolutionEvents_OnBeforeOpenProject(string obj)
         {
             VS.StatusBar.ShowMessageAsync("About to open " + obj).FireAndForget();
         }

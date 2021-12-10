@@ -9,10 +9,21 @@
              d:DesignHeight="300" d:DesignWidth="300"
              Name="MyToolWindow">
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Label Name="lblHeadline" Margin="10" HorizontalAlignment="Center">Runner Window</Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Name="lblHeadline" Grid.Row="0" HorizontalAlignment="Center" Margin="0,10,0,0">Runner Window</Label>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
             <Button Content="Show a message" Click="btnShowMessage_Click" Width="120" Height="80" Name="btnShowMessage"/>
-            <Button Content="Hide me" Click="btnHide_Click" Width="120" Height="80" Margin="0,10,0,0" Name="btnHide"/>
+            <Button Content="Hide me" Click="btnHide_Click" Width="120" Height="80" Margin="10,0,0,0" Name="btnHide"/>
         </StackPanel>
+
+        <TextBlock Grid.Row="2" Text="Messages:" Margin="3,0,0,3"/>
+        <ListBox x:Name="MessageList" Grid.Row="3" BorderThickness="1"/>
     </Grid>
 </UserControl>

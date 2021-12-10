@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.Design;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,7 +19,8 @@ namespace TestExtension
         public override async Task<FrameworkElement> CreateAsync(int toolWindowId, CancellationToken cancellationToken)
         {
             Version version = await VS.Shell.GetVsVersionAsync();
-            return new RunnerWindowControl(version);
+            RunnerWindowMessenger messenger = await Package.GetServiceAsync<RunnerWindowMessenger, RunnerWindowMessenger>();
+            return new RunnerWindowControl(version, messenger);
         }
 
         [Guid("d3b3ebd9-87d1-41cd-bf84-268d88953417")]
@@ -27,6 +29,7 @@ namespace TestExtension
             public Pane()
             {
                 BitmapImageMoniker = KnownMonikers.StatusInformation;
+                ToolBar = new CommandID(PackageGuids.TestExtension, PackageIds.RunnerWindowToolbar);
             }
         }
     }
