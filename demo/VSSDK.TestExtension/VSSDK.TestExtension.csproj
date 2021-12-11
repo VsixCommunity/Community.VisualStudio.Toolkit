@@ -56,6 +56,7 @@
     <Compile Include="Commands\MultiInstanceWindowCommand.cs" />
     <Compile Include="Commands\EditSelectedItemLabelCommand.cs" />
     <Compile Include="Commands\SelectCurrentProjectCommand.cs" />
+    <Compile Include="Commands\SendMessageToRunnerWindowCommand.cs" />
     <Compile Include="Commands\ToggleVsixManifestFilterCommand.cs" />
     <Compile Include="Commands\RunnerWindowCommand.cs" />
     <Compile Include="Commands\ThemeWindowCommand.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="ToolWindows\RunnerWindowControl.xaml.cs">
       <DependentUpon>RunnerWindowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ToolWindows\RunnerWindowMessenger.cs" />
     <Compile Include="ToolWindows\ThemeWindow\ThemedControl.cs" />
     <Compile Include="ToolWindows\ThemeWindow\ThemeWindow.cs" />
     <Compile Include="ToolWindows\ThemeWindow\ThemeWindowControl.xaml.cs">

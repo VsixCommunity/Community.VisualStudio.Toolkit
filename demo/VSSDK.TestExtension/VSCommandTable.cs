@@ -26,6 +26,7 @@ namespace TestExtension
         public const int TestExtensionMainMenuGroup1 = 0x1100;
         public const int TestExtensionSolutionExplorerGroup = 0x1101;
         public const int TestExtensionEditProjectFileGroup = 0x1102;
+        public const int RunnerWindowToolbarGroup = 0x1103;
         public const int RunnerWindow = 0x0100;
         public const int ThemeWindow = 0x0101;
         public const int MultiInstanceWindow = 0x0102;
@@ -40,6 +41,8 @@ namespace TestExtension
         public const int ListReferences = 0x0111;
         public const int LoadSelectedProject = 0x0112;
         public const int UnloadSelectedProject = 0x0113;
+        public const int SendMessageToRunnerWindow = 0x0114;
         public const int EditProjectFile = 0x2001;
+        public const int RunnerWindowToolbar = 0x0BB8;
     }
 }

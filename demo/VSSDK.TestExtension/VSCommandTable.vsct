@@ -31,6 +31,13 @@
           <ButtonText>Edit Project File</ButtonText>
         </Strings>
       </Menu>
+
+      <Menu guid="TestExtension" id="RunnerWindowToolbar" type="ToolWindowToolbar">
+        <CommandFlag>DefaultDocked</CommandFlag>
+        <Strings>
+          <ButtonText>Runner Window Toolbar</ButtonText>
+        </Strings>
+      </Menu>
     </Menus>
 
     <Groups>
@@ -44,6 +51,10 @@
 
       <Group guid="TestExtension" id="TestExtensionEditProjectFileGroup" priority="0x1102">
         <Parent guid="TestExtension" id="TestExtensionEditProjectFileMenu" />
+      </Group>
+
+      <Group guid="TestExtension" id="RunnerWindowToolbarGroup" priority="0x0000">
+        <Parent guid="TestExtension" id="RunnerWindowToolbar" />
       </Group>
     </Groups>
 
@@ -97,6 +108,7 @@
         <Parent guid="TestExtension" id="TestExtensionMainMenuGroup1"/>
         <Icon guid="ImageCatalogGuid" id="BuildSolution" />
         <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>Build Solution Async</ButtonText>
         </Strings>
@@ -124,7 +136,7 @@
           <ButtonText>Unload Selected Project</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="TestExtension" id="EditProjectFile" priority="0x0105" type="Button">
         <Parent guid="TestExtension" id="TestExtensionEditProjectFileGroup"/>
         <CommandFlag>DynamicItemStart</CommandFlag>
@@ -172,8 +184,28 @@
           <ButtonText>Collapse Selected Items</ButtonText>
         </Strings>
       </Button>
+
+      <Button guid="TestExtension" id="SendMessageToRunnerWindow" priority="0x0001">
+        <Parent guid="TestExtension" id="RunnerWindowToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="Send"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>IconAndText</CommandFlag>
+        <Strings>
+          <ButtonText>Send Message to Runner Window</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
   </Commands>
+
+  <CommandPlacements>
+    <!-- 
+    Put the "Build Solution Async" command on the Runner Window's toolbar 
+    as well (it also appears in the "VSSDK Test Extension" menu.
+    -->
+    <CommandPlacement guid="TestExtension" id="BuildSolutionAsync" priority="0x0000">
+      <Parent guid="TestExtension" id="RunnerWindowToolbarGroup"/>
+    </CommandPlacement>
+  </CommandPlacements>
 
   <VisibilityConstraints>
     <VisibilityItem guid="TestExtension" id="EditProjectFile" context="UICONTEXT_SolutionExists" />
@@ -188,6 +220,7 @@
       <IDSymbol name="TestExtensionMainMenuGroup1" value="0x1100" />
       <IDSymbol name="TestExtensionSolutionExplorerGroup" value="0x1101" />
       <IDSymbol name="TestExtensionEditProjectFileGroup" value="0x1102" />
+      <IDSymbol name="RunnerWindowToolbarGroup" value="0x1103" />
 
       <IDSymbol name="RunnerWindow" value="0x0100" />
       <IDSymbol name="ThemeWindow" value="0x0101" />
@@ -203,8 +236,11 @@
       <IDSymbol name="ListReferences" value="0x0111" />
       <IDSymbol name="LoadSelectedProject" value="0x0112" />
       <IDSymbol name="UnloadSelectedProject" value="0x0113" />
+      <IDSymbol name="SendMessageToRunnerWindow" value="0x0114" />
 
       <IDSymbol name="EditProjectFile" value="0x2001" />
+
+      <IDSymbol name="RunnerWindowToolbar" value="3000"/>
     </GuidSymbol>
   </Symbols>
 </CommandTable>
