@@ -17,10 +17,7 @@ namespace Community.VisualStudio.Toolkit
     {
         private readonly Lazy<ToolkitThreadHelper> _threadHelper = new(() => ToolkitThreadHelper.Create());
 
-#pragma warning disable IDE0044 // Add readonly modifier
-        [Import]
-        private ITextDocumentFactoryService? _documentService = null;
-#pragma warning restore IDE0044 // Add readonly modifier
+        [Import] internal ITextDocumentFactoryService? _documentService = null;
 
         /// <summary>
         /// Gets a <see cref="CancellationToken"/> that can be used to check if the class has been disposed.
