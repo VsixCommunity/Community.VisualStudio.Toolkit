@@ -17,7 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\AsyncPackageExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsTextViewExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TypeExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProvideGalleryFeedAttribute.cs" />
+    <Compile Include="C:\Users\madsk\GitHub\Community.VisualStudio.Toolkit\src\toolkit\Community.VisualStudio.Toolkit.Shared\Attributes\ProvideGalleryFeedAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\WpfTextViewCreationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Build\BuildEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\IOptionModelPropertyWrapper.cs" />
@@ -58,7 +58,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\OutputWindowPane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\OutputWindowTextWriterVS14.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProjectTypes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProvideFileIconAttribute.cs" />
+    <Compile Include="C:\Users\madsk\GitHub\Community.VisualStudio.Toolkit\src\toolkit\Community.VisualStudio.Toolkit.Shared\Attributes\ProvideFileIconAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\InfoBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Solution\SolutionItem.cs" />
