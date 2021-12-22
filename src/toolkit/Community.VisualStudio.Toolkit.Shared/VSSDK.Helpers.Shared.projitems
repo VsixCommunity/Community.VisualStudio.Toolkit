@@ -50,9 +50,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)LanguageService\DefaultColorizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LanguageService\DefaultSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LanguageService\LanguageBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MEF\WpfTextViewCreationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\BraceCompletionBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MEF\BraceMatchingBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\CompletionCommitManagerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MEF\WpfTextViewCreationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\InfoBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\MessageBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\StatusBar.cs" />
