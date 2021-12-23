@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio.Shell;
+using System.Runtime.InteropServices;
 
 namespace TestExtension
 {
@@ -12,6 +13,7 @@ namespace TestExtension
         // Register the options with these attributes in your package class:
         // [ProvideOptionPage(typeof(OptionsProvider.GeneralOptions), "My options", "General", 0, 0, true)]
         // [ProvideProfile(typeof(OptionsProvider.GeneralOptions), "My options", "General", 0, 0, true)]
+        [ComVisible(true)]
         public class GeneralOptions : BaseOptionPage<General> { }
     }
 

@@ -96,5 +96,32 @@ namespace Community.VisualStudio.Toolkit.Analyzers {
                 return ResourceManager.GetString("CVST001_Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add [ComVisible(true)].
+        /// </summary>
+        internal static string CVST002_CodeFix {
+            get {
+                return ResourceManager.GetString("CVST002_CodeFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DialogPage implementations should be visible to COM.
+        /// </summary>
+        internal static string CVST002_MessageFormat {
+            get {
+                return ResourceManager.GetString("CVST002_MessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make DialogPage implementations visible to COM.
+        /// </summary>
+        internal static string CVST002_Title {
+            get {
+                return ResourceManager.GetString("CVST002_Title", resourceCulture);
+            }
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace Community.VisualStudio.Toolkit.Analyzers
             isEnabledByDefault: true,
             description: GetLocalizableString(nameof(Resources.CVST001_Description)));
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(_rule); } }
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(_rule);
 
         public override void Initialize(AnalysisContext context)
         {
