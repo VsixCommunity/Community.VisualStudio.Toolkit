@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.Text.BraceCompletion;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Editor;
 
-namespace BaseClasses
+namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
     /// Default implementation of brace completion.
