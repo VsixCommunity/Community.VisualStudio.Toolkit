@@ -1,11 +1,12 @@
-﻿using Microsoft.VisualStudio.Shell;
-using Task = System.Threading.Tasks.Task;
+﻿using System.Runtime.InteropServices;
+using Microsoft.VisualStudio.Shell;
 
 namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
     /// A base class for a DialogPage to show in Tools -> Options.
     /// </summary>
+    [ComVisible(true)]
     public class BaseOptionPage<T> : DialogPage where T : BaseOptionModel<T>, new()
     {
         private readonly BaseOptionModel<T> _model;
