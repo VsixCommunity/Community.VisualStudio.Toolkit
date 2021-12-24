@@ -16,13 +16,12 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Creates a new instance
         /// </summary>
-        /// <param name="identifier">A unique string. It's often the name of the extension itself.</param>
-        /// <param name="displayName">A unique string. It's often the name of the extension itself.</param>
-        public TableDataSource(string identifier, string displayName)
+        /// <param name="name">A unique string. It's often the name of the extension itself.</param>
+        public TableDataSource(string name)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            Identifier = identifier;
-            DisplayName = displayName;
+            Identifier = name;
+            DisplayName = name;
             Initialize();
         }
 
@@ -41,17 +40,17 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public virtual IReadOnlyCollection<string> Columns { get; } = new[]
         {
-            StandardTableColumnDefinitions.DetailsExpander,
-            StandardTableColumnDefinitions.ErrorCategory,
-            StandardTableColumnDefinitions.ErrorSeverity,
-            StandardTableColumnDefinitions.ErrorCode,
-            StandardTableColumnDefinitions.ErrorSource,
-            StandardTableColumnDefinitions.BuildTool,
-            StandardTableColumnDefinitions.Text,
-            StandardTableColumnDefinitions.DocumentName,
-            StandardTableColumnDefinitions.Line,
-            StandardTableColumnDefinitions.Column
-        };
+        StandardTableColumnDefinitions.DetailsExpander,
+        StandardTableColumnDefinitions.ErrorCategory,
+        StandardTableColumnDefinitions.ErrorSeverity,
+        StandardTableColumnDefinitions.ErrorCode,
+        StandardTableColumnDefinitions.ErrorSource,
+        StandardTableColumnDefinitions.BuildTool,
+        StandardTableColumnDefinitions.Text,
+        StandardTableColumnDefinitions.DocumentName,
+        StandardTableColumnDefinitions.Line,
+        StandardTableColumnDefinitions.Column
+    };
 
         /// <inheritdoc/>
         public string SourceTypeIdentifier => StandardTableDataSources.ErrorTableDataSource;
@@ -127,24 +126,32 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Adds errors to the applicable snapshots.
         /// </summary>
-        /// <param name="projectName"></param>
-        /// <param name="errors"></param>
-        public void AddErrors(string projectName, IEnumerable<ErrorListItem> errors)
+        public void AddErrors(IEnumerable<ErrorListItem> errors)
         {
             if (errors == null || !errors.Any())
             {
                 return;
             }
 
+            string? projectName = errors.FirstOrDefault(e => !string.IsNullOrEmpty(e.ProjectName))?.ProjectName ?? "";
+
             IEnumerable<ErrorListItem> cleanErrors = errors.Where(e => e != null && !string.IsNullOrEmpty(e.FileName));
 
             lock (_snapshots)
             {
-                foreach (IGrouping<string?, ErrorListItem>? error in cleanErrors.GroupBy(e => e.FileName))
+                foreach (IGrouping<string?, ErrorListItem>? fileErrorMap in cleanErrors.GroupBy(e => e.FileName))
                 {
-                    if (error.Key != null)
+                    if (fileErrorMap.Key != null)
                     {
-                        _snapshots[error.Key] = new TableEntriesSnapshot(projectName, error.Key, error);
+                        if (_snapshots.ContainsKey(fileErrorMap.Key))
+                        {
+                            IEnumerable<ErrorListItem> values = cleanErrors.Where(e => e.FileName == fileErrorMap.Key);
+                            _snapshots[fileErrorMap.Key].Update(values);
+                        }
+                        else
+                        {
+                            _snapshots[fileErrorMap.Key] = new TableEntriesSnapshot(projectName, fileErrorMap.Key, fileErrorMap);
+                        }
                     }
                 }
             }

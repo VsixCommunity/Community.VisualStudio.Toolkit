@@ -6,8 +6,8 @@ namespace Community.VisualStudio.Toolkit
 {
     internal class TableEntriesSnapshot : TableEntriesSnapshotBase
     {
-        private readonly int _versionNumber = 1;
-        private readonly IList<ErrorListItem> _errors;
+        private int _versionNumber = 1;
+        private readonly List<ErrorListItem> _errors;
 
         public TableEntriesSnapshot(string projectName, string filePath, IEnumerable<ErrorListItem> errors)
         {
@@ -16,18 +16,19 @@ namespace Community.VisualStudio.Toolkit
             _errors = errors.ToList();
         }
 
-        public string ProjectName { get; private set; }
+        public string ProjectName { get; }
 
-        public string FilePath { get; private set; }
+        public string FilePath { get; }
 
-        public override int Count
+        public override int Count => _errors.Count;
+
+        public override int VersionNumber => _versionNumber;
+
+        public void Update(IEnumerable<ErrorListItem> errors)
         {
-            get { return _errors.Count; }
-        }
-
-        public override int VersionNumber
-        {
-            get { return _versionNumber; }
+            _errors.AddRange(errors.Except(_errors));
+            _errors.RemoveAll(e => !errors.Contains(e));
+            _versionNumber++;
         }
 
         public override bool TryGetValue(int index, string columnName, out object? content)
