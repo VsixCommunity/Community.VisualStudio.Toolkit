@@ -9,7 +9,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
 
-    <Compile Condition="'$(Language)'=='C#'" Include="$(MSBuildThisFileDirectory)*.cs" />
+    <Compile Condition="'$(Language)'=='C#'" Include="$(MSBuildThisFileDirectory)*.cs" Visible="false" />
   </ItemGroup>
 
 </Project>
