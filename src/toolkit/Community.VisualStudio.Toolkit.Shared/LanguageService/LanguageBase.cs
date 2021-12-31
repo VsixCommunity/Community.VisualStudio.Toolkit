@@ -179,6 +179,7 @@ namespace Community.VisualStudio.Toolkit
             if (VSConstants.LOGVIEWID_Primary == logicalView ||
                 VSConstants.LOGVIEWID_Debugging == logicalView ||
                 VSConstants.LOGVIEWID_Code == logicalView ||
+                VSConstants.LOGVIEWID_UserChooseView == logicalView ||
                 VSConstants.LOGVIEWID_TextView == logicalView)
             {
                 // primary view uses NULL as pbstrPhysicalView
