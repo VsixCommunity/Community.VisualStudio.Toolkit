@@ -68,7 +68,9 @@ namespace VSSDK.TestExtension
         private void SolutionEvents_OnAfterOpenProject(Project obj)
         {
             if (obj != null)
+            {
                 VS.StatusBar.ShowMessageAsync("Opened project " + obj.Name).FireAndForget();
+            }
         }
 
         private void ProjectItemsEvents_AfterRemoveProjectItems(AfterRemoveProjectItemEventArgs obj)
