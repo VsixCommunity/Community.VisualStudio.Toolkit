@@ -45,7 +45,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 NormalizedSnapshotSpanCollection tagSpans = tag.Span.GetSpans(tag.Span.AnchorBuffer.CurrentSnapshot);
                 string tooltip = string.Join(Environment.NewLine, tag.Tag.Errors);
-                ErrorTag errorTag = new(PredefinedErrorTypeNames.SyntaxError, tooltip);
+                ErrorTag errorTag = new(GetErrorType(tag.Tag.Errors), tooltip);
 
                 foreach (SnapshotSpan span in tagSpans)
                 {
@@ -57,6 +57,11 @@ namespace Community.VisualStudio.Toolkit
             {
                 PopulateErrorList(tags);
             }
+        }
+
+        private static string GetErrorType(IList<ErrorListItem> errors)
+        {
+            return errors.FirstOrDefault()?.ErrorCategory ?? PredefinedErrorTypeNames.SyntaxError;
         }
 
         private void PopulateErrorList(IEnumerable<IMappingTagSpan<TokenTag>> tags)
