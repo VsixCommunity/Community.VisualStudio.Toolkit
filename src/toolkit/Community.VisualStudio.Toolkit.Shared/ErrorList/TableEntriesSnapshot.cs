@@ -85,6 +85,11 @@ namespace Community.VisualStudio.Toolkit
                     content = _errors[index].ErrorCodeToolTip;
                     break;
 
+                case StandardTableKeyNames.PriorityImage:
+                case StandardTableKeyNames.ErrorSeverityImage:
+                    content = _errors[index].Icon;
+                    break;
+
                 default:
                     content = null;
                     return false;

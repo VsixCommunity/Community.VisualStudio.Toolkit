@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.VisualStudio.Imaging.Interop;
 using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Community.VisualStudio.Toolkit
@@ -62,6 +63,11 @@ namespace Community.VisualStudio.Toolkit
         /// Column used to display the build tool that generated the error (e.g. "FxCop").
         /// </summary>
         public string? BuildTool { get; set; }
+
+        /// <summary>
+        /// The image icon moniker to use for the error list item.
+        /// </summary>
+        public ImageMoniker Icon { get; set; }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
