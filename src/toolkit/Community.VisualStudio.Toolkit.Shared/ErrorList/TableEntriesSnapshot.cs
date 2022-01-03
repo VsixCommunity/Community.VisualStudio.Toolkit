@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.Shell.TableManager;
 
@@ -37,6 +38,15 @@ namespace Community.VisualStudio.Toolkit
             {
                 content = null;
                 return false;
+            }
+
+            if (columnName == StandardTableKeyNames.PriorityImage || columnName == StandardTableKeyNames.ErrorSeverityImage)
+            {
+                if (_errors[index].Icon.Guid == Guid.Empty)
+                {
+                    content = _errors[index].Icon;
+                    return true;
+                }
             }
 
             switch (columnName)
@@ -83,11 +93,6 @@ namespace Community.VisualStudio.Toolkit
 
                 case StandardTableKeyNames.ErrorCodeToolTip:
                     content = _errors[index].ErrorCodeToolTip;
-                    break;
-
-                case StandardTableKeyNames.PriorityImage:
-                case StandardTableKeyNames.ErrorSeverityImage:
-                    content = _errors[index].Icon;
                     break;
 
                 default:
