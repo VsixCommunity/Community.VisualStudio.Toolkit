@@ -42,7 +42,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (columnName == StandardTableKeyNames.PriorityImage || columnName == StandardTableKeyNames.ErrorSeverityImage)
             {
-                if (_errors[index].Icon.Guid == Guid.Empty)
+                if (_errors[index].Icon.Guid != Guid.Empty)
                 {
                     content = _errors[index].Icon;
                     return true;
