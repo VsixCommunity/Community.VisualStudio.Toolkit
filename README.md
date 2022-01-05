@@ -85,7 +85,7 @@ This package attempts to solve multiple issues with the current extensibility mo
 Base classes, helper methods, and extension methods encapsulate the complexity so you don't have to. 
 
 ### It's difficult to find what services and components to use
-Now the most commmon services are all easy to get to from the main `VS` object. For instance, to write to the status bar, you can now write the following:
+Now the most commmon services are all easy to get to from the main `VS` object.
 
 
 ### Best practices change with each version of VS. I can't keep up
@@ -105,4 +105,6 @@ This is a living project where the whole community can contribute helpers on top
 This project works around those changes in the implementation of its public contracts and interfaces. This means that what was a breaking change to the VS SDK, becomes an implementation detail of this project and no user will be affected.
 
 ## Templates
-For both project- and item templates that utilizes this NuGet packages, download the [Extensibility Template Pack](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityItemTemplates).
+For both project- and item templates that utilizes this NuGet packages, download the Extensibility Template Pack:
+* [Extensibility Template Pack 2022](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityItemTemplates2022) (Visual Studio 2022)
+* [Extensibility Template Pack 2019](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityItemTemplates) (Visual Studio 2019)
