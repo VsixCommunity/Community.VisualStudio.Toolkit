@@ -116,7 +116,7 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             if (OnAfterLoadProject != null)
             {
-                SolutionItem? item = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT);
+                SolutionItem? item = SolutionItem.FromHierarchy(pStubHierarchy, VSConstants.VSITEMID_ROOT);
                 if (item is Project project)
                     OnAfterLoadProject?.Invoke(project);
             }
@@ -134,7 +134,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (OnBeforeUnloadProject != null)
             {
-                SolutionItem? item = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT);
+                SolutionItem? item = SolutionItem.FromHierarchy(pRealHierarchy, VSConstants.VSITEMID_ROOT);
                 if (item is Project project)
                     OnBeforeUnloadProject?.Invoke(project);
             }
