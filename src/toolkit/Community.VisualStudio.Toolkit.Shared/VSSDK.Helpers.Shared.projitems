@@ -54,6 +54,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)MEF\BraceMatchingBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\CompletionCommitManagerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\SameWordHighlighterBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MEF\TokenClassificationTaggerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MEF\TokenErrorTaggerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MEF\TokenOutliningTaggerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MEF\TokenQuickInfoBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MEF\TokenTag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MEF\TokenTaggerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\WpfTextViewCreationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\InfoBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\MessageBox.cs" />
