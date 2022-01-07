@@ -68,28 +68,31 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Notifies listening clients that a project has been renamed.</summary>
         public event Action<Project?>? OnAfterRenameProject;
 
-#if !VS14
         /// <summary>Notifies listening clients that the folder is being closed.</summary>
         public event Action<string>? OnBeforeCloseFolder;
-
+#if !VS14
         /// <summary>Notifies listening clients that the folder has been closed.</summary>
         public event Action<string>? OnAfterCloseFolder;
-
+#endif
         /// <summary>Notifies listening clients that the folder has been opened.</summary>
         public event Action<string>? OnAfterOpenFolder;
-#endif
 
         /// <summary> Fired when the solution load process is fully complete, including all background loading of projects.</summary>
         public event Action? OnAfterBackgroundSolutionLoadComplete;
 
-        #region IVsSolutionEvents
+#region IVsSolutionEvents
         int IVsSolutionEvents.OnAfterOpenProject(IVsHierarchy pHierarchy, int fAdded)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             if (OnAfterOpenProject != null)
             {
-                Project? project = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT) as Project;
-                OnAfterOpenProject?.Invoke(project);
+                SolutionItem? item = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT) as Project;
+                if (item is Project project)
+                    OnAfterOpenProject?.Invoke(project);
+#if VS14
+                else if (item is SolutionFolder folder && folder.FullPath != null)
+                    OnAfterOpenFolder?.Invoke(folder.FullPath);
+#endif
             }
             return VSConstants.S_OK;
         }
@@ -107,6 +110,10 @@ namespace Community.VisualStudio.Toolkit
                 SolutionItem? item = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT);
                 if (item is Project project)
                     OnBeforeCloseProject?.Invoke(project);
+#if VS14
+                else if (item is SolutionFolder folder && folder.FullPath != null)
+                    OnBeforeCloseFolder?.Invoke(folder.FullPath);
+#endif
             }
             return VSConstants.S_OK;
         }
@@ -176,9 +183,9 @@ namespace Community.VisualStudio.Toolkit
             OnAfterCloseSolution?.Invoke();
             return VSConstants.S_OK;
         }
-        #endregion
+#endregion
 
-        #region IVsSolutionEvents2
+#region IVsSolutionEvents2
         int IVsSolutionEvents2.OnAfterOpenProject(IVsHierarchy pHierarchy, int fAdded)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -244,9 +251,9 @@ namespace Community.VisualStudio.Toolkit
             OnAfterMergeSolution?.Invoke();
             return VSConstants.S_OK;
         }
-        #endregion
+#endregion
 
-        #region IVsSolutionEvents4
+#region IVsSolutionEvents4
         int IVsSolutionEvents4.OnAfterRenameProject(IVsHierarchy pHierarchy)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -274,16 +281,16 @@ namespace Community.VisualStudio.Toolkit
         {
             return VSConstants.S_OK;
         }
-        #endregion
+#endregion
 
-        #region IVsSolutionEvents5
+#region IVsSolutionEvents5
         void IVsSolutionEvents5.OnBeforeOpenProject(ref Guid guidProjectID, ref Guid guidProjectType, string pszFileName)
         {
             OnBeforeOpenProject?.Invoke(pszFileName);
         }
-        #endregion
+#endregion
 
-        #region IVsSolutionEvents7
+#region IVsSolutionEvents7
 #if !VS14
         void IVsSolutionEvents7.OnAfterOpenFolder(string folderPath)
         {
@@ -306,9 +313,9 @@ namespace Community.VisualStudio.Toolkit
         void IVsSolutionEvents7.OnAfterLoadAllDeferredProjects()
         { }
 #endif
-        #endregion
+#endregion
 
-        #region IVsSolutionLoadEvents
+#region IVsSolutionLoadEvents
         int IVsSolutionLoadEvents.OnBeforeOpenSolution(string solutionFilename)
         {
             OnBeforeOpenSolution?.Invoke(solutionFilename);
@@ -341,6 +348,6 @@ namespace Community.VisualStudio.Toolkit
             OnAfterBackgroundSolutionLoadComplete?.Invoke();
             return VSConstants.S_OK;
         }
-        #endregion
+#endregion
     }
 }
