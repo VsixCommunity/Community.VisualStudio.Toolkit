@@ -104,8 +104,9 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             if (OnBeforeCloseProject != null)
             {
-                Project? project = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT) as Project;
-                OnBeforeCloseProject?.Invoke(project);
+                SolutionItem? item = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT);
+                if (item is Project project)
+                    OnBeforeCloseProject?.Invoke(project);
             }
             return VSConstants.S_OK;
         }
@@ -115,8 +116,9 @@ namespace Community.VisualStudio.Toolkit
             ThreadHelper.ThrowIfNotOnUIThread();
             if (OnAfterLoadProject != null)
             {
-                Project? project = SolutionItem.FromHierarchy(pRealHierarchy, VSConstants.VSITEMID_ROOT) as Project;
-                OnAfterLoadProject?.Invoke(project);
+                SolutionItem? item = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT);
+                if (item is Project project)
+                    OnAfterLoadProject?.Invoke(project);
             }
             return VSConstants.S_OK;
         }
@@ -132,8 +134,9 @@ namespace Community.VisualStudio.Toolkit
 
             if (OnBeforeUnloadProject != null)
             {
-                Project? project = SolutionItem.FromHierarchy(pRealHierarchy, VSConstants.VSITEMID_ROOT) as Project;
-                OnBeforeUnloadProject?.Invoke(project);
+                SolutionItem? item = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT);
+                if (item is Project project)
+                    OnBeforeUnloadProject?.Invoke(project);
             }
             return VSConstants.S_OK;
         }
@@ -250,8 +253,9 @@ namespace Community.VisualStudio.Toolkit
 
             if (OnAfterRenameProject != null)
             {
-                Project? project = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT) as Project;
-                OnAfterRenameProject?.Invoke(project);
+                SolutionItem? item = SolutionItem.FromHierarchy(pHierarchy, VSConstants.VSITEMID_ROOT);
+                if (item is Project project)
+                    OnAfterRenameProject?.Invoke(project);
             }
             return VSConstants.S_OK;
         }
