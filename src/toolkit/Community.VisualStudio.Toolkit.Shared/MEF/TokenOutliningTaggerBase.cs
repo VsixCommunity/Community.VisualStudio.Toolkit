@@ -23,7 +23,7 @@ namespace Community.VisualStudio.Toolkit
         }
     }
 
-    internal class StructureTagger : TokenTaggerBase<IStructureTag>
+    internal class StructureTagger : InternalTaggerBase<IStructureTag>
     {
         public StructureTagger(ITagAggregator<TokenTag>? tags) : base(tags)
         { }

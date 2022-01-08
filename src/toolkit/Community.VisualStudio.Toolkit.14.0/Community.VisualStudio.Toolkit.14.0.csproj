@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Madskristensen.VisualStudio.SDK" Version="14.0.83" IncludeAssets="All" PrivateAssets="None" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Shell.Interop.12.1.DesignTime" Version="12.1.30329" />
   </ItemGroup>
 

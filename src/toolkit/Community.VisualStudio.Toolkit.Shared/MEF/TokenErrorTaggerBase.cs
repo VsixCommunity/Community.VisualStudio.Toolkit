@@ -23,7 +23,7 @@ namespace Community.VisualStudio.Toolkit
         }
     }
 
-    internal class ErrorTagger : TokenTaggerBase<IErrorTag>
+    internal class ErrorTagger : InternalTaggerBase<IErrorTag>
     {
         private readonly TableDataSource _dataSource;
 

@@ -15,7 +15,7 @@ namespace Community.VisualStudio.Toolkit
         [Import] internal IBufferTagAggregatorFactoryService? _bufferTagAggregator = null;
 
         /// <summary>
-        /// A map of a token value and which classification name it cooresponds with.
+        /// A map of a token value and which classification name it corresponds with.
         /// </summary>
         public abstract Dictionary<object, string> ClassificationMap { get; }
 
@@ -27,7 +27,7 @@ namespace Community.VisualStudio.Toolkit
         }
     }
 
-    internal class TokenClassifier : TokenTaggerBase<IClassificationTag>
+    internal class TokenClassifier : InternalTaggerBase<IClassificationTag>
     {
         private static readonly Dictionary<object, ClassificationTag> _classificationMap = new();
 

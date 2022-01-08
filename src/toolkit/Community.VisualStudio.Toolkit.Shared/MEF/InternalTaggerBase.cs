@@ -10,7 +10,7 @@ namespace Community.VisualStudio.Toolkit
     /// A base class for creating token taggers for your custom language implementation.
     /// </summary>
     /// <typeparam name="TTag"></typeparam>
-    public abstract class TokenTaggerBase<TTag> : ITagger<TTag>, IDisposable where TTag : ITag
+    internal abstract class InternalTaggerBase<TTag> : ITagger<TTag>, IDisposable where TTag : ITag
     {
         private bool _isDisposed;
 
@@ -18,7 +18,7 @@ namespace Community.VisualStudio.Toolkit
         /// Creates a new instance of the base class.
         /// </summary>
         /// <param name="tags"></param>
-        public TokenTaggerBase(ITagAggregator<TokenTag>? tags)
+        public InternalTaggerBase(ITagAggregator<TokenTag>? tags)
         {
             Tags = tags ?? throw new ArgumentNullException(nameof(tags));
             Tags.TagsChanged += TokenTagsChanged;
