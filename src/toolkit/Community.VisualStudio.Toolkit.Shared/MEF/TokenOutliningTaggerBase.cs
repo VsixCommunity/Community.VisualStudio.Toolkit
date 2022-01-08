@@ -30,8 +30,13 @@ namespace Community.VisualStudio.Toolkit
 
         public override IEnumerable<ITagSpan<IStructureTag>> GetTags(NormalizedSnapshotSpanCollection spans, bool isFullParse)
         {
-            foreach (IMappingTagSpan<TokenTag> tag in Tags!.GetTags(spans).Where(t => t.Tag.SupportOutlining))
+            foreach (IMappingTagSpan<TokenTag> tag in Tags!.GetTags(spans))
             {
+                if (!tag.Tag.SupportOutlining || tag.Tag.GetOutliningText == null)
+                {
+                    continue;
+                }
+
                 NormalizedSnapshotSpanCollection tagSpans = tag.Span.GetSpans(tag.Span.AnchorBuffer.CurrentSnapshot);
 
                 foreach (SnapshotSpan tagSpan in tagSpans)

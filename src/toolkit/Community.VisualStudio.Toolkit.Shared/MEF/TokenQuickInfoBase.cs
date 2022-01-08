@@ -46,7 +46,7 @@ namespace Community.VisualStudio.Toolkit
                 SnapshotSpan span = new(triggerPoint.Value.Snapshot, triggerPoint.Value.Position, 0);
                 IMappingTagSpan<TokenTag> tag = _tags.GetTags(span).FirstOrDefault(t => t.Tag.GetTooltipAsync != null);
 
-                if (tag != null && tag.Tag.GetTooltipAsync != null)
+                if (tag != null && tag.Tag.HasTooltip && tag.Tag.GetTooltipAsync != null)
                 {
                     object? tooltip = await tag.Tag.GetTooltipAsync(triggerPoint.Value);
 
