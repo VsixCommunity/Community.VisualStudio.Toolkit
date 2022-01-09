@@ -15,36 +15,16 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        public TokenTag(object tokenType, bool supportOutlining, bool hasTooltip, params ErrorListItem[] errors)
+        public TokenTag(object tokenType, params ErrorListItem[] errors)
         {
             TokenType = tokenType;
-            SupportOutlining = supportOutlining;
-            HasTooltip = hasTooltip;
             Errors = errors;
         }
-
-        /// <summary>
-        /// Creates a new instance.
-        /// </summary>
-        public TokenTag(object tokenType)
-            : this(tokenType, false, false)
-        { }
-
 
         /// <summary>
         /// This can be any object you use to differentiate the type of token tags. It's used for classification.
         /// </summary>
         public virtual object TokenType { get; set; }
-
-        /// <summary>
-        /// Any tags supporting outlining will automatically get IStructure tags added.
-        /// </summary>
-        public virtual bool SupportOutlining { get; }
-
-        /// <summary>
-        /// Specify if the tag has any tooltip to show. When true, the GetTooltipAsync method will be called.
-        /// </summary>
-        public virtual bool HasTooltip { get; }
 
         /// <summary>
         /// A list of errors associated with the tag.
@@ -64,6 +44,6 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// A function to override the default behavior of producing collapse outlining text.
         /// </summary>
-        public virtual Func<string, string> GetOutliningText { get; set; } = (text) => text.Split('\n').FirstOrDefault().Trim();
+        public virtual Func<string, string?>? GetOutliningText { get; set; }
     }
 }

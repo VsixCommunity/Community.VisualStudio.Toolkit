@@ -32,7 +32,7 @@ namespace Community.VisualStudio.Toolkit
         {
             foreach (IMappingTagSpan<TokenTag> tag in Tags!.GetTags(spans))
             {
-                if (!tag.Tag.SupportOutlining || tag.Tag.GetOutliningText == null)
+                if (tag.Tag.GetOutliningText == null)
                 {
                     continue;
                 }
@@ -57,7 +57,7 @@ namespace Community.VisualStudio.Toolkit
                         guideLineHorizontalAnchor: span.Start,
                         type: PredefinedStructureTagTypes.Structural,
                         isCollapsible: true,
-                        collapsedForm: tag.GetOutliningText(text),
+                        collapsedForm: tag.GetOutliningText(text)!,
                         collapsedHintForm: null);
 
             return new TagSpan<IStructureTag>(span, structureTag);

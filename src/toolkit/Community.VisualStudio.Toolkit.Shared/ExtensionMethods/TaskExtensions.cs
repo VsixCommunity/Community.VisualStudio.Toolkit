@@ -41,5 +41,24 @@ namespace Microsoft.VisualStudio.Shell
         {
             FireAndForget(joinableTask.Task, logOnFailure);
         }
+
+        /// <summary>
+        /// Schedules a delegate for background execution on the UI thread without inheriting any claim to the UI thread from its caller.
+        /// </summary>
+        /// <remarks>
+        /// StartOnIdle is a included in later versions of the SDK, but this shim is to add support to VS 14+
+        /// </remarks>
+        public static JoinableTask StartOnIdleShim(this JoinableTaskFactory joinableTaskFactory, Action action, VsTaskRunContext priority = VsTaskRunContext.UIThreadBackgroundPriority)
+        {
+            using (joinableTaskFactory.Context.SuppressRelevance())
+            {
+                return joinableTaskFactory.RunAsync(priority, async delegate
+                {
+                    await System.Threading.Tasks.Task.Yield();
+                    await joinableTaskFactory.SwitchToMainThreadAsync();
+                    action();
+                });
+            }
+        }
     }
 }
