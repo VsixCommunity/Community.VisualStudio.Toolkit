@@ -78,6 +78,10 @@ catch (Exception ex)
 }
 ```
 
+### Dependency Injection
+To incorporate a DI container into your extension, see the complimentary project: [
+Community.VisualStudio.Toolkit.DependencyInjection](https://github.com/VsixCommunity/Community.VisualStudio.Toolkit.DependencyInjection)
+
 ## Purpose
 This package attempts to solve multiple issues with the current extensibility model.
 
