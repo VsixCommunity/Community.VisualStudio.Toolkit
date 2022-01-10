@@ -92,22 +92,6 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <inheritdoc/>
-        public override ViewFilter CreateViewFilter(CodeWindowManager mgr, IVsTextView newView)
-        {
-            return new SimpleViewFiter(mgr, newView);
-        }
-
-        private class SimpleViewFiter : ViewFilter
-        {
-            public SimpleViewFiter(CodeWindowManager mgr, IVsTextView view) : base(mgr, view)
-            { }
-
-            // Do this so the language service won't swallow the formatting commands
-            public override bool CanReformat() => false;
-        }
-
-
-        /// <inheritdoc/>
         public override IScanner GetScanner(IVsTextLines buffer)
         {
             return null!;
