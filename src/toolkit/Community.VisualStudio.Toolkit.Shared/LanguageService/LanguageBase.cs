@@ -54,6 +54,13 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <inheritdoc/>
+        public override int GetLanguageName(out string name)
+        {
+            name = Name;
+            return VSConstants.S_OK;
+        }
+
+        /// <inheritdoc/>
         public abstract override string Name { get; }
 
         /// <summary>
@@ -78,6 +85,12 @@ namespace Community.VisualStudio.Toolkit
 
             return _preferences;
         }
+
+        /// <inheritdoc/>
+        public override IScanner GetScanner(IVsTextLines buffer) => null!;
+
+        /// <inheritdoc/>
+        public override AuthoringScope ParseSource(ParseRequest req) => null!;
 
         /// <inheritdoc/>
         public override string GetFormatFilterList()
