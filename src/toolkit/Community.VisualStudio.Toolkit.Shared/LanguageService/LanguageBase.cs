@@ -61,18 +61,6 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public abstract string[] FileExtensions { get; }
 
-        /// <inheritdoc/>
-        public override Source CreateSource(IVsTextLines buffer)
-        {
-            return new DefaultSource(this, buffer, new DefaultColorizer(this, buffer, null));
-        }
-
-        /// <inheritdoc/>
-        public override TypeAndMemberDropdownBars CreateDropDownHelper(IVsTextView forView)
-        {
-            return base.CreateDropDownHelper(forView);
-        }
-
         /// <summary>
         /// Set the default preferences for this language.
         /// </summary>
@@ -92,21 +80,8 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <inheritdoc/>
-        public override IScanner GetScanner(IVsTextLines buffer)
-        {
-            return null!;
-        }
-
-        /// <inheritdoc/>
-        public override AuthoringScope ParseSource(ParseRequest req)
-        {
-            return new DefaultAuthoringScope();
-        }
-
-        /// <inheritdoc/>
         public override string GetFormatFilterList()
         {
-            // Constructs a string similar to: Foo File (*.foo, *.bar)|*.foo;*.bar";
             IEnumerable<string> normalized = FileExtensions.Select(f => $"*{f}");
             string first = string.Join(", ", normalized);
             string second = string.Join(";", normalized);
