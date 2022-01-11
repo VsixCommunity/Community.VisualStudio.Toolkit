@@ -46,9 +46,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\OutputWindowTextWriterVS14.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProjectTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ToolkitThreadHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LanguageService\DefaultAuthoringScope.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LanguageService\DefaultColorizer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LanguageService\DefaultSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LanguageService\LanguageBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\BraceCompletionBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\BraceMatchingBase.cs" />

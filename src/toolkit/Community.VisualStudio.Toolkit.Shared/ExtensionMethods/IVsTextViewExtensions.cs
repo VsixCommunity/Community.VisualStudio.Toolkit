@@ -26,7 +26,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
         /// Converts an <see cref="IVsTextView"/> to a <see cref="DocumentView"/>.
         /// </summary>
         /// <returns><see langword="null"/> if the textView is null or the conversion failed.</returns>
-        internal static DocumentView ToDocumentView(this IVsTextView textView)
+        public static DocumentView ToDocumentView(this IVsTextView textView)
         {
             if (textView == null || textView is not IVsTextViewEx nativeView)
             {
@@ -62,7 +62,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
         /// Converts an <see cref="IWpfTextView"/> to a <see cref="DocumentView"/>.
         /// </summary>
         /// <returns><see langword="null"/> if the textView is null or the conversion failed.</returns>
-        internal static DocumentView ToDocumentView(this IWpfTextView textView)
+        public static DocumentView ToDocumentView(this IWpfTextView textView)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             IVsTextView? nativeView = textView.ToIVsTextView();
@@ -89,7 +89,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
         /// Converts the <see cref="IVsTextView"/> to an <see cref="IWpfTextView"/>/
         /// </summary>
         /// <returns></returns>
-        internal static IWpfTextView? ToIWpfTextView(this IVsTextView nativeView)
+        public static IWpfTextView? ToIWpfTextView(this IVsTextView nativeView)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             IVsEditorAdaptersFactoryService? editorAdapter = VS.GetMefService<IVsEditorAdaptersFactoryService>();
@@ -110,7 +110,7 @@ namespace Microsoft.VisualStudio.TextManager.Interop
         /// Converts the <see cref="IVsTextView"/> to an <see cref="IWpfTextView"/>/
         /// </summary>
         /// <returns></returns>
-        internal static IVsTextView? ToIVsTextView(this IWpfTextView view)
+        public static IVsTextView? ToIVsTextView(this IWpfTextView view)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             IVsEditorAdaptersFactoryService? editorAdapter = VS.GetMefService<IVsEditorAdaptersFactoryService>();

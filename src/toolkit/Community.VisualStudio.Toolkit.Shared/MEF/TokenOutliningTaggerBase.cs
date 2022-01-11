@@ -57,7 +57,7 @@ namespace Community.VisualStudio.Toolkit
                         guideLineHorizontalAnchor: span.Start,
                         type: PredefinedStructureTagTypes.Structural,
                         isCollapsible: true,
-                        collapsedForm: tag.GetOutliningText(text)!,
+                        collapsedForm: tag.GetOutliningText(text),
                         collapsedHintForm: null);
 
             return new TagSpan<IStructureTag>(span, structureTag);
