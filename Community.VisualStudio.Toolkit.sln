@@ -76,6 +76,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imports", "imports", "{544D
 		src\toolkit\nuget\build\imports\ExtensibilityEssentialsCheck.targets = src\toolkit\nuget\build\imports\ExtensibilityEssentialsCheck.targets
 		src\toolkit\nuget\build\imports\MSBuildCapabilities.props = src\toolkit\nuget\build\imports\MSBuildCapabilities.props
 		src\toolkit\nuget\build\imports\NewtonsoftJsonVersionCheck.targets = src\toolkit\nuget\build\imports\NewtonsoftJsonVersionCheck.targets
+		src\toolkit\nuget\build\imports\PublishToMarketplace.targets = src\toolkit\nuget\build\imports\PublishToMarketplace.targets
 	EndProjectSection
 EndProject
 Global

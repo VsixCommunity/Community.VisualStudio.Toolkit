@@ -2,5 +2,6 @@
 
   <Import Project="$(MSBuildThisFileDirectory)imports\ExtensibilityEssentialsCheck.targets"/>
   <Import Project="$(MSBuildThisFileDirectory)imports\NewtonsoftJsonVersionCheck.targets"/>
+  <Import Project="$(MSBuildThisFileDirectory)imports\PublishToMarketplace.targets"/>
 
 </Project>
