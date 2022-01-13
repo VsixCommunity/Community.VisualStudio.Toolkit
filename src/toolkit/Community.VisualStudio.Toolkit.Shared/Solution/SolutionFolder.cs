@@ -58,11 +58,11 @@ namespace Community.VisualStudio.Toolkit
 
             if (solution != null)
             {
-                GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
-
-                if (hierarchy is IVsSolution ivsSolution)
+                GetItemInfo(out IVsHierarchy folderHierarchy, out _, out _);
+                solution.GetItemInfo(out IVsHierarchy solutionHierarchy, out _, out _);
+                if (solutionHierarchy is IVsSolution ivsSolution)
                 {
-                    int hr = ivsSolution.CloseSolutionElement(0, hierarchy, 0);
+                    int hr = ivsSolution.CloseSolutionElement(0, folderHierarchy, 0);
                     return hr == VSConstants.S_OK;
                 }
             }
