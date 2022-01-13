@@ -19,12 +19,32 @@ namespace Community.VisualStudio.Toolkit
 
         [Import] internal ITextStructureNavigatorSelectorService? _textStructureNavigatorSelector = null;
 
+        /// <summary>
+        /// The Options that are used to find the matching words. The default implementation returns 
+        /// FindOptions.WholeWord | FindOptions.MatchCase
+        /// </summary>
+        public virtual FindOptions FindOptions => FindOptions.WholeWord | FindOptions.MatchCase;
+        /// <summary>
+        /// Filter the results. 
+        /// </summary>
+        /// <param name="results">Collection of the results</param>
+        /// <returns>Filtered list of results. The default implementation returns all the results</returns>
+        public virtual IEnumerable<SnapshotSpan>? FilterResults(IEnumerable<SnapshotSpan>? results) => results;
+        /// <summary>
+        /// Should the Highlight code be triggered for this word
+        /// </summary>
+        /// <param name="text">The word to highlight</param>
+        /// <returns>true to continue the highlight or false to prevent the highlight.
+        /// The default implementation always returns true.</returns>
+        public virtual bool ShouldHighlight(string? text) => true;
+
         /// <inheritdoc/>
         public ITagger<T> CreateTagger<T>(ITextView textView, ITextBuffer buffer) where T : ITag
         {
             ITextStructureNavigator? navigator = _textStructureNavigatorSelector?.GetTextStructureNavigator(textView.TextBuffer);
 
-            return (ITagger<T>)buffer.Properties.GetOrCreateSingletonProperty(() => new SameWordHighlighterTagger(textView, buffer, _textSearchService, navigator));
+            return (ITagger<T>)buffer.Properties.GetOrCreateSingletonProperty(() => 
+                new SameWordHighlighterTagger(textView, buffer, _textSearchService, navigator, this));
         }
     }
 
@@ -39,18 +59,21 @@ namespace Community.VisualStudio.Toolkit
         private readonly ITextBuffer _buffer;
         private readonly ITextSearchService? _textSearchService;
         private readonly ITextStructureNavigator? _textStructureNavigator;
+        private readonly SameWordHighlighterBase _tagger;
         private NormalizedSnapshotSpanCollection _wordSpans;
         private SnapshotSpan? _currentWord;
         private SnapshotPoint _requestedPoint;
         private bool _isDisposed;
         private readonly object _syncLock = new();
 
-        public SameWordHighlighterTagger(ITextView view, ITextBuffer sourceBuffer, ITextSearchService? textSearchService, ITextStructureNavigator? textStructureNavigator)
+        public SameWordHighlighterTagger(ITextView view, ITextBuffer sourceBuffer, ITextSearchService? textSearchService, 
+            ITextStructureNavigator? textStructureNavigator, SameWordHighlighterBase tagger)
         {
             _view = view;
             _buffer = sourceBuffer;
             _textSearchService = textSearchService;
             _textStructureNavigator = textStructureNavigator;
+            _tagger = tagger;
             _wordSpans = new NormalizedSnapshotSpanCollection();
             _currentWord = null;
             _view.Caret.PositionChanged += CaretPositionChanged;
@@ -96,12 +119,17 @@ namespace Community.VisualStudio.Toolkit
             SnapshotPoint currentRequest = _requestedPoint;
             List<SnapshotSpan>? wordSpans = new();
 
-            FindData findData = new(word.Span.GetText(), word.Span.Snapshot)
+            string? text = word.Span.GetText();
+            if (!_tagger.ShouldHighlight(text))
+                return;
+
+            FindData findData = new(text, word.Span.Snapshot)
             {
-                FindOptions = FindOptions.WholeWord | FindOptions.MatchCase
+                FindOptions = _tagger.FindOptions  
             };
 
-            wordSpans.AddRange(_textSearchService!.FindAll(findData));
+            System.Collections.ObjectModel.Collection<SnapshotSpan>? found = _textSearchService!.FindAll(findData);
+            wordSpans.AddRange(_tagger.FilterResults(found));
 
             if (wordSpans.Count == 1)
             {
