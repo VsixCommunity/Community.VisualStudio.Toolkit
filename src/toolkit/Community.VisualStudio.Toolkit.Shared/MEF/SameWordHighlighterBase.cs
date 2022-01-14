@@ -121,22 +121,21 @@ namespace Community.VisualStudio.Toolkit
             List<SnapshotSpan>? wordSpans = new();
 
             string? text = word.Span.GetText();
-            if (!_tagger.ShouldHighlight(text))
-                return;
-
-            FindData findData = new(text, word.Span.Snapshot)
+            if (_tagger.ShouldHighlight(text))
             {
-                FindOptions = _tagger.FindOptions  
-            };
+                FindData findData = new(text, word.Span.Snapshot)
+                {
+                    FindOptions = _tagger.FindOptions
+                };
 
-            System.Collections.ObjectModel.Collection<SnapshotSpan>? found = _textSearchService!.FindAll(findData);
-            wordSpans.AddRange(_tagger.FilterResults(found));
+                System.Collections.ObjectModel.Collection<SnapshotSpan>? found = _textSearchService!.FindAll(findData);
+                wordSpans.AddRange(_tagger.FilterResults(found));
 
-            if (wordSpans.Count == 1)
-            {
-                wordSpans.Clear();
+                if (wordSpans.Count == 1)
+                {
+                    wordSpans.Clear();
+                }
             }
-
             //If another change hasn't happened, do a real update
             if (currentRequest == _requestedPoint)
             {
