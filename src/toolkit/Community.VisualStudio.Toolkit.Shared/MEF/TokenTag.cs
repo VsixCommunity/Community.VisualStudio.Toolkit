@@ -15,10 +15,10 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        public TokenTag(object tokenType, params ErrorListItem[] errors)
+        public TokenTag(object tokenType, IEnumerable<ErrorListItem> errors)
         {
             TokenType = tokenType;
-            Errors = errors;
+            Errors = errors.ToList() ?? new();
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// A list of errors associated with the tag.
         /// </summary>
-        public virtual IList<ErrorListItem> Errors { get; set; }
+        public virtual IEnumerable<ErrorListItem> Errors { get; set; }
 
         /// <summary>
         /// Returns true if there are no errors in the list.

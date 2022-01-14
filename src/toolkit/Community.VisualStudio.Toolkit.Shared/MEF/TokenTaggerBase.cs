@@ -70,7 +70,7 @@ namespace Community.VisualStudio.Toolkit
         /// <param name="errors">Optional. List of errors associated with the token. This is used by the error tagger and will Error List.</param>
         public virtual TokenTag CreateToken(object tokenType, bool hasTooltip, bool supportOutlining, IEnumerable<ErrorListItem> errors)
         {
-            return new TokenTag(tokenType, errors.ToArray())
+            return new TokenTag(tokenType, errors)
             {
                 GetTooltipAsync = hasTooltip ? GetTooltipAsync : null,
                 GetOutliningText = supportOutlining ? GetOutliningText : null,
@@ -84,7 +84,7 @@ namespace Community.VisualStudio.Toolkit
         /// <returns><see langword="null"/>, or any text or WPF content to show in the tooltip (QuickInfo).</returns>
         public virtual Task<object> GetTooltipAsync(SnapshotPoint triggerPoint)
         {
-            return Task.FromResult<object>(null);
+            return Task.FromResult<object>(null!);
         }
 
         /// <summary>
