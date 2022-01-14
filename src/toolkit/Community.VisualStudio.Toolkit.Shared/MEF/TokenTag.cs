@@ -18,7 +18,7 @@ namespace Community.VisualStudio.Toolkit
         public TokenTag(object tokenType, IEnumerable<ErrorListItem> errors)
         {
             TokenType = tokenType;
-            Errors = errors.ToList() ?? new();
+            Errors = errors?.ToList() ?? new();
         }
 
         /// <summary>
