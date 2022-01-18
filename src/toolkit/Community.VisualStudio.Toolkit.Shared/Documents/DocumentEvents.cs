@@ -36,11 +36,25 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Fires after the document was opened in the editor.
         /// </summary>
+        /// <remarks>
+        /// The event is called for documents in the document well but also
+        /// for project files and may also be called for solution files.<br/>
+        /// The document name may also be a special (generated name) in the form of
+        /// RDT_PROJ_MK::{A2FE74E1-B743-11d0-AE1A-00A0C90FFFC3} that is used by 
+        /// Visual Studio for the 'miscellaneous files' project 
+        /// </remarks>
         public event Action<string>? Opened;
 
         /// <summary>
-        /// Fires after the document was closed.s
+        /// Fires after the document was closed.
         /// </summary>
+        /// <remarks>
+        /// The event is called for documents in the document well but also
+        /// for project files and may also be called for solution files. <br/>
+        /// The document name may also be a special (generated name) in the form of
+        /// RDT_PROJ_MK::{A2FE74E1-B743-11d0-AE1A-00A0C90FFFC3} that is used by 
+        /// Visual Studio for the 'miscellaneous files' project 
+        /// </remarks>
         public event Action<string>? Closed;
 
         /// <summary>
@@ -55,10 +69,17 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsRunningDocTableEvents.OnAfterFirstDocumentLock(uint docCookie, uint dwRDTLockType, uint dwReadLocksRemaining, uint dwEditLocksRemaining)
         {
-            if (Opened != null)
+            // Please note that this event is called multiple times when a document
+            // is opened for editing.
+            // This code tries to only call the Open Event once
+            // 
+            if (dwEditLocksRemaining == 1 && dwReadLocksRemaining == 0)
             {
-                string file = _rdt.GetDocumentInfo(docCookie).Moniker;
-                Opened.Invoke(file);
+                if (Opened != null)
+                {
+                    string file = _rdt.GetDocumentInfo(docCookie).Moniker;
+                    Opened.Invoke(file);
+                }
             }
 
             return VSConstants.S_OK;
@@ -66,13 +87,19 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsRunningDocTableEvents.OnBeforeLastDocumentUnlock(uint docCookie, uint dwRDTLockType, uint dwReadLocksRemaining, uint dwEditLocksRemaining)
         {
-            if (Closed != null)
+            // Please note that this event is called multiple times when a document
+            // is opened for editing.
+            // This code tries to only call the Close Event once
+            if (dwReadLocksRemaining == 0 && dwEditLocksRemaining == 0)
             {
-                string file = _rdt.GetDocumentInfo(docCookie).Moniker;
-
-                if (!string.IsNullOrEmpty(file))
+                if (Closed != null)
                 {
-                    Closed.Invoke(file);
+                    string file = _rdt.GetDocumentInfo(docCookie).Moniker;
+
+                    if (!string.IsNullOrEmpty(file))
+                    {
+                        Closed.Invoke(file);
+                    }
                 }
             }
 
@@ -97,7 +124,7 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsRunningDocTableEvents.OnBeforeDocumentWindowShow(uint docCookie, int fFirstShow, IVsWindowFrame pFrame)
         {
-            if (BeforeDocumentWindowShow != null)
+            if (BeforeDocumentWindowShow != null && fFirstShow == 1)
             {
                 DocumentView docView = new(pFrame);
                 BeforeDocumentWindowShow.Invoke(docView);

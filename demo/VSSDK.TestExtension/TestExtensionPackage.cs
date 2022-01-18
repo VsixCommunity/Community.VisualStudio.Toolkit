@@ -37,6 +37,8 @@ namespace VSSDK.TestExtension
             await this.RegisterCommandsAsync();
 
             VS.Events.DocumentEvents.AfterDocumentWindowHide += DocumentEvents_AfterDocumentWindowHide;
+            VS.Events.DocumentEvents.Opened += DocumentEvents_Opened;
+            VS.Events.DocumentEvents.Closed += DocumentEvents_Closed;
             VS.Events.DocumentEvents.BeforeDocumentWindowShow += DocumentEvents_BeforeDocumentWindowShow;
             VS.Events.ProjectItemsEvents.AfterRenameProjectItems += ProjectItemsEvents_AfterRenameProjectItems;
             VS.Events.ProjectItemsEvents.AfterRemoveProjectItems += ProjectItemsEvents_AfterRemoveProjectItems;
@@ -44,6 +46,16 @@ namespace VSSDK.TestExtension
             VS.Events.SolutionEvents.OnBeforeOpenProject += SolutionEvents_OnBeforeOpenProject;
             VS.Events.BuildEvents.ProjectConfigurationChanged += BuildEvents_ProjectConfigurationChanged;
             VS.Events.BuildEvents.SolutionConfigurationChanged += BuildEvents_SolutionConfigurationChanged;
+        }
+
+        private void DocumentEvents_Closed(string obj)
+        {
+            VS.StatusBar.ShowMessageAsync("Closed document " + obj ?? "no name").FireAndForget();
+        }
+
+        private void DocumentEvents_Opened(string obj)
+        {
+            VS.StatusBar.ShowMessageAsync("Opened document " + obj ?? "no name").FireAndForget();
         }
 
         private void BuildEvents_SolutionConfigurationChanged()
