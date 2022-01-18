@@ -78,6 +78,10 @@ catch (Exception ex)
 }
 ```
 
+### Dependency Injection
+To incorporate a DI container into your extension, see the complimentary project: [
+Community.VisualStudio.Toolkit.DependencyInjection](https://github.com/VsixCommunity/Community.VisualStudio.Toolkit.DependencyInjection)
+
 ## Purpose
 This package attempts to solve multiple issues with the current extensibility model.
 
@@ -85,12 +89,10 @@ This package attempts to solve multiple issues with the current extensibility mo
 Base classes, helper methods, and extension methods encapsulate the complexity so you don't have to. 
 
 ### It's difficult to find what services and components to use
-Now the most commmon services are all easy to get to from the main `VS` object.
-
+Now the most common services are all easy to get to from the main `VS` object.
 
 ### Best practices change with each version of VS. I can't keep up
 The underlying implementation of the project uses the best practices for each version of VS it supports. This ensures that your extension is much more likely to handle threading correctly, and avoid hangs and crashes.
-
 
 ### The API is dated and has lots of ugly COM legacy noise
 The most common APIs of the old complex COM nature are wrapped to expose a modern async API. This makes it much easier to code against the API and you can avoid the `EnvDTE` object for most scenarios.

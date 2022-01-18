@@ -59,7 +59,7 @@ namespace Community.VisualStudio.Toolkit
             }
         }
 
-        private static string GetErrorType(IList<ErrorListItem> errors)
+        private static string GetErrorType(IEnumerable<ErrorListItem> errors)
         {
             return errors.FirstOrDefault()?.ErrorCategory ?? PredefinedErrorTypeNames.SyntaxError;
         }

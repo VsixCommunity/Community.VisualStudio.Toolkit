@@ -7,7 +7,6 @@ using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Operations;
 using Microsoft.VisualStudio.Text.Tagging;
-using Microsoft.VisualStudio.Threading;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -108,7 +107,7 @@ namespace Community.VisualStudio.Toolkit
 
             if (word.HasValue && word.Value.IsSignificant && word.Value.Span.Length > 1)
             {
-                StartOnIdle(ThreadHelper.JoinableTaskFactory, () =>
+                ThreadHelper.JoinableTaskFactory.StartOnIdleShim(() =>
                 {
                     UpdateWordAdornments(word.Value);
                 }, VsTaskRunContext.UIThreadIdlePriority).FireAndForget();
@@ -198,20 +197,6 @@ namespace Community.VisualStudio.Toolkit
             foreach (SnapshotSpan span in NormalizedSnapshotSpanCollection.Overlap(spans, wordSpans))
             {
                 yield return new TagSpan<HighlightWordTag>(span, new HighlightWordTag());
-            }
-        }
-
-        //Schedules a delegate for background execution on the UI thread without inheriting any claim to the UI thread from its caller.
-        private static JoinableTask StartOnIdle(JoinableTaskFactory joinableTaskFactory, Action action, VsTaskRunContext priority = VsTaskRunContext.UIThreadBackgroundPriority)
-        {
-            using (joinableTaskFactory.Context.SuppressRelevance())
-            {
-                return joinableTaskFactory.RunAsync(priority, async delegate
-                {
-                    await System.Threading.Tasks.Task.Yield();
-                    await joinableTaskFactory.SwitchToMainThreadAsync();
-                    action();
-                });
             }
         }
 

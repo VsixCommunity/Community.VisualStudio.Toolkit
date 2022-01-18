@@ -54,24 +54,19 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <inheritdoc/>
+        public override int GetLanguageName(out string name)
+        {
+            name = Name;
+            return VSConstants.S_OK;
+        }
+
+        /// <inheritdoc/>
         public abstract override string Name { get; }
 
         /// <summary>
         /// An array of file extensions associated with this language.
         /// </summary>
         public abstract string[] FileExtensions { get; }
-
-        /// <inheritdoc/>
-        public override Source CreateSource(IVsTextLines buffer)
-        {
-            return new DefaultSource(this, buffer, new DefaultColorizer(this, buffer, null));
-        }
-
-        /// <inheritdoc/>
-        public override TypeAndMemberDropdownBars CreateDropDownHelper(IVsTextView forView)
-        {
-            return base.CreateDropDownHelper(forView);
-        }
 
         /// <summary>
         /// Set the default preferences for this language.
@@ -92,21 +87,14 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <inheritdoc/>
-        public override IScanner GetScanner(IVsTextLines buffer)
-        {
-            return null!;
-        }
+        public override IScanner GetScanner(IVsTextLines buffer) => null!;
 
         /// <inheritdoc/>
-        public override AuthoringScope ParseSource(ParseRequest req)
-        {
-            return new DefaultAuthoringScope();
-        }
+        public override AuthoringScope ParseSource(ParseRequest req) => null!;
 
         /// <inheritdoc/>
         public override string GetFormatFilterList()
         {
-            // Constructs a string similar to: Foo File (*.foo, *.bar)|*.foo;*.bar";
             IEnumerable<string> normalized = FileExtensions.Select(f => $"*{f}");
             string first = string.Join(", ", normalized);
             string second = string.Join(";", normalized);

@@ -46,9 +46,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\OutputWindowTextWriterVS14.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProjectTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ToolkitThreadHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LanguageService\DefaultAuthoringScope.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LanguageService\DefaultColorizer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LanguageService\DefaultSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LanguageService\LanguageBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\BraceCompletionBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\BraceMatchingBase.cs" />
@@ -59,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MEF\TokenOutliningTaggerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\TokenQuickInfoBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\TokenTag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MEF\TokenTaggerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\InternalTaggerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\WpfTextViewCreationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\InfoBar.cs" />

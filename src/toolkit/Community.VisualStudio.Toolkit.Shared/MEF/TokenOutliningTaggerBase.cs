@@ -32,7 +32,7 @@ namespace Community.VisualStudio.Toolkit
         {
             foreach (IMappingTagSpan<TokenTag> tag in Tags!.GetTags(spans))
             {
-                if (!tag.Tag.SupportOutlining || tag.Tag.GetOutliningText == null)
+                if (tag.Tag.GetOutliningText == null)
                 {
                     continue;
                 }
