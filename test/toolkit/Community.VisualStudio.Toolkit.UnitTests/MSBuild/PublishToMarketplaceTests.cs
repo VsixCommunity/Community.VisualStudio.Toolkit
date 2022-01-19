@@ -29,7 +29,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TestProject project = CreateProject("Extension");
             WritePublishManifest("Extension/publish.json");
 
-            CompilationResult result = await BuildAsync(project, new CompileOptions
+            CompilationResult result = await BuildAndPublishAsync(project, new CompileOptions
             {
                 Properties = new Properties
                 {
@@ -46,7 +46,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
         {
             TestProject project = CreateProject("Extension");
 
-            CompilationResult result = await BuildAsync(project, new CompileOptions
+            CompilationResult result = await BuildAndPublishAsync(project, new CompileOptions
             {
                 Properties = new Properties
                 {
@@ -63,7 +63,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
         {
             TestProject project = CreateProject("Extension");
 
-            CompilationResult result = await BuildAsync(project, new CompileOptions
+            CompilationResult result = await BuildAndPublishAsync(project, new CompileOptions
             {
                 Properties = new Properties
                 {
@@ -82,7 +82,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TestProject project = CreateProject("Extension");
             WritePublishManifest("Extension/publish.json");
 
-            CompilationResult result = await BuildAsync(project, new CompileOptions
+            CompilationResult result = await BuildAndPublishAsync(project, new CompileOptions
             {
                 Properties = new Properties
                 {
@@ -99,7 +99,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TestProject project = CreateProject("Extension");
             WritePublishManifest("Extension/publish.json");
 
-            CompilationResult result = await BuildAsync(project, new CompileOptions
+            CompilationResult result = await BuildAndPublishAsync(project, new CompileOptions
             {
                 Properties = new Properties
                 {
@@ -129,7 +129,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TestProject project = CreateProject("source/Extension");
             WritePublishManifest("publish.json");
 
-            CompilationResult result = await BuildAsync(project, new CompileOptions
+            CompilationResult result = await BuildAndPublishAsync(project, new CompileOptions
             {
                 Properties = new Properties
                 {
@@ -159,7 +159,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TestProject project = CreateProject("Extension");
             WritePublishManifest("bar.json");
 
-            CompilationResult result = await BuildAsync(project, new CompileOptions
+            CompilationResult result = await BuildAndPublishAsync(project, new CompileOptions
             {
                 Properties = new Properties
                 {
@@ -190,7 +190,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TestProject project = CreateProject("Extension");
             WritePublishManifest("Extension/publish.json");
 
-            CompilationResult result = await BuildAsync(project, new CompileOptions
+            CompilationResult result = await BuildAndPublishAsync(project, new CompileOptions
             {
                 Properties = new Properties
                 {
@@ -222,7 +222,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TestProject project = CreateProject("Extension");
             WritePublishManifest("Extension/publish.json");
 
-            CompilationResult result = await BuildAsync(project, new CompileOptions
+            CompilationResult result = await BuildAndPublishAsync(project, new CompileOptions
             {
                 Properties = new Properties
                 {
@@ -244,7 +244,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TestProject project = CreateProject("Extension");
             WritePublishManifest("Extension/publish.json");
 
-            CompilationResult result = await BuildAsync(project, new CompileOptions
+            CompilationResult result = await BuildAndPublishAsync(project, new CompileOptions
             {
                 Properties = new Properties
                 {
@@ -275,7 +275,8 @@ namespace Community.VisualStudio.Toolkit.UnitTests
                 Properties = new Properties
                 {
                     Configuration = "Release",
-                    PersonalAccessToken = "foo"
+                    PersonalAccessToken = "foo",
+                    BuildBeforePublish = "true"
                 }
             }, _outputHelper);
 
@@ -293,7 +294,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             Directory.CreateDirectory(Path.GetDirectoryName(extensionFileName));
             File.WriteAllText(extensionFileName, "");
 
-            CompilationResult result = await BuildAsync(project, new CompileOptions
+            CompilationResult result = await BuildAndPublishAsync(project, new CompileOptions
             {
                 Target = "PublishToMarketplace",
                 Properties = new Properties
@@ -319,6 +320,86 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             );
         }
 
+        [Fact]
+        public async Task FailsIfExtensionFileDoesNotExistAsync()
+        {
+            TestProject project = CreateProject("Extension");
+            WritePublishManifest("Extension/publish.json");
+
+            string extensionFileName = Path.Combine(_directory.FullPath, "output", "file.vsix");
+            CompilationResult result = await PublishAsync(project, new CompileOptions
+            {
+                Target = "PublishToMarketplace",
+                Properties = new Properties
+                {
+                    Configuration = "Release",
+                    PersonalAccessToken = "foo",
+                    PublishExtension = extensionFileName
+                }
+            });
+
+            AssertError(result, $"The extension file could not be found at '{extensionFileName}'");
+        }
+
+        [Fact]
+        public async Task DoesNotBuildBeforePublishingByDefaultAsync()
+        {
+            TestProject project = CreateProject("Extension");
+            WritePublishManifest("Extension/publish.json");
+
+            // Write an extension file because it won't be built for us.
+            string extensionFileName = Path.Combine(_directory.FullPath, "file.vsix");
+            Directory.CreateDirectory(Path.GetDirectoryName(extensionFileName));
+            File.WriteAllText(extensionFileName, "");
+
+            project.AddTargetElement(@"
+                <Target Name='LogBuild' BeforeTargets='Build'>
+                    <Message Text='Build target is running.' Importance='high' />
+                </Target>
+            ");
+
+            CompilationResult result = await PublishAsync(project, new CompileOptions
+            {
+                Target = "PublishToMarketplace",
+                Properties = new Properties
+                {
+                    Configuration = "Release",
+                    PersonalAccessToken = "foo",
+                    PublishExtension = extensionFileName
+                },
+            });
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.DoesNotContain("Build target is running.", result.StandardOutput.Select((x) => x.Trim()));
+        }
+
+        [Fact]
+        public async Task BuildsBeforePublishingWhenOptionIsEnabledAsync()
+        {
+            TestProject project = CreateProject("Extension");
+            WritePublishManifest("Extension/publish.json");
+
+            project.AddTargetElement(@"
+                <Target Name='LogBuild' BeforeTargets='Build'>
+                    <Message Text='Build target is running.' Importance='high' />
+                </Target>
+            ");
+
+            CompilationResult result = await PublishAsync(project, new CompileOptions
+            {
+                Target = "PublishToMarketplace",
+                Properties = new Properties
+                {
+                    Configuration = "Release",
+                    PersonalAccessToken = "foo",
+                    BuildBeforePublish = "true"
+                },
+            });
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("Build target is running.", result.StandardOutput.Select((x) => x.Trim()));
+        }
+
         private TestProject CreateProject(string subDirectory)
         {
             TestProject project = new(Path.Combine(_directory.FullPath, subDirectory));
@@ -334,13 +415,27 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             File.WriteAllText(Path.Combine(_directory.FullPath, fileName), "");
         }
 
-        private async Task<CompilationResult> BuildAsync(TestProject project, CompileOptions options)
+        private async Task<CompilationResult> BuildAndPublishAsync(TestProject project, CompileOptions options)
+        {
+            CompilationResult buildResult = await BuildAsync(project, options);
+            Assert.Equal(0, buildResult.ExitCode);
+
+            return await PublishAsync(project, options);
+        }
+
+        private async Task<CompilationResult> PublishAsync(TestProject project, CompileOptions options)
         {
             options.Target = "PublishToMarketplace";
 
             // Always use our mock VsixPublisher executable.
             ((Properties)options.Properties).VsixPublisher = await _fixture.GetVsixPublisherAsync(_outputHelper);
 
+            return await project.CompileAsync(options, _outputHelper);
+        }
+
+        private async Task<CompilationResult> BuildAsync(TestProject project, CompileOptions options)
+        {
+            options.Target = "Build";
             return await project.CompileAsync(options, _outputHelper);
         }
 
@@ -433,6 +528,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             public string? PersonalAccessToken { get; set; }
             public string? PublishIgnoreWarnings { get; set; }
             public string? PublishExtension { get; set; }
+            public string? BuildBeforePublish { get; set; }
         }
     }
 }

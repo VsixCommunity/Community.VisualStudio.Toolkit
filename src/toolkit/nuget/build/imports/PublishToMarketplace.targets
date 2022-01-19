@@ -1,5 +1,13 @@
 <Project>
 
+  <!-- 
+  Provide a way for a build to be done prior to publishing, so 
+  that building and publishing can be done in a single step. 
+  -->
+  <PropertyGroup Condition="'$(BuildBeforePublish)' == 'true'">
+    <PublishToMarketplaceDependsOn>Rebuild</PublishToMarketplaceDependsOn>
+  </PropertyGroup>
+
   <ItemGroup>
     <!-- 
     Update the build tools NuGet package reference to generate a path property. This will
@@ -11,7 +19,7 @@
     </PackageReference>
   </ItemGroup>
 
-  <Target Name="PublishToMarketplace" DependsOnTargets="Rebuild">
+  <Target Name="PublishToMarketplace" DependsOnTargets="$(PublishToMarketplaceDependsOn)">
     <Message Text="Publishing extension to the marketplace..." Importance="normal"/>
 
     <!-- Before anything else happens, ensure that only "Release" builds can be published. -->
@@ -58,12 +66,18 @@
       Text="A personal access token must be specified in the 'PersonalAccessToken' build property."
       />
 
+    <!-- Verify that the extension file was found. -->
+    <Error
+      Condition="'$(PublishExtension)' == '' or !Exists('$(PublishExtension)')"
+      Text="The extension file could not be found at '$(PublishExtension)'."
+      />
+
     <!-- Everything should be valid now, so define the command to publish the extension. -->
     <PropertyGroup>
       <PublishCommand>&quot;$(VsixPublisher)&quot; publish -personalAccessToken &quot;$(PersonalAccessToken)&quot; -payload &quot;$(PublishExtension)&quot; -publishManifest &quot;$(PublishManifest)&quot;</PublishCommand>
       <PublishCommand Condition="'$(PublishIgnoreWarnings)' != ''">$(PublishCommand) -ignoreWarnings &quot;$(PublishIgnoreWarnings)&quot;</PublishCommand>
     </PropertyGroup>
-    
+
     <Exec
       Command="$(PublishCommand)"
       StandardOutputImportance="normal"

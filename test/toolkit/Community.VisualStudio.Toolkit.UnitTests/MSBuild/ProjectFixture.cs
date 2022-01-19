@@ -17,8 +17,9 @@ namespace Community.VisualStudio.Toolkit.UnitTests
 
         private readonly string _directory;
         private readonly List<string> _files = new();
-        private readonly List<string> _props = new();
-        private readonly List<string> _targets = new();
+        private readonly List<string> _propsImports = new();
+        private readonly List<string> _targetsImports = new();
+        private readonly List<string> _targetsElements = new();
 
         public TestProject(string directory)
         {
@@ -28,7 +29,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
         public void ImportTargets(string fileName)
         {
             string path = GetTargetsPath(fileName);
-            _targets.Add($"<Import Project='{path}' />");
+            _targetsImports.Add($"<Import Project='{path}' />");
         }
 
         private static string GetTargetsPath(string fileName, [CallerFilePath] string thisFilePath = "")
@@ -48,6 +49,11 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             File.WriteAllText(fullPath, contents);
 
             _files.Add($"<Compile Include='{fileName}'/>");
+        }
+
+        public void AddTargetElement(string element)
+        {
+            _targetsElements.Add(element);
         }
 
         public async Task<CompilationResult> CompileAsync(CompileOptions options, ITestOutputHelper outputHelper)
@@ -135,7 +141,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
         <VSToolsPath Condition=""'$(VSToolsPath)' == ''"">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     </PropertyGroup>
     <Import Project='$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props' Condition=""Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"" />
-    {string.Join(Environment.NewLine, _props)}
+    {string.Join(Environment.NewLine, _propsImports)}
     <PropertyGroup>
         <Configuration Condition="" '$(Configuration)' == '' "">Debug</Configuration>
         <Platform Condition="" '$(Platform)' == '' "">AnyCPU</Platform>
@@ -161,7 +167,8 @@ namespace Community.VisualStudio.Toolkit.UnitTests
         <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
-    {string.Join(Environment.NewLine, _targets)}
+    {string.Join(Environment.NewLine, _targetsElements)}
+    {string.Join(Environment.NewLine, _targetsImports)}
     <Import Project='$(MSBuildToolsPath)\Microsoft.CSharp.targets' />
     <Import Project='$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets' Condition=""'$(VSToolsPath)' != ''"" />
 </Project>");
