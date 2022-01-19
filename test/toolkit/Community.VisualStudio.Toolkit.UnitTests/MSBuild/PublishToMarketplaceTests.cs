@@ -283,6 +283,42 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             AssertError(result, "VSSDK: error VsixPub0031");
         }
 
+        [Fact]
+        public async Task CanOverrideTheExtensionFilePathAsync()
+        {
+            TestProject project = CreateProject("Extension");
+            WritePublishManifest("Extension/publish.json");
+
+            string extensionFileName = Path.Combine(_directory.FullPath, "output", "file.vsix");
+            Directory.CreateDirectory(Path.GetDirectoryName(extensionFileName));
+            File.WriteAllText(extensionFileName, "");
+
+            CompilationResult result = await BuildAsync(project, new CompileOptions
+            {
+                Target = "PublishToMarketplace",
+                Properties = new Properties
+                {
+                    Configuration = "Release",
+                    PersonalAccessToken = "foo",
+                    PublishExtension = extensionFileName
+                }
+            });
+
+            Assert.Equal(0, result.ExitCode);
+            AssertSequence(
+                new[] {
+                    "MockVsixPublisher.exe",
+                    "---------------------",
+                    "publish",
+                    "-personalAccessToken foo",
+                    $"-payload {extensionFileName}",
+                    $"-publishManifest {Path.Combine(_directory.FullPath, "Extension", "publish.json")}",
+                    "Extension published successfully."
+                },
+                result.StandardOutput.Select((x) => x.Trim())
+            );
+        }
+
         private TestProject CreateProject(string subDirectory)
         {
             TestProject project = new(Path.Combine(_directory.FullPath, subDirectory));
@@ -396,6 +432,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             public string? PublishManifest { get; set; }
             public string? PersonalAccessToken { get; set; }
             public string? PublishIgnoreWarnings { get; set; }
+            public string? PublishExtension { get; set; }
         }
     }
 }

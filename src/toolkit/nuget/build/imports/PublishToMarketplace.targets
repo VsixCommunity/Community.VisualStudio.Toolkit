@@ -36,7 +36,7 @@
       <PublishManifest Condition="'$(PublishManifest)' == ''">$([MSBuild]::GetPathOfFileAbove('publish.json', '$(ProjectDir)'))</PublishManifest>
 
       <!-- Build the path to the extension file if it hasn't been specified. -->
-      <PublishExtension  Condition="'$(PublishExtensionFileName)' == ''">$(ProjectDir)$(TargetVsixContainer)</PublishExtension>
+      <PublishExtension  Condition="'$(PublishExtension)' == ''">$(ProjectDir)$(TargetVsixContainer)</PublishExtension>
     </PropertyGroup>
 
     <!-- Log some properties to assist with debugging. -->
