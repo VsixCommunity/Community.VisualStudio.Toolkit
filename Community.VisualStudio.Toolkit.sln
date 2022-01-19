@@ -76,7 +76,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imports", "imports", "{544D
 		src\toolkit\nuget\build\imports\ExtensibilityEssentialsCheck.targets = src\toolkit\nuget\build\imports\ExtensibilityEssentialsCheck.targets
 		src\toolkit\nuget\build\imports\MSBuildCapabilities.props = src\toolkit\nuget\build\imports\MSBuildCapabilities.props
 		src\toolkit\nuget\build\imports\NewtonsoftJsonVersionCheck.targets = src\toolkit\nuget\build\imports\NewtonsoftJsonVersionCheck.targets
+		src\toolkit\nuget\build\imports\PublishToMarketplace.targets = src\toolkit\nuget\build\imports\PublishToMarketplace.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockVsixPublisher", "tools\MockVsixPublisher\MockVsixPublisher.csproj", "{C1BD4EBE-F43C-4A51-9801-A04E5C2C8B3E}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -153,6 +156,14 @@ Global
 		{6AB57B05-4938-44BB-BBE4-38F3A55D1A54}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6AB57B05-4938-44BB-BBE4-38F3A55D1A54}.Release|x86.ActiveCfg = Release|Any CPU
 		{6AB57B05-4938-44BB-BBE4-38F3A55D1A54}.Release|x86.Build.0 = Release|Any CPU
+		{C1BD4EBE-F43C-4A51-9801-A04E5C2C8B3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1BD4EBE-F43C-4A51-9801-A04E5C2C8B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1BD4EBE-F43C-4A51-9801-A04E5C2C8B3E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C1BD4EBE-F43C-4A51-9801-A04E5C2C8B3E}.Debug|x86.Build.0 = Debug|Any CPU
+		{C1BD4EBE-F43C-4A51-9801-A04E5C2C8B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1BD4EBE-F43C-4A51-9801-A04E5C2C8B3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1BD4EBE-F43C-4A51-9801-A04E5C2C8B3E}.Release|x86.ActiveCfg = Release|Any CPU
+		{C1BD4EBE-F43C-4A51-9801-A04E5C2C8B3E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -174,6 +185,7 @@ Global
 		{2EC8051C-B422-4CEC-BA2F-BBD15551E6CB} = {6ED8D47D-D076-44C4-B0CE-B6CF944C71D3}
 		{6ED8D47D-D076-44C4-B0CE-B6CF944C71D3} = {C27D922F-7897-4199-A2F9-6E1ED66C440A}
 		{544DB8D0-6BAB-4739-B141-971AA59A494C} = {2EC8051C-B422-4CEC-BA2F-BBD15551E6CB}
+		{C1BD4EBE-F43C-4A51-9801-A04E5C2C8B3E} = {3F2F4E99-C896-4C92-9F6D-66D2A8360168}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0DD67C0-2617-498C-81F0-A5E4FF5831F1}
