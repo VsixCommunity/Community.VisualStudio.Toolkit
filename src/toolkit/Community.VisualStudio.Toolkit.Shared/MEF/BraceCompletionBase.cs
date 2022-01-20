@@ -20,7 +20,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (IsValidBraceCompletionContext(openingPoint))
             {
-                context = new DefaultBraceCompletionContext();
+                context = GetCompletionContext();
                 return true;
             }
             else
@@ -29,14 +29,30 @@ namespace Community.VisualStudio.Toolkit
                 return false;
             }
         }
-
-        private bool IsValidBraceCompletionContext(SnapshotPoint openingPoint)
+        /// <summary>
+        /// Return object that implements the CompletionContext that you want to use
+        /// </summary>
+        /// <returns>an object of type IBraceCompletionContext</returns>
+        /// <remarks>The default implementation returns an object that allows 'everything'</remarks>
+        protected virtual IBraceCompletionContext GetCompletionContext()
         {
-            if (openingPoint.Position > 0 && _classifierService != null)
-            {
-                IList<ClassificationSpan> classificationSpans = _classifierService.GetClassifier(openingPoint.Snapshot.TextBuffer)
-                                                           .GetClassificationSpans(new SnapshotSpan(openingPoint - 1, 1));
+            return new DefaultBraceCompletionContext();
+        }
 
+        /// <summary>
+        /// Determine if brace completion should be active in this context
+        /// </summary>
+        /// <param name="openingPoint">Point where the brace completion is triggered</param>
+        /// <remarks>You can use this method to disable brace completion in comments or inside literal strings
+        /// The default behavior is to disable completion inside comments and literal strings, which is determined
+        /// by looking at the 
+        /// </remarks>
+        /// <returns>true when completion should be allowed</returns>
+        protected virtual bool IsValidBraceCompletionContext(SnapshotPoint openingPoint)
+        {
+            IList<ClassificationSpan>? classificationSpans = GetSpans(openingPoint);
+            if (classificationSpans != null)
+            {
                 foreach (ClassificationSpan span in classificationSpans)
                 {
                     if (span.ClassificationType.IsOfType(PredefinedClassificationTypeNames.Comment))
@@ -50,6 +66,21 @@ namespace Community.VisualStudio.Toolkit
                 }
             }
             return true;
+        }
+        /// <summary>
+        /// Return a list of Classification spans for the point in the snapshot
+        /// </summary>
+        /// <param name="point">Point for which the list should be returned</param>
+        /// <returns>A List of null when the position is invalid or when the classifier service is not available</returns>
+        protected IList<ClassificationSpan>? GetSpans(SnapshotPoint point)
+        {
+            if (point.Position > 0 && _classifierService != null)
+            {
+                IList<ClassificationSpan> classificationSpans = _classifierService.GetClassifier(point.Snapshot.TextBuffer)
+                                           .GetClassificationSpans(new SnapshotSpan(point - 1, 1));
+                return classificationSpans;
+            }
+            return null;
         }
     }
 
