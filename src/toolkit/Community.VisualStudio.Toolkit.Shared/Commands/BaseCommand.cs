@@ -29,12 +29,12 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// The command object associated with the command ID (GUID/ID).
         /// </summary>
-        public OleMenuCommand Command { get; private set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
+        public OleMenuCommand Command { get; protected set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
 
         /// <summary>
         /// The package class that initialized this class.
         /// </summary>
-        public AsyncPackage Package { get; private set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
+        public AsyncPackage Package { get; protected set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
 
         /// <summary>
         /// Initializes the command. This method must be called from the <see cref="AsyncPackage.InitializeAsync"/> method for the command to work.
