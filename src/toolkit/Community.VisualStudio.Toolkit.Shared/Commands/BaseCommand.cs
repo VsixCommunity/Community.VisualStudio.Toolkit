@@ -24,18 +24,9 @@ namespace Community.VisualStudio.Toolkit
     /// </code>
     /// </example>
     /// <typeparam name="T">The implementation type itself.</typeparam>
-    public abstract class BaseCommand<T> where T : class, new()
+    public abstract class BaseCommand<T> : BaseCommand
+        where T : class, new()
     {
-        /// <summary>
-        /// The command object associated with the command ID (GUID/ID).
-        /// </summary>
-        public OleMenuCommand Command { get; protected set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
-
-        /// <summary>
-        /// The package class that initialized this class.
-        /// </summary>
-        public AsyncPackage Package { get; protected set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
-
         /// <summary>
         /// Initializes the command. This method must be called from the <see cref="AsyncPackage.InitializeAsync"/> method for the command to work.
         /// </summary>
@@ -80,12 +71,40 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Allows the implementor to manipulate the command before its execution.</summary>
         /// <remarks>
         /// This method is invoked right after the <see cref="InitializeAsync(AsyncPackage)"/> method is executed and allows you to
-        /// manipulate the <see cref="Command"/> property etc. as part of the initialization phase.
+        /// manipulate the <see cref="BaseCommand.Command"/> property etc. as part of the initialization phase.
         /// </remarks>
         protected virtual Task InitializeCompletedAsync()
         {
             return Task.CompletedTask;
         }
+    }
+
+    /// <summary>
+    /// A base class that makes it easier to handle commands.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// [Command("489ba882-f600-4c8b-89db-eb366a4ee3b3", 0x0100)]
+    /// public class TestCommand : BaseCommand&lt;TestCommand&gt;
+    /// {
+    ///     protected override Task ExecuteAsync(OleMenuCmdEventArgs e)
+    ///     {
+    ///         return base.ExecuteAsync(e);
+    ///     }
+    /// }
+    /// </code>
+    /// </example>
+    public abstract class BaseCommand
+    {
+        /// <summary>
+        /// The command object associated with the command ID (GUID/ID).
+        /// </summary>
+        public OleMenuCommand Command { get; protected set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
+
+        /// <summary>
+        /// The package class that initialized this class.
+        /// </summary>
+        public AsyncPackage Package { get; protected set; } = null!; // This property is initialized in `InitializeAsync`, so it's never actually null.
 
         /// <summary>Executes synchronously when the command is invoked.</summary>
         /// <remarks>
