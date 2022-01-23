@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -17,7 +18,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<InfoBar?> CreateAsync(InfoBarModel model)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            
+
             IVsShell shell = await VS.Services.GetShellAsync();
             shell.GetProperty((int)__VSSPROPID7.VSSPROPID_MainWindowInfoBarHost, out object value);
 
@@ -127,6 +128,24 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return IsVisible;
+        }
+
+        /// <summary>
+        /// Attempts to get the underlying WPF UI element of the InfoBar
+        /// </summary>
+        public bool TryGetWpfElement(out Control? control)
+        {
+            object? uiObject = null;
+            control = null;
+            _uiElement?.GetUIObject(out uiObject);
+
+            if (uiObject is IVsUIWpfElement elm)
+            {
+                elm.GetFrameworkElement(out object frameworkElement);
+                control = frameworkElement as Control;
+            }
+
+            return control != null;
         }
 
         /// <summary>
