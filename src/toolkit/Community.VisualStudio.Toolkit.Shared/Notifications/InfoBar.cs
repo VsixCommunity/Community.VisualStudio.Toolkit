@@ -135,6 +135,8 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public bool TryGetWpfElement(out Control? control)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             object? uiObject = null;
             control = null;
             _uiElement?.GetUIObject(out uiObject);

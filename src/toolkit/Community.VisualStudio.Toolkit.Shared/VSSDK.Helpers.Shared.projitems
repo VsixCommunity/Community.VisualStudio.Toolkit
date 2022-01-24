@@ -59,8 +59,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)MEF\TokenTaggerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\InternalTaggerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MEF\WpfTextViewCreationListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Notifications\IRatingConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\InfoBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\MessageBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Notifications\RatingPrompt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notifications\StatusBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Options\BaseOptionPage.cs" />
