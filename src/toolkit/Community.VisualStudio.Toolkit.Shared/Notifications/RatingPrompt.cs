@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace Community.VisualStudio.Toolkit
     {
         private const string _urlFormat = "https://marketplace.visualstudio.com/items?itemName={0}&ssr=false#review-details";
         private const int _minutesVisible = 2;
-        private static bool _hasChecked;
+        private static readonly ConcurrentDictionary<string, bool> _hasAlreadyRequested = new();
 
         /// <summary>
         /// Creates a new instance of the rating prompt.
@@ -76,9 +77,8 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public virtual void RegisterSuccessfulUsage()
         {
-            if (!_hasChecked && Config.RatingRequests < RequestsBeforePrompt)
+            if (_hasAlreadyRequested.TryAdd(MarketplaceId, true) && Config.RatingRequests < RequestsBeforePrompt)
             {
-                _hasChecked = true;
                 IncrementAsync().FireAndForget();
             }
         }
@@ -88,13 +88,14 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public virtual async Task ResetAsync()
         {
+            _hasAlreadyRequested.TryRemove(MarketplaceId, out _);
             Config.RatingRequests = 0;
             await Config.SaveAsync();
         }
 
         private async Task IncrementAsync()
         {
-            await System.Threading.Tasks.Task.Yield(); // Yield to allow any shutdown procedure to continue
+            await Task.Yield(); // Yield to allow any shutdown procedure to continue
 
             if (VsShellUtilities.ShellIsShuttingDown)
             {
