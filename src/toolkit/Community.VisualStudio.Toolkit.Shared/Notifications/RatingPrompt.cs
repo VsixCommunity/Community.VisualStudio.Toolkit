@@ -29,11 +29,11 @@ namespace Community.VisualStudio.Toolkit
         /// <param name="requestsBeforePrompt">Indicates how many successful requests it takes before the user is prompted to rate.</param>
         /// <exception cref="ArgumentNullException">None of the parameters passed in can be null.</exception>
         /// <exception cref="ArgumentException">The Marketplace ID has to be valid so an absolute URI can be constructed.</exception>
-        public RatingPrompt(string marketplaceId, string extensionName, IRatingConfig config, int requestsBeforePrompt = 5)
+        public RatingPrompt(string marketplaceId, string extensionName, IRatingConfig? config = null, int requestsBeforePrompt = 5)
         {
             MarketplaceId = marketplaceId ?? throw new ArgumentNullException(nameof(marketplaceId));
             ExtensionName = extensionName ?? throw new ArgumentNullException(nameof(extensionName));
-            Config = config ?? throw new ArgumentNullException(nameof(config));
+            Config = config;
             RequestsBeforePrompt = requestsBeforePrompt;
 
             string ratingUrl = string.Format(CultureInfo.InvariantCulture, _urlFormat, MarketplaceId);
@@ -59,7 +59,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// The configuration/options object used to store the information related to the rating prompt.
         /// </summary>
-        public virtual IRatingConfig Config { get; }
+        public virtual IRatingConfig? Config { get; }
 
         /// <summary>
         /// The Marketplace URL the users are taken to when prompted.
@@ -77,6 +77,11 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public virtual void RegisterSuccessfulUsage()
         {
+            if (Config == null)
+            {
+                throw new NullReferenceException("The Config property has not been set.");
+            }
+
             if (_hasAlreadyRequested.TryAdd(MarketplaceId, true) && Config.RatingRequests < RequestsBeforePrompt)
             {
                 IncrementAsync().FireAndForget();
@@ -89,15 +94,19 @@ namespace Community.VisualStudio.Toolkit
         public virtual async Task ResetAsync()
         {
             _hasAlreadyRequested.TryRemove(MarketplaceId, out _);
-            Config.RatingRequests = 0;
-            await Config.SaveAsync();
+
+            if (Config != null)
+            {
+                Config.RatingRequests = 0;
+                await Config.SaveAsync();
+            }
         }
 
         private async Task IncrementAsync()
         {
             await Task.Yield(); // Yield to allow any shutdown procedure to continue
 
-            if (VsShellUtilities.ShellIsShuttingDown)
+            if (VsShellUtilities.ShellIsShuttingDown || Config == null)
             {
                 return;
             }
@@ -111,7 +120,10 @@ namespace Community.VisualStudio.Toolkit
             }
         }
 
-        private async Task PromptAsync()
+        /// <summary>
+        /// Prompts the user to rate the extension.
+        /// </summary>
+        public async Task PromptAsync()
         {
             InfoBar? infoBar = await CreateInfoBarAsync();
 

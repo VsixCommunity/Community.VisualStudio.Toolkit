@@ -37,8 +37,11 @@ namespace TestExtension
 
         private async Task ShowMessageAsync()
         {
+            var rating = new RatingPrompt("SteveCadwallader.CodeMaidVS2022", Vsix.Name);
+            await rating.PromptAsync();
+
             await VS.StatusBar.ShowMessageAsync("Test");
-            string text = await VS.StatusBar.GetMessageAsync();
+            string? text = await VS.StatusBar.GetMessageAsync();
             await VS.StatusBar.ShowMessageAsync(text + " OK");
 
             Exception ex = new Exception(nameof(TestExtension));
