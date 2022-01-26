@@ -102,14 +102,22 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Tries to set an attribute in the project file for the item.
         /// </summary>
-        public async Task<bool> TrySetAttributeAsync(string name, string value)
+        public Task<bool> TrySetAttributeAsync(string name, string value)
+        {
+            return TrySetAttributeAsync(name, value, ProjectStorageType.ProjectFile);
+        }
+
+        /// <summary>
+        /// Tries to set an attribute in the project file for the item, storing the value in the specified storage type.
+        /// </summary>
+        public async Task<bool> TrySetAttributeAsync(string name, string value, ProjectStorageType storageType)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
 
             if (hierarchy is IVsBuildPropertyStorage storage)
             {
-                storage.SetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, value);
+                storage.SetPropertyValue(name, "", ToPersistStorageType(storageType), value);
                 return true;
             }
 
@@ -120,18 +128,36 @@ namespace Community.VisualStudio.Toolkit
         /// Tries to retrieve an attribute value from the project file for the item.
         /// </summary>
         /// <returns><see langword="null"/> if the attribute doesn't exist.</returns>
-        public async Task<string?> GetAttributeAsync(string name)
+        public Task<string?> GetAttributeAsync(string name)
+        {
+            return GetAttributeAsync(name, ProjectStorageType.ProjectFile);
+        }
+
+        /// <summary>
+        /// Tries to retrieve an attribute value from the project file for the item, getting the value from the specfied storage type.
+        /// </summary>
+        /// <returns><see langword="null"/> if the attribute doesn't exist.</returns>
+        public async Task<string?> GetAttributeAsync(string name, ProjectStorageType storageType)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
 
             if (hierarchy is IVsBuildPropertyStorage storage)
             {
-                storage.GetPropertyValue(name, "", (uint)_PersistStorageType.PST_PROJECT_FILE, out string? value);
+                storage.GetPropertyValue(name, "", ToPersistStorageType(storageType), out string? value);
                 return value;
             }
 
             return null;
+        }
+
+        private static uint ToPersistStorageType(ProjectStorageType type)
+        {
+            return (uint)(type switch
+            {
+                ProjectStorageType.UserFile => _PersistStorageType.PST_USER_FILE,
+                _ => _PersistStorageType.PST_PROJECT_FILE
+            });
         }
 
         /// <summary>
@@ -193,5 +219,20 @@ namespace Community.VisualStudio.Toolkit
             GetItemInfo(out _, out uint itemId, out _);
             Update(await hierarchy.ToHierarchyItemAsync(itemId));
         }
+    }
+
+    /// <summary>
+    /// Defines the type of file that project data is stored in.
+    /// </summary>
+    public enum ProjectStorageType
+    {
+        /// <summary>
+        /// The <c>.csproj</c> file (or <c>.vbproj</c>, etc.)
+        /// </summary>
+        ProjectFile,
+        /// <summary>
+        /// The <c>.csproj.user</c> file (or <c>.vbproj.user</c>, etc.)
+        /// </summary>
+        UserFile
     }
 }
