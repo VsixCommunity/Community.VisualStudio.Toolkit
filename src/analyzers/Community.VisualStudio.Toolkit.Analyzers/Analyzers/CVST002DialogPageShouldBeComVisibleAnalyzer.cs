@@ -31,8 +31,8 @@ namespace Community.VisualStudio.Toolkit.Analyzers
 
         private void OnCompilationStart(CompilationStartAnalysisContext context)
         {
-            INamedTypeSymbol? dialogPageType = context.Compilation.GetTypeByMetadataName("Microsoft.VisualStudio.Shell.DialogPage");
-            INamedTypeSymbol? comVisibleType = context.Compilation.GetTypeByMetadataName("System.Runtime.InteropServices.ComVisibleAttribute");
+            INamedTypeSymbol? dialogPageType = context.Compilation.GetTypeByMetadataName(KnownTypeNames.DialogPage);
+            INamedTypeSymbol? comVisibleType = context.Compilation.GetTypeByMetadataName(KnownTypeNames.ComVisibleAttribute);
 
             if (dialogPageType is not null && comVisibleType is not null)
             {
@@ -45,7 +45,7 @@ namespace Community.VisualStudio.Toolkit.Analyzers
             ClassDeclarationSyntax classDeclaration = (ClassDeclarationSyntax)context.Node;
             ITypeSymbol? type = context.ContainingSymbol as ITypeSymbol;
 
-            if (type is not null && IsDialogPage(type, dialogPageType))
+            if (type is not null && type.IsSubclassOf(dialogPageType))
             {
                 // This class inherits from `DialogPage`. It should contain
                 // a `ComVisible` attribute with a parameter of `true`.
@@ -66,21 +66,6 @@ namespace Community.VisualStudio.Toolkit.Analyzers
                 // The `ComVisible` attribute was not found, so report the diagnostic.
                 context.ReportDiagnostic(Diagnostic.Create(_rule, classDeclaration.Identifier.GetLocation()));
             }
-        }
-
-        private static bool IsDialogPage(ITypeSymbol? type, INamedTypeSymbol dialogPageType)
-        {
-            while (type is not null)
-            {
-                if (type.Equals(dialogPageType))
-                {
-                    return true;
-                }
-
-                type = type.BaseType;
-            }
-
-            return false;
         }
     }
 }

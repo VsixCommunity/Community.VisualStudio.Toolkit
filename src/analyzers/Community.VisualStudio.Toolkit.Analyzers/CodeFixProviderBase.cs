@@ -7,6 +7,8 @@ namespace Community.VisualStudio.Toolkit.Analyzers
 {
     public abstract class CodeFixProviderBase : CodeFixProvider
     {
+        public abstract override FixAllProvider GetFixAllProvider();
+
         protected static SyntaxList<UsingDirectiveSyntax> AddUsingDirectiveIfMissing(SyntaxList<UsingDirectiveSyntax> usings, NameSyntax namespaceName)
         {
             string namespaceToImport = namespaceName.ToString();
