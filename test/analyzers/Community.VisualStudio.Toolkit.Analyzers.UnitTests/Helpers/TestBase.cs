@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -35,6 +36,16 @@ namespace Community.VisualStudio.Toolkit.Analyzers.UnitTests
             // it was checked out in Git. Change the line endings to match the current environment,
             // because that is the type of line ending that that will be used by the code fix.
             return Regex.Replace(value, "\r?\n", Environment.NewLine);
+        }
+
+        protected int? CodeActionIndex
+        {
+            set { _test.CodeActionIndex = value; }
+        }
+
+        protected Action<CodeAction, IVerifier>? CodeActionVerifier
+        {
+            set { _test.CodeActionVerifier = value; }
         }
 
         protected void AddReference(Type typeInAssemblyToReference)

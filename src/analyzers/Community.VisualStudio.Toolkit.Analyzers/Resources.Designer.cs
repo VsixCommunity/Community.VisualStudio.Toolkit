@@ -123,5 +123,41 @@ namespace Community.VisualStudio.Toolkit.Analyzers {
                 return ResourceManager.GetString("CVST002_Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register correct type in ProvideOptionPageAttribute.
+        /// </summary>
+        internal static string CVST003_Title {
+            get {
+                return ResourceManager.GetString("CVST003_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register correct type in ProvideProfileAttribute.
+        /// </summary>
+        internal static string CVST004_Title {
+            get {
+                return ResourceManager.GetString("CVST004_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change to &apos;{0}&apos;.
+        /// </summary>
+        internal static string IncorrectProvidedType_CodeFix {
+            get {
+                return ResourceManager.GetString("IncorrectProvidedType_CodeFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The type &apos;{0}&apos; is not assignable to &apos;{1}&apos;.
+        /// </summary>
+        internal static string IncorrectProvidedType_MessageFormat {
+            get {
+                return ResourceManager.GetString("IncorrectProvidedType_MessageFormat", resourceCulture);
+            }
+        }
     }
 }

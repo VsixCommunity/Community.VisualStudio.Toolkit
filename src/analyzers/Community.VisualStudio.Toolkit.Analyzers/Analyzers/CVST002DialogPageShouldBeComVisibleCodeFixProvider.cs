@@ -12,7 +12,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Community.VisualStudio.Toolkit.Analyzers
 {
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(CVST001CastInteropServicesCodeFixProvider))]
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(CVST002DialogPageShouldBeComVisibleCodeFixProvider))]
     [Shared]
     public class CVST002DialogPageShouldBeComVisibleCodeFixProvider : CodeFixProviderBase
     {
