@@ -21,4 +21,6 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0-6.final" ReferenceOutputAssembly="false" PrivateAssets="All" />
   </ItemGroup>
 
+  <Import Project="..\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems" Label="Shared" />
+
 </Project>

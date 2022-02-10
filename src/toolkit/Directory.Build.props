@@ -49,7 +49,5 @@
   <ItemGroup>
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\analyzers\Community.VisualStudio.Toolkit.Analyzers\Community.VisualStudio.Toolkit.Analyzers.csproj"/>
   </ItemGroup>
-  
-  <Import Project="$(MSBuildThisFileDirectory)Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems" Label="Shared" />
 
 </Project>
