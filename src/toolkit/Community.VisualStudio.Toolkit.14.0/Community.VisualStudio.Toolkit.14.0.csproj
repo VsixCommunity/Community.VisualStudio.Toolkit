@@ -12,4 +12,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Shell.Interop.12.1.DesignTime" Version="12.1.30329" />
   </ItemGroup>
 
+  <Import Project="..\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems" Label="Shared" />
+
 </Project>

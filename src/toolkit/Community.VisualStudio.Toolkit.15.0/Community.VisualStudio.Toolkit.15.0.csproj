@@ -11,4 +11,6 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
+  <Import Project="..\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems" Label="Shared" />
+  
 </Project>
