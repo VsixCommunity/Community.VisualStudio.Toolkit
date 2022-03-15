@@ -23,7 +23,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Starts a build, rebuild, or clean of the project.
         /// </summary>
-        public Task BuildAsync(BuildAction action = BuildAction.Build)
+        public Task<bool> BuildAsync(BuildAction action = BuildAction.Build)
         {
             return VS.Build.BuildProjectAsync(this, action);
         }
