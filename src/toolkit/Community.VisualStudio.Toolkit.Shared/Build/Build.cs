@@ -173,10 +173,9 @@ namespace Community.VisualStudio.Toolkit
                     {
                         _result.SetCanceled();
                     }
-
                     // We are observing the build of a specific project. If the project
                     // that finished is the one we are observing, then we can set the result.
-                    if (pHierProj == _hierarchy)
+                    else if (pHierProj == _hierarchy)
                     {
                         _result.SetResult(fSuccess != 0);
                     }
