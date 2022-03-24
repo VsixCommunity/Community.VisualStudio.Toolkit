@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -40,10 +39,7 @@ namespace Community.VisualStudio.Toolkit
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IVsDebugger debugger = await VS.Services.GetDebuggerAsync();
-            DBGMODE[] mode = new DBGMODE[1];
-            ErrorHandler.ThrowOnFailure(debugger.GetMode(mode));
-            DBGMODE dbgMode = mode[0] & ~DBGMODE.DBGMODE_EncMask;
+            DBGMODE dbgMode = VsShellUtilities.GetDebugMode(ServiceProvider.GlobalProvider) & ~DBGMODE.DBGMODE_EncMask;
 
             return dbgMode switch
             {
