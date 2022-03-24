@@ -9,6 +9,7 @@
     <Import_RootNamespace>Community.VisualStudio.Toolkit.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Debugger\Debugger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Attributes\ProvideBraceCompletionAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Attributes\ProvideFileIconAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Attributes\ProvideGalleryFeedAttribute.cs" />
