@@ -17,6 +17,22 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public class PhysicalFile : SolutionItem
     {
+        private static readonly Dictionary<PhysicalFileAttribute, string> _knownFileAttributeNames = new()
+        {
+            { PhysicalFileAttribute.BuildAction, "{ItemType}" },
+            { PhysicalFileAttribute.CopyToOutputDirectory, "CopyToOutputDirectory" },
+            { PhysicalFileAttribute.CustomToolNamespace, "CustomToolNamespace" },
+            { PhysicalFileAttribute.Generator, "Generator" },
+            { PhysicalFileAttribute.SubType, "SubType" },
+            { PhysicalFileAttribute.Visible, "Visible" },
+            { PhysicalFileAttribute.DependentUpon, "DependentUpon" },
+            { PhysicalFileAttribute.DesignTimeSharedInput, "DesignTimeSharedInput" },
+            { PhysicalFileAttribute.LastGenOutput, "LastGenOutput" },
+            { PhysicalFileAttribute.DesignTime, "DesignTime" },
+            { PhysicalFileAttribute.CustomTool, "CustomTool" },
+            { PhysicalFileAttribute.AutoGen, "AutoGen" }
+        };
+
         internal PhysicalFile(IVsHierarchyItem item, SolutionItemType type) : base(item, type)
         { ThreadHelper.ThrowIfNotOnUIThread(); }
 
@@ -86,12 +102,20 @@ namespace Community.VisualStudio.Toolkit
         /// Nests a file under this file by setting its <c>DependentUpon</c> property..
         /// </summary>
         public Task AddNestedFileAsync(PhysicalFile fileToNest)
-            => fileToNest.TrySetAttributeAsync("DependentUpon", Name);
+            => fileToNest.TrySetAttributeAsync(PhysicalFileAttribute.DependentUpon, Name);
 
         /// <summary>
         /// Tries to set an attribute in the project file for the item.
         /// </summary>
-        public async Task<bool> TrySetAttributeAsync(string name, string value)
+        public Task<bool> TrySetAttributeAsync(PhysicalFileAttribute attribute, object value)
+        {
+            return TrySetAttributeAsync(_knownFileAttributeNames[attribute], value);
+        }
+
+        /// <summary>
+        /// Tries to set an attribute in the project file for the item.
+        /// </summary>
+        public async Task<bool> TrySetAttributeAsync(string name, object value)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -125,7 +149,7 @@ namespace Community.VisualStudio.Toolkit
             // Then write straight to project file
             else if (hierarchy is IVsBuildPropertyStorage storage)
             {
-                ErrorHandler.ThrowOnFailure(storage.SetItemAttribute(itemId, name, value));
+                ErrorHandler.ThrowOnFailure(storage.SetItemAttribute(itemId, name, value?.ToString()));
                 return true;
             }
 
@@ -197,5 +221,119 @@ namespace Community.VisualStudio.Toolkit
 
             return items;
         }
+    }
+
+    /// <summary>
+    /// Known attributes of a <see cref="PhysicalFile"/>. 
+    /// This can be used to set an attribute of a file using the <see cref="PhysicalFile.TrySetAttributeAsync(PhysicalFileAttribute, string)"/> method.
+    /// </summary>
+    public enum PhysicalFileAttribute
+    {
+        /// <summary>
+        /// Sets the <c>AutoGen</c> attribute.
+        /// <para>
+        /// Type: <see cref="string"/>
+        /// </para>
+        /// </summary>
+        AutoGen,
+        /// <summary>
+        /// How the file relates to the build and deployment processes.
+        /// <para>
+        /// Type: <see cref="string"/>
+        /// </para>
+        /// </summary>
+        BuildAction,
+        /// <summary>
+        /// Specifies the source file will be copied to the output directory.
+        /// <para>
+        /// Type: <see cref="CopyToOutputDirectory"/>
+        /// </para>
+        /// </summary>
+        CopyToOutputDirectory,
+        /// <summary>
+        /// The name of the single-file generator.
+        /// <para>
+        /// Type: <see cref="string"/>
+        /// </para>
+        /// </summary>
+        CustomTool,
+        /// <summary>
+        /// The namespace into which the output of the custom tool is placed.
+        /// <para>
+        /// Type: <see cref="string"/>
+        /// </para>
+        /// </summary>
+        CustomToolNamespace,
+        /// <summary>
+        /// The other file that this file is dependent upon.
+        /// <para>
+        /// Type: <see cref="string"/>
+        /// </para>
+        /// </summary>
+        DependentUpon,
+        /// <summary>
+        /// Sets the <c>DesignTime</c> attribute.
+        /// <para>
+        /// Type: <see cref="string"/>
+        /// </para>
+        /// </summary>
+        DesignTime,
+        /// <summary>
+        /// Sets the <c>DesignTimeSharedInput</c> attribute.
+        /// <para>
+        /// Type: <see cref="bool"/>
+        /// </para>
+        /// </summary>
+        DesignTimeSharedInput,
+        /// <summary>
+        /// Specifies the tool that transforms a file at design time and places the output of that transformation into another file. For example, a dataset (.xsd) file comes with a default custom tool.
+        /// <para>
+        /// Type: <see cref="string"/>
+        /// </para>
+        /// </summary>
+        Generator,
+        /// <summary>
+        /// Sets the <c>LastGenOutput</c> attribute.
+        /// <para>
+        /// Type: <see cref="string"/>
+        /// </para>
+        /// </summary>
+        LastGenOutput,
+        /// <summary>
+        /// File sub-type.
+        /// <para>
+        /// Type: <see cref="string"/>
+        /// </para>
+        /// </summary>
+        SubType,
+        /// <summary>
+        /// Whether to show the file in Solution Explorer.
+        /// <para>
+        /// Type: <see cref="bool"/>
+        /// </para>
+        /// </summary>
+        Visible
+    }
+
+    /// <summary>
+    /// Defines whether a file will be copied to the build's output directory.
+    /// </summary>
+    /// <remarks>
+    /// Equivalent to the <c>Microsoft.VisualStudio.ProjectFlavoring.CopyToOutputDirectory</c> enum.
+    /// </remarks>
+    public enum CopyToOutputDirectory
+    {
+        /// <summary>
+        /// The file will never be copied.
+        /// </summary>
+        DoNotCopy,
+        /// <summary>
+        /// The file will always be copied.
+        /// </summary>
+        Always,
+        /// <summary>
+        /// The file will be copied, but only if it is newer that the file that is already in the build's output directory.
+        /// </summary>
+        PreserveNewest
     }
 }
