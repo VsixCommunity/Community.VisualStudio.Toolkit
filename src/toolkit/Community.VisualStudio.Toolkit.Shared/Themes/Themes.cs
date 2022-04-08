@@ -1,12 +1,9 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.PlatformUI;
-using Microsoft.VisualStudio.Shell;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -127,69 +124,18 @@ namespace Community.VisualStudio.Toolkit
 
         private static void MergeStyles(FrameworkElement element)
         {
-#if DEBUG
-            // Always reload the theme resources in DEBUG mode, because it allows
-            // them to be edited on disk without needing to restart Visual Studio,
-            // which makes it much easier to create and test new styles.
-            _themeResources = null;
-#endif
-
             if (_themeResources is null)
             {
-                _themeResources = LoadThemeResources();
+                _themeResources = new ResourceDictionary
+                {
+                    Source = ToolkitResourceKeys.ThemeResourcesUri
+                };
             }
 
             Collection<ResourceDictionary> dictionaries = element.Resources.MergedDictionaries;
             if (!dictionaries.Contains(_themeResources))
             {
                 dictionaries.Add(_themeResources);
-            }
-        }
-
-        private static ResourceDictionary LoadThemeResources()
-        {
-            try
-            {
-                return LoadResources();
-            }
-            catch (Exception ex) when (!ErrorHandler.IsCriticalException(ex))
-            {
-                ex.Log();
-                return new ResourceDictionary();
-            }
-        }
-
-        private static ResourceDictionary LoadResources(
-#if DEBUG
-            [System.Runtime.CompilerServices.CallerFilePath] string? thisFilePath = null
-#endif
-        )
-        {
-#if DEBUG
-            // Load the resources from disk in DEBUG mode, because this allows
-            // you to edit the resources without needing to reload Visual Studio.
-            using (StreamReader reader = new(Path.Combine(Path.GetDirectoryName(thisFilePath), "ThemeResources.xaml")))
-#else
-            using (StreamReader reader = new(typeof(Themes).Assembly.GetManifestResourceStream("Community.VisualStudio.Toolkit.Themes.ThemeResources.xaml")))
-#endif
-            {
-                string content = reader.ReadToEnd();
-
-                // The XAML uses the `VsResourceKeys` type and needs to specify the assembly
-                // that the type is in, but the exact assembly name differs between the
-                // toolkit versions, so we need to replace the assembly name at runtime.
-                content = content.Replace(
-                    "clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0",
-                    $"clr-namespace:Microsoft.VisualStudio.Shell;assembly={typeof(VsResourceKeys).Assembly.GetName().Name}"
-                );
-
-                // Do the same thing for the `CommonControlsColors` namespace.
-                content = content.Replace(
-                    "clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0",
-                    $"clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly={typeof(CommonControlsColors).Assembly.GetName().Name}"
-                );
-
-                return (ResourceDictionary)System.Windows.Markup.XamlReader.Parse(content);
             }
         }
     }

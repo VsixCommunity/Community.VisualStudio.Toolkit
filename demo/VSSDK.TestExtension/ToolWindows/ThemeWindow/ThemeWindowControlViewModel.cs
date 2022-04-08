@@ -64,11 +64,18 @@ namespace TestExtension
 
 #pragma warning disable VSTHRD012 // Provide JoinableTaskFactory where allowed
         public ICommand OpenDialogCommand => new DelegateCommand(() => OpenDialog());
+        public ICommand OpenCustomStylesCommand => new DelegateCommand(() => OpenCustomStyles());
 #pragma warning restore VSTHRD012 // Provide JoinableTaskFactory where allowed
 
         private void OpenDialog()
         {
             ThemeWindowDialog dialog = new ThemeWindowDialog { DataContext = new ThemeWindowDialogViewModel { UseVsTheme = UseVsTheme } };
+            dialog.ShowModal();
+        }
+
+        private void OpenCustomStyles()
+        {
+            CustomizedStylesDialog dialog = new CustomizedStylesDialog();
             dialog.ShowModal();
         }
 

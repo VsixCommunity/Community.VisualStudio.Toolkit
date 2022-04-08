@@ -79,6 +79,9 @@
       <DependentUpon>RunnerWindowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToolWindows\RunnerWindowMessenger.cs" />
+    <Compile Include="ToolWindows\ThemeWindow\CustomizedStylesDialog.xaml.cs">
+      <DependentUpon>CustomizedStylesDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ToolWindows\ThemeWindow\ThemedControl.cs" />
     <Compile Include="ToolWindows\ThemeWindow\ThemeWindow.cs" />
     <Compile Include="ToolWindows\ThemeWindow\ThemeWindowControl.xaml.cs">
@@ -138,6 +141,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolWindows\ThemeWindow\CustomizedStylesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

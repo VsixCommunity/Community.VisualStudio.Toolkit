@@ -24,6 +24,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <StackPanel 
@@ -55,6 +56,14 @@
                 Grid.Column="2"
                 Content="Open Dialog" 
                 Command="{Binding OpenDialogCommand}" 
+                VerticalAlignment="Center"
+                Margin="10,0"
+                />
+
+            <Button 
+                Grid.Column="3"
+                Content="Customized Styles" 
+                Command="{Binding OpenCustomStylesCommand}" 
                 VerticalAlignment="Center"
                 />
         </Grid>
