@@ -3,6 +3,7 @@ using System.ComponentModel.Design;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
+using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell.Interop;
 #if VS16 || VS17
 using Microsoft.VisualStudio.TaskStatusCenter;
@@ -19,11 +20,38 @@ namespace Community.VisualStudio.Toolkit
         internal Services()
         { }
 
+        #region Object Manager
+        /// <summary>
+        /// Performs a search for a specified object. The environment implements the interface
+        /// </summary>
+        public Task<IVsObjectSearch> GetFindSymbolAsync() => VS.GetRequiredServiceAsync<SVsObjectSearch, IVsObjectSearch>();
+        #endregion
+
+        /// <summary>
+        /// Controls the binding between keys and commands
+        /// </summary>
+        public Task<IVsFilterKeys> GetFilterKeysAsync() => VS.GetRequiredServiceAsync<SVsFilterKeys, IVsFilterKeys>();
+
         #region Selection
         /// <summary>
         /// Provides access to the selection API.
         /// </summary>
         public Task<IVsMonitorSelection> GetMonitorSelectionAsync() => VS.GetRequiredServiceAsync<SVsShellMonitorSelection, IVsMonitorSelection>();
+
+        /// <summary>
+        /// Creates a new context or subcontext bag
+        /// </summary>
+        public Task<IVsMonitorUserContext> GetMonitorUserContextAsync() => VS.GetRequiredServiceAsync<SVsMonitorUserContext, IVsMonitorUserContext>();
+
+        /// <summary>
+        /// This interface is used by a package to register and un-register its library manager with the object manager
+        /// </summary>
+        public Task<IVsObjectManager> GetObjectManagerAsync() => VS.GetRequiredServiceAsync<SVsObjectManager, IVsObjectManager>();
+
+        /// <summary>
+        /// Used by a VSPackage to register and unregister the symbol libraries with the Visual Studio object manager and create component sets that can be browsed
+        /// </summary>
+        public Task<IVsObjectManager2> GetObjectManager2Async() => VS.GetRequiredServiceAsync<SVsObjectManager, IVsObjectManager2>();
         #endregion
 
         #region Solution
@@ -36,14 +64,34 @@ namespace Community.VisualStudio.Toolkit
         /// Opens a Solution or Project using the standard open dialog boxes.
         /// </summary>
         public Task<IVsOpenProjectOrSolutionDlg> GetOpenProjectOrSolutionDlgAsync() => VS.GetRequiredServiceAsync<SVsOpenProjectOrSolutionDlg, IVsOpenProjectOrSolutionDlg>();
+
+
+        /// <summary>
+        /// Gives access to the solution hierarchy and properties
+        /// </summary>
+        public Task<IVsHierarchy> GetSolutionHierarchyAsync() => VS.GetRequiredServiceAsync<SVsSolution, IVsHierarchy>();
+
+        /// <summary>
+        /// Gives access to the solution and properties persistence
+        /// </summary>
+        public Task<IVsSolutionPersistence> GetSolutionPersistenceAsync() => VS.GetRequiredServiceAsync<SVsSolutionPersistence, IVsSolutionPersistence>();
         #endregion
 
         #region Shell
         /// <summary>Provides access to the fundamental environment services, specifically those dealing with VSPackages and the registry.</summary>
         public Task<IVsShell> GetShellAsync() => VS.GetRequiredServiceAsync<SVsShell, IVsShell>();
 
+        /// <summary>Provides access to extra VSPackage functionality</summary>
+        public Task<IVsShell5> GetShell5Async() => VS.GetRequiredServiceAsync<SVsShell, IVsShell5>();
+
         /// <summary>This interface provides access to basic windowing functionality, including access to and creation of tool windows and document windows.</summary>
         public Task<IVsUIShell> GetUIShellAsync() => VS.GetRequiredServiceAsync<SVsUIShell, IVsUIShell>();
+
+        /// <summary>This interface provides access to additional toolbar methods</summary>
+        public Task<IVsUIShell4> GetUIShell4Async() => VS.GetRequiredServiceAsync<SVsUIShell, IVsUIShell4>();
+
+        /// <summary>This interface provides access to additional theme methods and some other stuff</summary>
+        public Task<IVsUIShell5> GetUIShell5Async() => VS.GetRequiredServiceAsync<SVsUIShell, IVsUIShell5>();
 
         /// <summary>This interface is used by a package to read command-line switches entered by the user.</summary>
         public Task<IVsAppCommandLine> GetAppCommandLineAsync() => VS.GetRequiredServiceAsync<SVsAppCommandLine, IVsAppCommandLine>();
@@ -70,6 +118,35 @@ namespace Community.VisualStudio.Toolkit
 
         /// <summary>Used to retrieved services defined in the MEF catalog, such as the editor specific services like <see cref="IVsEditorAdaptersFactoryService"/>.</summary>
         public Task<IComponentModel2> GetComponentModelAsync() => VS.GetRequiredServiceAsync<SComponentModel, IComponentModel2>();
+
+        /// <summary>Defines a component manager, a component that coordinates other components with its message loop for message processing and allocation of idle time</summary>
+        public Task<IOleComponentManager> GetComponentManagerAsync() => VS.GetRequiredServiceAsync<SOleComponentManager, IOleComponentManager>();
+
+        /// <summary>
+        /// Manages the set of currently open documents in the environment
+        /// </summary>
+        public Task<IVsRunningDocumentTable> GetRunningDocumentTableAsync() => VS.GetRequiredServiceAsync<SVsRunningDocumentTable, IVsRunningDocumentTable>();
+
+        /// <summary>
+        /// Loads managed and unmanaged resources from Satellite DLLs.
+        /// </summary>
+        public Task<IVsResourceManager> GetResourceManagerAsync() => VS.GetRequiredServiceAsync<SVsResourceManager, IVsResourceManager>();
+
+        /// <summary>
+        /// Controls the state of open documents within the environment
+        /// </summary>
+        public Task<IVsUIShellOpenDocument> GetShellOpenDocumentAsync() => VS.GetRequiredServiceAsync<SVsUIShellOpenDocument, IVsUIShellOpenDocument>();
+
+        /// <summary>
+        /// Gives access to preview and viewing status
+        /// </summary>
+        public Task<IVsUIShellOpenDocument3> GetShellOpenDocument3Async() => VS.GetRequiredServiceAsync<SVsUIShellOpenDocument, IVsUIShellOpenDocument3>();
+
+        /// <summary>Gives access to the task scheduler</summary>
+        public Task<IVsTaskSchedulerService> GetTaskSchedulerAsync() => VS.GetRequiredServiceAsync<SVsTaskSchedulerService, IVsTaskSchedulerService>();
+
+        /// <summary>Gives access to long idle events</summary>
+        public Task<IVsLongIdleManager> GetLongIdleManagerAsync() => VS.GetRequiredServiceAsync<SVsLongIdleManager, IVsLongIdleManager>();
         #endregion
 
         #region Notifications
@@ -124,6 +201,12 @@ namespace Community.VisualStudio.Toolkit
         /// A service for handling solution builds.
         /// </summary>
         public Task<IVsSolutionBuildManager> GetSolutionBuildManagerAsync() => VS.GetRequiredServiceAsync<SVsSolutionBuildManager, IVsSolutionBuildManager>();
+
+        /// <summary>
+        /// Gets the error list 
+        /// </summary>
+        public Task<IVsErrorList> GetErrorListAsync() => VS.GetRequiredServiceAsync<SVsErrorList, IVsErrorList>();
+
         #endregion
 
         #region Windows
