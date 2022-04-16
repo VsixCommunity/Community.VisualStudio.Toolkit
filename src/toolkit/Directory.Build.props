@@ -10,6 +10,9 @@
     <RootNamespace>Community.VisualStudio.Toolkit</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DebugType>portable</DebugType>
+
+    <!-- Set UseWPF to true so that the XAML resources are compiled and included in the assembly. -->
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
   
   <ItemGroup>
