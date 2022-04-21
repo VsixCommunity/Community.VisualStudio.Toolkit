@@ -85,6 +85,31 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// Tries to remove an attribute in the project file for the item.
+        /// </summary>
+        public Task<bool> RemoveAttributeAsync(string name)
+        {
+            return RemoveAttributeAsync(name, ProjectStorageType.ProjectFile);
+        }
+
+        /// <summary>
+        /// Tries to remove an attribute in the project file for the item from the specified storage type.
+        /// </summary>
+        public async Task<bool> RemoveAttributeAsync(string name, ProjectStorageType storageType)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            GetItemInfo(out IVsHierarchy hierarchy, out _, out _);
+
+            if (hierarchy is IVsBuildPropertyStorage storage)
+            {
+                storage.RemoveProperty(name, "", ToPersistStorageType(storageType));
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Save the project if it's dirty.
         /// </summary>
         public async Task SaveAsync()
