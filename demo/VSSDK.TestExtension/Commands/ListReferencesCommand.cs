@@ -8,29 +8,35 @@ namespace TestExtension.Commands
     [Command(PackageIds.ListReferences)]
     internal sealed class ListReferencesCommand : BaseCommand<ListReferencesCommand>
     {
+        OutputWindowPane _pane;
+
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            OutputWindowPane pane = await VS.Windows.CreateOutputWindowPaneAsync("References");
-            await pane.ActivateAsync();
+            if (_pane is null)
+            {
+                _pane = await VS.Windows.CreateOutputWindowPaneAsync("References");
+            }
+
+            await _pane.ActivateAsync();
 
             foreach (Project project in await VS.Solutions.GetAllProjectsAsync())
             {
-                await pane.WriteLineAsync(project.Name);
+                await _pane.WriteLineAsync(project.Name);
                 foreach (Reference reference in project.References.OrderBy(x => x.Name))
                 {
                     if (reference is AssemblyReference assemblyRef)
                     {
-                        await pane.WriteLineAsync($"  * {reference.Name} (Assembly: {assemblyRef.FullPath})");
+                        await _pane.WriteLineAsync($"  * {reference.Name} (Assembly: {assemblyRef.FullPath})");
                     }
                     else if (reference is ProjectReference projectRef)
                     {
-                        await pane.WriteLineAsync($"  * {reference.Name} (Project: {(await projectRef.GetProjectAsync())?.Name ?? "?"})");
+                        await _pane.WriteLineAsync($"  * {reference.Name} (Project: {(await projectRef.GetProjectAsync())?.Name ?? "?"})");
                     }
                     else
                     {
-                        await pane.WriteLineAsync($"  * {reference.Name} (Unknown)");
+                        await _pane.WriteLineAsync($"  * {reference.Name} (Unknown)");
                     }
                 }
             }
