@@ -82,14 +82,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MockVsixPublisher", "tools\MockVsixPublisher\MockVsixPublisher.csproj", "{C1BD4EBE-F43C-4A51-9801-A04E5C2C8B3E}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{38dc82ea-91d6-4360-b76c-995708ee43a3}*SharedItemsImports = 5
-		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{5ec463ac-24cb-443e-9ff9-91b7ecb1f822}*SharedItemsImports = 13
-		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{86209d58-39b0-4d96-aa71-ff0d009e627a}*SharedItemsImports = 5
-		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{a9e80c7b-8ed1-4d7b-b1f3-575fd70001ba}*SharedItemsImports = 5
-		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{d000c76d-4d0f-48f9-b5ab-5696c92cc7bd}*SharedItemsImports = 5
-		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{ff58bacd-16b0-4c73-ba03-4a255925153f}*SharedItemsImports = 5
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
@@ -194,5 +186,13 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0DD67C0-2617-498C-81F0-A5E4FF5831F1}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{38dc82ea-91d6-4360-b76c-995708ee43a3}*SharedItemsImports = 5
+		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{5ec463ac-24cb-443e-9ff9-91b7ecb1f822}*SharedItemsImports = 13
+		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{86209d58-39b0-4d96-aa71-ff0d009e627a}*SharedItemsImports = 5
+		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{a9e80c7b-8ed1-4d7b-b1f3-575fd70001ba}*SharedItemsImports = 5
+		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{d000c76d-4d0f-48f9-b5ab-5696c92cc7bd}*SharedItemsImports = 5
+		src\toolkit\Community.VisualStudio.Toolkit.Shared\VSSDK.Helpers.Shared.projitems*{ff58bacd-16b0-4c73-ba03-4a255925153f}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
