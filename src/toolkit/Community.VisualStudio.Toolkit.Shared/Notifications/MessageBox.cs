@@ -61,7 +61,7 @@ namespace Community.VisualStudio.Toolkit
         public MessageBoxResult ShowError(string line1, string line2 = "")
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            return Show(line1, line2, OLEMSGICON.OLEMSGICON_CRITICAL);
+            return Show(line1, line2, OLEMSGICON.OLEMSGICON_CRITICAL,OLEMSGBUTTON.OLEMSGBUTTON_OK);
         }
 
         /// <summary>
