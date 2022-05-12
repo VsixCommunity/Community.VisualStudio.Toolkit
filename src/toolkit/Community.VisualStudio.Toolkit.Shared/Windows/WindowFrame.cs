@@ -231,6 +231,10 @@ namespace Community.VisualStudio.Toolkit
         /// <returns><see langword="null"/> if the window isn't a document window.</returns>
         public async Task<DocumentView?> GetDocumentViewAsync()
         {
+            // Force the loading of a document that may be pending initialization.
+            // See https://docs.microsoft.com/en-us/visualstudio/extensibility/internals/delayed-document-loading
+            _frame.GetProperty((int)__VSFPROPID.VSFPROPID_DocView, out _);
+
             IVsTextView? nativeView = VsShellUtilities.GetTextView(_frame);
 
             if (nativeView != null)
