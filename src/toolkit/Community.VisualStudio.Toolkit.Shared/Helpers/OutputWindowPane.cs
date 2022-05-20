@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using EnvDTE;
+using EnvDTE80;
+using Microsoft;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -157,6 +160,30 @@ namespace Community.VisualStudio.Toolkit
                 return pane;
             }
             catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets an existing Output window pane.
+        /// Returns null if a pane with the specified name does not exist.
+        /// </summary>
+        /// <param name="name">The pane's name.</param>
+        /// <returns>A new OutputWindowPane or null.</returns>
+        public static async Task<OutputWindowPane?> GetAsync(string name)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            DTE2 dte = await VS.GetRequiredServiceAsync<DTE, DTE2>();
+            try
+            {
+                OutputWindowPanes panes = dte.ToolWindows.OutputWindow.OutputWindowPanes;
+                EnvDTE.OutputWindowPane pane = panes.Item(name);
+
+                return new(string.Empty, new Guid(pane.Guid));
+            }
+            catch (ArgumentException)
             {
                 return null;
             }
