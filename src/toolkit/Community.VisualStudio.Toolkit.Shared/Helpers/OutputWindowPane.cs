@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading.Tasks;
 using EnvDTE;
 using EnvDTE80;
-using Microsoft;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
