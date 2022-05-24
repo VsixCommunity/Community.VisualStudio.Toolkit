@@ -29,7 +29,7 @@ namespace Community.VisualStudio.Toolkit
     ///     }
     ///     
     ///     [Guid("d0050678-2e4f-4a93-adcb-af1370da941d")]
-    ///     internal class Pane : ToolWindowPane
+    ///     internal class Pane : ToolkitToolWindowPane
     ///     {
     ///         public Pane()
     ///         {
@@ -164,5 +164,16 @@ namespace Community.VisualStudio.Toolkit
         /// <param name="cancellationToken">The cancellation token to use when performing asynchronous operations.</param>
         /// <returns>The UI element to show in the tool window.</returns>
         public abstract Task<FrameworkElement> CreateAsync(int toolWindowId, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Called when the <see cref="ToolWindowPane"/> has been initialized and "sited". 
+        /// The pane's service provider can be used from this point onwards.
+        /// </summary>
+        /// <param name="pane">The tool window pane that was created.</param>
+        /// <param name="toolWindowId">The ID of the tool window that the pane belongs to.</param>
+        public virtual void SetPane(ToolWindowPane pane, int toolWindowId)
+        {
+            // Consumers can override this if they need access to the pane.
+        }
     }
 }

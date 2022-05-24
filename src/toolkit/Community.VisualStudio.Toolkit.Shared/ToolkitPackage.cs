@@ -89,11 +89,43 @@ namespace Community.VisualStudio.Toolkit
                     toolPane.Caption = provider.GetTitle(data.Id);
                 }
 
+                // Now we can try to give the pane object to the tool window implementation and the content 
+                // if they want to know about the pane. At this point the pane has probably not been initialized,
+                // and if it hasn't, then it won't be initialized until some time after we return from this method.
+                // We could given the pane to the tool window implementation, but you can't use the pane until it has
+                // been initialized, and there's no way to know when it has been initialized unless you implement your 
+                // own logic in your ToolWindowPane implementation. To provide a better user experience, if your tool
+                // window needs access to the window pane, then we will require that the pane inherit from our custom
+                // `ToolkitWindowPane` class. This implementation allows us to detect if and when the pane is initialized.
+                // Once the pane has been initialized, we can given the pane to the tool window and its content.
+                if (pane is ToolkitToolWindowPane toolkitPane)
+                {
+                    ProvidePaneToToolWindow(toolkitPane, data.Id, provider);
+                }
+
                 return pane;
             }
             else
             {
                 return base.InstantiateToolWindow(toolWindowType, context);
+            }
+        }
+
+        private void ProvidePaneToToolWindow(ToolkitToolWindowPane pane, int toolWindowId, IToolWindowProvider provider)
+        {
+            if (pane.IsInitialized)
+            {
+                OnInitialized(pane, EventArgs.Empty);
+            }
+            else
+            {
+                pane.Initialized += OnInitialized;
+            }
+
+            void OnInitialized(object s, EventArgs e)
+            {
+                provider.SetPane(pane, toolWindowId);
+                (pane.Content as IToolWindowPaneAware)?.SetPane(pane);
             }
         }
 
