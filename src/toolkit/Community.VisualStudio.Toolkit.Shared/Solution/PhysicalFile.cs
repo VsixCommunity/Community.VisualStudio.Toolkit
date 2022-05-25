@@ -225,7 +225,7 @@ namespace Community.VisualStudio.Toolkit
 
     /// <summary>
     /// Known attributes of a <see cref="PhysicalFile"/>. 
-    /// This can be used to set an attribute of a file using the <see cref="PhysicalFile.TrySetAttributeAsync(PhysicalFileAttribute, string)"/> method.
+    /// This can be used to set an attribute of a file using the <see cref="PhysicalFile.TrySetAttributeAsync(PhysicalFileAttribute, object)"/> method.
     /// </summary>
     public enum PhysicalFileAttribute
     {

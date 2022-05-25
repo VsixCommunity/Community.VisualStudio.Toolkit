@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Automation.Peers;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
@@ -146,16 +147,24 @@ namespace Community.VisualStudio.Toolkit
 
             SolutionItemType type = GetSolutionItemType(item.HierarchyIdentity);
 
-            return type switch
+            try
             {
-                SolutionItemType.Solution => new Solution(item, type),
-                SolutionItemType.Project => new Project(item, type),
-                SolutionItemType.PhysicalFile => new PhysicalFile(item, type),
-                SolutionItemType.PhysicalFolder => new PhysicalFolder(item, type),
-                SolutionItemType.VirtualFolder => new VirtualFolder(item, type),
-                SolutionItemType.SolutionFolder => new SolutionFolder(item, type),
-                _ => new SolutionItem(item, type)
-            };
+                return type switch
+                {
+                    SolutionItemType.Solution => new Solution(item, type),
+                    SolutionItemType.Project => new Project(item, type),
+                    SolutionItemType.PhysicalFile => new PhysicalFile(item, type),
+                    SolutionItemType.PhysicalFolder => new PhysicalFolder(item, type),
+                    SolutionItemType.VirtualFolder => new VirtualFolder(item, type),
+                    SolutionItemType.SolutionFolder => new SolutionFolder(item, type),
+                    _ => new SolutionItem(item, type)
+                };
+            }
+            catch
+            {
+                // If we failed to create the item, we should return null.
+                return null;
+            }
         }
 
         private static SolutionItemType GetSolutionItemType(IVsHierarchyItemIdentity identity)
