@@ -5,11 +5,12 @@ using System.Windows.Controls;
 using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
 namespace TestExtension
 {
-    public partial class RunnerWindowControl : UserControl
+    public partial class RunnerWindowControl : UserControl, IToolWindowPaneAware
     {
         public RunnerWindowControl(Version vsVersion, RunnerWindowMessenger messenger)
         {
@@ -54,6 +55,11 @@ namespace TestExtension
         private async Task HideAsync()
         {
             await RunnerWindow.HideAsync();
+        }
+
+        public void SetPane(ToolWindowPane pane)
+        {
+            MessageList.Items.Add("Pane has been set.");
         }
     }
 }
