@@ -5,6 +5,7 @@ namespace Community.VisualStudio.Toolkit
 {
     /// <summary>
     /// An implementation of <see cref="ToolWindowPane"/> that allows the 
+    /// <see cref="BaseToolWindow{T}"/> or the tool window's content access to this pane.
     /// </summary>
     public abstract class ToolkitToolWindowPane : ToolWindowPane
     {
