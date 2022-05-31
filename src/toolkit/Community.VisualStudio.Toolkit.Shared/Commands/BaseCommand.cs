@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.Design;
-using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft;
 using Microsoft.VisualStudio.Shell;
@@ -34,9 +34,7 @@ namespace Community.VisualStudio.Toolkit
         {
             BaseCommand<T> instance = (BaseCommand<T>)(object)new T();
 
-            CommandAttribute? attr = (CommandAttribute)instance.GetType().GetCustomAttributes(typeof(CommandAttribute), true).FirstOrDefault();
-
-            if (attr is null)
+            if (instance.GetType().GetCustomAttribute(typeof(CommandAttribute)) is not CommandAttribute attr)
             {
                 throw new InvalidOperationException($"No [Command(GUID, ID)] attribute was added to {typeof(T).Name}");
             }
