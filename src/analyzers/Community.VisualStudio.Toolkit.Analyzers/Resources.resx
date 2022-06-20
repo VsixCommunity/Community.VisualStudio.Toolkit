@@ -144,6 +144,18 @@
   <data name="CVST004_Title" xml:space="preserve">
     <value>Register correct type in ProvideProfileAttribute</value>
   </data>
+  <data name="CVST005_CodeFix" xml:space="preserve">
+    <value>Initialize the commands</value>
+  </data>
+  <data name="CVST005_Description" xml:space="preserve">
+    <value>Commands should be initialized when the package is initialized</value>
+  </data>
+  <data name="CVST005_MessageFormat" xml:space="preserve">
+    <value>The command '{0}' has not been initialized</value>
+  </data>
+  <data name="CVST005_Title" xml:space="preserve">
+    <value>Register commands</value>
+  </data>
   <data name="IncorrectProvidedType_CodeFix" xml:space="preserve">
     <value>Change to '{0}'</value>
   </data>

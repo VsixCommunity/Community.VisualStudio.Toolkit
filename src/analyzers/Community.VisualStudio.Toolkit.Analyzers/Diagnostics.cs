@@ -6,5 +6,6 @@
         public const string DialogPageShouldBeComVisible = "CVST002";
         public const string UseCorrectTypeInProvideOptionDialogPageAttribute = "CVST003";
         public const string UseCorrectTypeInProvideProfileAttribute = "CVST004";
+        public const string InitializeCommands = "CVST005";
     }
 }

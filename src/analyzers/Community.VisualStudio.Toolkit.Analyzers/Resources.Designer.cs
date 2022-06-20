@@ -143,6 +143,42 @@ namespace Community.VisualStudio.Toolkit.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Initialize the commands.
+        /// </summary>
+        internal static string CVST005_CodeFix {
+            get {
+                return ResourceManager.GetString("CVST005_CodeFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commands should be initialized when the package is initialized.
+        /// </summary>
+        internal static string CVST005_Description {
+            get {
+                return ResourceManager.GetString("CVST005_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The command &apos;{0}&apos; has not been initialized.
+        /// </summary>
+        internal static string CVST005_MessageFormat {
+            get {
+                return ResourceManager.GetString("CVST005_MessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register commands.
+        /// </summary>
+        internal static string CVST005_Title {
+            get {
+                return ResourceManager.GetString("CVST005_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change to &apos;{0}&apos;.
         /// </summary>
         internal static string IncorrectProvidedType_CodeFix {
