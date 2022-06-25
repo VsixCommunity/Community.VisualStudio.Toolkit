@@ -113,7 +113,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Displays the InfoBar in the tool window or document previously specified.
         /// </summary>
-        /// <returns><c>true</c> if the InfoBar was shown; otherwise <c>false</c>.</returns>
+        /// <returns><see langword="true" /> if the InfoBar was shown; otherwise <see langword="false" />.</returns>
         public async Task<bool> TryShowInfoBarUIAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -132,7 +132,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Attempts to get the underlying WPF UI element of the InfoBar
+        /// Attempts to get the underlying WPF UI element of the InfoBar.
         /// </summary>
         public bool TryGetWpfElement(out Control? control)
         {
