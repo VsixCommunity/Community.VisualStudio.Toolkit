@@ -94,6 +94,7 @@ namespace Community.VisualStudio.Toolkit
         private readonly IVsInfoBarHost _host;
         private readonly InfoBarModel _model;
         private IVsInfoBarUIElement? _uiElement;
+        private uint _listenerCookie;
 
         /// <summary>
         /// Creates a new instance of the InfoBar in a specific window frame or document window.
@@ -119,7 +120,7 @@ namespace Community.VisualStudio.Toolkit
             IVsInfoBarUIFactory infoBarUIFactory = (IVsInfoBarUIFactory)await VS.GetRequiredServiceAsync<SVsInfoBarUIFactory, object>();
 
             _uiElement = infoBarUIFactory.CreateInfoBar(_model);
-            _uiElement.Advise(this, out _);
+            _uiElement.Advise(this, out _listenerCookie);
 
             if (_host != null)
             {
@@ -171,6 +172,7 @@ namespace Community.VisualStudio.Toolkit
         void IVsInfoBarUIEvents.OnClosed(IVsInfoBarUIElement infoBarUIElement)
         {
             IsVisible = false;
+            _uiElement?.Unadvise(_listenerCookie);
         }
 
         void IVsInfoBarUIEvents.OnActionItemClicked(IVsInfoBarUIElement infoBarUIElement, IVsInfoBarActionItem actionItem)
