@@ -231,6 +231,8 @@ namespace Community.VisualStudio.Toolkit
         /// <returns><see langword="null"/> if the window isn't a document window.</returns>
         public async Task<DocumentView?> GetDocumentViewAsync()
         {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+           
             // Force the loading of a document that may be pending initialization.
             // See https://docs.microsoft.com/en-us/visualstudio/extensibility/internals/delayed-document-loading
             _frame.GetProperty((int)__VSFPROPID.VSFPROPID_DocView, out _);

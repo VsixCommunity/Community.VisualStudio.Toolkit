@@ -125,6 +125,8 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public async Task PromptAsync()
         {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+           
             InfoBar? infoBar = await CreateInfoBarAsync();
 
             if (infoBar == null)
