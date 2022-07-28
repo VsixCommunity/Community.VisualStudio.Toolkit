@@ -20,6 +20,11 @@ namespace Community.VisualStudio.Toolkit
         [Import] internal ITextStructureNavigatorSelectorService? _textStructureNavigatorSelector = null;
 
         /// <summary>
+        /// Return the tag name for the HighlightWord tags. Defaults to "MarkerFormatDefinition/HighlightWordFormatDefinition".
+        /// Can be overwritten in a subclass to change the format of the tags.
+        /// </summary>
+        public virtual string TextMarkerTagType => "MarkerFormatDefinition/HighlightWordFormatDefinition";
+        /// <summary>
         /// The Options that are used to find the matching words. The default implementation returns 
         /// FindOptions.WholeWord | FindOptions.MatchCase
         /// </summary>
@@ -50,7 +55,7 @@ namespace Community.VisualStudio.Toolkit
 
     internal class HighlightWordTag : TextMarkerTag
     {
-        public HighlightWordTag() : base("MarkerFormatDefinition/HighlightWordFormatDefinition") { }
+        public HighlightWordTag(string tagName) : base(tagName) { }
     }
 
     internal class SameWordHighlighterTagger : ITagger<HighlightWordTag>, IDisposable
@@ -190,13 +195,13 @@ namespace Community.VisualStudio.Toolkit
             // the duplication here is expected.
             if (spans.OverlapsWith(new NormalizedSnapshotSpanCollection(currentWord)))
             {
-                yield return new TagSpan<HighlightWordTag>(currentWord, new HighlightWordTag());
+                yield return new TagSpan<HighlightWordTag>(currentWord, new HighlightWordTag(_tagger.TextMarkerTagType));
             }
 
             // Second, yield all the other words in the file
             foreach (SnapshotSpan span in NormalizedSnapshotSpanCollection.Overlap(spans, wordSpans))
             {
-                yield return new TagSpan<HighlightWordTag>(span, new HighlightWordTag());
+                yield return new TagSpan<HighlightWordTag>(span, new HighlightWordTag(_tagger.TextMarkerTagType));
             }
         }
 
