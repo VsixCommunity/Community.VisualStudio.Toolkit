@@ -98,10 +98,20 @@ namespace Community.VisualStudio.Toolkit
             UpdateAtCaretPosition(e.NewPosition);
         }
 
+        private void ClearSpans()
+        {
+            lock (_syncLock)
+            {
+                _currentWord = null;
+                _wordSpans = new();
+                SnapshotSpan span = new(_buffer.CurrentSnapshot, 0, _buffer.CurrentSnapshot.Length);
+                TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(span));
+            }
+        }
         private void UpdateAtCaretPosition(CaretPosition caretPosition)
         {
             SnapshotPoint? point = caretPosition.Point.GetPoint(_buffer, caretPosition.Affinity);
-
+            
             if (!point.HasValue)
             {
                 return;
@@ -117,6 +127,13 @@ namespace Community.VisualStudio.Toolkit
                     UpdateWordAdornments(word.Value);
                 }, VsTaskRunContext.UIThreadIdlePriority).FireAndForget();
             }
+            else
+            {
+                // Clear the spans, to make sure that the highlights are 
+                // removed when we move the caret to whitespace 
+                ClearSpans();
+            }
+
         }
 
         private void UpdateWordAdornments(TextExtent word)
