@@ -35,14 +35,36 @@ namespace Microsoft.VisualStudio.Imaging.Interop
         }
 
         /// <summary>
+        /// Converts an ImageMoniker to a bitmap in the specified size.
+        /// </summary>
+        public static async Task<BitmapSource?> ToBitmapSourceAsync(this ImageMoniker moniker, int size, Color backgroundColor)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            IVsUIObject? result = await ToUiObjectAsync(moniker, size, backgroundColor);
+            ErrorHandler.ThrowOnFailure(result.get_Data(out object data));
+
+            return data as BitmapSource;
+        }
+
+        /// <summary>
         /// Converts an ImageMoniker to an IVsUIObject in the specified size.
         /// </summary>
         public static async Task<IVsUIObject> ToUiObjectAsync(this ImageMoniker moniker, int size)
         {
+            Color backColor = VSColorTheme.GetThemedColor(EnvironmentColors.ToolWindowBackgroundColorKey);
+
+            return await ToUiObjectAsync(moniker, size, backColor);
+        }
+
+        /// <summary>
+        /// Converts an ImageMoniker to an IVsUIObject in the specified size with the specified background color.
+        /// </summary>
+        public static async Task<IVsUIObject> ToUiObjectAsync(this ImageMoniker moniker, int size, Color backgroundColor)
+        {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IVsImageService2 imageService = await VS.GetRequiredServiceAsync<SVsImageService, IVsImageService2>();
-            Color backColor = VSColorTheme.GetThemedColor(EnvironmentColors.ToolWindowBackgroundColorKey);
 
             ImageAttributes imageAttributes = new()
             {
@@ -52,7 +74,7 @@ namespace Microsoft.VisualStudio.Imaging.Interop
                 Dpi = 96,
                 LogicalHeight = size,
                 LogicalWidth = size,
-                Background = (uint)backColor.ToArgb(),
+                Background = (uint)backgroundColor.ToArgb(),
                 StructSize = Marshal.SizeOf(typeof(ImageAttributes))
             };
 
