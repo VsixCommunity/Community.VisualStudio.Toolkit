@@ -95,7 +95,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Shows a yes/no/cancel message box.
+        /// Shows a yes/no message box.
         /// </summary>
         /// <returns>true if the user clicks the 'Yes' button.</returns>
         public bool ShowConfirm(string line1, string line2 = "")
@@ -105,7 +105,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Shows a yes/no/cancel message box.
+        /// Shows a yes/no message box.
         /// </summary>
         /// <returns>true if the user clicks the 'Yes' button.</returns>
         public async Task<bool> ShowConfirmAsync(string line1, string line2 = "")

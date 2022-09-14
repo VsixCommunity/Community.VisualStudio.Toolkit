@@ -172,6 +172,7 @@ namespace Community.VisualStudio.Toolkit
         void IVsInfoBarUIEvents.OnClosed(IVsInfoBarUIElement infoBarUIElement)
         {
             IsVisible = false;
+            ThreadHelper.ThrowIfNotOnUIThread();
             _uiElement?.Unadvise(_listenerCookie);
         }
 
