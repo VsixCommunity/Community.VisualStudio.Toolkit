@@ -25,12 +25,12 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public virtual string TextMarkerTagType => "MarkerFormatDefinition/HighlightWordFormatDefinition";
         /// <summary>
-        /// The Options that are used to find the matching words. The default implementation returns 
+        /// The Options that are used to find the matching words. The default implementation returns
         /// FindOptions.WholeWord | FindOptions.MatchCase
         /// </summary>
         public virtual FindOptions FindOptions => FindOptions.WholeWord | FindOptions.MatchCase;
         /// <summary>
-        /// Filter the results. 
+        /// Filter the results.
         /// </summary>
         /// <param name="results">Collection of the results</param>
         /// <returns>Filtered list of results. The default implementation returns all the results</returns>
@@ -48,7 +48,7 @@ namespace Community.VisualStudio.Toolkit
         {
             ITextStructureNavigator? navigator = _textStructureNavigatorSelector?.GetTextStructureNavigator(textView.TextBuffer);
 
-            return (ITagger<T>)buffer.Properties.GetOrCreateSingletonProperty(() => 
+            return (ITagger<T>)buffer.Properties.GetOrCreateSingletonProperty(() =>
                 new SameWordHighlighterTagger(textView, buffer, _textSearchService, navigator, this));
         }
     }
@@ -71,7 +71,7 @@ namespace Community.VisualStudio.Toolkit
         private bool _isDisposed;
         private readonly object _syncLock = new();
 
-        public SameWordHighlighterTagger(ITextView view, ITextBuffer sourceBuffer, ITextSearchService? textSearchService, 
+        public SameWordHighlighterTagger(ITextView view, ITextBuffer sourceBuffer, ITextSearchService? textSearchService,
             ITextStructureNavigator? textStructureNavigator, SameWordHighlighterBase tagger)
         {
             _view = view;
@@ -111,7 +111,7 @@ namespace Community.VisualStudio.Toolkit
         private void UpdateAtCaretPosition(CaretPosition caretPosition)
         {
             SnapshotPoint? point = caretPosition.Point.GetPoint(_buffer, caretPosition.Affinity);
-            
+
             if (!point.HasValue)
             {
                 return;
@@ -120,7 +120,7 @@ namespace Community.VisualStudio.Toolkit
             _requestedPoint = point.Value;
             TextExtent? word = _textStructureNavigator?.GetExtentOfWord(_requestedPoint);
 
-            if (word.HasValue && word.Value.IsSignificant && word.Value.Span.Length > 1)
+            if (word.HasValue && word.Value.IsSignificant && word.Value.Span.Length > 0)
             {
                 ThreadHelper.JoinableTaskFactory.StartOnIdleShim(() =>
                 {
@@ -129,8 +129,8 @@ namespace Community.VisualStudio.Toolkit
             }
             else
             {
-                // Clear the spans, to make sure that the highlights are 
-                // removed when we move the caret to whitespace 
+                // Clear the spans, to make sure that the highlights are
+                // removed when we move the caret to whitespace
                 ClearSpans();
             }
 
