@@ -61,7 +61,7 @@ namespace Community.VisualStudio.Toolkit
             }
             else if (propid == (int)__VSSPROPID6.VSSPROPID_ShutdownStarted)
             {
-                if (!(bool)var)
+                if ((bool)var)
                 {
                     ShutdownStarted?.Invoke();
                 }
