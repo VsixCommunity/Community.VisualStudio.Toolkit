@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.Text.Tagging;
 
 namespace Community.VisualStudio.Toolkit
 {
+
     /// <summary>
     /// A base class for providing same-word highlighting.
     /// </summary>
@@ -48,8 +49,11 @@ namespace Community.VisualStudio.Toolkit
         {
             ITextStructureNavigator? navigator = _textStructureNavigatorSelector?.GetTextStructureNavigator(textView.TextBuffer);
 
-            return (ITagger<T>)buffer.Properties.GetOrCreateSingletonProperty(() =>
+            var tagger = textView.Properties.GetOrCreateSingletonProperty(() =>
                 new SameWordHighlighterTagger(textView, buffer, _textSearchService, navigator, this));
+            tagger.Counter += 1;
+
+            return (ITagger<T>)tagger;
         }
     }
 
@@ -60,6 +64,7 @@ namespace Community.VisualStudio.Toolkit
 
     internal class SameWordHighlighterTagger : ITagger<HighlightWordTag>, IDisposable
     {
+        internal int Counter;
         private readonly ITextView _view;
         private readonly ITextBuffer _buffer;
         private readonly ITextSearchService? _textSearchService;
@@ -83,6 +88,7 @@ namespace Community.VisualStudio.Toolkit
             _currentWord = null;
             _view.Caret.PositionChanged += CaretPositionChanged;
             _view.LayoutChanged += ViewLayoutChanged;
+            Counter = 0;
         }
 
         private void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
@@ -226,11 +232,14 @@ namespace Community.VisualStudio.Toolkit
         {
             if (!_isDisposed)
             {
-                _view.Caret.PositionChanged -= CaretPositionChanged;
-                _view.LayoutChanged -= ViewLayoutChanged;
+                this.Counter -= 1;
+                if (this.Counter == 0)
+                {
+                    _view.Caret.PositionChanged -= CaretPositionChanged;
+                    _view.LayoutChanged -= ViewLayoutChanged;
+                    _isDisposed = true;
+                }
             }
-
-            _isDisposed = true;
         }
 
         public event EventHandler<SnapshotSpanEventArgs>? TagsChanged;
