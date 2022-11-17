@@ -146,8 +146,9 @@ namespace Community.VisualStudio.Toolkit
                     return true;
                 }
             }
-            // Then write straight to project file
-            else if (hierarchy is IVsBuildPropertyStorage storage)
+
+            // If the property descriptor was not available, then write straight to the project file.
+            if (hierarchy is IVsBuildPropertyStorage storage)
             {
                 ErrorHandler.ThrowOnFailure(storage.SetItemAttribute(itemId, name, value?.ToString()));
                 return true;
