@@ -47,9 +47,15 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>Gets the key that defines the resource for the <see cref="ControlTemplate"/> of a Visual Studio-themed <see cref="PasswordBox"/> style.</summary>
         public static object PasswordBoxControlTemplateKey { get; } = _prefix + nameof(PasswordBoxControlTemplateKey);
 
+        /// <summary>Gets the key that defines the resource for a Visual Studio-themed <see cref="RichTextBox"/> style.</summary>
+        public static object RichTextBoxStyleKey { get; } = _prefix + nameof(RichTextBoxStyleKey);
+
+        /// <summary>Gets the key that defines the resource for the <see cref="ControlTemplate"/> of a Visual Studio-themed <see cref="RichTextBox"/> style.</summary>
+        public static object RichTextBoxControlTemplateKey { get; } = _prefix + nameof(RichTextBoxControlTemplateKey);
+
         private static Uri BuildPackUri(string resource)
         {
-            // Multiple versions of the toolkti assembly might be loaded, so when
+            // Multiple versions of the toolkit assembly might be loaded, so when
             // loading a resource, we need to include the version number of this
             // assembly to ensure that the resource is loaded from the correct assembly.
             AssemblyName assemblyName = typeof(ToolkitResourceKeys).Assembly.GetName();
