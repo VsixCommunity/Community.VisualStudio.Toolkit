@@ -65,8 +65,58 @@
         </Style.Triggers>
     </Style>
 
+    <ControlTemplate x:Key="{x:Static local:ToolkitResourceKeys.RichTextBoxControlTemplateKey}" TargetType="{x:Type RichTextBox}">
+        <!-- 
+        The default template for a RichTextBox defines a trigger for IsMouseOver that changes the 
+        border brush. To get our style triggers to apply, we need to override the template.
+        -->
+        <Border
+            x:Name="border"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            Background="{TemplateBinding Background}"
+            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+            >
+            
+            <ScrollViewer 
+                x:Name="PART_ContentHost"
+                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                />
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="{x:Static local:ToolkitResourceKeys.RichTextBoxStyleKey}" TargetType="RichTextBox">
+        <Setter Property="Padding" Value="{StaticResource {x:Static local:ToolkitResourceKeys.InputPaddingKey}}" />
+        <Setter Property="Background" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxBackgroundBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxTextBrushKey}}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxBorderBrushKey}}" />
+
+        <Setter Property="Template" Value="{StaticResource {x:Static local:ToolkitResourceKeys.RichTextBoxControlTemplateKey}}"/>
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxBackgroundBrushKey}}" />
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxTextBrushKey}}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxBorderBrushKey}}" />
+            </Trigger>
+
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxBackgroundFocusedBrushKey}}" />
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxTextFocusedBrushKey}}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxBorderFocusedBrushKey}}" />
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxBackgroundDisabledBrushKey}}" />
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxTextDisabledBrushKey}}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static local:InternalResourceKeys.CommonControlsColors_TextBoxBorderDisabledBrushKey}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
     <!-- Default styles. -->
     <Style TargetType="TextBox" BasedOn="{StaticResource {x:Static local:ToolkitResourceKeys.TextBoxStyleKey}}" />
     <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Static local:ToolkitResourceKeys.ComboBoxStyleKey}}" />
     <Style TargetType="PasswordBox" BasedOn="{StaticResource {x:Static local:ToolkitResourceKeys.PasswordBoxStyleKey}}" />
+    <Style TargetType="RichTextBox" BasedOn="{StaticResource {x:Static local:ToolkitResourceKeys.RichTextBoxStyleKey}}" />
 </ResourceDictionary>

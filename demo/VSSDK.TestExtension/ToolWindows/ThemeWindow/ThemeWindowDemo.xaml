@@ -81,6 +81,32 @@
                 </local:ThemedControl.Disabled>
             </local:ThemedControl>
 
+            <local:ThemedControl Label="RichTextBox:">
+                <local:ThemedControl.Enabled>
+                    <RichTextBox>
+                        <FlowDocument>
+                            <Paragraph>
+                                Rich
+                                <Bold>Text</Bold>
+                                <Italic>Box</Italic>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </local:ThemedControl.Enabled>
+
+                <local:ThemedControl.Disabled>
+                    <RichTextBox IsEnabled="False">
+                        <FlowDocument>
+                            <Paragraph>
+                                Rich
+                                <Bold>Text</Bold>
+                                <Italic>Box</Italic>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </local:ThemedControl.Disabled>
+            </local:ThemedControl>
+
             <local:ThemedControl Label="PasswordBox:">
                 <local:ThemedControl.Enabled>
                     <PasswordBox Password="Password" />
