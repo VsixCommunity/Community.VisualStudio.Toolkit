@@ -67,6 +67,13 @@ namespace Community.VisualStudio.Toolkit
             // is out of bounds, then we'll hide and disable the menu item.
             if (TryGetItem(index, out TItem item))
             {
+                // If there are no items, then each dynamic menu item will be disabled and
+                // hidden in the `else` case below. We don't want to rely on `BeforeQueryStatus`
+                // having to make the menu items enabled and visible, so we will make them enabled
+                // and visible by default, and `BeforeQueryStatus` can change that if it needs to.
+                menuItem.Enabled = true;
+                menuItem.Visible = true;
+
                 BeforeQueryStatus(menuItem, e, item);
 
                 // Store the index in the menu item's properties so that we can
