@@ -44,12 +44,7 @@ namespace Community.VisualStudio.Toolkit
             _fullPath = GetFullPath();
             _isNonVisibleItem = new Lazy<bool>(() =>
             {
-                if (HierarchyUtilities.TryGetHierarchyProperty(_hierarchy, _itemId, (int)__VSHPROPID.VSHPROPID_IsNonMemberItem, out bool isNonMemberItem)
-                && isNonMemberItem)
-                {
-                    return isNonMemberItem;
-                }
-                return false;
+                return HierarchyUtilities.TryGetHierarchyProperty(_hierarchy, _itemId, (int)__VSHPROPID.VSHPROPID_IsNonMemberItem, out bool isNonMemberItem) && isNonMemberItem;
             });
         }
 
@@ -84,7 +79,7 @@ namespace Community.VisualStudio.Toolkit
         public IEnumerable<SolutionItem?> Children => _children ??= _item.Children.Select(t => FromHierarchyItem(t));
 
         /// <summary>
-        /// Returns whether the item is normally visible in soltuion explorer
+        /// Returns whether the item is normally hidden in solution explorer and only visible when Show All Files is enabled.
         /// </summary>
         public bool IsNonVisibleItem => _isNonVisibleItem.Value;
 
