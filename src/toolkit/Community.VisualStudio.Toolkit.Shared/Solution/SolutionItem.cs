@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Automation.Peers;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
@@ -23,6 +22,7 @@ namespace Community.VisualStudio.Toolkit
         private IVsHierarchy _hierarchy = default!; // Initialized to non-null via the `Update()` method.
         private string? _fullPath;
         private uint _itemId;
+        private Lazy<bool> _isNonVisibleItem = default!; // Initialized to non-null via the `Update()` method.
 
         /// <summary>
         /// Creates a new instance of the solution item.
@@ -38,9 +38,13 @@ namespace Community.VisualStudio.Toolkit
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             _item = item;
-            _hierarchy = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedHierarchy : item.HierarchyIdentity.Hierarchy;
-            _itemId = item.HierarchyIdentity.IsNestedItem ? item.HierarchyIdentity.NestedItemID : item.HierarchyIdentity.ItemID;
+            _hierarchy = item.GetHierarchy();
+            _itemId = item.GetItemId();
             _fullPath = GetFullPath();
+            _isNonVisibleItem = new Lazy<bool>(() =>
+            {
+                return HierarchyUtilities.TryGetHierarchyProperty(_hierarchy, _itemId, (int)__VSHPROPID.VSHPROPID_IsNonMemberItem, out bool isNonMemberItem) && isNonMemberItem;
+            });
         }
 
         /// <summary>
@@ -72,6 +76,11 @@ namespace Community.VisualStudio.Toolkit
         /// A list of child items.
         /// </summary>
         public IEnumerable<SolutionItem?> Children => _children ??= _item.Children.Select(t => FromHierarchyItem(t));
+
+        /// <summary>
+        /// Returns whether the item is normally hidden in solution explorer and only visible when Show All Files is enabled.
+        /// </summary>
+        public bool IsNonVisibleItem => _isNonVisibleItem.Value;
 
         /// <summary>
         /// Gets information from the underlying data types.
@@ -128,7 +137,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 throw new ArgumentNullException(nameof(hierarchy));
             }
-            
+
             ThreadHelper.ThrowIfNotOnUIThread();
             IVsHierarchyItem item = hierarchy.ToHierarchyItem(itemId);
 
