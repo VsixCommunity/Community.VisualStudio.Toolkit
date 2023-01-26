@@ -5,7 +5,6 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Task = System.Threading.Tasks.Task;
 
 namespace Community.VisualStudio.Toolkit
 {
@@ -93,32 +92,38 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Intercept any command before it is being handled by other command handlers.
         /// </summary>
-        public Task InterceptAsync(VSConstants.VSStd97CmdID command, Func<CommandProgression> func)
+        /// <returns>Returns an <see cref="IDisposable"/> that will remove the command interceptor when disposed.</returns>
+        public Task<IDisposable> InterceptAsync(VSConstants.VSStd97CmdID command, Func<CommandProgression> func)
             => InterceptAsync(typeof(VSConstants.VSStd97CmdID).GUID, (int)command, func);
 
         /// <summary>
         /// Intercept any command before it is being handled by other command handlers.
         /// </summary>
-        public Task InterceptAsync(VSConstants.VSStd2KCmdID command, Func<CommandProgression> func)
+        /// <returns>Returns an <see cref="IDisposable"/> that will remove the command interceptor when disposed.</returns>
+        public Task<IDisposable> InterceptAsync(VSConstants.VSStd2KCmdID command, Func<CommandProgression> func)
             => InterceptAsync(typeof(VSConstants.VSStd2KCmdID).GUID, (int)command, func);
 
         /// <summary>
         /// Intercept any command before it is being handled by other command handlers.
         /// </summary>
-        public Task InterceptAsync(Guid menuGroup, int commandId, Func<CommandProgression> func)
+        /// <returns>Returns an <see cref="IDisposable"/> that will remove the command interceptor when disposed.</returns>
+        public Task<IDisposable> InterceptAsync(Guid menuGroup, int commandId, Func<CommandProgression> func)
             => InterceptAsync(new CommandID(menuGroup, commandId), func);
 
         /// <summary>
         /// Intercept any command before it is being handled by other command handlers.
         /// </summary>
-        public async Task InterceptAsync(CommandID cmd, Func<CommandProgression> func)
+        /// <returns>Returns an <see cref="IDisposable"/> that will remove the command interceptor when disposed.</returns>
+        public async Task<IDisposable> InterceptAsync(CommandID cmd, Func<CommandProgression> func)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IVsRegisterPriorityCommandTarget? priority = await VS.Services.GetPriorityCommandTargetAsync();
             CommandInterceptor interceptor = new(cmd, func);
 
-            ErrorHandler.ThrowOnFailure(priority.RegisterPriorityCommandTarget(0, interceptor, out _));
+            ErrorHandler.ThrowOnFailure(priority.RegisterPriorityCommandTarget(0, interceptor, out uint cookie));
+
+            return new Disposable(() => priority.UnregisterPriorityCommandTarget(cookie));
         }
     }
 

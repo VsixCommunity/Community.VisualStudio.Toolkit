@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Debugger\Debugger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Disposable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\IToolWindowPaneAware.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\ToolkitToolWindowPane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Attributes\ProvideBraceCompletionAttribute.cs" />
