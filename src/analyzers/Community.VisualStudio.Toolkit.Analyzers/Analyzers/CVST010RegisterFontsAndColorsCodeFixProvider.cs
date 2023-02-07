@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using System.Composition;
 using System.Linq;
 using System.Threading;
@@ -15,11 +14,11 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Community.VisualStudio.Toolkit.Analyzers
 {
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(CVST005InitializeCommandsCodeFixProvider))]
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(CVST010RegisterFontsAndColorsCodeFixProvider))]
     [Shared]
-    public class CVST005InitializeCommandsCodeFixProvider : CodeFixProviderBase
+    public class CVST010RegisterFontsAndColorsCodeFixProvider : CodeFixProviderBase
     {
-        public sealed override ImmutableArray<string> FixableDiagnosticIds { get; } = ImmutableArray.Create(CVST005InitializeCommandsAnalyzer.DiagnosticId);
+        public sealed override ImmutableArray<string> FixableDiagnosticIds { get; } = ImmutableArray.Create(CVST010RegisterFontsAndColorsAnalyzer.DiagnosticId);
 
         public sealed override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 
@@ -38,9 +37,9 @@ namespace Community.VisualStudio.Toolkit.Analyzers
                 // diagnostics, we can create the `InitializeAsync()` method.
                 context.RegisterCodeFix(
                     CodeAction.Create(
-                        Resources.CVST005_CodeFix,
+                        Resources.CVST010_CodeFix,
                         cancellation => AddInitializeAsyncMethodAsync(context.Document, declaration, cancellation),
-                        equivalenceKey: nameof(Resources.CVST005_CodeFix)
+                        equivalenceKey: nameof(Resources.CVST010_CodeFix)
                     ),
                     diagnostic
                 );
@@ -48,39 +47,15 @@ namespace Community.VisualStudio.Toolkit.Analyzers
             else if (node is MethodDeclarationSyntax method)
             {
                 // There is an `InitializeAsync()` method. We can fix the
-                // diagnostics by adding statements to that method. If each
-                // diagnostic contains a property for the command name, then
-                // we need to register the commands individually. If no name
-                // is specified, then we can initialize all commands in bulk.
-                if (context.Diagnostics.All((x) => x.Properties.ContainsKey(CVST005InitializeCommandsAnalyzer.CommandNameKey)))
-                {
-                    List<string> commandNames = context.Diagnostics
-                        .Select((x) => x.Properties[CVST005InitializeCommandsAnalyzer.CommandNameKey])
-                        .ToList();
-                    context.RegisterCodeFix(
-                        CodeAction.Create(
-                            Resources.CVST005_CodeFix,
-                            cancellation => InitializeSpecificCommandsAsync(context.Document, method, commandNames, cancellation),
-                            equivalenceKey: nameof(Resources.CVST005_CodeFix)
-                        ),
-                        diagnostic
-                    );
-                }
-                else
-                {
-                    // The command names weren't specified in the diagnostic, which means
-                    // that no existing commands are being initialized. We can choose to 
-                    // initialize the command individually or initialize all commands
-                    // in bulk. We'll choose the bulk method because it's shorter.
-                    context.RegisterCodeFix(
-                        CodeAction.Create(
-                            Resources.CVST005_CodeFix,
-                            cancellation => InitializeAllCommandsAsync(context.Document, method, cancellation),
-                            equivalenceKey: nameof(Resources.CVST005_CodeFix)
-                        ),
-                        diagnostic
-                    );
-                }
+                // diagnostics by adding a statement to that method. 
+                context.RegisterCodeFix(
+                    CodeAction.Create(
+                        Resources.CVST010_CodeFix,
+                        cancellation => AddRegisterFontAndColorProvidersCallAsync(context.Document, method, cancellation),
+                        equivalenceKey: nameof(Resources.CVST010_CodeFix)
+                    ),
+                    diagnostic
+                );
             }
         }
 
@@ -95,7 +70,7 @@ namespace Community.VisualStudio.Toolkit.Analyzers
                 generator.MethodDeclaration(
                     "InitializeAsync",
                     parameters: new[] {
-                        generator.ParameterDeclaration("cancellationToken",SyntaxFactory.ParseTypeName("System.Threading.CancellationToken")),
+                        generator.ParameterDeclaration("cancellationToken", SyntaxFactory.ParseTypeName("System.Threading.CancellationToken")),
                         generator.ParameterDeclaration("progress", SyntaxFactory.ParseTypeName("System.IProgress<Microsoft.VisualStudio.Shell.ServiceProgressData>"))
                     },
                     returnType: SyntaxFactory.ParseTypeName("System.Threading.Tasks.Task"),
@@ -106,7 +81,7 @@ namespace Community.VisualStudio.Toolkit.Analyzers
                             generator.InvocationExpression(
                                 generator.MemberAccessExpression(
                                     generator.ThisExpression(),
-                                    "RegisterCommandsAsync"
+                                    "RegisterFontAndColorProvidersAsync"
                                 )
                             )
                         )
@@ -117,7 +92,7 @@ namespace Community.VisualStudio.Toolkit.Analyzers
             return document.WithSyntaxRoot(editor.GetChangedRoot());
         }
 
-        private async Task<Document> InitializeAllCommandsAsync(Document document, MethodDeclarationSyntax initializeAsyncMethod, CancellationToken cancellationToken)
+        private async Task<Document> AddRegisterFontAndColorProvidersCallAsync(Document document, MethodDeclarationSyntax initializeAsyncMethod, CancellationToken cancellationToken)
         {
             SyntaxNode root = await document.GetSyntaxRootAsync(cancellationToken);
             SyntaxEditor editor = new(root, document.Project.Solution.Workspace);
@@ -131,7 +106,7 @@ namespace Community.VisualStudio.Toolkit.Analyzers
                             generator.InvocationExpression(
                                 generator.MemberAccessExpression(
                                     generator.ThisExpression(),
-                                    "RegisterCommandsAsync"
+                                    "RegisterFontAndColorProvidersAsync"
                                 )
                             )
                         )
@@ -141,32 +116,5 @@ namespace Community.VisualStudio.Toolkit.Analyzers
 
             return document.WithSyntaxRoot(editor.GetChangedRoot());
         }
-
-        private async Task<Document> InitializeSpecificCommandsAsync(Document document, MethodDeclarationSyntax initializeAsyncMethod, IEnumerable<string> commandNames, CancellationToken cancellationToken)
-        {
-            SyntaxNode root = await document.GetSyntaxRootAsync(cancellationToken);
-            SyntaxEditor editor = new(root, document.Project.Solution.Workspace);
-            SyntaxGenerator generator = editor.Generator;
-
-            editor.SetStatements(
-                initializeAsyncMethod,
-                initializeAsyncMethod.Body.Statements.AddRange(
-                    commandNames.Select((name) => (StatementSyntax)generator.ExpressionStatement(
-                        generator.AwaitExpression(
-                            generator.InvocationExpression(
-                                generator.MemberAccessExpression(
-                                    SyntaxFactory.ParseTypeName(name),
-                                    "InitializeAsync"
-                                ),
-                                generator.ThisExpression()
-                            )
-                        )
-                    ).WithAdditionalAnnotations(Simplifier.Annotation)
-                ))
-            );
-
-            return document.WithSyntaxRoot(editor.GetChangedRoot());
-        }
-
     }
 }

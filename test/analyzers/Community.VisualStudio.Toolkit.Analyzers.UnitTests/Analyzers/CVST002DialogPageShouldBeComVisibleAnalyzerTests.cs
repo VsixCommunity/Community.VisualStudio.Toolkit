@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Community.VisualStudio.Toolkit.Analyzers.UnitTests
 {
-    public class CVST002DialogPageShouldBeComVisibleAnalyzerTests : TestBase<CVST002DialogPageShouldBeComVisibleAnalyzer, CVST002DialogPageShouldBeComVisibleCodeFixProvider>
+    public class CVST002DialogPageShouldBeComVisibleAnalyzerTests : AnalyzerAndCodeFixTestBase<CVST002DialogPageShouldBeComVisibleAnalyzer, CVST002DialogPageShouldBeComVisibleCodeFixProvider>
     {
         public CVST002DialogPageShouldBeComVisibleAnalyzerTests()
         {

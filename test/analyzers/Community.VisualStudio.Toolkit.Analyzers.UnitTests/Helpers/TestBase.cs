@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CodeActions;
-using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Testing;
@@ -13,49 +10,16 @@ using Microsoft.CodeAnalysis.Testing.Verifiers;
 
 namespace Community.VisualStudio.Toolkit.Analyzers.UnitTests
 {
-    public abstract class TestBase<TAnalyzer, TCodeFix> : IDisposable
-        where TAnalyzer : DiagnosticAnalyzer, new()
-        where TCodeFix : CodeFixProvider, new()
+    public abstract class TestBase<TAnalyzer> where TAnalyzer : DiagnosticAnalyzer, new()
     {
-        private readonly Test _test = new();
         private bool _verified;
 
-        protected string TestCode
-        {
-            set { _test.TestCode = NormalizeLineEndings(value); }
-        }
-
-        protected string FixedCode
-        {
-            set { _test.FixedCode = NormalizeLineEndings(value); }
-        }
-
-        private static string NormalizeLineEndings(string value)
+        protected static string NormalizeLineEndings(string value)
         {
             // The code may contain different line endings to what is expected depending on how
             // it was checked out in Git. Change the line endings to match the current environment,
-            // because that is the type of line ending that that will be used by the code fix.
+            // because that is the type of line ending that will be used by the code fix.
             return Regex.Replace(value, "\r?\n", Environment.NewLine);
-        }
-
-        protected int? CodeActionIndex
-        {
-            set { _test.CodeActionIndex = value; }
-        }
-
-        protected Action<CodeAction, IVerifier>? CodeActionVerifier
-        {
-            set { _test.CodeActionVerifier = value; }
-        }
-
-        protected void AddReference(Type typeInAssemblyToReference)
-        {
-            _test.References.Add(typeInAssemblyToReference);
-        }
-
-        protected void Expect(DiagnosticResult result)
-        {
-            _test.ExpectedDiagnostics.Add(result);
         }
 
         protected DiagnosticResult Diagnostic() => CSharpAnalyzerVerifier<TAnalyzer, XUnitVerifier>.Diagnostic();
@@ -64,13 +28,15 @@ namespace Community.VisualStudio.Toolkit.Analyzers.UnitTests
 
         protected DiagnosticResult Diagnostic(DiagnosticDescriptor descriptor) => CSharpAnalyzerVerifier<TAnalyzer, XUnitVerifier>.Diagnostic(descriptor);
 
-        protected async Task VerifyAsync()
+        protected Task VerifyAsync()
         {
             // Flag that the test has verified something to guard against a test 
             // that wasn't written correctly and failed to verify anything.
             _verified = true;
-            await _test.RunAsync(CancellationToken.None);
+            return RunTestAsync();
         }
+
+        protected abstract Task RunTestAsync();
 
         protected virtual void Dispose(bool disposing)
         {
@@ -87,42 +53,33 @@ namespace Community.VisualStudio.Toolkit.Analyzers.UnitTests
             GC.SuppressFinalize(this);
         }
 
-        private class Test : CSharpCodeFixTest<TAnalyzer, TCodeFix, XUnitVerifier>
+        protected static Microsoft.CodeAnalysis.Solution ConfigureProject(
+            Microsoft.CodeAnalysis.Solution solution,
+            ProjectId projectId,
+            List<Type> references
+        )
         {
-            public Test()
+            Microsoft.CodeAnalysis.Project? project = solution.GetProject(projectId)
+                ?? throw new InvalidOperationException("Project is null.");
+
+            CompilationOptions? options = project.CompilationOptions
+                ?? throw new InvalidOperationException("The project does not have compilation options.");
+
+            options = options.WithSpecificDiagnosticOptions(
+                options.SpecificDiagnosticOptions.SetItems(VerifierHelper.NullableWarnings)
+            );
+
+            solution = solution.WithProjectCompilationOptions(projectId, options);
+
+            foreach (Type reference in references)
             {
-                References.Add(typeof(VS));
-
-                SolutionTransforms.Add((solution, projectId) =>
-                {
-                    Microsoft.CodeAnalysis.Project? project = solution.GetProject(projectId);
-                    if (project is null)
-                    {
-                        throw new InvalidOperationException("Project is null.");
-                    }
-
-                    CompilationOptions? options = project.CompilationOptions;
-                    if (options is null)
-                    {
-                        throw new InvalidOperationException("The project does not have compilation options.");
-                    }
-
-                    options = options.WithSpecificDiagnosticOptions(
-                        options.SpecificDiagnosticOptions.SetItems(VerifierHelper.NullableWarnings)
-                    );
-
-                    solution = solution.WithProjectCompilationOptions(projectId, options);
-
-                    foreach (Type reference in References)
-                    {
-                        solution = solution.AddMetadataReference(projectId, MetadataReference.CreateFromFile(reference.Assembly.Location));
-                    }
-
-                    return solution;
-                });
+                solution = solution.AddMetadataReference(
+                    projectId,
+                    MetadataReference.CreateFromFile(reference.Assembly.Location)
+                );
             }
 
-            public List<Type> References { get; } = new();
+            return solution;
         }
     }
 }

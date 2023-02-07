@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Community.VisualStudio.Toolkit.Analyzers.UnitTests
 {
-    public class CVST001CastInteropServicesAnalyzerTests : TestBase<CVST001CastInteropServicesAnalyzer, CVST001CastInteropServicesCodeFixProvider>
+    public class CVST001CastInteropServicesAnalyzerTests : AnalyzerAndCodeFixTestBase<CVST001CastInteropServicesAnalyzer, CVST001CastInteropServicesCodeFixProvider>
     {
         /// <summary>
         /// Using the real IVsImageService2 and other interop types requires adding a reference to the interop assembly, 

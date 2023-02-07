@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Community.VisualStudio.Toolkit.Analyzers.UnitTests
 {
-    public class CVST004UseCorrectTypeInProvideProfileAttributeAnalyzerTests : TestBase<CVST004UseCorrectTypeInProvideProfileAttributeAnalyzer, CVST004UseCorrectTypeInProvideProfileAttributeCodeFixProvider>
+    public class CVST004UseCorrectTypeInProvideProfileAttributeAnalyzerTests : AnalyzerAndCodeFixTestBase<CVST004UseCorrectTypeInProvideProfileAttributeAnalyzer, CVST004UseCorrectTypeInProvideProfileAttributeCodeFixProvider>
     {
         private const string _profileManagerImplementationBody = @"
             public void SaveSettingsToXml(IVsSettingsWriter writer) {}

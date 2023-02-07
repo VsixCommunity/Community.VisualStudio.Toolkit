@@ -6,7 +6,7 @@ namespace Community.VisualStudio.Toolkit
     /// <summary>
     /// Registers font and color definitions in Visual Studio.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class ProvideFontsAndColorsAttribute : ProvideServiceAttributeBase
     {
         /// <summary>

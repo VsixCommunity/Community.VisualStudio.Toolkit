@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Community.VisualStudio.Toolkit.Analyzers.UnitTests
 {
-    public class CVST003UseCorrectTypeInProvideOptionDialogPageAttributeAnalyzerTests : TestBase<CVST003UseCorrectTypeInProvideOptionDialogPageAttributeAnalyzer, CVST003UseCorrectTypeInProvideOptionDialogPageAttributeCodeFixProvider>
+    public class CVST003UseCorrectTypeInProvideOptionDialogPageAttributeAnalyzerTests : AnalyzerAndCodeFixTestBase<CVST003UseCorrectTypeInProvideOptionDialogPageAttributeAnalyzer, CVST003UseCorrectTypeInProvideOptionDialogPageAttributeCodeFixProvider>
     {
         public CVST003UseCorrectTypeInProvideOptionDialogPageAttributeAnalyzerTests()
         {
