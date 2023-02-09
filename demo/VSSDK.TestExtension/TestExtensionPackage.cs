@@ -19,9 +19,11 @@ namespace VSSDK.TestExtension
     [ProvideToolWindow(typeof(ThemeWindow.Pane))]
     [ProvideFileIcon(".abc", "KnownMonikers.Reference")]
     [ProvideToolWindow(typeof(MultiInstanceWindow.Pane))]
+    [ProvideToolWindow(typeof(FontsAndColorsWindow.Pane))]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string, PackageAutoLoadFlags.BackgroundLoad)]
     [ProvideService(typeof(RunnerWindowMessenger), IsAsyncQueryable = true)]
+    [ProvideFontsAndColors(typeof(DemoFontAndColorProvider))]
     public sealed class TestExtensionPackage : ToolkitPackage
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
@@ -35,6 +37,9 @@ namespace VSSDK.TestExtension
 
             // Commands
             await this.RegisterCommandsAsync();
+
+            // Fonts and colors.
+            await this.RegisterFontAndColorProvidersAsync();
 
             VS.Events.DocumentEvents.AfterDocumentWindowHide += DocumentEvents_AfterDocumentWindowHide;
             VS.Events.DocumentEvents.Opened += DocumentEvents_Opened;

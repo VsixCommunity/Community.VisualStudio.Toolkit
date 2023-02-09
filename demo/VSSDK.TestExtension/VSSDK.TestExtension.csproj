@@ -55,6 +55,7 @@
     <Compile Include="Commands\LoadSelectedProject.cs" />
     <Compile Include="Commands\MultiInstanceWindowCommand.cs" />
     <Compile Include="Commands\EditSelectedItemLabelCommand.cs" />
+    <Compile Include="Commands\FontsAndColorsWindowCommand.cs" />
     <Compile Include="Commands\SelectCurrentProjectCommand.cs" />
     <Compile Include="Commands\SendMessageToRunnerWindowCommand.cs" />
     <Compile Include="Commands\ToggleVsixManifestFilterCommand.cs" />
@@ -71,6 +72,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
+    <Compile Include="ToolWindows\FontsAndColors\DemoFontAndColorCategory.cs" />
+    <Compile Include="ToolWindows\FontsAndColors\DemoFontAndColorProvider.cs" />
+    <Compile Include="ToolWindows\FontsAndColors\FontsAndColorsWindow.cs" />
+    <Compile Include="ToolWindows\FontsAndColors\FontsAndColorsWindowControl.xaml.cs">
+      <DependentUpon>FontsAndColorsWindowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolWindows\FontsAndColors\FontsAndColorsWindowViewModel.cs" />
     <Compile Include="ToolWindows\MultiInstanceWindow.cs" />
     <Compile Include="ToolWindows\MultiInstanceWindowControl.xaml.cs">
       <DependentUpon>MultiInstanceWindowControl.xaml</DependentUpon>
@@ -142,6 +150,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolWindows\FontsAndColors\FontsAndColorsWindowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
