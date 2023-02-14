@@ -380,6 +380,11 @@ namespace Community.VisualStudio.Toolkit
             {
                 WindowFrameCloseEventArgs e = new((FrameCloseOption)pgrfSaveOptions);
                 OnClose(this, e);
+
+                if (e.Cancel)
+                {
+                    return VSConstants.E_ABORT;
+                }
             }
             InvokeStatusChanged();
             return VSConstants.S_OK;
@@ -491,6 +496,11 @@ namespace Community.VisualStudio.Toolkit
         /// Options used to close the window frame.
         /// </summary>
         public FrameCloseOption CloseOption { get; private set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the event should be canceled.
+        /// </summary>
+        public bool Cancel { get; set; }
 
         /// <summary>
         /// Creates an event argument instance with the initial close option.
