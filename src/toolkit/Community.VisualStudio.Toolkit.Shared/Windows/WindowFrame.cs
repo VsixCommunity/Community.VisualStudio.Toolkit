@@ -1,4 +1,4 @@
-﻿// ================================================================================================
+// ================================================================================================
 // WindowFrame.cs
 //
 // Created: 2008.07.02, by Istvan Novak (DeepDiver)
@@ -440,7 +440,6 @@ namespace Community.VisualStudio.Toolkit
     /// <summary>
     /// Specifies options when the show state of a window frame changes.
     /// </summary>
-    [Flags]
     public enum FrameShow
     {
         /// <summary>Reason unknown</summary>
