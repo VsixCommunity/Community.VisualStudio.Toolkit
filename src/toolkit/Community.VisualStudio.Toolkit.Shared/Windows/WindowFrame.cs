@@ -232,7 +232,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<DocumentView?> GetDocumentViewAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-           
+
             // Force the loading of a document that may be pending initialization.
             // See https://docs.microsoft.com/en-us/visualstudio/extensibility/internals/delayed-document-loading
             _frame.GetProperty((int)__VSFPROPID.VSFPROPID_DocView, out _);
@@ -442,23 +442,50 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public enum FrameShow
     {
-        /// <summary>Window (tabbed or otherwise) is hidden.</summary>
+        /// <summary>
+        /// <para>Window (tabbed or otherwise) is hidden.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_WinHidden"/>.</para>
+        /// </summary>
         Hidden = __FRAMESHOW.FRAMESHOW_WinHidden,
-        /// <summary>A nontabbed window is made visible.</summary>
+        /// <summary>
+        /// <para>A non-tabbed window is made visible.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_WinShown"/>.</para>
+        /// </summary>
         Shown = __FRAMESHOW.FRAMESHOW_WinShown,
-        /// <summary>A tabbed window is activated (made visible).</summary>
+        /// <summary>
+        /// <para>A tabbed window is activated (made visible).</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_TabActivated"/>.</para>
+        /// </summary>
         TabActivated = __FRAMESHOW.FRAMESHOW_TabActivated,
-        /// <summary>A tabbed window is deactivated.</summary>
+        /// <summary>
+        /// <para>A tabbed window is deactivated.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_TabDeactivated"/>.</para>
+        /// </summary>
         TabDeactivated = __FRAMESHOW.FRAMESHOW_TabDeactivated,
-        /// <summary>Window is restored to normal state.</summary>
+        /// <summary>
+        /// <para>Window is restored to normal state.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_WinRestored"/>.</para>
+        /// </summary>
         Restored = __FRAMESHOW.FRAMESHOW_WinRestored,
-        /// <summary>Window is minimized.</summary>
+        /// <summary>
+        /// <para>Window is minimized.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_WinMinimized"/>.</para>
+        /// </summary>
         Minimized = __FRAMESHOW.FRAMESHOW_WinMinimized,
-        /// <summary>Window is maximized.</summary>
+        /// <summary>
+        /// <para>Window is maximized.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_WinMaximized"/>.</para>
+        /// </summary>
         Maximized = __FRAMESHOW.FRAMESHOW_WinMaximized,
-        /// <summary>Multi-instance tool window destroyed.</summary>
+        /// <summary>
+        /// <para>Multi-instance tool window destroyed.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_DestroyMultInst"/>.</para>
+        /// </summary>
         DestroyMultipleInstance = __FRAMESHOW.FRAMESHOW_DestroyMultInst,
-        /// <summary>Autohidden window is about to slide into view.</summary>
+        /// <summary>
+        /// <para>Auto-hidden window is about to slide into view.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_AutoHideSlideBegin"/>.</para>
+        /// </summary>
         AutoHideSlideBegin = __FRAMESHOW.FRAMESHOW_AutoHideSlideBegin
     }
 
