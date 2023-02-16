@@ -442,12 +442,8 @@ namespace Community.VisualStudio.Toolkit
     /// </summary>
     public enum FrameShow
     {
-        /// <summary>Reason unknown</summary>
-        Unknown = 0,
-        /// <summary>Obsolete; use WinHidden.</summary>
-        Hidden = __FRAMESHOW.FRAMESHOW_Hidden,
         /// <summary>Window (tabbed or otherwise) is hidden.</summary>
-        WinHidden = __FRAMESHOW.FRAMESHOW_WinHidden,
+        Hidden = __FRAMESHOW.FRAMESHOW_WinHidden,
         /// <summary>A nontabbed window is made visible.</summary>
         Shown = __FRAMESHOW.FRAMESHOW_WinShown,
         /// <summary>A tabbed window is activated (made visible).</summary>
