@@ -1,4 +1,4 @@
-// ================================================================================================
+﻿// ================================================================================================
 // WindowFrame.cs
 //
 // Created: 2008.07.02, by Istvan Novak (DeepDiver)
@@ -440,6 +440,13 @@ namespace Community.VisualStudio.Toolkit
     /// <summary>
     /// Specifies options when the show state of a window frame changes.
     /// </summary>
+    /// <remarks>
+    /// This combines the values from 
+    /// <see cref="__FRAMESHOW"/>, 
+    /// <see cref="__FRAMESHOW2"/>, 
+    /// <see cref="__FRAMESHOW3"/> and 
+    /// <see cref="__FRAMESHOW4"/>.
+    /// </remarks>
     public enum FrameShow
     {
         /// <summary>
@@ -486,7 +493,32 @@ namespace Community.VisualStudio.Toolkit
         /// <para>Auto-hidden window is about to slide into view.</para>
         /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_AutoHideSlideBegin"/>.</para>
         /// </summary>
-        AutoHideSlideBegin = __FRAMESHOW.FRAMESHOW_AutoHideSlideBegin
+        AutoHideSlideBegin = __FRAMESHOW.FRAMESHOW_AutoHideSlideBegin,
+        /// <summary>
+        /// <para>A window is about to be hidden.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW2.FRAMESHOW_BeforeWinHidden"/>.</para>
+        /// </summary>
+        BeforeHidden = __FRAMESHOW2.FRAMESHOW_BeforeWinHidden,
+        /// <summary>
+        /// <para>Auto-hidden window is finished sliding into view.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW2.FRAMESHOW_AutoHideSlideEnd"/>.</para>
+        /// </summary>
+        AutoHideSlideEnd = __FRAMESHOW2.FRAMESHOW_AutoHideSlideEnd,
+        /// <summary>
+        /// <para>A window is activated (made visible).</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW3.FRAMESHOW_WinActivated"/>.</para>
+        /// </summary>
+        Activated = __FRAMESHOW3.FRAMESHOW_WinActivated,
+        /// <summary>
+        /// <para>The window's inner content received keyboard focus.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW4.FRAMESHOW_WinContentGotFocus"/>.</para>
+        /// </summary>
+        ContentGotFocus = __FRAMESHOW4.FRAMESHOW_WinContentGotFocus,
+        /// <summary>
+        /// <para>The window's inner content lost keyboard focus.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW4.FRAMESHOW_WinContentLostFocus"/>.</para>
+        /// </summary>
+        ContentLostFocus = __FRAMESHOW4.FRAMESHOW_WinContentLostFocus
     }
 
     /// <summary>
@@ -573,4 +605,16 @@ namespace Community.VisualStudio.Toolkit
             Docked = docked;
         }
     }
+
+
+#if VS14
+    /// <summary>
+    /// __FRAMESHOW4 was first defined in Visual Studio 15.
+    /// </summary>
+    internal enum __FRAMESHOW4
+    {
+        FRAMESHOW_WinContentGotFocus = 13,
+        FRAMESHOW_WinContentLostFocus
+    }
+#endif
 }
