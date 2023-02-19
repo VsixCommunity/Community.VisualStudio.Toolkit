@@ -26,7 +26,7 @@ Create a file called **nuget.config** in your solution folder, and paste in the 
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
-    <add key="nuget.org" value="https://www.nuget.org/api/v2/" />
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
     <add key="Toolkit CI" value="https://ci.appveyor.com/nuget/community-visualstudio-toolkit" />
   </packageSources>
 </configuration>
