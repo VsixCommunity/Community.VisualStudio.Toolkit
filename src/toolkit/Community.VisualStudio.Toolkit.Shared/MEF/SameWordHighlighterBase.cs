@@ -49,9 +49,9 @@ namespace Community.VisualStudio.Toolkit
         {
             ITextStructureNavigator? navigator = _textStructureNavigatorSelector?.GetTextStructureNavigator(textView.TextBuffer);
 
-            var tagger = textView.Properties.GetOrCreateSingletonProperty(() =>
+            var tagger = buffer.Properties.GetOrCreateSingletonProperty(() =>
                 new SameWordHighlighterTagger(textView, buffer, _textSearchService, navigator, this));
-            tagger.Counter += 1;
+            tagger.RegisterEvents(textView);
 
             return (ITagger<T>)tagger;
         }
@@ -62,10 +62,9 @@ namespace Community.VisualStudio.Toolkit
         public HighlightWordTag(string tagName) : base(tagName) { }
     }
 
-    internal class SameWordHighlighterTagger : ITagger<HighlightWordTag>, IDisposable
+    internal class SameWordHighlighterTagger : ITagger<HighlightWordTag>
     {
         internal int Counter;
-        private readonly ITextView _view;
         private readonly ITextBuffer _buffer;
         private readonly ITextSearchService? _textSearchService;
         private readonly ITextStructureNavigator? _textStructureNavigator;
@@ -74,29 +73,51 @@ namespace Community.VisualStudio.Toolkit
         private SnapshotSpan? _currentWord;
         private SnapshotPoint _requestedPoint;
         private bool _isDisposed;
+        private string _fileName="";
         private readonly object _syncLock = new();
 
         public SameWordHighlighterTagger(ITextView view, ITextBuffer sourceBuffer, ITextSearchService? textSearchService,
             ITextStructureNavigator? textStructureNavigator, SameWordHighlighterBase tagger)
         {
-            _view = view;
+            _fileName = sourceBuffer.GetFileName();
+            System.Diagnostics.Debug.WriteLine("Create new tagger for "+_fileName);
             _buffer = sourceBuffer;
             _textSearchService = textSearchService;
             _textStructureNavigator = textStructureNavigator;
             _tagger = tagger;
             _wordSpans = new NormalizedSnapshotSpanCollection();
             _currentWord = null;
-            _view.Caret.PositionChanged += CaretPositionChanged;
-            _view.LayoutChanged += ViewLayoutChanged;
             Counter = 0;
         }
 
+        internal void RegisterEvents(ITextView textView)
+        {
+            
+            textView.Caret.PositionChanged += CaretPositionChanged;
+            textView.LayoutChanged += ViewLayoutChanged;
+            textView.Closed += TextView_Closed;
+            Counter += 1;
+            System.Diagnostics.Debug.WriteLine($"RegisterEvents {_fileName}: #{Counter} ");
+        }
+        internal void UnRegisterEvents(ITextView textView)
+        {
+            textView.Caret.PositionChanged -= CaretPositionChanged;
+            textView.LayoutChanged -= ViewLayoutChanged;
+            textView.Closed -= TextView_Closed;
+            Counter -= 1;
+            System.Diagnostics.Debug.WriteLine($"UnRegisterEvents {_fileName}: #{Counter} ");
+        }
         private void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
         {
             if (e.NewSnapshot != e.OldSnapshot)
             {
-                UpdateAtCaretPosition(_view.Caret.Position);
+                var view = (ITextView)sender;
+                UpdateAtCaretPosition(view.Caret.Position);
             }
+        }
+        private void TextView_Closed(object sender, EventArgs e)
+        {
+            UnRegisterEvents((ITextView)sender);
         }
 
         private void CaretPositionChanged(object sender, CaretPositionChangedEventArgs e)
@@ -225,20 +246,6 @@ namespace Community.VisualStudio.Toolkit
             foreach (SnapshotSpan span in NormalizedSnapshotSpanCollection.Overlap(spans, wordSpans))
             {
                 yield return new TagSpan<HighlightWordTag>(span, new HighlightWordTag(_tagger.TextMarkerTagType));
-            }
-        }
-
-        public void Dispose()
-        {
-            if (!_isDisposed)
-            {
-                this.Counter -= 1;
-                if (this.Counter == 0)
-                {
-                    _view.Caret.PositionChanged -= CaretPositionChanged;
-                    _view.LayoutChanged -= ViewLayoutChanged;
-                    _isDisposed = true;
-                }
             }
         }
 
