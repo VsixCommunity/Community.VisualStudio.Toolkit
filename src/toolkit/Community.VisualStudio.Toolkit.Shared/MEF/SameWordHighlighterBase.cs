@@ -80,7 +80,7 @@ namespace Community.VisualStudio.Toolkit
             ITextStructureNavigator? textStructureNavigator, SameWordHighlighterBase tagger)
         {
             _fileName = sourceBuffer.GetFileName();
-            System.Diagnostics.Debug.WriteLine("Create new tagger for "+_fileName);
+            //System.Diagnostics.Debug.WriteLine("Create new tagger for "+_fileName);
             _buffer = sourceBuffer;
             _textSearchService = textSearchService;
             _textStructureNavigator = textStructureNavigator;
@@ -97,7 +97,7 @@ namespace Community.VisualStudio.Toolkit
             textView.LayoutChanged += ViewLayoutChanged;
             textView.Closed += TextView_Closed;
             Counter += 1;
-            System.Diagnostics.Debug.WriteLine($"RegisterEvents {_fileName}: #{Counter} ");
+            //System.Diagnostics.Debug.WriteLine($"RegisterEvents {_fileName}: #{Counter} ");
         }
         internal void UnRegisterEvents(ITextView textView)
         {
@@ -105,7 +105,7 @@ namespace Community.VisualStudio.Toolkit
             textView.LayoutChanged -= ViewLayoutChanged;
             textView.Closed -= TextView_Closed;
             Counter -= 1;
-            System.Diagnostics.Debug.WriteLine($"UnRegisterEvents {_fileName}: #{Counter} ");
+            //System.Diagnostics.Debug.WriteLine($"UnRegisterEvents {_fileName}: #{Counter} ");
         }
         private void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
         {
