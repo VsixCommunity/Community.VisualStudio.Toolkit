@@ -9,7 +9,8 @@ using System.Reflection;
 using System.Text;
 using FluentAssertions;
 using Microsoft.VisualStudio.Settings;
-using Moq;
+using NSubstitute;
+using NSubstitute.Exceptions;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -599,21 +600,21 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             Action<TestValueType, TPropertyType?, TPropertyType?, string>? overrideAssertEquality = null)
             where TOptMdl : BaseOptionModel<TOptMdl>, new()
         {
-            Mock<WritableSettingsStore> mock = new();
-            mock.Setup(x => x.CollectionExists(collectionPath)).Returns(true);
-            mock.Setup(x => x.PropertyExists(collectionPath, propertyName)).Returns(true);
+            WritableSettingsStore mock = Substitute.For<WritableSettingsStore>();
+            mock.CollectionExists(collectionPath).Returns(true);
+            mock.PropertyExists(collectionPath, propertyName).Returns(true);
 
             void SetupSettingsStoreGet(string valueToReturn)
             {
-                mock.Setup(x => x.GetString(collectionPath, propertyName)).Returns(valueToReturn);
+                mock.GetString(collectionPath, propertyName).Returns(valueToReturn);
             }
 
-            Action<int, string> verifyGet = (int callCount, string failMessage) =>
-                 mock.Verify(x => x.GetString(collectionPath, propertyName), Times.Exactly(callCount), failMessage);
-            Action<int, string, string> verifySet = (int callCount, string expectedValue, string failMessage) =>
-                mock.Verify(x => x.SetString(collectionPath, propertyName, expectedValue), Times.Exactly(callCount), failMessage);
+            Action<int> verifyGet = (int callCount) =>
+                 mock.Received(callCount).GetString(collectionPath, propertyName);
+            Action<int, string> verifySet = (int callCount, string expectedValue) =>
+                mock.Received(callCount).SetString(collectionPath, propertyName, expectedValue);
 
-            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock.Object, SetupSettingsStoreGet, verifyGet, verifySet,
+            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock, SetupSettingsStoreGet, verifyGet, verifySet,
                              defaultValueProperty, expectedDefaultValueInStore, expectedAlternateValueProperty, expectedAlternateValueInStore, overrideAssertEquality);
         }
 
@@ -646,22 +647,21 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TPropertyType? expectedAlternateValueProperty, int expectedAlternateValueInStore)
             where TOptMdl : BaseOptionModel<TOptMdl>, new()
         {
-            Mock<WritableSettingsStore> mock = new();
-            mock.Setup(x => x.CollectionExists(collectionPath)).Returns(true);
-            mock.Setup(x => x.PropertyExists(collectionPath, propertyName)).Returns(true);
-            mock.Setup(x => x.SetInt32(collectionPath, propertyName, It.IsAny<int>()));
+            WritableSettingsStore mock = Substitute.For<WritableSettingsStore>();
+            mock.CollectionExists(collectionPath).Returns(true);
+            mock.PropertyExists(collectionPath, propertyName).Returns(true);
 
             void SetupSettingsStoreGet(int valueToReturn)
             {
-                mock.Setup(x => x.GetInt32(collectionPath, propertyName)).Returns(valueToReturn);
+                mock.GetInt32(collectionPath, propertyName).Returns(valueToReturn);
             }
 
-            Action<int, string> verifyGet = (int callCount, string failMessage) =>
-                mock.Verify(x => x.GetInt32(collectionPath, propertyName), Times.Exactly(callCount), failMessage);
-            Action<int, int, string> verifySet = (int callCount, int expectedValue, string failMessage) =>
-                mock.Verify(x => x.SetInt32(collectionPath, propertyName, expectedValue), Times.Exactly(callCount), failMessage);
+            Action<int> verifyGet = (int callCount) =>
+                mock.Received(callCount).GetInt32(collectionPath, propertyName);
+            Action<int, int> verifySet = (int callCount, int expectedValue) =>
+                mock.Received(callCount).SetInt32(collectionPath, propertyName, expectedValue);
 
-            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock.Object, SetupSettingsStoreGet, verifyGet, verifySet,
+            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock, SetupSettingsStoreGet, verifyGet, verifySet,
                 defaultValueProperty, expectedDefaultValueInStore, expectedAlternateValueProperty, expectedAlternateValueInStore);
         }
 
@@ -694,22 +694,21 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TPropertyType? expectedAlternateValueProperty, uint expectedAlternateValueInStore)
             where TOptMdl : BaseOptionModel<TOptMdl>, new()
         {
-            Mock<WritableSettingsStore> mock = new();
-            mock.Setup(x => x.CollectionExists(collectionPath)).Returns(true);
-            mock.Setup(x => x.PropertyExists(collectionPath, propertyName)).Returns(true);
-            mock.Setup(x => x.SetUInt32(collectionPath, propertyName, It.IsAny<uint>()));
+            WritableSettingsStore mock = Substitute.For<WritableSettingsStore>();
+            mock.CollectionExists(collectionPath).Returns(true);
+            mock.PropertyExists(collectionPath, propertyName).Returns(true);
 
             void SetupSettingsStoreGet(uint valueToReturn)
             {
-                mock.Setup(x => x.GetUInt32(collectionPath, propertyName)).Returns(valueToReturn);
+                mock.GetUInt32(collectionPath, propertyName).Returns(valueToReturn);
             }
 
-            Action<int, string> verifyGet = (int callCount, string failMessage) =>
-                mock.Verify(x => x.GetUInt32(collectionPath, propertyName), Times.Exactly(callCount), failMessage);
-            Action<int, uint, string> verifySet = (int callCount, uint expectedValue, string failMessage) =>
-                mock.Verify(x => x.SetUInt32(collectionPath, propertyName, expectedValue), Times.Exactly(callCount), failMessage);
+            Action<int> verifyGet = (int callCount) =>
+                mock.Received(callCount).GetUInt32(collectionPath, propertyName);
+            Action<int, uint> verifySet = (int callCount, uint expectedValue) =>
+                mock.Received(callCount).SetUInt32(collectionPath, propertyName, expectedValue);
 
-            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock.Object, SetupSettingsStoreGet, verifyGet, verifySet,
+            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock, SetupSettingsStoreGet, verifyGet, verifySet,
                 defaultValueProperty, expectedDefaultValueInStore, expectedAlternateValueProperty, expectedAlternateValueInStore);
         }
 
@@ -742,22 +741,21 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TPropertyType? expectedAlternateValueProperty, long expectedAlternateValueInStore)
             where TOptMdl : BaseOptionModel<TOptMdl>, new()
         {
-            Mock<WritableSettingsStore> mock = new();
-            mock.Setup(x => x.CollectionExists(collectionPath)).Returns(true);
-            mock.Setup(x => x.PropertyExists(collectionPath, propertyName)).Returns(true);
-            mock.Setup(x => x.SetInt64(collectionPath, propertyName, It.IsAny<long>()));
+            WritableSettingsStore mock = Substitute.For<WritableSettingsStore>();
+            mock.CollectionExists(collectionPath).Returns(true);
+            mock.PropertyExists(collectionPath, propertyName).Returns(true);
 
             void SetupSettingsStoreGet(long valueToReturn)
             {
-                mock.Setup(x => x.GetInt64(collectionPath, propertyName)).Returns(valueToReturn);
+                mock.GetInt64(collectionPath, propertyName).Returns(valueToReturn);
             }
 
-            Action<int, string> verifyGet = (int callCount, string failMessage) =>
-                mock.Verify(x => x.GetInt64(collectionPath, propertyName), Times.Exactly(callCount), failMessage);
-            Action<int, long, string> verifySet = (int callCount, long expectedValue, string failMessage) =>
-                mock.Verify(x => x.SetInt64(collectionPath, propertyName, expectedValue), Times.Exactly(callCount), failMessage);
+            Action<int> verifyGet = (int callCount) =>
+                mock.Received(callCount).GetInt64(collectionPath, propertyName);
+            Action<int, long> verifySet = (int callCount, long expectedValue) =>
+                mock.Received(callCount).SetInt64(collectionPath, propertyName, expectedValue);
 
-            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock.Object, SetupSettingsStoreGet, verifyGet, verifySet,
+            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock, SetupSettingsStoreGet, verifyGet, verifySet,
                 defaultValueProperty, expectedDefaultValueInStore, expectedAlternateValueProperty, expectedAlternateValueInStore);
         }
 
@@ -790,22 +788,21 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             TPropertyType? expectedAlternateValueProperty, ulong expectedAlternateValueInStore)
             where TOptMdl : BaseOptionModel<TOptMdl>, new()
         {
-            Mock<WritableSettingsStore> mock = new();
-            mock.Setup(x => x.CollectionExists(collectionPath)).Returns(true);
-            mock.Setup(x => x.PropertyExists(collectionPath, propertyName)).Returns(true);
-            mock.Setup(x => x.SetUInt64(collectionPath, propertyName, It.IsAny<ulong>()));
+            WritableSettingsStore mock = Substitute.For<WritableSettingsStore>();
+            mock.CollectionExists(collectionPath).Returns(true);
+            mock.PropertyExists(collectionPath, propertyName).Returns(true);
 
             void SetupSettingsStoreGet(ulong valueToReturn)
             {
-                mock.Setup(x => x.GetUInt64(collectionPath, propertyName)).Returns(valueToReturn);
+                mock.GetUInt64(collectionPath, propertyName).Returns(valueToReturn);
             }
 
-            Action<int, string> verifyGet = (int callCount, string failMessage) =>
-                mock.Verify(x => x.GetUInt64(collectionPath, propertyName), Times.Exactly(callCount), failMessage);
-            Action<int, ulong, string> verifySet = (int callCount, ulong expectedValue, string failMessage) =>
-                mock.Verify(x => x.SetUInt64(collectionPath, propertyName, expectedValue), Times.Exactly(callCount), failMessage);
+            Action<int> verifyGet = (int callCount) =>
+                mock.Received(callCount).GetUInt64(collectionPath, propertyName);
+            Action<int, ulong> verifySet = (int callCount, ulong expectedValue) =>
+                mock.Received(callCount).SetUInt64(collectionPath, propertyName, expectedValue);
 
-            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock.Object, SetupSettingsStoreGet, verifyGet, verifySet,
+            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock, SetupSettingsStoreGet, verifyGet, verifySet,
                 defaultValueProperty, expectedDefaultValueInStore, expectedAlternateValueProperty, expectedAlternateValueInStore);
         }
 
@@ -842,13 +839,14 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             Action<TestValueType, TPropertyType?, TPropertyType?, string>? overrideAssertEquality = null)
             where TOptMdl : BaseOptionModel<TOptMdl>, new()
         {
-            Mock<WritableSettingsStore> mock = new();
-            mock.Setup(x => x.CollectionExists(collectionPath)).Returns(true);
-            mock.Setup(x => x.PropertyExists(collectionPath, propertyName)).Returns(true);
+            WritableSettingsStore mock = Substitute.For<WritableSettingsStore>();
+            mock.CollectionExists(collectionPath).Returns(true);
+            mock.PropertyExists(collectionPath, propertyName).Returns(true);
 
             List<byte[]?> setInvocations = new();
-            mock.Setup(x => x.SetMemoryStream(collectionPath, propertyName, It.IsAny<MemoryStream>())).Callback((string _, string __, MemoryStream stream) =>
+            mock.When((x) => x.SetMemoryStream(collectionPath, propertyName, Arg.Any<MemoryStream>())).Do((args) =>
             {
+                MemoryStream stream = args.ArgAt<MemoryStream>(2);
                 if (stream == null)
                     setInvocations.Add(null);
                 else
@@ -857,15 +855,15 @@ namespace Community.VisualStudio.Toolkit.UnitTests
 
             void SetupSettingsStoreGet(byte[] valueToReturn)
             {
-                mock.Setup(x => x.GetMemoryStream(collectionPath, propertyName)).Returns(new MemoryStream(valueToReturn));
+                mock.GetMemoryStream(collectionPath, propertyName).Returns(new MemoryStream(valueToReturn));
             }
 
-            void VerifyGet(int callCount, string failMessage)
+            void VerifyGet(int callCount)
             {
-                mock.Verify(x => x.GetMemoryStream(collectionPath, propertyName), Times.Exactly(callCount), failMessage);
+                mock.Received(callCount).GetMemoryStream(collectionPath, propertyName);
             }
 
-            void VerifySet(int callCount, byte[] expectedValue, string because)
+            void VerifySet(int callCount, byte[] expectedValue)
             {
                 int matchingCount = 0;
                 foreach (byte[]? buffer in setInvocations)
@@ -877,13 +875,13 @@ namespace Community.VisualStudio.Toolkit.UnitTests
                     else if (buffer.SequenceEqual(expectedValue))
                         matchingCount++;
                 }
-                callCount.Should().Be(matchingCount, because);
+                callCount.Should().Be(matchingCount);
             }
 
             _output.WriteLine("expectedDefaultValueInStore (as string): {0}", System.Text.Encoding.UTF8.GetString(expectedDefaultValueInStore));
             _output.WriteLine("expectedAlternateValueInStore (as string): {0}", System.Text.Encoding.UTF8.GetString(expectedAlternateValueInStore));
 
-            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock.Object, SetupSettingsStoreGet, VerifyGet, VerifySet,
+            SettingStoreTest(objUt, propertyUt, getProperty, setProperty, mock, SetupSettingsStoreGet, VerifyGet, VerifySet,
                 defaultValueProperty, expectedDefaultValueInStore, expectedAlternateValueProperty, expectedAlternateValueInStore, overrideAssertEquality);
         }
 
@@ -899,9 +897,9 @@ namespace Community.VisualStudio.Toolkit.UnitTests
         /// <param name="setupSettingsStoreGet">            Method to configure the settings store to return the provided value when the get method on the <paramref name="settingsStore"/> is
         ///                                                 called with the expected parameters. Signature is <c>TStorageType valueToReturn</c> </param>
         /// <param name="verifySettingsStoreGetWasCalled">  Method to assert the settings store get method on the <paramref name="settingsStore"/> was
-        ///                                                 called. Signature is <c>int expectedCallCount, string because</c>. </param>
+        ///                                                 called. Signature is <c>int expectedCallCount</c>. </param>
         /// <param name="verifySettingsStoreSetWasCalled">  Method to assert the settings store set method on the <paramref name="settingsStore"/> was 
-        ///                                                 called with the expected parameters. Signature is <c>int expectedCallCount, TStorageType expectedValue, string because</c> </param>
+        ///                                                 called with the expected parameters. Signature is <c>int expectedCallCount, TStorageType expectedValue</c> </param>
         /// <param name="defaultValueProperty">             Prior to test, the property will be set to this value using <paramref name="setProperty"/>.
         ///                                                 This is the expected value of the property after <c>Load</c> returns when the setting store get
         ///                                                 method is configured to return <paramref name="expectedDefaultValueInStore"/>. Must be different 
@@ -919,7 +917,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
         ///                                                 <c>Load</c> operations rather than the standard assertions. Signature is <c>TestValueType valueBeingTested, 
         ///                                                 TPropertyType expected, TPropertyType actual, string because</c> </param>
         private void SettingStoreTest<TPropertyType, TStorageType, TOptMdl>(BaseOptionModel<TOptMdl> objUt, PropertyInfo propertyUt, Func<TPropertyType?> getProperty, Action<TPropertyType?> setProperty,
-                            WritableSettingsStore settingsStore, Action<TStorageType> setupSettingsStoreGet, Action<int, string> verifySettingsStoreGetWasCalled, Action<int, TStorageType, string> verifySettingsStoreSetWasCalled,
+                            WritableSettingsStore settingsStore, Action<TStorageType> setupSettingsStoreGet, Action<int> verifySettingsStoreGetWasCalled, Action<int, TStorageType> verifySettingsStoreSetWasCalled,
                             TPropertyType? defaultValueProperty, TStorageType expectedDefaultValueInStore,
                             TPropertyType? expectedAlternateValueProperty, TStorageType expectedAlternateValueInStore,
                             Action<TestValueType, TPropertyType?, TPropertyType?, string>? overrideAssertEquality = null)
@@ -941,7 +939,7 @@ namespace Community.VisualStudio.Toolkit.UnitTests
 
             // Test save of default value
             bool saveMethodResult = uut.Save(objUt, settingsStore);
-            verifySettingsStoreSetWasCalled(1, expectedDefaultValueInStore, "because Save with the defaultValueProperty should result" +
+            VerifySet(1, expectedDefaultValueInStore, "because Save with the defaultValueProperty should result " +
                                                                             "in the settings store set method being called with expectedDefaultValueInStore");
             saveMethodResult.Should().BeTrue("because we expect Save to return true for saving default value to store.");
 
@@ -956,11 +954,11 @@ namespace Community.VisualStudio.Toolkit.UnitTests
             else
                 overrideAssertEquality(TestValueType.Alternate, expectedAlternateValueProperty, actualPropertyValue, propertyValueLoadMismatchBecause);
             loadMethodResult.Should().BeTrue("because we expect Load of the alternate value to report success when the property was successfully set.");
-            verifySettingsStoreGetWasCalled(1, "because the proper Settings Store Get method should be called during load for the alternate value.");
+            VerifyGet(1, "because the proper Settings Store Get method should be called during load for the alternate value.");
 
             // Test save process. Verify expected Settings Store Set method was called with proper value.
             saveMethodResult = uut.Save(objUt, settingsStore);
-            verifySettingsStoreSetWasCalled(1, expectedAlternateValueInStore, "because Save with the expectedAlternateValueProperty should result" +
+            VerifySet(1, expectedAlternateValueInStore, "because Save with the expectedAlternateValueProperty should result " +
                                                                               "in the settings store set method being called with expectedAlternateValueInStore");
             saveMethodResult.Should().BeTrue("because we expect Save to return true for saving alternate value to store.");
 
@@ -974,8 +972,32 @@ namespace Community.VisualStudio.Toolkit.UnitTests
                 actualPropertyValue.Should().BeEquivalentTo(defaultValueProperty, propertyValueLoadMismatchBecause);
             else
                 overrideAssertEquality(TestValueType.Default, defaultValueProperty, actualPropertyValue, propertyValueLoadMismatchBecause);
-            verifySettingsStoreGetWasCalled(2, "because the proper Settings Store Get method should be called again during load for the default value.");
+            VerifyGet(2, "because the proper Settings Store Get method should be called again during load for the default value.");
             loadMethodResult.Should().BeTrue("because we expect Load of the default value to report success when the property was successfully set.");
+
+            void VerifyGet(int expectedCallCount, string because)
+            {
+                try
+                {
+                    verifySettingsStoreGetWasCalled(expectedCallCount);
+                }
+                catch (ReceivedCallsException ex)
+                {
+                    throw new ReceivedCallsException($"{ex.Message} {because}", ex);
+                }
+            }
+
+            void VerifySet(int expectedCallCount, TStorageType expectedValue, string because)
+            {
+                try
+                {
+                    verifySettingsStoreSetWasCalled(expectedCallCount, expectedValue);
+                }
+                catch (ReceivedCallsException ex)
+                {
+                    throw new ReceivedCallsException($"{ex.Message} {because}", ex);
+                }
+            }
         }
 
         #endregion Test Helper Methods and Main Test Method
