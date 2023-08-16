@@ -24,6 +24,8 @@
             public const string Json = "JSON";
             public const string Xaml = "XAML";
             public const string Xml = "XML";
+            public const string Repl = "REPL";
+            public const string Output = "Output";
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }
