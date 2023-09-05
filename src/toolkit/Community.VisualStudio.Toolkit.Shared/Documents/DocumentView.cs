@@ -42,7 +42,7 @@ namespace Community.VisualStudio.Toolkit
         public WindowFrame? WindowFrame { get; }
 
         /// <summary>
-        /// The text view loaded int he window frame.
+        /// The text view loaded in the window frame.
         /// </summary>
         public IWpfTextView? TextView { get; }
 
