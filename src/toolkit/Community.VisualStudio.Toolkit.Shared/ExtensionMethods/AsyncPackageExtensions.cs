@@ -49,7 +49,7 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
-        /// Automatically calls the <see cref="BaseCommand{T}.InitializeAsync(AsyncPackage)"/> method for every command that has the <see cref="CommandAttribute"/> applied.
+        /// Automatically calls the <see cref="BaseToolWindow{T}.Initialize(ToolkitPackage)"/> method for every BaseToolWindow<> in the package or provided assemblies.
         /// </summary>
         /// <param name="package"></param>
         /// <param name="assemblies"></param>
