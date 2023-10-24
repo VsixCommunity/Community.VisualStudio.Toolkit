@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Linq;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -65,6 +66,22 @@ namespace Community.VisualStudio.Toolkit.Analyzers
                 default:
                     return false;
             }
+        }
+
+        internal static MethodDeclarationSyntax? FindAsyncPackageInitializeAsyncMethod(this ClassDeclarationSyntax package)
+        {
+            foreach (MethodDeclarationSyntax method in package.Members.OfType<MethodDeclarationSyntax>())
+            {
+                if (method.Modifiers.Any(SyntaxKind.ProtectedKeyword) && method.Modifiers.Any(SyntaxKind.OverrideKeyword))
+                {
+                    if (string.Equals(method.Identifier.ValueText, "InitializeAsync"))
+                    {
+                        return method;
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

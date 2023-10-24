@@ -179,6 +179,177 @@ namespace Community.VisualStudio.Toolkit.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add [Guid(...)].
+        /// </summary>
+        internal static string CVST006_CodeFix {
+            get {
+                return ResourceManager.GetString("CVST006_CodeFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font and color providers should have an explicit GUID.
+        /// </summary>
+        internal static string CVST006_Description {
+            get {
+                return ResourceManager.GetString("CVST006_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font and color providers should have an explicit GUID.
+        /// </summary>
+        internal static string CVST006_MessageFormat {
+            get {
+                return ResourceManager.GetString("CVST006_MessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define explicit GUIDs for font and color providers.
+        /// </summary>
+        internal static string CVST006_Title {
+            get {
+                return ResourceManager.GetString("CVST006_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add [Guid(...)].
+        /// </summary>
+        internal static string CVST007_CodeFix {
+            get {
+                return ResourceManager.GetString("CVST007_CodeFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font and color categories should have an explicit GUID.
+        /// </summary>
+        internal static string CVST007_Description {
+            get {
+                return ResourceManager.GetString("CVST007_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font and color categories should have an explicit GUID.
+        /// </summary>
+        internal static string CVST007_MessageFormat {
+            get {
+                return ResourceManager.GetString("CVST007_MessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define explicit GUIDs for font and color categories.
+        /// </summary>
+        internal static string CVST007_Title {
+            get {
+                return ResourceManager.GetString("CVST007_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create font and color provider.
+        /// </summary>
+        internal static string CVST008_CodeFix {
+            get {
+                return ResourceManager.GetString("CVST008_CodeFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font and color categories should have a provider.
+        /// </summary>
+        internal static string CVST008_Description {
+            get {
+                return ResourceManager.GetString("CVST008_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This font and color category does not have a provider. Create a provider by inheriting from BaseFontAndColorProvider&lt;T&gt;.
+        /// </summary>
+        internal static string CVST008_MessageFormat {
+            get {
+                return ResourceManager.GetString("CVST008_MessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define a provider for font and color categories.
+        /// </summary>
+        internal static string CVST008_Title {
+            get {
+                return ResourceManager.GetString("CVST008_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font and color providers should be declared on the package.
+        /// </summary>
+        internal static string CVST009_Description {
+            get {
+                return ResourceManager.GetString("CVST009_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This package should declare the font and color provider using the [ProvideFontsAndColors({0})] attribute.
+        /// </summary>
+        internal static string CVST009_MessageFormat {
+            get {
+                return ResourceManager.GetString("CVST009_MessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Declare font and color providers using a [ProvideFontsAndColors(...)] attribute.
+        /// </summary>
+        internal static string CVST009_Title {
+            get {
+                return ResourceManager.GetString("CVST009_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register font and color providers.
+        /// </summary>
+        internal static string CVST010_CodeFix {
+            get {
+                return ResourceManager.GetString("CVST010_CodeFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font and color providers that are declared on a package should be registered during initialization.
+        /// </summary>
+        internal static string CVST010_Description {
+            get {
+                return ResourceManager.GetString("CVST010_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The font and color providers have not been registered.
+        /// </summary>
+        internal static string CVST010_MessageFormat {
+            get {
+                return ResourceManager.GetString("CVST010_MessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register font and color providers during initialization.
+        /// </summary>
+        internal static string CVST010_Title {
+            get {
+                return ResourceManager.GetString("CVST010_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change to &apos;{0}&apos;.
         /// </summary>
         internal static string IncorrectProvidedType_CodeFix {

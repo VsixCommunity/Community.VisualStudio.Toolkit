@@ -139,9 +139,9 @@ namespace Community.VisualStudio.Toolkit.Analyzers
                     .OrderBy((x) => x.Identifier.ValueText)
                     .First();
 
-                MethodDeclarationSyntax? initializeAsyncMethod = FindInitializeAsyncMethod(packageToReport);
+                MethodDeclarationSyntax? initializeAsyncMethod = packageToReport.FindAsyncPackageInitializeAsyncMethod();
 
-                foreach (INamedTypeSymbol command in state.Commands.Where((x) => !x.Value).Select((x) => x.Key))
+                foreach (ISymbol command in state.Commands.Where((x) => !x.Value).Select((x) => x.Key))
                 {
 
                     // If the commands should be initialized individually,
@@ -172,7 +172,7 @@ namespace Community.VisualStudio.Toolkit.Analyzers
         {
             InitializationMode? mode = null;
 
-            MethodDeclarationSyntax? initializeAsync = FindInitializeAsyncMethod(package);
+            MethodDeclarationSyntax? initializeAsync = package.FindAsyncPackageInitializeAsyncMethod();
             if (initializeAsync is not null)
             {
                 foreach (StatementSyntax statement in initializeAsync.Body.Statements)
@@ -213,22 +213,6 @@ namespace Community.VisualStudio.Toolkit.Analyzers
             return mode;
         }
 
-        internal static MethodDeclarationSyntax? FindInitializeAsyncMethod(ClassDeclarationSyntax package)
-        {
-            foreach (MethodDeclarationSyntax method in package.Members.OfType<MethodDeclarationSyntax>())
-            {
-                if (method.Modifiers.Any(SyntaxKind.ProtectedKeyword) && method.Modifiers.Any(SyntaxKind.OverrideKeyword))
-                {
-                    if (string.Equals(method.Identifier.ValueText, "InitializeAsync"))
-                    {
-                        return method;
-                    }
-                }
-            }
-
-            return null;
-        }
-
         private enum InitializationMode
         {
             Individual,
@@ -253,7 +237,7 @@ namespace Community.VisualStudio.Toolkit.Analyzers
 
             public void Dispose()
             {
-                // ConcurrentBag stores data per-thread, and thata data remains in memory
+                // ConcurrentBag stores data per-thread, and that data remains in memory
                 // until it is removed from the bag. Prevent a memory leak by emptying the bag.
                 while (Packages.Count > 0)
                 {

@@ -156,6 +156,63 @@
   <data name="CVST005_Title" xml:space="preserve">
     <value>Register commands</value>
   </data>
+  <data name="CVST006_CodeFix" xml:space="preserve">
+    <value>Add [Guid(...)]</value>
+  </data>
+  <data name="CVST006_Description" xml:space="preserve">
+    <value>Font and color providers should have an explicit GUID</value>
+  </data>
+  <data name="CVST006_MessageFormat" xml:space="preserve">
+    <value>Font and color providers should have an explicit GUID</value>
+  </data>
+  <data name="CVST006_Title" xml:space="preserve">
+    <value>Define explicit GUIDs for font and color providers</value>
+  </data>
+  <data name="CVST007_CodeFix" xml:space="preserve">
+    <value>Add [Guid(...)]</value>
+  </data>
+  <data name="CVST007_Description" xml:space="preserve">
+    <value>Font and color categories should have an explicit GUID</value>
+  </data>
+  <data name="CVST007_MessageFormat" xml:space="preserve">
+    <value>Font and color categories should have an explicit GUID</value>
+  </data>
+  <data name="CVST007_Title" xml:space="preserve">
+    <value>Define explicit GUIDs for font and color categories</value>
+  </data>
+  <data name="CVST008_CodeFix" xml:space="preserve">
+    <value>Create font and color provider</value>
+  </data>
+  <data name="CVST008_Description" xml:space="preserve">
+    <value>Font and color categories should have a provider</value>
+  </data>
+  <data name="CVST008_MessageFormat" xml:space="preserve">
+    <value>This font and color category does not have a provider. Create a provider by inheriting from BaseFontAndColorProvider&lt;T&gt;</value>
+  </data>
+  <data name="CVST008_Title" xml:space="preserve">
+    <value>Define a provider for font and color categories</value>
+  </data>
+  <data name="CVST009_Description" xml:space="preserve">
+    <value>Font and color providers should be declared on the package</value>
+  </data>
+  <data name="CVST009_MessageFormat" xml:space="preserve">
+    <value>This package should declare the font and color provider using the [ProvideFontsAndColors({0})] attribute</value>
+  </data>
+  <data name="CVST009_Title" xml:space="preserve">
+    <value>Declare font and color providers using a [ProvideFontsAndColors(...)] attribute</value>
+  </data>
+  <data name="CVST010_CodeFix" xml:space="preserve">
+    <value>Register font and color providers</value>
+  </data>
+  <data name="CVST010_Description" xml:space="preserve">
+    <value>Font and color providers that are declared on a package should be registered during initialization</value>
+  </data>
+  <data name="CVST010_MessageFormat" xml:space="preserve">
+    <value>The font and color providers have not been registered</value>
+  </data>
+  <data name="CVST010_Title" xml:space="preserve">
+    <value>Register font and color providers during initialization</value>
+  </data>
   <data name="IncorrectProvidedType_CodeFix" xml:space="preserve">
     <value>Change to '{0}'</value>
   </data>
