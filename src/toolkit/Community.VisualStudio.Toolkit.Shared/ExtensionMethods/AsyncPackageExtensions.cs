@@ -47,34 +47,5 @@ namespace Community.VisualStudio.Toolkit
             }
             return commands;
         }
-
-        /// <summary>
-        /// Automatically calls the <see cref="BaseToolWindow{T}.Initialize(ToolkitPackage)"/> method for every BaseToolWindow<> in the package or provided assemblies.
-        /// </summary>
-        /// <param name="package"></param>
-        /// <param name="assemblies"></param>
-        /// <returns></returns>
-        public static void RegisterToolWindows(this AsyncPackage package, params Assembly[] assemblies)
-        {
-            List<Assembly> assembliesList = assemblies.ToList();
-            Assembly packageAssembly = package.GetType().Assembly;
-            if (!assembliesList.Contains(packageAssembly))
-                assembliesList.Add(packageAssembly);
-
-            Type baseToolWindowType = typeof(BaseToolWindow<>);
-            IEnumerable<Type> toolWindowTypes = assembliesList.SelectMany(x => x.GetTypes())
-                .Where(x =>
-                    !x.IsAbstract
-                    && x.IsAssignableToGenericType(baseToolWindowType));
-
-            foreach (Type? toolWindowtype in toolWindowTypes)
-            {
-                MethodInfo initializeMethod = toolWindowtype.GetMethod(
-                    "Initialize",
-                    BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-
-                initializeMethod.Invoke(null, new object[] { package });
-            }
-        }
     }
 }
