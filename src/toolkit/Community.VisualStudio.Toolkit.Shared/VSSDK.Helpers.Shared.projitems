@@ -43,6 +43,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsSolutionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\IVsTextViewExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TaskExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ToolkitPackageExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TypeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\WindowExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ContentTypes.cs" />
