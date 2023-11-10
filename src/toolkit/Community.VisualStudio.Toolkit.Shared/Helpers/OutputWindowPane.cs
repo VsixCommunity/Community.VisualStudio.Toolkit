@@ -237,6 +237,18 @@ namespace Community.VisualStudio.Toolkit
         }
 
         /// <summary>
+        /// Writes the given text to the Output window pane.
+        /// </summary>
+        /// <param name="value">The text value to write.</param>
+        public void Write(string value)
+        {
+            ThreadHelper.JoinableTaskFactory.Run(async () =>
+            {
+                await WriteAsync(value);
+            });
+        }
+
+        /// <summary>
         /// Writes a new line to the Output window pane.
         /// </summary>
         public Task WriteLineAsync()
@@ -250,6 +262,15 @@ namespace Community.VisualStudio.Toolkit
         /// <param name="value">The text value to write. May be an empty string, in which case a newline is written.</param>
         public async Task WriteLineAsync(string value)
         {
+            await WriteAsync(value + Environment.NewLine);
+        }
+
+        /// <summary>
+        /// Writes the given text to the Output window pane.
+        /// </summary>
+        /// <param name="value">The text value to write. May be an empty string, in which case a newline is written.</param>
+        public async Task WriteAsync(string value)
+        {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             await EnsurePaneAsync();
@@ -261,11 +282,11 @@ namespace Community.VisualStudio.Toolkit
 
             if (_pane is IVsOutputWindowPaneNoPump nopump)
             {
-                nopump.OutputStringNoPump(value + Environment.NewLine);
+                nopump.OutputStringNoPump(value);
             }
             else
             {
-                ErrorHandler.ThrowOnFailure(_pane.OutputStringThreadSafe(value + Environment.NewLine));
+                ErrorHandler.ThrowOnFailure(_pane.OutputStringThreadSafe(value));
             }
         }
 
