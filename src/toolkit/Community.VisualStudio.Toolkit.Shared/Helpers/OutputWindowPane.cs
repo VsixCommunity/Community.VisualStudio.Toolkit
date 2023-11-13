@@ -268,7 +268,7 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>
         /// Writes the given text to the Output window pane.
         /// </summary>
-        /// <param name="value">The text value to write. May be an empty string, in which case a newline is written.</param>
+        /// <param name="value">The text value to write.</param>
         public async Task WriteAsync(string value)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
