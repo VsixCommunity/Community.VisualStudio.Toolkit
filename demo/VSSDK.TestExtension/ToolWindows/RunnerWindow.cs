@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,6 +31,13 @@ namespace TestExtension
             {
                 BitmapImageMoniker = KnownMonikers.StatusInformation;
                 ToolBar = new CommandID(PackageGuids.TestExtension, PackageIds.RunnerWindowToolbar);
+                WindowFrameAvailable += (_, _) => Debug.WriteLine("RunnerWindow frame is now available");
+            }
+
+            public override void OnToolWindowCreated()
+            {
+                base.OnToolWindowCreated();
+                GetWindowFrame().OnShow += (_, args) => Debug.WriteLine($"RunnerWindow state changed: {args.Reason}");
             }
         }
     }
