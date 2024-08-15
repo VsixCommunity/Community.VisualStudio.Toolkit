@@ -140,6 +140,11 @@ namespace Community.VisualStudio.Toolkit
 
         public int QueryStatus(ref Guid pguidCmdGroup, uint cCmds, OLECMD[] prgCmds, IntPtr pCmdText)
         {
+            if (prgCmds[0].cmdID == _cmd.ID)
+            {
+                prgCmds[0].cmdf = (uint)OLECMDF.OLECMDF_ENABLED | (uint)OLECMDF.OLECMDF_SUPPORTED;
+                return VSConstants.S_OK;
+            }
             return (int)Microsoft.VisualStudio.OLE.Interop.Constants.OLECMDERR_E_NOTSUPPORTED;
         }
 
