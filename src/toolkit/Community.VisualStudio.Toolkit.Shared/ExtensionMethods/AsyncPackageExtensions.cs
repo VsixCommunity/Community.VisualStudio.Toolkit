@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -41,30 +41,6 @@ namespace Community.VisualStudio.Toolkit
                 commands.Add(command);
             }
             return commands;
-        }
-
-        /// <summary>
-        /// Automatically calls the <see cref="BaseCommand{T}.InitializeAsync(AsyncPackage)"/> method for every command that has the <see cref="CommandAttribute"/> applied.
-        /// </summary>
-        /// <param name="package"></param>
-        /// <param name="assemblies"></param>
-        /// <returns></returns>
-        public static void RegisterToolWindows(this AsyncPackage package, params Assembly[] assemblies)
-        {
-            Type baseToolWindowType = typeof(BaseToolWindow<>);
-            IEnumerable<Type> toolWindowTypes = IncludePackageAssembly(assemblies, package).SelectMany(x => x.GetTypes())
-                .Where(x =>
-                    !x.IsAbstract
-                    && x.IsAssignableToGenericType(baseToolWindowType));
-
-            foreach (Type toolWindowtype in toolWindowTypes)
-            {
-                MethodInfo initializeMethod = toolWindowtype.GetMethod(
-                    "Initialize",
-                    BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-
-                initializeMethod.Invoke(null, new object[] { package });
-            }
         }
 
         /// <summary>

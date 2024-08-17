@@ -1,6 +1,6 @@
 <Project>
 
-  <Target Name="NewtonsoftJsonVersionCheck" AfterTargets="ResolveReferences">
+  <Target Name="NewtonsoftJsonVersionCheck" AfterTargets="ResolveReferences" Condition="'$(CheckNewtonsoftJsonVersion)' != 'false'">
     <ItemGroup>
       <!-- 
       Any NuGet packages that are referenced (even transitive references) are in the `Reference`
@@ -8,18 +8,38 @@
       Filter the list of references to get the version of Newtonsoft.Json that is referenced (if any).
       -->
       <CVST_NewtonsoftJsonReferenceVersion Include="%(Reference.NuGetPackageVersion)" Condition="'%(Reference.NuGetPackageId)' == 'Newtonsoft.Json'"/>
+      
+      <!-- 
+      We also need the version of the `Microsoft.VisualStudio.SDK`package. That is a 
+      meta package, so it doesn't end up in the `Reference` items. We can get it from the 
+      `PackageReference` items instead, however that does rely on it being explicitly referenced.
+      -->
+      <CVST_VisualStudioSdkReferenceVersion Include="%(PackageReference.Version)" Condition="'%(PackageReference.Identity)' == 'Microsoft.VisualStudio.SDK'"/>
     </ItemGroup>
 
     <PropertyGroup>
       <!-- Turn the item list of version numbers into a single property value. -->
       <CVST_NewtonsoftJsonVersion>@(CVST_NewtonsoftJsonReferenceVersion)</CVST_NewtonsoftJsonVersion>
-      
+      <CVST_VisualStudioSdkVersion>@(CVST_VisualStudioSdkReferenceVersion)</CVST_VisualStudioSdkVersion>
+
       <!-- 
+      The latest versions of the Visual Studio SDK explicitly reference `Newtonsoft.Json`,
+      which means NuGet will raise warnings if a newer version of `Newtonsoft.Json` is installed.
+      That means we can skip the version check if the Visual Studio SDK is above a certain
+      version. We can skip the check by clearing the `CVST_NewtonsoftJsonVersion` property.
+      -->
+      <CVST_NewtonsoftJsonSdkMaxVersion>17.5.33428.388</CVST_NewtonsoftJsonSdkMaxVersion>
+      <CVST_NewtonsoftJsonHasModernSdk Condition="( '$(CVST_NewtonsoftJsonSdkMaxVersion)' != '' ) AND ( '$(CVST_VisualStudioSdkVersion)' != '' ) AND ( '$(CVST_VersionPropertyFunctionsExist)' == 'true' )">$([MSBuild]::VersionGreaterThan('$(CVST_VisualStudioSdkVersion)', '$(CVST_NewtonsoftJsonSdkMaxVersion)'))</CVST_NewtonsoftJsonHasModernSdk>
+      <CVST_NewtonsoftJsonHasModernSdk Condition="( '$(CVST_NewtonsoftJsonSdkMaxVersion)' != '' ) AND ( '$(CVST_VisualStudioSdkVersion)' != '' ) AND ( '$(CVST_VersionPropertyFunctionsExist)' != 'true' ) AND ( $(CVST_VisualStudioSdkVersion) &gt; $(CVST_NewtonsoftJsonSdkMaxVersion) )">true</CVST_NewtonsoftJsonHasModernSdk>
+      <CVST_NewtonsoftJsonVersion Condition="$(CVST_NewtonsoftJsonHasModernSdk) == 'true'"></CVST_NewtonsoftJsonVersion>
+
+      <!--
       The property functions for version comparisons are the preferred way to compare versions, 
       but they are not available in older versions of MSBuild. In earlier versions we can compare 
       the version values directly, although that is not always accurate.
       See: https://docs.microsoft.com/visualstudio/msbuild/msbuild-conditions#comparing-versions
       -->
+      <CVST_NewtonsoftJsonIsValid>true</CVST_NewtonsoftJsonIsValid>
       <CVST_NewtonsoftJsonIsValid Condition="( '$(CVST_NewtonsoftJsonVersion)' != '' ) AND ( '$(CVST_VersionPropertyFunctionsExist)' == 'true' )">$([MSBuild]::VersionLessThanOrEquals('$(CVST_NewtonsoftJsonVersion)', '$(CVST_NewtonsoftJsonMaxVersion)'))</CVST_NewtonsoftJsonIsValid>
       <CVST_NewtonsoftJsonIsValid Condition="( '$(CVST_NewtonsoftJsonVersion)' != '' ) AND ( '$(CVST_VersionPropertyFunctionsExist)' != 'true' ) AND ( $(CVST_NewtonsoftJsonVersion) &lt;= $(CVST_NewtonsoftJsonMaxVersion) )">true</CVST_NewtonsoftJsonIsValid>
 

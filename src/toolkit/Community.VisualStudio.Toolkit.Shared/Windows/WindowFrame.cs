@@ -232,7 +232,7 @@ namespace Community.VisualStudio.Toolkit
         public async Task<DocumentView?> GetDocumentViewAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-           
+
             // Force the loading of a document that may be pending initialization.
             // See https://docs.microsoft.com/en-us/visualstudio/extensibility/internals/delayed-document-loading
             _frame.GetProperty((int)__VSFPROPID.VSFPROPID_DocView, out _);
@@ -380,6 +380,11 @@ namespace Community.VisualStudio.Toolkit
             {
                 WindowFrameCloseEventArgs e = new((FrameCloseOption)pgrfSaveOptions);
                 OnClose(this, e);
+
+                if (e.Cancel)
+                {
+                    return VSConstants.E_ABORT;
+                }
             }
             InvokeStatusChanged();
             return VSConstants.S_OK;
@@ -435,31 +440,85 @@ namespace Community.VisualStudio.Toolkit
     /// <summary>
     /// Specifies options when the show state of a window frame changes.
     /// </summary>
-    [Flags]
+    /// <remarks>
+    /// This combines the values from 
+    /// <see cref="__FRAMESHOW"/>, 
+    /// <see cref="__FRAMESHOW2"/>, 
+    /// <see cref="__FRAMESHOW3"/> and 
+    /// <see cref="__FRAMESHOW4"/>.
+    /// </remarks>
     public enum FrameShow
     {
-        /// <summary>Reason unknown</summary>
-        Unknown = 0,
-        /// <summary>Obsolete; use WinHidden.</summary>
-        Hidden = __FRAMESHOW.FRAMESHOW_Hidden,
-        /// <summary>Window (tabbed or otherwise) is hidden.</summary>
-        WinHidden = __FRAMESHOW.FRAMESHOW_WinHidden,
-        /// <summary>A nontabbed window is made visible.</summary>
+        /// <summary>
+        /// <para>Window (tabbed or otherwise) is hidden.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_WinHidden"/>.</para>
+        /// </summary>
+        Hidden = __FRAMESHOW.FRAMESHOW_WinHidden,
+        /// <summary>
+        /// <para>A non-tabbed window is made visible.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_WinShown"/>.</para>
+        /// </summary>
         Shown = __FRAMESHOW.FRAMESHOW_WinShown,
-        /// <summary>A tabbed window is activated (made visible).</summary>
+        /// <summary>
+        /// <para>A tabbed window is activated (made visible).</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_TabActivated"/>.</para>
+        /// </summary>
         TabActivated = __FRAMESHOW.FRAMESHOW_TabActivated,
-        /// <summary>A tabbed window is deactivated.</summary>
+        /// <summary>
+        /// <para>A tabbed window is deactivated.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_TabDeactivated"/>.</para>
+        /// </summary>
         TabDeactivated = __FRAMESHOW.FRAMESHOW_TabDeactivated,
-        /// <summary>Window is restored to normal state.</summary>
+        /// <summary>
+        /// <para>Window is restored to normal state.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_WinRestored"/>.</para>
+        /// </summary>
         Restored = __FRAMESHOW.FRAMESHOW_WinRestored,
-        /// <summary>Window is minimized.</summary>
+        /// <summary>
+        /// <para>Window is minimized.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_WinMinimized"/>.</para>
+        /// </summary>
         Minimized = __FRAMESHOW.FRAMESHOW_WinMinimized,
-        /// <summary>Window is maximized.</summary>
+        /// <summary>
+        /// <para>Window is maximized.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_WinMaximized"/>.</para>
+        /// </summary>
         Maximized = __FRAMESHOW.FRAMESHOW_WinMaximized,
-        /// <summary>Multi-instance tool window destroyed.</summary>
+        /// <summary>
+        /// <para>Multi-instance tool window destroyed.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_DestroyMultInst"/>.</para>
+        /// </summary>
         DestroyMultipleInstance = __FRAMESHOW.FRAMESHOW_DestroyMultInst,
-        /// <summary>Autohidden window is about to slide into view.</summary>
-        AutoHideSlideBegin = __FRAMESHOW.FRAMESHOW_AutoHideSlideBegin
+        /// <summary>
+        /// <para>Auto-hidden window is about to slide into view.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW.FRAMESHOW_AutoHideSlideBegin"/>.</para>
+        /// </summary>
+        AutoHideSlideBegin = __FRAMESHOW.FRAMESHOW_AutoHideSlideBegin,
+        /// <summary>
+        /// <para>A window is about to be hidden.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW2.FRAMESHOW_BeforeWinHidden"/>.</para>
+        /// </summary>
+        BeforeHidden = __FRAMESHOW2.FRAMESHOW_BeforeWinHidden,
+        /// <summary>
+        /// <para>Auto-hidden window is finished sliding into view.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW2.FRAMESHOW_AutoHideSlideEnd"/>.</para>
+        /// </summary>
+        AutoHideSlideEnd = __FRAMESHOW2.FRAMESHOW_AutoHideSlideEnd,
+        /// <summary>
+        /// <para>A window is activated (made visible).</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW3.FRAMESHOW_WinActivated"/>.</para>
+        /// </summary>
+        Activated = __FRAMESHOW3.FRAMESHOW_WinActivated,
+        /// <summary>
+        /// <para>The window's inner content received keyboard focus.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW4.FRAMESHOW_WinContentGotFocus"/>.</para>
+        /// </summary>
+        ContentGotFocus = __FRAMESHOW4.FRAMESHOW_WinContentGotFocus,
+        /// <summary>
+        /// <para>The window's inner content lost keyboard focus.</para>
+        /// <para>Equivalent to <see cref="__FRAMESHOW4.FRAMESHOW_WinContentLostFocus"/>.</para>
+        /// </summary>
+        ContentLostFocus = __FRAMESHOW4.FRAMESHOW_WinContentLostFocus
     }
 
     /// <summary>
@@ -491,6 +550,11 @@ namespace Community.VisualStudio.Toolkit
         /// Options used to close the window frame.
         /// </summary>
         public FrameCloseOption CloseOption { get; private set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the event should be canceled.
+        /// </summary>
+        public bool Cancel { get; set; }
 
         /// <summary>
         /// Creates an event argument instance with the initial close option.
@@ -541,4 +605,16 @@ namespace Community.VisualStudio.Toolkit
             Docked = docked;
         }
     }
+
+
+#if VS14
+    /// <summary>
+    /// __FRAMESHOW4 was first defined in Visual Studio 15.
+    /// </summary>
+    internal enum __FRAMESHOW4
+    {
+        FRAMESHOW_WinContentGotFocus = 13,
+        FRAMESHOW_WinContentLostFocus
+    }
+#endif
 }
