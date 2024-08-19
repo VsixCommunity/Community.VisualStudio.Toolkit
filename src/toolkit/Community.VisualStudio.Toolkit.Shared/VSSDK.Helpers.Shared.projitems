@@ -9,21 +9,20 @@
     <Import_RootNamespace>Community.VisualStudio.Toolkit.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Debugger\Debugger.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Disposable.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Windows\IToolWindowPaneAware.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Windows\ToolkitToolWindowPane.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Attributes\ProvideBraceCompletionAttribute.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Attributes\ProvideFileIconAttribute.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Attributes\ProvideGalleryFeedAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\ProvideBraceCompletionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\ProvideFileIconAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\ProvideGalleryFeedAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\ProvideFontsAndColorsAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Build\Build.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Build\BuildEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CodeAnalysis\MemberNotNullAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\BaseCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\BaseDynamicCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Commands.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\DynamicItemMenuCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\KnownCommands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Debugger\Debugger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Debugger\DebuggerEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Documents\DocumentEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Documents\Documents.cs" />
@@ -46,7 +45,24 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\ToolkitPackageExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\TypeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods\WindowExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\BaseFontAndColorCategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\BaseFontAndColorCategory`1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\BaseFontAndColorProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\ColorOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\ColorDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\ConfiguredColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\ConfiguredColorChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\ConfiguredFont.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\ConfiguredFontAndColorSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\FontDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\FontsAndColors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\FontStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\IFontAndColorChangeListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\LineStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\MarkerVisualStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontsAndColors\VisualStudioColor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ContentTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Disposable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\OutputWindowPane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\OutputWindowTextWriterVS14.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProjectTypes.cs" />
@@ -106,8 +122,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ToolkitPackage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VS.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\BaseToolWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Windows\IToolWindowPaneAware.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\IToolWindowProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\SolutionExplorerWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Windows\ToolkitToolWindowPane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowFrame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowGuids.cs" />

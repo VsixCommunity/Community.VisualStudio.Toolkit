@@ -86,6 +86,15 @@
         </Strings>
       </Button>
 
+      <Button guid="TestExtension" id="FontsAndColorsWindow" priority="0x0108" type="Button">
+        <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
+        <Icon guid="ImageCatalogGuid" id="ColorDialog" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Fonts and Colors Window</ButtonText>
+        </Strings>
+      </Button>
+
       <Button guid="TestExtension" id="VsixManifestSolutionExplorerFilter" priority="0x0400" type="Button">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_TOOLBAR_PROJWIN_FILTERS" />
         <Icon guid="ImageCatalogGuid" id="VisualStudioSettingsFile" />
@@ -237,6 +246,7 @@
       <IDSymbol name="LoadSelectedProject" value="0x0112" />
       <IDSymbol name="UnloadSelectedProject" value="0x0113" />
       <IDSymbol name="SendMessageToRunnerWindow" value="0x0114" />
+      <IDSymbol name="FontsAndColorsWindow" value="0x0115" />
 
       <IDSymbol name="EditProjectFile" value="0x2001" />
 

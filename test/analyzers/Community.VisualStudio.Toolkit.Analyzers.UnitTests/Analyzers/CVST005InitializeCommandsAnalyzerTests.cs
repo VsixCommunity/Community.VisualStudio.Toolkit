@@ -2,9 +2,9 @@
 using Microsoft.VisualStudio.Shell;
 using Xunit;
 
-namespace Community.VisualStudio.Toolkit.Analyzers.UnitTests.Analyzers
+namespace Community.VisualStudio.Toolkit.Analyzers.UnitTests
 {
-    public class CVST005InitializeCommandsAnalyzerTests : TestBase<CVST005InitializeCommandsAnalyzer, CVST005InitializeCommandsCodeFixProvider>
+    public class CVST005InitializeCommandsAnalyzerTests : AnalyzerAndCodeFixTestBase<CVST005InitializeCommandsAnalyzer, CVST005InitializeCommandsCodeFixProvider>
     {
         private const string _usings = @"
 using Community.VisualStudio.Toolkit;

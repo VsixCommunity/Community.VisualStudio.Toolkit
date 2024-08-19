@@ -42,6 +42,7 @@ namespace TestExtension
         public const int LoadSelectedProject = 0x0112;
         public const int UnloadSelectedProject = 0x0113;
         public const int SendMessageToRunnerWindow = 0x0114;
+        public const int FontsAndColorsWindow = 0x0115;
         public const int EditProjectFile = 0x2001;
         public const int RunnerWindowToolbar = 0x0BB8;
     }

@@ -33,6 +33,10 @@ namespace Community.VisualStudio.Toolkit
         /// <summary>A collection of events.</summary>
         public static Events Events => _events ??= new();
 
+        private static FontsAndColors? _fontsAndColors;
+        /// <summary>Contains helper methods for querying colors and fonts.</summary>
+        public static FontsAndColors FontsAndColors => _fontsAndColors ??= new();
+
         private static InfoBarFactory? _infoBarFactory;
         /// <summary>Creates InfoBar controls for use on documents and tool windows.</summary>
         public static InfoBarFactory InfoBar => _infoBarFactory ??= new();
