@@ -49,8 +49,8 @@ namespace Community.VisualStudio.Toolkit
         {
             ITextStructureNavigator? navigator = _textStructureNavigatorSelector?.GetTextStructureNavigator(textView.TextBuffer);
 
-            var tagger = buffer.Properties.GetOrCreateSingletonProperty(() =>
-                new SameWordHighlighterTagger(textView, buffer, _textSearchService, navigator, this));
+            SameWordHighlighterTagger tagger = buffer.Properties.GetOrCreateSingletonProperty(() =>
+                new SameWordHighlighterTagger(textView, _textSearchService, navigator, this));
             tagger.RegisterEvents(textView);
 
             return (ITagger<T>)tagger;
@@ -72,16 +72,12 @@ namespace Community.VisualStudio.Toolkit
         private NormalizedSnapshotSpanCollection _wordSpans;
         private SnapshotSpan? _currentWord;
         private SnapshotPoint _requestedPoint;
-        private bool _isDisposed;
-        private string _fileName="";
         private readonly object _syncLock = new();
 
-        public SameWordHighlighterTagger(ITextView view, ITextBuffer sourceBuffer, ITextSearchService? textSearchService,
+        public SameWordHighlighterTagger(ITextView view, ITextSearchService? textSearchService,
             ITextStructureNavigator? textStructureNavigator, SameWordHighlighterBase tagger)
         {
-            _fileName = sourceBuffer.GetFileName();
-            //System.Diagnostics.Debug.WriteLine("Create new tagger for "+_fileName);
-            _buffer = sourceBuffer;
+            _buffer = view.TextBuffer;
             _textSearchService = textSearchService;
             _textStructureNavigator = textStructureNavigator;
             _tagger = tagger;
@@ -92,7 +88,6 @@ namespace Community.VisualStudio.Toolkit
 
         internal void RegisterEvents(ITextView textView)
         {
-            
             textView.Caret.PositionChanged += CaretPositionChanged;
             textView.LayoutChanged += ViewLayoutChanged;
             textView.Closed += TextView_Closed;
@@ -111,7 +106,7 @@ namespace Community.VisualStudio.Toolkit
         {
             if (e.NewSnapshot != e.OldSnapshot)
             {
-                var view = (ITextView)sender;
+                ITextView view = (ITextView)sender;
                 UpdateAtCaretPosition(view.Caret.Position);
             }
         }

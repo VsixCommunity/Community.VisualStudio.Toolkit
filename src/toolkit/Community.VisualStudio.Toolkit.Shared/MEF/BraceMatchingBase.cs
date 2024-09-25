@@ -96,7 +96,8 @@ namespace Community.VisualStudio.Toolkit
 
             if (spans[0].Snapshot != currentChar.Snapshot)
             {
-                currentChar = currentChar.TranslateTo(spans[0].Snapshot, PointTrackingMode.Positive);
+                yield break;
+                //currentChar = currentChar.TranslateTo(spans[0].Snapshot, PointTrackingMode.Positive);
             }
 
             char currentText = currentChar.Position == currentChar.Snapshot.Length ? '\0' : currentChar.GetChar();
