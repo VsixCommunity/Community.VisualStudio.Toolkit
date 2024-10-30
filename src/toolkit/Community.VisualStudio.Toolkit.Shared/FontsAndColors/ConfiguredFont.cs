@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Media;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -22,14 +23,16 @@ namespace Community.VisualStudio.Toolkit
         private FontFamily? _family;
         private bool _hasFamily;
         private string _familyName;
+        private int _pointSize;
         private double _size;
         private byte _characterSet;
 
-        internal ConfiguredFont(ref FontInfo info)
+        internal ConfiguredFont(ref LOGFONTW logfont, ref FontInfo fontInfo)
         {
-            _familyName = info.bstrFaceName;
-            _size = info.wPointSize;
-            _characterSet = info.iCharSet;
+            _familyName = fontInfo.bstrFaceName;
+            _pointSize = fontInfo.wPointSize;
+            _size = CalculateFontSize(ref logfont);
+            _characterSet = fontInfo.iCharSet;
         }
 
         /// <summary>
@@ -61,7 +64,14 @@ namespace Community.VisualStudio.Toolkit
         public string FamilyName => _familyName;
 
         /// <summary>
-        /// The font size.
+        /// The font size, in points. This is the value specified on the <i>Fonts and Colors</i> options page.
+        /// </summary>
+        public int PointSize => _pointSize;
+
+        /// <summary>
+        /// The font size, for use in WPF. This is the font size that can be used in WPF controls.
+        /// For example, the value can be used directly in the 
+        /// <see cref="System.Windows.Documents.TextElement.FontSize"/> property.
         /// </summary>
         public double Size => _size;
 
@@ -70,17 +80,19 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public byte CharacterSet => _characterSet;
 
-        internal bool Update(ref FontInfo info)
+        internal bool Update(ref LOGFONTW logfont, ref FontInfo info)
         {
             bool changed = false;
             string oldFaceName = _familyName;
+            int oldPointSize = _pointSize;
             double oldSize = _size;
             byte oldCharacterSet = _characterSet;
 
             // Update all of the fields first so that
             // everything is set before we raise the events.
             _familyName = info.bstrFaceName;
-            _size = info.wPointSize;
+            _pointSize = info.wPointSize;
+            _size = CalculateFontSize(ref logfont);
             _characterSet = info.iCharSet;
 
             if (!string.Equals(oldFaceName, _familyName))
@@ -90,6 +102,12 @@ namespace Community.VisualStudio.Toolkit
                 _hasFamily = false;
                 NotifyPropertyChanged(nameof(Family));
                 NotifyPropertyChanged(nameof(FamilyName));
+            }
+
+            if (oldPointSize != _pointSize)
+            {
+                changed = true;
+                NotifyPropertyChanged(nameof(PointSize));
             }
 
             if (oldSize != _size)
@@ -105,6 +123,19 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return changed;
+        }
+
+        private static double CalculateFontSize(ref LOGFONTW logfont)
+        {
+            return Math.Abs(logfont.lfHeight) * 96.0 /
+#if VS14
+                // `DpiAwareness` does not exist in VS 14, so default
+                // to 96.0, which is the standard system DPI.
+                96.0
+#else
+                Microsoft.VisualStudio.Utilities.DpiAwareness.SystemDpiY
+#endif
+                ;
         }
     }
 }

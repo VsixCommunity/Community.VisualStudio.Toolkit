@@ -14,13 +14,14 @@ namespace Community.VisualStudio.Toolkit
 
         internal ConfiguredFontAndColorSet(
             T category,
-            ref FontInfo font,
+            ref LOGFONTW logfont,
+            ref FontInfo fontInfo,
             Dictionary<ColorDefinition, ConfiguredColor> colors,
             Action<IFontAndColorChangeListener> onDispose
         )
         {
             Category = category;
-            Font = new ConfiguredFont(ref font);
+            Font = new ConfiguredFont(ref logfont, ref fontInfo);
             _colors = colors;
             _onDispose = onDispose;
         }
@@ -64,9 +65,9 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public event EventHandler<ConfiguredColorChangedEventArgs>? ColorChanged;
 
-        void IFontAndColorChangeListener.SetFont(ref FontInfo info)
+        void IFontAndColorChangeListener.SetFont(ref LOGFONTW logfont, ref FontInfo info)
         {
-            if (Font.Update(ref info))
+            if (Font.Update(ref logfont, ref info))
             {
                 FontChanged?.Invoke(this, EventArgs.Empty);
             }
