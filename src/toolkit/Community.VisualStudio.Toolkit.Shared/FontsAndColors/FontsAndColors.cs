@@ -37,10 +37,12 @@ namespace Community.VisualStudio.Toolkit
                 T category = BaseFontAndColorCategory<T>.Instance;
 
                 FontInfo[] fontInfo = new FontInfo[1];
-                ErrorHandler.ThrowOnFailure(storage.GetFont(null, fontInfo));
+                LOGFONTW[] logfont = new LOGFONTW[1];
+                ErrorHandler.ThrowOnFailure(storage.GetFont(logfont, fontInfo));
 
                 ConfiguredFontAndColorSet<T> set = new(
                     category,
+                    ref logfont[0],
                     ref fontInfo[0],
                     await GetColorsAsync(category, categoryGuid, storage),
                     category.UnregisterChangeListener

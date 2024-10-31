@@ -246,7 +246,7 @@ namespace Community.VisualStudio.Toolkit
             // only want to handle the changes for this category.
             if (rguidCategory.Equals(_categoryGuid))
             {
-                EmitChange((x) => x.SetFont(ref pInfo[0]));
+                EmitChange((x) => x.SetFont(ref pLOGFONT[0], ref pInfo[0]));
             }
             return VSConstants.S_OK;
         }
