@@ -125,6 +125,19 @@ namespace Community.VisualStudio.Toolkit
 
             return new Disposable(() => priority.UnregisterPriorityCommandTarget(cookie));
         }
+        /// <summary>
+        /// Intercept any command before it is being handled by other command handlers.
+        /// </summary>
+        /// <returns>Returns an <see cref="IDisposable"/> that will remove the command interceptor when disposed.</returns>
+        public async Task<IDisposable> InterceptAsync(string name, Func<CommandProgression> func)
+        {
+            CommandID? cmd = await FindCommandAsync(name);
+            if (cmd == null)
+            {
+                throw new ArgumentException($"Command '{name}' not found.");
+            }
+            return await InterceptAsync(cmd, func);
+        }
     }
 
     internal class CommandInterceptor : IOleCommandTarget
