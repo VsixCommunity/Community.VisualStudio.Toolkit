@@ -23,10 +23,12 @@ namespace TestExtension
         public const int TestExtensionMainMenu = 0x1000;
         public const int TestExtensionSolutionExplorerMenu = 0x1001;
         public const int TestExtensionEditProjectFileMenu = 0x1002;
+        public const int SplitButtonMenu = 0x1003;
         public const int TestExtensionMainMenuGroup1 = 0x1100;
         public const int TestExtensionSolutionExplorerGroup = 0x1101;
         public const int TestExtensionEditProjectFileGroup = 0x1102;
         public const int RunnerWindowToolbarGroup = 0x1103;
+        public const int SplitButtonGroup = 0x1104;
         public const int RunnerWindow = 0x0100;
         public const int ThemeWindow = 0x0101;
         public const int MultiInstanceWindow = 0x0102;
@@ -43,6 +45,9 @@ namespace TestExtension
         public const int UnloadSelectedProject = 0x0113;
         public const int SendMessageToRunnerWindow = 0x0114;
         public const int FontsAndColorsWindow = 0x0115;
+        public const int SplitButton = 0x0116;
+        public const int SplitButtonChild1 = 0x0117;
+        public const int SplitButtonChild2 = 0x0118;
         public const int EditProjectFile = 0x2001;
         public const int RunnerWindowToolbar = 0x0BB8;
     }
