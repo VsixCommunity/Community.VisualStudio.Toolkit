@@ -62,6 +62,7 @@
     <Compile Include="Commands\ToggleVsixManifestFilterCommand.cs" />
     <Compile Include="Commands\RunnerWindowCommand.cs" />
     <Compile Include="Commands\ThemeWindowCommand.cs" />
+    <Compile Include="Commands\SplitButtonCommand.cs" />
     <Compile Include="Commands\UnloadSelectedProject.cs" />
     <Compile Include="MEF\HighlightWord.cs" />
     <Compile Include="MEF\TextViewCreationListener.cs" />

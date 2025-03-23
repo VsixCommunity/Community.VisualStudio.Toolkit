@@ -38,6 +38,14 @@
           <ButtonText>Runner Window Toolbar</ButtonText>
         </Strings>
       </Menu>
+
+      <Menu guid="TestExtension" id="SplitButtonMenu" type="MenuController">
+        <Parent guid="VSMainMenu" id="StandardToolbar.RunBuildGroup"/>
+        <CommandFlag>NotInTBList</CommandFlag>
+        <Strings>
+          <ButtonText>Split Button Menu</ButtonText>
+        </Strings>
+      </Menu>
     </Menus>
 
     <Groups>
@@ -55,6 +63,10 @@
 
       <Group guid="TestExtension" id="RunnerWindowToolbarGroup" priority="0x0000">
         <Parent guid="TestExtension" id="RunnerWindowToolbar" />
+      </Group>
+
+      <Group guid="TestExtension" id="SplitButtonGroup" priority="0x0000">
+        <Parent guid="TestExtension" id="SplitButtonMenu" />
       </Group>
     </Groups>
 
@@ -203,6 +215,33 @@
           <ButtonText>Send Message to Runner Window</ButtonText>
         </Strings>
       </Button>
+
+      <Button guid="TestExtension" id="SplitButton" priority="0x0001">
+        <Parent guid="TestExtension" id="SplitButtonGroup"/>
+        <Icon guid="ImageCatalogGuid" id="Search"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>NoShowOnMenuController</CommandFlag>
+        <CommandFlag>FixMenuController</CommandFlag>
+        <Strings>
+          <ButtonText>Split Button</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="TestExtension" id="SplitButtonChild1" priority="0x0001">
+        <Parent guid="TestExtension" id="SplitButtonGroup"/>
+        <Icon guid="ImageCatalogGuid" id="SearchFolderOpened"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Split Button Child #1</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="TestExtension" id="SplitButtonChild2" priority="0x0002">
+        <Parent guid="TestExtension" id="SplitButtonGroup"/>
+        <Strings>
+          <ButtonText>Split Button Child #2</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
   </Commands>
 
@@ -225,11 +264,13 @@
       <IDSymbol name="TestExtensionMainMenu" value="0x1000" />
       <IDSymbol name="TestExtensionSolutionExplorerMenu" value="0x1001" />
       <IDSymbol name="TestExtensionEditProjectFileMenu" value="0x1002" />
+      <IDSymbol name="SplitButtonMenu" value="0x1003" />
 
       <IDSymbol name="TestExtensionMainMenuGroup1" value="0x1100" />
       <IDSymbol name="TestExtensionSolutionExplorerGroup" value="0x1101" />
       <IDSymbol name="TestExtensionEditProjectFileGroup" value="0x1102" />
       <IDSymbol name="RunnerWindowToolbarGroup" value="0x1103" />
+      <IDSymbol name="SplitButtonGroup" value="0x1104" />
 
       <IDSymbol name="RunnerWindow" value="0x0100" />
       <IDSymbol name="ThemeWindow" value="0x0101" />
@@ -247,6 +288,9 @@
       <IDSymbol name="UnloadSelectedProject" value="0x0113" />
       <IDSymbol name="SendMessageToRunnerWindow" value="0x0114" />
       <IDSymbol name="FontsAndColorsWindow" value="0x0115" />
+      <IDSymbol name="SplitButton" value="0x0116" />
+      <IDSymbol name="SplitButtonChild1" value="0x0117" />
+      <IDSymbol name="SplitButtonChild2" value="0x0118" />
 
       <IDSymbol name="EditProjectFile" value="0x2001" />
 
