@@ -66,6 +66,8 @@
     <Compile Include="MEF\HighlightWord.cs" />
     <Compile Include="MEF\TextViewCreationListener.cs" />
     <Compile Include="Options\General.cs" />
+    <Compile Include="Options\RuntimeEnumProxy.cs" />
+    <Compile Include="Options\RuntimeEnumTypeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolutionExplorer\VsixManifestFilterProvider.cs" />
     <Compile Include="source.extension.cs">
