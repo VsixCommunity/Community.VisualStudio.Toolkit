@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
@@ -53,9 +53,33 @@ namespace TestExtension
         [DefaultValue("2021-04-11")]
         public DateTime MyBirthday { get; set; } = new DateTime(2021, 04, 11);
 
+        [Category("My category")]
+        [DisplayName("Runtime Enum")]
+        [Description("These enum values are defined at runtime")]
+        [TypeConverter(typeof(RuntimeEnumTypeConverter))]
+        public RuntimeEnumProxy RuntimeEnum { get; set; } = new RuntimeEnumProxy("");
+
         public General() : base()
         {
             Saved += delegate { VS.StatusBar.ShowMessageAsync("Options Saved").FireAndForget(); };
+        }
+
+        protected override string SerializeValue(object value, Type type, string propertyName)
+        {
+            if (propertyName == nameof(RuntimeEnum))
+            {
+                return (value as RuntimeEnumProxy)?.Value ?? "";
+            }
+            return base.SerializeValue(value, type, propertyName);
+        }
+
+        protected override object DeserializeValue(string serializedData, Type type, string propertyName)
+        {
+            if (propertyName == nameof(RuntimeEnum))
+            {
+                return new RuntimeEnumProxy(serializedData);
+            }
+            return base.DeserializeValue(serializedData, type, propertyName);
         }
     }
 }
