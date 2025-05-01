@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Task = System.Threading.Tasks.Task;
 
 
 namespace Community.VisualStudio.Toolkit
@@ -45,6 +46,19 @@ namespace Community.VisualStudio.Toolkit
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Save the solution if it's dirty.
+        /// </summary>
+        public async Task SaveAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            IVsSolution solution = await VS.Services.GetSolutionAsync();
+            int hr = solution.SaveSolutionElement((uint)__VSSLNSAVEOPTIONS.SLNSAVEOPT_SaveIfDirty, null, 0);
+
+            ErrorHandler.ThrowOnFailure(hr);
         }
     }
 }
