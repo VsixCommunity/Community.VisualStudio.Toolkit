@@ -206,7 +206,7 @@ namespace Community.VisualStudio.Toolkit
             if (docView is not IVsUIHierarchyWindow hierarchyWindow)
                 return;
 
-            if (hierarchy is IVsUIHierarchy uiHierarchy)
+            if (_hierarchy is IVsUIHierarchy uiHierarchy)
             {
                 hierarchyWindow.ExpandItem(uiHierarchy, _itemId, EXPANDFLAGS.EXPF_SelectItem);
             }
