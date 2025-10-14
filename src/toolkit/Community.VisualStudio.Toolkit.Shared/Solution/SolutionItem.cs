@@ -180,7 +180,7 @@ namespace Community.VisualStudio.Toolkit
         /// Selects the given hierarchy/itemId in Solution Explorer.
         /// Pass the item-specific hierarchy if you have both (hierarchy & itemHierarchy).
         /// </summary>
-        public static async System.Threading.Tasks.Task SelectInSolutionExplorerAsync()
+        public async System.Threading.Tasks.Task SelectInSolutionExplorerAsync()
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
