@@ -176,6 +176,42 @@ namespace Community.VisualStudio.Toolkit
             }
         }
 
+        /// <summary>
+        /// Selects the given hierarchy/itemId in Solution Explorer.
+        /// Pass the item-specific hierarchy if you have both (hierarchy & itemHierarchy).
+        /// </summary>
+        public static async Task SelectInSolutionExplorerAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            if (_hierarchy == null)
+                return;
+
+            // Ensure Solution Explorer is created/shown
+            var uiShellObj = await AsyncServiceProvider.GlobalProvider.GetServiceAsync(typeof(SVsUIShell));
+            var seGuid = VSConstants.StandardToolWindows.SolutionExplorer;
+            IVsWindowFrame? frame = null;
+            if (uiShellObj is IVsUIShell uiShell)
+            {
+                uiShell.FindToolWindow((uint)__VSFINDTOOLWIN.FTW_fForceCreate, ref seGuid, out frame);
+            }
+
+            if (frame == null)
+                return;
+
+            frame.Show();
+
+            // Get the IVsUIHierarchyWindow behind Solution Explorer
+            frame.GetProperty((int)__VSFPROPID.VSFPROPID_DocView, out object docView);
+            if (docView is not IVsUIHierarchyWindow hierarchyWindow)
+                return;
+
+            if (hierarchy is IVsUIHierarchy uiHierarchy)
+            {
+                hierarchyWindow.ExpandItem(uiHierarchy, _itemId, EXPANDFLAGS.EXPF_SelectItem);
+            }
+        }
+
         private static SolutionItemType GetSolutionItemType(IVsHierarchyItemIdentity identity)
         {
             if (HierarchyUtilities.IsSolutionNode(identity))
