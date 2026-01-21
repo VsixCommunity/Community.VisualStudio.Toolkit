@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -216,6 +216,13 @@ namespace Community.VisualStudio.Toolkit
             NormalizedSnapshotSpanCollection wordSpans = _wordSpans;
 
             if (spans.Count == 0 || _wordSpans.Count == 0)
+            {
+                yield break;
+            }
+
+            // If the requested spans are from a different buffer (e.g., projection buffer or embedded diff),
+            // we cannot translate our spans, so return no tags
+            if (spans[0].Snapshot.TextBuffer != wordSpans[0].Snapshot.TextBuffer)
             {
                 yield break;
             }
