@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -18,14 +18,40 @@ namespace Community.VisualStudio.Toolkit
     /// <summary>
     /// Events related to the editor documents.
     /// </summary>
-    public class DocumentEvents : IVsRunningDocTableEvents
+    public class DocumentEvents : IVsRunningDocTableEvents, IDisposable
     {
         private readonly RunningDocumentTable _rdt;
+        private readonly uint _adviseCookie;
+        private bool _disposed;
 
         internal DocumentEvents()
         {
             _rdt = new RunningDocumentTable();
-            _rdt.Advise(this);
+            _adviseCookie = _rdt.Advise(this);
+        }
+
+        /// <summary>
+        /// Disposes the document events and unsubscribes from the running document table.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Disposes the document events and unsubscribes from the running document table.
+        /// </summary>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _rdt.Unadvise(_adviseCookie);
+                }
+                _disposed = true;
+            }
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Microsoft.VisualStudio.Shell;
@@ -122,10 +122,17 @@ namespace Community.VisualStudio.Toolkit
             _uiElement = infoBarUIFactory.CreateInfoBar(_model);
             _uiElement.Advise(this, out _listenerCookie);
 
-            if (_host != null)
+            try
             {
                 _host.AddInfoBar(_uiElement);
                 IsVisible = true;
+            }
+            catch
+            {
+                // If adding to host fails, clean up the COM event subscription to prevent leak
+                _uiElement.Unadvise(_listenerCookie);
+                _uiElement = null;
+                throw;
             }
 
             return IsVisible;

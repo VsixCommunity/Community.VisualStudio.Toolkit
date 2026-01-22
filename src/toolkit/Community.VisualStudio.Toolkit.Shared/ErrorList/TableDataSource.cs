@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft;
@@ -24,6 +24,11 @@ namespace Community.VisualStudio.Toolkit
             DisplayName = name;
             Initialize();
         }
+
+        /// <summary>
+        /// Single lock object for thread-safe access to _managers and _snapshots
+        /// </summary>
+        private readonly object _syncLock = new();
 
         /// <summary>
         /// Data sink subscriptions
@@ -91,7 +96,7 @@ namespace Community.VisualStudio.Toolkit
         /// <param name="manager">Subscription to register</param>
         private void AddSinkManager(SinkManager manager)
         {
-            lock (_managers)
+            lock (_syncLock)
             {
                 _managers.Add(manager);
             }
@@ -103,7 +108,7 @@ namespace Community.VisualStudio.Toolkit
         /// <param name="manager">Subscription to unregister</param>
         private void RemoveSinkManager(SinkManager manager)
         {
-            lock (_managers)
+            lock (_syncLock)
             {
                 _managers.Remove(manager);
             }
@@ -114,7 +119,7 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         private void UpdateAllSinks()
         {
-            lock (_managers)
+            lock (_syncLock)
             {
                 foreach (SinkManager manager in _managers)
                 {
@@ -137,7 +142,7 @@ namespace Community.VisualStudio.Toolkit
 
             IEnumerable<ErrorListItem> cleanErrors = errors.Where(e => e != null && !string.IsNullOrEmpty(e.FileName));
 
-            lock (_snapshots)
+            lock (_syncLock)
             {
                 foreach (IGrouping<string?, ErrorListItem>? fileErrorMap in cleanErrors.GroupBy(e => e.FileName))
                 {
@@ -164,14 +169,11 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public void CleanAllErrors()
         {
-            lock (_snapshots)
+            lock (_syncLock)
             {
-                lock (_managers)
+                foreach (SinkManager manager in _managers)
                 {
-                    foreach (SinkManager manager in _managers)
-                    {
-                        manager.Clear();
-                    }
+                    manager.Clear();
                 }
 
                 foreach (TableEntriesSnapshot snapshot in _snapshots.Values)

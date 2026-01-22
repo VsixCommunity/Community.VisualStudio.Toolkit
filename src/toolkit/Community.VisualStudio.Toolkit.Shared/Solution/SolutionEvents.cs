@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -167,15 +167,8 @@ namespace Community.VisualStudio.Toolkit
 
         int IVsSolutionEvents.OnBeforeCloseSolution(object pUnkReserved)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            if (OnBeforeCloseSolution != null)
-            {
-                SolutionItem? solution = VS.Solutions.GetCurrentSolution();
-                OnBeforeCloseSolution?.Invoke();
-            }
+            OnBeforeCloseSolution?.Invoke();
             return VSConstants.S_OK;
-
         }
 
         int IVsSolutionEvents.OnAfterCloseSolution(object pUnkReserved)
