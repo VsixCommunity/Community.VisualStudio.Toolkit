@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualStudio.Shell.TableManager;
 
 namespace Community.VisualStudio.Toolkit
@@ -23,9 +22,9 @@ namespace Community.VisualStudio.Toolkit
         private readonly Action<SinkManager> _onDispose;
 
         /// <summary>
-        /// Snapshot collection
+        /// Snapshot collection indexed by FilePath for O(1) lookups
         /// </summary>
-        private readonly List<TableEntriesSnapshot> _snapshots = new();
+        private readonly Dictionary<string, TableEntriesSnapshot> _snapshots = new();
 
         /// <summary>
         /// Constructor
@@ -46,19 +45,17 @@ namespace Community.VisualStudio.Toolkit
         {
             foreach (TableEntriesSnapshot snapshot in snapshots)
             {
-                TableEntriesSnapshot existing = _snapshots.FirstOrDefault(s => s.FilePath == snapshot.FilePath);
-
-                if (existing != null)
+                string filePath = snapshot.FilePath;
+                if (_snapshots.TryGetValue(filePath, out TableEntriesSnapshot? existing))
                 {
-                    _snapshots.Remove(existing);
                     _sink.ReplaceSnapshot(existing, snapshot);
+                    _snapshots[filePath] = snapshot;
                 }
                 else
                 {
                     _sink.AddSnapshot(snapshot);
+                    _snapshots[filePath] = snapshot;
                 }
-
-                _snapshots.Add(snapshot);
             }
         }
 
@@ -87,6 +84,7 @@ namespace Community.VisualStudio.Toolkit
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

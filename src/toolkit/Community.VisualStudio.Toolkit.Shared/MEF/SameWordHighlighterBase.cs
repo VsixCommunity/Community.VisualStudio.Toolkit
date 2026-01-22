@@ -143,10 +143,14 @@ namespace Community.VisualStudio.Toolkit
         {
             lock (_syncLock)
             {
+                NormalizedSnapshotSpanCollection oldSpans = _wordSpans;
+                SnapshotSpan? oldWord = _currentWord;
+
                 _currentWord = null;
                 _wordSpans = new();
-                SnapshotSpan span = new(_buffer.CurrentSnapshot, 0, _buffer.CurrentSnapshot.Length);
-                TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(span));
+
+                // Compute minimal invalidation span instead of entire document
+                RaiseTagsChangedForDifference(oldSpans, oldWord, _wordSpans, _currentWord);
             }
         }
         private void UpdateAtCaretPosition(CaretPosition caretPosition)
@@ -227,11 +231,93 @@ namespace Community.VisualStudio.Toolkit
                     return;
                 }
 
+                NormalizedSnapshotSpanCollection oldSpans = _wordSpans;
+                SnapshotSpan? oldWord = _currentWord;
+
                 _wordSpans = newSpans;
                 _currentWord = newCurrentWord;
 
-                SnapshotSpan span = new(_buffer.CurrentSnapshot, 0, _buffer.CurrentSnapshot.Length);
-                TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(span));
+                // Compute minimal invalidation span instead of entire document
+                RaiseTagsChangedForDifference(oldSpans, oldWord, newSpans, newCurrentWord);
+            }
+        }
+
+        /// <summary>
+        /// Raises TagsChanged for only the spans that actually changed, rather than the entire document.
+        /// </summary>
+        private void RaiseTagsChangedForDifference(
+            NormalizedSnapshotSpanCollection oldSpans, SnapshotSpan? oldWord,
+            NormalizedSnapshotSpanCollection newSpans, SnapshotSpan? newWord)
+        {
+            if (TagsChanged == null)
+            {
+                return;
+            }
+
+            ITextSnapshot currentSnapshot = _buffer.CurrentSnapshot;
+
+            // If both are empty/null, no change needed
+            if ((oldSpans == null || oldSpans.Count == 0) && oldWord == null &&
+                (newSpans == null || newSpans.Count == 0) && newWord == null)
+            {
+                return;
+            }
+
+            // Compute the bounding span that covers all changes
+            int minStart = int.MaxValue;
+            int maxEnd = int.MinValue;
+
+            // Include old spans
+            if (oldSpans != null && oldSpans.Count > 0)
+            {
+                foreach (SnapshotSpan span in oldSpans)
+                {
+                    SnapshotSpan translated = span.Snapshot == currentSnapshot
+                        ? span
+                        : span.TranslateTo(currentSnapshot, SpanTrackingMode.EdgeInclusive);
+                    minStart = Math.Min(minStart, translated.Start.Position);
+                    maxEnd = Math.Max(maxEnd, translated.End.Position);
+                }
+            }
+
+            // Include old word
+            if (oldWord.HasValue)
+            {
+                SnapshotSpan translated = oldWord.Value.Snapshot == currentSnapshot
+                    ? oldWord.Value
+                    : oldWord.Value.TranslateTo(currentSnapshot, SpanTrackingMode.EdgeInclusive);
+                minStart = Math.Min(minStart, translated.Start.Position);
+                maxEnd = Math.Max(maxEnd, translated.End.Position);
+            }
+
+            // Include new spans
+            if (newSpans != null && newSpans.Count > 0)
+            {
+                foreach (SnapshotSpan span in newSpans)
+                {
+                    SnapshotSpan translated = span.Snapshot == currentSnapshot
+                        ? span
+                        : span.TranslateTo(currentSnapshot, SpanTrackingMode.EdgeInclusive);
+                    minStart = Math.Min(minStart, translated.Start.Position);
+                    maxEnd = Math.Max(maxEnd, translated.End.Position);
+                }
+            }
+
+            // Include new word
+            if (newWord.HasValue)
+            {
+                SnapshotSpan translated = newWord.Value.Snapshot == currentSnapshot
+                    ? newWord.Value
+                    : newWord.Value.TranslateTo(currentSnapshot, SpanTrackingMode.EdgeInclusive);
+                minStart = Math.Min(minStart, translated.Start.Position);
+                maxEnd = Math.Max(maxEnd, translated.End.Position);
+            }
+
+            // If we found any spans, raise the event for the bounding region
+            if (minStart <= maxEnd && minStart != int.MaxValue)
+            {
+                SnapshotSpan changedSpan = new(currentSnapshot, minStart, maxEnd - minStart);
+                TagsChanged.Invoke(this, new SnapshotSpanEventArgs(changedSpan));
             }
         }
 

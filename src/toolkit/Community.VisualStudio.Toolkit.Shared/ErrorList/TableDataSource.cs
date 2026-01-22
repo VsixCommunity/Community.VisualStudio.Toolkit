@@ -133,25 +133,45 @@ namespace Community.VisualStudio.Toolkit
         /// </summary>
         public void AddErrors(IEnumerable<ErrorListItem> errors)
         {
-            if (errors == null || !errors.Any())
+            if (errors == null)
             {
                 return;
             }
 
-            string? projectName = errors.FirstOrDefault(e => !string.IsNullOrEmpty(e.ProjectName))?.ProjectName ?? "";
+            // Materialize once to avoid multiple enumeration - filter nulls and empty filenames
+            List<ErrorListItem> errorList = new();
+            string? projectName = null;
 
-            IEnumerable<ErrorListItem> cleanErrors = errors.Where(e => e != null && !string.IsNullOrEmpty(e.FileName));
+            foreach (ErrorListItem? error in errors)
+            {
+                if (error != null && !string.IsNullOrEmpty(error.FileName))
+                {
+                    errorList.Add(error);
+                    if (projectName == null && !string.IsNullOrEmpty(error.ProjectName))
+                    {
+                        projectName = error.ProjectName;
+                    }
+                }
+            }
+
+            if (errorList.Count == 0)
+            {
+                return;
+            }
+
+            projectName ??= "";
 
             lock (_syncLock)
             {
-                foreach (IGrouping<string?, ErrorListItem>? fileErrorMap in cleanErrors.GroupBy(e => e.FileName))
+                // Group already uses the materialized list
+                foreach (IGrouping<string?, ErrorListItem>? fileErrorMap in errorList.GroupBy(e => e.FileName))
                 {
                     if (fileErrorMap.Key != null)
                     {
-                        if (_snapshots.ContainsKey(fileErrorMap.Key))
+                        if (_snapshots.TryGetValue(fileErrorMap.Key, out TableEntriesSnapshot? existingSnapshot))
                         {
-                            IEnumerable<ErrorListItem> values = cleanErrors.Where(e => e.FileName == fileErrorMap.Key);
-                            _snapshots[fileErrorMap.Key].Update(values);
+                            // Use the group directly instead of re-filtering
+                            existingSnapshot.Update(fileErrorMap);
                         }
                         else
                         {
