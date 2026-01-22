@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Threading;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
@@ -69,9 +70,11 @@ namespace Community.VisualStudio.Toolkit
         private readonly ITextSearchService? _textSearchService;
         private readonly ITextStructureNavigator? _textStructureNavigator;
         private readonly SameWordHighlighterBase _tagger;
+        private readonly HashSet<ITextView> _registeredViews = new();
         private NormalizedSnapshotSpanCollection _wordSpans;
         private SnapshotSpan? _currentWord;
         private SnapshotPoint _requestedPoint;
+        private int _requestVersion;
         private readonly object _syncLock = new();
 
         public SameWordHighlighterTagger(ITextView view, ITextSearchService? textSearchService,
@@ -88,19 +91,35 @@ namespace Community.VisualStudio.Toolkit
 
         internal void RegisterEvents(ITextView textView)
         {
+            lock (_syncLock)
+            {
+                // Prevent duplicate event registration for the same view (memory leak fix)
+                if (!_registeredViews.Add(textView))
+                {
+                    return;
+                }
+            }
+
             textView.Caret.PositionChanged += CaretPositionChanged;
             textView.LayoutChanged += ViewLayoutChanged;
             textView.Closed += TextView_Closed;
             Counter += 1;
-            //System.Diagnostics.Debug.WriteLine($"RegisterEvents {_fileName}: #{Counter} ");
         }
+
         internal void UnRegisterEvents(ITextView textView)
         {
+            lock (_syncLock)
+            {
+                if (!_registeredViews.Remove(textView))
+                {
+                    return;
+                }
+            }
+
             textView.Caret.PositionChanged -= CaretPositionChanged;
             textView.LayoutChanged -= ViewLayoutChanged;
             textView.Closed -= TextView_Closed;
             Counter -= 1;
-            //System.Diagnostics.Debug.WriteLine($"UnRegisterEvents {_fileName}: #{Counter} ");
         }
         private void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
         {
@@ -139,6 +158,8 @@ namespace Community.VisualStudio.Toolkit
                 return;
             }
 
+            // Increment version atomically to track request changes (race condition fix)
+            int currentVersion = Interlocked.Increment(ref _requestVersion);
             _requestedPoint = point.Value;
             TextExtent? word = _textStructureNavigator?.GetExtentOfWord(_requestedPoint);
 
@@ -146,7 +167,7 @@ namespace Community.VisualStudio.Toolkit
             {
                 ThreadHelper.JoinableTaskFactory.StartOnIdleShim(() =>
                 {
-                    UpdateWordAdornments(word.Value);
+                    UpdateWordAdornments(word.Value, currentVersion);
                 }, VsTaskRunContext.UIThreadIdlePriority).FireAndForget();
             }
             else
@@ -155,42 +176,53 @@ namespace Community.VisualStudio.Toolkit
                 // removed when we move the caret to whitespace
                 ClearSpans();
             }
-
         }
 
-        private void UpdateWordAdornments(TextExtent word)
+        private void UpdateWordAdornments(TextExtent word, int requestVersion)
         {
+            // Early exit if a newer request has been made (race condition fix)
+            if (requestVersion != Volatile.Read(ref _requestVersion))
+            {
+                return;
+            }
+
             SnapshotPoint currentRequest = _requestedPoint;
             List<SnapshotSpan>? wordSpans = new();
 
             string? text = word.Span.GetText();
-            if (_tagger.ShouldHighlight(text))
+            if (_tagger.ShouldHighlight(text) && _textSearchService != null)
             {
                 FindData findData = new(text, word.Span.Snapshot)
                 {
                     FindOptions = _tagger.FindOptions
                 };
 
-                System.Collections.ObjectModel.Collection<SnapshotSpan>? found = _textSearchService!.FindAll(findData);
-                wordSpans.AddRange(_tagger.FilterResults(found));
+                System.Collections.ObjectModel.Collection<SnapshotSpan>? found = _textSearchService.FindAll(findData);
+                IEnumerable<SnapshotSpan>? filtered = _tagger.FilterResults(found);
+                if (filtered != null)
+                {
+                    wordSpans.AddRange(filtered);
+                }
 
                 if (wordSpans.Count == 1)
                 {
                     wordSpans.Clear();
                 }
             }
-            //If another change hasn't happened, do a real update
-            if (currentRequest == _requestedPoint)
+
+            // If another change hasn't happened, do a real update (use version check)
+            if (requestVersion == Volatile.Read(ref _requestVersion))
             {
-                SynchronousUpdate(currentRequest, new NormalizedSnapshotSpanCollection(wordSpans), word.Span);
+                SynchronousUpdate(currentRequest, new NormalizedSnapshotSpanCollection(wordSpans), word.Span, requestVersion);
             }
         }
 
-        private void SynchronousUpdate(SnapshotPoint currentRequest, NormalizedSnapshotSpanCollection newSpans, SnapshotSpan? newCurrentWord)
+        private void SynchronousUpdate(SnapshotPoint currentRequest, NormalizedSnapshotSpanCollection newSpans, SnapshotSpan? newCurrentWord, int requestVersion)
         {
             lock (_syncLock)
             {
-                if (currentRequest != _requestedPoint)
+                // Use version check instead of SnapshotPoint comparison (race condition fix)
+                if (requestVersion != _requestVersion)
                 {
                     return;
                 }
